@@ -1,0 +1,101 @@
+HumMod / Uterus
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+HumMod / Uterus
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<branch>
+  <name> Uterus </name>
+  <label> Uterus </label>
+  <parent> ORGANS </parent>
+</branch>
+
+
+<leaf>
+  <name> Uterus-Size </name>
+  <label> Size </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Circulation </name>
+  <label> Circulation </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Metabolism </name>
+  <label> Metabolism </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Fuel </name>
+  <label> Fuel </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-CO2 </name>
+  <label> CO2 </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Lactate </name>
+  <label> Lactate </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-AcidBase </name>
+  <label> Acid-Base </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Nerves </name>
+  <label> Nerves </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Function </name>
+  <label> Function </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Structure </name>
+  <label> Structure </label>
+  <parent> Uterus </parent>
+</leaf>
+
+
+<leaf>
+  <name> Uterus-Vasculature </name>
+  <label> Vasculature </label>
+  <parent> Uterus </parent>
+</leaf>
+
+<leaf>
+  <name> Uterus-Menstruation </name>
+  <label> Menstruation </label>
+  <parent> Uterus </parent>
+</leaf>
+
+
+End

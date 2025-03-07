@@ -1,0 +1,153 @@
+
+<structure><name> WarfarinSingleDose </name>
+
+<variables>
+
+<parm>
+  <name> Dose </name> <!-- mg -->
+  <val> 0.0 </val>
+</parm>
+
+<parm>
+  <name> Timespan </name>
+  <val> 2.0 </val>
+</parm>
+
+<var>
+  <name> K </name>
+</var>
+
+<var>
+  <name> Loss-R </name>
+</var>
+
+<var>
+  <name> Loss-S </name>
+</var>
+
+<var>
+  <name> TimeLastDose </name>
+  <val> UNDEFINED </val>
+</var>
+
+<var>
+  <name> TotalDoses </name>
+  <val> 0.0 </val>
+</var>
+
+<var>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass-R </name><!-- ug-->
+  <integralname> Mass-R </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-R </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Mass-S </name><!-- ug-->
+  <integralname> Mass-S </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-S </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<!-- micrograms-->
+</equations>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<def>
+  <name> K </name>
+  <val> INVERT ( 2.0 * ( Timespan ) ) </val>
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Loss-R </name>
+  <val> K * Mass-R </val>
+</def>
+
+<def>
+  <name> Loss-S </name>
+  <val> K * Mass-S </val>
+</def>
+
+<def>
+  <name> Change-R </name>
+  <val> - Loss-R </val>
+</def>
+
+<def>
+  <name> Change-S </name>
+  <val> - Loss-S </val>
+</def>
+
+</block>
+
+<block><name> InjectNow </name>
+
+<def>
+  <name> Mass-R </name>
+  <val> Mass-R + ( 1000 * Dose * WarfarinDailyDose.R-fraction ) </val>
+</def>
+
+<def>
+  <name> Mass-S </name>
+  <val> Mass-S + ( 1000 * Dose * ( 1 - WarfarinDailyDose.R-fraction ) ) </val>
+</def>
+
+
+<def>
+  <name> TimeLastDose </name>
+  <val> System.X </val>
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> TotalDoses + 1.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Dose </val>
+</def>
+
+</block>
+
+<block><name> Reset </name>
+
+<def>
+  <name> TimeLastDose </name>
+  <val> UNDEFINED </val>
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

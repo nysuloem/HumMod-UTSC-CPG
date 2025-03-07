@@ -1,0 +1,37 @@
+HumMod / ThumbNail
+
+Created : 02-Apr-09
+Revised : 2013-04-04
+Author : Tom Coleman
+Copyright : 2008-2013
+By : University of Mississippi Medical Center
+
+<showvalue>
+   <row> 8 </row><col> 1 </col>
+   <name> BMI.BMI </name>
+   <format><decimal> 1 </decimal></format>
+   <label> BMI </label>
+</showvalue>
+
+<maplist>
+  <name> Heart-ECG.Now </name>
+  <map><val>  0 </val><img> Normal </img></map>
+  <map><val>  1 </val><img> Paced </img></map>
+  <map><val>  2 </val><img> S-T Shift </img></map>
+  <map><val>  3 </val><img> V-Fib </img></map>
+  <map><val>  4 </val><img> Flat </img></map>
+</maplist>
+
+<showvalue>
+  <row> 3 </row><col> 28 </col>
+  <name> Heart-ECG.Now </name>
+  <format><list> Heart-ECG.Now </list></format>
+  <label> ECG </label>
+</showvalue>
+
+<label>
+  <row> 6.4 </row><col> 28 </col>
+  <text></text>
+</label>
+
+End

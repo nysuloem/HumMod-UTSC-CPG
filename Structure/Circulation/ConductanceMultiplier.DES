@@ -1,0 +1,28 @@
+
+
+
+<structure><name> ConductanceMultiplier </name>
+
+<variables>
+<parm><name> Multiplier </name><val> 1.0 </val></parm>
+</variables>
+
+<definitions>
+
+<block><name> Calc </name>
+
+  <def><name> Bone-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> Fat-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> OtherTissue-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> SkeletalMuscle-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> RespiratoryMuscle-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> GITract-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> Skin-Flow.Multiplier </name><val> Multiplier </val></def>
+  <def><name> HepaticArtery-Flow.Multiplier </name><val> Multiplier </val></def>
+
+
+
+</block>
+
+</definitions>
+</structure>

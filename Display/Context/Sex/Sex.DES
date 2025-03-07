@@ -1,0 +1,41 @@
+HumMod / Sex
+
+Created : 2012-03-10
+Revised : 2012-03-10
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<panel><name> Context-Sex </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> WholeBody </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Context | Sex </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<structurename> Context-Sex </structurename>
+
+<radiobuttons>
+  <row> 5.0 </row><col> 1.0 </col>
+  <name> Index </name>
+  <listname> Common.Sex </listname>
+</radiobuttons>
+
+</panel>
+
+End

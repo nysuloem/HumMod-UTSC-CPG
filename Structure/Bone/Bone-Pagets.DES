@@ -1,0 +1,35 @@
+HumMod / Bone-ExchangeableCalcium
+
+Created : 2011-08-08
+Revised : 2012-03-13
+Author : Tom Coleman
+Copyright : 2011-2012
+By : University Of Mississippi Medical Center
+
+<structure><name> Bone-Pagets </name>
+
+<variables>
+
+<var><name> PagetEffect </name></var>
+<parm><name> Severity </name><val> 1 </val></parm>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<onjustchanged><name> Severity </name>
+<def><name> PagetEffect </name><val> Severity </val></def>
+<call> Bone-FixedCalcium.Dervs </call>
+<call> Bone-ExchangeableCalcium.Dervs </call>
+<call> Bone-Flow.Calc </call>
+</onjustchanged>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

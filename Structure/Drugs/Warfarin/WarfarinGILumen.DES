@@ -1,0 +1,99 @@
+
+<structure><name> WarfarinGILumen </name>
+
+<variables>
+
+<constant>
+  <name> BIOAVAIL </name>
+  <val> 0.98 </val>
+</constant>
+
+<constant>
+  <name> PERM </name>
+  <val> 0.0095 </val>
+</constant>
+
+<var>
+  <name> [Warfarin-R] </name>
+</var>
+
+<var>
+  <name> [Warfarin-S] </name>
+</var>
+
+<var>
+  <name> Loss-R </name>
+</var>
+
+<var>
+  <name> Loss-S </name>
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass-R </name>
+  <integralname> Mass-R </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-R </dervname>
+  <errorlim> 5.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Mass-S </name>
+  <integralname> Mass-S </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-S </dervname>
+  <errorlim> 5.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def>
+  <name> [Warfarin-R] </name>
+  <val> Mass-R / GILumenH2O.Mass(L) </val>
+</def>
+
+<def>
+  <name> [Warfarin-S] </name>
+  <val> Mass-S / GILumenH2O.Mass(L) </val>
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Loss-R </name>
+  <val> BIOAVAIL * PERM * Mass-R
+  </val>
+</def>
+
+<def>
+  <name> Loss-S </name>
+  <val> BIOAVAIL * PERM * Mass-S
+  </val>
+</def>
+
+<def>
+  <name> Change-R </name>
+  <val> - Loss-R / BIOAVAIL </val>
+</def>
+
+<def>
+  <name> Change-S </name>
+  <val> - Loss-S / BIOAVAIL </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

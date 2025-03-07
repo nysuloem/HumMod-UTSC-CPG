@@ -1,0 +1,215 @@
+HumMod / Genitalia-Flow
+
+Created : 31-Mar-05
+Revised : 2012-02-18
+Author : Tom Coleman
+Copyright : 2006-2012
+By : University Of Mississippi Medical Center
+
+<structure><name> Genitalia-Flow </name>
+
+<variables>
+
+<var><name> Conductance </name><val> 5 </val></var>
+<var><name> BasicConductance </name></var>
+<parm><name> Multiplier </name><val> 1.0 </val></parm>
+<var><name> NominalConductance </name></var>
+<constant><name> Conductance(/G) </name><val> 0.000141 </val></constant> <!--This value was set to give a flaccid blood flow to the penis that matches what ChatGPT said it shoudl be -->
+<parm><name> Clamp </name><val> FALSE </val></parm>
+<parm><name> Level </name><val> 0.0 </val></parm>
+<var><name> A2Effect </name></var>
+<var><name> SympsEffect </name></var>
+<var><name> ADHEffect </name></var>
+<var><name> PO2Effect </name></var>
+<var><name> SexEffect</name></var>
+<var><name> AerobicFraction </name></var>
+<var><name> O2Use </name></var>
+<var><name> [O2] </name></var>
+<var><name> BloodFlow </name></var>
+<var><name> PlasmaFlow </name></var>
+<var><name> CapPressure </name><val> 35 </val></var>
+<var><name> Status-Flaccid </name><val> 1 </val></var>
+<var><name> Status-Erect </name><val> 0 </val></var>
+
+</variables>
+
+<equations>
+
+<impliciteq>
+  <name> PO2 </name>
+  <startname> PO2 </startname>
+  <initialval> 45.0 </initialval>
+  <endname> PO2End </endname>
+  <errorlim> 1.45 </errorlim>
+  <searchmin> 0.0 </searchmin>
+  <searchmaxname> SearchMax </searchmaxname>
+</impliciteq>
+
+</equations>
+
+<functions>
+
+<curve>
+  <name> A2OnConductance </name>
+  <point><x> 0.0 </x><y> 1.05 </y><slope> 0 </slope></point>
+  <point><x> 1.3 </x><y> 1.00 </y><slope> -0.08 </slope></point>
+  <point><x> 3.5 </x><y> 0.50 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> SympsOnConductance </name>
+  <point><x> 0.0 </x><y> 1.1 </y><slope> 0 </slope></point>1.3
+  <point><x> 1.0 </x><y> 1.0 </y><slope> -0.3 </slope></point>
+  <point><x> 3.5 </x><y> 0.1 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> PO2OnConductance </name>
+  <point><x> 30 </x><y> 2.0 </y><slope> 0 </slope></point>
+  <point><x> 58 </x><y> 1 </y><slope> -0.08 </slope></point>
+  <point><x> 70 </x><y> 0.2 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> ADHOnConductance </name>
+  <point><x> 0.8 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 3.0 </x><y> 0.1 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> PO2OnAerobicFraction </name>
+  <point><x>  2.0 </x><y> 0.0 </y><slope> 0 </slope></point>
+  <point><x> 10.0 </x><y> 1.0 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> SexOnConductance</name>
+  <point><x> 0 </x><y> 1 </y><slope> 0 </slope></point>
+  <point><x> 1 </x><y> 700 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> NominalConductance </name>
+  <val> Conductance(/G) * Genitalia-Size.InitialMass </val>
+</def>
+
+</block>
+
+<block><name> Calc </name>
+
+<def>
+  <name> BasicConductance </name>
+  <val> NominalConductance * Multiplier </val>
+</def>
+
+<def>
+  <name> A2Effect </name>
+  <val> ( A2OnConductance [ A2Pool.Log10Conc ] ) MIN 1.05 </val>
+</def>
+
+<def>
+  <name> SympsEffect </name>
+  <val> SympsOnConductance [ Genitalia-AlphaReceptors.Activity ] </val>
+</def>
+
+<def>
+  <name> ADHEffect </name>
+  <val> ADHOnConductance [ ADHPool.Log10Conc ] </val>
+</def>
+
+<def>
+  <name> SearchMax </name>
+  <val> PO2Artys.Pressure </val>
+</def>
+
+<def>
+  <name> SexEffect </name>
+  <val> SexOnConductance [ HaveSex.TrySex ] </val>
+</def>
+
+<implicitmath><name> PO2 </name>
+
+<def>
+  <name> PO2Effect </name>
+  <val> PO2OnConductance [ PO2 ] </val>
+</def>
+
+<conditional><name> Conductance </name>
+<test> Clamp </test>
+<true> Level </true>
+<false> 
+      BasicConductance
+    * A2Effect
+    * SympsEffect
+    * PO2Effect
+    * ADHEffect
+    * Viscosity.ConductanceEffect
+    * Anesthesia.VascularConductance
+    * Genitalia-Vasculature.Effect
+    * SystemicArtys.NOEffect 
+    * SexEffect
+</false>
+</conditional>
+
+<def>
+  <name> BloodFlow </name>
+  <val> ( Genitalia-Pressure.PressureGradient * Conductance ) MAX 0.0 </val>
+</def>
+
+<def>
+  <name> AerobicFraction </name>
+  <val> PO2OnAerobicFraction [ PO2 ] </val>
+</def>
+
+<def>
+  <name> O2Use </name>
+  <val> Genitalia-Metabolism.O2Need * AerobicFraction </val>
+</def>
+
+<conditional>
+  <name> [O2] </name>
+  <test> BloodFlow GT 0.0 </test>
+  <true> O2Artys.[O2] - ( O2Use / BloodFlow ) </true>
+  <false> 0.0 </false>
+</conditional>
+
+<copy>
+  <from> [O2] </from>
+  <to> HgbTissue.[O2] </to>
+</copy>
+
+<call> HgbTissue.O2ToPO2 </call>
+
+<copy>
+  <from> HgbTissue.pO2 </from>
+  <to> PO2End </to>
+</copy>
+
+</implicitmath>
+
+<testcase>
+  <case> 
+  <test> BloodFlow GT 100 </test>
+  <def><name> Status-Erect </name><val> 1 </val></def>
+  <def><name> Status-Flaccid</name><val> 0 </val></def>
+  </case>
+</testcase>
+
+<def><name> PlasmaFlow </name><val> BloodFlow * BloodVol.PVCrit </val></def>
+
+<def>
+  <name> CapPressure </name>
+  <val> ( BloodFlow * 0.2 / Conductance ) + Genitalia-Pressure.VeinPressure </val>
+</def>
+
+</block>
+</definitions>
+</structure>
+
+End

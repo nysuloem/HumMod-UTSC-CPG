@@ -1,0 +1,152 @@
+
+<structure><name> PortalVein-Flow </name>
+
+<variables>
+
+<parm><name> V0 </name><val> 13.5 </val></parm>
+<parm><name> Compliance </name><val> 0.1 </val></parm>
+
+<parm><name> NominalConductance </name><val> 5500 </val></parm>
+<parm><name> NominalConductance-SmallVessel </name><val> 550 </val></parm>
+
+<var><name> DiseaseEffect </name></var>
+<var><name> BasicConductance </name></var>
+<var><name> BasicConductance-SmallVessel </name></var>
+<var><name> BasicConductance-SmallVessel-Healthy  </name></var>
+<var><name> BasicConductance-SmallVessel-Diseased </name></var>
+<var><name> Conductance </name></var>
+<var><name> Resistance </name></var>
+
+<var><name> Pressure </name><val> 7 </val></var>
+<var><name> Pressure-SmallPV </name></var>
+<var><name> PressureGradient </name></var>
+<var><name> VCPressureGradient </name></var>
+
+<var><name> BloodFlow-Int  </name></var>
+<var><name> BloodFlow </name></var>
+<var><name> BloodFlow-Healthy </name></var>
+<var><name> BloodFlow-Diseased </name></var>
+<var><name> PlasmaFlow </name></var>
+</variables>
+
+<equations>
+
+<stablediffeq>
+  <name> Vol </name>
+  <integralname> Vol </integralname>
+  <initialval> 15 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.5 </errorlim>
+  <dxmaxname> DxMax </dxmaxname>
+</stablediffeq>
+
+</equations>
+
+<functions>
+
+<curve>
+  <name> DiseaseOnConductance </name>
+  <point><x> 0.3 </x><y> 1.0 </y><slope> 0     </slope></point>
+  <point><x> 0.5 </x><y> 0.6 </y><slope> -2.5 </slope></point> 0.2, 0.6, -1.2
+  <point><x> 0.8  </x><y> 0.33 </y><slope> 0    </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+
+<block><name> Calc </name>
+
+<def>
+  <name> DiseaseEffect </name>
+  <val> DiseaseOnConductance [ Liver-Function.DiseasedFraction ] </val>
+</def>
+
+<def>
+  <name> BasicConductance </name>
+  <val> 
+	NominalConductance 
+	* Viscosity.ConductanceEffect 
+  </val> 
+</def> * SystemicArtys.NOEffect
+
+<def>
+  <name> BasicConductance-SmallVessel </name>
+  <val> 
+	NominalConductance-SmallVessel  
+	* Viscosity.ConductanceEffect 
+	* DiseaseEffect
+  </val>
+</def>
+
+<!-- this weights small vessel conductance to heathy and diseased parts -->
+<def>
+  <name> BasicConductance-SmallVessel-Healthy </name>
+  <val> BasicConductance-SmallVessel * Liver-Function.HealthyFraction </val>
+</def>
+
+<def>
+  <name> BasicConductance-SmallVessel-Diseased </name>
+  <val> 
+	BasicConductance-SmallVessel 
+	* Liver-Function.DiseasedFraction
+</val>
+</def>
+
+<def>
+  <name> Conductance </name>
+  <val>     
+	1 / ( ( 1 / BasicConductance ) + ( 1 / BasicConductance-SmallVessel ) ) 
+</val>
+</def>
+
+<def>
+  <name> Resistance </name>
+  <val> 1 / Conductance </val>
+</def>
+
+<!-- pressure has to be equal between diseased and healthy arts, so it needs only be solved for once -->
+
+<def><name> Pressure </name><val> ( Vol - V0  ) /  Compliance   </val></def>
+<def>
+  <name> PressureGradient </name>
+  <val> Pressure - SplanchnicVeins.Pressure </val>
+</def>
+
+<def>
+  <name> VCPressureGradient </name>
+  <val> Pressure - RightAtrium.Pressure </val>
+</def>
+
+<def><name> BloodFlow </name><val> PressureGradient * Conductance </val></def>
+
+<def><name> Pressure-SmallPV </name><val> Pressure - ( BloodFlow / BasicConductance-SmallVessel ) </val></def>
+
+
+<def>
+  <name> BloodFlow-Healthy </name>
+  <val> BloodFlow * BasicConductance-SmallVessel-Healthy / BasicConductance-SmallVessel</val>
+</def>
+
+<def>
+  <name> BloodFlow-Diseased </name>
+  <val> BloodFlow * BasicConductance-SmallVessel-Diseased / BasicConductance-SmallVessel</val>
+</def>
+
+<def><name> PlasmaFlow </name><val> BloodFlow * BloodVol.PVCrit </val></def>
+
+<conditional>
+  <name> DxMax </name>
+  <test> Conductance GT 0.0 </test>
+  <true> 0.2 * Compliance / Conductance </true>
+  <false> 1e10 </false>
+</conditional>
+
+<def><name> Change </name><val> GITract-Flow.BloodFlow - BloodFlow </val></def>
+</block>
+
+</definitions>
+</structure>
+
+End

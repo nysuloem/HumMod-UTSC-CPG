@@ -1,0 +1,22 @@
+HumMod / MCQuiz DES
+
+
+
+<branch>
+  <name> MultipleChoiceQuiz </name>
+  <label> Multiple Chocice Quizzes </label>
+  <parent> QUIZZES </parent>
+</branch>
+
+<leaf>
+  <name> Quiz 1 </name>
+  <label> Quiz 1 </label>
+  <parent> MultipleChoiceQuiz </parent>
+</leaf>
+
+<leaf>
+  <name>Quiz 2</name>
+  <label> Tiffany!! </label>
+    <parent> MultipleChoiceQuiz</parent></leaf>
+
+End

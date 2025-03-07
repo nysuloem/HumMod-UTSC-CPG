@@ -1,0 +1,11 @@
+HumMod / Heat
+
+Created : 2012-03-23
+Revised : 2012-03-23
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<?path Display\Quizzes\ ?>
+
+<?include MultipleChoiceQuiz.DES ?>

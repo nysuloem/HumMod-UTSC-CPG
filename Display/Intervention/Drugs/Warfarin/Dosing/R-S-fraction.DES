@@ -1,0 +1,33 @@
+
+<groupbox>
+   <row> 14.8 </row>
+   <col> 1.0 </col>
+   <high> 4. </high>
+   <wide> 30.0 </wide>
+   <title> Injection </title>
+
+<structurename> WarfarinDailyDose </structurename>
+
+<label>
+   <row> 1.2 </row><col> 1.0 </col>
+   <text> Fraction of dose as R-enantiomer</text>
+</label>
+
+<repeatlist>
+  <name> WarfarinDailyDose.R-fraction </name>
+  <repeat><reps> 10 </reps><stepsize> 0.1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 2.4 </row><col> 1.0 </col>
+  <name> R-fraction </name>
+  <listname> WarfarinDailyDose.R-fraction </listname>
+  <label> R-fraction </label>
+</slidebar>
+
+</groupbox>
+
+End
+
+
+

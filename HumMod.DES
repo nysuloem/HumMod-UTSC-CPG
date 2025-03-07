@@ -1,0 +1,40 @@
+<?xml version = '1.0' ?>
+
+<model>
+
+<!--
+HumMod / HumMod.DES
+
+Created : 06-Sep-08
+Revised : 2014-02-27
+Author : Tom Coleman
+Copyright : 2008-2014
+By : University of Mississippi Medical Center
+
+This version has been created by Terry Yavorskyy and Jason Brown with assistance from Drew Pruett. 
+We also acknowledge the contributions of Shree, Faria, Karson, Tiffany, Khadijee, and Aaesha as part of the pilot of the UTSC Computational Physiology Project
+-->
+
+<title>
+   <basic> UTSC BIOC32 Inclusive Version - Updated January 31, 2025 - You can have mixed race babies now!  </basic>
+</title>
+
+<?include Structure\Structure.DES ?>
+
+<math>
+
+  <context> Structure.Context </context>
+  <parms> Structure.Parms </parms>
+  <dervs> Structure.Dervs </dervs>
+  <wrapup> Structure.Wrapup </wrapup>
+
+</math>
+
+<?include Control\Control.DES ?>
+<?include Display\Display.DES ?>
+
+<?attach Docs\Docs.DOCS ?>
+
+End
+
+</model>

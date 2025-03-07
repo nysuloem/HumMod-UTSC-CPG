@@ -1,0 +1,92 @@
+HumMod / Genitalia
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<?path Structure\Genitalia\ ?>
+
+<?include Genitalia-Size.DES ?>
+<?include Genitalia-Structure.DES ?>
+<?include Genitalia-Ph.DES ?>
+<?include Genitalia-Fuel.DES ?>
+<?include Genitalia-Function.DES ?>
+<?include Genitalia-Pressure.DES ?>
+<!--<?include Genitalia-InterstitialH2O.DES ?>-->
+<!--<?include Genitalia-InterstitialProtein.DES ?>-->
+<?include Genitalia-Flow.DES ?>
+<?include Genitalia-Vasculature.DES ?>
+<?include Genitalia-AlphaReceptors.DES ?>
+<?include Genitalia-CO2.DES ?>
+<?include Genitalia-Lactate.DES ?>
+<?include Genitalia-Metabolism.DES ?>
+
+
+<structure><name> Genitalia </name>
+
+<variables>
+
+<!--
+-->
+
+</variables>
+
+<definitions>
+    <block><name> Init </name>
+<call> Context-Gender.Init </call>
+<call> Gender.Init </call>
+    </block>
+
+<block><name> Dervs </name>
+
+<!--
+<def><name>  </name><val> 0.0 </val></def>
+-->
+
+</block>
+<!-- Drew's conditional block from the female endocrine model -->
+<block><name> Gender </name>
+
+    <if><test> Context-Gender.UIndex </test>
+    
+    <true>  </true>
+    
+    <false>
+       <!-- <call> Genitalia-Fuel.Failed </call> -->
+
+       <def><name> Genitalia-Size.Vol </name> <val> 0.01</val> </def>
+       <def><name> Genitalia-Size.Mass </name><val> 0.01 </val></def>
+       <def><name> Genitalia-Size.LiquidMass </name><val> 0.01 </val></def>
+       <def><name> Genitalia-Size.SolidMass </name><val> 0.01 </val></def>
+       <def><name> Genitalia-Size.InitialIFV </name><val> 0.01 </val></def>
+       <def><name> Genitalia-Size.SolidVol </name><val> 0.0 </val></def>
+       <def><name> Genitalia-Size.InitialLiquidVol</name> <val> 0.01 </val> </def>
+       <def><name> Genitalia-Size.InitialSolidMass </name> <val> 0.01 </val> </def>
+
+    <def><name> Genitalia-Function.Effect </name><val> 0.0 </val></def>
+    <def><name> Genitalia-Lactate.Change </name><val> 0 </val></def>
+    <def><name> Genitalia-Structure.F1 </name><val> 1 </val></def>
+    <def><name> Genitalia-Structure.PhFactor </name><val> 0 </val></def>
+    <def><name> Genitalia-Structure.F2 </name><val> 1 </val></def>
+    <def><name> Genitalia-Vasculature.Stimulus </name><val> 0 </val></def>
+    <def><name> Genitalia-Vasculature.K </name><val> 1 </val></def>
+
+
+    <def><name> Sizing-Composition-Genitalia.SolidMass </name><val> 0.01 </val></def>
+     <def><name> Sizing-Composition-Genitalia.Mass </name><val> 0.01 </val></def>
+    <def><name> Sizing-Composition-Genitalia.LiquidVol </name><val> 0.01 </val></def>
+ 
+<!-- Appears that this works and the application does not crash or freeze, however limited values are showing as 0s -->
+    </false>
+    </if>
+
+    </block>
+
+</definitions>
+</structure>
+
+End

@@ -1,0 +1,68 @@
+HumMod / CreatineGILumen
+
+<structure><name> CreatineGILumen </name>
+
+<variables>
+
+<constant>
+  <name> BIOAVAIL </name>
+  <val> 0.16 </val>
+</constant>
+
+<constant>
+  <name> PERM </name>
+  <val> 0.04 </val>0.01
+</constant>
+
+<var>
+  <name> [Creatine] </name>
+</var>
+
+<var>
+  <name> Loss </name>
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def>
+  <name> [Creatine] </name>
+  <val> Mass / GILumenH2O.Mass(L) </val>
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Loss </name>
+  <val> BIOAVAIL * PERM * Mass
+  </val>
+</def>
+
+<def>
+  <name> Change </name>
+  <val> - Loss </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

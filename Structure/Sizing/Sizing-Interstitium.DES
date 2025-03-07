@@ -1,0 +1,59 @@
+<structure><name> Sizing-Interstitium </name>
+
+<variables>
+
+<constant><name> GVA </name><val> 0.3 </val></constant>
+<constant><name> GVB </name><val> 0.5 </val></constant>
+<constant><name> GVS </name><val> 0.4 </val></constant>
+<constant><name> GVm </name><val> 5.0 </val></constant>
+
+<constant><name> GWVA </name><val> 1.05 </val></constant>
+<constant><name> GWVS </name><val> 0.525 </val></constant>
+<constant><name> GWVm </name><val> 5.0 </val></constant>
+
+<constant><name> Compliance-Soft </name><val> 0.02 </val></constant>0.02
+<constant><name> Compliance-Bone </name><val> 0.02 </val></constant>0.02
+<constant><name> V0 </name><val> 0.835 </val></constant>
+</variables>
+
+<definitions>
+<block><name> Calc </name>
+
+<!--<call> Bone-InterstitialH2O.Init </call>-->
+<!--<call> Brain-InterstitialH2O.Init </call>-->
+<!--<call> GITract-InterstitialH2O.Init </call>-->
+<!--<call> LeftHeart-InterstitialH2O.Init </call>-->
+<!--<call> LeftKidney-InterstitialH2O.Init </call>-->
+<!--<call> Liver-InterstitialH2O.Init </call>-->
+<!--<call> RightHeart-InterstitialH2O.Init </call>-->
+<!--<call> RightKidney-InterstitialH2O.Init </call>-->
+<!--<call> OtherTissue-InterstitialH2O.Init </call>-->
+<!--<call> RespiratoryMuscle-InterstitialH2O.Init </call>-->
+<!--<call> Fat-InterstitialH2O.Init </call>-->
+<!--<call> Skin-InterstitialH2O.Init </call>-->
+<!--<call> Spleen-InterstitialH2O.Init </call>-->
+<!--<call> SkeletalMuscle-InterstitialH2O.Init </call>-->
+<!--<call> Uterus-InterstitialH2O.Init </call>-->
+
+<!--
+<call> Bone-InterstitialProtein.Init </call>
+<call> Brain-InterstitialProtein.Init </call>
+<call> GITract-InterstitialProtein.Init </call>
+<call> LeftHeart-InterstitialProtein.Init </call>
+<call> LeftKidney-InterstitialProtein.Init </call>
+<call> Liver-InterstitialProtein.Init </call>
+<call> RightHeart-InterstitialProtein.Init </call>
+<call> RightKidney-InterstitialProtein.Init </call>
+<call> OtherTissue-InterstitialProtein.Init </call>
+<call> RespiratoryMuscle-InterstitialProtein.Init </call>
+<call> Fat-InterstitialProtein.Init </call>
+<call> Skin-InterstitialProtein.Init </call>
+<call> Spleen-InterstitialProtein.Init </call>
+<call> SkeletalMuscle-InterstitialProtein.Init </call>
+<call> Uterus-InterstitialProtein.Init </call>
+-->
+
+
+</block>
+</definitions>
+</structure>

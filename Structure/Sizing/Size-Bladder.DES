@@ -1,0 +1,30 @@
+HumMod / Size-Bladder DES
+
+Created : 2012-10-31
+Revised : 2012-10-31
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Size-Bladder </name>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<conditional>
+<name> Bladder.Sizer </name>
+<test> Sex.Index EQ 1 </test>
+<true> Context-OtherMass.Mass(kG) / Context-OtherMass.MALE_NORMAL </true>
+<false> Context-OtherMass.Mass(kG) / Context-OtherMass.FEMALE_NORMAL </false>
+</conditional>
+
+<call> Bladder.Init </call>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

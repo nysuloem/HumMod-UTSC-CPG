@@ -1,0 +1,17 @@
+HumMod / PagetsDisease DES
+
+
+
+<branch>
+  <name>PagetsDisease</name>
+  <label> Paget's Disease </label>
+  <parent> PATHOLOGY </parent>
+</branch>
+
+<leaf>
+  <name> PagetsDiseaseControl</name>
+  <label> Control </label>
+  <parent> PagetsDisease </parent>
+</leaf>
+
+End

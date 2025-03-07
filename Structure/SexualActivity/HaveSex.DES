@@ -1,0 +1,84 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+<structure><name> HaveSex </name>
+
+<variables>
+
+<parm><name> TrySex </name><val> 0.0 </val></parm>
+
+<var><name> TimeLastSex </name><val> UNDEFINED </val></var>
+<var><name> TimeNextSex </name><val> UNDEFINED </val></var>
+<var><name> TotalSex </name><val> 0.0 </val></var>
+<var><name> CumulativeDose </name><val> 0.0 </val></var>
+<timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
+<var><name> Interval </name></var>
+<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+</block>
+
+<block><name> Wrapup </name>
+
+<ontimedout><name> Timer </name>
+
+<timer>
+  <name> Timer </name>
+  <val> Interval </val>
+</timer>
+
+<def>
+  <name> TimeLastSex </name>
+  <val> System.X </val>
+</def>
+
+<def>
+  <name> TimeNextSex </name>
+  <val> System.X + Interval </val>
+</def>
+
+
+<def>
+  <name> TotalSex </name>
+  <val> TotalSex + 1.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Dose </val>
+</def>
+
+</ontimedout>
+</block>
+
+<block><name> Reset </name>
+
+<def>
+  <name> TimeLastSex </name>
+  <val> UNDEFINED </val>
+</def>
+
+<def>
+  <name> TotalSex </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

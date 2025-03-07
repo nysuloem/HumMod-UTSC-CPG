@@ -1,0 +1,298 @@
+HumMod / Status
+
+Created : 25-May-05
+Last Modified : 2011-10-15
+Author : Tom Coleman
+Copyright : 2006-2011
+By : University Of Mississippi Medical Center
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 30 </high>
+   <wide> 100 </wide>
+   <title> Control </title>
+
+<label>
+  <row> 1.4 </row><col> 1.0 </col>
+  <text> Request </text>
+</label>
+
+<maplist>
+  <name> Exercise-Control.Request </name>
+  <map><val> 0 </val><img> Resting </img></map>
+  <map><val> 1 </val><img> Exercise Bike </img></map>
+  <map><val> 2 </val><img> Treadmill </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 2.6 </row><col> 1.0 </col>
+  <name> Exercise-Control.Request </name>
+  <listname> Exercise-Control.Request </listname>
+  <nolabel/>
+  <layout> VERT </layout>
+</radiobuttons>
+
+<label>
+  <row> 6.0 </row><col> 1.0 </col>
+  <text> Status </text>
+</label>
+
+<checkmark>
+   <row> 7.2 </row><col> 1.0 </col>
+   <name> Status.Resting </name>
+   <label> Resting </label>
+</checkmark>
+
+<checkmark>
+   <row> 8.2 </row><col> 1.0 </col>
+   <name> Status.ExerciseBike </name>
+   <label> Exercise Bike </label>
+</checkmark>
+
+<checkmark>
+   <row> 9.2 </row><col> 1.0 </col>
+   <name> Status.Treadmill </name>
+   <label> Treadmill </label>
+</checkmark>
+
+<checkmark>
+   <row> 10.2 </row><col> 1.0 </col>
+   <name> Status.Working </name>
+   <label> Working </label>
+</checkmark>
+
+<checkmark>
+   <row> 11.2 </row><col> 1.0 </col>
+   <name> Status.Aerobics </name>
+   <label> Aerobics </label>
+</checkmark>
+
+<!-- 
+
+<infobutton>
+  <row> 1.4 </row>
+  <col> 26.0 </col>
+  <line> A request for exercise is not executed </line>
+  <line> when exercise is being controlled by the daily </line>
+  <line> planner or when the subject is comatose. </line>
+</infobutton>
+
+ -->
+
+<structurename> Exercise-Bike </structurename>
+
+<label>
+  <row> 1.4 </row><col> 30 </col>
+  <text> Exercise Bike </text>
+</label>
+
+<showvalue>
+  <row> 3.4 </row><col> 30.0 </col>
+  <name> Status </name>
+  <format><list> Common.Active </list></format>
+  <label> Status </label>
+</showvalue>
+
+<maplist>
+  <name> Exercise-Bike.Level </name>
+  <map><val>  50 </val><img> Warmup </img></map>
+  <map><val> 100 </val><img> 100 </img></map>
+  <map><val> 150 </val><img> Moderate </img></map>
+  <map><val> 200 </val><img> 200 </img></map>
+  <map><val> 250 </val><img> Heavy </img></map>
+  <map><val> 300 </val><img> 300 </img></map>
+  <map><val> 350 </val><img> Maximum </img></map>
+</maplist>
+
+<slidebar>
+  <row> 4.8 </row><col> 30.0 </col>
+  <wide> 8.0 </wide>
+  <name> Power(W) </name>
+  <listname> Exercise-Bike.Level </listname>
+  <label> Level </label>
+  <fieldwidth> 10 </fieldwidth>
+</slidebar>
+
+<showvalue>
+   <row> 7 </row><col> 30.0 </col>
+   <name> Power(W) </name>
+   <format> <integer/> </format>
+   <label> Power (Watts) </label>
+</showvalue>
+
+<repeatlist>
+  <name> Exercise-Bike.RPM </name>
+  <repeat><reps> 100 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 9.5 </row><col> 30.0 </col>
+  <name> RPM </name>
+  <listname> Exercise-Bike.RPM </listname>
+  <label> RPM </label>
+</slidebar>
+
+<showvalue>
+   <row> 12 </row><col> 30.0 </col>
+   <name> ElapsedTime </name>
+   <format>
+     <timer/>
+     <fieldwidth> 10 </fieldwidth>
+   </format>
+   <label> Elapsed Time </label>
+</showvalue>
+
+<actionbutton>
+   <row> 17 </row><col> 30.0 </col>
+   <blockname> ResetElapsedTime </blockname>
+   <label> Reset Elapsed Time </label>
+</actionbutton>
+
+<repeatlist>
+  <name> Exercise-Bike.Efficiency(%) </name>
+  <firstval> 1 </firstval>
+  <repeat><reps> 99 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 14.5 </row><col> 30.0 </col>
+  <name> Efficiency(%) </name>
+  <listname> Exercise-Bike.Efficiency(%) </listname>
+  <label> Efficiency (%) </label>
+  <fieldwidth> 5 </fieldwidth>
+</slidebar>
+
+<!-- 
+
+<showvalue>
+   <row> 14.6 </row><col> 30.0 </col>
+   <name> TotalWatts </name>
+   <format> <integer/> </format>
+   <label> Total Watts </label>
+</showvalue>
+
+ -->
+
+<structurename> Exercise-Treadmill </structurename>
+
+<label>
+  <row> 1.4 </row><col> 70 </col>
+  <text> Treadmill </text>
+</label>
+
+<showvalue>
+  <row> 3.4 </row><col> 70 </col>
+  <name> Status </name>
+  <format><list> Common.Active </list></format>
+  <label> Status </label>
+</showvalue>
+
+<maplist><name> Exercise-Treadmill.RunOrWalk </name>
+  <map><val> 0 </val><img> Run </img></map>
+  <map><val> 1 </val><img> Walk </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 4.8 </row><col> 70 </col>
+  <name> RunOrWalk </name>
+  <listname> Exercise-Treadmill.RunOrWalk </listname>
+  <nolabel/>
+</radiobuttons>
+
+<repeatlist>
+  <name> Exercise-Treadmill.Speed(MPH) </name>
+  <repeat><reps> 30 </reps><stepsize>  0.5 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 7.0 </row><col> 70 </col>
+  <name> Speed(MPH) </name>
+  <listname> Exercise-Treadmill.Speed(MPH) </listname>
+  <label> Speed (MPH) </label>
+</slidebar>
+
+<showvalue>
+  <row> 8.3</row><col> 70 </col>
+  <name> Speed(KPH) </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Speed (km/h) </label>
+</showvalue>
+
+<repeatlist>
+  <name> Exercise-Treadmill.Grade(%) </name>
+  <repeat><reps> 15 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 10.5 </row><col> 70 </col>
+  <name> Grade(%) </name>
+  <listname> Exercise-Treadmill.Grade(%) </listname>
+  <label> Grade (%) </label>
+</slidebar>
+
+<showvalue>
+  <row> 11.8 </row><col> 70 </col>
+  <name> Degrees </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Degrees </label>
+</showvalue>
+
+<showvalue>
+  <row> 14 </row><col> 70 </col>
+  <name> Power(W) </name>
+  <format> <integer/> </format>
+  <label> Power (Watts) </label>
+</showvalue>
+
+<showvalue>
+  <row> 15 </row><col> 70 </col>
+  <name> StepsPerMinute </name>
+  <format> <integer/> </format>
+  <label> Steps / Minute </label>
+</showvalue>
+
+<showvalue>
+   <row> 17.5 </row><col> 70 </col>
+   <name> ElapsedTime </name>
+   <format><timer/></format>
+   <label> Elapsed Time </label>
+</showvalue>
+
+<showvalue>
+  <row> 18.5 </row><col> 70 </col>
+  <name> Distance(kM) </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Distance (kM) </label>
+</showvalue>
+
+<actionbutton>
+   <row> 25 </row><col> 70 </col>
+   <blockname> ResetTime&Distance </blockname>
+   <label> Reset Time And Distance </label>
+</actionbutton>
+
+<repeatlist>
+  <name> Exercise-Treadmill.Efficiency(%) </name>
+  <firstval> 1 </firstval>
+  <repeat><reps> 99 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 21 </row><col> 70 </col>
+  <name> Efficiency(%) </name>
+  <listname> Exercise-Treadmill.Efficiency(%) </listname>
+  <label> Efficiency (%) </label>
+  <fieldwidth> 5 </fieldwidth>
+</slidebar>
+
+<showvalue>
+   <row> 23 </row><col> 70 </col>
+   <name> TotalWatts </name>
+   <format> <integer/> </format>
+   <label> Total Watts </label>
+</showvalue>
+
+</groupbox>
+
+End

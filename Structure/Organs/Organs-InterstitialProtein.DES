@@ -1,0 +1,50 @@
+
+<structure><name> Organs-InterstitialProtein </name>
+
+<definitions>
+
+<block><name> CalcCOP </name>
+  <call> Bone-InterstitialProtein.CalcCOP </call>
+  <call> Brain-InterstitialProtein.CalcCOP </call>
+  <call> GITract-InterstitialProtein.CalcCOP </call>
+  <call> LeftHeart-InterstitialProtein.CalcCOP </call>
+  <call> LeftKidney-InterstitialProtein.CalcCOP </call>
+  <call> Liver-InterstitialProtein.CalcCOP </call>
+  <call> RightHeart-InterstitialProtein.CalcCOP </call>
+  <call> RightKidney-InterstitialProtein.CalcCOP </call>
+  <call> OtherTissue-InterstitialProtein.CalcCOP </call>
+  <call> RespiratoryMuscle-InterstitialProtein.CalcCOP </call>
+  <call> Fat-InterstitialProtein.CalcCOP </call>
+  <call> Spleen-InterstitialProtein.CalcCOP </call>
+  <call> Skin-InterstitialProtein.CalcCOP </call>
+  <call> SkeletalMuscle-InterstitialProtein.CalcCOP </call>
+  <call> Uterus-InterstitialProtein.CalcCOP </call>
+  <call> Genitalia-InterstitialProtein.CalcCOP </call>
+
+
+
+</block>
+
+<block><name> Dervs </name>
+  <call> Bone-InterstitialProtein.Dervs </call>
+  <call> Brain-InterstitialProtein.Dervs </call>
+  <call> GITract-InterstitialProtein.Dervs </call>
+  <call> LeftHeart-InterstitialProtein.Dervs </call>
+  <call> LeftKidney-InterstitialProtein.Dervs </call>
+  <call> Liver-InterstitialProtein.Dervs </call>
+  <call> RightHeart-InterstitialProtein.Dervs </call>
+  <call> RightKidney-InterstitialProtein.Dervs </call>
+  <call> OtherTissue-InterstitialProtein.Dervs </call>
+  <call> RespiratoryMuscle-InterstitialProtein.Dervs </call>
+  <call> Fat-InterstitialProtein.Dervs </call>
+  <call> Skin-InterstitialProtein.Dervs </call>
+  <call> Spleen-InterstitialProtein.Dervs </call>
+  <call> SkeletalMuscle-InterstitialProtein.Dervs </call>
+  <call> Uterus-InterstitialProtein.Dervs </call>
+  <call> Genitalia-InterstitialProtein.Dervs </call>
+
+
+</block>
+
+</definitions>
+</structure>

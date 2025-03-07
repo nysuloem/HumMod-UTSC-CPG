@@ -1,0 +1,141 @@
+HumMod / Sizing-InterstitialWater
+
+Created : 2013-02-27
+Revised : 2013-02-27
+Author : Tom Coleman
+Copyright : 2013-2013
+By : Tom Coleman
+
+HumMod / Sizing-InterstitialWater
+
+Created : 2013-02-27
+Revised : 2013-02-27
+Author : Tom Coleman
+Copyright : 2013-2013
+By : Tom Coleman
+
+<structure><name> Sizing-InterstitialWater </name>
+
+<variables>
+
+<var><name> Vol </name></var>
+
+<var><name> Vol-Bone </name></var>
+<var><name> Vol-Brain </name></var>
+<var><name> Vol-Fat </name></var>
+<var><name> Vol-GITract </name></var>
+<var><name> Vol-LeftKidney </name></var>
+<var><name> Vol-RightKidney</name></var>
+<var><name> Vol-LeftHeart </name></var>
+<var><name> Vol-Liver </name></var>
+<var><name> Vol-OtherTissue </name></var>
+<var><name> Vol-RespiratoryMuscle </name></var>
+<var><name> Vol-RightHeart </name></var>
+<var><name> Vol-SkeletalMuscle </name></var>
+<var><name> Vol-Skin </name></var>
+<var><name> Vol-Spleen </name></var>
+<var><name> Vol-Uterus </name></var>
+</variables>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<def>
+  <name> Vol </name>
+  <val>
+      Sizing-ECFV.Vol
+    - Sizing-BodyH2O.Plasma
+    - Sizing-BodyH2O.ExternalCore
+ </val>
+</def>
+
+<def>
+  <name> InterstitialWater.InitialVol </name>
+  <val> Vol </val>
+</def>
+
+<call> InterstitialWater.Init </call>
+
+<def>
+  <name> Vol-Bone </name>
+  <val> Vol * Sizing-Composition-Bone.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-Brain </name>
+  <val> Vol * Sizing-Composition-Brain.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-Fat </name>
+  <val> Vol * Sizing-Composition-Fat.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-GITract </name>
+  <val> Vol * Sizing-Composition-GITract.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-LeftKidney </name>
+  <val> Vol * Sizing-Composition-LeftKidney.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-RightKidney</name>
+  <val> Vol * Sizing-Composition-RightKidney.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-LeftHeart </name>
+  <val> Vol * Sizing-Composition-LeftHeart.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-Liver </name>
+  <val> Vol * Sizing-Composition-Liver.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-OtherTissue </name>
+  <val> Vol * Sizing-Composition-OtherTissue.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-RespiratoryMuscle </name>
+  <val> Vol * Sizing-Composition-RespiratoryMuscle.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-RightHeart </name>
+  <val> Vol * Sizing-Composition-RightHeart.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-SkeletalMuscle </name>
+  <val> Vol * Sizing-Composition-SkeletalMuscle.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<def>
+  <name> Vol-Skin </name>
+  <val> Vol * Sizing-Composition-Skin.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+<!--<def>
+  <name> Vol-Spleen </name>
+  <val> Vol * Sizing-Composition-Spleen.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+-->
+
+<def>
+  <name> Vol-Uterus </name>
+  <val> Vol * Sizing-Composition-Uterus.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

@@ -1,0 +1,145 @@
+HumMod / Context-Age
+
+Created : 2012-03-10
+Revised : 2012-06-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Context-Age </name>
+
+<variables>
+
+<parm><name> Index </name><val> 3 </val></parm>
+<parm><name> PlusMinus </name><val> 0 </val></parm>
+
+<constant><name> INFANT </name><val> 6.0 </val></constant>
+<constant><name> TEENAGER      </name><val> 15.0 </val></constant>
+<constant><name> YOUNG-ADULT   </name><val> 25.0 </val></constant>
+<constant><name> MIDDLE-AGE-ADULT </name><val> 35.0 </val></constant>
+<constant><name> SENIOR-ADULT        </name><val> 55.0 </val></constant>
+<constant><name> ELDERLY-ADULT    </name><val> 75.0 </val></constant>
+
+<var><name> NominalAge </name></var>
+<var><name> Age(Years) </name></var>
+
+<var><name> IsInfant </name></var>
+<var><name> IsTeenager      </name></var>
+<var><name> IsYoungAdult   </name></var>
+<var><name> IsMiddleAgeAdult </name></var>
+<var><name> IsSeniorAdult       </name></var>
+<var><name> IsElderlyAdult    </name></var>
+
+<var><name> Stochasm </name></var>
+
+<normaldist>
+  <name> Normal </name>
+  <mean> 0 </mean>
+  <stddev> 10 </stddev>
+</normaldist>
+
+<whitenoise>
+  <name> Flat </name>
+  <lowerlim> -50 </lowerlim>
+  <upperlim> 50 </upperlim>
+</whitenoise>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<onjustchanged><name> Index </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+</block>
+
+<block><name> Calc </name>
+
+<if><test> System.X GT System.InitialX </test>
+<true> <exitblock/> </true>
+</if>
+
+<def><name> IsInfant </name><val> FALSE </val></def>
+<def><name> IsTeenager      </name><val> FALSE </val></def>
+<def><name> IsYoungAdult   </name><val> FALSE </val></def>
+<def><name> IsMiddleAgeAdult </name><val> FALSE </val></def>
+<def><name> IsSeniorAdult        </name><val> FALSE </val></def>
+<def><name> IsElderlyAdult    </name><val> FALSE </val></def>
+
+<testcase>
+
+<case><test> Index EQ 0 </test>
+<def><name> NominalAge </name><val> INFANT </val></def>
+<def><name> IsInfant </name><val> TRUE </val></def>
+</case>
+
+<case><test> Index EQ 1 </test>
+<def><name> NominalAge </name><val> TEENAGER </val></def>
+<def><name> IsTeenager </name><val> TRUE </val></def>
+</case>
+
+<case><test> Index EQ 2 </test>
+<def><name> NominalAge </name><val> YOUNG-ADULT </val></def>
+<def><name> IsYoungAdult </name><val> TRUE </val></def>
+</case>
+
+<case><test> Index EQ 3 </test>
+<def><name> NominalAge </name><val> MIDDLE-AGE-ADULT </val></def>
+<def><name> IsMiddleAgeAdult </name><val> TRUE </val></def>
+</case>
+
+<case><test> Index EQ 4 </test>
+<def><name> NominalAge </name><val> SENIOR-ADULT </val></def>
+<def><name> IsSeniorAdult </name><val> TRUE </val></def>
+</case>
+
+<case><test> Index EQ 5 </test>
+<def><name> NominalAge </name><val> ELDERLY-ADULT </val></def>
+<def><name> IsElderlyAdult </name><val> TRUE </val></def>
+</case>
+
+</testcase>
+
+<call> CalcStochasm </call>
+
+<def>
+  <name> Age(Years) </name>
+  <val>
+     NominalAge
+    * ( 1.0 + ( PlusMinus / 100 ) )
+     * ( 1.0 + ( Stochasm / 100 ) )
+  </val>
+</def>
+
+<def>
+  <name> Age.InitialAge(Years) </name>
+  <val> Age(Years) </val>
+</def>
+
+<call> Age.Init </call>
+
+</block>
+
+<block><name> CalcStochasm </name>
+
+<def>
+  <name> Stochasm </name>
+  <val> 0 </val>
+</def>
+
+<conditional>
+  <name> Stochasm </name>
+  <test> Random.Distribution EQ Random.IS_NORMAL </test>
+  <true> Normal </true>
+  <false> Flat </false>
+</conditional>
+
+</block>
+
+</definitions>
+</structure>
+
+End

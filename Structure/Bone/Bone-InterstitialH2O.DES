@@ -1,0 +1,219 @@
+<structure><name> Bone-InterstitialH2O </name>
+
+<variables>
+
+
+
+<var><name> Vol0 </name></var>
+<var><name> normVol </name></var>
+<var><name> GelH2OVol </name></var>
+<var><name> GelVol </name></var>
+<var><name> FreeVol </name></var>
+<var><name> TotalVol </name></var>
+<var><name> PI </name></var>
+
+<var><name> Compliance </name></var>
+<var><name> V0 </name></var>
+<var><name> GWVA </name></var>
+<var><name> GWVS </name></var>
+<var><name> GWVm </name></var>
+<var><name> GVA </name></var>
+<var><name> GVB </name></var>
+<var><name> GVS </name></var>
+<var><name> GVm </name></var>
+
+<var><name> Gain-H2O </name></var>
+<var><name> Loss-H2O </name></var>
+
+
+
+<var><name> LymphRate </name></var>
+<var><name> Loss </name></var>
+<var><name> HeatFlow </name></var>
+<var><name> CellFlow </name></var>
+<var><name> LymphFlow </name></var>
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Vol </name>
+  <integralname> Vol </integralname>
+  <dervname> dVol </dervname>
+  <errorlim> 10 </errorlim>
+</diffeq>
+
+</equations>
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> TotalVol </name>
+  <val> Sizing-InterstitialWater.Vol-Bone </val>
+</def>
+
+
+<def>
+  <name> Vol </name>
+  <val> TotalVol </val>
+</def>
+
+<def>
+  <name> Vol0 </name>
+  <val> TotalVol </val>
+</def>
+
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+
+
+<def>
+  <name> GWVA </name>
+  <val> Sizing-Interstitium.GWVA </val>
+</def>
+
+<def>
+  <name> GWVS </name>
+  <val> Sizing-Interstitium.GWVS </val>
+</def>
+
+<def>
+  <name> GWVm </name>
+  <val> Sizing-Interstitium.GWVm </val>
+</def>
+
+<def>
+  <name> GVA </name>
+  <val> Sizing-Interstitium.GVA </val>
+</def>
+
+<def>
+  <name> GVB </name>
+  <val> Sizing-Interstitium.GVB </val>
+</def>
+
+<def>
+  <name> GVS </name>
+  <val> Sizing-Interstitium.GVS </val>
+</def>
+
+<def>
+  <name> GVm </name>
+  <val> Sizing-Interstitium.GVm </val>
+</def>
+
+<def>
+  <name> Compliance </name>
+  <val> Sizing-Interstitium.Compliance-Soft </val>
+</def>
+
+<def>
+  <name> V0 </name>
+  <val> Sizing-Interstitium.V0 </val>
+</def>
+
+</block>
+
+
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+
+
+<block><name> Calc </name>
+
+<def>
+  <name> LymphRate</name>
+  <val> InterstitialWater.LymphBase * Bone-Size.OtherMass </val>
+</def>
+
+<def>
+  <name> normVol </name>
+  <val> Vol / Vol0 </val>
+</def>
+
+<def>
+  <name> GelH2OVol </name>
+  <val> GWVA * ( normVol  ^ GWVm ) / ( ( normVol  ^ GWVm ) + ( GWVS ^ GWVm ) )  </val>
+</def>
+
+<def>
+  <name> GelVol </name>
+  <val> GVA * ( GelH2OVol ^ GVm ) / ( ( GelH2OVol ^ GVm ) + ( GVS ^ GVm ) )  + GVB </val>
+</def>
+
+<def>
+  <name> FreeVol </name>
+  <val> normVol  - GelH2OVol </val>
+</def>
+
+<def>
+  <name> TotalVol </name>
+  <val> FreeVol + GelVol </val>
+</def>
+
+<def>
+  <name> PI </name>
+  <val> ( TotalVol - V0 ) / Compliance </val>
+</def>
+
+</block>
+
+
+
+<block><name> Dervs </name>
+<def>
+  <name> Gain-H2O </name>
+  <val> InterstitialWater.BasePermeability * Bone-Size.SolidMass * ( Bone-Pressure.CapPressure  - PI - PlasmaProtein.COP + Bone-InterstitialProtein.COP ) </val>
+</def>
+
+<def>
+  <name> LymphFlow </name>
+  <val>  ( LymphRate * ( PI + InterstitialWater.LymphValveEffect - SystemicVeins.Pressure ) ) MAX 0</val>
+</def>
+
+<def>
+  <name> CellFlow </name>
+  <val>  ( ICFV.FluxToCells * Bone-Size.FractTotal )  </val>
+</def>
+
+<def>
+  <name> HeatFlow </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> Loss-H2O </name>
+  <val> LymphFlow + CellFlow + HeatFlow </val>
+</def>
+
+
+
+
+<def>
+  <name> dVol </name>
+  <val> 
+	Gain-H2O - Loss-H2O 
+</val>
+</def>
+<def>
+  <name> Loss </name>
+  <val> 
+	Loss-H2O
+
+</val>
+</def>
+
+
+</block>
+</definitions>
+</structure>
+
+End

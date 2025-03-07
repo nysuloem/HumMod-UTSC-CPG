@@ -1,0 +1,48 @@
+HumMod / Morphology
+
+Created : 2014-02-25
+Revised : 2014-02-25
+Author : Tom Coleman
+Copyright : 2014-2014
+By : Tom Coleman
+
+Edited: 2024 - 04 - 24
+By: Jason Brown
+
+<showvalue>
+   <row> 3</row><col> 1.0 </col>
+   <name> Sex.Index </name>
+   <format><list> Common.Sex </list></format>
+   <label> Sex </label>
+</showvalue>
+
+<showvalue>
+   <row> 5 </row><col> 1.0 </col>
+   <name> Age.Age(Years) </name>
+   <format> <integer/> </format>
+   <label> Age (yrs) </label>
+</showvalue>
+
+<showvalue>
+  <row> 6 </row><col> 1.0 </col>
+  <name> Context-Height.Height(cM) </name>
+  <label> Height (cm) </label>
+  <format><decimal> 1 </decimal></format>
+</showvalue>
+
+<showvalue>
+   <row> 7 </row><col> 1.0 </col>
+   <name> Weight.Weight(kG) </name>
+   <format> <integer/> </format>
+   <label> Weight (kg) </label>
+</showvalue>
+
+<showvalue>
+   <row> 4 </row><col> 1.0 </col>
+  <name> Ethnicity.Index </name>
+  <format><list> Common.Ethnicity </list></format>
+  <label> Ethnicity </label>
+</showvalue>
+
+
+End

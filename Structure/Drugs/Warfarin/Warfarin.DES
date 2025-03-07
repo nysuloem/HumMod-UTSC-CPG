@@ -1,0 +1,38 @@
+
+
+<?path Structure\Drugs\Warfarin\ ?>
+
+<?include WarfarinPool.DES ?>
+<?include WarfarinLiver.DES ?>
+<?include WarfarinGILumen.DES ?>
+<?include WarfarinSingleDose.DES ?>
+<?include WarfarinDailyDose.DES ?>
+
+<structure><name> Warfarin </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> WarfarinDailyDose.Parms </call>
+  <call> WarfarinSingleDose.Parms </call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> WarfarinGILumen.CalcConc </call>
+  <call> WarfarinPool.CalcConc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> WarfarinGILumen.Dervs </call>
+  <call> WarfarinSingleDose.Dervs </call>
+  <call> WarfarinLiver.Dervs </call>
+  <call> WarfarinPool.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+  <call> WarfarinDailyDose.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+

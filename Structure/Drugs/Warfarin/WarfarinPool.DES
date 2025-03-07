@@ -1,0 +1,188 @@
+
+<structure><name> WarfarinPool </name>
+
+<variables>
+
+<var>
+  <name> [Warfarin] </name>
+</var>
+
+<var>
+  <name> [Warfarin-R] </name>
+</var>
+
+<var>
+  <name> [Warfarin-R(uMol)] </name>
+</var>
+
+<var>
+  <name> [Warfarin-R-Free] </name>
+</var>
+
+<var>
+  <name> [Warfarin-S] </name>
+</var>
+
+<var>
+  <name> [Warfarin-S(uMol)] </name>
+</var>
+
+<var>
+  <name> [Warfarin-S-Free] </name>
+</var>
+
+<var>
+  <name> [Alb(uMol)] </name>
+</var>
+
+<var>
+  <name> Gain-R </name>
+</var>
+
+<var>
+  <name> Gain-S </name>
+</var>
+
+<var>
+  <name> Loss-R </name>
+</var>
+
+<var>
+  <name> Loss-S </name>
+</var>
+
+<parm>
+  <name> MW(g/Mol) </name>
+  <val> 308.3 </val>
+</parm> <!-- g/mol == mg/mmol -->
+
+<parm>
+  <name> MW </name>
+  <val> 0.3083 </val>
+</parm> <!-- mg/umol -->
+
+<parm>
+  <name> K_Alb </name>
+  <val> 0.0000028 </val>
+</parm>
+
+<parm>
+  <name> K </name>
+  <val> 0.02 </val>
+</parm>
+
+<parm>
+  <name> VolDist </name>
+  <val> 10.0 </val>
+</parm>
+<!-- listed at 10L/70kg in adults-->
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass-R </name>
+  <integralname> Mass-R </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-R </dervname>
+  <errorlim> 0.10 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Mass-S </name>
+  <integralname> Mass-S </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change-S </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+<!-- in ug-->
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def>
+  <name> [Alb(uMol)] </name>
+  <val> AlbuminPool.[Alb(mmol/mL)] / 1000000 </val>
+</def>
+
+
+<def>
+  <name> [Warfarin-R] </name>
+  <val> Mass-R / VolDist </val>
+</def>
+
+<def>
+  <name> [Warfarin-R(uMol)] </name>
+  <val>  [Warfarin-R] / MW </val>
+</def>
+
+<def>
+  <name> [Warfarin-R-Free] </name>
+  <val>  K_Alb * [Warfarin-R(uMol)] / ( [Alb(uMol)] + K_Alb ) </val>
+</def>
+
+
+<def>
+  <name> [Warfarin-S] </name>
+  <val> Mass-S / VolDist </val>
+</def>
+
+<def>
+  <name> [Warfarin-S(uMol)] </name>
+  <val>  [Warfarin-S] / MW </val>
+</def>
+
+<def>
+  <name> [Warfarin-S-Free] </name>
+  <val>  K_Alb * [Warfarin-S(uMol)] / ( [Alb(uMol)] + K_Alb ) </val>
+</def>
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Gain-R </name>
+  <val> WarfarinGILumen.Loss-R + WarfarinSingleDose.Loss-R
+  </val>
+</def>
+
+<def>
+  <name> Gain-S </name>
+  <val> WarfarinGILumen.Loss-S + WarfarinSingleDose.Loss-S
+  </val>
+</def>
+
+<def>
+  <name> Loss-S </name>
+  <val> WarfarinLiver.Loss-S   </val>
+</def>
+
+<def>
+  <name> Loss-R </name>
+  <val> WarfarinLiver.Loss-R   </val>
+</def>
+
+<def>
+  <name> Change-R </name>
+  <val> Gain-R - Loss-R </val>
+</def>
+
+<def>
+  <name> Change-S </name>
+  <val> Gain-S - Loss-S </val>
+</def>
+
+<def>
+  <name> [Warfarin] </name>
+  <val>  [Warfarin-R] +  [Warfarin-S] </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

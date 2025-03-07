@@ -1,0 +1,327 @@
+<structure><name> Uterus-InterstitialProtein </name>
+
+<variables>
+<var><name> Target[Protein] </name><val> 0.04 </val></var>
+
+<var><name> AlbuminPermeability </name></var>
+<var><name> IgGPermeability </name></var>
+<var><name> AGPPermeability </name></var>
+<var><name> HetaHWPermeability  </name></var>
+<var><name> HetaLWPermeability  </name></var>
+
+<var><name> [Alb] </name></var>
+<var><name> [IgG] </name></var>
+<var><name> [AGP] </name></var>
+<var><name> [HetaHW] </name></var>
+<var><name> [HetaLW] </name></var>
+
+<var><name> pCOP-Alb </name></var>
+<var><name> pCOP-IgG </name></var>
+<var><name> pCOP-AGP </name></var>
+<var><name> pCOP-HetaHW </name></var>
+<var><name> pCOP-HetaLW </name></var>
+
+<var><name> Mass </name></var>
+<var><name> COP </name></var>
+
+<var><name> Gain-Albumin </name></var>
+<var><name> Gain-IgG </name></var>
+<var><name> Gain-AGP </name></var>
+<var><name> Gain-HetaHW </name></var>
+<var><name> Gain-HetaLW </name></var>
+
+<var><name> Lymph-Albumin </name></var>
+<var><name> Lymph-IgG </name></var>
+<var><name> Lymph-AGP </name></var>
+<var><name> Lymph-HetaHW </name></var>
+<var><name> Lymph-HetaLW </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Alb </name>
+  <integralname> Alb </integralname>
+  <dervname> dAlb  </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> IgG </name>
+  <integralname> IgG </integralname>
+  <dervname> dIgG  </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> AGP </name>
+  <integralname> AGP </integralname>
+  <dervname> dAGP  </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> HetaHW </name>
+  <integralname> HetaHW </integralname>
+  <dervname> dHetaHW  </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> HetaLW </name>
+  <integralname> HetaLW </integralname>
+  <dervname> dHetaLW  </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> Alb </name>
+  <val> Uterus-InterstitialH2O.Vol * Target[Protein]  * AlbuminPool.AlbFrac  </val>
+</def>
+
+<def>
+  <name> IgG </name>
+  <val> Uterus-InterstitialH2O.Vol * Target[Protein]  * IgGPool.IgGFrac  </val>
+</def>
+
+<def>
+  <name> AGP </name>
+  <val> Uterus-InterstitialH2O.Vol * Target[Protein]  * AGPPool.AGPFrac  </val>
+</def>
+
+<def>
+  <name> HetaHW </name>
+  <val> Uterus-InterstitialH2O.Vol * Target[Protein]  * HetaPool.HetaHWFrac  </val>
+</def>
+
+<def>
+  <name> HetaLW </name>
+  <val> Uterus-InterstitialH2O.Vol * Target[Protein]  * HetaPool.HetaLWFrac  </val>
+</def>
+
+</block>
+
+
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+
+
+<block><name> CalcCOP </name>
+
+<def>
+  <name> AlbuminPermeability </name>
+  <val> AlbuminPool.permAlb * Uterus-Size.SolidMass </val>
+</def>
+
+<def>
+  <name> IgGPermeability </name>
+  <val> IgGPool.permIgG * Uterus-Size.SolidMass </val>
+</def>
+
+<def>
+  <name> AGPPermeability </name>
+  <val> AGPPool.permAGP * Uterus-Size.SolidMass </val>
+</def>
+
+<def>
+  <name> HetaHWPermeability </name>
+  <val> HetaPool.permHW * Uterus-Size.SolidMass </val>
+</def>
+
+<def>
+  <name> HetaLWPermeability </name>
+  <val> HetaPool.permLW * Uterus-Size.SolidMass </val>
+</def>
+
+
+<def>
+  <name> [Alb] </name>
+  <val> Alb / Uterus-InterstitialH2O.Vol</val>
+</def>
+
+<def>
+  <name> pCOP-Alb </name>
+  <val> HeatCore.Temp(K) * 0.082 * 1000 * 760 * [Alb]  * AlbuminPool.sigmaAlb / AlbuminPool.MW </val>
+</def>
+
+
+<def>
+  <name> [AGP] </name>
+  <val> AGP / Uterus-InterstitialH2O.Vol</val>
+</def>
+
+<def>
+  <name> pCOP-AGP </name>
+  <val> HeatCore.Temp(K) * 0.082 * 1000 * 760 * [AGP] * AGPPool.sigmaAGP / AGPPool.MW   </val>
+</def>
+
+
+<def>
+  <name> [IgG] </name>
+  <val> IgG / Uterus-InterstitialH2O.Vol</val>
+</def>
+
+<def>
+  <name> pCOP-IgG </name>
+    <val> HeatCore.Temp(K) * 0.082 * 1000 * 760 * [IgG] * IgGPool.sigmaIgG / IgGPool.MW </val>
+</def>
+
+
+<def>
+  <name> [HetaHW] </name>
+  <val> HetaHW / Uterus-InterstitialH2O.Vol</val>
+</def>
+
+<def>
+  <name> pCOP-HetaHW </name>
+    <val> HeatCore.Temp(K) * 0.082 * 1000 * 760 * [HetaHW] * HetaPool.sigmaHWHeta / HetaPool.highMW </val>
+</def>
+
+<def>
+  <name> [HetaLW] </name>
+  <val> HetaLW / Uterus-InterstitialH2O.Vol</val>
+</def>
+
+<def>
+  <name> pCOP-HetaLW </name>
+    <val> HeatCore.Temp(K) * 0.082 * 1000 * 760 * [HetaLW] * HetaPool.sigmaLWHeta / HetaPool.lowMW </val>
+</def>
+
+<def>
+  <name> COP </name>
+  <val> pCOP-Alb + pCOP-AGP + pCOP-IgG + pCOP-HetaHW + pCOP-HetaLW </val>
+</def>
+
+
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Gain-Albumin </name>
+  <val> 
+	( AlbuminPermeability * ( AlbuminPool.[Alb] - [Alb] ) )  <!-- concentration driven -->
+	+ ( Uterus-InterstitialH2O.Gain-H2O * [Alb] )					<!-- solvent drag -->
+</val>
+</def>
+
+<def>
+  <name> Lymph-Albumin </name>
+  <val> 
+	1 * [Alb] * Uterus-InterstitialH2O.LymphFlow 
+</val>
+</def>
+
+<def>
+  <name> Gain-AGP </name>
+  <val> 
+	( AGPPermeability * ( AGPPool.[AGP] - [AGP] ) )  <!-- concentration driven -->
+	+ ( Uterus-InterstitialH2O.Gain-H2O * [AGP] )					<!-- solvent drag -->
+</val>
+</def>
+
+<def>
+  <name> Lymph-AGP </name>
+  <val> 
+	1 * [AGP] * Uterus-InterstitialH2O.LymphFlow 
+</val>
+</def>
+
+<def>
+  <name> Gain-IgG </name>
+  <val> 
+	( IgGPermeability * ( IgGPool.[IgG] - [IgG] ) )  <!-- concentration driven -->
+	+ ( Uterus-InterstitialH2O.Gain-H2O * [IgG] )					<!-- solvent drag -->
+</val>
+</def>
+
+<def>
+  <name> Lymph-IgG </name>
+  <val> 
+	1 * [IgG] * Uterus-InterstitialH2O.LymphFlow 
+</val>
+</def>
+
+<def>
+  <name> Gain-HetaHW </name>
+  <val> 
+	( HetaHWPermeability *  ( HetaPool.[HetaHW] - [HetaHW] ) )  
+	+ ( Uterus-InterstitialH2O.Gain-H2O * [HetaHW] ) 
+  </val>
+</def>
+
+<def>
+  <name> Lymph-HetaHW </name>
+  <val> 
+	1 * [HetaHW] * Uterus-InterstitialH2O.LymphFlow 
+</val>
+</def>
+
+<def>
+  <name> Gain-HetaLW </name>
+  <val> 
+	( HetaLWPermeability *  ( HetaPool.[HetaLW] - [HetaLW] ) )  
+	+ ( Uterus-InterstitialH2O.Gain-H2O * [HetaLW] ) 
+  </val>
+</def>
+
+<def>
+  <name> Lymph-HetaLW </name>
+  <val> 
+	1 * [HetaLW] * Uterus-InterstitialH2O.LymphFlow 
+</val>
+</def>
+
+<def>
+  <name> dAlb </name>
+  <val> 
+	Gain-Albumin - Lymph-Albumin 
+</val>
+</def>
+
+<def>
+  <name> dIgG </name>
+  <val> 
+	Gain-IgG - Lymph-IgG 
+</val>
+</def>
+
+<def>
+  <name> dAGP </name>
+  <val> 
+	Gain-AGP - Lymph-AGP 
+</val>
+</def>
+
+<def>
+  <name> dHetaHW</name>
+  <val> 
+	Gain-HetaHW - Lymph-HetaHW 
+</val>
+</def>
+
+<def>
+  <name> dHetaLW</name>
+  <val> 
+	Gain-HetaLW - Lymph-HetaLW 
+</val>
+</def>
+
+<def>
+  <name> Mass </name>
+  <val> 
+   Alb + IgG + AGP + HetaLW + HetaHW
+</val>
+</def>
+
+</block>
+</definitions>
+</structure>

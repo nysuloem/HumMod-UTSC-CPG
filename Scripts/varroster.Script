@@ -1,0 +1,32 @@
+<roster>
+  <var><name> System.X </name></var>
+  <var><name> DietIntakeH2O.Rate(mL/Min) </name></var>
+  <var><name> OsmBody.CellWall(mOsm/L) </name></var>
+  <var><name> OsmECFV.[Total] </name></var>
+<var><name> OsmBody.Osmoreceptors(mOsm/L) </name></var>
+  <var><name> OsmECFV.[Total] </name></var>
+  <var><name> NaPool.[Na+(mEq/L)] </name></var>
+  <var><name> KPool.[K+(mEq/L)] </name></var>
+  <var><name> ClPool.[Cl-(mEq/L)] </name></var>
+  <var><name> CO2Artys.[HCO3(mEq/L)] </name></var>
+  <var><name> PlasmaProtein.[Protein(G/dL)] </name></var>
+  <var><name> AlbuminPool.[Alb(G/dL)] </name></var>
+  <var><name> BloodIons.[SID(mEq/L)] </name></var>
+  <var><name> ADHPool.[ADH] </name></var>
+  <var><name> AldoPool.[Aldo(pMol/L)] </name></var>
+  <var><name> ReninPool.[PRA] </name></var>
+  <var><name> ANPPool.[ANP] </name></var>
+  <var><name> CollectingDuct_H2O.Outflow </name></var>
+  <var><name> CollectingDuct_Na.Outflow </name></var>
+  <var><name> CollectingDuct_K.Outflow </name></var>
+  <var><name> CollectingDuct.Osmolarity </name></var>
+  <var><name> SystemicArtys.Pressure </name></var>
+  <var><name> CardiacOutput.CardiacIndex </name></var>
+  <var><name> Heart-Rate.Rate </name></var>
+  <var><name> PeripheralResistance.TPR </name></var>
+  <var><name> BloodVol.Vol </name></var>
+  <var><name> BloodVol.Hct(%) </name></var>
+  <var><name> HgbConc.[Total] </name></var>
+  <var><name> InterstitialWater.Vol(L) </name></var>
+
+</roster>

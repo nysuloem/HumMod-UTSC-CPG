@@ -1,0 +1,76 @@
+HumMod / GILumenPotassium
+
+Created : 05-Jun-06
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> GILumenPotassium </name>
+
+<variables>
+
+<var><name> Intake </name></var>
+<var><name> Absorption </name></var>
+<var><name> OutFromStomach </name></var>
+<var><name> [StomachK+] </name></var>
+<var><name> [K+] </name></var>
+<var><name> [K+(mEq/L)] </name></var>
+
+<parm><name> Perm </name><val> 0.002 </val></parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> StomachMass </name>
+  <integralname> StomachMass </integralname>
+  <initialval> 0 </initialval>
+  <dervname> StomachChange </dervname>
+  <errorlim> 0.14 </errorlim>
+</diffeq>
+
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 25.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.25 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Conc </name>
+
+<if><test> GILumenH2O.StomachMass GT 0 </test>
+ <true>
+   <def><name> [StomachK+] </name><val> StomachMass / GILumenH2O.StomachMass </val></def>
+  </true>
+  <false>
+   <def><name> [StomachK+] </name><val> 0 </val></def>
+  </false>
+</if>
+<def><name> [K+] </name><val> Mass / GILumenH2O.Mass </val></def>
+<def><name> [K+(mEq/L)] </name><val> 1000.0 * [K+] </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Intake </name><val> DietIntakeElectrolytes.K+_mMol/Min </val></def>
+<def><name> Absorption </name><val> Perm * Mass </val></def>
+
+<def><name> OutFromStomach </name><val> [StomachK+] * GILumenH2O.OutFromStomach </val></def>
+<def><name> StomachChange </name><val> Intake - OutFromStomach </val></def>
+<def><name> Change </name><val> OutFromStomach - Absorption </val></def>
+</block>
+
+</definitions>
+</structure>
+
+End

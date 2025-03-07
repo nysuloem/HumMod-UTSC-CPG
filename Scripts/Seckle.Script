@@ -1,0 +1,237 @@
+<script>
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<?include varroster.Script ?>
+
+<restart/>
+<?include init.Script ?>
+
+<setvalue>
+  <var> DietIntakeH2O.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietGoalH2O.Rate(L/Day) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<setvalue>
+  <var> DietIntakeNutrition.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietIntakeNutrition.FixedIntake(xGoal) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<saveics><filename> dummy.ics </filename></saveics>
+<restart/>
+
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -1440 </val> </setvalue>
+
+<gofor>
+  <solutionint> 720 </solutionint>
+  <displayint> 720 </displayint>
+</gofor>
+
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 1.5 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.NaClContent </var>
+  <val> 800 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 100 </solutionint>
+  <displayint> 100 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<gofor>
+  <solutionint> 620 </solutionint>
+  <displayint> 620 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 350 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.NaClContent </var>
+  <val> 180 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 2 </solutionint>
+  <displayint> 2 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 0 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<dumpsolution>
+  <filename> data\Seckle-hypertonic.txt </filename>
+</dumpsolution>
+
+<restart/>
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -1440 </val> </setvalue>
+
+<gofor>
+  <solutionint> 720 </solutionint>
+  <displayint> 720 </displayint>
+</gofor>
+
+<!-- turn off food and take a salt tab -->
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 1.5 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.NaClContent </var>
+  <val> 800 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 100 </solutionint>
+  <displayint> 100 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+
+<dumppoint>
+  <filename> dummy.txt </filename>
+</dumppoint>
+
+<gofor>
+  <solutionint> 620 </solutionint>
+  <displayint> 620 </displayint>
+</gofor>
+
+<!-- water load -->
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.NaClContent </var>
+  <val> 0 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 350 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 2 </solutionint>
+  <displayint> 2 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 0 </val>
+</setvalue>  
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<dumpsolution>
+  <filename> data\Seckle-water.txt </filename>
+</dumpsolution>
+
+
+<exit/>
+
+</script>
+
+

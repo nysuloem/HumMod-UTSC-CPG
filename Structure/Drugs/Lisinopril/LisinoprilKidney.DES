@@ -1,0 +1,37 @@
+HumMod / LisinoprilKidney
+
+<structure><name> LisinoprilKidney </name>
+
+<variables>
+
+<var>
+  <name> UrineLoss </name>
+</var>
+
+<constant>
+  <name> K </name>
+  <val> 0.00042  </val> 0.000012
+</constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> UrineLoss </name>
+  <val>
+      K
+    * LisinoprilPool.Mass
+    * ( ( LeftGlomerulusFiltrate.GFRxNormal * LeftKidney-Function.Effect )
+           + ( RightGlomerulusFiltrate.GFRxNormal * RightKidney-Function.Effect ) )
+  </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

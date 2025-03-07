@@ -1,0 +1,79 @@
+HumMod / Context-Ethnicity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+
+<structure><name> Ethnicity </name>
+
+<variables>
+
+<parm><name> Index </name><val> 0 </val></parm>
+
+<constant><name> IS_WHITE </name><val> 0 </val></constant>
+<constant><name> IS_BLACK </name><val> 1 </val></constant>
+<constant><name> IS_ASIAN </name><val> 2 </val></constant>
+<constant><name> IS_HISPANIC </name><val>3</val></constant>
+
+<var><name> IsWhite </name></var>
+<var><name> IsBlack </name></var>
+<var><name> IsAsian </name></var>
+<var><name>IsHispanic</name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Init </name>
+
+<if><test> Index EQ IS_WHITE </test>
+<true>
+<def><name> IsWhite </name><val> TRUE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_BLACK </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> TRUE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_ASIAN </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>TRUE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_HISPANIC </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>TRUE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+</block>
+
+</definitions>
+</structure>
+
+End

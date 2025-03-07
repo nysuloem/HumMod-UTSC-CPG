@@ -1,0 +1,32 @@
+
+<panel><name> Coagulation </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Hemodynamics </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Coagulation </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<?path Display\Circulation\Coagulation\ ?>
+
+<?include ProthrombinComplexActivity.DES ?>
+<?include Viscosity.DES ?>
+
+
+</panel>
+
+End

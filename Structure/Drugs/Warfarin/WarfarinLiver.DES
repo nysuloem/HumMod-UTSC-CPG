@@ -1,0 +1,69 @@
+
+<structure><name> WarfarinLiver </name>
+
+<variables>
+
+<var>
+  <name> Loss-R </name>
+</var>
+
+<var>
+  <name> Loss-S </name>
+</var>
+
+<var>
+  <name> PortalFree-R </name>
+</var>
+
+<var>
+  <name> PortalFree-S </name>
+</var>
+
+<constant>
+  <name> K-R </name>
+  <val> .0000027 </val>
+</constant>
+
+<constant>
+  <name> K-S </name>
+  <val> .0000054 </val>
+</constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+>
+
+
+
+
+
+<def>
+  <name> PortalFree-R </name>
+  <val>  SplanchnicVeins.Vol * WarfarinPool.MW * WarfarinPool.[Warfarin-R-Free]  </val>
+</def>
+<def>
+  <name> PortalFree-S </name>
+  <val>  SplanchnicVeins.Vol * WarfarinPool.MW *  WarfarinPool.[Warfarin-S-Free]  </val>
+</def>
+
+<def>
+  <name> Loss-R </name> 
+  <val> K-R * PortalFree-R </val>
+</def>
+
+<def>
+  <name> Loss-S </name> 
+  <val> K-S * PortalFree-S </val>
+</def>
+
+
+</block>
+
+</definitions>
+</structure>
+
+End

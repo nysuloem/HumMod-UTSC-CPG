@@ -1,0 +1,29 @@
+<script>
+
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<restart/>
+
+<setvalue><var> System.X </var><val> -43200 </val> </setvalue>
+
+<setvalue>
+  <var> PostureControl.Request </var>
+  <val> 1.0 </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 43200 </solutionint>
+  <displayint>  2880 </displayint>
+</gofor>
+
+<saveics>
+  <filename> Lying.ICS </filename>
+</saveics>
+<exit/>
+</script>
+
+
+

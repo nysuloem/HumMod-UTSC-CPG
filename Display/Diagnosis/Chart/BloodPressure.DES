@@ -1,0 +1,59 @@
+HumMod / Blood Pressure
+
+Created : 2014-02-25
+Revised : 2014-02-25
+Author : Tom Coleman
+Copyright : 2014-2014
+By : Tom Coleman
+
+Edited: 2024 - 04 - 24
+By: Jason Brown UTSC
+
+<showvalue>
+   <row> 14 </row><col> 1 </col>
+   <name> SystemicArtys.SBP </name>
+   <format><integer/></format>
+   <label> Blood Pressure (mmHg) </label>
+</showvalue>
+
+<label>
+  <row> 14 </row>
+  <col> 25 </col>
+  <text> / </text>
+</label>
+
+
+<showvalue>
+   <row> 14 </row><col> 27 </col>
+   <name> SystemicArtys.DBP </name>
+   <format><integer/></format>
+   <nolabel/>
+</showvalue>
+
+<showgraph>
+  <row> 16 </row><col> 1.0 </col><high> 7 </high><wide> 26 </wide>
+  <leftmargin> 4 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+
+    <yvar>
+      <name> SystemicArtys.SBP </name>
+      <label> S </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+
+    <yvar>
+      <name> SystemicArtys.DBP </name>
+      <label> D </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+
+    <scale><min> 80 </min><max> 120 </max><inc> 10 </inc></scale>
+  </yaxis>
+</showgraph>
+
+End
