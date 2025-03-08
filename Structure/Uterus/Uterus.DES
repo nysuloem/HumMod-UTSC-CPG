@@ -26,6 +26,8 @@ Schema : DES V1.0
 <?include Uterus-Metabolism.DES ?>
 <?include Uterus-Menstruation.DES ?>
 
+<?path Structure\Uterus\Endometrium\ ?>
+<?include Endometrium.DES ?>
 
 <structure><name> Uterus </name>
 
