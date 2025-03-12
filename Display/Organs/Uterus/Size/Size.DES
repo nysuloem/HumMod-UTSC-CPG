@@ -35,7 +35,6 @@ Schema : DES V1.0
 <?include Volume.DES ?>
 
 <?include Mass.DES ?>
-<?include Density.DES ?>
 
 </panel>
 
