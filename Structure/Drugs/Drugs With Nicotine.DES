@@ -15,6 +15,7 @@ By : University Of Mississippi Medical Center
 <?include Digoxin\Digoxin.DES ?>
 <?include Furosemide\Furosemide.DES ?>
 <?include Midodrine\Midodrine.DES ?>
+<?include Nicotine\Nicotine.DES ?>
 <?include Lisinopril\Lisinopril.DES ?>
 <?include Spironolactone\Spironolactone.DES ?>
 <?include Propranolol\Propranolol.DES ?>
@@ -57,6 +58,7 @@ By : University Of Mississippi Medical Center
   <call> Digoxin.CalcConc </call>
   <call> Furosemide.CalcConc </call>
   <call> Midodrine.CalcConc </call>
+  <call> Nicotine.CalcConc </call>
   <call> Lisinopril.CalcConc </call>
   <call> Spironolactone.CalcConc </call>
   <call> Propranolol.CalcConc </call>
@@ -78,6 +80,7 @@ By : University Of Mississippi Medical Center
   <call> Digoxin.Dervs </call>
   <call> Furosemide.Dervs </call>
   <call> Midodrine.Dervs </call>
+  <call> Nicotine.Dervs </call>
   <call> Lisinopril.Dervs </call>
   <call> Spironolactone.Dervs </call>
   <call> Propranolol.Dervs </call>
