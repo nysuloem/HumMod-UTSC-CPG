@@ -92,5 +92,11 @@ Schema : DES V1.0
   <parent> Uterus </parent>
 </leaf>
 
+<leaf>
+  <name> Pregnancy </name>
+  <label> Pregnancy </label>
+  <parent> Uterus </parent>
+</leaf>
+
 
 End

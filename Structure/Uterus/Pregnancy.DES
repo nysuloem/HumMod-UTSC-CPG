@@ -107,7 +107,7 @@ By : University of Mississippi Medical Center
     </andif>
   </false>
 </if>
-<!--
+
 <if><test> BloodChemistry-Sample.[hCG] GT 25 </test>
   <true>
     <def><name> Positive(+) </name><val> TRUE </val></def>
@@ -118,7 +118,7 @@ By : University of Mississippi Medical Center
     <def><name> Positive(+) </name><val> FALSE </val></def>
   </false>
 </if>
--->
+
 </block>
 
 </definitions>

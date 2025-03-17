@@ -19,6 +19,7 @@ Schema : DES V1.0
 <?include Metabolism\Metabolism.DES ?>
 <?include Menstruation\Menstruation.DES ?>
 <?include Nerves\Nerves.DES ?>
+<?include Pregnancy\Pregnancy.DES ?>
 <?include Size\Size.DES ?>
 <?include Structure\Structure.DES ?>
 <?include Endometrium\Endometrium.DES ?>
