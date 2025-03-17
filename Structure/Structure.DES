@@ -180,7 +180,6 @@ By : University of Mississippi Medical Center
   <call> Context.Calc </call>
   <call> Control.Init </call>
   <call> Hydrostatics.Context </call>
-  <call> Uterus.Sex </call>
 </block>
 
 <block><name> Parms </name>
@@ -406,6 +405,7 @@ By : University of Mississippi Medical Center
   <call> Organs-Ph.CalcSID </call>
   <call> Organs-CO2.CalcConc </call>
   <call> Organs-Ph.CalcPh </call>
+  
 
   <call> Exercise-Bike.Calc </call>
   <call> Exercise-Treadmill.Calc </call>
@@ -425,6 +425,7 @@ By : University of Mississippi Medical Center
   <call> GlasgowComaScale.Calc </call>
 
   <call> Organs-Function.Calc </call>
+  
 
   <call> Hypothalamus.CalcEffect </call>
   <call> Heat.Cals </call>
@@ -482,6 +483,7 @@ By : University of Mississippi Medical Center
 
   <call> Organs-AlphaReceptors.Calc </call>
   <call> Organs-BetaReceptors.Calc </call>
+  
 
   <call> BloodVolume.CalcV0 </call>
 
@@ -805,6 +807,7 @@ By : University of Mississippi Medical Center
 
 <block><name> Wrapup </name>
   <call> Organs-Function.Wrapup </call>
+  
   <call> Age.Calc </call>
   <call> Control.Wrapup </call>
 
@@ -855,6 +858,7 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
+  <call> Uterus.Sex </call>
 
 </block>
 

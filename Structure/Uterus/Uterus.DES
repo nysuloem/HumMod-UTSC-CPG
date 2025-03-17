@@ -52,21 +52,24 @@ Schema : DES V1.0
 
 <block><name> Sex </name>
 
-    <if><test> Context-Sex.Index EQ 1 </test>
+    <if>
+    <test> Context-Sex.Index EQ 1 </test>
     
     <true>  </true>
     
     <false>
-       <!-- <call> Uterus-Fuel.Failed </call> -->
 
-       <def><name> Uterus-Size.Vol </name> <val> UNDEFINED </val> </def>
-       <def><name> Uterus-Size.Mass </name><val> UNDEFINED </val></def>
-       <def><name> Uterus-Size.LiquidMass </name><val> UNDEFINED </val></def>
-       <def><name> Uterus-Size.SolidMass </name><val> UNDEFINED </val></def>
-       <def><name> Uterus-Size.InitialIFV </name><val> UNDEFINED </val></def>
-       <def><name> Uterus-Size.SolidVol </name><val> UNDEFINED </val></def>
-       <def><name> Uterus-Size.InitialLiquidVol</name> <val> UNDEFINED </val> </def>
-       <def><name> Uterus-Size.InitialSolidMass </name> <val> UNDEFINED </val> </def>
+       <def><name> Uterus-Size.Vol </name> <val> 0.1 </val> </def>
+       <def><name> Uterus-Size.Mass </name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.LiquidMass </name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.LiquidVol</name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.SolidMass </name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.InitialIFV </name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.SolidVol </name><val> 0.1 </val></def>
+       <def><name> Uterus-Size.InitialLiquidVol</name> <val> 0.1 </val> </def>
+       <def><name> Uterus-Size.InitialSolidMass </name> <val> 0.1 </val> </def>
+       <def><name> Uterus-Flow.BloodFlow </name><val> 0.1 </val></def>
+       <def><name> Uterus-Flow.Conductance</name><val> 0.1 </val></def>
 
     <def><name> Uterus-Function.Effect </name><val> 0.0 </val></def>
     <def><name> Uterus-Lactate.Change </name><val> 0 </val></def>
@@ -77,9 +80,9 @@ Schema : DES V1.0
     <def><name> Uterus-Vasculature.K </name><val> 1 </val></def>
 
 
-    <def><name> Sizing-Composition-Uterus.SolidMass </name><val> UNDEFINED </val></def>
-     <def><name> Sizing-Composition-Uterus.Mass </name><val> UNDEFINED </val></def>
-    <def><name> Sizing-Composition-Uterus.LiquidVol </name><val> UNDEFINED </val></def>
+    <def><name> Sizing-Composition-Uterus.SolidMass </name><val> 0.1 </val></def>
+     <def><name> Sizing-Composition-Uterus.Mass </name><val> 0.1 </val></def>
+    <def><name> Sizing-Composition-Uterus.LiquidVol </name><val> 0.1 </val></def>
  
 <!-- Appears that this works and the application does not crash or freeze, however limited values are showing as 0s -->
     </false>
