@@ -24,7 +24,7 @@ Schema : DES V1.0
 <?include Uterus-CO2.DES ?>
 <?include Uterus-Lactate.DES ?>
 <?include Uterus-Metabolism.DES ?>
-<?include Uterus-Menstruation.DES ?>
+<!-- <?include Uterus-Menstruation.DES ?> -->
 
 <?path Structure\Uterus\Endometrium\ ?>
 <?include Endometrium.DES ?>
@@ -39,16 +39,51 @@ Schema : DES V1.0
 </variables>
 
 <definitions>
+    <block><name> Init </name>
+<call> Context-Sex.Init </call>
+<call> Sex.Init </call>
+    </block>
 
 <block><name> Dervs </name>
+<call> Endometrium.Dervs </call>
 
-<!--
-<def><name>  </name><val> 0.0 </val></def>
--->
+    <if><test> Context-Sex.UIndex </test>
+    
+    <true>  </true>
+    
+    <false>
+       <!-- <call> Uterus-Fuel.Failed </call> -->
 
-</block>
+       <def><name> Uterus-Size.Vol </name> <val> 0.01</val> </def>
+       <def><name> Uterus-Size.Mass </name><val> 0.01 </val></def>
+       <def><name> Uterus-Size.LiquidMass </name><val> 0.01 </val></def>
+       <def><name> Uterus-Size.SolidMass </name><val> 0.01 </val></def>
+       <def><name> Uterus-Size.InitialIFV </name><val> 0.01 </val></def>
+       <def><name> Uterus-Size.SolidVol </name><val> 0.0 </val></def>
+       <def><name> Uterus-Size.InitialLiquidVol</name> <val> 0.01 </val> </def>
+       <def><name> Uterus-Size.InitialSolidMass </name> <val> 0.01 </val> </def>
+
+    <def><name> Uterus-Function.Effect </name><val> 0.0 </val></def>
+    <def><name> Uterus-Lactate.Change </name><val> 0 </val></def>
+    <def><name> Uterus-Structure.F1 </name><val> 1 </val></def>
+    <def><name> Uterus-Structure.PhFactor </name><val> 0 </val></def>
+    <def><name> Uterus-Structure.F2 </name><val> 1 </val></def>
+    <def><name> Uterus-Vasculature.Stimulus </name><val> 0 </val></def>
+    <def><name> Uterus-Vasculature.K </name><val> 1 </val></def>
+
+
+    <def><name> Sizing-Composition-Uterus.SolidMass </name><val> 0.01 </val></def>
+     <def><name> Sizing-Composition-Uterus.Mass </name><val> 0.01 </val></def>
+    <def><name> Sizing-Composition-Uterus.LiquidVol </name><val> 0.01 </val></def>
+ 
+<!-- Appears that this works and the application does not crash or freeze, however limited values are showing as 0s -->
+    </false>
+    </if>
+
+    </block>
 
 </definitions>
 </structure>
 
+End
 End

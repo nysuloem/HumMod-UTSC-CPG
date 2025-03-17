@@ -35,7 +35,7 @@ By: Terry Yavorskyy UTSC
   <definitions>
   
   <block><name> Parms </name>
-    <call> Context-Gender.Calc </call>
+    <call> Context-Sex.Calc </call>
   <onjustchanged><name> Index </name>
   <if><test> Index EQ IS_FEMALE </test>
   

@@ -35,38 +35,21 @@ By : University of Mississippi Medical Center
 <var><name> IsObese         </name></var>
 <var><name> IsMorbidlyObese </name></var>
 
-<var><name> AgeEffectAdiposity </name></var>
-
 <var><name> Stochasm </name></var>
 
 <normaldist>
   <name> Normal </name>
   <mean> 0 </mean>
-  <stddev> 10 </stddev>
+  <stddev> 25 </stddev>
 </normaldist>
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -15 </lowerlim>
-  <upperlim> 15 </upperlim>
+  <lowerlim> -50 </lowerlim>
+  <upperlim> 50 </upperlim>
 </whitenoise>
 
 </variables>
-
-<functions>
-
-<curve>
-  <name> AgeOnAdiposity </name>
-  <point><x> 0 </x><y> 0.2 </y><slope> 0 </slope></point>
-  <point><x> 2 </x><y> 0.3 </y><slope> 0 </slope></point>
-  <point><x> 9 </x><y> 0.4 </y><slope> 0 </slope></point>
-  <point><x> 18 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 30 </x><y> 1.05 </y><slope> 0 </slope></point>
-  <point><x> 50 </x><y> 1.1 </y><slope> 0 </slope></point>
-  <point><x> 70 </x><y> 1.15 </y><slope> 0 </slope></point>
-</curve>
-
-</functions>
 
 <definitions>
 
@@ -76,13 +59,13 @@ By : University of Mississippi Medical Center
 <call> Context.Calc </call>
 </onjustchanged>
 
+<onjustchanged><name> PlusMinus </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
 </block>
 
 <block><name> Calc </name>
-
-<if><test> System.X GT System.InitialX </test>
-<true> <exitblock/> </true>
-</if>
 
 <def><name> IsUnderweight   </name><val> FALSE </val></def>
 <def><name> IsNormalWeight  </name><val> FALSE </val></def>
@@ -95,23 +78,6 @@ By : University of Mississippi Medical Center
   <false><call> CalcMale </call></false>
 </if>
 
-<if><test>Context-Ethnicity.IsBlack </test>
-<true><call> CalcBlack </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsHispanic </test>
-<true><call> CalcHispanic </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsAsian </test>
-<true><call> CalcAsian </call></true>
-</if>
-
-<def>
-  <name> AgeEffectAdiposity </name>
-  <val> AgeOnAdiposity [ Context-Age.Age(Years) ] </val>
-</def>
-
 <call> CalcStochasm </call>
 
 <def>
@@ -120,7 +86,6 @@ By : University of Mississippi Medical Center
        NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
-     * ( AgeEffectAdiposity )
   </val>
 </def>
 
@@ -162,7 +127,6 @@ By : University of Mississippi Medical Center
 
 </testcase>
 
-
 </block>
 
 <block><name> CalcFemale </name>
@@ -198,54 +162,14 @@ By : University of Mississippi Medical Center
 
 </block>
 
-
-<block><name> CalcBlack </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 1 </test>
-<def><name> NominalMass </name><val> NominalMass * 0.97 </val></def>
-</case>
-
-</testcase>
-
-
-</block>
-
-<block><name> CalcHispanic </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 3 </test>
-<def><name> NominalMass </name><val> NominalMass * 1.03 </val></def>
-</case>
-
-</testcase>
-
-</block>
-
-
-<block><name> CalcAsian </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 2 </test>
-<def><name> NominalMass </name><val> NominalMass * 0.97 </val></def>
-</case>
-
-</testcase>
-
-</block>
-
-
 <block><name> CalcStochasm </name>
 
-<!--<def>
+<def>
   <name> Stochasm </name>
   <val> 0 </val>
-</def>-->
+</def>
 
-<!--<if>
+<if>
   <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
@@ -257,7 +181,7 @@ By : University of Mississippi Medical Center
   <true>
     <exitblock/>
   </true>
-</if>-->
+</if>
 
 <conditional>
   <name> Stochasm </name>
