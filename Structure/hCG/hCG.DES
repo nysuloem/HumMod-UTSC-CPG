@@ -81,7 +81,7 @@ Schema : DES V1.0
 </if>
 
 
-  <def><name> Secretion </name><val> 0.009 </val></def>
+
   <def><name> Degradation </name><val> K * Mass </val></def>
 
   <def><name> Gain </name><val> Secretion + ( PumpSetting * PumpSwitch ) </val></def>
