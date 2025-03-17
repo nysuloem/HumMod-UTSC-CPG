@@ -25,7 +25,7 @@ Schema : DES V1.0
 <?include Uterus-Lactate.DES ?>
 <?include Uterus-Metabolism.DES ?>
 <!-- <?include Uterus-Menstruation.DES ?> -->
-
+<?include Pregnancy.DES ?>
 <?path Structure\Uterus\Endometrium\ ?>
 <?include Endometrium.DES ?>
 
@@ -81,7 +81,11 @@ Schema : DES V1.0
     </if>
 
     </block>
+<block> <name> WrapUp </name>
 
+<call> Pregnancy.WrapUp </call>
+
+</block>
 </definitions>
 </structure>
 

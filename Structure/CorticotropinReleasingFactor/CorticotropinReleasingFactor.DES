@@ -16,7 +16,7 @@ By : University of Mississippi Medical Center
 <var><name> NeuralEffect </name></var>
 <var><name> StressEffect </name></var>
 <var><name> [Cortisol]Effect </name></var>
-<var><name> Age-Effect </name><val> 1 </val></var>
+<!-- <var><name> Age-Effect </name><val> 1 </val></var> -->
 <parm><name> Stress </name><val> 2 </val></parm>
 
 <parm><name> Clamp </name><val> FALSE </val></parm>
@@ -43,13 +43,13 @@ By : University of Mississippi Medical Center
 <point><x>  20 </x><y> 1.0 </y><slope> -0.01 </slope></point>
 <point><x> 100 </x><y> 0.5 </y><slope> 0 </slope></point>
 </curve>
-
+<!--
 <curve><name> AgeEffect </name>
   <point><x>  0 </x><y> 1.0 </y><slope> 0 </slope></point>
   <point><x> 50 </x><y> 1.5 </y><slope> 0 </slope></point>
   <point><x> 100 </x><y> 2.0 </y><slope> 0 </slope></point>
 </curve>
-
+-->
 
 </functions>
 
@@ -70,14 +70,14 @@ By : University of Mississippi Medical Center
 <true> StressEffect [ Stress ] * 1.5 </true>
 <false>StressEffect [ Stress ] </false>
 </conditional>
-
+<!-- 
 <conditional>
 <name>Age-Effect</name>
 <test>Sex.IsMale </test>
-<true> AgeEffect [ Age-Effect ] </true>
+<true> AgeEffect [ Context-Age.Age(Years) ] </true>
 <false> 1 </false>
 </conditional>
-
+-->
 <def>
   <name> [Cortisol]Effect </name>
   <val> [Cortisol]Effect [ Cortisol.[Conc(uG/dL)] ] </val>
@@ -92,8 +92,7 @@ By : University of Mississippi Medical Center
     * NeuralEffect 
     * StressEffect 
     * [Cortisol]Effect 
-    * Brain-Function.Effect
-    * Age-Effect
+    * Brain-Function.Effect                     
   </false>
 </conditional>
 

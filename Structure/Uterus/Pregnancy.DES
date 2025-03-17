@@ -1,0 +1,126 @@
+HumMod | CorticotropinReleasingFactor
+
+Created : 2011-07-30
+Revised : 
+Author : Tom Coleman 
+Copyright : 2011-2013
+By : University of Mississippi Medical Center
+
+
+<?path Structure\Uterus ?>
+
+<!--<?include Fetus-Size.DES ?>-->
+<!--<?include Fetus-Metabolism.DES ?>-->
+<!--<?include Fetus-Fuel.DES ?>-->
+
+<structure><name> Pregnancy </name>
+
+<variables>
+
+<var><name> Timestamp </name><val> UNDEFINED </val></var>
+
+<parm><name> AnnouncePregnancy </name><val> FALSE </val></parm>
+<var><name> FertilizationTime </name><val> UNDEFINED </val></var>
+<var><name> PregnantQ </name><val> FALSE </val></var>
+
+<timervar><name> FertilityWindow </name></timervar>
+<var><name> PregnancyTime </name><val> 0 </val></var>
+<var><name> EmbryonicAge </name><val> 0 </val></var>
+<var><name> GestationalAge </name><val> 0 </val></var>
+
+<var><name> Positive(+) </name><val> UNDEFINED </val></var>
+<var><name> Negative(-)</name><val> UNDEFINED </val></var>
+
+<timervar><name> Timer </name></timervar>
+<var><name> Fertile </name><val> FALSE </val></var>
+<var><name> P1 </name></var>
+<var><name> P2 </name></var>
+<var><name> Probability </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Intercourse </name>
+<if> 
+<test> HaveSex.TrySex </test>
+<true> <def><name> Timestamp </name><val> System.X </val></def>
+
+<timer><name> Timer </name><val> 1440 </val><state> DOWN </state></timer>
+ </true>
+ <false> 0.0 </false>
+</if>
+
+</block>
+
+<block><name> Wrapup </name>
+
+<ontimedout><name> Timer </name>
+  <def><name> Timestamp </name><val> UNDEFINED </val></def>
+</ontimedout>
+
+<if><test> Timestamp EQ UNDEFINED </test>
+  <true>
+    <def><name> P1 </name><val> 0 </val></def>
+  </true>
+  <false>
+    <def><name> P1 </name><val> 0.50 </val></def>
+  </false>
+</if>
+
+<ontimedout><name> FertilityWindow </name>
+  <def><name> Fertile </name><val> FALSE </val></def>
+</ontimedout>
+
+<if><test> Fertile </test>
+  <true>
+    <def><name> P2 </name><val> 1.0 </val></def>
+  </true>
+  <false>
+    <def><name> P2 </name><val> 0.0 </val></def>
+  </false>
+</if>
+
+<def><name> Probability </name><val> P1 * P2 </val></def>
+
+<if><test> Probability GT 0.25 </test>
+  <true>
+    <def><name> FertilizationTime </name><val> System.X </val></def>
+  </true>
+</if>
+
+<if><test> FertilizationTime EQ UNDEFINED </test>
+  <true>
+    <def><name> PregnancyTime </name><val> 0 </val></def>
+  </true>
+  <false>
+    <def><name> PregnancyTime </name><val> System.X - FertilizationTime </val></def>
+    <def><name> EmbryonicAge </name><val> PregnancyTime / 1440 </val></def>
+    <def><name> GestationalAge </name><val> EmbryonicAge + 15 </val></def>
+    <def><name> PregnantQ </name><val> TRUE </val></def>
+    <andif>
+      <test> AnnouncePregnancy </test>
+      <true>
+        <page> Pregnant just now. </page>
+        <def><name> AnnouncePregnancy </name><val> FALSE </val></def>
+      </true>
+    </andif>
+  </false>
+</if>
+<!--
+<if><test> BloodChemistry-Sample.[hCG] GT 25 </test>
+  <true>
+    <def><name> Positive(+) </name><val> TRUE </val></def>
+    <def><name> Negative(-) </name><val> FALSE </val></def>
+  </true>
+  <false>
+    <def><name> Negative(-) </name><val> TRUE </val></def>
+    <def><name> Positive(+) </name><val> FALSE </val></def>
+  </false>
+</if>
+-->
+</block>
+
+</definitions>
+
+</structure>
