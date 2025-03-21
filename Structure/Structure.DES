@@ -863,7 +863,7 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
-  <call> Uterus.Sex </call>
+  <call> Uterus.Dervs </call>
 
 </block>
 

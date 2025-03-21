@@ -8,6 +8,8 @@ By : University of Mississippi Medical Center
 
 Edited: 2025 Mar 07
 By: Terry Yavorskyy UTSC
+
+
 <structure><name> Context-Sex </name>
 
   <variables>
@@ -20,16 +22,14 @@ By: Terry Yavorskyy UTSC
   <var><name> IsMale </name></var>
   <var><name> IsFemale </name></var>
   
-  
   <parm><name> UIndex </name><val> 0 </val></parm>
-  
   
   <constant><name> No_Uterus </name><val> 0 </val></constant>
   <constant><name> Has_Uterus </name><val> 1 </val></constant>
   
-  
   <var><name> NoUterus </name></var>
   <var><name> HasUterus </name></var>
+
   </variables>
   
   <definitions>
@@ -102,7 +102,7 @@ By: Terry Yavorskyy UTSC
     <val> UIndex </val>
   </def>
   
-  <call> Sex.UInit </call>
+  <call> Sex.Init </call>
   
   </block>
   
