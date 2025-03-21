@@ -29,7 +29,6 @@ HumMod / Size
 <?include Volume.DES ?>
 
 <?include Mass.DES ?>
-<?include Density.DES ?>
 
 </panel>
 

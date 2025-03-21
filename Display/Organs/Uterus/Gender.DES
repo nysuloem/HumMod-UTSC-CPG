@@ -11,12 +11,12 @@ By : University of Mississippi Medical Center
    <col> 1.0 </col>
    <high> 3.0 </high>
    <wide> 30.0 </wide>
-   <title> Gender </title>
+   <title> Sex </title>
 
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
-   <name>  Gender.Index </name>
-   <format><list> Common.Gender </list></format>
+   <name>  Sex.Index </name>
+   <format><list> Common.Sex </list></format>
    <nolabel/>
 </showvalue>
 

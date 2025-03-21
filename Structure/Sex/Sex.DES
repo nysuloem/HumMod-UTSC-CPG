@@ -10,7 +10,36 @@ Edited: 2025 Mar 07
 By: Terry Yavorskyy UTSC
 
 
+
 <structure><name> Sex </name>
+<var><name> UIndex </name></var>
+    
+<var><name> NoUterus </name></var>
+<var><name> HasUterus </name></var>
+    
+<constant><name> No_Uterus </name><val> 0 </val></constant>
+<constant><name> Has_Uterus </name><val> 1 </val></constant>
+    
+</variables>
+
+<definitions>
+
+<block><name> Init </name>
+
+<if><test> Index EQ IS_MALE </test>
+<true>
+<def><name> IsMale </name><val> TRUE </val></def>
+<def><name> IsFemale </name><val> FALSE </val></def>
+<def><name> NoUterus </name><val> TRUE </val></def>
+<def><name> HasUterus </name><val> FALSE </val></def>
+</true>
+<false>
+<def><name> IsMale </name><val> FALSE </val></def>
+<def><name> IsFemale </name><val> TRUE </val></def>
+<def><name> NoUterus </name><val> TRUE </val></def>
+<def><name> HasUterus </name><val> FALSE </val></def>
+</false>
+</if>
 
     <variables>
     
