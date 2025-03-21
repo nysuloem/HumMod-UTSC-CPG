@@ -1,0 +1,118 @@
+<groupbox>
+   <row> 2.0 </row>
+   <col> 32.0 </col>
+   <high> 37.4 </high>
+   <wide> 30.0 </wide>
+   <title> Cell Compartments </title>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Endometrium-StromalCells.Population </name>
+   <format> <integer/> </format>
+   <label> Stroma </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-StromalCells.Population</name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 10.4 </row><col> 1.0 </col>
+   <name> Endometrium-Glands.Population </name>
+   <format> <integer/> </format>
+   <label> Glands </label>
+</showvalue>
+
+<showgraph>
+  <row> 11.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-Glands.Population </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 19.4 </row><col> 1.0 </col>
+   <name> Endometrium-Vasculature.Population </name>
+   <format> <integer/> </format>
+   <label> Vasculature </label>
+</showvalue>
+
+<showgraph>
+  <row> 20.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-Vasculature.Population </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.0 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 28.4 </row><col> 1.0 </col>
+   <name> Endometrium-LuminalEpithelium.Population </name>
+   <format> <integer/> </format>
+   <label> Lumen </label>
+</showvalue>
+
+<showgraph>
+  <row> 29.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-LuminalEpithelium.Population </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 0.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+
+
+</groupbox>

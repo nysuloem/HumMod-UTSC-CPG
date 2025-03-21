@@ -1,0 +1,70 @@
+<?path Structure\Uterus\Endometrium ?>
+
+<?include Endometrium-StromalCells.DES ?>
+<?include Endometrium-Glands.DES ?>
+<?include Endometrium-LuminalEpithelium.DES ?>
+<?include Endometrium-Vasculature.DES ?>
+
+<structure><name> Endometrium </name>
+
+<variables>
+
+<parm><name> Basalis </name><val> 3.33 </val></parm>
+
+<var><name> Functionalis </name><val> 0 </val></var>
+<var><name> Thickness </name><val> 3.33 </val></var>
+
+<var><name> NFkB </name><val> 1 </val></var>
+<var><name> IkB </name><val> 0 </val></var>
+<var><name> IL8 </name><val> 0 </val></var>
+<var><name> truncIL8 </name><val> 0 </val></var>
+<var><name> MMP9 </name><val> 0 </val></var>
+<var><name> IL8Signal </name><val> 0 </val></var>
+<var><name> MMP3 </name><val> 0 </val></var>
+<var><name> activeMMP9 </name><val> 0 </val></var>
+
+<var><name> Neutrophils </name><val> 0 </val></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def><name> IkB </name><val> Progesterone.[Conc(nMol/L)] GT 15 </val></def>
+<def><name> NFkB </name><val> IkB EQ 0 </val></def>
+<def><name> IL8 </name><val> NFkB </val></def>
+<def><name> MMP3 </name><val> Endometrium-Glands.TNFAlpha </val></def>
+<def><name> MMP9 </name><val> MMP3 </val></def>
+<def><name> activeMMP9 </name><val> ( ( 0.0001 * Functionalis ) + Neutrophils ) * MMP9 / 1440 </val></def>
+<def><name> truncIL8 </name><val> IL8 AND MMP9 </val></def>
+<def><name> IL8Signal </name><val>  ( Endometrium-StromalCells.Population + Endometrium-StromalCells.DCPopulation ) * ( ( 0.1 * IL8 ) + ( 0.9 * truncIL8 ) ) </val></def>
+
+<def><name> Neutrophils </name><val> IL8Signal </val></def> 
+
+<call> Endometrium-StromalCells.Dervs </call>
+<call> Endometrium-Glands.Dervs </call>
+<call> Endometrium-LuminalEpithelium.Dervs </call>
+<call> Endometrium-Vasculature.Dervs </call>
+
+<def>
+  <name> Functionalis </name>
+  <val> Endometrium-LuminalEpithelium.Population + Endometrium-Glands.Population + Endometrium-StromalCells.Population + Endometrium-Vasculature.Population + Endometrium-StromalCells.DCPopulation </val>
+</def>
+
+<def><name> Thickness </name><val> Basalis + Functionalis </val></def>
+
+</block>
+
+<block><name> Wrapup </name>
+
+<call> Endometrium-StromalCells.WrapUp </call>
+<call> Endometrium-Glands.WrapUp </call>
+<call> Endometrium-LuminalEpithelium.WrapUp </call>
+<call> Endometrium-Vasculature.WrapUp </call>
+
+</block>
+
+</definitions>
+
+</structure>

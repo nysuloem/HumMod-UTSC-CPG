@@ -32,8 +32,6 @@ By : University of Mississippi Medical Center
 <var><name> IsAboveNormal    </name></var>
 <var><name> IsTrainedAthlete </name></var>
 
-<var><name> AgeEffectMuscularity </name></var>
-
 <var><name> Stochasm </name></var>
 
 <normaldist>
@@ -44,26 +42,11 @@ By : University of Mississippi Medical Center
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -15 </lowerlim>
-  <upperlim> 15 </upperlim>
+  <lowerlim> -50 </lowerlim>
+  <upperlim> 50 </upperlim>
 </whitenoise>
 
 </variables>
-
-<functions>
-
-<curve>
-  <name> AgeOnMuscularity </name>
-   <point><x> 0 </x><y> 0.2 </y><slope> 0 </slope></point>
-  <point><x> 2 </x><y> 0.3 </y><slope> 0 </slope></point>
-  <point><x> 9 </x><y> 0.4 </y><slope> 0 </slope></point>
-  <point><x> 18 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 30 </x><y> 0.95 </y><slope> 0 </slope></point>
-  <point><x> 50 </x><y> 0.85 </y><slope> 0 </slope></point>
-  <point><x> 70 </x><y> 0.75 </y><slope> 0 </slope></point>
-</curve>
-
-</functions>
 
 <definitions>
 
@@ -81,10 +64,6 @@ By : University of Mississippi Medical Center
 
 <block><name> Calc </name>
 
-<if><test> System.X GT System.InitialX </test>
-<true> <exitblock/> </true>
-</if>
-
 <def><name> IsBelowNormal    </name><val> FALSE </val></def>
 <def><name> IsNormal         </name><val> FALSE </val></def>
 <def><name> IsAboveNormal    </name><val> FALSE </val></def>
@@ -95,11 +74,6 @@ By : University of Mississippi Medical Center
   <false><call> CalcMale </call></false>
 </if>
 
-<def>
-  <name> AgeEffectMuscularity </name>
-  <val> AgeOnMuscularity [ Context-Age.Age(Years) ] </val>
-</def>
-
 <call> CalcStochasm </call>
 
 <def>
@@ -108,7 +82,6 @@ By : University of Mississippi Medical Center
      NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
-     * AgeEffectMuscularity
   </val>
 </def>
 
@@ -183,7 +156,7 @@ By : University of Mississippi Medical Center
 </def>
 
 <if>
-  <test> NOT Random.Muscularity </test>
+  <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
   </true>

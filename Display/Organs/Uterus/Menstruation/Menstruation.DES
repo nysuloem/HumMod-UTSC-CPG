@@ -1,25 +1,16 @@
-HumMod / Gender
 
-Created : 2012-02-03
-Revised : 2012-02-03
-Author : Tom Coleman
-Copyright : 2012-2012
-By : University of Mississippi Medical Center
-
-
-
-<panel><name> Uterus-Menstruation </name>
+<panel><name> Menstruation </name>
 
 <showbitmap>
   <row> 0.3 </row>
   <col> 1.0 </col>
-  <name> Uterus </name>
+  <name> Menstruation </name>
 </showbitmap>
 
 <label>
   <row> 0.3 </row>
   <col> 4.5 </col>
-  <text> Uterus | Menstruation </text>
+  <text> Uterus - Menstruation </text>
 </label>
 
 <showclock>
@@ -30,12 +21,42 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
+<groupbox> 
+
+  <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 24.6 </high>
+   <wide> 30.0 </wide>
+
 <structurename> Menstruation </structurename>
 
-<?path Display\Organs\Uterus\Menstruation\ ?>
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Menstruation.Volume </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Volume </label>
+</showvalue>
 
-<?include BloodLoss.DES ?>
-
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 4 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Menstruation.Volume </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 10 </min><max> 20 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+ </groupbox>
 
 </panel>
 

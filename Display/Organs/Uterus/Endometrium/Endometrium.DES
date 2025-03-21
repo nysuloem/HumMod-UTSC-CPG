@@ -1,6 +1,4 @@
-HumMod / Size
-
-<panel><name> Uterus-Size </name>
+<panel><name> Endometrium </name>
 
 <showbitmap>
   <row> 0.3 </row>
@@ -11,7 +9,7 @@ HumMod / Size
 <label>
   <row> 0.3 </row>
   <col> 4.5 </col>
-  <text> Uterus - Size </text>
+  <text> Uterus - Endometrium </text>
 </label>
 
 <showclock>
@@ -22,13 +20,16 @@ HumMod / Size
   <days/>
 </showclock>
 
-<structurename> Uterus-Size </structurename>
+<?path Display\Organs\Uterus\Endometrium\ ?>
 
-<?path Display\Organs\Uterus\Size\ ?>
-
-<?include Volume.DES ?>
-
+<!--<?include Volume.DES ?>
+<?include Compartments.DES ?>
+<?include Decidualization.DES ?>
 <?include Mass.DES ?>
+<?include Density.DES ?>-->
+<?include Size.DES ?>
+<?include Stroma.DES ?>
+
 
 </panel>
 

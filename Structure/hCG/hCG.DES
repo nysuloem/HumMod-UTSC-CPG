@@ -13,7 +13,7 @@ Schema : DES V1.0
 
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
-
+<var> <name> Placenta-hCG-Secretion </name> <val> 0.0 </val></var>
 <var><name> Secretion </name></var>
 <var><name> Degradation </name></var>
 
@@ -29,6 +29,8 @@ Schema : DES V1.0
 <parm><name> PumpSetting </name><val> 0.0 </val></parm>
 
 <parm><name> K </name><val> 0.0009 </val></parm>
+
+
 
 </variables>
 
@@ -58,13 +60,28 @@ Schema : DES V1.0
 
 </block>
 
+
+
 <block><name> Conc </name>
   <def><name> [Conc(IU/L)] </name><val> Mass / ECFV.Vol(L) </val></def>
 </block>
 
 <block><name> Dervs </name>
 
-  <def><name> Secretion </name><val> 0.009 </val></def>
+
+<if><test> Pregnancy.FertilizationTime EQ UNDEFINED </test>
+  <true>
+
+    <def><name> Secretion </name><val> 0.009 </val></def>
+
+  </true>
+  <false>
+    <def><name> Secretion </name><val> 0.009 + Placenta-hCG-Secretion </val></def>
+  </false>
+</if>
+
+
+
   <def><name> Degradation </name><val> K * Mass </val></def>
 
   <def><name> Gain </name><val> Secretion + ( PumpSetting * PumpSwitch ) </val></def>

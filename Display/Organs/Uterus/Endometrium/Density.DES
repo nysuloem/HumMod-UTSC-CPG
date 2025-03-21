@@ -8,31 +8,35 @@ By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
 <groupbox>
-   <row> 14.8 </row>
+   <row> 17.2 </row>
    <col> 32.0 </col>
    <high> 6.4 </high>
    <wide> 30.0 </wide>
    <title> Density </title>
-
+<!--
 <showvalue>
-   <row> 1.4 </row><col> 1.0 </col>
-   <name> Uterus-Size.Density </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Organ </label>
+   <row> 4 </row><col> 1.0 </col>
+   <name> Context-Gender.HasUterus </name>
+   <format> <boolean/> </format>
+   <label> Uterus? </label>
 </showvalue>
 
+
 <showvalue>
-   <row> 2.8 </row><col> 3 </col>
-   <name> Uterus-Size.LiquidDensity </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Liquids </label>
+   <row> 5 </row><col> 1.0 </col>
+   <name> Sizing-OrganMass.dummy </name>
+   <format> <decimal> 3 </decimal></format>
+   <label> dummy </label>
 </showvalue>
+
 <showvalue>
-   <row> 3.8 </row><col> 3 </col>
-   <name> Uterus-Size.SolidDensity</name>
-   <format><decimal> 3 </decimal></format>
-   <label> Solids </label>
+   <row> 7 </row><col> 1.0 </col>
+   <name> Context-Gender.HasUterus </name>
+   <format> <decimal> 3 </decimal></format>
+   <label> Ut? </label>
 </showvalue>
+-->
+
 
 <infobutton>
   <row> 1.2 </row>
@@ -42,12 +46,12 @@ Schema : DES V1.0
   <line>  </line>
   <line> NORMAL VALUES </line>
   <line>  </line>
-  <line> Organ = 1.044 </line>
+  <line> Organ = 1.431 </line>
   <line>  </line>
   <line> Liquids = 1.000 </line>
-  <line> Solids = 1.170 </line>
+  <line> Minerals = 2.300 </line>
+  <line> Other Solids = 1.050 </line>
 </infobutton>
-
 
 </groupbox>
 

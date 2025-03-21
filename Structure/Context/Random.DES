@@ -10,7 +10,7 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-<parm><name> State </name><val> 1 </val></parm>
+<parm><name> State </name><val> 0 </val></parm>
 
 <constant><name> IS_DETERMINISTIC </name><val> 0 </val></constant>
 <constant><name> IS_STOCHASTIC    </name><val> 1 </val></constant>
@@ -20,11 +20,11 @@ By : University of Mississippi Medical Center
 <constant><name> IS_NORMAL </name><val> 0 </val></constant>
 <constant><name> IS_FLAT   </name><val> 1 </val></constant>
 
-<parm><name> Age         </name><val> 1 </val></parm>
-<parm><name> Height      </name><val> 1 </val></parm>
-<parm><name> Adiposity   </name><val> 1 </val></parm>
-<parm><name> Muscularity </name><val> 1 </val></parm>
-<parm><name> OtherMass   </name><val> 1 </val></parm>
+<parm><name> Age         </name><val> 0 </val></parm>
+<parm><name> Height      </name><val> 0 </val></parm>
+<parm><name> Adiposity   </name><val> 0 </val></parm>
+<parm><name> Muscularity </name><val> 0 </val></parm>
+<parm><name> OtherMass   </name><val> 0 </val></parm>
 
 </variables>
 
@@ -32,7 +32,33 @@ By : University of Mississippi Medical Center
 
 <block><name> Parms </name>
 
+<onjustchanged><name> State </name>
 <call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Distribution </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Age </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Height </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Adiposity </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Muscularity </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> OtherMass </name>
+<call> Context.Calc </call>
+</onjustchanged>
 
 </block>
 
