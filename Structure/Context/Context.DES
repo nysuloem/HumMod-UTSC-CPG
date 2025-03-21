@@ -35,7 +35,7 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> Calc </name>
-
+  <call> Context-Sex.CalcU </call>
   <call> Context-Sex.Calc </call>
   <call> Context-Ethnicity.Calc </call>
   <call> Context-Ethnicity.CalcPercent </call>

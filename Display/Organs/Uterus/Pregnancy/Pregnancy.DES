@@ -1,0 +1,61 @@
+
+<panel><name> Pregnancy </name>
+<groupbox>
+   <row> 2.0 </row>
+   <col> 64.0 </col>
+   <high> 10.4 </high>
+   <wide> 30.0 </wide>
+   <title> Pregnancy Test </title>
+
+<structurename> Pregnancy </structurename>
+
+
+<actionbutton>
+   <row> 1.4 </row><col> 1.0 </col>
+   <blockname> BloodChemistry-Sample.GetSample </blockname>
+   <label> Sample Vein Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 3.0 </row><col> 1.0 </col>
+   <name> BloodChemistry-Sample.Timestamp </name>
+   <format>
+     <timestamp/>
+     <fieldwidth> 16 </fieldwidth>
+   </format>
+   <label> Timestamp </label>
+</showvalue>
+
+<infobutton>
+  <row> 1.2 </row>
+  <col> 26 </col>
+
+  <line> Draw a venous blood sample. </line>
+</infobutton>
+
+<label>
+  <row> 5.4 </row><col> 1.0 </col>
+  <text> Blood Test </text>
+  <color> DARKBLUE </color>
+</label>
+
+<checkmark>
+  <row> 6.4 </row><col> 2.0 </col>
+  <name> Positive(+) </name>
+  <label> Positive(+) </label>
+</checkmark>
+
+<checkmark>
+  <row> 7.4 </row><col> 2.0 </col>
+  <name> Negative(-) </name>
+  <label> Negative(-) </label>
+</checkmark>
+<!--
+<checkmark>
+  <row> 8.4 </row><col> 2.0 </col>
+  <name> Inconclusive </name>
+  <label> Inconclusive </label>
+</checkmark>
+-->
+</groupbox>
+</panel>

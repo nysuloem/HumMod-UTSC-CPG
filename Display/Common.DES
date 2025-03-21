@@ -98,6 +98,12 @@ from 0 to 200 mmHg.
 </maplist>
 
 <maplist>
+  <name> Common.UIndex </name>
+  <map><val> 0 </val><img> NoUterus </img></map>
+  <map><val> 1 </val><img> HasUterus </img></map>
+</maplist>
+
+<maplist>
   <name> Common.Height </name>
   <map><val> 0 </val><img> Short </img></map>
   <map><val> 1 </val><img> Normal </img></map>

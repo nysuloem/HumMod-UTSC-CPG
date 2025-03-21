@@ -1,0 +1,102 @@
+<structure><name> Endometrium-StromalCells </name>
+
+<variables>
+
+<var><name> EGFR </name><val> 0 </val></var>
+<var><name> FGF </name><val> 0 </val></var>
+<var><name> FGFR </name><val> 0 </val></var>
+<var><name> IGF </name><val> 0 </val></var>
+<var><name> IGFR </name><val> 0 </val></var>
+<var><name> MMP9 </name><val> 0 </val></var>
+<var><name> IGFBP1 </name><val> 0 </val></var>
+<var><name> EGF </name><val> 1 </val></var>
+<var><name> Hand2 </name><val> 0 </val></var>
+<var><name> FOXO1 </name><val> 0 </val></var>
+<var><name> cAMP </name><val> 0 </val></var>
+<var><name> PGE2 </name><val> 0 </val></var>
+<var><name> CRF </name><val> 0 </val></var>
+<var><name> COX2 </name><val> 0 </val></var>
+<var><name> IL1Beta </name><val> 0 </val></var>
+<var><name> IL6 </name><val> 0 </val></var>
+<var><name> BMP2 </name><val> 0 </val></var>
+<var><name> COUPTFII </name><val> 0 </val></var>
+<var><name> TGFBeta </name><val> 0 </val></var>
+<var><name> PRL </name><val> 0 </val></var>
+
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> Population </name>
+<integralname> Population </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+<diffeq>
+<name> DCPopulation </name>
+<integralname> DCPopulation </integralname>
+<initialval> 0 </initialval>
+<dervname> ChangeDC </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> WrapUp  </name>
+
+<def><name> Hand2 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+
+<def><name> IL1Beta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+
+<def><name> TGFBeta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+
+<def><name> COX2 </name><val> ( ( IL1Beta OR BMP2 OR Endometrium-Glands.Hoxa10 EQ 1 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) </val></def>
+
+<def><name> cAMP </name><val> ( ( Estradiol.[Conc(nMol/L)] GT 0.10 ) OR ( hCG.[Conc(IU/L)] GT 10.0 ) OR ( PGE2 GT 0 ) OR ( CRF GT 0 ) ) </val></def>
+
+<def><name> FOXO1 </name><val> ( ( cAMP EQ 1 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+
+<def><name> EGFR </name><val> ( ( ( EGF  OR TGFBeta ) GT 0 ) AND ( ( Progesterone.[Conc(nMol/L)] GT 10 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) ) </val></def>
+
+<def><name> FGF </name><val>  ( Estradiol.[Conc(nMol/L)] GT 0.10 ) AND ( Hand2 EQ 0 )  </val></def>
+
+<def><name> IGF </name><val> ( Estradiol.[Conc(nMol/L)] GT 0.10 ) </val></def>
+
+<def><name> IGFBP1 </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+
+<def><name> PRL </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+
+<def><name> COUPTFII </name><val> ( Endometrium-Glands.Ihh EQ 1 ) </val></def>
+<def><name> BMP2 </name><val> ( COUPTFII EQ 1 ) </val></def>
+<def><name> IL6 </name><val> ( Endometrium-Glands.TNFAlpha EQ 1 ) </val></def>
+<def><name> PGE2 </name><val> ( COX2 EQ 1 ) </val></def>
+<def><name> CRF </name><val> ( IL1Beta OR IL6 EQ 1 ) </val></def>
+<def><name> FGFR </name><val> FGF </val></def>
+<def><name> IGFR </name><val> IGF AND ( IGFBP1 EQ 0 ) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> ChangeDC </name><val> ( ( 0.00003472 * PRL ) - ( Endometrium.activeMMP9  * DCPopulation ) ) </val></def>
+<def><name> Change </name><val> ( ( 0.00003472 * EGFR ) + ( 0.0000694 * FGFR ) + ( 0.0000694 * IGFR ) - ( Endometrium.activeMMP9 * Population  ) ) - ChangeDC </val></def>
+
+<if><test> Population GT ( 4 * Endometrium-Vasculature.Population ) </test>
+  <true>
+    <def><name> Change </name><val> 0 MIN Change </val></def>
+  </true>
+</if>
+
+<def><name> Population </name><val>  Population MIN 5 </val></def>
+
+</block>
+
+</definitions>
+
+</structure>

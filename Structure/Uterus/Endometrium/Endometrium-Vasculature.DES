@@ -1,0 +1,47 @@
+<structure><name> Endometrium-Vasculature </name>
+
+<variables>
+
+<var><name> KDR </name><val> 0 </val></var>
+<var><name> VEGF </name><val> 0 </val></var>
+<var><name> HypoxicQ </name><val> 0 </val></var>
+<var><name> HIF1Alpha </name><val> 0 </val></var>
+
+<var><name> ER-Beta </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> Population </name>
+<integralname> Population </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+
+<block><name> Dervs </name>
+
+<def><name> Change </name><val> ( ( 0.0003472 * KDR ) -  ( Endometrium.activeMMP9 * Population ) ) </val></def>
+
+</block>
+
+<block><name> WrapUp </name>
+
+<def><name> HypoxicQ </name><val> ( ( Endometrium-StromalCells.Population GT ( 4 * Population ) ) OR ( Endometrium-Glands.Population GT ( 4 * Population ) ) )</val></def>
+<def><name> HIF1Alpha </name><val> ( HypoxicQ EQ 1 ) </val></def>
+<def><name> VEGF </name><val> ( ( HIF1Alpha EQ 1 ) AND ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) </val></def>
+<def><name> KDR </name><val> ( VEGF EQ 1 ) </val></def>
+
+</block>
+
+
+</definitions>
+
+</structure>

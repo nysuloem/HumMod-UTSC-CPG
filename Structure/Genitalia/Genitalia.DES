@@ -37,8 +37,8 @@ Schema : DES V1.0
 
 <definitions>
     <block><name> Init </name>
-<call> Context-Gender.Init </call>
-<call> Gender.Init </call>
+<call> Context-Sex.Init </call>
+<call> Sex.Init </call>
     </block>
 
 <block><name> Dervs </name>
@@ -49,9 +49,9 @@ Schema : DES V1.0
 
 </block>
 <!-- Drew's conditional block from the female endocrine model -->
-<block><name> Gender </name>
+<block><name> Sex </name>
 
-    <if><test> Context-Gender.UIndex </test>
+    <if><test> Context-Sex.UIndex </test>
     
     <true>  </true>
     
