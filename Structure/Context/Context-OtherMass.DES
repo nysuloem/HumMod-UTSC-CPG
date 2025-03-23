@@ -32,8 +32,6 @@ By : University of Mississippi Medical Center
 <var><name> IsLarge     </name></var>
 <var><name> IsVeryLarge </name></var>
 
-<var><name> AgeEffectOtherMass </name></var>
-
 <var><name> Stochasm </name></var>
 
 <normaldist>
@@ -49,23 +47,6 @@ By : University of Mississippi Medical Center
 </whitenoise>
 
 </variables>
-
-
-<functions>
-
-<curve>
-  <name> AgeOnOtherMass </name>
-  <point><x> 0 </x><y> 0.2 </y><slope> 0 </slope></point>
-  <point><x> 2 </x><y> 0.3 </y><slope> 0 </slope></point>
-  <point><x> 9 </x><y> 0.4 </y><slope> 0 </slope></point>
-  <point><x> 18 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 30 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 50 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 70 </x><y> 1.0 </y><slope> 0 </slope></point>
-</curve>
-
-</functions>
-
 
 <definitions>
 
@@ -83,10 +64,6 @@ By : University of Mississippi Medical Center
 
 <block><name> Calc </name>
 
-<if><test> System.X GT System.InitialX </test>
-<true> <exitblock/> </true>
-</if>
-
 <def><name> IsSmall     </name><val> FALSE </val></def>
 <def><name> IsNormal    </name><val> FALSE </val></def>
 <def><name> IsLarge     </name><val> FALSE </val></def>
@@ -97,11 +74,6 @@ By : University of Mississippi Medical Center
   <false><call> CalcMale </call></false>
 </if>
 
-<def>
-  <name> AgeEffectOtherMass </name>
-  <val> AgeOnOtherMass [ Context-Age.Age(Years) ] </val>
-</def>
-
 <call> CalcStochasm </call>
 
 <def>
@@ -110,7 +82,6 @@ By : University of Mississippi Medical Center
        NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
-     * AgeEffectOtherMass
   </val>
 </def>
 

@@ -10,32 +10,30 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-<parm><name> Index </name><val> 3 </val></parm>
+<parm><name> Index </name><val> 2 </val></parm>
 <parm><name> PlusMinus </name><val> 0 </val></parm>
 
-<constant><name> INFANT </name><val> 6.0 </val></constant>
-<constant><name> TEENAGER      </name><val> 15.0 </val></constant>
-<constant><name> YOUNG-ADULT   </name><val> 25.0 </val></constant>
-<constant><name> MIDDLE-AGE-ADULT </name><val> 35.0 </val></constant>
-<constant><name> SENIOR-ADULT        </name><val> 55.0 </val></constant>
-<constant><name> ELDERLY-ADULT    </name><val> 75.0 </val></constant>
+<constant><name> YOUNG      </name><val> 19.0 </val></constant>
+<constant><name> YOUNGISH   </name><val> 28.0 </val></constant>
+<constant><name> MIDDLEAGED </name><val> 37.0 </val></constant>
+<constant><name> OLD        </name><val> 65.0 </val></constant>
+<constant><name> VERYOLD    </name><val> 89.0 </val></constant>
 
 <var><name> NominalAge </name></var>
 <var><name> Age(Years) </name></var>
 
-<var><name> IsInfant </name></var>
-<var><name> IsTeenager      </name></var>
-<var><name> IsYoungAdult   </name></var>
-<var><name> IsMiddleAgeAdult </name></var>
-<var><name> IsSeniorAdult       </name></var>
-<var><name> IsElderlyAdult    </name></var>
+<var><name> IsYoung      </name></var>
+<var><name> IsYoungish   </name></var>
+<var><name> IsMiddleaged </name></var>
+<var><name> IsOld        </name></var>
+<var><name> IsVeryOld    </name></var>
 
 <var><name> Stochasm </name></var>
 
 <normaldist>
   <name> Normal </name>
   <mean> 0 </mean>
-  <stddev> 10 </stddev>
+  <stddev> 25 </stddev>
 </normaldist>
 
 <whitenoise>
@@ -54,51 +52,45 @@ By : University of Mississippi Medical Center
 <call> Context.Calc </call>
 </onjustchanged>
 
+<onjustchanged><name> PlusMinus </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
 </block>
 
 <block><name> Calc </name>
 
-<if><test> System.X GT System.InitialX </test>
-<true> <exitblock/> </true>
-</if>
-
-<def><name> IsInfant </name><val> FALSE </val></def>
-<def><name> IsTeenager      </name><val> FALSE </val></def>
-<def><name> IsYoungAdult   </name><val> FALSE </val></def>
-<def><name> IsMiddleAgeAdult </name><val> FALSE </val></def>
-<def><name> IsSeniorAdult        </name><val> FALSE </val></def>
-<def><name> IsElderlyAdult    </name><val> FALSE </val></def>
+<def><name> IsYoung      </name><val> FALSE </val></def>
+<def><name> IsYoungish   </name><val> FALSE </val></def>
+<def><name> IsMiddleaged </name><val> FALSE </val></def>
+<def><name> IsOld        </name><val> FALSE </val></def>
+<def><name> IsVeryOld    </name><val> FALSE </val></def>
 
 <testcase>
 
 <case><test> Index EQ 0 </test>
-<def><name> NominalAge </name><val> INFANT </val></def>
-<def><name> IsInfant </name><val> TRUE </val></def>
+<def><name> NominalAge </name><val> YOUNG </val></def>
+<def><name> IsYoung </name><val> TRUE </val></def>
 </case>
 
 <case><test> Index EQ 1 </test>
-<def><name> NominalAge </name><val> TEENAGER </val></def>
-<def><name> IsTeenager </name><val> TRUE </val></def>
+<def><name> NominalAge </name><val> YOUNGISH </val></def>
+<def><name> IsYoungish </name><val> TRUE </val></def>
 </case>
 
 <case><test> Index EQ 2 </test>
-<def><name> NominalAge </name><val> YOUNG-ADULT </val></def>
-<def><name> IsYoungAdult </name><val> TRUE </val></def>
+<def><name> NominalAge </name><val> MIDDLEAGED </val></def>
+<def><name> IsMiddleaged </name><val> TRUE </val></def>
 </case>
 
 <case><test> Index EQ 3 </test>
-<def><name> NominalAge </name><val> MIDDLE-AGE-ADULT </val></def>
-<def><name> IsMiddleAgeAdult </name><val> TRUE </val></def>
+<def><name> NominalAge </name><val> OLD </val></def>
+<def><name> IsOld </name><val> TRUE </val></def>
 </case>
 
 <case><test> Index EQ 4 </test>
-<def><name> NominalAge </name><val> SENIOR-ADULT </val></def>
-<def><name> IsSeniorAdult </name><val> TRUE </val></def>
-</case>
-
-<case><test> Index EQ 5 </test>
-<def><name> NominalAge </name><val> ELDERLY-ADULT </val></def>
-<def><name> IsElderlyAdult </name><val> TRUE </val></def>
+<def><name> NominalAge </name><val> VERYOLD </val></def>
+<def><name> IsVeryOld </name><val> TRUE </val></def>
 </case>
 
 </testcase>
@@ -109,7 +101,7 @@ By : University of Mississippi Medical Center
   <name> Age(Years) </name>
   <val>
      NominalAge
-    * ( 1.0 + ( PlusMinus / 100 ) )
+     * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
   </val>
 </def>
@@ -129,6 +121,20 @@ By : University of Mississippi Medical Center
   <name> Stochasm </name>
   <val> 0 </val>
 </def>
+
+<if>
+  <test> NOT Random.Adiposity </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
+
+<if>
+  <test> Random.State EQ Random.IS_DETERMINISTIC </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
 
 <conditional>
   <name> Stochasm </name>

@@ -6,6 +6,9 @@ Author : Tom Coleman
 Copyright : 2008-2013
 By : University of Mississippi Medical Center
 
+
+
+
 <?path Structure\ ?>
 
 <?include Context\Context.DES ?>
@@ -115,6 +118,7 @@ By : University of Mississippi Medical Center
 <?include LowerExternalPressure\LowerExternalPressure.DES ?>
 <?include LungGases\LungGases.DES ?>
 <?include Lungs\Lungs.DES ?>
+<?include Menstruation\Menstruation.DES ?>
 <?include Metabolism\Metabolism.DES ?>
 <?include MineralocorticoidReceptor\MineralocorticoidReceptor.DES ?>
 <?include Na\Na.DES ?>
@@ -803,6 +807,7 @@ By : University of Mississippi Medical Center
 
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
+  <call> Menstruation.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>
@@ -858,7 +863,7 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
-  <call> Uterus.Sex </call>
+  <call> Uterus.Dervs </call>
 
 </block>
 

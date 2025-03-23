@@ -6,53 +6,108 @@ Author : Tom Coleman
 Copyright : 2012-2012
 By : University of Mississippi Medical Center
 
+Edited: 2025 Mar 07
+By: Terry Yavorskyy UTSC
+
+
 <structure><name> Context-Sex </name>
 
-<variables>
+  <variables>
+  
+  <parm><name> Index </name><val> 0 </val></parm>0
+  
+  <constant><name> IS_MALE </name><val> 0 </val></constant>
+  <constant><name> IS_FEMALE </name><val> 1 </val></constant>
+  
+  <var><name> IsMale </name></var>
+  <var><name> IsFemale </name></var>
+  
+  <parm><name> UIndex </name><val> 0 </val></parm>
+  
+  <constant><name> No_Uterus </name><val> 0 </val></constant>
+  <constant><name> Has_Uterus </name><val> 1 </val></constant>
+  
+  <var><name> NoUterus </name></var>
+  <var><name> HasUterus </name></var>
 
-<parm><name> Index </name><val> 0 </val></parm>
-
-<constant><name> IS_MALE </name><val> 0 </val></constant>
-<constant><name> IS_FEMALE </name><val> 1 </val></constant>
-
-<var><name> IsMale </name></var>
-<var><name> IsFemale </name></var>
-
-</variables>
-
-<definitions>
-
-<block><name> Parms </name>
-
-<onjustchanged><name> Index </name>
-<call> Context.Calc </call>
-</onjustchanged>
-
-</block>
-
-<block><name> Calc </name>
-
-<if><test> Index EQ IS_MALE </test>
-<true>
-<def><name> IsMale </name><val> TRUE </val></def>
-<def><name> IsFemale </name><val> FALSE </val></def>
-</true>
-<false>
-<def><name> IsMale </name><val> FALSE </val></def>
-<def><name> IsFemale </name><val> TRUE </val></def>
+  </variables>
+  
+  <definitions>
+  
+  <block><name> Parms </name>
+    <call> Context-Sex.Calc </call>
+  <onjustchanged><name> Index </name>
+  <if><test> Index EQ IS_FEMALE </test>
+  
+  <true>     
+  <def><name> NoUterus </name><val> FALSE </val></def>
+    <def><name> HasUterus </name><val> TRUE </val></def> 
+    <def><name> UIndex </name> <val> 1 </val></def>
+    </true>
+<false> 
+ <def><name> NoUterus </name><val> TRUE </val></def>
+    <def><name> HasUterus </name><val> FALSE </val></def> 
+    <def><name> UIndex </name> <val> 0 </val></def>
 </false>
 </if>
 
-<def>
-  <name> Sex.Index </name>
-  <val> Index </val>
-</def>
-
-<call> Sex.Init </call>
-
-</block>
-
-</definitions>
-</structure>
-
+  </onjustchanged>
+  
+  <onjustchanged><name> UIndex </name>
+    <call> Context-Sex.CalcU </call>
+    </onjustchanged>
+    
+  
+  </block>
+  
+  <block><name> Calc </name>
+  
+  <if><test> Index EQ IS_MALE </test>
+  <true>
+  <def><name> IsMale </name><val> TRUE </val></def>
+  <def><name> IsFemale </name><val> FALSE </val></def>
+  </true>
+  <false>
+  <def><name> IsMale </name><val> FALSE </val></def>
+  <def><name> IsFemale </name><val> TRUE </val></def>
+  </false>
+  </if>
+  
+  <def>
+    <name> Sex.Index </name>
+    <val> Index </val>
+  </def>
+  
+  <call> Sex.Init </call>
+  
+  </block>
+  
+  <block><name> CalcU </name>
+  
+  <if><test> UIndex EQ No_Uterus </test>
+    <true>
+    <def><name> NoUterus </name><val> TRUE </val></def>
+    <def><name> HasUterus </name><val> FALSE </val></def>
+    </true>
+    <false>
+    <def><name> NoUterus </name><val> FALSE </val></def>
+    <def><name> HasUterus </name><val> TRUE </val></def>
+    </false>
+    </if>
+  
+  
+  
+  <def>
+    <name> Sex.UIndex </name>
+    <val> UIndex </val>
+  </def>
+  
+  <call> Sex.Init </call>
+  
+  </block>
+  
+  </definitions>
+  </structure>
+  
+  End
 End

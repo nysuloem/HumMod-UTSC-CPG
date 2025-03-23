@@ -1,0 +1,81 @@
+<structure><name> Endometrium-Glands </name>
+
+<variables>
+
+<parm><name> MENSTRUATION </name><val> 0.35 </val></parm>
+<parm><name> PROLIFERATIVE </name><val> 0.0 </val></parm>
+<var><name> Phase </name></var>
+
+<parm><name> multfactor </name><val> 0.3 </val></parm>
+<parm><name> mfactor </name><val> 0.5 </val></parm>
+
+<var><name> pERAlpha </name><val> 0 </val></var>
+
+<var><name> EGFR </name><val> 0 </val></var>
+<var><name> FGF </name><val> 0 </val></var>
+<var><name> FGFR </name><val> 0 </val></var>
+<var><name> IGF </name><val> 0 </val></var>
+<var><name> IGFR </name><val> 0 </val></var>
+<var><name> EGF </name><val> 0 </val></var>
+<var><name> TGFAlpha </name><val> 0 </val></var>
+<var><name> Ihh </name><val> 0 </val></var>
+<var><name> Hoxa10 </name><val> 0 </val></var>
+<var><name> MMP9 </name><val> 0 </val></var>
+<var><name> TNFAlpha </name><val> 0 </val></var>
+<var><name> IL11 </name><val> 0 </val></var>
+<var><name> IL1Alpha </name><val> 1 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> Population </name>
+<integralname> Population </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> WrapUp </name>
+
+<def><name> TNFAlpha </name><val> ( ( Estradiol.[Conc(nMol/L)] LT 0.10 ) OR ( IL11 EQ 0 ) ) </val></def>
+
+<def><name> Ihh </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+
+<def><name> Hoxa10 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+
+<def><name> TGFAlpha </name><val> ( Estradiol.[Conc(nMol/L)] GT 0.10 ) AND ( Progesterone.[Conc(nMol/L)] LT 10 ) </val></def>
+
+<def><name> pERAlpha </name><val> ( Endometrium-StromalCells.FGF EQ 1 ) AND ( Endometrium-StromalCells.COUPTFII EQ 0 ) </val></def>
+<def><name> EGF </name><val> ( pERAlpha EQ 1 ) </val></def>
+<def><name> IL11 </name><val> (  IL1Alpha OR TNFAlpha OR Endometrium-StromalCells.TGFBeta )  </val></def>
+<def><name> FGF </name><val> pERAlpha </val></def>
+<def><name> FGFR </name><val> FGF </val></def>
+<def><name> IGF </name><val> pERAlpha </val></def>
+<def><name> IGFR </name><val> IGF </val></def>
+<def><name> EGFR </name><val> ( ( EGF EQ 1 ) OR ( TGFAlpha EQ 1 ) ) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Change </name><val> ( ( 0.0000625 * EGFR ) + ( 0.0000278 * FGFR ) + ( 0.0000278 * IGFR ) - ( Endometrium.activeMMP9 * Population ) ) </val></def>
+
+<if><test> Population GT ( 4 * Endometrium-Vasculature.Population ) </test>
+  <true>
+    <def><name> Change </name><val> 0 MIN Change </val></def>
+  </true>
+</if>
+
+<def><name> Population </name><val> Population MIN Endometrium-StromalCells.Population</val></def>
+
+</block>
+
+</definitions>
+
+</structure>

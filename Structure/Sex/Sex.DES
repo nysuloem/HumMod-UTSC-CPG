@@ -6,28 +6,27 @@ Author : Tom Coleman
 Copyright : 2008-2012
 By : University of Mississippi Medical Center
 
-Edited: 2024 - 04 - 24 
-By: Jason Brown UTSC
+Edited: 2025 Mar 07
+By: Terry Yavorskyy UTSC
+
 
 <structure><name> Sex </name>
 
 <variables>
 
-<var><name> Index </name></var>
-
-<var><name> IsMale </name></var>
-<var><name> IsFemale </name></var>
-
-<constant><name> IS_MALE </name><val> 0 </val></constant>
-<constant><name> IS_FEMALE </name><val> 1 </val></constant>
-
-<var><name> UIndex </name></var>
-    
+<var><name> UIndex </name></var>    
 <var><name> NoUterus </name></var>
 <var><name> HasUterus </name></var>
     
 <constant><name> No_Uterus </name><val> 0 </val></constant>
 <constant><name> Has_Uterus </name><val> 1 </val></constant>
+
+<var><name> Index </name><val>0</val></var>
+<var><name> IsMale </name></var>
+<var><name> IsFemale </name></var>
+    
+<constant><name> IS_MALE </name><val> 0 </val></constant>
+<constant><name> IS_FEMALE </name><val> 1 </val></constant>
     
 </variables>
 
@@ -53,6 +52,6 @@ By: Jason Brown UTSC
 </block>
 
 </definitions>
-</structure>
 
+</structure>
 End

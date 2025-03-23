@@ -1,0 +1,59 @@
+<structure><name> Endometrium-LuminalEpithelium </name>
+
+<variables>
+
+<parm><name> MENSTRUATION </name><val> 0.25 </val></parm>
+<parm><name> PROLIFERATIVE </name><val> 0.0 </val></parm>
+<var><name> Phase </name></var>
+
+<parm><name> multfactor </name><val> 0.15 </val></parm>
+<parm><name> mfactor </name><val> 0.30 </val></parm>
+
+<var><name> EGFR </name><val> 0 </val></var>
+<var><name> EGF </name><val> 0 </val></var>
+<var><name> TGFAlpha </name><val> 0 </val></var>
+<var><name> pERAlpha </name><val> 0 </val></var>
+<var><name> MMP9 </name><val> 0 </val></var>
+
+<var><name> IGF </name><val> 0 </val></var>
+<var><name> IGFBP </name><val> 0 </val></var>
+<var><name> IGFR </name><val> 0 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> Population </name>
+<integralname> Population </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> WrapUp </name>
+
+<def><name> IGFBP </name><val> Progesterone.[Conc(nMol/L)] GT 10 </val></def>
+
+<def><name> pERAlpha </name><val> ( Endometrium-StromalCells.FGF EQ 1 ) AND ( Endometrium-StromalCells.COUPTFII EQ 0 ) </val></def>
+<def><name> EGF </name><val> ( pERAlpha EQ 1 ) </val></def>
+<def><name> TGFAlpha </name><val> ( ( pERAlpha EQ 1 ) ) </val></def>
+<def><name> EGFR </name><val> ( ( EGF EQ 1 ) OR ( TGFAlpha EQ 1 ) ) </val></def>
+<def><name> IGF </name><val> ( pERAlpha EQ 1 ) </val></def>
+<def><name> IGFR </name><val> ( IGF EQ 1 ) AND ( IGFBP EQ 0 ) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Change </name><val> ( ( 0.00000694 * EGFR ) + ( 0.00000694 * IGFR ) - ( Endometrium.activeMMP9 * Population ) ) </val></def>
+
+</block>
+
+</definitions>
+
+</structure>

@@ -1,0 +1,54 @@
+HumMod / Menstruation.DES  
+
+
+
+<structure><name> Menstruation </name> 
+
+<variables>
+
+
+<var><name> Rate </name></var>
+
+</variables>
+
+ <equations>
+ <diffeq> 
+ <name> Volume </name>
+ <integralname> Volume </integralname>
+ <initialval> 0 </initialval>
+ <dervname> Bloodloss </dervname>
+</diffeq>
+ </equations>
+<definitions>
+
+<block><name> Dervs </name>
+
+
+<conditional> 
+<name> Rate </name> 
+<test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 )  </test>
+<true> ( Estradiol.[Conc(nMol/L)] + Progesterone.[Conc(nMol/L)] ) * 0.005 * Endometrium.Thickness </true>
+<false> 0.0 </false>
+</conditional>
+
+
+
+
+<!--  
+<def><name> Rate </name><val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.0005 * Endometrium.Thickness  </val> </def>
+
+--> 
+
+<def><name> Bloodloss </name><val> Sex.IsFemale * Rate </val></def>
+
+
+</block>
+</definitions>
+
+
+
+
+
+</structure>
+
+End
