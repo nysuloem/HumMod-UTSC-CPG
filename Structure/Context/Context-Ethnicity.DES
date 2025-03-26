@@ -37,7 +37,19 @@ By: Jason Brown
 
 <block><name> Parms </name>
 
-<onjustchanged><name> Index </name>
+<onjustchanged><name> White_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Black_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Asian_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Hispanic_Percentage </name>
 <call> Context.Calc </call>
 </onjustchanged>
 
