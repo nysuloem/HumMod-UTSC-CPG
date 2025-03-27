@@ -19,6 +19,9 @@ By : University Of Mississippi Medical Center
 <definitions>
 <block><name> CalcSID </name>
 
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 <def>
   <name> [SID] </name>
   <val>
@@ -27,6 +30,22 @@ By : University Of Mississippi Medical Center
     - CellSID.StrongAnions
     - Uterus-Lactate.[Lac-] </val>
 </def>
+ </true>
+ <false> 
+ <def>
+  <name> [SID] </name>
+  <val>
+   0.001 </val>
+</def>
+ 
+  </false>
+
+</if>
+
+
+<!-- Note above that the conditional <if> element was used instead of <conditional> to facilitate two various definitions
+for SID value, one of algebraic calculation, the other as 0.001 for male. Simply putting 0.0 or no <false> argument generates 
+a parser error for Undefined value TY -->
 
 <def>
   <name> [SID(mEq/L)] </name>
@@ -37,6 +56,10 @@ By : University Of Mississippi Medical Center
 
 <block><name> CalcPh </name>
 
+
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> <call> Uterus-Size.Init </call>
 <copy>
   <from> Uterus-CO2.PCO2 </from>
   <to> PhCells.pCO2 </to>
@@ -46,13 +69,37 @@ By : University Of Mississippi Medical Center
   <from> [SID(mEq/L)] </from>
   <to> PhCells.SID </to>
 </copy>
+ </true>
 
-<call> PhCells.Calc </call>
+</if>
+
+<conditional> 
+<name> Ph </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true> PhCells.pH
+</true>
+<false> 0.001
+</false>
+</conditional>  
+
+
+
+
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> <call> PhCells.Calc </call> 
 
 <copy>
   <from> PhCells.pH </from>
   <to> Ph </to>
 </copy>
+
+ </true>
+
+</if>
+
+
+
 
 </block>
 </definitions>

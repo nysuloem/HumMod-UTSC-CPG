@@ -144,7 +144,7 @@ By : University Of Mississippi Medical Center
     * ADHEffect
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
-    * Uterus-Vasculature.Effect
+    * OtherTissue-Vasculature.Effect
     *  SystemicArtys.NOEffect 
 </false>
 </conditional>

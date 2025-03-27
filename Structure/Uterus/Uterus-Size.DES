@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
 <var><name> InitialLiquidVol </name></var>
 
 <var><name> SolidMass </name></var>
-<var><name> InitialSolidMass </name></var>
+<var><name> InitialSolidMass </name><val> 0.0 </val></var>
 
 <constant>
   <name> SolidDensity </name>
@@ -76,7 +76,23 @@ By : University Of Mississippi Medical Center
 </block>
 
 <block><name> Calc </name>
+<!-- 
+<conditional> 
+<name> IFV </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true> FractTotal * InterstitialWater.Vol
+</true>
+<false> 0.01
+</false>
+</conditional>  
 
+<conditional> 
+  <name> CellH2O </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> FractTotal * ICFV.Vol </true>
+<false> 0.01 </false>
+</conditional> 
+-->
 <def>
   <name> IFV </name>
   <val> FractTotal * InterstitialWater.Vol </val>
@@ -87,25 +103,34 @@ By : University Of Mississippi Medical Center
   <val> FractTotal * ICFV.Vol </val>
 </def>
 
-<def>
+<conditional> 
   <name> LiquidVol </name>
-  <val> IFV + CellH2O </val>
-</def>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> IFV + CellH2O </true>
+<false> 0.001 </false>
+</conditional> 
 
-<def>
+<conditional> 
   <name> LiquidMass </name>
-  <val> LiquidVol * LiquidDensity </val>
-</def>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> LiquidVol * LiquidDensity </true>
+<false> 0.001 </false>
+</conditional> 
 
-<def>
+
+<conditional> 
   <name> SolidMass </name>
-  <val> InitialSolidMass </val>
-</def>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> InitialSolidMass </true>
+<false> 0.001 </false>
+</conditional> 
 
-<def>
+<conditional> 
   <name> SolidVol </name>
-  <val> SolidMass / SolidDensity </val>
-</def>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> SolidMass / SolidDensity </true>
+<false> 0.001 </false>
+</conditional> 
 
 <def>
   <name> Mass </name>
@@ -121,8 +146,8 @@ By : University Of Mississippi Medical Center
   <name> Density </name>
   <val> Mass / Vol </val>
 </def>
-
 </block>
+
 </definitions>
 </structure>
 

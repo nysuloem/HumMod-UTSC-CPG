@@ -857,8 +857,10 @@ By : University of Mississippi Medical Center
   <call> SkeletalMuscle-Energy.Wrapup </call>
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
-  <call> Trauma.Wrapup </call>
+  <call> Trauma.Wrapup </call>\
+  <!-- 
   <call> Uterus.Sex </call>
+  -->
 
 </block>
 

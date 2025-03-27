@@ -31,8 +31,9 @@ By : University of Mississippi Medical Center
 <parm><name> RightHeart_Percent        </name><val>  0.2 </val></parm>
 <constant><name> Skin_Percent              </name><val> 10.7 </val></constant>
 <constant><name> Spleen_Percent </name><val> 0.2 </val></constant>
-<constant><name> Uterus_Percent </name><val> 0.36 </val></constant>
-<var><name> Genitalia_Percent</name><val> 0.9 </val></var> <!-- genetalia size was changed for  validity TY -->
+<var><name> Uterus_Percent </name><val> 0.0 </val></var> 
+<var><name> Genitalia_Percent</name><val> 0.9 </val></var> <!-- genetalia and uterus percent were changed for validity 
+and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 TY -->
 
 <constant><name> AdrenalGland_Percent   </name><val> 0.058 </val></constant>
 <constant><name> Pancreas_Percent       </name><val> 0.407 </val></constant>
@@ -91,6 +92,12 @@ genetalia size to be x3 larger for males, this can be further modified into cond
    <true> 0.3 </true>
    <false> 0.9 </false>
   </conditional>  
+<conditional> <name> Uterus_Percent </name>
+   <test> Context-Sex.Index EQ 1 </test>
+   <true> 0.3 </true>
+   <false> 0.0 </false>
+  </conditional> 
+
 <def>
   <name> OtherTissue_Percent </name>
   <val>

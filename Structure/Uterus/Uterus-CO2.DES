@@ -93,11 +93,16 @@ By : University Of Mississippi Medical Center
 </block>
 
 <block><name> CalcDervs </name>
+<conditional> 
+<name> K </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true> Uterus-Flow.BloodFlow / Uterus-Size.LiquidVol
+</true>
+<false> 0.0
+</false>
+</conditional>  
 
-<def>
-  <name> K </name>
-  <val> Uterus-Flow.BloodFlow / Uterus-Size.LiquidVol </val>
-</def>
+
 
 <testcase>
 
@@ -127,15 +132,36 @@ By : University Of Mississippi Medical Center
 
 </testcase>
 
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 <def>
   <name> InflowGas </name>
   <val> Metabolism-RespiratoryQuotient.RQ * Uterus-Flow.O2Use </val>
 </def>
-
 <def>
   <name> InflowBase </name>
   <val> CO2Tools.LitersToMols * InflowGas </val>
 </def>
+ </true>
+
+ <false> 
+ <def>
+  <name> InflowGas </name>
+  <val> 0.0 </val>
+</def>
+<def>
+  <name> InflowBase </name>
+  <val> 0.0 </val>
+</def> </false>
+
+</if>
+
+
+
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 
 <copy>
   <from> PCO2 </from>
@@ -154,10 +180,23 @@ By : University Of Mississippi Medical Center
   <to> [BloodHCO3] </to>
 </copy>
 
-<def>
-  <name> Outflow(0) </name>
-  <val> Uterus-Flow.BloodFlow * ( [BloodHCO3] - CO2Artys.[HCO3] ) </val>
-</def>
+ </true>
+
+</if>
+
+<conditional> 
+<name> Outflow(0) </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true> Uterus-Flow.BloodFlow * ( [BloodHCO3] - CO2Artys.[HCO3] )
+</true>
+<false> 0.0
+</false>
+</conditional>  
+
+
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 
 <def>
   <name> OutflowBase </name>
@@ -171,6 +210,25 @@ By : University Of Mississippi Medical Center
   <name> Change </name>
   <val> InflowBase - OutflowBase </val>
 </def>
+
+ </true>
+<false> 
+<def>
+  <name> OutflowBase </name>
+  <val>
+     0.0
+  </val>
+</def>
+
+<def>
+  <name> Change </name>
+  <val> 1 </val>
+</def>
+
+</false>
+</if>
+
+
 
 </block>
 

@@ -47,12 +47,14 @@ By : University Of Mississippi Medical Center
 
 <definitions>
 <block><name> CalcConc </name>
-
-<def>
-  <name> [Lac-] </name>
-  <val> Mass / Uterus-Size.LiquidVol </val>
-</def>
-
+<conditional>
+ <name> [Lac-] </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true>  Mass / Uterus-Size.LiquidVol </true>
+<false> 0.001 </false>
+ </conditional>
+<!-- conditional above changes the lactate levels to 0.001 in males, otherwise the division by 0.001 that is referenced from
+ Sizing-Composition-Uterus.DES creates a massive number -->
 <def>
   <name> [Lac-(mEq/L)] </name>
   <val> 1000.0 * [Lac-] </val>
