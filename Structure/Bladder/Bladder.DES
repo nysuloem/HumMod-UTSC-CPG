@@ -21,14 +21,13 @@ By : University of Mississippi Medical Center
 <?include BladderProtein.DES ?>
 <?include BladderSulphate.DES ?>
 <?include BladderUrea.DES ?>
-
 <?include BladderPh.DES ?>
 
 <structure><name> Bladder </name>
+
 <variables>
 
 <var><name> Sizer </name></var>
-
 <var><name> TimeLastVoid </name><val> 0.0 </val></var>
 
 </variables>
@@ -36,8 +35,6 @@ By : University of Mississippi Medical Center
 <definitions>
 
 <block><name> Init </name>
-
-  <call> BladderVolume.Init </call>
 
   <call> BladderVolume.Init </call>
   <call> BladderSodium.Init </call>

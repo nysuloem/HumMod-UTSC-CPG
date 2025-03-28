@@ -16,6 +16,8 @@ By : University of Mississippi Medical Center
 <constant><name> NORMAL_CAN_VOID_VOLUME </name><val> 300 </val></constant>
 <constant><name> NORMAL_MUST_VOID_VOLUME </name><val> 700 </val></constant>
 
+<var><name>BladderAgeEffect</name></var>
+
 <var><name> ResidualVolume </name></var>
 <var><name> InitialVolume </name></var>
 <var><name> CanVoidVolume </name></var>
@@ -37,14 +39,30 @@ By : University of Mississippi Medical Center
 
 </equations>
 
+<functions>
+
+<curve><name> BladderAge </name>
+<point><x> 0 </x><y> 0.1 </y><slope> 0 </slope></point>
+<point><x> 14 </x><y> 1 </y><slope> 0 </slope></point>
+<point><x> 50 </x><y> 0.97 </y><slope> 0 </slope></point>
+<point><x> 60 </x><y> 0.93 </y><slope> 0 </slope></point>
+<point><x> 70 </x><y> 0.81 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
 <definitions>
 
 <block><name> Init </name>
 
-  <def><name> ResidualVolume </name><val> NORMAL_RESIDUAL_VOLUME * Bladder.Sizer </val></def>
-  <def><name> InitialVolume </name><val> NORMAL_INITIAL_VOLUME * Bladder.Sizer </val></def>
-  <def><name> CanVoidVolume </name><val> NORMAL_CAN_VOID_VOLUME * Bladder.Sizer </val></def>
-  <def><name> MustVoidVolume </name><val> NORMAL_MUST_VOID_VOLUME * Bladder.Sizer </val></def>
+<def><name>BladderAgeEffect</name>
+<val> BladderAge [ Context-Age.Age(Years) ]</val>
+</def>
+
+  <def><name> ResidualVolume </name><val> NORMAL_RESIDUAL_VOLUME * Bladder.Sizer * BladderAgeEffect </val></def>
+  <def><name> InitialVolume </name><val> NORMAL_INITIAL_VOLUME * Bladder.Sizer * BladderAgeEffect </val></def>
+  <def><name> CanVoidVolume </name><val> NORMAL_CAN_VOID_VOLUME * Bladder.Sizer * BladderAgeEffect </val></def>
+  <def><name> MustVoidVolume </name><val> NORMAL_MUST_VOID_VOLUME * Bladder.Sizer * BladderAgeEffect </val></def>
 
   <def><name> Mass </name><val> InitialVolume </val></def>
 
