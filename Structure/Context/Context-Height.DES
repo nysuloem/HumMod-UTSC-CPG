@@ -14,14 +14,14 @@ By : University of Mississippi Medical Center
 <parm><name> PlusMinus </name><val> 0 </val></parm>
 
 <constant><name> MALE_SHORT    </name><val> 160.0 </val></constant>
-<constant><name> MALE_NORMAL   </name><val> 178.0 </val></constant>
-<constant><name> MALE_TALL     </name><val> 200.0 </val></constant>
-<constant><name> MALE_VERYTALL </name><val> 230.0 </val></constant>
+<constant><name> MALE_NORMAL   </name><val> 176.0 </val></constant>
+<constant><name> MALE_TALL     </name><val> 185.0 </val></constant>
+<constant><name> MALE_VERYTALL </name><val> 193.0 </val></constant>
 
 <constant><name> FEMALE_SHORT    </name><val> 150.0 </val></constant>
 <constant><name> FEMALE_NORMAL   </name><val> 165.0 </val></constant>
-<constant><name> FEMALE_TALL     </name><val> 180.0 </val></constant>
-<constant><name> FEMALE_VERYTALL </name><val> 200.0 </val></constant>
+<constant><name> FEMALE_TALL     </name><val> 172.0 </val></constant>
+<constant><name> FEMALE_VERYTALL </name><val> 178.0 </val></constant>
 
 <var><name> NominalHeight </name></var>
 <var><name> Height(cM) </name></var>
@@ -36,13 +36,13 @@ By : University of Mississippi Medical Center
 <normaldist>
   <name> Normal </name>
   <mean> 0 </mean>
-  <stddev> 25 </stddev>
+  <stddev> 5 </stddev>
 </normaldist>
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -50 </lowerlim>
-  <upperlim> 50 </upperlim>
+  <lowerlim> -10 </lowerlim>
+  <upperlim> 10 </upperlim>
 </whitenoise>
 
 </variables>
@@ -153,10 +153,10 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Stochasm </name>
-  <val> 0 </val>
+  <val> Flat </val>
 </def>
 
-<if>
+<!--<if>
   <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
@@ -175,7 +175,7 @@ By : University of Mississippi Medical Center
   <test> Random.Distribution EQ Random.IS_NORMAL </test>
   <true> Normal </true>
   <false> Flat </false>
-</conditional>
+</conditional> -->
 
 </block>
 

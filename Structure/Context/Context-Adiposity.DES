@@ -45,8 +45,8 @@ By : University of Mississippi Medical Center
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -50 </lowerlim>
-  <upperlim> 50 </upperlim>
+  <lowerlim> -10 </lowerlim>
+  <upperlim> 10 </upperlim>
 </whitenoise>
 
 </variables>
@@ -166,10 +166,10 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Stochasm </name>
-  <val> 0 </val>
+  <val> Flat </val>
 </def>
 
-<if>
+<!--<if>
   <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
@@ -188,7 +188,7 @@ By : University of Mississippi Medical Center
   <test> Random.Distribution EQ Random.IS_NORMAL </test>
   <true> Normal </true>
   <false> Flat </false>
-</conditional>
+</conditional> -->
 
 </block>
 
