@@ -690,6 +690,7 @@ By : University of Mississippi Medical Center
 
   <call> LiverMetabolism.Dervs </call>
   <call> LipidDeposits.Dervs </call>
+  <call> LiverMetabolism_LiverEnzymes.Init </call>
 
   <call> Urea.Dervs </call>
   <call> KADecomposition.Dervs </call>

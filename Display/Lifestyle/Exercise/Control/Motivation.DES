@@ -17,10 +17,10 @@ By : University of Mississippi Medical Center
 
 <maplist>
   <name> Exercise-Control.Motivation </name>
-  <map><val> 6.2 </val><img> Extreme </img></map>
-  <map><val> 6.3 </val><img> High </img></map>
-  <map><val> 6.4 </val><img> Normal </img></map>
-  <map><val> 6.7 </val><img> Low </img></map>
+  <map><val> 6.55 </val><img> Extreme </img></map>
+  <map><val> 6.60 </val><img> High </img></map>
+  <map><val> 6.65 </val><img> Normal </img></map>
+  <map><val> 6.70 </val><img> Low </img></map>
 </maplist>
 
 <slidebar>

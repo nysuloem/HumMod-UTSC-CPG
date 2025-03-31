@@ -12,7 +12,6 @@ HumMod / Pathology.DES
 
 <?include Diabetes.DES ?>
 <?include AdrenalInsufficiency.DES ?>
-<?include PagetsDisease.DES ?>
 
 End
 

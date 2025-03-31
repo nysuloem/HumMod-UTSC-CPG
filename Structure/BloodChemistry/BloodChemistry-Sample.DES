@@ -12,6 +12,7 @@ By : University Of Mississippi Medical Center
 
 <var><name> Timestamp </name><val> 0 </val></var>
 
+<var><name> AminoALT </name><val> UNDEFINED </val></var>
 <var><name> [Glucose] </name><val> UNDEFINED </val></var>
 <var><name> [FattyAcids] </name><val> UNDEFINED </val></var>
 <var><name> [Triglycerides] </name><val> UNDEFINED </val></var>
@@ -59,6 +60,7 @@ By : University Of Mississippi Medical Center
 
 <def><name> Timestamp </name><val> System.X </val></def>
 
+<def><name> AminoALT </name><val> LiverMetabolism_LiverEnzymes.BloodPool </val></def>
 <def><name> [Glucose] </name><val> GlucosePool.[Glucose(mG/dL)] </val></def>
 <def><name> [FattyAcids] </name><val> FAPool.[FA(mG/dL)] </val></def>
 <def><name> [Triglycerides] </name><val> TriglyceridePool.[Triglyceride(mG/dL)] </val></def>

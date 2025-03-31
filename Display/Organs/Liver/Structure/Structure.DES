@@ -36,6 +36,7 @@ Schema : DES V1.0
 <?include PhEffect.DES ?>
 <?include FuelEffect.DES ?>
 <?include TemperatureEffect.DES ?>
+<?include EstrogenEffect.DES ?>
 
 </panel>
 

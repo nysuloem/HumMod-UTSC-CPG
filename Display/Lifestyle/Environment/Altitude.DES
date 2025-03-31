@@ -15,19 +15,30 @@ Schema : DES V1.0
    <title> Altitude </title>
 
 <repeatlist>
-  <name> Altitude.Meters </name>
+  <name> Altitude.Feet </name>
   <repeat>
-    <reps> 10000 </reps>
-    <stepsize> 1 </stepsize>
+    <reps> 20 </reps>
+    <stepsize> 500 </stepsize>
+  </repeat>
+  <repeat>
+    <reps> 30 </reps>
+    <stepsize> 1000 </stepsize>
   </repeat>
 </repeatlist>
 
 <slidebar>
-  <row> 2.0 </row><col> 1.0 </col>
-  <name> Altitude.Meters </name>
-  <listname> Altitude.Meters </listname>
-  <label> Meters </label>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> Altitude.Feet </name>
+  <listname> Altitude.Feet </listname>
+  <label> Feet </label>
 </slidebar>
+
+<showvalue>
+   <row> 2.8 </row><col> 3 </col>
+   <name> Altitude.Meters </name>
+   <format> <integer/> </format>
+   <label> Meters </label>
+</showvalue>
 
 </groupbox>
 

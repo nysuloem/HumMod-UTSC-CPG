@@ -182,17 +182,6 @@ By : University Of Mississippi Medical Center
    <label> CO Poisoning </label>
 </checkmark>
 
-<showvalue>
-  <row> 18 </row><col> 31 </col>
-  <name> Autopsy-Examination.TimeOfDeath </name>
-  <format>
-     <timestamp/>
-     <fieldwidth> 16 </fieldwidth>
-  </format>
-  <label> Time of Death </label>
-</showvalue>
-
-
 </groupbox>
 
 End
