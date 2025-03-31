@@ -16,7 +16,7 @@ Schema : 2005.0
 <?include LiverMetabolism_Glycogen.DES ?>
 <?include LiverMetabolism_Gluconeogenesis.DES ?>
 <?include LiverMetabolism_Ketoacids.DES ?>
-<?include LiverMetabolism_LiverEnzymes.DES ?>
+
 <?include LiverMetabolism_Insulin.DES ?>
 
 <structure><name> LiverMetabolism </name>

@@ -22,4 +22,5 @@ By : University of Mississippi Medical Center
 <?include PericardialDrain\PericardialDrain.DES ?>
 <?include Ventilator\Ventilator.DES ?>
 <?include Tests\Tests.DES ?>
+<?include Supplements\Supplements.DES ?>
 End

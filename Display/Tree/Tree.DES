@@ -29,6 +29,7 @@ By : University of Mississippi Medical Center
 <?include Trauma\Trauma.DES ?>
 <?include Pathology\Pathology.DES ?>
 <?include Sizing\Sizing.DES ?>
+<?include Quizzes\Quizzes.DES ?>
 
 </tree>
 

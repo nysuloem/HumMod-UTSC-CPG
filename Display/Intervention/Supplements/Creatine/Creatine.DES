@@ -1,0 +1,6 @@
+HumMod / Lisinopril
+
+<?path Display\Intervention\Supplements\Creatine\ ?>
+
+<?include Dosing\Dosing.DES ?>
+<?include Kinetics\Kinetics.DES ?>

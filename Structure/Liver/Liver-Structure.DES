@@ -23,10 +23,6 @@ Schema : DES V1.0
   <name> TemperatureEffect </name>
 </var>
 
-<var>
-<name> EstrogenEffect </name>
-</var>
-
 </variables>
 
 <equations>
@@ -61,13 +57,6 @@ Schema : DES V1.0
   <point><x> 44.0 </x><y> 0.00 </y><slope> 0 </slope></point>
   <point><x> 46.0 </x><y> 0.05 </y><slope> 0 </slope></point>
 </curve>
- 
-<curve>
-  <name> EstrogenOnStructure </name>
-  <point><x> 0.0 </x><y> 0.005 </y><slope> 0 </slope></point>
-  <point><x> 0.01 </x><y> 0.0 </y><slope> 0 </slope></point>
-  <point><x> 0.5 </x><y> 0.0 </y><slope> 0 </slope></point>
-</curve>
 
 </functions>
 
@@ -87,11 +76,6 @@ Schema : DES V1.0
 <def>
   <name> TemperatureEffect </name>
   <val> TemperatureOnStructure [ HeatCore.Temp(C) ] </val>
-</def>
-
-<def>
-  <name> EstrogenEffect </name>
-  <val> EstrogenOnStructure [ Estradiol.[Conc(nMol/L)] ] </val>
 </def>
 
 <def>

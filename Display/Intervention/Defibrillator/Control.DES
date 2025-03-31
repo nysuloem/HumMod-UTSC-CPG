@@ -11,7 +11,7 @@ Schema : 2005.0
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 7.8 </high>
+   <high> 6.8 </high>
    <wide> 30.0 </wide>
    <title> Control </title>
 
@@ -40,13 +40,6 @@ Schema : 2005.0
   <name> TotalShocks </name>
   <format> <integer/> </format>
   <label> Total Shocks </label>
-</showvalue>
-
-<showvalue>
-  <row> 6.2 </row><col> 1.0 </col>
-  <name> Probability </name>
-  <format><decimal> 2 </decimal></format>
-  <label> Probability </label>
 </showvalue>
 
 </groupbox>

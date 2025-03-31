@@ -9,10 +9,12 @@ By : University Of Mississippi Medical Center
 <?path Display\Intervention\Drugs\ ?>
 
 <?include Acetazolamide\Acetazolamide.DES ?>
+<?include Amlodipine\Amlodipine.DES ?>
 <?include Chlorothiazide\Chlorothiazide.DES ?>
 <?include Digoxin\Digoxin.DES ?>
 <?include Furosemide\Furosemide.DES ?>
 <?include Midodrine\Midodrine.DES ?>
+<?include Lisinopril\Lisinopril.DES ?>
 <?include Spironolactone\Spironolactone.DES ?>
 <?include Epi\Epi.DES?>
 <?include NE\NE.DES?>
@@ -22,6 +24,8 @@ By : University Of Mississippi Medical Center
 <?include Isoproterenol\Isoproterenol.DES ?>
 <?include Propranolol\Propranolol.DES ?>
 <?include Warfarin\Warfarin.DES ?>
+<?include Nicotine\Nicotine.DES ?>
+
 
 
 End

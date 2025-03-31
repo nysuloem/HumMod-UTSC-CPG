@@ -43,7 +43,7 @@ Schema : DES V1.0
 </showgraph>
 
 <showbargraph>
-  <row> 9.8 </row><col> 1.0 </col><high> 6 </high><wide> 28 </wide>
+  <row> 9.8 </row><col> 1.0 </col><high> 5 </high><wide> 28 </wide>
   <leftmargin> 5 </leftmargin>
   <title> Damage Rate </title>
   <showinitialvalues/>
@@ -60,11 +60,6 @@ Schema : DES V1.0
   <bar>
     <name> Liver-Structure.TemperatureEffect </name>
     <label> Temp </label>
-    <color> BLUE </color>
-  </bar>
-  <bar>
-    <name> Liver-Structure.EstrogenEffect </name>
-    <label> Estrogen </label>
     <color> BLUE </color>
   </bar>
   <scale>

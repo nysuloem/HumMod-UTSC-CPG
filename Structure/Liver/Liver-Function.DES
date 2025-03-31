@@ -37,7 +37,13 @@ Schema : DES V1.0
 </var>
 
 <var>
-  <name> EstrogenEffect </name>
+  <name> DiseasedFraction </name>
+  <val> 0 </val>
+</var>
+
+<var>
+  <name> HealthyFraction </name>
+  <val> 1 </val>
 </var>
 
 </variables>
@@ -70,13 +76,6 @@ Schema : DES V1.0
   <point><x> 46 </x><y> 0.0 </y><slope> 0 </slope></point>
 </curve>
 
-<curve>
-  <name> EstrogenOnFunction </name>
-  <point><x> 0 </x><y> 0.0 </y><slope> 0 </slope></point>
-  <point><x> 0.005 </x><y> 1 </y><slope> 0 </slope></point>
-  <point><x> 0.5 </x><y> 1.5 </y><slope> 0 </slope></point>
-</curve>
-
 </functions>
 
 <definitions>
@@ -102,11 +101,6 @@ Schema : DES V1.0
   <val> TemperatureOnFunction [ HeatCore.Temp(C) ] </val>
 </def>
 
-  <def>
-  <name> EstrogenEffect </name>
-  <val> EstrogenOnFunction [ Estradiol.[Conc(nMol/L)] ] </val>
-</def>
-
 <def>
   <name> Effect </name>
   <val>
@@ -114,7 +108,6 @@ Schema : DES V1.0
     * ProteinEffect
     * FuelEffect
     * TemperatureEffect
-    * EstrogenEffect
     * Liver-Structure.Effect
   </val>
 </def>

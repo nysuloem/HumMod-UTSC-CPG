@@ -37,6 +37,7 @@ By : University of Mississippi Medical Center
 <?include Respiration\Respiration.DES ?>
 <?include Trauma\Trauma.DES ?>
 <?include Pathology\Pathology.DES ?>
+<?include Quizzes\Quizzes.DES ?>
 
 <?include Context\Context.DES ?>
 <?include Sizing\Sizing.DES ?>

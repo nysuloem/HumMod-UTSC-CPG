@@ -1,18 +1,55 @@
 HumMod / PortalVein
 
-Created : 2012-11-02
-Revised : 2012-11-02
+Created : 31-Mar-08
+Revised : 2013-03-09
 Author : Tom Coleman
-Copyright : 2012-2012
-By : University Of Mississippi Medical Center
+Copyright : 2008-2013
+By : University of Mississippi Medical Center
 
-<?path Display\Organs\PortalVein\ ?>
+<?path Structure\PortalVein\ ?>
 
-<?include BloodFlow\BloodFlow.DES ?>
+<?include PortalVein-Insulin.DES ?>
+<?include PortalVein-Glucagon.DES ?>
+<?include PortalVein-Glucose.DES ?>
+<?include PortalVein-FattyAcid.DES ?>
+<?include PortalVein-Flow.DES ?>
 
-<?include Glucose\Glucose.DES ?>
-<?include FattyAcid\FattyAcid.DES ?>
-<?include Insulin\Insulin.DES ?>
-<?include Glucagon\Glucagon.DES ?>
+<structure><name> PortalVein </name>
+
+<variables>
+
+<var><name> BloodFlow </name></var>
+<var><name> PlasmaFlow </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> CalcFlow </name>
+
+<def>
+  <name> BloodFlow </name>
+  <val> GITract-Flow.BloodFlow </val>
+</def>
+
+<def>
+  <name> PlasmaFlow </name>
+  <val> BloodVol.PVCrit * BloodFlow </val>
+</def>
+
+</block>
+
+<block><name> CalcConc </name>
+
+<call> PortalVein-Insulin.Calc </call>
+<call> PortalVein-Glucagon.Calc </call>
+<call> PortalVein-Glucose.Calc </call>
+<call> PortalVein-FattyAcid.Calc </call>
+<call> PortalVein-Flow.Calc </call>
+
+</block>
+
+</definitions>
+</structure>
 
 End

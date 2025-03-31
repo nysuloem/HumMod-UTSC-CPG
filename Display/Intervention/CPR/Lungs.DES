@@ -10,9 +10,9 @@ Schema : 2005.0
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 32.0 </col>
+   <col> 42.0 </col>
    <high> 11.4 </high>
-   <wide> 30.0 </wide>
+   <wide> 40.0 </wide>
    <title> Lungs </title>
 
 <structurename> CPR-Lungs </structurename>
@@ -58,7 +58,7 @@ Schema : 2005.0
   <row> 8.2 </row><col> 1.0 </col>
   <name> Rate </name>
   <listname> CPR-Lungs.Rate </listname>
-  <label> Rate </label>
+  <label> Ventilation Rate </label>
 </slidebar>
 
 <repeatlist>
@@ -70,7 +70,7 @@ Schema : 2005.0
   <row> 9.6 </row><col> 1.0 </col>
   <name> Volume </name>
   <listname> CPR-Lungs.Volume </listname>
-  <label> Volume </label>
+  <label> Ventilation Volume </label>
 </slidebar>
 
 </groupbox>

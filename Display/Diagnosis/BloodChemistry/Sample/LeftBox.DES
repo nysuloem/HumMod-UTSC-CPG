@@ -9,7 +9,7 @@ By : University Of Mississippi Medical Center
 <groupbox>
    <row> 7.0 </row>
    <col> 1.0 </col>
-   <high> 30.0 </high>
+   <high> 28.4 </high>
    <wide> 30.0 </wide>
 
 <structurename> BloodChemistry-Sample </structurename>
@@ -206,13 +206,6 @@ By : University Of Mississippi Medical Center
   <name> [Epinephrine] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Epinephrine] </label>
-</showvalue>
-
-<showvalue>
-  <row> 28 </row><col> 1.0 </col>
-  <name> AminoALT </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [AminoALT] </label>
 </showvalue>
 
 <infobutton>

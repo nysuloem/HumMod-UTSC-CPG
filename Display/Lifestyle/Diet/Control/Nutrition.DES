@@ -45,7 +45,8 @@ By : University of Mississippi Medical Center
 <maplist>
   <name> Fixed? </name>
   <map><val> 0 </val><img> Intake Controlled By Appetite </img></map>
-  <map><val> 1 </val><img> Fixed Intake </img></map>
+  <map><val> 1 </val><img> Intake Controlled By Goal </img></map>
+  <map><val> 2 </val><img> Fasting </img></map>
 </maplist>
 
 <radiobuttons>

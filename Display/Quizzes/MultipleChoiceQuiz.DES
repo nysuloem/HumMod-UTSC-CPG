@@ -1,0 +1,38 @@
+<panel><name> Quiz 1 </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Hormone </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Quiz 1 </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 5.8 </high>
+   <wide> 60.0 </wide>
+   <title> Question 1 </title>
+
+<label>
+<row> 2</row>
+<col> 1 </col>
+<text> Who is the greatest professor of all time? </text>
+</label>
+</groupbox>
+
+</panel>
+End
