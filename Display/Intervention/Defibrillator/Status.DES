@@ -81,8 +81,8 @@ Schema : 2005.0
 
 <checkmark>
   <row> 11.8 </row><col> 1.0 </col>
-  <name> Is_CPR </name>
-  <label> CPR Chest Compressions </label>
+  <name> Is_CPRThumper </name>
+  <label> CPR Thumper </label>
 </checkmark>
 
 <checkmark>

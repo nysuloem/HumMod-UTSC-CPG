@@ -24,7 +24,6 @@ By : University Of Mississippi Medical Center
 </variables>
 
 <definitions>
-
 <block><name> Calc </name>
 
 <def>
@@ -53,9 +52,7 @@ By : University Of Mississippi Medical Center
 </conditional>
 
 </block>
-
 </definitions>
-
 </structure>
 
 End

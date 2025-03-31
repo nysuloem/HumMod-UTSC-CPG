@@ -12,7 +12,7 @@ Schema : 2005.0
    <row> 2.0 </row>
    <col> 1.0 </col>
    <high> 11.4 </high>
-   <wide> 40.0 </wide>
+   <wide> 30.0 </wide>
    <title> Heart </title>
 
 <structurename> CPR-Heart </structurename>
@@ -64,7 +64,7 @@ Schema : 2005.0
   <row> 8.2 </row><col> 1.0 </col>
   <name> ThumpRate </name>
   <listname> CPR-Heart.ThumpRate </listname>
-  <label> Chest Compression Rate </label>
+  <label> Thump Rate </label>
 </slidebar>
 
 <repeatlist>
@@ -76,7 +76,7 @@ Schema : 2005.0
   <row> 9.6 </row><col> 1.0 </col>
   <name> Force </name>
   <listname> CPR-Heart.Force </listname>
-  <label> Chest Compression Force </label>
+  <label> Force </label>
 </slidebar>
 
 </groupbox>

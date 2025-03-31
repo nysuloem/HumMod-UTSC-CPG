@@ -14,6 +14,7 @@ Schema : DES V1.0
    <wide> 30.0 </wide>
    <title> Summary </title>
 
+------
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
    <name> Liver-Function.Effect </name>
@@ -41,9 +42,10 @@ Schema : DES V1.0
     </scale>
   </yaxis>
 </showgraph>
+------------
 
 <showbargraph>
-  <row> 9.8 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <row> 9.8 </row><col> 1.0 </col><high> 8 </high><wide> 28 </wide>
   <leftmargin> 8 </leftmargin>
   <title> Effect </title>
   <showinitialvalues/>
@@ -65,6 +67,11 @@ Schema : DES V1.0
   <bar>
     <name> Liver-Function.TemperatureEffect </name>
     <label> Temp </label>
+    <color> BLUE </color>
+  </bar>
+   <bar>
+    <name> Liver-Function.EstrogenEffect </name>
+    <label> Estrogen </label>
     <color> BLUE </color>
   </bar>
   <bar>

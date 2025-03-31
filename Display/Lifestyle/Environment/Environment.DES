@@ -38,7 +38,6 @@ Schema : DES V1.0
 <?include RelativeHumidity.DES ?>
 <?include Wind.DES ?>
 <?include Clothes.DES ?>
-<?include Gravity.DES ?>
 
 </panel>
 

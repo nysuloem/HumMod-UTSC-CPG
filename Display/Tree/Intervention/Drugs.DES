@@ -13,24 +13,6 @@ By : University of Mississippi Medical Center
 </branch>
 
 <branch>
-  <name> Drugs-Amlodipine </name>
-  <label> Amlodipine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Amlodipine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Amlodipine </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Amlodipine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Amlodipine </parent>
-</leaf>
-
-<branch>
   <name> Drugs-Chlorothiazide </name>
   <label> Chlorothiazide </label>
   <parent> Drugs </parent>
@@ -53,24 +35,6 @@ By : University of Mississippi Medical Center
   <label> Digoxin </label>
   <parent> Drugs </parent>
 </branch>
-
-<branch>
-  <name> Drugs-Lisinopril </name>
-  <label> Lisinopril </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Lisinopril-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Lisinopril-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
 
 <leaf>
   <name> Drugs-Digoxin-Dosing </name>
@@ -298,24 +262,6 @@ By : University of Mississippi Medical Center
   <name> Drugs-Warfarin-Kinetics </name>
   <label> Kinetics </label>
   <parent> Drugs-Warfarin </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Nicotine </name>
-  <label> Nicotine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf> 
-<name> Drugs-Nicotine-Dosing </name>
-<label> Dosing </label>
-<parent> Drugs-Nicotine</parent>
-</leaf>
-
-<leaf>
-<name> Drugs-Nicotine-Kinetics </name>
-<label> Kinetics </label>
-<parent> Drugs-Nicotine</parent>
 </leaf>
 
 

@@ -26,7 +26,7 @@ Schema : DES V1.0
   <high> 7 </high><wide> 28 </wide><leftmargin> 5 </leftmargin>
 
   <xaxis>
-    <name> Altitude.Meters </name>
+    <name> Altitude.Feet </name>
     <label> Altitude </label>
     <scale>
       <min> 0 </min><max> 10000 </max>

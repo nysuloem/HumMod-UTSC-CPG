@@ -13,12 +13,6 @@ By : University of Mississippi Medical Center
 </maplist>
 
 <maplist>
-  <name> Common.Penis </name>
-  <map><val> 0 </val><img> Flaccid </img></map>
-  <map><val> 1 </val><img> Erect</img></map>
-</maplist>
-
-<maplist>
   <name> Common.Frequency </name>
   <map><val>0</val><img> Never </img></map>
   <map><val>1</val><img> Daily </img></map>
@@ -95,12 +89,6 @@ from 0 to 200 mmHg.
   <name> Common.Sex </name>
   <map><val> 0 </val><img> Male </img></map>
   <map><val> 1 </val><img> Female </img></map>
-</maplist>
-
-<maplist>
-  <name> Common.UIndex </name>
-  <map><val> 0 </val><img> NoUterus </img></map>
-  <map><val> 1 </val><img> HasUterus </img></map>
 </maplist>
 
 <maplist>

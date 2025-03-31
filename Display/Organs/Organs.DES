@@ -36,6 +36,5 @@ By : University of Mississippi Medical Center
 <?include Skin\Skin.DES ?>
 <?include Testes\Testes.DES ?>
 <?include Uterus\Uterus.DES ?>
-<?include Genitalia\Genitalia.DES ?>
 
 End
