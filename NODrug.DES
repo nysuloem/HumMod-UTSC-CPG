@@ -1,69 +1,14 @@
-<!--
-NODrug.DES - this is the main drug definition file for Nitric Oxide (NO) in HumMod
-
-This file defines the core structure of the NO drug model, including initialization and integration with other components.
-
-How to replicate for another drug:
-1. Change structure name (e.g., "NewDrug").
-2. Adjust parameter calls to reference the new drug’s subcomponents (IV, inhaler, metabolism, etc.).
-3. Ensure parameters match literature values for the new drug.
-4. Maintain good order in includes.
--->
-
 HumMod / NODrug
 
-Created : 15-Jul-13
-Revised : 
-Author : W Pruett
+Created : 2013-03-19
+Revised : 2013-03-19
+Author : Tom Coleman
 Copyright : 2013-2013
-By : University Of Mississippi Medical Center
+By : Tom Coleman
 
-<?path Structure\Drugs\NODrug\ ?>
+<?path Display\Intervention\Drugs\NODrug\ ?>
 
-<?include NODrugLiver.DES ?>  <!-- Defines liver metabolism for NO -->
-<?include NODrugIV.DES ?>  <!-- Defines IV administration -->
-<?include NODrugIVBolus.DES ?>  <!-- Defines IV administration -->
-<?include NODrugInhaler.DES ?>  <!-- Defines inhalation method -->
-<?include NODrugLung.DES ?>  <!-- Defines lung metabolism/clearance -->
-<?include NODrugSL.DES ?> 
-<?include NODrugSpray.DES ?>
-<?include NODrugPool.DES ?>  <!-- Defines drug pooling and systemic distribution -->
+<?include Dosing\Dosing.DES ?>
+<?include Kinetics\Kinetics.DES ?>
 
-
-<structure><name> NODrug </name> <!-- Defines NO drug structure in HumMod -->
-
-<definitions>
-
-<!-- Parameter Initialization -->
-<!-- spray has a "take daily" metered-dose inhaler component needing initialization in the Parms block.
-If it’s a continuous infusion, bolus injection, or metabolism-driven absorption, it can get by with only being added to the Dervs block -->
-<block><name> Parms </name>
-  <call> NODrugSpray.Parms </call>  <!-- calls spray parameter settings -->
-</block>
-
-
-<!-- Concentration Calculations -->
-<!-- these calculaations will track how much active NODrug is in the system. all delivery mechanisms connect to the drug pool -->
-<!-- due to the rapidness of sublingual absorption, it is more of a direct contributor than delivery mechanism, so we used it as such separately. this might vary for other drugs!  -->
-
-<block><name> CalcConc </name>
-  <call> NODrugPool.CalcConc </call>  <!-- calls systemic concentration calculation -->
-  <call> NODrugSL.CalcConc </call>  <!-- calls sublingual concentration calculation -->
-</block>
-
-<!-- Derivatives: Defines how NO levels change over time -->
-<block><name> Dervs </name>
-  <call> NODrugIV.Dervs </call>  <!-- IV dose rate and elimination -->
-  <call> NODrugIVBolus.Dervs </call>
-  <call> NODrugLiver.Dervs </call>  <!-- Liver metabolism and clearance -->
-  <call> NODrugInhaler.Dervs </call>  <!-- Inhalation absorption kinetics -->
-  <call> NODrugLung.Dervs </call>  <!-- Lung clearance calculations -->
-  <call> NODrugSL.Dervs </call>  <!-- Sublingual administration absorption -->
-  <call> NODrugPool.Dervs </call>  <!-- Overall pooling and redistribution -->
-</block>
-
-<block><name> Wrapup </name>
-   <call> NODrugSpray.Wrapup </call>
-</block>
-</definitions>
-</structure>
+End
