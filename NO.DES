@@ -1,43 +1,36 @@
-HumMod / NO
+HumMod / Insulin
 
+Created : 2011-07-27
+Last Modified : 2011-07-27
+Author : Tom Coleman
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
 
+<panel><name> InfusionPumps-NO </name>
 
-<?path Structure\NO\ ?>
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Gear </name>
+</showbitmap>
 
-<?include NOPool.DES ?>
-<?include NOPump.DES ?>
-<?include NOClearance.DES ?>
+<label>
+  <row> 0.3 </row><col> 4.5 </col>
+  <text> NO Pumps | NO </text>
+</label>
 
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
 
-<structure><name> NO </name>
+<?path Display\Intervention\InfusionPumps\NO\ ?>
 
-<definitions>
+<?include Pump.DES ?>
 
-<block><name> Parms </name>
-
-  <call> NOPump.Parms </call>
-
-</block>
-
-<block><name> CalcConc </name>
-
-  <call> NOPool.CalcConc </call>
-
-</block>
-
-<block><name> Dervs </name>
-
-  <call> NOPool.Dervs </call>
-
-</block>
-
-<block><name> LateDervs </name>
-
-  <call> NOClearance.Dervs </call>
-
-</block>
-
-</definitions>
-</structure>
+</panel>
 
 End
