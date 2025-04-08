@@ -25,6 +25,8 @@ By : University Of Mississippi Medical Center
 <?include Morphine\Morphine.DES ?>
 <?include Narcan\Narcan.DES ?>
 <?include Warfarin\Warfarin.DES ?>
+<?include NODrug\NODrug.DES ?>
+
 
 <structure><name> Drugs </name>
 
@@ -47,6 +49,7 @@ By : University Of Mississippi Medical Center
   <call> Morphine.Parms </call>
   <call> Narcan.Parms </call>
   <call> Warfarin.Parms </call>
+  <call> NODrug.Parms </call>
 
 </block>
 
@@ -69,6 +72,7 @@ By : University Of Mississippi Medical Center
   <call> Morphine.CalcConc </call>
   <call> Narcan.CalcConc </call>
   <call> Warfarin.CalcConc </call>
+  <call> NODrug.CalcConc </call>
 
 </block>
 
@@ -91,6 +95,7 @@ By : University Of Mississippi Medical Center
   <call> Morphine.Dervs </call>
   <call> Narcan.Dervs </call>
   <call> Warfarin.Dervs </call>
+  <call> NODrug.Dervs </call>
 
 </block>
 
@@ -107,6 +112,7 @@ By : University Of Mississippi Medical Center
   <call> Phenylephrine.Wrapup </call>
   <call> Reserpine.Wrapup </call>
   <call> Warfarin.Wrapup </call>
+  <call> NODrug.Wrapup </call>
 
 </block>
 
