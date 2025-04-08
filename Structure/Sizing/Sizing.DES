@@ -25,7 +25,7 @@ By : University of Mississippi Medical Center
 <?include Sizing-Composition-SkeletalMuscle.DES ?>
 <?include Sizing-Composition-Skin.DES ?>
 <?include Sizing-Composition-Uterus.DES ?>
-
+<?include Sizing-Composition-Genitalia.DES ?>
 <?include Sizing-BloodVolume.DES ?>
 
 <?include Sizing-TissueH2O.DES ?>
@@ -156,7 +156,7 @@ By : University of Mississippi Medical Center
   <call> Sizing-Composition-SkeletalMuscle.Calc </call>
   <call> Sizing-Composition-Skin.Calc </call>
   <call> Sizing-Composition-Uterus.Calc </call>
-
+  <call> Sizing-Composition-Genitalia.Calc </call>
   <call> Sizing-BloodVolume.Calc </call>
 
   <call> Sizing-TissueH2O.Calc </call>
