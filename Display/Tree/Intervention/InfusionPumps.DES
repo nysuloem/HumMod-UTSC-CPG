@@ -79,4 +79,10 @@ Schema : DES V1.0
   <parent> InfusionPumps </parent>
 </leaf>
 
+<leaf>
+  <name> InfusionPumps-NO </name>
+  <label> NO </label>
+  <parent> InfusionPumps </parent>
+</leaf>
+
 End
