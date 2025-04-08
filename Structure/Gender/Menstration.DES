@@ -1,0 +1,39 @@
+HumMod / Menstration
+
+Created : 05-20-2024
+Revised : 
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Menstration </name>
+
+<variables>
+<var><name> Index </name></var>
+
+<var><name> IsAbsent </name></var>
+<var><name> IsEarly </name></var>
+<var><name> IsAverage </name></var>
+<var><name> IsLate </name></var>
+
+
+<var><name> Absent </name> <val> 0 </val>
+<var><name> Light </name> <val> 1 </val>
+<var><name> Average </name> <val> 2 </val>
+<var><name> Heavy </name> <val> 3 </val>
+
+
+
+<block><name> Dervs </name>
+
+<if><test> Sex.IsFemale </test>
+<true>
+<andif><test> Ovaries.Phase EQ IS_FOLLICULAR </test> 
+<true> 
+
+<def><name> Menstration </name> 
+<val> 1 </val> 
+</andif>
+</if>
+
+<def><name> 
