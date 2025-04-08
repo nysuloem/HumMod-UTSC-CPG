@@ -1,321 +1,120 @@
 HumMod / Drugs
 
-Created : 10-Oct-08
-Revised : 2013-03-19
+Created : 21-Oct-04
+Revised : 2013-03-15
 Author : Tom Coleman
-Copyright : 2008-2013
-By : University of Mississippi Medical Center
+Copyright : 2006-2013
+By : University Of Mississippi Medical Center
 
-<branch>
-  <name> Drugs </name>
-  <label> Drugs </label>
-  <parent> INTERVENTION </parent>
-</branch>
+<?path Structure\Drugs\ ?>
 
-<branch>
-  <name> Drugs-Amlodipine </name>
-  <label> Amlodipine </label>
-  <parent> Drugs </parent>
-</branch>
+<?include Acetazolamide\Acetazolamide.DES ?>
+<?include Amlodipine\Amlodipine.DES ?>
+<?include Atropine\Atropine.DES ?>
+<?include Chlorothiazide\Chlorothiazide.DES ?>
+<?include Digoxin\Digoxin.DES ?>
+<?include Furosemide\Furosemide.DES ?>
+<?include Midodrine\Midodrine.DES ?>
+<?include Lisinopril\Lisinopril.DES ?>
+<?include Spironolactone\Spironolactone.DES ?>
+<?include Propranolol\Propranolol.DES ?>
+<?include Isoproterenol\Isoproterenol.DES ?>
+<?include Phenylephrine\Phenylephrine.DES ?>
+<?include Reserpine\Reserpine.DES ?>
+<?include Morphine\Morphine.DES ?>
+<?include Narcan\Narcan.DES ?>
+<?include Warfarin\Warfarin.DES ?>
+<?include NODrug\NODrug.DES ?>
 
-<leaf>
-  <name> Drugs-Amlodipine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Amlodipine </parent>
-</leaf>
+<structure><name> Drugs </name>
 
-<leaf>
-  <name> Drugs-Amlodipine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Amlodipine </parent>
-</leaf>
+<definitions>
 
-<branch>
-  <name> Drugs-Chlorothiazide </name>
-  <label> Chlorothiazide </label>
-  <parent> Drugs </parent>
-</branch>
+<block><name> Parms </name>
 
-<leaf>
-  <name> Drugs-Chlorothiazide-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Chlorothiazide </parent>
-</leaf>
+  <call> Acetazolamide.Parms </call>
+  <call> Amlodipine.Parms </call>
+  <call> Chlorothiazide.Parms </call>
+  <call> Digoxin.Parms </call>
+  <call> Furosemide.Parms </call>
+  <call> Lisinopril.Parms </call>
+  <call> Midodrine.Parms </call>
+  <call> Spironolactone.Parms </call>
+  <call> Propranolol.Parms </call>
+  <call> Phenylephrine.Parms </call>
+  <call> Reserpine.Parms </call>
+  <call> Atropine.Parms </call>
+  <call> Morphine.Parms </call>
+  <call> Narcan.Parms </call>
+  <call> Warfarin.Parms </call>
+  <call> NODrug.Parms </call>
 
-<leaf>
-  <name> Drugs-Chlorothiazide-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Chlorothiazide </parent>
-</leaf>
+</block>
 
-<branch>
-  <name> Drugs-Digoxin </name>
-  <label> Digoxin </label>
-  <parent> Drugs </parent>
-</branch>
+<block><name> CalcConc </name>
 
-<branch>
-  <name> Drugs-Lisinopril </name>
-  <label> Lisinopril </label>
-  <parent> Drugs </parent>
-</branch>
+  <call> Acetazolamide.CalcConc </call>
+  <call> Amlodipine.CalcConc </call>
+  <call> Chlorothiazide.CalcConc </call>
+  <call> Digoxin.CalcConc </call>
+  <call> Furosemide.CalcConc </call>
+  <call> Midodrine.CalcConc </call>
+  <call> Lisinopril.CalcConc </call>
+  <call> Spironolactone.CalcConc </call>
+  <call> Propranolol.CalcConc </call>
+  <call> Isoproterenol.CalcConc </call>
+  <call> Phenylephrine.CalcConc </call>
+  <call> Reserpine.CalcConc </call>
+  <call> Atropine.CalcConc </call>
+  <call> Morphine.CalcConc </call>
+  <call> Narcan.CalcConc </call>
+  <call> Warfarin.CalcConc </call>
+  <call> NODrug.CalcConc </call>
 
-<leaf>
-  <name> Drugs-Lisinopril-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
 
-<leaf>
-  <name> Drugs-Lisinopril-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
+</block>
 
-<leaf>
-  <name> Drugs-Digoxin-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Digoxin </parent>
-</leaf>
+<block><name> Dervs </name>
 
-<leaf>
-  <name> Drugs-Digoxin-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Digoxin </parent>
-</leaf>
+  <call> Acetazolamide.Dervs </call>
+  <call> Amlodipine.Dervs </call>
+  <call> Chlorothiazide.Dervs </call>
+  <call> Digoxin.Dervs </call>
+  <call> Furosemide.Dervs </call>
+  <call> Midodrine.Dervs </call>
+  <call> Lisinopril.Dervs </call>
+  <call> Spironolactone.Dervs </call>
+  <call> Propranolol.Dervs </call>
+  <call> Isoproterenol.Dervs </call>
+  <call> Phenylephrine.Dervs </call>
+  <call> Reserpine.Dervs </call>
+  <call> Atropine.Dervs </call>
+  <call> Morphine.Dervs </call>
+  <call> Narcan.Dervs </call>
+  <call> Warfarin.Dervs </call>
+  <call> NODrug.Dervs </call>
 
-<branch>
-  <name> Drugs-Furosemide </name>
-  <label> Furosemide </label>
-  <parent> Drugs </parent>
-</branch>
 
-<leaf>
-  <name> Drugs-Furosemide-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Furosemide </parent>
-</leaf>
+</block>
 
-<leaf>
-  <name> Drugs-Furosemide-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Furosemide </parent>
-</leaf>
+<block><name> Wrapup </name>
 
-<branch>
-  <name> Drugs-Midodrine </name>
-  <label> Midodrine </label>
-  <parent> Drugs </parent>
-</branch>
+  <call> Acetazolamide.Wrapup </call>
+  <call> Amlodipine.Wrapup </call>
+  <call> Chlorothiazide.Wrapup </call>
+  <call> Digoxin.Wrapup </call>
+  <call> Midodrine.Wrapup </call>
+  <call> Lisinopril.Wrapup </call>
+  <call> Spironolactone.Wrapup </call>
+  <call> Propranolol.WrapUp </call>
+  <call> Phenylephrine.Wrapup </call>
+  <call> Reserpine.Wrapup </call>
+  <call> Warfarin.Wrapup </call>
 
-<leaf>
-  <name> Drugs-Midodrine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Midodrine </parent>
-</leaf>
+</block>
 
-<leaf>
-  <name> Drugs-Midodrine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Midodrine </parent>
-</leaf>
+</definitions>
 
-<branch>
-  <name> Drugs-Acetazolamide </name>
-  <label> Acetazolamide </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Acetazolamide-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Acetazolamide </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Acetazolamide-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Acetazolamide </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Spironolactone </name>
-  <label> Spironolactone </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Spironolactone-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Spironolactone </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Spironolactone-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Spironolactone </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Epi </name>
-  <label> Epinephrine Bolus </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Epi-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Epi</parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Epi-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Epi</parent>
-</leaf>
-
-<branch>
-  <name> Drugs-NE </name>
-  <label> NE Bolus </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-NE-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-NE </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-NE-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-NE </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Atropine </name>
-  <label> Atropine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Atropine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Atropine </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Atropine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Atropine </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Acetylcholine </name>
-  <label> Acetylcholine</label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Acetylcholine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Acetylcholine</parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Acetylcholine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Acetylcholine</parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Phenylephrine </name>
-  <label> Phenylephrine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Phenylephrine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Phenylephrine</parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Phenylephrine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Phenylephrine </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Isoproterenol </name>
-  <label> Isoproterenol </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Isoproterenol-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Isoproterenol </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Isoproterenol-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Isoproterenol </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Propranolol </name>
-  <label> Propranolol </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Propranolol-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Propranolol </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Propranolol-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Propranolol </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Warfarin </name>
-  <label> Warfarin </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Warfarin-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Warfarin </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Warfarin-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Warfarin </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-NODrug </name>
-  <label> NODrug </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-NODrug-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-NODrug </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-NODrug-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-NODrug </parent>
-</leaf>
+</structure>
 
 End

@@ -1,0 +1,63 @@
+HumMod / Sizing-NOPool
+
+Created : 2013-03-05
+Revised : 2013-03-05
+Author : Tom Coleman
+Copyright : 2013-2013
+By : Tom Coleman
+
+<structure><name> Sizing-NOPool </name>
+
+<variables>
+
+<constant><name> [NO--] </name><val> 0.000351 </val></constant>
+
+<var><name> Mass </name></var>
+<var><name> Volume </name></var>
+<var><name> Diffusion </name></var>
+
+
+<constant><name>  BasicVD </name><val> 15312 </val></constant> <!-- ECFV -->
+
+</variables>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<def>
+  <name> Volume </name>
+  <val> Sizing-ECFV.Vol / 1000 </val>
+</def>
+
+<def>
+  <name> Mass </name>
+  <val> [NO--] * Volume </val>
+</def>
+
+<def>
+  <name> Diffusion </name>
+  <val> Mass / 1.5 </val>
+</def>
+
+
+<def>
+  <name> NOPool.InitialMass </name>
+  <val> Mass </val>
+</def>
+
+<def>
+  <name> NOPool.[NO--(mEq/L)-Initial] </name>
+  <val> [NO--] </val>
+</def>
+
+
+<call> NOPool.Init </call>
+
+
+</block>
+
+</definitions>
+</structure> 
+
+End

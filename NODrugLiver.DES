@@ -1,0 +1,84 @@
+<!--
+NODrugLiver.DES - Defines liver metabolism of NO in HumMod
+
+Overview
+This file models the metabolism of Nitric Oxide (NO) in the liver, specifically how NO is processed from the portal vein into systemic circulation.
+
+1. Portal Vein Drug Concentration: Calculates NO levels in the portal vein, which is where blood from the digestive system enters the liver.
+2. Conversion to Different Units: Converts NO mass to different concentration units for calculations.
+3. Liver Metabolism Rate: Uses a constant rate (K = 0.75) to define how much NO is processed by the liver.
+
+How to Replicate for Another Drug
+1. Change `<name> NODrugLiver </name>` to `<name> NewDrugLiver </name>`.
+2. Adjust K (metabolism rate) to match the new drug’s liver metabolism properties.
+3. Modify PortalMass calculations to ensure correct mass transport.
+4. Reference this file in the main drug model (`NODrug.DES` or equivalent).
+
+-->
+
+HumMod / FurosemideKidney
+
+Created : 05-Jun-06
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> NODrugLiver </name> <!-- Defines NO metabolism in the liver -->
+
+<variables>
+
+<var>
+  <name> Gain </name> <!-- Stores the amount of NO entering the liver -->
+</var>
+
+<var>
+  <name> PortalMass </name> <!-- Mass of NO in the portal vein -->
+</var>
+
+<var>
+  <name> [PortalMass] </name> <!-- Portal mass in concentration units -->
+</var>
+
+<var>
+  <name> [PortalMass(uMol)] </name> <!-- Portal mass converted to micromolar units -->
+</var>
+
+<constant>
+  <name> K </name> <!-- Rate of NO metabolism in the liver, will vary for other drugs -->
+  <val> 0.75 </val>
+</constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name> <!-- Defines how NO is metabolized in the liver -->
+
+<def>
+  <name> PortalMass </name>
+  <val> SplanchnicVeins.Vol * ( NODrugPool.[NODrug] ) </val> <!-- Computes portal vein NO mass. the value referenced here is what is calculated in the pool -->
+</def>
+
+<def>
+   <name> [PortalMass] </name>
+   <val> PortalMass / SplanchnicVeins.Vol </val> <!-- converts the mass to concentration -->
+</def>
+
+<def>
+   <name> [PortalMass(uMol)] </name>
+   <val> [PortalMass] / NODrugPool.MW </val> <!-- converts concentration to micromolar -->
+</def>
+
+<def>
+  <name> Gain </name> <!-- rate of NO uptake by the liver -->
+  <val> K * PortalMass </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End
