@@ -80,8 +80,8 @@
 </def>
 
 <def>
-  <name> NODrugSpray.Mass </name>
-  <val> NODrugSpray.Mass + ( 1000 * Dose ) </val>
+  <name> NODrugSL.Mass </name>
+  <val> NODrugSL.Mass + ( 1000 * Dose ) </val>
 </def>
 
 <def>
