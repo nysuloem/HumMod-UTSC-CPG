@@ -31,14 +31,12 @@ By : University of Mississippi Medical Center
 <var><name> IsTall         </name></var>
 <var><name> IsVeryTall     </name></var>
 
-<var><name> AgeEffectHeight </name></var>
-
 <var><name> Stochasm </name></var>
 
 <normaldist>
   <name> Normal </name>
   <mean> 0 </mean>
-  <stddev> 3 </stddev>
+  <stddev> 25 </stddev>
 </normaldist>
 
 <whitenoise>
@@ -48,20 +46,6 @@ By : University of Mississippi Medical Center
 </whitenoise>
 
 </variables>
-
-<functions>
-
-<curve>
-  <name> AgeOnHeight </name>
-  <point><x> 0 </x><y> 0.3 </y><slope> 0 </slope></point>
-  <point><x> 2 </x><y> 0.5 </y><slope> 0 </slope></point>
-  <point><x> 9 </x><y> 0.75 </y><slope> 0 </slope></point>
-  <point><x> 18 </x><y> 1 </y><slope> 0 </slope></point>
-  <point><x> 40 </x><y> 1 </y><slope> 0 </slope></point>
-  <point><x> 110 </x><y> 0.95 </y><slope> 0 </slope></point>
-</curve>
-
-</functions>
 
 <definitions>
 
@@ -79,10 +63,6 @@ By : University of Mississippi Medical Center
 
 <block><name> Calc </name>
 
-<if><test> System.X GT System.InitialX </test>
-<true> <exitblock/> </true>
-</if>
-
 <def><name> IsShort        </name><val> FALSE </val></def>
 <def><name> IsNormalHeight </name><val> FALSE </val></def>
 <def><name> IsTall         </name><val> FALSE </val></def>
@@ -93,23 +73,6 @@ By : University of Mississippi Medical Center
   <false><call> CalcMale </call></false>
 </if>
 
-<if><test>Context-Ethnicity.IsBlack </test>
-<true><call> CalcBlack </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsHispanic </test>
-<true><call> CalcHispanic </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsAsian </test>
-<true><call> CalcAsian </call></true>
-</if>
-
-<def>
-  <name> AgeEffectHeight </name>
-  <val> AgeOnHeight [ Context-Age.Age(Years) ] </val>
-</def>
-
 <call> CalcStochasm </call>
 
 <def>
@@ -118,7 +81,6 @@ By : University of Mississippi Medical Center
      NominalHeight
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
-     * AgeEffectHeight 
   </val>
 </def>
 
@@ -187,43 +149,6 @@ By : University of Mississippi Medical Center
 
 </block>
 
-<block><name> CalcBlack </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 1 </test>
-<def><name> NominalHeight </name><val> NominalHeight * 1.00 </val></def>
-</case>
-
-</testcase>
-
-</block>
-
-<block><name> CalcHispanic </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 3 </test>
-<def><name> NominalHeight </name><val> NominalHeight * 0.985 </val></def>
-</case>
-
-</testcase>
-
-</block>
-
-<block><name> CalcAsian </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 2 </test>
-<def><name> NominalHeight </name><val> NominalHeight * 0.985 </val></def>
-</case>
-
-</testcase>
-
-</block>
-
-
 <block><name> CalcStochasm </name>
 
 <def>
@@ -232,7 +157,7 @@ By : University of Mississippi Medical Center
 </def>
 
 <if>
-  <test> NOT Random.Height </test>
+  <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
   </true>
