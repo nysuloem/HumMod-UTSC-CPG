@@ -5,48 +5,30 @@ By: Jason Brown
 
 
 
+<?path Structure\SexualActivity\ ?>
+
+<?include HaveSex.DES ?>
+<?include SexDrive.DES ?>
+<?include UseProtection.DES ?>
+
 <structure><name> SexualActivity </name>
-
-<variables>
-
-<parm><name> Index </name><val> 0 </val></parm>
-<parm><name> Frequency </name><val>0</val></parm>
-
-<constant><name> IS_SEXUALLYINACTIVE </name><val> 0 </val></constant>
-<constant><name> IS_SEXUALLYACTIVE </name><val> 1 </val></constant>
-
-<var><name> IsSexuallyInactive </name></var>
-<var><name> IsSexuallyActive </name></var>
-
-</variables>
 
 <definitions>
 
 <block><name> Init </name>
+  <call> SexDrive.Init </call>
+</block>
 
-<if><test> Index EQ IS_SEXUALLYINACTIVE </test>
-<true>
-<def><name> IsSexuallyInactive </name><val> TRUE </val></def>
-<def><name> IsSexuallyActive </name><val> FALSE </val></def>
+<block><name> Parms </name>
+  <call> HaveSex.Parms </call>
+</block>
 
-</true>
-<false>
-</false>
-</if>
-
-<if><test> Index EQ IS_SEXUALLYACTIVE </test>
-<true>
-<def><name> IsSexuallyInactive </name><val> FALSE </val></def>
-<def><name> IsSexuallyActive </name><val> TRUE </val></def>
-
-</true>
-<false>
-</false>
-</if>
-
+<block><name> Wrapup </name>
+  <call> HaveSex.Wrapup </call>
 </block>
 
 </definitions>
+
 </structure>
 
 End

@@ -36,28 +36,35 @@ By: Terry Yavorskyy UTSC
   
   <block><name> Parms </name>
     <call> Context-Sex.Calc </call>
-  <onjustchanged><name> Index </name>
-  <if><test> Index EQ IS_FEMALE </test>
+
+    <onjustchanged><name> Index </name>
+
+    <call> Context.Calc </call>
+    
+    <if><test> Index EQ IS_FEMALE </test>
   
-  <true>     
-  <def><name> NoUterus </name><val> FALSE </val></def>
+    <true>     
+    <def><name> NoUterus </name><val> FALSE </val></def>
     <def><name> HasUterus </name><val> TRUE </val></def> 
     <def><name> UIndex </name> <val> 1 </val></def>
     </true>
-<false> 
- <def><name> NoUterus </name><val> TRUE </val></def>
+
+    <false> 
+    <def><name> NoUterus </name><val> TRUE </val></def>
     <def><name> HasUterus </name><val> FALSE </val></def> 
     <def><name> UIndex </name> <val> 0 </val></def>
-</false>
-</if>
+    </false>
 
-  </onjustchanged>
+    </if>
+
+    </onjustchanged>
   
-  <onjustchanged><name> UIndex </name>
+    <onjustchanged><name> UIndex </name>
+    
     <call> Context-Sex.CalcU </call>
+    
     </onjustchanged>
     
-  
   </block>
   
   <block><name> Calc </name>

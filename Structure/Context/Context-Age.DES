@@ -52,6 +52,7 @@ By : University of Mississippi Medical Center
 
 <onjustchanged><name> Index </name>
 <call> Context.Calc </call>
+<call> SexDrive.Init </call>
 </onjustchanged>
 
 <onjustchanged><name> PlusMinus </name>
