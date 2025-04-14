@@ -6,7 +6,8 @@
 <?include Endometrium-Vasculature.DES ?>
 
 <structure><name> Endometrium </name>
-
+<!-- Might want to derive the liquid and solid masses off here to add to endometrium for integration into the vasculature, 
+ but this should be a fraction of UTERUS TY 2025-04-09 -->
 <variables>
 
 <parm><name> Basalis </name><val> 3.33 </val></parm>
@@ -29,6 +30,30 @@
 
 <definitions>
 
+  <block><name> Init </name>
+
+    <call> Endometrium-StromalCells.Population </call> 
+    <call> Endometrium-Glands.Population </call>
+    <call> Endometrium-LuminalEpithelium.Population </call>
+    <call> Endometrium-Vasculature.Population </call>
+
+
+ 
+  
+    <def>
+      <name> Functionalis </name>
+      <val> Endometrium-StromalCells.Population + Endometrium-Glands.Population + Endometrium-LuminalEpithelium.Population + Endometrium-Vasculature.Population </val>
+    </def>
+  
+    <def>
+      <name> Thickness </name>
+      <val> Basalis + Functionalis </val>
+    </def>
+  <def><name> </name></def>
+  
+  
+  
+  </block>
 <block><name> Dervs </name>
 
 <def><name> IkB </name><val> Progesterone.[Conc(nMol/L)] GT 15 </val></def>

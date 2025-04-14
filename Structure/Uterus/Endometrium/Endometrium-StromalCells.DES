@@ -47,7 +47,12 @@
 </equations>
 
 <definitions>
-
+  <block><name> Init </name>
+    <def>
+      <name> Population </name>
+      <val> 0.5 </val>
+    </def>
+    </block>
 <block><name> WrapUp  </name>
 
 <def><name> Hand2 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>

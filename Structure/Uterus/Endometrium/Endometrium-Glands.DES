@@ -40,6 +40,14 @@
 </equations>
 
 <definitions>
+  <block><name> Init </name>    
+    
+    <def>
+    <name> Population </name>
+    <val> 0.25 </val>
+  </def>
+
+</block>
 
 <block><name> WrapUp </name>
 

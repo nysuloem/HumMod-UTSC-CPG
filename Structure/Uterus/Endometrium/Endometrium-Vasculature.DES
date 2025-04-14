@@ -24,7 +24,12 @@
 </equations>
 
 <definitions>
-
+<block><name> Init </name>
+    <def>
+        <name> Population </name>
+        <val> 0.1 </val>
+      </def>
+</name></block>
 
 <block><name> Dervs </name>
 
