@@ -17,10 +17,10 @@ By : University of Mississippi Medical Center
 <var><name> IsLate </name></var>
 
 
-<var><name> Absent </name> <val> 0 </val>
-<var><name> Light </name> <val> 1 </val>
-<var><name> Average </name> <val> 2 </val>
-<var><name> Heavy </name> <val> 3 </val>
+<constant><name> Absent </name> <val> 0 </constant>
+<constant><name> Light </name> <val> 1 </constant>
+<constnat><name> Average </name> <val> 2 </constant>
+<constant><name> Heavy </name> <val> 3 </constant>
 
 
 

@@ -39,6 +39,11 @@ By : University of Mississippi Medical Center
 </def>
 
 <def>
+  <name> UterusLumen_Mass </name>
+  <val> ( UterusLumen_Percent / 100 ) * Sizing-OrganMass.BaseMass(G) </val>
+</def>
+
+<def>
   <name> Peritoneum_Mass </name>
   <val> ( Peritoneum_Percent / 100 ) * Sizing-OrganMass.BaseMass(G) </val>
 </def>
@@ -106,7 +111,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> ExternalOther </name>
-  <val> GILumen_Mass </val>
+  <val> GILumen_Mass + Endometrium_Mass </val>
 </def>
 
 </block>

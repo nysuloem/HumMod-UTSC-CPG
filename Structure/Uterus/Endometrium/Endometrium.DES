@@ -10,7 +10,7 @@
  but this should be a fraction of UTERUS TY 2025-04-09 -->
 <variables>
 
-<parm><name> Basalis </name><val> 3.33 </val></parm>
+<var><name> Basalis </name><val> 3.33 </val></var>
 
 <var><name> Functionalis </name><val> 0 </val></var>
 <var><name> Thickness </name><val> 3.33 </val></var>
@@ -49,12 +49,17 @@
       <name> Thickness </name>
       <val> Basalis + Functionalis </val>
     </def>
-  <def><name> </name></def>
+
   
   
   
   </block>
 <block><name> Dervs </name>
+
+  <call> Endometrium-StromalCells.Dervs </call>
+  <call> Endometrium-Glands.Dervs </call>
+  <call> Endometrium-LuminalEpithelium.Dervs </call>
+  <call> Endometrium-Vasculature.Dervs </call>
 
 <def><name> IkB </name><val> Progesterone.[Conc(nMol/L)] GT 15 </val></def>
 <def><name> NFkB </name><val> IkB EQ 0 </val></def>
@@ -67,10 +72,6 @@
 
 <def><name> Neutrophils </name><val> IL8Signal </val></def> 
 
-<call> Endometrium-StromalCells.Dervs </call>
-<call> Endometrium-Glands.Dervs </call>
-<call> Endometrium-LuminalEpithelium.Dervs </call>
-<call> Endometrium-Vasculature.Dervs </call>
 
 <def>
   <name> Functionalis </name>

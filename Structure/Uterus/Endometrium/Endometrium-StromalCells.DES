@@ -53,39 +53,6 @@
       <val> 0.5 </val>
     </def>
     </block>
-<block><name> WrapUp  </name>
-
-<def><name> Hand2 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
-
-<def><name> IL1Beta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
-
-<def><name> TGFBeta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
-
-<def><name> COX2 </name><val> ( ( IL1Beta OR BMP2 OR Endometrium-Glands.Hoxa10 EQ 1 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) </val></def>
-
-<def><name> cAMP </name><val> ( ( Estradiol.[Conc(nMol/L)] GT 0.10 ) OR ( hCG.[Conc(IU/L)] GT 10.0 ) OR ( PGE2 GT 0 ) OR ( CRF GT 0 ) ) </val></def>
-
-<def><name> FOXO1 </name><val> ( ( cAMP EQ 1 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
-
-<def><name> EGFR </name><val> ( ( ( EGF  OR TGFBeta ) GT 0 ) AND ( ( Progesterone.[Conc(nMol/L)] GT 10 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) ) </val></def>
-
-<def><name> FGF </name><val>  ( Estradiol.[Conc(nMol/L)] GT 0.10 ) AND ( Hand2 EQ 0 )  </val></def>
-
-<def><name> IGF </name><val> ( Estradiol.[Conc(nMol/L)] GT 0.10 ) </val></def>
-
-<def><name> IGFBP1 </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
-
-<def><name> PRL </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
-
-<def><name> COUPTFII </name><val> ( Endometrium-Glands.Ihh EQ 1 ) </val></def>
-<def><name> BMP2 </name><val> ( COUPTFII EQ 1 ) </val></def>
-<def><name> IL6 </name><val> ( Endometrium-Glands.TNFAlpha EQ 1 ) </val></def>
-<def><name> PGE2 </name><val> ( COX2 EQ 1 ) </val></def>
-<def><name> CRF </name><val> ( IL1Beta OR IL6 EQ 1 ) </val></def>
-<def><name> FGFR </name><val> FGF </val></def>
-<def><name> IGFR </name><val> IGF AND ( IGFBP1 EQ 0 ) </val></def>
-
-</block>
 
 <block><name> Dervs </name>
 
@@ -101,7 +68,41 @@
 <def><name> Population </name><val>  Population MIN 5 </val></def>
 
 </block>
+<block><name> WrapUp  </name>
 
+  <def><name> Hand2 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+  
+  <def><name> IL1Beta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+  
+  <def><name> TGFBeta </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
+  
+  <def><name> COX2 </name><val> ( ( IL1Beta OR BMP2 OR Endometrium-Glands.Hoxa10 EQ 1 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) </val></def>
+  
+  <def><name> cAMP </name><val> ( ( Estradiol.[Conc(nMol/L)] GT 0.10 ) OR ( hCG.[Conc(IU/L)] GT 10.0 ) OR ( PGE2 GT 0 ) OR ( CRF GT 0 ) ) </val></def>
+  
+  <def><name> FOXO1 </name><val> ( ( cAMP EQ 1 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+  
+  <def><name> EGFR </name><val> ( ( ( EGF  OR TGFBeta ) GT 0 ) AND ( ( Progesterone.[Conc(nMol/L)] GT 10 ) OR ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) ) </val></def>
+  
+  <def><name> FGF </name><val>  ( Estradiol.[Conc(nMol/L)] GT 0.10 ) AND ( Hand2 EQ 0 )  </val></def>
+  
+  <def><name> IGF </name><val> ( Estradiol.[Conc(nMol/L)] GT 0.10 ) </val></def>
+  
+  <def><name> IGFBP1 </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+  
+  <def><name> PRL </name><val> ( ( FOXO1 GT 0 ) AND ( Progesterone.[Conc(nMol/L)] GT 10 ) ) </val></def>
+  
+  <def><name> COUPTFII </name><val> ( Endometrium-Glands.Ihh EQ 1 ) </val></def>
+  <def><name> BMP2 </name><val> ( COUPTFII EQ 1 ) </val></def>
+  <def><name> IL6 </name><val> ( Endometrium-Glands.TNFAlpha EQ 1 ) </val></def>
+  <def><name> PGE2 </name><val> ( COX2 EQ 1 ) </val></def>
+  <def><name> CRF </name><val> ( IL1Beta OR IL6 EQ 1 ) </val></def>
+  <def><name> FGFR </name><val> FGF </val></def>
+  <def><name> IGFR </name><val> IGF AND ( IGFBP1 EQ 0 ) </val></def>
+  
+  </block>
+  
 </definitions>
+
 
 </structure>
