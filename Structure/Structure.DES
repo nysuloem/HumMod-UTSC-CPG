@@ -172,8 +172,6 @@ By : University of Mississippi Medical Center
 <?include VitaminD\VitaminD.DES ?>
 <?include Weight\Weight.DES ?>
 <?include Weight-Fluids\Weight-Fluids.DES ?>
-
-
 <?include Ovaries\Ovaries.DES ?>
 <?include Testes\Testes.DES ?>
 <?include Uterus\Uterus.DES ?>
@@ -192,7 +190,6 @@ By : University of Mississippi Medical Center
   <call> Context.Parms </call>
 
   <call> Environment.Parms </call>
-  <call> SexualActivity.Parms </call>
   <call> AirSupply-PressureChamber.Calc </call>
   <call> AirSupply-GasTanks.Calc </call>
   <call> AirSupply-InspiredAir.Calc </call>
@@ -347,6 +344,7 @@ By : University of Mississippi Medical Center
   <call> VitaminD.Conc </call>
   <call> SexDrive.Parms </call>
   <call> SexDrive.Libido </call>
+  
   
   
 
@@ -780,10 +778,12 @@ By : University of Mississippi Medical Center
   <call> SkeletalMuscle-MetabolicVasodilation.Dervs </call>
   <call> Leptin.Dervs </call>
 
+  <call> HaveSex.Parms</call>
   <call> Ovaries.Dervs </call>
   <call> Uterus.Dervs </call>
   <call> Testes.Dervs </call>
   <call> Genitalia.Dervs </call>
+  <call> SexualIntercourse.Parms </call>
 
   <call> GnRH.Dervs </call>
   <call> hCG.Dervs </call>
@@ -825,13 +825,14 @@ By : University of Mississippi Medical Center
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
   <call> Menstruation.Dervs </call>
+  
 </block>
 
 <block><name> Wrapup </name>
   <call> Organs-Function.Wrapup </call>
   
   <call> Age.Calc </call>
-  <call> SexualActivity.Wrapup </call>
+  <!--<call> SexualActivity.Wrapup </call>-->
 
   <if>
     <test> Sex.IsFemale </test>

@@ -28,16 +28,15 @@ By: Jason Brown
 
 <if><test> Context-Age.Age(Years) GE 18 </test>
 <true>
-<def><name> IsSexuallyActive</name><val> TRUE </val></def>
-<def><name> IsSexuallyInactive</name><val> FALSE </val></def>
-<def><name> Index </name><val> 1 </val></def>
-<!--<call> Libido </call>-->
+    <def><name> IsSexuallyActive</name><val> TRUE </val></def>
+    <def><name> IsSexuallyInactive</name><val> FALSE </val></def>
+    <def><name> Index </name><val> 1 </val></def>
 </true>
 <false>
-<def><name> IsSexuallyActive</name><val> FALSE </val></def>
-<def><name> IsSexuallyInactive</name><val> TRUE </val></def>
-<def><name> Index </name><val> 0 </val></def>
-<def><name> Mood </name><val> 2 </val></def>
+    <def><name> IsSexuallyActive</name><val> FALSE </val></def>
+    <def><name> IsSexuallyInactive</name><val> TRUE </val></def>
+    <def><name> Index </name><val> 0 </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
 </false></if>
 
 </block>
@@ -54,9 +53,9 @@ By: Jason Brown
 
 <if><test> Index EQ IS_SEXUALLYINACTIVE </test>
 <true>
-<def><name> IsSexuallyInactive </name><val> TRUE </val></def>
-<def><name> IsSexuallyActive </name><val> FALSE </val></def>
-<def><name> Mood </name><val> 2 </val></def>
+    <def><name> IsSexuallyInactive </name><val> TRUE </val></def>
+    <def><name> IsSexuallyActive </name><val> FALSE </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
 </true>
 <false>
 </false>
@@ -64,9 +63,9 @@ By: Jason Brown
 
 <if><test> Index EQ IS_SEXUALLYACTIVE </test>
 <true>
-<def><name> IsSexuallyInactive </name><val> FALSE </val></def>
-<def><name> IsSexuallyActive </name><val> TRUE </val></def>
-<call> Libido </call>
+    <def><name> IsSexuallyInactive </name><val> FALSE </val></def>
+    <def><name> IsSexuallyActive </name><val> TRUE </val></def>
+    <call> Libido </call>
 </true>
 <false>
 </false>
@@ -78,24 +77,38 @@ By: Jason Brown
 
 <if><test> IsSexuallyActive EQ FALSE </test>
 <true>
-<def><name> Libido </name>
-<val> UNDEFINED </val></def>
-<def><name> Mood </name><val> 2 </val></def>
-<exitblock/>
+    <def><name> Libido </name>
+    <val> 0 </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
+    <exitblock/>
 </true>
 <false>
-<def><name> Libido </name>
-<val> Testosterone.[Conc(nMol/L)] </val>
-</def></false>
+    <def><name> Libido </name>
+    <val> Testosterone.[Conc(nMol/L)] </val>
+    <!--Referencs are xxx-->
+    </def>
+</false>
 </if>
 
-
-<if><test> Libido GE 20.0 </test>
+<if><test> Libido GE 20 </test>
 <true>
-<def><name> Mood </name><val> 1 </val></def>
+    <call> Refractory </call>
 </true>
 <false>
-<def><name> Mood </name><val> 0 </val></def>
+  <def><name> Mood </name><val> 0 </val></def>
+</false>
+</if>
+</block>
+
+<block><name> Refractory</name>
+    <if><test> SexualIntercourse.Refractory EQ 0 </test>
+        <true>
+    <def><name> Mood </name><val> 1 </val></def>
+    <call> SexualIntercourse.Parms </call>
+</true>
+<false>
+    <def><name> Mood </name><val> 0 </val></def>
+    <call> SexualIntercourse.Parms </call>
 </false>
 </if>
 

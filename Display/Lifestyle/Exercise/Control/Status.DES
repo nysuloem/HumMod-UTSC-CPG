@@ -68,6 +68,12 @@ By : University Of Mississippi Medical Center
    <label> Aerobics </label>
 </checkmark>
 
+<checkmark>
+  <row> 12.2 </row><col> 1.0 </col>
+  <name> Status.Sex </name>
+  <label> Having Sex</label>
+</checkmark>
+
 <!-- 
 
 <infobutton>

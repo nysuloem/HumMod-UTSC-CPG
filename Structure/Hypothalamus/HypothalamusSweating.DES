@@ -48,6 +48,12 @@ Schema : DES V1.0
   <point><x> 2.0 </x><y> 4.0 </y><slope> 0 </slope></point>
 </curve>
 
+<curve>
+  <name> Infection </name>
+  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> 100 </x><y> 2 </y><slope> 0 </slope></point>
+</curve>
+
 </functions>
 
 <definitions>

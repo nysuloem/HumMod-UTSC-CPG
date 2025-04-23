@@ -34,6 +34,11 @@ Schema : DES V1.0
 
 <testcase>
 
+  <case>
+    <test> HaveSex.SexOutcome EQ 1 </test>
+    <def><name> Number </name><val> 28 </val></def>
+  </case>
+
 <case>
 <test> Exercise-Bike.Status EQ Exercise-Bike.IS_ACTIVE </test>
 <def><name> Number </name><val> 13 </val></def>

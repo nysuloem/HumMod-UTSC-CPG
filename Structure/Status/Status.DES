@@ -32,6 +32,7 @@ By : University Of Mississippi Medical Center
 <var><name> BetweenMeals </name></var>
 <var><name> Continuous </name></var>
 <var><name> CantEat </name></var>
+<var><name> Sex </name></var>
 
 <var><name> Conscious </name><val> TRUE </val></var>
 
@@ -112,8 +113,14 @@ By : University Of Mississippi Medical Center
 <def><name> Treadmill </name><val> 0 </val></def>
 <def><name> Working </name><val> 0 </val></def>
 <def><name> Aerobics </name><val> 0 </val></def>
+<def><name> Sex </name><val> 0 </val></def>
 
 <testcase>
+
+  <case>
+    <test> HaveSex.SexOutcome EQ 1</test>
+    <def><name> Sex </name><val> 1 </val></def>
+  </case>
 
 <case>
 <test> Exertion EQ 0 </test>

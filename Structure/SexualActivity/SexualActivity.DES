@@ -10,6 +10,7 @@ By: Jason Brown
 <?include HaveSex.DES ?>
 <?include SexDrive.DES ?>
 <?include UseProtection.DES ?>
+<?include SexualIntercourse.DES ?>
 
 <structure><name> SexualActivity </name>
 
@@ -17,15 +18,12 @@ By: Jason Brown
 
 <block><name> Init </name>
   <call> SexDrive.Init </call>
+  <call> SexDrive.MoodChange </call>
 </block>
 
-<block><name> Parms </name>
-  <call> HaveSex.Parms </call>
-</block>
-
-<block><name> Wrapup </name>
+<!--<block><name> Wrapup </name>
   <call> HaveSex.Wrapup </call>
-</block>
+</block>-->
 
 </definitions>
 
