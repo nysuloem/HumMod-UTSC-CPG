@@ -33,7 +33,7 @@ We also acknowledge the contributions of Shree, Faria, Karson, Tiffany, Khadijee
 <?include Control\Control.DES ?>
 <?include Display\Display.DES ?>
 
-<?attach Docs\Docs.DOCS ?>
+
 
 End
 
