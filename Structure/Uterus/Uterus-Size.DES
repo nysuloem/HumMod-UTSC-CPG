@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
 <var><name> InitialLiquidVol </name></var>
 
 <var><name> SolidMass </name></var>
-<var><name> InitialSolidMass </name><val> 0.0 </val></var>
+<var><name> InitialSolidMass </name></var>
 
 <constant>
   <name> SolidDensity </name>
@@ -107,7 +107,7 @@ By : University Of Mississippi Medical Center
   <name> LiquidVol </name>
   <test> Context-Sex.Index EQ 1 </test>
   <true> IFV + CellH2O </true>
-<false> 0.0 </false>
+<false> 0.01 </false>
 </conditional> 
 
 <conditional> 
@@ -122,14 +122,14 @@ By : University Of Mississippi Medical Center
   <name> SolidMass </name>
   <test> Context-Sex.Index EQ 1 </test>
   <true> InitialSolidMass </true>
-<false> 0.0 </false>
+<false> 0.01 </false>
 </conditional> 
 
 <conditional> 
   <name> SolidVol </name>
   <test> Context-Sex.Index EQ 1 </test>
   <true> SolidMass / SolidDensity </true>
-<false> 0.0 </false>
+<false> 0.01 </false>
 </conditional> 
 
 <def>

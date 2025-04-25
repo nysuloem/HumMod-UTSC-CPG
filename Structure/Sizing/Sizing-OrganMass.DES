@@ -32,9 +32,11 @@ By : University of Mississippi Medical Center
 <constant><name> Skin_Percent              </name><val> 10.7 </val></constant>
 <constant><name> Spleen_Percent </name><val> 0.2 </val></constant>
 <var><name> Uterus_Percent </name><val> 0.0 </val></var> 
-<var><name> Genitalia_Percent</name><val> 0.9 </val></var> <!-- genetalia and uterus percent - and endometrium 2025-04-09 were - changed for validity 
-and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 TY -->
-<var><name> Endometrium_Percent </name><val> 0.0 </val></var> 
+<var><name> Genitalia_Percent</name><val> 0.9 </val></var>
+
+<!-- genetalia and uterus percent - and endometrium 2025-04-09 were - changed for validity 
+and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 TY 
+<var><name> Endometrium_Percent </name><val> 0.0 </val></var> -->
 <constant><name> AdrenalGland_Percent   </name><val> 0.058 </val></constant>
 <constant><name> Pancreas_Percent       </name><val> 0.407 </val></constant>
 <constant><name> PituitaryGland_Percent </name><val> 0.002 </val></constant>
@@ -55,7 +57,8 @@ and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 T
 <var><name> Spleen_Mass </name></var>
 <var><name> Uterus_Mass </name></var>
 <var><name> Genitalia_Mass</name></var>
-<var><name> Endometrium_Mass</name></var>
+<!-- <var><name> Endometrium_Mass</name></var> -->
+
 <var><name> Fat_Mass </name></var>
 <var><name> SkeletalMuscle_Mass </name></var>
 
@@ -97,12 +100,13 @@ genetalia size to be x3 larger for males, this can be further modified into cond
    <true> 0.3 </true>
    <false> 0.0 </false>
   </conditional> 
+  <!-- 
   <conditional> <name> Endometrium_Percent </name>
     <test> Context-Sex.Index EQ 1 </test>
     <true> 0.3 </true>
     <false> 0.0 </false>
    </conditional> 
- 
+ -->
 
 <def>
   <name> OtherTissue_Percent </name>
@@ -120,12 +124,12 @@ genetalia size to be x3 larger for males, this can be further modified into cond
     + Skin_Percent
     + Spleen_Percent
     + Uterus_Percent
-    + Endometrium_Percent
+ 
     + Genitalia_Percent )
   </val>
 </def>
 
-
+<!--    + Endometrium_Percent -->
 <def>
   <name> CheckSum_Percent </name>
   <val>
@@ -142,11 +146,11 @@ genetalia size to be x3 larger for males, this can be further modified into cond
     + Skin_Percent
     + Spleen_Percent
     + Uterus_Percent
-    + Endometrium_Percent 
+
     + Genitalia_Percent
   </val>
 </def>
-
+<!--     + Endometrium_Percent  -->
 <!-- ============== Base Organs ============== -->
 
 <def>
@@ -220,12 +224,16 @@ genetalia size to be x3 larger for males, this can be further modified into cond
   <val> ( Uterus_Percent / 100 ) * BaseMass(G) </val>
 </def>
 -->
+<!--
 <conditional> 
   <name> Endometrium_Mass </name>
   <test> Context-Sex.Index EQ 1 </test>
-  <true> ( Endometrium_Percent / 100 ) * BaseMass(G) </true> <!-- Here a formula must be added for Endometrium as a fraction of Uterus likely --> 
+  <true> ( Endometrium_Percent / 100 ) * BaseMass(G) </true> 
+  This can be split for Endometrium as a fraction of Uterus 
   <false> 0.0 </false>
 </conditional>
+
+-->
 <def>
 <name> Genitalia_Mass </name>
 <val> (Genitalia_Percent / 100 ) * BaseMass(G) </val>
@@ -248,10 +256,10 @@ genetalia size to be x3 larger for males, this can be further modified into cond
     + Spleen_Mass
     + Uterus_Mass
     + Genitalia_Mass
-    + Endometrium_Mass
+
   </val>
 </def>
-
+<!--     + Endometrium_Mass -->
 <def>
   <name> Fat_Mass </name>
   <val> FatMass(G) </val>

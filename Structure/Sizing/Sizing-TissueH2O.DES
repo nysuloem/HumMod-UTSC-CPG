@@ -34,10 +34,10 @@ By : Tom Coleman
     + Sizing-Composition-SkeletalMuscle.LiquidVol
     + Sizing-Composition-Skin.LiquidVol 
     + Sizing-Composition-Uterus.LiquidVol
-    + Sizing-Composition-Endometrium.LiquidVol
+
   </val>
 </def>
-
+<!--     + Sizing-Composition-Endometrium.LiquidVol -->
 <def>
   <name> TissueH2O.InitialVol </name>
   <val> Volume </val>

@@ -1,11 +1,13 @@
 HumMod / Sizing-Composition-Uterus
 
 Created : 2013-03-01
-Revised : 2013-03-01
+Revised : 2024 Terry Y. 
 Author : Tom Coleman
 Copyright : 2013-2013
 By : Tom Coleman
 
+<!-- This file is excluded from the processing commands, 
+at this time I am  unsure of best option to approach endometrial integration -->
 <structure><name> Sizing-Composition-Endometrium </name>
 
 <variables>
