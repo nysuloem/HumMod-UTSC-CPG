@@ -11,16 +11,28 @@ Schema : DES V1.0
 <structure><name> Quizzes </name>
 
 <variables>
+    <parm><name> Answer2 </name> <val> 0.0 </val></parm>     
 <parm><name> Answer1 </name> <val> 0.0 </val></parm>  
-
+<!-- Correct and wrong arguments for answer found as a common display element -->
 <constant><name> Correct </name><val> TRUE </val></constant>
 <constant><name> Wrong </name><val> FALSE </val></constant>
 <var><name> Message </name> <val> 0.0 </val> </var>  
+<var><name> Message2 </name> <val> 0.0 </val> </var> 
+
+<!-- These are grading scales -->
+ <constant><name> Nil </name> <val> 0 </val></constant>
+ <constant><name> Low </name><val> 1 </val></constant>
+<constant><name> Medium </name> <val> 2 </val></constant>
+<constant><name> High </name> <val> 3 </val> </constant>
+<constant><name> Perfect </name> <val> 4 </val></constant>
+
 
 </variables>
 
 <definitions>
+    <!-- note how conditional and if elements are nested within onjustchanged -->
     <block> <name> Parms </name> 
+
         <onjustchanged> <name> Answer1 </name> 
             <conditional> <name> Message </name> 
                 <test> Answer1 EQ 5 </test>
@@ -28,6 +40,38 @@ Schema : DES V1.0
                 <false> Wrong </false>
             </conditional>
         </onjustchanged>
+
+        <onjustchanged> <name> Answer2 </name> 
+            <conditional> <name> Message2 </name> 
+                <test> Answer2 EQ 0 </test>
+                <true> Nil </true>
+                      </conditional>
+
+                      <conditional> <name> Message2 </name> 
+                        <test> Answer2 GE 33 </test>
+                        <true> Low </true>
+                   
+                              </conditional>
+
+                              <conditional> <name> Message2 </name> 
+                                <test> Answer2 GE 66 </test>
+                                <true> Medium </true>
+                                
+                                      </conditional>
+
+                                      <conditional> <name> Message2 </name> 
+                                        <test> Answer2 EQ 99 </test>
+                                        <true> High </true>
+                                        
+                                              </conditional>
+
+                                              <conditional> <name> Message2 </name> 
+                                                <test> Answer2 EQ 100 </test>
+                                                <true> Perfect </true>
+                                                
+                                                      </conditional>
+        </onjustchanged>
+
 
        <if>
         <test> Message EQ TRUE </test>

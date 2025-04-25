@@ -45,6 +45,15 @@
     <map><val> 5 </val><img> Obviously it's Jason Brown </img></map>
 </maplist>
 
+<maplist>
+  <name> Score  </name>
+  <map><val> 0 </val><img> Really? </img></map>
+    <map><val> 1 </val><img> It's higher than your average...  </img></map>
+    <map><val> 2 </val><img> Keep going </img></map> 
+    <map><val> 3 </val><img> Are you sure?  </img></map>
+    <map><val> 4 </val><img> Correct! </img></map>
+</maplist>
+
 <radiobuttons>
   <row> 6.0  </row>
   <col> 1.0  </col>
@@ -56,14 +65,40 @@
 
 
 <showvalue>
-  <row> 3.0 </row><col> 1.0 </col>
+  <row> 3.5 </row><col> 1.0 </col>
   <name> Message </name>
-  <label> Answer </label>
+  <label> Answer 1: </label>
   <format><list> Common.Answer </list></format>
 </showvalue>
+<!-- ============== Question 1 ================-->
 
+  <label>
+    <row>  13.5 </row>
+    <col> 1 </col>
+    <text> How great ?  </text>
+  </label>
 
+<repeatlist>
+  <name> Answer2 </name>
+  <firstval> 0.0 </firstval>
+  <repeat><reps> 50 </reps><stepsize> 2 </stepsize></repeat>
+</repeatlist>
 
+<slidebar>
+  <row> 15 </row>
+  <col> 1 </col>
+  <name> Answer2 </name>
+  <listname> Answer2 </listname>
+  <label> Every value is being logged...  </label>
+
+</slidebar>
+
+<showvalue>
+  <row> 17 </row><col> 1.0 </col>
+  <name> Message2 </name>
+  <label> Answer 2: </label>
+  <format><list> Score </list></format>
+</showvalue>
 
 </groupbox>
 
