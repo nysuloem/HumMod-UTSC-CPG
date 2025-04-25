@@ -23,15 +23,48 @@
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 5.8 </high>
+   <high> 35 </high>
    <wide> 60.0 </wide>
    <title> Question 1 </title>
+
+<structurename> Quizzes </structurename>
 
 <label>
 <row> 2</row>
 <col> 1 </col>
 <text> Who is the greatest professor of all time? </text>
 </label>
+
+<maplist>
+  <name> Answer1  </name>
+  <map><val> 0 </val><img> Dr.Reid </img></map>
+    <map><val> 1 </val><img> Dr.Brown </img></map>
+    <map><val> 2 </val><img> Dr.Reid </img></map> 
+    <map><val> 3 </val><img> Dr. Bell </img></map>
+    <map><val> 4 </val><img> Dr.Brunt </img></map>
+    <map><val> 5 </val><img> Obviously it's Jason Brown </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 6.0  </row>
+  <col> 1.0  </col>
+  <name> Answer1 </name>
+  <listname> Answer1 </listname>
+  <label> Think carefully! </label>
+  <layout> VERT </layout>
+</radiobuttons>
+
+
+<showvalue>
+  <row> 3.0 </row><col> 1.0 </col>
+  <name> Message </name>
+  <label> Answer </label>
+  <format><list> Common.Answer </list></format>
+</showvalue>
+
+
+
+
 </groupbox>
 
 </panel>

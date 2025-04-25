@@ -65,6 +65,13 @@ from 0 to 200 mmHg.
 </repeatlist>
 
 <maplist>
+  <name> Common.Answer  </name>
+  <map><val> 0 </val><img> Wrong! </img></map>
+    <map><val> 1 </val><img> Correct! </img></map>
+</maplist>
+
+
+<maplist>
   <name> Common.Adiposity </name>
   <map><val> 0 </val><img> Underweight </img></map>
   <map><val> 1 </val><img> Normal </img></map>

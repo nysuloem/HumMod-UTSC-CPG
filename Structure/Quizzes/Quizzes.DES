@@ -1,0 +1,42 @@
+HumMod / Quizzes
+
+Created : 24-Apr-2025
+Modified by Terry Yavorskyy 
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> Quizzes </name>
+
+<variables>
+<parm><name> Answer1 </name> <val> 0.0 </val></parm>  
+
+<constant><name> Correct </name><val> TRUE </val></constant>
+<constant><name> Wrong </name><val> FALSE </val></constant>
+<var><name> Message </name> <val> 0.0 </val> </var>  
+
+</variables>
+
+<definitions>
+    <block> <name> Parms </name> 
+        <onjustchanged> <name> Answer1 </name> 
+            <conditional> <name> Message </name> 
+                <test> Answer1 EQ 5 </test>
+                <true> Correct </true>
+                <false> Wrong </false>
+            </conditional>
+        </onjustchanged>
+
+       <if>
+        <test> Message EQ TRUE </test>
+            <true> <def><name> Message </name><val> Correct </val></def> </true>
+            <false> <def><name> Message </name><val> Wrong </val></def> </false>
+       </if> 
+    </block>     
+</definitions>
+</structure>
+
+
+End 
