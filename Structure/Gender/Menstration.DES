@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <structure><name> Menstration </name>
 
 <variables>
-<var><name> Index </name></var>
+<parm><name> Index </name><val> 0 </val></parm>
 
 <var><name> IsAbsent </name></var>
 <var><name> IsEarly </name></var>
@@ -26,13 +26,16 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 
-<if><test> Sex.IsFemale </test>
+<if>
+    
+<test> Sex.IsFemale </test>
 <true>
 <andif><test> Ovaries.Phase EQ IS_FOLLICULAR </test> 
-<true> 
+
+    <true> 
 
 <def><name> Menstration </name> 
-<val> 1 </val> 
+<val> Index </val> 
 </andif>
 </if>
 

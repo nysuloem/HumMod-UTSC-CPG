@@ -86,6 +86,11 @@ By : Tom Coleman
 
 </if>
 
+<if> 
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> <call> Endometrium.Init </call> </true>
+  
+  </if>
 </block>
 
 </definitions>

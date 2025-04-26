@@ -45,21 +45,11 @@
       <val> Endometrium-StromalCells.Population + Endometrium-Glands.Population + Endometrium-LuminalEpithelium.Population + Endometrium-Vasculature.Population </val>
     </def>
   
-    <def>
-      <name> Thickness </name>
-      <val> Basalis + Functionalis </val>
-    </def>
-
-  
-  
-  
+    
   </block>
+
 <block><name> Dervs </name>
 
-  <call> Endometrium-StromalCells.Dervs </call>
-  <call> Endometrium-Glands.Dervs </call>
-  <call> Endometrium-LuminalEpithelium.Dervs </call>
-  <call> Endometrium-Vasculature.Dervs </call>
 
 <def><name> IkB </name><val> Progesterone.[Conc(nMol/L)] GT 15 </val></def>
 <def><name> NFkB </name><val> IkB EQ 0 </val></def>
