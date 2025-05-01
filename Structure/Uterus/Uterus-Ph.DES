@@ -76,13 +76,9 @@ a parser error for Undefined value TY -->
 <conditional> 
 <name> Ph </name>
 <test> Context-Sex.Index EQ 1 </test>
-<true> PhCells.pH
-</true>
-<false> 0.001
-</false>
+<true> PhCells.pH </true>
+<false> 0.001 </false>
 </conditional>  
-
-
 
 
 <if> 
