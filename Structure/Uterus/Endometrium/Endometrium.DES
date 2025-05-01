@@ -29,7 +29,8 @@
 </variables>
 
 <definitions>
-
+<!-- 
+ I think I may have have not been thinking straight when I was writing this...
   <block><name> Init </name>
 
     <call> Endometrium-StromalCells.Population </call> 
@@ -47,8 +48,14 @@
   
     
   </block>
-
+  
+-->
 <block><name> Dervs </name>
+
+  <call> Endometrium-StromalCells.Dervs </call> 
+  <call> Endometrium-Glands.Dervs </call>
+  <call> Endometrium-LuminalEpithelium.Dervs </call>
+  <call> Endometrium-Vasculature.Dervs </call>
 
 
 <def><name> IkB </name><val> Progesterone.[Conc(nMol/L)] GT 15 </val></def>
