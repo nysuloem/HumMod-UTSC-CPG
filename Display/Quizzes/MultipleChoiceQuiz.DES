@@ -32,6 +32,8 @@
     <map><val> 4 </val><img> Correct! </img></map>
 </maplist>
 
+
+
 <radiobuttons>
   <row> 6.0  </row>
   <col> 1.0  </col>
@@ -100,6 +102,35 @@
       <text> Go ahead and put the oxygen pressure to 0mmHg.  </text> 
       </label>
 
+
+      <label>
+        <row> 3 </row>
+        <col> 1 </col>
+        <text> Step. 1 Go ahead and put the oxygen pressure to 0mmHg.  </text> 
+        </label>
+
+        <label>
+          <row> 6 </row>
+          <col> 1 </col>
+          <text> 2. After the simulation, what do you think the partial arterial pressure of O2 will be in this patient? </text>
+      
+          <color> BLUE </color>
+        </label>
+
+        <showvalue>
+          <row> 7 </row><col> 1.0 </col>
+          <name> Message3 </name>
+          <label> Answer 3: </label>
+          <format><list> Common.Answer </list></format>
+        </showvalue>
+
+        <slidebar>
+          <row> 10 </row>
+          <col> 1 </col>
+          <name> Answer3 </name>
+          <listname> Common.Percent </listname>
+          <label> O2 mmHg </label>
+</slidebar>
 </groupbox>
 
 
