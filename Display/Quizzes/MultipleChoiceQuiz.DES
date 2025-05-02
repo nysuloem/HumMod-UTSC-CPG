@@ -1,31 +1,9 @@
-<panel><name> Quiz 1 </name>
-
-<showbitmap>
-  <row> 0.3 </row>
-  <col> 1.0 </col>
-  <name> Hormone </name>
-</showbitmap>
-
-<label>
-  <row> 0.3 </row>
-  <col> 4.5 </col>
-  <text> Quiz 1 </text>
-</label>
-
-<showclock>
-  <row> 0.3 </row><col> 32.0 </col>
-  <name> System.X </name>
-  <ampm/>
-  <secs/>
-  <days/>
-</showclock>
-
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
    <high> 35 </high>
    <wide> 60.0 </wide>
-   <title> Question 1 </title>
+   <title> Questions about JB  </title>
 
 <structurename> Quizzes </structurename>
 
@@ -70,7 +48,7 @@
   <label> Answer 1: </label>
   <format><list> Common.Answer </list></format>
 </showvalue>
-<!-- ============== Question 1 ================-->
+<!-- ============== Question  ================-->
 
   <label>
     <row>  13.5 </row>
@@ -102,5 +80,27 @@
 
 </groupbox>
 
-</panel>
+
+<!-- Right side box -->
+<groupbox>
+  <row> 2.0 </row>
+  <col> 62.0 </col>
+  <high> 35 </high>
+  <wide> 60.0 </wide>
+  <title> Questions for Reid  </title>
+
+  <label>
+    <row> 2 </row>
+    <col> 1 </col>
+    <text> Let's try to run a hypoxia simulation for 5 minutes. </text> 
+    </label>
+    <label>
+      <row> 3 </row>
+      <col> 1 </col>
+      <text> Go ahead and put the oxygen pressure to 0mmHg.  </text> 
+      </label>
+
+</groupbox>
+
+
 End

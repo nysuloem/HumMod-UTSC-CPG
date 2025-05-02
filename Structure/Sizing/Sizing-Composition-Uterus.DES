@@ -85,12 +85,13 @@ By : Tom Coleman
 <true> <call> Uterus-Size.Init </call> </true>
 
 </if>
-
-<if> 
+<!-- This is not needed because Endometrium is scaled conditionally for females based on the hormonal levels -->
+<!-- <if> 
   <test> Context-Sex.Index EQ 1 </test>
   <true> <call> Endometrium.Init </call> </true>
   
   </if>
+--> 
 </block>
 
 </definitions>

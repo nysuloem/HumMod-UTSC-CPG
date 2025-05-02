@@ -11,13 +11,17 @@ Schema : DES V1.0
 <structure><name> Quizzes </name>
 
 <variables>
-    <parm><name> Answer2 </name> <val> 0.0 </val></parm>     
-<parm><name> Answer1 </name> <val> 0.0 </val></parm>  
-<!-- Correct and wrong arguments for answer found as a common display element -->
+    <parm><name> Answer2 </name> <val> 0.0 </val></parm>     <!-- This is tied into a repeatlist for 0 - 100 score -->
+<parm><name> Answer1 </name> <val> 0.0 </val></parm>  <!-- This one is the list of Professor names -->
+<parm><name> Answer3 </name> <val> 0.0 </val></parm>
+
+<!-- Correct and incorrect arguments for answer found as a common display element -->
+
 <constant><name> Correct </name><val> TRUE </val></constant>
-<constant><name> Wrong </name><val> FALSE </val></constant>
-<var><name> Message </name> <val> 0.0 </val> </var>  
+<constant><name> Incorrect </name><val> FALSE </val></constant>
+<var><name> Message </name> <val> 0.0 </val> </var>  <!-- This is true or false -->
 <var><name> Message2 </name> <val> 0.0 </val> </var> 
+<var><name> Message3 </name> <val> 0.0 </val> </var> 
 
 <!-- These are grading scales -->
  <constant><name> Nil </name> <val> 0 </val></constant>
@@ -37,9 +41,12 @@ Schema : DES V1.0
             <conditional> <name> Message </name> 
                 <test> Answer1 EQ 5 </test>
                 <true> Correct </true>
-                <false> Wrong </false>
+                <false> Incorrect </false>
             </conditional>
         </onjustchanged>
+
+<!--  The above element is for the correct and incorrect arguments 
+  Below are conditionals nested within onjustchanged element for multiple choice selection -->
 
         <onjustchanged> <name> Answer2 </name> 
             <conditional> <name> Message2 </name> 
@@ -71,14 +78,24 @@ Schema : DES V1.0
                                                 
                                                       </conditional>
         </onjustchanged>
+<!-- 
+<onjustchanged> <name> Answer3 </name>
 
+
+
+
+</onjustchanged>
+
+-->
 
        <if>
         <test> Message EQ TRUE </test>
             <true> <def><name> Message </name><val> Correct </val></def> </true>
-            <false> <def><name> Message </name><val> Wrong </val></def> </false>
+            <false> <def><name> Message </name><val> Incorrect </val></def> </false>
        </if> 
     </block>     
+
+  
 </definitions>
 </structure>
 

@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <structure><name> Menstration </name>
 
 <variables>
-<parm><name> Index </name><val> 0 </val></parm>
+<parm><name> Index </name><val> 2 </val></parm>
 
 <var><name> IsAbsent </name></var>
 <var><name> IsEarly </name></var>
@@ -24,8 +24,17 @@ By : University of Mississippi Medical Center
 
 
 
+<block><name> Parms </name>
+<conditional> <name> Index </name>
+    <test> 
+
+
+</block>
+
 <block><name> Dervs </name>
 
+
+    <!--  Trying to do without a conditional statement for the follicular phase since it would increase the loss anyway. 
 <if>
     
 <test> Sex.IsFemale </test>
@@ -38,5 +47,5 @@ By : University of Mississippi Medical Center
 <val> Index </val> 
 </andif>
 </if>
-
+-->
 <def><name> 
