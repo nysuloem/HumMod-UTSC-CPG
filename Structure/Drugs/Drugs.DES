@@ -11,6 +11,7 @@ By : University Of Mississippi Medical Center
 <?include Acetazolamide\Acetazolamide.DES ?>
 <?include Amlodipine\Amlodipine.DES ?>
 <?include Atropine\Atropine.DES ?>
+<?include Ethanol\Ethanol.DES ?>
 <?include Chlorothiazide\Chlorothiazide.DES ?>
 <?include Digoxin\Digoxin.DES ?>
 <?include Furosemide\Furosemide.DES ?>
