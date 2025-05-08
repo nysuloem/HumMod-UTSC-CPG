@@ -1,7 +1,8 @@
 HumMod / Symptoms
 
 Created : 21-May-05
-Last Modified : 26-Jan-10
+Last Modified : 2025-05-08
+Edited by Tiffany and Karson
 Author : Tom Coleman
 Copyright : 2006-2010
 By : University Of Mississippi Medical Center
@@ -11,14 +12,18 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> Number </name></var>
+<var><name> Number1 </name></var>
+<var><name> Number2 </name></var>
 <var><name> ExhaustedQ </name><val> FALSE </val></var>
 <var><name> TestElement </name></var>
 </variables>
 
+
 <definitions>
 
 <block><name> Calc </name>
+
+<call> EthanolPool.Dervs </call>
 
  <def>
    <name> ExhaustedQ </name>
@@ -40,64 +45,78 @@ Schema : DES V1.0
   </case>
 
 <case>
+<test> EthanolDailyDose.CumulativeDose GT 0.001 </test>
+<def><name> Number1 </name><val> 28 </val></def>
+</case>
+
+<case>
+<test> EthanolDailyDose.CumulativeDose LE 0.001 </test>
+<def><name> Number1 </name><val> 32 </val></def>
+</case>
+
+</testcase>
+
+<testcase>
+
+<case>
 <test> Exercise-Bike.Status EQ Exercise-Bike.IS_ACTIVE </test>
-<def><name> Number </name><val> 13 </val></def>
+<def><name> Number2 </name><val> 13 </val></def>
 </case>
 
 <case>
 <test> Exercise-Treadmill.Status EQ Exercise-Treadmill.IS_ACTIVE </test>
-<def><name> Number </name><val> 14 </val></def>
+<def><name> Number2 </name><val> 14 </val></def>
 </case>
 
 <case>
 <test> DailyPlannerControl.Status EQ 0 </test>
-<def><name> Number </name><val> 27 </val></def>
+<def><name> Number2 </name><val> 27 </val></def>
 </case>
 
 <case>
 <test> Status.Nutrition EQ 0 </test>
-<def><name> Number </name><val> 26 </val></def>
+<def><name> Number2 </name><val> 26 </val></def>
 </case>
 
 <!-- At Work -->
   <case>
   <test> Status.Working </test>
-    <def><name> Number </name><val> 11 </val></def>
+    <def><name> Number2 </name><val> 11 </val></def>
   </case>
 
   <!-- In Aerobics -->
   <case>
   <test> Status.Aerobics </test>
-    <def><name> Number </name><val> 12 </val></def>
+    <def><name> Number2 </name><val> 12 </val></def>
   </case>
 
   <!-- On The Bike -->
   <case>
   <test> Exercise-Bike.Status GT 0 </test>
-    <def><name> Number </name><val> 13 </val></def>
+    <def><name> Number2 </name><val> 13 </val></def>
   </case>
 
   <!-- On Treadmill -->
   <case>
   <test> Exercise-Treadmill.Status GT 0 </test>
-    <def><name> Number </name><val> 14 </val></def>
+    <def><name> Number2 </name><val> 14 </val></def>
   </case>
 
   <!-- On Treadmill -->
   <case>
   <test> 1 - ExhaustedQ </test>
-    <def><name> Number </name><val> 15 </val></def>
+    <def><name> Number2 </name><val> 15 </val></def>
   </case>
 
   <case>
 <test> Status.Sleeping EQ 1 </test>
-<def><name>Number</name><val> 25 </val></def>
+<def><name>Number2</name><val> 25 </val></def>
 </case>
 
   <!-- OK -->
   <case>
   <test> Status.Resting EQ 1 </test>
-    <def><name> Number </name><val> 0 </val></def>
+    <def><name> Number2 </name><val> 0 </val></def>
   </case>
 
 
@@ -106,125 +125,120 @@ Schema : DES V1.0
   <!-- Not Responding -->
   <case>
   <test> Brain-Function.NotResponding </test>
-    <def><name> Number </name><val> 1 </val></def>
+    <def><name> Number2 </name><val> 1 </val></def>
   </case>
 
   <!-- Chest Pain -->
   <case>
   <test> Heart-Pain.HasPain </test>
-    <def><name> Number </name><val> 2 </val></def>
+    <def><name> Number2 </name><val> 2 </val></def>
   </case>
 
   <!-- Can't Get Air -->
   <case>
   <test> FALSE </test>
-    <def><name> Number </name><val> 3 </val></def>
+    <def><name> Number2 </name><val> 3 </val></def>
   </case>
 
   <!-- Tired  -->
   <case>
   <test> BloodVol.Hct LT 0.34 </test>
-    <def><name> Number </name><val> 4 </val></def>
+    <def><name> Number2 </name><val> 4 </val></def>
   </case>
 
   <!-- Confused -->
   <case>
   <test> Brain-Function.Confused </test>
-    <def><name> Number </name><val> 5 </val></def>
+    <def><name> Number2 </name><val> 5 </val></def>
   </case>
 
   <!-- Dizzy -->
   <case>
   <test> Brain-Function.Impaired </test>
-    <def><name> Number </name><val> 6 </val></def>
+    <def><name> Number2 </name><val> 6 </val></def>
   </case>
 
   <!-- Swelled Head -->
   <case>
   <test> FALSE </test>
-    <def><name> Number </name><val> 7 </val></def>
+    <def><name> Number2 </name><val> 7 </val></def>
   </case>
 
   <!-- Swelled Gut -->
   <case>
   <test> FALSE </test>
-    <def><name> Number </name><val> 8 </val></def>
+    <def><name> Number2 </name><val> 8 </val></def>
   </case>
 
   <!-- Swelled Feet -->
   <case>
   <test> FALSE </test>
-    <def><name> Number </name><val> 9 </val></def>
+    <def><name> Number2 </name><val> 9 </val></def>
   </case>
 
   <!-- Kidney Disease -->
   <case>
   <test> Kidney-NephronCount.Total(xNormal) LT 0.40 </test>
-    <def><name> Number </name><val> 10 </val></def>
+    <def><name> Number2 </name><val> 10 </val></def>
   </case>
 
-  
+
 
   
-
-  
-
-  
-
 <!-- Heart-Asystole -->
  <case>
   <test> Heart-Asystole.Is_Asystole </test>
-    <def><name> Number </name><val> 16 </val></def>
+    <def><name> Number2 </name><val> 16 </val></def>
   </case>
 
   <case>
   <test> Heart-VFib.Is_Fibrillating </test>
-   <def><name> Number </name><val> 17 </val></def>
+   <def><name> Number2 </name><val> 17 </val></def>
   </case>
 
   <case>
   <test> Heart-ECG.Is_Flat </test>
-    <def><name> Number </name><val> 18 </val></def>
+    <def><name> Number2 </name><val> 18 </val></def>
   </case>
 
   <case>
   <test> Brain.Seizure </test>
-    <def><name> Number </name><val> 19 </val></def>
+    <def><name> Number2 </name><val> 19 </val></def>
   </case>
 
   <case>
   <test> BreathHolding.Restarting </test>
-    <def><name> Number </name><val> 20 </val></def>
+    <def><name> Number2 </name><val> 20 </val></def>
   </case>
 
   <case>
   <test> DigoxinPool.Nauseated </test>
-    <def><name> Number </name><val> 21 </val></def>
+    <def><name> Number2 </name><val> 21 </val></def>
   </case>
 
   <case>
   <test> Heart-Defribrillator.NewHeartbeat </test>
-    <def><name> Number </name><val> 22 </val></def>
+    <def><name> Number2 </name><val> 22 </val></def>
   </case>
 
   <case>
   <test> Heart-Defribrillator.NoHeartbeat </test>
-    <def><name> Number </name><val> 23 </val></def>
+    <def><name> Number2 </name><val> 23 </val></def>
   </case>
 
   <case>
   <test> Ovaries-Ovulation.AnnounceOvulation </test>
-    <def><name> Number </name><val> 24 </val></def>
+    <def><name> Number2 </name><val> 24 </val></def>
   </case>
 
   <case>
   <test> NOT BladderVolume.CanVoid </test>
-    <def><name> Number </name><val> 24 </val></def>
+    <def><name> Number2 </name><val> 24 </val></def>
   </case>
 
 <case>
 <test> Status.Exertion EQ 0 </test>
-<def><name> Number </name><val> 0 </val></def>
+<def><name> Number2 </name><val> 0 </val></def>
 </case>
 
 </testcase>

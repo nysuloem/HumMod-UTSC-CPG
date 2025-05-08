@@ -1,0 +1,94 @@
+HumMod / Chlorothiazide
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiffany 
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> EthanolLiver </name>
+
+<variables>
+
+<var>
+  <name> Loss </name>
+</var>
+
+<var>
+  <name> LossToALDH </name>
+</var>
+
+<var>
+  <name> TransferToALDH </name>
+</var>
+
+<var> 
+  <name> [Acetaldehyde] </name>
+</var>
+
+<var> 
+<name> LossToAcetaldehyde </name>
+</var>
+
+<parm>
+  <name> ALDH_K </name>
+  <val> 0.03 </val>
+</parm>
+
+<parm> 
+  <name> ALDH_AcH </name>
+  <val> 0.167 </val>
+</parm>
+
+<parm>
+  <name> Acetaldehyde_K </name>
+  <val> 0.04 </val> <!-- Placeholder -->
+  </parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> AcH_Mass </name>
+  <integralname> AcH_Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> LossToALDH </name> 
+  <val> ALDH_K * EthanolPool.[Ethanol] * HepaticVein.PlasmaFlow / 1000 </val> <!-- Create max for Loss to ALDH -->
+</def>
+
+<def><name> Loss </name><val> LossToALDH </val></def>
+
+<def>
+  <name> [Acetaldehyde] </name><val> Loss </val>
+</def>
+
+<def>
+  <name> LossToAcetaldehyde </name> 
+  <val> Acetaldehyde_K * [Acetaldehyde] </val> <!-- Create max for Loss to Acetaldehyde -->
+</def>
+
+<def>
+  <name> Change </name>
+  <val> - Loss </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

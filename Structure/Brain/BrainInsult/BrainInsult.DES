@@ -75,6 +75,13 @@ Schema : DES V1.0
   <val> Test_5 MIN BrainInsult-PO2.Effect </val>
 </def>
 
+<!-- 
+<def>
+  <name> Test_7 </name> 
+  <val> Test_6 MIN BrainInsult-Ethanol </val>
+<def>
+--> 
+
 <def>
   <name> Effect </name>
   <val> Test_6 MIN BrainInsult-Structure.Effect </val>

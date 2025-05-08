@@ -29,7 +29,7 @@ By: Jason Brown
   <map><val> 15 </val><img>  "I can't continue exercising."  </img></map>
   <map><val> 16 </val><img>  Heart is asystole/can't fibrillate  </img></map>
   <map><val> 17 </val><img>  Heart is fibrillating  </img></map>
-  <map><val> 18 </val><img>  Flat ECG  </img></map>
+  <map><val> 18 </val><img>  Flatline ECG  </img></map>
   <map><val> 19 </val><img>  Your patient is convulsing  </img></map>
   <map><val> 20 </val><img>  Must breathe again  </img></map>
   <map><val> 21 </val><img>  "I'm getting nauseated."  </img></map>
@@ -39,6 +39,11 @@ By: Jason Brown
   <map><val> 25 </val><img>  Your patient is sleeping. </img></map>
   <map><val> 26 </val><img> "I'm eating a meal and feeling fine." </img></map>
   <map><val> 27 </val><img> Patient is bedridden and on parenteral feeding </img></map>
+  <map><val> 28 </val><img> "I am tipsy!" </img></map>
+  <map><val> 29 </val><img> Patient is inebriated  </img></map>
+  <map><val> 30 </val><img> Incomprehensible sounds </img></map>
+  <map><val> 31 </val><img> Unresponsive, snorring respirations </img></map>
+  <map><val> 32 </val><img> "Im so sober" </img></map>
   <map><val> 28 </val><img> "I'm having sexual intercourse"</img></map>
 </maplist>
 
@@ -51,7 +56,17 @@ By: Jason Brown
 
 <showvalue>
   <row> 11 </row><col>1</col>
-  <name> Symptoms.Number </name>
+  <name> Symptoms.Number1 </name>
+  <nolabel/>
+  <format>
+    <list> Symptoms.Number </list>
+    <fieldwidth> 26 </fieldwidth>
+  </format>
+</showvalue>
+
+<showvalue>
+  <row> 12 </row><col>1</col>
+  <name> Symptoms.Number2 </name>
   <nolabel/>
   <format>
     <list> Symptoms.Number </list>
