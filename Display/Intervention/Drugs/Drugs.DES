@@ -13,6 +13,7 @@ By : University Of Mississippi Medical Center
 <?include Chlorothiazide\Chlorothiazide.DES ?>
 <?include Digoxin\Digoxin.DES ?>
 <?include Furosemide\Furosemide.DES ?>
+<?include Ethanol\Ethanol.DES ?>
 <?include Midodrine\Midodrine.DES ?>
 <?include Lisinopril\Lisinopril.DES ?>
 <?include Spironolactone\Spironolactone.DES ?>

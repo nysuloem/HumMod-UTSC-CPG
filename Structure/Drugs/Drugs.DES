@@ -38,6 +38,7 @@ By : University Of Mississippi Medical Center
   <call> Chlorothiazide.Parms </call>
   <call> Digoxin.Parms </call>
   <call> Furosemide.Parms </call>
+  <call> Ethanol.Parms </call>
   <call> Lisinopril.Parms </call>
   <call> Midodrine.Parms </call>
   <call> Spironolactone.Parms </call>
@@ -58,6 +59,7 @@ By : University Of Mississippi Medical Center
   <call> Chlorothiazide.CalcConc </call>
   <call> Digoxin.CalcConc </call>
   <call> Furosemide.CalcConc </call>
+  <call> Ethanol.CalcConc </call>
   <call> Midodrine.CalcConc </call>
   <call> Nicotine.CalcConc </call>
   <call> Lisinopril.CalcConc </call>
@@ -80,6 +82,7 @@ By : University Of Mississippi Medical Center
   <call> Chlorothiazide.Dervs </call>
   <call> Digoxin.Dervs </call>
   <call> Furosemide.Dervs </call>
+  <call> Ethanol.Dervs </call>
   <call> Midodrine.Dervs </call>
   <call> Nicotine.Dervs </call>
   <call> Lisinopril.Dervs </call>
@@ -101,6 +104,7 @@ By : University Of Mississippi Medical Center
   <call> Amlodipine.Wrapup </call>
   <call> Chlorothiazide.Wrapup </call>
   <call> Digoxin.Wrapup </call>
+   <call> Ethanol.Wrapup </call>
   <call> Midodrine.Wrapup </call>
   <call> Lisinopril.Wrapup </call>
   <call> Spironolactone.Wrapup </call>
