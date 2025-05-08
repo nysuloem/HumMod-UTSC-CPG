@@ -1,0 +1,130 @@
+<!--
+NODrugInhaler.DES - Defines inhalation delivery of NO in HumMod
+
+Overview
+This file models of Nitric Oxide (NO) when administered via inhalation.
+It manages dosing, lung retention, and systemic circulation absorption.
+
+1. Dosing Variables: Tracks inhaled dose, last dose time, and cumulative doses.
+2. Respiratory Timing: Computes inhalation time using the respiratory rate.
+3. Lung vs. Systemic Distribution: Splits the dose into lung-retained and systemically absorbed fractions.
+4. Drug Clearance
+
+ How to Replicate for Another Drug
+1. Change `<name> NODrugInhaler </name>` to `<name> NewDrugInhaler </name>`.
+2. Modify Dose values to reflect the new drug's inhaled concentration (e.g., ppm for gases).
+3. Adjust LungFraction based on how much of the drug stays in the lungs vs. systemic circulation.
+4. Modify the clearance rate (K) to match the new drug’s elimination properties.
+
+-->
+
+HumMod / NODrug
+
+Created : 15-Jul-13
+Revised : 
+Author : W Pruett
+Copyright : 2013-2013
+By : University Of Mississippi Medical Center
+
+<structure><name> NODrugInhaler </name> <!-- Defines the inhaler-based NO administration -->
+
+<variables>
+
+<parm><name> Dose </name><val> 20000 </val></parm> <!-- Defines dose in ppm -->
+<var><name> TimeLastDose </name><val> UNDEFINED </val></var> <!-- Tracks last dose timestamp, initially undefined -->
+<var><name> TotalDoses </name><val> 0.0 </val></var> <!-- Counts total doses administered, initially 0 -->
+<var><name> CumulativeDose </name><val> 0.0 </val></var> <!-- Accumulates total dose intake, initially 0 -->
+<var><name> TimeSpan </name></var> <!-- Inhalation duration per breath -->
+<var><name> K </name><val> 0 </val></var> <!-- Drug clearance rate -->
+<parm><name> LungFraction </name><val> 0.4 </val></parm> <!-- Fraction of dose retained in the lungs -->
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name> <!-- Tracks current drug amount in the system -->
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval> <!-- Starts with no inhaled NO present -->
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim> <!-- Error tolerance for integration. It is probably that the faster the system, the "lower" the error tolerance should be. -->
+</diffeq>
+
+</equations>
+
+<definitions>
+<block><name> Inhale </name> <!-- Defines inhalation dynamics -->
+
+<def>
+  <name> TimeSpan </name> <!-- Calculates inhalation duration per breath -->
+  <val> 60 / RespiratoryCenter-Output.Rate </val>
+</def>
+
+<def>
+  <name> K </name> <!-- Computes drug clearance rate -->
+  <val> 2 / TimeSpan </val> <!-- higher breathing rates lead to shorter TimeSpan values, and therefore higher clearance rates (K) ... in NO, suggests clearance twice per breathing cycle. -->
+</def>
+
+<def>
+  <name> Mass </name>
+  <val> Mass + Dose </val> <!-- adds new inhaled dose to NO -->
+</def>
+<def>
+  <name> TimeLastDose </name>
+  <val> System.X </val> <!-- system time = time last dose -->
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> TotalDoses + 1.0 </val> <!-- total number of inhalations -->
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Dose </val> <!-- total number of NO inhaled -->
+</def>
+
+</block>
+
+<block>
+ <name> Dervs </name> <!-- Defines drug elimination and lung distribution -->
+
+<def>
+  <name> Change </name>
+  <val> - K * Mass </val> <!-- drug clearance with negative K (clearance rate) value -->
+</def>
+
+<def>
+  <name> NODrugSL.Mass </name>
+  <val> NODrugSL.Mass - ( ( 1 - LungFraction ) * Change ) </val>
+</def> <!-- Fraction of drug entering systemic circulation -->
+
+<def>
+  <name> NODrugLung.Mass </name>
+  <val> NODrugLung.Mass - ( LungFraction * Change ) </val>
+</def> <!-- Fraction retained in lungs -->
+
+</block>
+
+<block><name> Reset </name> <!-- Allows resetting dose tracking -->
+
+<def>
+  <name> TimeLastDose </name>
+  <val> UNDEFINED </val>
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

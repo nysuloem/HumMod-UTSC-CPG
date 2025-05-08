@@ -46,7 +46,7 @@ Schema : DES V1.0
 
 <def>
 <name> A1C </name>
-<val>  (( React ) / HgbConc.[Total] ) - 1  </val>
+<val>  ( ( React ) / HgbConc.[Total] ) - 1  </val>
 </def>
 
 </block>

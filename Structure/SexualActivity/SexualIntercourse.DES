@@ -1,0 +1,144 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+<structure><name> SexualIntercourse </name>
+
+<variables>
+
+<var><name> TimeLastSex </name><val> UNDEFINED </val></var>
+<var><name> TimeNextSex </name><val> UNDEFINED </val></var>
+<var><name> TotalSex </name><val> 0.0 </val></var>
+<var><name> CumulativeDose </name><val> 0.0 </val></var>
+
+<timervar><name> Ejaculation </name></timervar>
+<timervar><name> Refractory </name><val> 0 </val></timervar>
+
+<var><name> Interval </name></var>
+
+<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+
+<var><name> Length </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<conditional><name> HaveSex.SexOutcome </name>
+<test> HaveSex.HaveSex LT 2000 </test>
+<true> 0 </true>
+<false> 5 </false>
+</conditional>
+
+<if><test> HaveSex.SexOutcome EQ 5 </test>
+<true>
+  <call> Parms2 </call>
+</true>
+</if>
+
+</block>
+
+<block><name> Parms2 </name>
+
+<conditional><name> HaveSex.SexOutcome </name>
+<test> Genitalia-Flow.Status-Erect EQ 1 </test>
+<true> 1 </true>
+<false> 6 </false>
+</conditional>
+
+<if><test> HaveSex.SexOutcome EQ 1 </test>
+<true>
+  <def><name> Exercise-Control.Request</name><val> 1 </val></def>
+  <def><name> Exercise-Bike.Power(W)</name><val> 350 </val></def>
+  <call> Exercise-Control.UpdateStatus </call>
+  <call> Status.Exertion </call>
+  <call> Exercise-Control.Wrapup </call>
+  <timer>
+    <name> Ejaculation </name>
+    <state> UP </state>
+  </timer>
+</true>
+</if>
+
+<if><test> Ejaculation GE 30 </test>
+<true>
+  <def><name> Exercise-Control.Request </name><val> 0 </val></def>
+  <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
+  <call> Exercise-Control.UpdateStatus </call>
+  <call> Status.Exertion </call>
+  <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
+  <timer> 
+    <name> Ejaculation </name>
+    <val> 0 </val>
+    <state> OFF </state>
+  </timer>
+  <timer>
+    <name> Refractory</name>
+    <val> 420 </val>
+    <state> DOWN </state>
+  </timer>
+</true>
+</if>
+
+</block>
+
+<block><name> Wrapup </name>
+
+<ontimedout><name> Timer </name>
+
+<timer>
+  <name> Timer </name>
+  <val> Interval </val>
+</timer>
+
+<def>
+  <name> TimeLastSex </name>
+  <val> System.X </val>
+</def>
+
+<def>
+  <name> TimeNextSex </name>
+  <val> System.X + Interval </val>
+</def>
+
+
+<def>
+  <name> TotalSex </name>
+  <val> TotalSex + 1.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Dose </val>
+</def>
+
+</ontimedout>
+</block>
+
+<block><name> Reset </name>
+
+<def>
+  <name> TimeLastSex </name>
+  <val> UNDEFINED </val>
+</def>
+
+<def>
+  <name> TotalSex </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

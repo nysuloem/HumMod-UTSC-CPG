@@ -1,0 +1,79 @@
+HumMod / NOPool
+
+<structure><name> NOPool </name>
+
+<variables>
+
+<var><name> [NO--] </name></var>
+<var><name> [NO--(mMol/L)] </name></var>
+<var><name> [NO--(mEq/L)] </name></var>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+
+<var><name> Diffusion </name></var>
+
+<var><name> [NO--(mEq/L)-Initial] </name></var>
+<var><name> InitialMass </name></var>
+
+<var><name> Target[NO] </name><val>  0.1 </val></var> <!-- typical value in plasma -->
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim> <!-- accounts for more control w multiple sinks/sources -->
+</diffeq>
+
+</equations>
+
+<definitions>
+
+ <block><name> Init </name>
+  <def><name> InitialMass </name><val> Target[NO] * ECFV.InitialVol(L) </val></def>
+  <def><name> Mass </name><val> InitialMass </val></def>
+</block>
+
+<block><name> CalcDiffusion </name>
+
+<def><name> Diffusion </name><val> Mass / 1.5 </val></def> <!-- NO diffuses relatively quickly -->
+
+</block>
+
+<block><name> CalcConc </name>
+
+<def><name> [NO--] </name><val> Mass / ECFV.Vol </val></def>
+<def><name> [NO--(mEq/L)] </name><val> 1000.0 * [NO--] </val></def>
+<def><name> [NO--(mMol/L)] </name><val> [NO--(mEq/L)] / 2 </val></def> <!-- accounts for divalence -->
+
+</block>
+
+<block><name> Dervs </name>
+<call> NOClearance.Dervs </call> 
+<call> NODrugPool.Dervs </call> 
+
+ <def>
+  <name> Gain </name>
+  <val>
+        NOPump.Rate
+      + NODrugPool.Change
+    </val>
+  </def>
+
+
+<def><name> Loss </name><val> NOClearance.RenalDegradation </val></def>
+  
+ <def><name> Change </name><val> Gain - Loss </val></def>
+
+
+  </block>
+
+
+  </definitions>
+  </structure>
+
+End

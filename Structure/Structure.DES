@@ -124,6 +124,7 @@ By : University of Mississippi Medical Center
 <?include Na\Na.DES ?>
 <?include Nephrons\Nephrons.DES ?>
 <?include Nerves\Nerves.DES ?>
+<?include NO\NO.DES ?>
 <?include OR\OR.DES ?>
 <?include O2\O2.DES ?>
 <?include OralH2OGlucoseLoad\OralH2OGlucoseLoad.DES ?>
@@ -149,7 +150,7 @@ By : University of Mississippi Medical Center
 <?include RightHeartPumping\RightHeartPumping.DES ?>
 <?include RightHeartWallStress\RightHeartWallStress.DES ?>
 <?include SequesteredBlood\SequesteredBlood.DES ?>
-<?include SexualActivity\Control.DES ?>
+<?include SexualActivity\SexualActivity.DES ?>
 <?include SkeletalMuscle\SkeletalMuscle.DES ?>
 <?include Skin\Skin.DES ?>
 <?include SO4\SO4.DES ?>
@@ -171,7 +172,6 @@ By : University of Mississippi Medical Center
 <?include VitaminD\VitaminD.DES ?>
 <?include Weight\Weight.DES ?>
 <?include Weight-Fluids\Weight-Fluids.DES ?>
-
 <?include Ovaries\Ovaries.DES ?>
 <?include Testes\Testes.DES ?>
 <?include Uterus\Uterus.DES ?>
@@ -182,7 +182,7 @@ By : University of Mississippi Medical Center
 
 <block><name> Context </name>
   <call> Context.Calc </call>
-  <call> Control.Init </call>
+  <call> SexDrive.Init </call>
   <call> Hydrostatics.Context </call>
 </block>
 
@@ -190,7 +190,6 @@ By : University of Mississippi Medical Center
   <call> Context.Parms </call>
 
   <call> Environment.Parms </call>
-  <call> Control.Parms </call>
   <call> AirSupply-PressureChamber.Calc </call>
   <call> AirSupply-GasTanks.Calc </call>
   <call> AirSupply-InspiredAir.Calc </call>
@@ -242,6 +241,7 @@ By : University of Mississippi Medical Center
   <call> ADH.Parms </call>
   <call> ANP.Parms </call>
   <call> EPO.Parms </call>
+  <call> NO.Parms </call>
   <call> Insulin.Parms </call>
   <call> ThyroidGland.Parms </call>
   <call> Renin.Parms </call>
@@ -263,6 +263,7 @@ By : University of Mississippi Medical Center
   <call> LiverMetabolism.Parms </call>
   <call> RightKidney-Myogenic.Parms </call>
   <call> LeftKidney-Myogenic.Parms </call>
+  
 
   <call> CPR.Parms </call>
   <call> SkeletalMuscle-MetabolicVasodilation.Parms </call>
@@ -295,6 +296,7 @@ By : University of Mississippi Medical Center
   <call> CollectingDuct_H2O.Parms </call>
   <call> ACTHTest.Parms </call>
   <call> Trauma.Parms </call>
+ 
 </block>
 
 <block><name> Dervs </name>
@@ -306,6 +308,7 @@ By : University of Mississippi Medical Center
   <call> ExternalH2O.CalcVol </call>
   <call> H2O.CalcVol </call>
 
+  <call> NOPool.CalcDiffusion </call>
   <call> SO4Pool.CalcOsmoles </call>
   <call> PO4Pool.CalcOsmoles </call>
   <call> GlucosePool.CalcOsmoles </call>
@@ -339,6 +342,11 @@ By : University of Mississippi Medical Center
   <call> Progesterone.Conc </call>
   <call> Testosterone.Conc </call>
   <call> VitaminD.Conc </call>
+  <call> SexDrive.Parms </call>
+  <call> SexDrive.Libido </call>
+  
+  
+  
 
   <call> RightKidney-NephronCount.Calc </call>
   <call> LeftKidney-NephronCount.Calc </call>
@@ -353,6 +361,8 @@ By : University of Mississippi Medical Center
   <call> VeinsVol.Calc </call>
   <call> AlbuminPool.CalcConc </call>
 
+<call> NO.CalcConc </call>
+  <call> NOPool.CalcConc </call>
   <call> Drugs.CalcConc </call>
 
   <call> NaPool.CalcConc </call>
@@ -594,7 +604,11 @@ By : University of Mississippi Medical Center
   <call> GlomerulusFiltrate.Calc </call>
   <call> ProximalTubule_NH3.Calc </call>
 
+  <call> NO.Dervs </call>
+  <call> NOPool.Dervs </call>
+
   <call> LeftHeart-Work.Calc </call>
+  
   <call> RespiratoryMuscle-Breathing.Calc </call>
   <call> RespiratoryMuscle-Work.Calc </call>
   <call> RightHeart-Work.Calc </call>
@@ -683,6 +697,7 @@ By : University of Mississippi Medical Center
   <call> ThyroidGland.Dervs </call>
 
   <call> PortalVein.CalcConc </call>
+  <call> NO.LateDervs </call>
   <call> Insulin.LateDervs </call>
   <call> Liver-Fuel.Dervs </call>
   <call> Metabolism-Glucose.Calc </call>
@@ -763,10 +778,12 @@ By : University of Mississippi Medical Center
   <call> SkeletalMuscle-MetabolicVasodilation.Dervs </call>
   <call> Leptin.Dervs </call>
 
+  <call> HaveSex.Parms</call>
   <call> Ovaries.Dervs </call>
   <call> Uterus.Dervs </call>
   <call> Testes.Dervs </call>
   <call> Genitalia.Dervs </call>
+  <call> SexualIntercourse.Parms </call>
 
   <call> GnRH.Dervs </call>
   <call> hCG.Dervs </call>
@@ -808,13 +825,14 @@ By : University of Mississippi Medical Center
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
   <call> Menstruation.Dervs </call>
+  
 </block>
 
 <block><name> Wrapup </name>
   <call> Organs-Function.Wrapup </call>
   
   <call> Age.Calc </call>
-  <call> Control.Wrapup </call>
+  <!--<call> SexualActivity.Wrapup </call>-->
 
   <if>
     <test> Sex.IsFemale </test>

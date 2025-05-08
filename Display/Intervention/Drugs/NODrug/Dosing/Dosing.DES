@@ -1,0 +1,35 @@
+HumMod / Dosing
+
+Created : 2013-03-19
+Revised : 2013-03-19
+Author : Tom Coleman
+Copyright : 2013-2013
+By : Tom Coleman
+
+<panel><name> Drugs-NODrug-Dosing </name>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> NODrug Dosing </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<?path Display\Intervention\Drugs\NODrug\Dosing\ ?>
+
+<?include Inhaler.DES ?>
+<?include Spray.DES ?>
+<?include IV.DES ?>
+<!-- <?include IVBolus.DES ?> -->
+
+
+</panel>
+
+End
