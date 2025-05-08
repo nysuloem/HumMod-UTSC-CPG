@@ -34,6 +34,7 @@ By : University Of Mississippi Medical Center
 <var><name> PO2Effect </name></var>
 <var><name> MetabolismEffect </name></var>
 <var><name> AerobicFraction </name></var>
+<!-- <var><name> NOEffect </name></var> -->
 
 <var><name> O2Use </name></var>
 <var><name> [O2] </name></var>
@@ -92,6 +93,14 @@ By : University Of Mississippi Medical Center
   <point><x> 0.8 </x><y> 1.0 </y><slope> 0 </slope></point>
   <point><x> 3.0 </x><y> 0.1 </y><slope> 0 </slope></point>
 </curve>
+
+
+<!-- change values -->
+<!-- <curve>
+  <name> NOOnConductance </name>
+  <point><x> 0.8 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 3.0 </x><y> 0.1 </y><slope> 0 </slope></point>
+</curve> -->
 
 <curve>
   <name> PO2OnAerobicFraction </name>
@@ -161,6 +170,13 @@ By : University Of Mississippi Medical Center
   <val> ADHOnConductance [ ADHPool.Log10Conc ] </val>
 </def>
 
+<!-- <def>
+  <name> NOEffect </name>
+  <val> NOOnConductance [ NOPool.[NOtwodashes] ] </val>
+</def> -->
+<!-- REPLACE NO TWO DASHES WITH ACTUAL NAME (NO FOLLOWED BY TWO ACTUAL DASHES) WHEN UNCOMMENTING -->
+
+
 <def>
   <name> MetabolismEffect </name>
   <val> MetabolismOnConductance [ RightHeart-Metabolism.O2Need ] </val>
@@ -185,6 +201,7 @@ By : University Of Mississippi Medical Center
     * SympsEffect
     * PO2Effect
     * ADHEffect
+    <!--* NOEffect -->
     * MetabolismEffect
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
