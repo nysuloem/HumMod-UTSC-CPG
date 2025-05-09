@@ -151,7 +151,7 @@ By : University Of Mississippi Medical Center
     * ADHEffect
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
-    * Genitalia-Vasculature.Effect
+    * OtherTissue-Vasculature.Effect
     * SystemicArtys.NOEffect 
     * SexEffect
 </false>

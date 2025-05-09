@@ -143,6 +143,7 @@ By : University of Mississippi Medical Center
 <?include Pressures\Pressures.DES ?>
 <?include PressureTools\PressureTools.DES ?>
 <?include Progesterone\Progesterone.DES ?>
+<?include Quizzes\Quizzes.DES ?> 
 <?include Renin\Renin.DES ?>
 <?include RespiratoryCenter\RespiratoryCenter.DES ?>
 <?include RespiratoryMuscle\RespiratoryMuscle.DES ?>
@@ -296,7 +297,7 @@ By : University of Mississippi Medical Center
   <call> CollectingDuct_H2O.Parms </call>
   <call> ACTHTest.Parms </call>
   <call> Trauma.Parms </call>
- 
+  <call> Quizzes.Parms </call>
 </block>
 
 <block><name> Dervs </name>
@@ -821,7 +822,7 @@ By : University of Mississippi Medical Center
   <call> LeftHeartPumping.Dervs </call>
   <call> OR.Dervs </call>
   <call> Trauma.Dervs </call>
-
+  <call> Endometrium.Dervs </call>  
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
   <call> Menstruation.Dervs </call>
@@ -881,7 +882,14 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
-  <call> Uterus.Dervs </call>
+  <if>
+    <test> Sex.IsFemale </test>
+    <true><call> Endometrium.Wrapup </call></true>
+  </if>
+  
+  <!-- 
+  <call> Uterus.Sex </call>
+  -->
 
 </block>
 

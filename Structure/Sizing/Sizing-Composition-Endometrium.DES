@@ -1,12 +1,14 @@
 HumMod / Sizing-Composition-Uterus
 
 Created : 2013-03-01
-Revised : 2013-03-01
+Revised : 2024 Terry Y. 
 Author : Tom Coleman
 Copyright : 2013-2013
 By : Tom Coleman
 
-<structure><name> Sizing-Composition-Uterus </name>
+<!-- This file is excluded from the processing commands, 
+at this time I am  unsure of best option to approach endometrial integration -->
+<structure><name> Sizing-Composition-Endometrium </name>
 
 <variables>
 
@@ -32,7 +34,7 @@ By : Tom Coleman
 <conditional> 
 <name> Mass </name>
 <test> Context-Sex.Index EQ 1 </test>
-<true> Sizing-OrganMass.Uterus_Mass </true>
+<true> Sizing-OrganMass.Endometrium_Mass </true>
 <false> 0.001 </false>
 </conditional>
 <!-- 
@@ -70,28 +72,22 @@ By : Tom Coleman
 
 
 <def>
-  <name> Uterus-Size.InitialLiquidVol </name>
+  <name> Endometrium-Size.InitialLiquidVol </name>
   <val> LiquidVol </val>
 </def>
 
 
 <def>
-  <name> Uterus-Size.InitialSolidMass </name>
+  <name> Endometrium-Size.InitialSolidMass </name>
   <val> SolidMass </val>
 </def>
 
 <if> 
 <test> Context-Sex.Index EQ 1 </test>
-<true> <call> Uterus-Size.Init </call> </true>
+<true> <call> Endometrium-Size.Init </call> </true>
 
 </if>
-<!-- This is not needed because Endometrium is scaled conditionally for females based on the hormonal levels -->
-<!-- <if> 
-  <test> Context-Sex.Index EQ 1 </test>
-  <true> <call> Endometrium.Init </call> </true>
-  
-  </if>
---> 
+
 </block>
 
 </definitions>

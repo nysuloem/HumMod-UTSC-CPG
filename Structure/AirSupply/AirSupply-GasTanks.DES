@@ -103,6 +103,17 @@ Schema : DES V1.0
   </val>
 </def>
 
+
+<onjustchanged><name>  O2Valve(%) </name>
+  <if><test> O2Valve(%) EQ 0 </test>
+  <true>
+     <def><name> O2Valve(%) </name><val> 0.1 </val></def>
+  </true>
+  </if>
+
+</onjustchanged>
+
+
 <def>
   <name> O2(%) </name>
   <val> ( 100.0 * O2Valve(%) ) / SumValves </val>
