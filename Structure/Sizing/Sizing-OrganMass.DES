@@ -194,7 +194,7 @@ By : University of Mississippi Medical Center
 
 <def>
 <name> Genitalia_Mass </name>
-<val> (Genitalia_Percent / 100 ) * BaseMass(G) </val>
+<val> ( Genitalia_Percent / 100 ) * BaseMass(G) </val>
 </def>
 
 <def>
