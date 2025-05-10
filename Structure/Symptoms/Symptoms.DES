@@ -8,16 +8,19 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+Edited by CPG
+
 <structure><name> Symptoms </name>
 
 <variables>
 
 <var><name> Number1 </name></var>
 <var><name> Number2 </name></var>
+<var><name> Number3 </name></var>
 <var><name> ExhaustedQ </name><val> FALSE </val></var>
 <var><name> TestElement </name></var>
-</variables>
 
+</variables>
 
 <definitions>
 
@@ -25,34 +28,41 @@ Schema : DES V1.0
 
 <call> EthanolPool.Dervs </call>
 
- <def>
-   <name> ExhaustedQ </name>
-   <val> ( SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation ) 
+<def>
+<name> ExhaustedQ </name>
+<val> ( SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation ) 
              AND ( 1 -  SkeletalMuscle-Function.Failed ) 
              AND ( 1 - Brain-Function.Comatose ) 
              AND ( 1 - Brain-Function.Impaired )
              AND ( 1 - RespiratoryMuscle-Function.Failed )
-  </val>
- </def>
+</val>
+</def>
 
-<def><name> TestElement </name><val> SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation </val></def>
+<def>
+<name> TestElement </name>
+<val> SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation </val>
+</def>
 
 <testcase>
 
   <case>
     <test> HaveSex.SexOutcome EQ 1 </test>
-    <def><name> Number </name><val> 28 </val></def>
+    <def><name> Number3 </name><val> 28 </val></def>
   </case>
 
-<case>
-<test> EthanolDailyDose.CumulativeDose GT 0.001 </test>
-<def><name> Number1 </name><val> 28 </val></def>
-</case>
+</testcase>
 
-<case>
-<test> EthanolDailyDose.CumulativeDose LE 0.001 </test>
-<def><name> Number1 </name><val> 32 </val></def>
-</case>
+<testcase>
+
+  <case>
+    <test> EthanolDailyDose.CumulativeDose GT 0.001 </test>
+    <def><name> Number1 </name><val> 28 </val></def>
+  </case>
+
+  <case>
+    <test> EthanolDailyDose.CumulativeDose LE 0.001 </test>
+    <def><name> Number1 </name><val> 32 </val></def>
+  </case>
 
 </testcase>
 

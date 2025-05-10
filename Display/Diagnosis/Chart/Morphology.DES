@@ -17,6 +17,13 @@ By: Jason Brown
 </showvalue>
 
 <showvalue>
+   <row> 4 </row><col> 34 </col>
+   <name> Ethnicity.Index2 </name>
+   <format><list> Common.Ethnicity2 </list></format>
+   <label> </label>
+</showvalue>
+
+<showvalue>
    <row> 5 </row><col> 1.0 </col>
    <name> Age.Age(Years) </name>
    <format> <integer/> </format>
@@ -40,9 +47,11 @@ By: Jason Brown
 <showvalue>
    <row> 4 </row><col> 1.0 </col>
   <name> Ethnicity.Index </name>
-  <format><list> Common.Ethnicity </list></format>
+  <format><list> Common.Ethnicity </list><fieldwidth> 5 </fieldwidth></format>
   <label> Ethnicity </label>
 </showvalue>
+
+
 
 
 End

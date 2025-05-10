@@ -55,14 +55,12 @@ By: Jason Brown
 
 </block>
 
-<block>
-  <name> CalcPercent </name>
-      <def>
-        <name> TotalPercentage </name>
-        <val>
-          White_Percentage + Black_Percentage + Asian_Percentage + Hispanic_Percentage
-        </val>
-      </def>
+<block> <name> CalcPercent </name>
+      
+<def>
+<name> TotalPercentage </name>
+<val> White_Percentage + Black_Percentage + Asian_Percentage + Hispanic_Percentage </val>
+</def>
 
       <!-- Normalize Percentages if Total is Not 100 -->
       <if>
@@ -80,8 +78,98 @@ By: Jason Brown
           <def><name> TrueHispanic_Percentage </name><val> Hispanic_Percentage </val></def>
          </false>
       </if>
-    </block>
 
+      <testcase>
+
+          <case> 
+          <test>TrueWhite_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 1 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 2 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 3 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueWhite_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 4 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 5 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 6 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 7 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueWhite_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 8 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 9 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 10 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 11 </val></def>
+          <call> Second </call>
+          </case>
+
+      </testcase>
+    </block>
+        
+
+<block><name> Second </name>
+
+<testcase>
+
+<case>
+  <test> TrueHispanic_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 4 </val></def>
+</case>
+
+<case>
+  <test> TrueAsian_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 3 </val></def>
+</case>
+
+<case>
+  <test> TrueBlack_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 2 </val></def>
+</case>
+
+</testcase>
+</block>
 
 <block><name> Calc </name>
 

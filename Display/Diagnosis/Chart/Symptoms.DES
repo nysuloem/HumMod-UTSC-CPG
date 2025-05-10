@@ -74,4 +74,14 @@ By: Jason Brown
   </format>
 </showvalue>
 
+<showvalue>
+  <row> 13 </row><col>1</col>
+  <name> Symptoms.Number3 </name>
+  <nolabel/>
+  <format>
+    <list> Symptoms.Number </list>
+    <fieldwidth> 26 </fieldwidth>
+  </format>
+</showvalue>
+
 End

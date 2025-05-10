@@ -10,28 +10,28 @@ Edited: 2024 - 04 - 24
 By: Jason Brown UTSC
 
 <showvalue>
-   <row> 14 </row><col> 1 </col>
+   <row> 16 </row><col> 1 </col>
    <name> SystemicArtys.SBP </name>
    <format><integer/></format>
    <label> Blood Pressure (mmHg) </label>
 </showvalue>
 
 <label>
-  <row> 14 </row>
+  <row> 16 </row>
   <col> 25 </col>
   <text> / </text>
 </label>
 
 
 <showvalue>
-   <row> 14 </row><col> 27 </col>
+   <row> 16 </row><col> 27 </col>
    <name> SystemicArtys.DBP </name>
    <format><integer/></format>
    <nolabel/>
 </showvalue>
 
 <showgraph>
-  <row> 16 </row><col> 1.0 </col><high> 7 </high><wide> 26 </wide>
+  <row> 18 </row><col> 1.0 </col><high> 7 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>
