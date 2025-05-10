@@ -50,23 +50,43 @@ Edited by CPG
     <def><name> Number3 </name><val> 28 </val></def>
   </case>
 
+  <case> 
+    <test> SexDrive.Mood EQ 1 </test>
+  <def><name> Number3 </name><val> 34 </val></def> 
+</case>
+
+  <case>
+    <test> HaveSex.SexOutcome EQ 0 </test>
+    <def><name> Number3 </name><val> 35 </val></def>
+  </case>
+
 </testcase>
 
 <testcase>
 
   <case>
-    <test> EthanolDailyDose.CumulativeDose GT 0.001 </test>
-    <def><name> Number1 </name><val> 28 </val></def>
+    <test> EthanolPool.[Ethanol] GT 1 </test>
+      <def><name> Number 1 </name><val> 29 </val></def>
+      </case>
+
+  <case>
+    <test> EthanolPool.[Ethanol] GT 0.1 </test>
+    <def><name> Number1 </name><val> 33 </val></def>
   </case>
 
   <case>
-    <test> EthanolDailyDose.CumulativeDose LE 0.001 </test>
+    <test> EthanolPool.[Ethanol] LE 0.1 </test>
     <def><name> Number1 </name><val> 32 </val></def>
   </case>
 
 </testcase>
 
 <testcase>
+
+<case>
+  <test> HaveSex.SexOutcome EQ 1 </test>
+  <def><name> Number2 </name><val> 27 </val></def>
+</case>
 
 <case>
 <test> Exercise-Bike.Status EQ Exercise-Bike.IS_ACTIVE </test>
