@@ -33,6 +33,8 @@ By : University of Mississippi Medical Center
 <var><name> IsVeryLarge </name></var>
 
 <var><name> Stochasm </name></var>
+<var><name> OtherAdjust </name></var>
+
 
 <normaldist>
   <name> Normal </name>
@@ -42,11 +44,23 @@ By : University of Mississippi Medical Center
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -50 </lowerlim>
-  <upperlim> 50 </upperlim>
+  <lowerlim> -10 </lowerlim>
+  <upperlim> 10 </upperlim>
 </whitenoise>
 
 </variables>
+
+<functions>
+
+<curve><name> OtherAdjustAge </name>
+<point><x> 0 </x><y> 0.16 </y><slope> 0.025 </slope></point>
+<point><x> 15 </x><y> 0.85 </y><slope>0.025</slope></point>
+<point><x> 25 </x><y> 1.0 </y><slope> 0.025 </slope></point>
+<point><x> 70 </x><y> 1.0 </y><slope>0.025</slope></point>
+<point><x> 90 </x><y> 0.85 </y><slope> 0.025 </slope></point>
+</curve>
+
+</functions>
 
 <definitions>
 
@@ -76,12 +90,16 @@ By : University of Mississippi Medical Center
 
 <call> CalcStochasm </call>
 
+<def><name>OtherAdjust</name>
+<val> OtherAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
 <def>
   <name> Mass(kG) </name>
   <val>
        NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
+     * OtherAdjust
   </val>
 </def>
 

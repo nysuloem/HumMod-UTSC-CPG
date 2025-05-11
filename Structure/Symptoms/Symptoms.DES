@@ -66,7 +66,7 @@ Edited by CPG
 
   <case>
     <test> EthanolPool.[Ethanol] GT 1 </test>
-      <def><name> Number 1 </name><val> 29 </val></def>
+      <def><name> Number1 </name><val> 29 </val></def>
       </case>
 
   <case>
