@@ -39,8 +39,10 @@ We need both BTPS and STPD volumes.
 <var><name> DeadSpace(STPD) </name></var>
 <var><name> AlveolarVolume(STPD) </name></var>
 <var><name> Drive </name></var>
+<var><name> LungVolAgeAdjust</name></var>
 
 <parm><name> Blockage </name><val> 0 </val></parm>
+
 </variables>
 
 <functions>
@@ -52,35 +54,58 @@ We need both BTPS and STPD volumes.
   <point><x> 10 </x><y> 2630 </y><slope>   0 </slope></point>
 </curve>
 
+<curve>
+  <name> LungVolAdjustAge </name>
+  <point><x> 0 </x><y> 0.50 </y><slope> 0.025 </slope></point>
+  <point><x> 20 </x><y> 1.00 </y><slope>0.025</slope></point>
+  <point><x> 70 </x><y> 1.00 </y><slope> 0.025 </slope></point>
+  <point><x> 90 </x><y> 0.75 </y><slope>0.025</slope></point>
+</curve>
 
 </functions>
 
 <definitions>
+
 <block><name> Calc </name>
 
-<def><name> Drive </name><val>         DriveOnTidalVolume [ RespiratoryCenter-Output.MotorNerveActivity ]
+  <def>
+    <name>LungVolAgeAdjust</name>
+    <val> LungVolAdjustAge [ Context-Age.Age(Years) ] </val>
+  </def> 
+
+  <def>
+    <name> Drive </name>
+    <val> DriveOnTidalVolume [ RespiratoryCenter-Output.MotorNerveActivity ]
       * Thorax.LungInflation
       * ( 1 - Blockage )
-      * RespiratoryMuscle-Function.Effect </val></def>
+      * RespiratoryMuscle-Function.Effect
+      * LungVolAgeAdjust </val>
+  </def>
+
 <testcase>
 
-<case><test> Ventilator.Switch </test>
+<case>
+  <test> Ventilator.Switch </test>
   <call> Ventilator </call>
 </case>
 
-<case><test> CPR-Lungs.Status EQ CPR-Lungs.ACTIVE </test>
+<case>
+  <test> CPR-Lungs.Status EQ CPR-Lungs.ACTIVE </test>
   <call> CPR </call>
 </case>
 
-<case><test> Type EQ BREATHHOLDING </test>
+<case>
+  <test> Type EQ BREATHHOLDING </test>
   <call> BreathHolding </call>
 </case>
 
-<case><test> Type EQ NONE </test>
+<case>
+  <test> Type EQ NONE </test>
   <call> None </call>
 </case>
 
-<case><test> TRUE </test>
+<case>
+  <test> TRUE </test>
   <call> Spontaneous </call>
 </case>
 
@@ -117,16 +142,17 @@ We need both BTPS and STPD volumes.
 
 </block>
 
-<block><name> Spontaneous </name>
+<!-- Patient is breathing on their own (i.e., spontaneously) -->
+
+<block>
+  <name> Spontaneous </name>
   <def><name> Type </name><val> SPONTANEOUS </val></def>
   <def><name> RespRate </name><val> RespiratoryCenter-Output.Rate </val></def>
-  <def><name> TidalVolumeBasic </name>
-    <val>
-Drive
-    </val>
-  </def>
+  <def><name> TidalVolumeBasic </name><val> Drive </val></def>
   <def><name> TidalVolume </name><val> ( TidalVolumeBasic - ExcessLungWater.Volume ) MAX 0.0 </val></def>
 </block>
+
+<!-- Patient is being given CPR -->
 
 <block><name> CPR </name>
   <def><name> Type </name><val> CPR </val></def>
@@ -135,12 +161,16 @@ Drive
   <def><name> TidalVolume </name><val> CPR-Lungs.Volume </val></def>
 </block>
 
+<!-- Patient is breathing with the assistance of a ventilator -->
+
 <block><name> Ventilator </name>
   <def><name> Type </name><val> VENTILATOR </val></def>
   <def><name> RespRate </name><val> Ventilator.Rate </val></def>
   <def><name> TidalVolumeBasic </name><val> Ventilator.TidalVolume </val></def>
   <def><name> TidalVolume </name><val> Ventilator.TidalVolume </val></def>
 </block>
+
+<!-- Patient is holding their breath -->
 
 <block><name> BreathHolding </name>
   <def><name> Type </name><val> BREATHHOLDING </val></def>
@@ -157,6 +187,7 @@ Drive
 </block>
 
 </definitions>
+
 </structure>
 
 End
