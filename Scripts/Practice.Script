@@ -1,0 +1,29 @@
+<script>
+    <launch>
+      <solver> C:\GitHub\HumMod-UTSC-CPG\Model Solver.EXE </solver>
+      <model> C:\GitHub\HumMod-UTSC-CPG\HumMod.DES </model>
+    </launch>
+    
+    <?include varroster.Script ?>
+    
+    <restart/>
+    <?include init.Script ?>
+
+    
+<setvalue>
+    <var> OralH2OGlucoseLoad.H2ORate </var>
+    <val> 70 </val>
+  </setvalue>
+   
+  <gofor>
+    <solutionint> 20 </solutionint>
+    <displayint> 20 </displayint>
+  </gofor>
+  
+<dumpsolution>
+    <filename> C:\GitHub\HumMod-UTSC-CPG\Scripts\data\Practice.txt </filename>
+  </dumpsolution>
+  
+  
+  <exit/>
+    </script>

@@ -236,7 +236,7 @@ genetalia size to be x3 larger for males, this can be further modified into cond
 -->
 <def>
 <name> Genitalia_Mass </name>
-<val> (Genitalia_Percent / 100 ) * BaseMass(G) </val>
+<val> ( Genitalia_Percent / 100 ) * BaseMass(G) </val>
 </def>
 
 <def>

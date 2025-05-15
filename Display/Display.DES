@@ -20,28 +20,9 @@ By : University of Mississippi Medical Center
 
 </common>
 
-<?include AcidBase\AcidBase.DES ?>
-<?include BodyFluids\BodyFluids.DES ?>
-<?include Circulation\Circulation.DES ?>
-<?include Diagnosis\Diagnosis.DES ?>
 
-<?include Electrolytes\Electrolytes.DES ?>
-<?include Heat\Heat.DES ?>
-<?include Hormones\Hormones.DES ?>
-<?include Intervention\Intervention.DES ?>
-<?include Lifestyle\Lifestyle.DES ?>
-<?include Metabolism\Metabolism.DES ?>
-<?include Miscellaneous\Miscellaneous.DES ?>
-<?include NervousSystem\NervousSystem.DES ?>
-<?include Organs\Organs.DES ?>
-<?include Respiration\Respiration.DES ?>
-<?include Trauma\Trauma.DES ?>
-<?include Pathology\Pathology.DES ?>
+<?include Model\Model.DES ?>
 <?include Quizzes\Quizzes.DES ?>
-
-<?include Context\Context.DES ?>
-<?include Sizing\Sizing.DES ?>
-
 <common>
   <displayfirst> Chart </displayfirst>
 </common>

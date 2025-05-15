@@ -1,0 +1,94 @@
+
+
+<script>
+    <launch>
+      <solver> Model Solver.EXE </solver>
+      <model> HumMod.DES </model>
+    </launch>
+
+    <logfile> HF.LOG </logfile>
+    
+<restart/>
+<setvalue><var> DietIntakeNutrition.Fixed? </var><val> 1 </val></setvalue> 
+<setvalue><var> DietIntakeNutrition.FixedIntake(xGoal) </var><val> 1 </val></setvalue> 
+<setvalue><var> DietGoalElectrolytes.Salt_mMol/Day </var><val> 150 </val></setvalue> 
+<setvalue><var>  EPOPool.Level </var><val> 15 </val></setvalue> 
+<setvalue><var> EPOPool.Switch </var><val> 1 </val></setvalue> 
+<setvalue><var> LeftHeartPumping-ContractileProtein.DelayK </var><val> 3 </val></setvalue> 
+
+<setvalue><var> Sympathetics-Renal.SWITCH </var><val> 0 </val></setvalue> Renal afferents
+<setvalue><var> RightKidney-NephronCount.SWITCH </var><val> 1 </val></setvalue> Hyperfiltration
+<setvalue><var> RightKidney-NephronCount.DeadK </var><val> 2 </val></setvalue> 
+
+<setvalue><var> GlomerulusProtein.Perm  </var><val> 0.01 </val></setvalue> Proteinuria
+<setvalue><var>  GlomerulusProtein.Delay </var><val> 30 </val></setvalue> Proteinuria
+<setvalue><var>  LeftGlomerulusProtein.MinPressure </var><val> 65 </val></setvalue> Proteinuria
+
+<setvalue><var> GlucosePool.FixedConc? </var><val> 1 </val></setvalue> 
+<setvalue><var>  GlucosePool.FixedConc </var><val> 100  </val></setvalue> 
+<setvalue><var> LowPressureReceptors.Level </var><val> 1 </val></setvalue> 
+<setvalue><var> LowPressureReceptors.Switch </var><val> 0  </val></setvalue> 
+<setvalue><var> LowPressureReceptors.TauTarget </var><val> 1 </val></setvalue> 
+
+<setvalue><var>  Chemoreceptors.Level </var><val> 1 </val></setvalue> 
+<setvalue><var>  Chemoreceptors.Clamp </var><val> 1 </val></setvalue> 
+<setvalue><var> LowPressureReceptors.Level </var><val> 1 </val></setvalue> 
+<setvalue><var> LowPressureReceptors.Switch </var><val> 1  </val></setvalue> 
+
+<gofor>	<solutionint> 60.0 </solutionint>	<displayint> 60.0 </displayint></gofor>
+<setvalue><var> RightKidney-NephronCount.Base </var><val> 300000 </val></setvalue> 
+<setvalue><var> LeftKidney-NephronCount.Base </var><val> 300000 </val></setvalue>  
+<setvalue><var> RightKidney-NephronCount.Delay </var><val> 30 </val></setvalue>  
+<setvalue><var> LeftKidney-NephronCount.Delay </var><val> 30 </val></setvalue>  
+<gofor>	<solutionint> 60.0 </solutionint>	<displayint> 60.0 </displayint></gofor>
+<setvalue><var> LeftHeartPumping-Diastole.StiffnessTarget </var><val> 1 </val></setvalue> 2
+<setvalue><var> LeftHeartPumping-Diastole.DelayK </var><val>  14 </val></setvalue> 10 Stiffness
+
+<setvalue><var> Sympathetics-Cardiac.CSNAconstituent </var><val> 1 </val></setvalue> 
+<setvalue><var> Apnea.EventRate </var><val> 10 </val></setvalue> 
+<setvalue><var> LeftAtrium.X </var><val> 0.6 </val></setvalue> 
+
+<gofor>	<solutionint> 60.0 </solutionint>	<displayint> 60.0 </displayint></gofor>
+
+<setvalue><var> LeftHeartPumping-Contractility.CHF </var><val> 1  </val></setvalue> 
+<setvalue><var> LeftHeart-BetaReceptors.TauDays </var><val> 3 </val></setvalue> 3 Desensitization
+<setvalue><var> Mechanoreceptors.TauDays </var><val> 30  </val></setvalue> SNA
+
+<setvalue><var> LeftHeartPumping-ContractileProtein.ContractileGainK </var><val> 5E-4 </val></setvalue> Contractile growth
+<setvalue><var> LeftHeartPumping-ContractileProtein.ContractileLossK </var><val> 2E-5 </val></setvalue> Contractile loss
+<setvalue><var> LeftHeartPumping-ContractileProtein.LossK </var><val> 2E-5 </val></setvalue> Fibrosis loss
+<setvalue><var> LeftHeartPumping-ContractileProtein.GrowthK </var><val> 7.52E-4 </val></setvalue> Fibrosis gain
+<setvalue><var> LeftHeartPumping-ContractileProtein.PartitionBase </var><val> 0.35 </val></setvalue> 0.67 Fibrosis growth
+
+<saveics><filename> testa.ICS </filename></saveics>
+<setvalue><var> Sympathetics.betaAdaptlevel </var><val> 0 </val></setvalue> 
+<setvalue><var> Sympathetics.alphaAdaptlevel </var><val> 0.1 </val></setvalue> 40% resetting @ 0.15
+<setvalue><var> Sympathetics.alphaAdapt </var><val> 0.00001 </val></setvalue> adapt delay
+<setvalue><var> Sympathetics.betaAdapt </var><val> 0.00001 </val></setvalue> adapt delay
+
+<gofor>	<solutionint> 60.0 </solutionint>	<displayint> 60.0 </displayint></gofor>
+<gofor>	<solutionint> 259200.0 </solutionint>	<displayint> 1440.0 </displayint></gofor> 6m
+<saveics><filename> testb.ICS </filename></saveics>
+
+<gofor>	<solutionint> 259200.0 </solutionint>	<displayint> 1440.0 </displayint></gofor> 6m
+
+<setvalue><var> LeftHeartPumping-ContractileProtein.DelayK </var><val> 30 </val></setvalue> Hypertrophy
+<saveics><filename> hfckdbase.ICS </filename></saveics>
+
+<gofor>	<solutionint> 40320.0 </solutionint>	<displayint> 2880.0 </displayint></gofor>
+<gofor>	<solutionint> 2880.0 </solutionint>	<displayint> 30.0 </displayint></gofor>
+<gofor>	<solutionint> 40320.0 </solutionint>	<displayint> 1440.0 </displayint></gofor>
+
+<dumpsolution><filename> test1.CSV </filename><append/></dumpsolution>
+<gofor>	<solutionint> 40320.0 </solutionint>	<displayint> 1440.0 </displayint></gofor>
+
+
+<gofor>	<solutionint> 362880.0 </solutionint>	<displayint> 1440.0 </displayint></gofor>
+
+<gofor>	<solutionint> 2880.0 </solutionint>	<displayint> 30.0 </displayint></gofor>
+
+<dumpsolution><filename> HFpEF.txt </filename><append/></dumpsolution>
+
+<exit/>
+
+</script>   

@@ -1,0 +1,7 @@
+HumMod / Template
+
+
+<?path Display\Model\Pathology\ ?>
+
+<?include Diabetes\Type1Diabetes.DES ?>
+<?include Diabetes\Type2Diabetes.DES ?>

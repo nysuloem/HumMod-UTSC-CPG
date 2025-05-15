@@ -1,0 +1,6 @@
+HumMod / Template
+
+
+<?path Display\Model\Pathology\ ?>
+
+<?include PagetsDisease\PagetsDiseaseControl.DES ?>

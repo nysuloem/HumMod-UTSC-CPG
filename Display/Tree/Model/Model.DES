@@ -1,0 +1,37 @@
+HumMod / Model
+
+Created : 2011-07-26
+Revised : 2012-07-11
+Author : Tom Coleman
+Copyright : 2011-2012
+By : University of Mississippi Medical Center
+
+
+<branch>
+  <name> MODEL </name>
+  <label> Model </label>
+  <parent> MAINMENU </parent>
+</branch>
+
+
+<?path Display\Tree\Model\ ?> 
+
+<?include Context\Context.DES ?>
+<?include Diagnosis\Diagnosis.DES ?>
+<?include Lifestyle\Lifestyle.DES ?>
+<?include Intervention\Intervention.DES ?>
+<?include Circulation\Circulation.DES ?>
+<?include Respiration\Respiration.DES ?>
+<?include Metabolism\Metabolism.DES ?>
+<?include BodyFluids\BodyFluids.DES ?>
+<?include Electrolytes\Electrolytes.DES ?>
+<?include HormonesGeneral\HormonesGeneral.DES ?>
+<?include HormonesSex\HormonesSex.DES ?>
+<?include NervousSystem\NervousSystem.DES ?>
+<?include AcidBase\AcidBase.DES ?>
+<?include Heat\Heat.DES ?>
+<?include Miscellaneous\Miscellaneous.DES ?>
+<?include Organs\Organs.DES ?>
+<?include Trauma\Trauma.DES ?>
+<?include Pathology\Pathology.DES ?>
+<?include Sizing\Sizing.DES ?>

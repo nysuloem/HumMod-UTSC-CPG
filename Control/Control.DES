@@ -13,6 +13,8 @@ By : University of Mississippi Medical Center
 <?include Control\GoTo.DES ?>
 <?include Control\SettlingTime.DES ?>
 <?include Control\Scramble.DES ?>
+<!-- <?include Control\Scripted.DES ?> -->
+
 
 </control>
 

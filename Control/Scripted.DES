@@ -1,0 +1,18 @@
+HumMod / Scripted
+
+Created : 16-Aug-96
+Revised : 2012-07-18
+Author : Tom Coleman
+Copyright : 1996-2012
+By : University of Mississippi Medical Center
+
+
+<remote>
+
+    <openlistener>
+      <name> HeartFailure </name>
+      <filename> C:\GitHub\HumMod-UTSC-CPG\Scripts\hfpef.Script </filename>
+      <interval> 2 </interval>
+    </openlistener>
+
+  </remote>
