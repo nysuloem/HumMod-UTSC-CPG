@@ -28,7 +28,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\BodyFluids\Blood\Hemoglobin\Properties\ ?>
+<?path Display\Model\BodyFluids\Blood\Hemoglobin\Properties\ ?>
 
 <?include Concentration.DES ?>
 <?include Sensitivity.DES ?>

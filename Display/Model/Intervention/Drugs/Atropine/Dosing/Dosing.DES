@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Atropine\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Atropine\Dosing\ ?>
 
 <?include IVBolus.DES ?>
 

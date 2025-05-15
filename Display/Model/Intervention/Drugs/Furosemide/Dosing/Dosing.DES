@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Furosemide\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Furosemide\Dosing\ ?>
 
 <?include Injection.DES ?>
 

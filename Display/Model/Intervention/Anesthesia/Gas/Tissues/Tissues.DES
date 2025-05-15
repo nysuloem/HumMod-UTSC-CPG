@@ -27,7 +27,7 @@ Schema : DES V1.0
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\Gas\Tissues\ ?>
+<?path Display\Model\Intervention\Anesthesia\Gas\Tissues\ ?>
 
 <?include TissueConcentrations.DES ?>
 <?include TissueEffects.DES ?>

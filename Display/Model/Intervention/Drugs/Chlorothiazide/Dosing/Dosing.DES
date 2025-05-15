@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Chlorothiazide\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Chlorothiazide\Dosing\ ?>
 
 <?include SingleDoseOral.DES ?>
 <?include DailyDoseOral.DES ?>

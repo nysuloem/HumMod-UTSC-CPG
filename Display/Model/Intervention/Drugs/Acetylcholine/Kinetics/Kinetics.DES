@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Atropine\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Atropine\Kinetics\ ?>
 
 <?include Pool.DES ?>
 

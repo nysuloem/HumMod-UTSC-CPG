@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Isoproterenol\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Isoproterenol\Dosing\ ?>
 
 <?include IV.DES ?>
 <!--<?include IVBolus.DES ?>-->

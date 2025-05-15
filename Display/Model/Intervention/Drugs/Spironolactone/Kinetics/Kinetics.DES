@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Spironolactone\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Spironolactone\Kinetics\ ?>
 
 <?include GILumen.DES ?>
 

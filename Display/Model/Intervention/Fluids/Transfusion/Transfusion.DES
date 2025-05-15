@@ -28,7 +28,7 @@ Schema : DES V1.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Fluids\Transfusion\ ?>
+<?path Display\Model\Intervention\Fluids\Transfusion\ ?>
 
 <?include Control.DES ?>
 <?include Setup.DES ?>

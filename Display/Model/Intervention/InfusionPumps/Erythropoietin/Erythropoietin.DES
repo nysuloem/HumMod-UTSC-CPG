@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Erythropoietin\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Erythropoietin\ ?>
 
 <?include Pump.DES ?>
 

@@ -1,6 +1,6 @@
 HumMod / Lisinopril
 
-<?path Display\Intervention\Drugs\Lisinopril\ ?>
+<?path Display\Model\Intervention\Drugs\Lisinopril\ ?>
 
 <?include Dosing\Dosing.DES ?>
 <?include Kinetics\Kinetics.DES ?>

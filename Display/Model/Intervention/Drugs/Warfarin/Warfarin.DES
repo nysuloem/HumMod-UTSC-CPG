@@ -1,5 +1,5 @@
 
-<?path Display\Intervention\Drugs\Warfarin\ ?>
+<?path Display\Model\Intervention\Drugs\Warfarin\ ?>
 
 <?include Dosing\Dosing.DES ?>
 <?include Kinetics\Kinetics.DES ?>

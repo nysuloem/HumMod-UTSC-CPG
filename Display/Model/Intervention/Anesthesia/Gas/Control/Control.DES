@@ -33,7 +33,7 @@ Schema : DES V1.0
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\Gas\Control\ ?>
+<?path Display\Model\Intervention\Anesthesia\Gas\Control\ ?>
 
 <?include InspiredAir.DES ?>
 <?include GasTanks.DES ?>

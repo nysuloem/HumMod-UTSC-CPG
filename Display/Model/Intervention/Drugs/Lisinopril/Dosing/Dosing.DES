@@ -22,7 +22,7 @@ HumMod / Dosing
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Lisinopril\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Lisinopril\Dosing\ ?>
 
 <?include SingleDoseOral.DES ?>
 <?include DailyDoseOral.DES ?>

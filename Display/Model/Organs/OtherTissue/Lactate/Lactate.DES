@@ -29,8 +29,7 @@ By : University of Mississippi Medical Center
 </showclock>
 
 <structurename> OtherTissue-Lactate </structurename>
-<?path Display\Model\
-<?path Display\Organs\OtherTissue\Lactate\ ?>
+<?path Display\Model\Organs\OtherTissue\Lactate\ ?>
 
 <?include TissueLactate.DES ?>
 <?include LactateMade.DES ?>

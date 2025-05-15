@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Glucose\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Glucose\ ?>
 
 <?include Pump.DES ?>
 

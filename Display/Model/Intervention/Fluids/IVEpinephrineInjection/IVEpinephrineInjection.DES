@@ -29,7 +29,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Fluids\IVEpinephrineInjection\ ?>
+<?path Display\Model\Intervention\Fluids\IVEpinephrineInjection\ ?>
 
 <?include Control.DES ?>
 

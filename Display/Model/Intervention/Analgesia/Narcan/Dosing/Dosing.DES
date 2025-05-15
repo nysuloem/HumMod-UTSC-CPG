@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Analgesia\Narcan\Dosing\ ?>
+<?path Display\Model\Intervention\Analgesia\Narcan\Dosing\ ?>
 
 <?include IV.DES ?>
 <?include Bolus.DES ?>

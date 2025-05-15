@@ -22,7 +22,7 @@ HumMod / Dosing
   <days/>
 </showclock>
 
-<?path Display\Intervention\Supplements\Creatine\Dosing\ ?>
+<?path Display\Model\Intervention\Supplements\Creatine\Dosing\ ?>
 
 <?include SingleDoseOral.DES ?>
 <?include DailyDoseOral.DES ?>

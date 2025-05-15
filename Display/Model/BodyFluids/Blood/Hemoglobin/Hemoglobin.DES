@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2005-2012
 By : University of Mississippi Medical Center
 
-<?path Display\BodyFluids\Blood\Hemoglobin\ ?>
+<?path Display\Model\BodyFluids\Blood\Hemoglobin\ ?>
 
 <?include Properties\Properties.DES ?>
 <?include Loading\Loading.DES ?>

@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\IV\Liver\ ?>
+<?path Display\Model\Intervention\Anesthesia\IV\Liver\ ?>
 
 <?include Summary.DES ?>
 

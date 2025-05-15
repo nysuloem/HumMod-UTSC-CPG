@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Nicotine\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Nicotine\Dosing\ ?>
 
 <?include Inhaler.DES ?>
 

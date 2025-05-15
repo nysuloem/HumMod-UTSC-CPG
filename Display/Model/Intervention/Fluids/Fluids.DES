@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2006-2011
 By : University Of Mississippi Medical Center
 
-<?path Display\Intervention\Fluids\ ?>
+<?path Display\Model\Intervention\Fluids\ ?>
 
 <?include IVDrip\IVDrip.DES ?>
 <?include IVEpinephrineInjection\IVEpinephrineInjection.DES ?>

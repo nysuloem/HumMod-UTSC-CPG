@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Phenylephrine\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Phenylephrine\Dosing\ ?>
 
 <?include DailyDoseOral.DES ?>
 <?include Inhaler.DES ?>

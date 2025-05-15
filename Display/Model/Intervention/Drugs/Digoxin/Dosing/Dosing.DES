@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Digoxin\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Digoxin\Dosing\ ?>
 
 <?include SingleDoseOral.DES ?>
 <?include DailyDoseOral.DES ?>

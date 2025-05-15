@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Angiotensin\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Angiotensin\ ?>
 
 <?include Pump.DES ?>
 

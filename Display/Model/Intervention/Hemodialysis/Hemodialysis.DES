@@ -23,7 +23,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Hemodialysis\ ?>
+<?path Display\Model\Intervention\Hemodialysis\ ?>
 
 <?include DialysisShunt.DES ?>
 <?include DialyzerControl.DES ?>

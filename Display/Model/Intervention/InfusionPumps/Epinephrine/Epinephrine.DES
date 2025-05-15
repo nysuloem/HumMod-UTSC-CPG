@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Epinephrine\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Epinephrine\ ?>
 
 <?include Pump.DES ?>
 

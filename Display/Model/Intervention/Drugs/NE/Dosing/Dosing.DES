@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\NE\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\NE\Dosing\ ?>
 
 <?include Bolus.DES ?>
 

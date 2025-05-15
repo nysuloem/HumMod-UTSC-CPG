@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2011-2012
 By : University of Mississippi Medical Center
 
-<?path Display\Intervention\ ?>
+<?path Display\Model\Intervention\ ?>
 
 <?include Anesthesia\Anesthesia.DES ?>
 =<?include Analgesia\Analgesia.DES ?>

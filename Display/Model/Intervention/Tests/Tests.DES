@@ -9,7 +9,7 @@ Schema : DES V1.0
 
 
 
-<?path Display\Intervention\Tests\ ?>
+<?path Display\Model\Intervention\Tests\ ?>
 
 <?include OGTT.DES ?>
 <?include ACTHTest.DES ?>

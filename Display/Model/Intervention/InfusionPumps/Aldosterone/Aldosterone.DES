@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Aldosterone\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Aldosterone\ ?>
 
 <?include Pump.DES ?>
 

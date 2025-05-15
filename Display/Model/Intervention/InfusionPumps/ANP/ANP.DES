@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\ANP\ ?>
+<?path Display\Model\Intervention\InfusionPumps\ANP\ ?>
 
 <?include Pump.DES ?>
 

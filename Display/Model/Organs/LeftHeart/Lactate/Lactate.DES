@@ -29,8 +29,7 @@ By : University Of Mississippi Medical Center
 </showclock>
 
 <structurename> LeftHeart-Lactate </structurename>
-<?path Display\Model\
-<?path Display\Organs\LeftHeart\Lactate\ ?>
+<?path Display\Model\Organs\LeftHeart\Lactate\ ?>
 
 <?include TissueLactate.DES ?>
 

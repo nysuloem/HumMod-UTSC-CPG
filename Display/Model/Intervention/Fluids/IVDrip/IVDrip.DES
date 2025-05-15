@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\Fluids\IVDrip\ ?>
+<?path Display\Model\Intervention\Fluids\IVDrip\ ?>
 
 <?include Settings.DES ?>
 <?include Accumulation.DES ?>

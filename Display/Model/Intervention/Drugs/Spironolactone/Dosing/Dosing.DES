@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Spironolactone\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Spironolactone\Dosing\ ?>
 
 <?include SingleDoseOral.DES ?>
 <?include DailyDoseOral.DES ?>

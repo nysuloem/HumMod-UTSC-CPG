@@ -27,7 +27,7 @@ Schema : DES V1.0
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\IV\Properties\ ?>
+<?path Display\Model\Intervention\Anesthesia\IV\Properties\ ?>
 
 <?include Solubility.DES ?>
 

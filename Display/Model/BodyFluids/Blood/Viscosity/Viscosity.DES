@@ -29,7 +29,7 @@ Schema : DES V1.0
   <days/>
 </showclock>
 
-<?path Display\BodyFluids\Blood\Viscosity ?>
+<?path Display\Model\BodyFluids\Blood\Viscosity ?>
 
 <?include Summary.DES ?>
 

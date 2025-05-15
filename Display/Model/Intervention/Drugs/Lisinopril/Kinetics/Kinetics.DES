@@ -22,7 +22,7 @@ HumMod / Kinetics
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Lisinopril\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Lisinopril\Kinetics\ ?>
 
 <?include GILumen.DES ?>
 <?include ECFV.DES ?>

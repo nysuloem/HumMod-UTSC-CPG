@@ -23,7 +23,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Defibrillator\ ?>
+<?path Display\Model\Intervention\Defibrillator\ ?>
 
 <?include Control.DES ?>
 <?include Status.DES ?>

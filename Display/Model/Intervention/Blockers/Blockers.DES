@@ -22,7 +22,7 @@ Schema : DES V1.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Blockers\ ?>
+<?path Display\Model\Intervention\Blockers\ ?>
 
 <?include AlphaReceptorBlockade.DES ?>
 <?include BetaReceptorBlockade.DES ?>

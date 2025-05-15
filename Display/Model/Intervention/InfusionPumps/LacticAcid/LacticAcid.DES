@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\LacticAcid\ ?>
+<?path Display\Model\Intervention\InfusionPumps\LacticAcid\ ?>
 
 <?include Pump.DES ?>
 

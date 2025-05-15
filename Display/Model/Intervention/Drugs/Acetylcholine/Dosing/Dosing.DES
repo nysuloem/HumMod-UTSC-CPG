@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Acetylcholine\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Acetylcholine\Dosing\ ?>
 
 <?include IVBolus.DES ?>
 

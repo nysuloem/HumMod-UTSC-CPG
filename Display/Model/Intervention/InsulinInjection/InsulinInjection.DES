@@ -28,7 +28,7 @@ Solver : DES 2005
   <days/>
 </showclock>
 
-<?path Display\Intervention\InsulinInjection\ ?>
+<?path Display\Model\Intervention\InsulinInjection\ ?>
 
 <?include Control.DES ?>
 

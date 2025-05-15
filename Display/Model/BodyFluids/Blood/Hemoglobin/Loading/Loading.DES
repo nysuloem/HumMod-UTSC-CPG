@@ -28,7 +28,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\BodyFluids\Blood\Hemoglobin\Loading\ ?>
+<?path Display\Model\BodyFluids\Blood\Hemoglobin\Loading\ ?>
 
 <?include ArteryO2.DES ?>
 <?include ArteryP50.DES ?>

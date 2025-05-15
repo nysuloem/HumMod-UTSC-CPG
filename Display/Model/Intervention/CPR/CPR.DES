@@ -23,7 +23,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\CPR\ ?>
+<?path Display\Model\Intervention\CPR\ ?>
 
 <?include Heart.DES ?>
 <?include Lungs.DES ?>

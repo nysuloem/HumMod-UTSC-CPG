@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Propranolol\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Propranolol\Dosing\ ?>
 
 <?include IV.DES ?>
 <?include DailyDoseOral.DES ?>

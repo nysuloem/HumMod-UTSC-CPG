@@ -28,11 +28,10 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Analgesia\Morphine\Kinetics\ ?>
+<?path Display\Model\Intervention\Analgesia\Morphine\Kinetics\ ?>
 
 <?include Pool.DES ?>
 
 </panel>
 
 End
-

@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2006-2013
 By : University Of Mississippi Medical Center
 
-<?path Display\Intervention\Drugs\ ?>
+<?path Display\Model\Intervention\Drugs\ ?>
 
 <?include Acetazolamide\Acetazolamide.DES ?>
 <?include Amlodipine\Amlodipine.DES ?>

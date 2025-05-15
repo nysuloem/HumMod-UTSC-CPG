@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Analgesia\Morphine\Dosing\ ?>
+<?path Display\Model\Intervention\Analgesia\Morphine\Dosing\ ?>
 
 <?include IV.DES ?>
 <?include IMBolus.DES ?>

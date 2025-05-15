@@ -28,11 +28,10 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Phenylephrine\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Phenylephrine\Kinetics\ ?>
 
 <?include Pool.DES ?>
 
 </panel>
 
 End
-

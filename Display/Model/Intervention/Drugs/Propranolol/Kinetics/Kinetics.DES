@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Propranolol\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Propranolol\Kinetics\ ?>
 
 <?include Injectate.DES ?>
 <?include Pool.DES ?>
@@ -36,4 +36,3 @@ By : Tom Coleman
 </panel>
 
 End
-

@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\Gas\Kidney\ ?>
+<?path Display\Model\Intervention\Anesthesia\Gas\Kidney\ ?>
 
 <?include Summary.DES ?>
 

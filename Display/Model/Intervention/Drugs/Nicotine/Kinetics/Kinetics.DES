@@ -28,11 +28,10 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Nicotine\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Nicotine\Kinetics\ ?>
 
 <?include Pool.DES ?>
 
 </panel>
 
 End
-

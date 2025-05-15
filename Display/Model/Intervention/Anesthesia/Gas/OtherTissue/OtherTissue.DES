@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\Gas\OtherTissue\ ?>
+<?path Display\Model\Intervention\Anesthesia\Gas\OtherTissue\ ?>
 
 <?include Summary.DES ?>
 

@@ -29,8 +29,7 @@ By : University Of Mississippi Medical Center
 </showclock>
 
 <structurename> Kidney-Lactate </structurename>
-<?path Display\Model\
-<?path Display\Organs\Kidney\Lactate\ ?>
+<?path Display\Model\Organs\Kidney\Lactate\ ?>
 
 <?include TissueLactate.DES ?>
 

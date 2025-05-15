@@ -29,8 +29,8 @@ By : University Of Mississippi Medical Center
 </showclock>
 
 <structurename> Bone-Lactate </structurename>
-<?path Display\Model\
-<?path Display\Organs\Bone\Lactate\ ?>
+
+<?path Display\Model\Organs\Bone\Lactate\ ?>
 
 <?include TissueLactate.DES ?>
 

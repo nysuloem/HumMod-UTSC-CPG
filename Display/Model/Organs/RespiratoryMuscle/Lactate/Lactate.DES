@@ -29,8 +29,7 @@ By : University Of Mississippi Medical Center
 </showclock>
 
 <structurename> RespiratoryMuscle-Lactate </structurename>
-<?path Display\Model\
-<?path Display\Organs\RespiratoryMuscle\Lactate\ ?>
+<?path Display\Model\Organs\RespiratoryMuscle\Lactate\ ?>
 
 <?include TissueLactate.DES ?>
 

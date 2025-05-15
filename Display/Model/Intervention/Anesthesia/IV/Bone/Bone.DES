@@ -26,7 +26,7 @@ By : University Of Mississippi Medical Center
   <ampm/><secs/><days/>
 </showclock>
 
-<?path Display\Intervention\Anesthesia\IV\Bone\ ?>
+<?path Display\Model\Intervention\Anesthesia\IV\Bone\ ?>
 
 <?include Summary.DES ?>
 

@@ -26,7 +26,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\BodyFluids\Blood\Hemoglobin\Calculator\ ?>
+<?path Display\Model\BodyFluids\Blood\Hemoglobin\Calculator\ ?>
 
 <?include O2.DES ?>
 <?include P50.DES ?>

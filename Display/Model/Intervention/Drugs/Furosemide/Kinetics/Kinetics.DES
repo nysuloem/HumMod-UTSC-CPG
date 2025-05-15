@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Furosemide\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Furosemide\Kinetics\ ?>
 
 <?include Injectate.DES ?>
 <?include Pool.DES ?>

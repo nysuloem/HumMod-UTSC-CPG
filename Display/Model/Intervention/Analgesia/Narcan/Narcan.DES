@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2013-2013
 By : Tom Coleman
 
-<?path Display\Intervention\Analgesia\Narcan\ ?>
+<?path Display\Model\Intervention\Analgesia\Narcan\ ?>
 
 <?include Dosing\Dosing.DES ?>
 <?include Kinetics\Kinetics.DES ?>

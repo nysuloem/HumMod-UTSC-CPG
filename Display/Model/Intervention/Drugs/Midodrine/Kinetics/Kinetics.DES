@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Midodrine\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Midodrine\Kinetics\ ?>
 
 <?include GILumen.DES ?>
 <?include MidodrinePool.DES ?>

@@ -27,7 +27,7 @@ Schema : DES V1.0
   <days/>
 </showclock>
 
-<?path Display\BodyFluids\Blood\Volume\ ?>
+<?path Display\Model\BodyFluids\Blood\Volume\ ?>
 
 <?include WholeBody.DES ?>
 <?include Compartments.DES ?>

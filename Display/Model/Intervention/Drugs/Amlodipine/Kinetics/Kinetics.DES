@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Amlodipine\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Amlodipine\Kinetics\ ?>
 
 <?include GILumen.DES ?>
 <?include ECFV.DES ?>

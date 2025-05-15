@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2008-2012
 By : University of Mississippi Medical Center
 
-<?path Display\BodyFluids\Blood\ ?>
+<?path Display\Model\BodyFluids\Blood\ ?>
 
 <?include Volume\Volume.DES ?>
 <?include Plasma\Plasma.DES ?>

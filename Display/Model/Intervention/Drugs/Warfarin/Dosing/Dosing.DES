@@ -21,7 +21,7 @@
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Warfarin\Dosing\ ?>
+<?path Display\Model\Intervention\Drugs\Warfarin\Dosing\ ?>
 
 <?include IV.DES ?>
 <?include R-S-fraction.DES ?>

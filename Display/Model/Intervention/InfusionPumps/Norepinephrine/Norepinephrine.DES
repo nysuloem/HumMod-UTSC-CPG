@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\Norepinephrine\ ?>
+<?path Display\Model\Intervention\InfusionPumps\Norepinephrine\ ?>
 
 <?include Pump.DES ?>
 

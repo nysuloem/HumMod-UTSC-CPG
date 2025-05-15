@@ -23,7 +23,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\Fluids\OralH2OGlucoseLoad\ ?>
+<?path Display\Model\Intervention\Fluids\OralH2OGlucoseLoad\ ?>
 
 <?include Control.DES ?>
 

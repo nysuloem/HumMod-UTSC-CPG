@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
   <days/>
 </showclock>
 
-<?path Display\Intervention\InfusionPumps\ADH\ ?>
+<?path Display\Model\Intervention\InfusionPumps\ADH\ ?>
 
 <?include Pump.DES ?>
 

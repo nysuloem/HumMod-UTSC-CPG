@@ -21,7 +21,7 @@
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Warfarin\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Warfarin\Kinetics\ ?>
 
 <?include Injectate.DES ?>
 <?include Pool.DES ?>
@@ -29,4 +29,3 @@
 </panel>
 
 End
-

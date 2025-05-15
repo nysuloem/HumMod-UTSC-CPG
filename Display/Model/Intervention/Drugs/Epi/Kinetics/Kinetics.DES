@@ -28,7 +28,7 @@ By : Tom Coleman
   <days/>
 </showclock>
 
-<?path Display\Intervention\Drugs\Epi\Kinetics\ ?>
+<?path Display\Model\Intervention\Drugs\Epi\Kinetics\ ?>
 
 <?include ECFV.DES ?>
 

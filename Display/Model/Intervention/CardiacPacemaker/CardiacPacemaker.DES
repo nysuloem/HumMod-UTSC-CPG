@@ -28,7 +28,7 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Intervention\CardiacPacemaker\ ?>
+<?path Display\Model\Intervention\CardiacPacemaker\ ?>
 
 <?include Control.DES ?>
 
