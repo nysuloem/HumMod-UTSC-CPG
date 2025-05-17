@@ -11,14 +11,9 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> UrineLoss </name>
-</var>
+<var><name> UrineLoss </name></var>
 
-<constant>
-  <name> K </name>
-  <val> 0.06  </val>  <!-- Ethanol clearance rate -->
-</constant>
+<constant><name> K </name><val> 0.06 </val>  <!-- Ethanol clearance rate --> </constant>
 
 </variables>
 
@@ -36,10 +31,10 @@ Schema : DES V1.0
   </val>
 </def> 
 
-
 </block>
 
 </definitions>
+
 </structure>
 
 End

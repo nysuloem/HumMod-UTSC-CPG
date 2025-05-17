@@ -31,7 +31,7 @@ By : Tiffany Bishun
 <?path Display\Intervention\Drugs\Ethanol\Kinetics\ ?>
 
 <?include GILumen.DES ?>
-<?include ECFV.DES ?>
+<!--<?include ECFV.DES ?>-->
 
 </panel>
 

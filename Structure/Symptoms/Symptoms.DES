@@ -65,17 +65,22 @@ Edited by CPG
 <testcase>
 
   <case>
-    <test> EthanolPool.[Ethanol] GT 1 </test>
+    <test> EthanolPool.[Ethanol] GT 0.15 </test>
       <def><name> Number1 </name><val> 29 </val></def>
       </case>
 
   <case>
-    <test> EthanolPool.[Ethanol] GT 0.1 </test>
+    <test> EthanolPool.[Ethanol] GT 0.08 </test>
     <def><name> Number1 </name><val> 33 </val></def>
   </case>
 
   <case>
-    <test> EthanolPool.[Ethanol] LE 0.1 </test>
+    <test> EthanolPool.[Ethanol] GT 0.03 </test>
+    <def><name> Number1 </name><val> 36 </val></def>
+  </case>
+
+  <case>
+    <test> EthanolPool.[Ethanol] LE 0.03 </test>
     <def><name> Number1 </name><val> 32 </val></def>
   </case>
 

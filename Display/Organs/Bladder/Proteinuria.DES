@@ -8,7 +8,7 @@ By : Tom Coleman
 
 <groupbox>
    <row> 23.6 </row>
-   <col> 1.0 </col>
+   <col> 1 </col>
    <high> 4.0 </high>
    <wide> 30.0 </wide>
    <title> Proteinuria </title>

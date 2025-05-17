@@ -40,13 +40,14 @@ By: Jason Brown
   <map><val> 26 </val><img> "I'm eating a meal and feeling fine." </img></map>
   <map><val> 27 </val><img> Patient is bedridden and on parenteral feeding </img></map>
   <map><val> 28 </val><img> "I'm having sexual intercourse"</img></map>
-  <map><val> 29 </val><img> Patient is drunk.  </img></map>
+  <map><val> 29 </val><img> Patient is at risk of blacking out from excess alcohol consumption </img></map>
   <map><val> 30 </val><img> Incomprehensible sounds </img></map>
   <map><val> 31 </val><img> Unresponsive, snorring respirations </img></map>
   <map><val> 32 </val><img> Patient is sober </img></map>
-  <map><val> 33 </val><img> Patient is starting get tipsy </img></map>
+  <map><val> 33 </val><img> Patient is legally drunk </img></map>
   <map><val> 34 </val><img> "I'm horny" </img></map>
   <map><val> 35 </val><img> </img></map>
+  <map><val> 36 </val><img> Patient is tipsy </img></map>
  
 </maplist>
 

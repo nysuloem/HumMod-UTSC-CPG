@@ -19,7 +19,7 @@ Schema : DES V1.0
 <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
 <var><name> TotalDoses </name><val> 0.0 </val></var>
 <var><name> CumulativeDose </name><val> 0.0 </val></var>
-<var><name> Density_ETOH </name><val> 0.789 </val></var>
+<constant><name> Density_ETOH </name><val> 0.789 </val></constant>
 
 <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
 <var><name> Interval </name></var>
@@ -62,6 +62,7 @@ Schema : DES V1.0
 </def>
 
 </true>
+
 <false>
 
 <timer>

@@ -32,7 +32,8 @@ By : Tiffany Bishun
 
 <?include SingleDoseOral.DES ?> 
 <?include DailyDoseOral.DES ?>
-<?include MethanolDose.DES ?>
+<?include BloodAlcConc.DES ?>
+<!--<?include MethanolDose.DES ?>-->
 
 </panel>
 

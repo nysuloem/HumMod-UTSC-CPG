@@ -11,23 +11,11 @@ Schema : DES V1.0
 
 <variables>
 
-<constant>
-  <name> BIOAVAIL </name>
-  <val> 0.20 </val>
-</constant>
+<var><name> BIOAVAIL </name><val> 0.20 </val></var>
+<var><name> PERM </name><val> 0.8 </val></var>
 
-<constant>
-  <name> PERM </name>
-  <val> 0.8 </val> 
-  </constant>
-
-<var>
-  <name> [Ethanol] </name>
-</var>
-
-<var>
-  <name> Loss </name>
-</var>
+<var><name> [Ethanol] </name></var>
+<var><name> Loss </name></var>
 
 </variables>
 
@@ -53,6 +41,7 @@ Schema : DES V1.0
   
   <!-- What is ethanol mass? Volume or mass? Concentration?? (1L of water) 1% = 10ml --> 
 <!-- Density Ethanol = 0.789 __ Mass = D X V--> 
+
 </def>
 
 </block>
