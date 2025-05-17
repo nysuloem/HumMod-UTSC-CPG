@@ -32,6 +32,7 @@ By : University of Mississippi Medical Center
 <definitions>
 
 <block><name> Init </name>
+  <!-- This appears to be an empty block -->
 </block>
 
 <block><name> CalcVol </name>

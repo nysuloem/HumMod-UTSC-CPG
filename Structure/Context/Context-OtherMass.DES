@@ -35,7 +35,6 @@ By : University of Mississippi Medical Center
 <var><name> Stochasm </name></var>
 <var><name> OtherAdjust </name></var>
 
-
 <normaldist>
   <name> Normal </name>
   <mean> 0 </mean>
@@ -53,7 +52,7 @@ By : University of Mississippi Medical Center
 <functions>
 
 <curve><name> OtherAdjustAge </name>
-<point><x> 0 </x><y> 0.16 </y><slope> 0.025 </slope></point>
+<point><x> 6 </x><y> 0.5 </y><slope> 0.025 </slope></point>
 <point><x> 15 </x><y> 0.85 </y><slope>0.025</slope></point>
 <point><x> 25 </x><y> 1.0 </y><slope> 0.025 </slope></point>
 <point><x> 70 </x><y> 1.0 </y><slope>0.025</slope></point>

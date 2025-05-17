@@ -65,7 +65,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Scale </name>
-  <val> 0.01 * Correction * TotalCapacity * Breathing.LungVolAgeAdjust </val>
+  <val> 0.01 * Correction * TotalCapacity </val>
 </def>
 
 <def>

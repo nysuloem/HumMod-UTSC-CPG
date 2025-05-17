@@ -56,7 +56,7 @@ We need both BTPS and STPD volumes.
 
 <curve>
   <name> LungVolAdjustAge </name>
-  <point><x> 0 </x><y> 0.50 </y><slope> 0.025 </slope></point>
+  <point><x> 0 </x><y> 0.1 </y><slope> 0.025 </slope></point>
   <point><x> 20 </x><y> 1.00 </y><slope>0.025</slope></point>
   <point><x> 70 </x><y> 1.00 </y><slope> 0.025 </slope></point>
   <point><x> 90 </x><y> 0.75 </y><slope>0.025</slope></point>
