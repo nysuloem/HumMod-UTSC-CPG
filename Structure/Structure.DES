@@ -118,7 +118,6 @@ By : University of Mississippi Medical Center
 <?include LowerExternalPressure\LowerExternalPressure.DES ?>
 <?include LungGases\LungGases.DES ?>
 <?include Lungs\Lungs.DES ?>
-<?include Menstruation\Menstruation.DES ?>
 <?include Metabolism\Metabolism.DES ?>
 <?include MineralocorticoidReceptor\MineralocorticoidReceptor.DES ?>
 <?include Na\Na.DES ?>
@@ -809,7 +808,7 @@ By : University of Mississippi Medical Center
   <call> Endometrium.Dervs </call>  
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
-  <call> Menstruation.Dervs </call>
+  <call> Uterus-Menstruation.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>

@@ -24,8 +24,9 @@ Schema : DES V1.0
 <?include Uterus-CO2.DES ?>
 <?include Uterus-Lactate.DES ?>
 <?include Uterus-Metabolism.DES ?>
-<!-- <?include Uterus-Menstruation.DES ?> -->
+<?include Uterus-Menstruation.DES ?>
 <?include Pregnancy.DES ?>
+
 <?path Structure\Uterus\Endometrium\ ?>
 <?include Endometrium.DES ?>
 
@@ -40,12 +41,6 @@ Schema : DES V1.0
 
 <definitions>
 
-<block><name> Init </name>
-
-<call> Context-Sex.Init </call>
-<call> Sex.Init </call>
-</block>
-
 
 
 <block><name> Dervs </name>
@@ -54,7 +49,7 @@ Schema : DES V1.0
     <if>
     <test> Context-Sex.Index EQ 1 </test>
     
-    <true>  </true>
+
     
     <false>
 

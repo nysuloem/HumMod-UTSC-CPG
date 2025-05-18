@@ -35,8 +35,11 @@ By: Terry Yavorskyy UTSC
   <definitions>
   
   <block><name> Parms </name>
+
     <call> Context-Sex.Calc </call>
+   
   <onjustchanged><name> Index </name>
+
   <if><test> Index EQ IS_FEMALE </test>
   
   <true>     
@@ -54,7 +57,8 @@ By: Terry Yavorskyy UTSC
   </onjustchanged>
   
   <onjustchanged><name> UIndex </name>
-    <call> Context-Sex.CalcU </call>
+    <call> Context-Sex.UIndex </call>
+    <call> Uterus.Dervs </call>
     </onjustchanged>
     
   
@@ -77,8 +81,6 @@ By: Terry Yavorskyy UTSC
     <name> Sex.Index </name>
     <val> Index </val>
   </def>
-  
-  <call> Sex.Init </call>
   
   </block>
   

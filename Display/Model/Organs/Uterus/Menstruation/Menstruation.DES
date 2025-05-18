@@ -28,11 +28,11 @@
    <high> 24.6 </high>
    <wide> 30.0 </wide>
 
-<structurename> Menstruation </structurename>
+<structurename> Uterus-Menstruation </structurename>
 
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
-   <name> Menstruation.Volume </name>
+   <name> Uterus-Menstruation.Rate </name>
    <format><decimal> 1 </decimal></format>
    <label> Volume </label>
 </showvalue>
@@ -47,7 +47,7 @@
   </xaxis>
   <yaxis>
     <yvar>
-      <name> Menstruation.Volume </name>
+      <name> Uterus-Menstruation.Volume </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>

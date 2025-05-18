@@ -1,7 +1,7 @@
 HumMod / Menstruation.DES  
 
 
-
+<!--  
 <structure><name> Menstruation </name> 
 
 <variables>
@@ -34,10 +34,10 @@ HumMod / Menstruation.DES
 
 
 
-<!--  
+
 <def><name> Rate </name><val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.0005 * Endometrium.Thickness  </val> </def>
 
---> 
+
 
 <def><name> Bloodloss </name><val> Sex.IsFemale * Rate </val></def>
 
@@ -50,5 +50,5 @@ HumMod / Menstruation.DES
 
 
 </structure>
-
+--> 
 End

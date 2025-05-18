@@ -30,7 +30,6 @@
 
 <definitions>
 <!-- 
- I think I may have have not been thinking straight when I was writing this...
   <block><name> Init </name>
 
     <call> Endometrium-StromalCells.Population </call> 
