@@ -18,7 +18,7 @@ By: Jason Brown
 
 <block><name> Init </name>
   <call> SexDrive.Init </call>
-  <call> SexDrive.MoodChange </call>
+  <!--<call> SexDrive.MoodChange </call>-->
 </block>
 
 <!--<block><name> Wrapup </name>

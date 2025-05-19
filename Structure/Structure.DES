@@ -343,6 +343,7 @@ By : University of Mississippi Medical Center
   <call> Progesterone.Conc </call>
   <call> Testosterone.Conc </call>
   <call> VitaminD.Conc </call>
+  <call> Cortisol.Conc </call>
   <call> SexDrive.Parms </call>
   <call> SexDrive.Libido </call>
   
@@ -378,7 +379,7 @@ By : University of Mississippi Medical Center
   <call> Aldosterone.CalcConc </call>
   <call> MineralocorticoidReceptor.CalcBinding </call>
   <call> ADH.CalcConc </call>
-  <call> Cortisol.Conc </call>
+ 
   <call> Insulin.CalcConc </call>
   <call> Glucagon.CalcConc </call>
   <call> EPO.CalcConc </call>

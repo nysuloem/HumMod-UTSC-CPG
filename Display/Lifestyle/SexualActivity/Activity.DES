@@ -12,8 +12,8 @@ By: Jason Brown UTSC
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 15 </high>
-   <wide> 50 </wide>
+   <high> 17 </high>
+   <wide> 40 </wide>
    <title> Sexual Activity </title>
 
 <structurename> SexDrive </structurename>
@@ -30,24 +30,24 @@ By: Jason Brown UTSC
   <repeat><reps> 100 </reps><stepsize> 1.0 </stepsize></repeat>
 </repeatlist>
 
-  <slidebar>
-    <row>3.4</row>
-    <col>1.0</col>
-    <name>HaveSex.PartnerProbability</name>
-    <listname>PartnerProbability</listname>
+<slidebar>
+    <row> 3.4 </row>
+    <col> 1.0 </col>
+    <name> HaveSex.PartnerProbability </name>
+    <listname> PartnerProbability </listname>
     <label> Partner Probability (%) </label>
-  </slidebar>
+</slidebar>
 
 <showvalue>
    <row> 12.4 </row><col> 1 </col>
-   <name> HaveSex.HaveSex </name>
+   <name> SexDrive.Libido </name>
    <label> Libido </label>
 </showvalue>
 
 <showvalue>
   <row> 13.4</row><col> 1 </col>
-  <name> SexualIntercourse.Ejaculation </name>
-  <label> Ejac Timer </label>
+  <name> SexualIntercourse.Orgasm </name>
+  <label> Orgasm Timer </label>
 </showvalue>
 
 <showvalue>
@@ -56,11 +56,17 @@ By: Jason Brown UTSC
   <label> Refractory Timer </label>
 </showvalue>
 
+<showvalue>
+  <row> 15.4 </row><col> 1 </col>
+  <name> SexualIntercourse.Attempt </name>
+  <label> Attempt Timer </label>
+</showvalue>
+
 <maplist>
   <name> SexDrive.Mood </name>
   <map><val>  0 </val><img> "I'm not in the mood right now." </img></map>
   <map><val>  1 </val><img>  "I'm horny!" </img></map>
-  <map><val> 2 </val><img> Patient is not sexually active</img></map>
+  <map><val> 2 </val><img> Patient is not sexually active </img></map>
 </maplist>
 
 <showvalue>
@@ -69,7 +75,6 @@ By: Jason Brown UTSC
   <nolabel/>
   <format>
     <list> SexDrive.Mood </list>
-    <fieldwidth> 26 </fieldwidth>
   </format>
 </showvalue>
 
@@ -93,7 +98,6 @@ By: Jason Brown UTSC
   <nolabel/>
   <format>
     <list> HaveSex.SexOutcome </list>
-    <fieldwidth> 20 </fieldwidth>
   </format>
 </showvalue>
 
@@ -108,24 +112,35 @@ By: Jason Brown UTSC
 <structurename> HaveSex </structurename>
 
 <groupbox>
-   <row> 24 </row>
+   <row> 20 </row>
    <col> 1.0 </col>
-   <high> 12.8 </high>
-   <wide> 30.0 </wide>
+   <high> 8 </high>
+   <wide> 40 </wide>
    <title> Sexual Encounters </title>
 
 <showvalue>
-   <row> 14 </row><col> 1 </col>
+   <row> 2.5 </row><col> 1 </col>
    <name> SexualIntercourse.TimeLastSex </name>
    <format>
       <timestamp/>
       <fieldwidth> 14 </fieldwidth>
    </format>
-   <label> Last sexual encounter </label>
+   <label> Last Sexual Encounter </label>
 </showvalue>
 
+<showvalue>
+  <row> 4.0 </row><col> 1 </col>
+  <name> SexualIntercourse.FailedSex </name>
+  <label> Times Failed to Erection </label>
+</showvalue>
+
+<infobutton>
+  <row> 1.2 </row>
+  <col> 35 </col>
+  <line> Failure to achieve erection </line>
+  <line> could indicate erectile dysfunction </line>
+</infobutton>
 
 </groupbox>
-
 
 End

@@ -11,10 +11,12 @@ By: Jason Brown
 <var><name> TimeLastSex </name><val> UNDEFINED </val></var>
 <var><name> TimeNextSex </name><val> UNDEFINED </val></var>
 <var><name> TotalSex </name><val> 0.0 </val></var>
+<var><name> FailedSex </name><val> 0.0 </val></var>
 <var><name> CumulativeDose </name><val> 0.0 </val></var>
 
-<timervar><name> Ejaculation </name></timervar>
+<timervar><name> Orgasm </name><val> 0 </val></timervar>
 <timervar><name> Refractory </name><val> 0 </val></timervar>
+<timervar><name> Attempt </name><val> 10 </val></timervar>
 
 <var><name> Interval </name></var>
 
@@ -28,10 +30,18 @@ By: Jason Brown
 
 <block><name> Parms </name>
 
+<if>
+  <test> HaveSex.SexOutcome EQ 1 </test>
+  <true>
+    <call> Parms2 </call>
+    <exitblock/>
+  </true>
+</if>
+
 <conditional><name> HaveSex.SexOutcome </name>
 <test> HaveSex.HaveSex LT 2000 </test>
-<true> 0 </true>
-<false> 5 </false>
+<true> 0 </true> <!-- Patient is not having sexual intercourse -->
+<false> 5 </false> <!-- Patient is attempting sexual intercourse -->
 </conditional>
 
 <if><test> HaveSex.SexOutcome EQ 5 </test>
@@ -44,101 +54,99 @@ By: Jason Brown
 
 <block><name> Parms2 </name>
 
+<if><test> Attempt EQ 0 </test>
+  <true>
+    <def><name> FailedSex </name>
+      <val> FailedSex + 1 </val>
+    </def>
+    <timer>
+      <name> Refractory</name> <!-- After having an orgasm, the patient is refractory to having sexual intercourse again for some period of time -->
+      <val> 420 </val>
+      <state> DOWN </state>
+    </timer>  
+    <exitblock/>
+  </true>
+</if>
+
+<if><test> Refractory GT 0 </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
+
+<if><test> Orgasm GE 30 </test> <!-- Once the patient achieves orgasm, they are done having sexual intercourse and return to rest -->
+  <true>
+    <def><name> Exercise-Control.Request </name><val> 0 </val></def>
+    <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
+    <call> Exercise-Control.UpdateStatus </call>
+    <call> Status.Exertion </call>
+    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
+    <timer> 
+      <name> Orgasm </name>
+      <val> 0 </val>
+      <state> OFF </state>
+    </timer>
+    <timer>
+      <name> Attempt </name>
+      <val> 10 </val>
+      <state> OFF </state>
+    </timer>
+    <timer>
+      <name> Refractory</name> <!-- After having an orgasm, the patient is refractory to having sexual intercourse again for some period of time -->
+      <val> 420 </val>
+      <state> DOWN </state>
+    </timer>
+    <exitblock/>
+  </true>
+</if>
+
 <conditional><name> HaveSex.SexOutcome </name>
 <test> Genitalia-Flow.Status-Erect EQ 1 </test>
-<true> 1 </true>
-<false> 6 </false>
+<true> 1 </true> <!-- Patient achieved erection and is having sexual intercourse -->
+<false> 6 </false> <!-- Patient is not yet erect -->
 </conditional>
 
 <if><test> HaveSex.SexOutcome EQ 1 </test>
 <true>
-  <def><name> Exercise-Control.Request</name><val> 1 </val></def>
+  <def><name> Exercise-Control.Request</name><val> 1 </val></def> <!-- I am using the exercise bike to mimic the physical activity of having sexual intercourse -->
   <def><name> Exercise-Bike.Power(W)</name><val> 350 </val></def>
   <call> Exercise-Control.UpdateStatus </call>
   <call> Status.Exertion </call>
   <call> Exercise-Control.Wrapup </call>
   <timer>
-    <name> Ejaculation </name>
+    <name> Orgasm </name> <!-- This determines how long it takes the patients to orgasm -->
     <state> UP </state>
+  </timer>
+  <call> Wrapup </call>
+  <timer>
+    <name> Attempt </name>
+    <val> 10 </val>
+    <state> OFF </state>
   </timer>
 </true>
 </if>
 
-<if><test> Ejaculation GE 30 </test>
+<if><test> HaveSex.SexOutcome EQ 6 </test>
 <true>
-  <def><name> Exercise-Control.Request </name><val> 0 </val></def>
-  <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
-  <call> Exercise-Control.UpdateStatus </call>
-  <call> Status.Exertion </call>
-  <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
-  <timer> 
-    <name> Ejaculation </name>
-    <val> 0 </val>
-    <state> OFF </state>
-  </timer>
   <timer>
-    <name> Refractory</name>
-    <val> 420 </val>
+    <name> Attempt </name>
     <state> DOWN </state>
   </timer>
-</true>
-</if>
+</true></if>
 
 </block>
 
 <block><name> Wrapup </name>
-
-<ontimedout><name> Timer </name>
-
-<timer>
-  <name> Timer </name>
-  <val> Interval </val>
-</timer>
 
 <def>
   <name> TimeLastSex </name>
   <val> System.X </val>
 </def>
 
-<def>
-  <name> TimeNextSex </name>
-  <val> System.X + Interval </val>
-</def>
-
-
-<def>
-  <name> TotalSex </name>
-  <val> TotalSex + 1.0 </val>
-</def>
-
-<def>
-  <name> CumulativeDose </name>
-  <val> CumulativeDose + Dose </val>
-</def>
-
-</ontimedout>
-</block>
-
-<block><name> Reset </name>
-
-<def>
-  <name> TimeLastSex </name>
-  <val> UNDEFINED </val>
-</def>
-
-<def>
-  <name> TotalSex </name>
-  <val> 0.0 </val>
-</def>
-
-<def>
-  <name> CumulativeDose </name>
-  <val> 0.0 </val>
-</def>
-
 </block>
 
 </definitions>
+
 </structure>
 
 End

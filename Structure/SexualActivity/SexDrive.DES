@@ -10,6 +10,7 @@ By: Jason Brown
 <variables>
 
 <parm><name> Index </name><val> 1 </val></parm>
+<!-- Index = 0 means not sexually active and Index = 1 means sexually active -->
 
 <constant><name> IS_SEXUALLYINACTIVE </name><val> 0 </val></constant>
 <constant><name> IS_SEXUALLYACTIVE </name><val> 1 </val></constant>
@@ -37,7 +38,8 @@ By: Jason Brown
     <def><name> IsSexuallyInactive</name><val> TRUE </val></def>
     <def><name> Index </name><val> 0 </val></def>
     <def><name> Mood </name><val> 2 </val></def>
-</false></if>
+</false>
+</if>
 
 </block>
 
@@ -84,8 +86,7 @@ By: Jason Brown
 </true>
 <false>
     <def><name> Libido </name>
-    <val> Testosterone.[Conc(nMol/L)] </val>
-    <!--Referencs are xxx-->
+    <val> Testosterone.[Conc(nMol/L)] + ( Estradiol.[Conc(nMol/L)] * 50 ) - ( Cortisol.[Conc(nMol/L)] * 0.0005 ) </val>
     </def>
 </false>
 </if>
