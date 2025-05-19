@@ -20,7 +20,11 @@ Schema : DES V1.0
 
 <block><name> GluReact </name>
 
-<conditional>
+<def><name> React </name>
+<val> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) </val>
+</def>
+
+<!--<conditional>
 <name> React </name>
 <test> Ethnicity.IsBlack </test>
 <true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1.04 </true>
@@ -42,7 +46,7 @@ Schema : DES V1.0
 <name> React </name>
 <test> Ethnicity.IsAsian </test>
 <true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1 </true>
-</conditional>
+</conditional> -->
 
 <def>
 <name> A1C </name>

@@ -121,19 +121,19 @@ Schema : DES V1.0
   <false> 0 </false>  <!--If female (1), add 0-->
 </conditional> 
 
-<if> 
+<!--<if> 
   <test> Context-Ethnicity.IS_BLACK </test> 
   <true> <def> <name> EthnicityNephronAdjustment </name> 
 <val> 50800 </val>
-  </def> </true>  <!-- 951,807 - 901,011 -->
+  </def> </true>
   <false> <def> <name> EthnicityNephronAdjustment </name> 
 <val> 0 </val>
   </def> </false>
-</if>
+</if>-->
 
 <def>
   <name> Total </name>
-  <val> Total + SexNephronAdjustment + EthnicityNephronAdjustment </val>
+  <val> Total + SexNephronAdjustment <!-- + EthnicityNephronAdjustment --> </val>
 </def>
 
 

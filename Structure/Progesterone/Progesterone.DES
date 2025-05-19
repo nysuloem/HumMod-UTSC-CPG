@@ -67,7 +67,7 @@ Schema : DES V1.0
 
 <block><name>EthChange</name>
 
-<if><test>Context-Ethnicity.IsBlack </test>
+<!--<if><test>Context-Ethnicity.IsBlack </test>
 <true><call> CalcBlack </call></true>
 </if>
 
@@ -77,7 +77,8 @@ Schema : DES V1.0
 
 <if><test>Context-Ethnicity.IsAsian </test>
 <true><call> CalcAsian </call></true>
-</if>
+</if>-->
+
 </block>
 
 

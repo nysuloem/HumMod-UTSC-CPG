@@ -23,6 +23,13 @@ By: Jason Brown
    <label> </label>
 </showvalue>
 
+<showvalue> 
+   <row> 4 </row><col> 47 </col>
+   <name> Ethnicity.Index3 </name>
+   <format><list> Common.Ethnicity2 </list></format>
+   <label> </label>
+</showvalue>
+
 <showvalue>
    <row> 5 </row><col> 1.0 </col>
    <name> Age.Age(Years) </name>

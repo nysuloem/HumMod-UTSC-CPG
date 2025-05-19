@@ -11,6 +11,7 @@ By: Jason Brown
 
 <parm><name> Index </name><val> 0 </val></parm>
 <parm><name> Index2 </name><val> 0 </val></parm>
+<parm><name> Index3 </name><val> 0 </val></parm>
 
 <constant><name> IS_WHITE </name><val> 0 </val></constant>
 <constant><name> IS_BLACK </name><val> 1 </val></constant>
