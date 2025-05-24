@@ -176,6 +176,7 @@ By : University of Mississippi Medical Center
 <?include Ovaries\Ovaries.DES ?>
 <?include Testes\Testes.DES ?>
 <?include Uterus\Uterus.DES ?>
+<?include UterusLumen\UterusLumen.DES ?>
 
 <structure><name> Structure </name>
 

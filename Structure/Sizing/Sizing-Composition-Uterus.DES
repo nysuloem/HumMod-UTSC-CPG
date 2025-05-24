@@ -79,7 +79,7 @@ By : Tom Coleman
   <name> Uterus-Size.InitialSolidMass </name>
   <val> SolidMass </val>
 </def>
-
+    <call> UterusLumen.Init </call>
 <if> 
 <test> Context-Sex.Index EQ 1 </test>
 <true> <call> Uterus-Size.Init </call> </true>

@@ -85,9 +85,7 @@ By: Jason Brown
     <exitblock/>
 </true>
 <false>
-    <def><name> Libido </name>
-    <val> Testosterone.[Conc(nMol/L)] + ( Estradiol.[Conc(nMol/L)] * 50 ) - ( Cortisol.[Conc(nMol/L)] * 0.0005 ) </val>
-    </def>
+    <call> LibidoCalc </call>
 </false>
 </if>
 
@@ -99,6 +97,20 @@ By: Jason Brown
   <def><name> Mood </name><val> 0 </val></def>
 </false>
 </if>
+</block>
+
+<block><name> LibidoCalc </name>
+    <if><test> Context-Sex.Index EQ 0 </test>
+    <true>
+    <def><name> Libido </name>
+    <val> Testosterone.[Conc(nMol/L)] - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val>
+    </def>
+    </true>
+    <false>
+    <def><name> Libido </name>
+    <val> ( Estradiol.[Conc(nMol/L)] * 50 ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val></def>
+    </false>
+    </if>
 </block>
 
 <block><name> Refractory</name>
