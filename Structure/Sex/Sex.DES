@@ -21,7 +21,7 @@ By: Terry Yavorskyy UTSC
 <constant><name> No_Uterus </name><val> 0 </val></constant>
 <constant><name> Has_Uterus </name><val> 1 </val></constant>
 
-<var><name> Index </name><val>0</val></var>
+<var><name> Index </name><val> 0 </val></var>
 <var><name> IsMale </name></var>
 <var><name> IsFemale </name></var>
     

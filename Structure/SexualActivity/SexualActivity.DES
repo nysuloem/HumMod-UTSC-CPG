@@ -24,24 +24,22 @@ By: Jason Brown
 
 <block><name> Init </name>
 
-<if><test> Index EQ IS_SEXUALLYINACTIVE </test>
+<if>
+<test> Index EQ IS_SEXUALLYINACTIVE </test>
 <true>
 <def><name> IsSexuallyInactive </name><val> TRUE </val></def>
 <def><name> IsSexuallyActive </name><val> FALSE </val></def>
-
 </true>
-<false>
-</false>
+
 </if>
 
-<if><test> Index EQ IS_SEXUALLYACTIVE </test>
+<if>
+<test> Index EQ IS_SEXUALLYACTIVE </test>
 <true>
 <def><name> IsSexuallyInactive </name><val> FALSE </val></def>
 <def><name> IsSexuallyActive </name><val> TRUE </val></def>
-
 </true>
-<false>
-</false>
+
 </if>
 
 </block>

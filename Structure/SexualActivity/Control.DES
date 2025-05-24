@@ -10,7 +10,7 @@ By: Jason Brown
 <?include HaveSex.DES ?>
 <?include SexualActivity.DES ?>
 <?include UseProtection.DES ?>
-
+<?include Sexual.DES ?> 
 
 <structure><name> Control </name>
 
@@ -22,6 +22,10 @@ By: Jason Brown
 
 <block><name> Parms </name>
   <call> HaveSex.Parms </call>
+</block>
+<block> 
+<name> Dervs </name>
+  <call> Sexual.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>

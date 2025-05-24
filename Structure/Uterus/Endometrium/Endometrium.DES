@@ -29,13 +29,13 @@
 </variables>
 
 <definitions>
-<!-- 
+
   <block><name> Init </name>
 
-    <call> Endometrium-StromalCells.Population </call> 
-    <call> Endometrium-Glands.Population </call>
-    <call> Endometrium-LuminalEpithelium.Population </call>
-    <call> Endometrium-Vasculature.Population </call>
+    <call> Endometrium-StromalCells.Init </call> 
+    <call> Endometrium-Glands.Init </call>
+    <call> Endometrium-LuminalEpithelium.Init </call>
+    <call> Endometrium-Vasculature.Init </call>
 
 
  
@@ -48,7 +48,7 @@
     
   </block>
   
--->
+
 <block><name> Dervs </name>
 
   <call> Endometrium-StromalCells.Dervs </call> 
@@ -78,7 +78,7 @@
 
 </block>
 
-<block><name> Wrapup </name>
+<block><name> WrapUp </name>
 
 <call> Endometrium-StromalCells.WrapUp </call>
 <call> Endometrium-Glands.WrapUp </call>

@@ -494,7 +494,7 @@ By : University of Mississippi Medical Center
 
   <call> BVSeqArtys.CalcPressure </call>
   <call> BVSeqVeins.CalcPressure </call>
-
+<call> Control.Dervs </call>
   <call> Heart.Calc </call>
 
   <call> LeftHeart-Infarction.Dervs </call>
@@ -866,7 +866,9 @@ By : University of Mississippi Medical Center
   <call> Trauma.Wrapup </call>
   <if>
     <test> Sex.IsFemale </test>
-    <true><call> Endometrium.Wrapup </call></true>
+    <true><call> Endometrium.Wrapup </call>
+    <call> Uterus.Wrapup </call>
+    </true>
   </if>
   
   <!-- 
