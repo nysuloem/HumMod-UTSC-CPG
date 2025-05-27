@@ -7,6 +7,7 @@ HumMod / NO
 <?include NOPool.DES ?>
 <?include NOPump.DES ?>
 <?include NOClearance.DES ?>
+<!-- <?include NitratePool.DES ?> -->
 
 
 <structure><name> NO </name>
@@ -22,18 +23,24 @@ HumMod / NO
 <block><name> CalcConc </name>
 
   <call> NOPool.CalcConc </call>
+<!-- <call> NitratePool.CalcConc </call> -->
 
 </block>
 
 <block><name> Dervs </name>
 
   <call> NOPool.Dervs </call>
+<!-- <call> NitratePool.Dervs </call> -->
+
 
 </block>
 
 <block><name> LateDervs </name>
 
   <call> NOClearance.Dervs </call>
+<!-- <call> NitratePool.Dervs </call> -->
+
+
 
 </block>
 
