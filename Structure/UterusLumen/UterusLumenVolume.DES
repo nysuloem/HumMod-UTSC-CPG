@@ -20,24 +20,20 @@ By : University of Mississippi Medical Center
 </variables>
 
 <definitions>
-
+<!-- 
 <block><name> Mass </name>
 
 <def>
   <name> MassSolids </name>
   <val> 0.001 *
+Uterus-Menstruation.Volume
 
-  UterusLumen.
-   ( GILumenCarbohydrates.Mass
-   + GILumenFat.Mass
-   + GILumenProtein.Mass
-   )
   </val>
 </def>
 
 <def>
   <name> MassH2O </name>
-  <val> GILumenH2O.Mass </val>
+  <val> UterusLumen.Mass </val>
 </def>
 
 <def>
@@ -51,7 +47,7 @@ By : University of Mississippi Medical Center
 </def>
 
 </block>
-
+-->
 </definitions>
 </structure>
 

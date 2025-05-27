@@ -31,6 +31,7 @@ Schema : DES V1.0
 <?include Endometrium.DES ?>
 
 
+
 <structure><name> Uterus </name>
 
 <variables>
@@ -46,6 +47,7 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 <call> Uterus-Menstruation.Dervs </call>
 <call> Endometrium.Dervs </call>
+    <call> MenstrualExpulsion.Dervs </call>
     <if>
     <test> Context-Sex.Index EQ 1 </test>
     

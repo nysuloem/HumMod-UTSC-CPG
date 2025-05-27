@@ -6,22 +6,210 @@ Author : Tom Coleman
 Copyright : 2012-2012
 By : University of Mississippi Medical Center
 
+<panel>
+<name> Menstrual Blood Loss </name>
+<structurename> MenstrualExpulsion </structurename>
 
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
 
+<!-- ==================== HORMONAL CONTROLS ==================== -->
 <groupbox>
-   <row> 2.0 </row>
-   <col> 1 </col>
-   <high> 11.4 </high>
-   <wide> 30.0 </wide>
-   <title> Menstrual Blood Loss </title>
+  <row> 2.0 </row><col> 1.0 </col>
+  <high> 6.0 </high><wide> 30.0 </wide>
+  <title> Hormonal Influences </title>
 
-<showvalue>
-   <row> 1.4 </row><col> 1.0 </col>
-   <name> Rate </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Rate </label>
-</showvalue>
+  <repeatlist>
+    <name> ProstaglandinRange </name>
+    <firstval> 0.1 </firstval>
+    <repeat><reps> 19 </reps><stepsize> 0.1 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> ProstaglandinLevel </name>
+    <listname> ProstaglandinRange </listname>
+    <label> Prostaglandin Level </label>
+  </slidebar>
+
+  <repeatlist>
+    <name> HormoneRange </name>
+    <firstval> 0.1 </firstval>
+    <repeat><reps> 15 </reps><stepsize> 0.1 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 3.0 </row><col> 1.0 </col>
+    <name> EstrogenLevel </name>
+    <listname> HormoneRange </listname>
+    <label> Estrogen Level </label>
+  </slidebar>
+
+  <slidebar>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> ClottingTendency </name>
+    <listname> HormoneRange </listname>
+    <label> Clotting Tendency </label>
+  </slidebar>
 
 </groupbox>
+
+<!-- ==================== UTERINE STATUS ==================== -->
+<groupbox>
+  <row> 8.5 </row><col> 1.0 </col>
+  <high> 6.0 </high><wide> 30.0 </wide>
+  <title> Uterine Status </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> UterineVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Blood Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> UterinePressure </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Pressure (mmHg) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.5 </row><col> 1.0 </col>
+    <name> ContractionForce </name>
+    <format><decimal> 2 </decimal></format>
+    <label> Contraction Force </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> CervicalDilation </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Cervical Dilation (mm) </label>
+  </showvalue>
+
+</groupbox>
+
+<!-- ==================== FLOW STATUS ==================== -->
+<groupbox>
+  <row> 15.0 </row><col> 1.0 </col>
+  <high> 5.0 </high><wide> 30.0 </wide>
+  <title> Menstrual Flow </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> FlowRate </name>
+    <format><decimal> 2 </decimal></format>
+    <label> Current Flow (mL/Min) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> CumulativeFlow </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Total Flow (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.5 </row><col> 1.0 </col>
+    <name> ClotFormation </name>
+    <format><decimal> 2 </decimal></format>
+    <label> Clot Formation </label>
+  </showvalue>
+
+</groupbox>
+
+<!-- ==================== RIGHT SIDE GRAPHS ==================== -->
+<showvalue>
+  <row> 0.5 </row><col> 35.0 </col>
+  <name> System.X </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Time (Min) </label>
+</showvalue>
+
+<!-- Uterine Volume and Pressure -->
+<showgraph>
+  <row> 2.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Hours) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> UterineVolume </name>
+      <label> Uterine Volume </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> UterinePressure </name>
+      <label> Uterine Pressure </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 100 </max></scale>
+  </yaxis>
+</showgraph>
+
+<!-- Flow Rates Throughout System -->
+<showgraph>
+  <row> 9.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Hours) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> CervicalInflow </name>
+      <label> Cervical Flow </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+    <yvar>
+      <name> VaginalInflow </name>
+      <label> Vaginal Flow </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> MenstrualFlow </name>
+      <label> External Flow </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 5 </max></scale>
+  </yaxis>
+</showgraph>
+
+<!-- Cumulative Flow and Contractions -->
+<showgraph>
+  <row> 16.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Hours) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> CumulativeFlow </name>
+      <label> Total Flow </label>
+      <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+      <name> ContractionAmplitude </name>
+      <label> Contractions </label>
+      <linecolor> MAGENTA </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 50 </max></scale>
+  </yaxis>
+</showgraph>
+
+</panel>
+
+
 
 End

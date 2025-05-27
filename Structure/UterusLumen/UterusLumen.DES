@@ -8,6 +8,8 @@ By : University Of Mississippi Medical Center
 Schema : DES V1.0
  -->
 
+ <?path Structure\UterusLumen\ ?>
+<?include MenstrualExpulsion.DES ?>
 <structure><name> UterusLumen </name>
 
 <variables>
@@ -53,16 +55,13 @@ Schema : DES V1.0
 <def><name> Change </name><val> 0.0 </val></def>
 </block>
 
-<block><name> Parms </name>
 
-<!-- Defining input variables from other structures -->
+
+<block><name> Dervs </name>
+  <!-- Defining input variables from other structures -->
 <def><name> BleedingVol </name><val> Uterus-Menstruation.Volume </val></def> 
 <!-- Rate constant should be positive for proper delay behavior -->
 <def><name> ExpulsionRate </name><val> 0.1 </val></def>
-
-</block>
-
-<block><name> Dervs </name>
 
 <!-- Calculate gains and losses -->
 <def><name> Gain </name><val> Uterus-Menstruation.Rate </val></def>

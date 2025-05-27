@@ -1,4 +1,10 @@
 
+<?path Display\Model\Organs\Uterus\Menstruation\ ?>
+
+
+<?include BloodLoss.DES ?>
+
+
 <panel><name> Menstruation </name>
 
 <showbitmap>
@@ -56,7 +62,17 @@
     </scale>
   </yaxis>
 </showgraph>
- </groupbox>
+
+
+<showvalue>
+   <row> 6.4 </row><col> 1.0 </col>
+   <name> Rate </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Rate </label>
+</showvalue>
+
+</groupbox>
+
 
 </panel>
 

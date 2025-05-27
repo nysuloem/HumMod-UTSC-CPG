@@ -26,6 +26,13 @@ Schema : DES V1.0
 </leaf>
 
 <leaf>
+  <name> Menstrual Blood Loss </name>
+  <label> Menstruation Stats </label>
+  <parent> Uterus </parent>
+</leaf>
+
+
+<leaf>
   <name> Uterus-Size </name>
   <label> Size </label>
   <parent> Uterus </parent>
