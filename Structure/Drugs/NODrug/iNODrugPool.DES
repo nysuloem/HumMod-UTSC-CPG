@@ -7,6 +7,7 @@
   <parm><name> OxidationRate </name><val> 0.02 </val></parm> <!-- to nitrite/nitrate -->
   
   <var><name> Gain </name></var>
+  <var><name> Change </name></var>
   <var><name> NOInFlux(ppm) </name></var>
   <var><name> NOInFlux(uMol/min) </name></var> 
   <var><name> Loss_Hb </name></var>
@@ -74,7 +75,9 @@
   </block>
 
   <block><name> Dervs </name>
-  <call> iNODrugPool.Parms </call>
+
+    <call> iNODrugPool.Init </call>
+    <call> iNODrugPool.Parms </call>
 
     <def><name> NOInFlux(uMol/min) </name><val> 1000 * NOInFlux(ppm) / 30.01 </val></def>
 
