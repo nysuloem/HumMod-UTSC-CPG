@@ -30,7 +30,9 @@ By : Tom Coleman
 
 <?path Display\Intervention\Drugs\NODrug\Kinetics\ ?>
 
-<?include Pool.DES ?>
+<?include PlasmaPool.DES ?>
+<?include LungPool.DES ?>
+<?include NitratePool.DES ?>
 
 
 </panel>

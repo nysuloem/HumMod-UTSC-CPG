@@ -1,0 +1,42 @@
+HumMod / NitratePool
+
+<structure><name> NitratePool </name>
+
+<variables>
+
+<parm>
+  <name> Conversion_Factor </name> <!-- 70% of NO in the body turned into nitrate -->
+  <val> 0.7 </val>
+</parm>
+
+<var><name> [NO--] </name></var> <!-- amount of NO in system, comes from NO pool-->
+<var><name> [Nitrate] </name></var> <!-- amount turned into nitrate, 70% of total NO -->
+
+<var><name> Gain </name></var> <!-- nitrate -->
+<var><name> Loss </name></var> <!-- amount peed out, NO clearance, so this attaches to NO Clearance -->
+
+</variables>
+
+<definitions>
+
+<block><name> CalcConc </name>
+<call> NOPool.Dervs </call> <!-- same issue again, idk why this messes it up -->
+
+<def><name> [NO--] </name><val> NOPool.Gain </val></def> 
+<def><name> [Nitrate] </name><val>  [NO--] * Conversion_Factor </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Gain </name><val> [Nitrate] </val></def>
+<def><name> Loss </name><val> NOClearance.RenalDegradation </val></def>
+<def><name> Change </name><val> Gain - Loss </val></def>
+
+</block>
+
+
+</definitions>
+</structure>
+
+End
