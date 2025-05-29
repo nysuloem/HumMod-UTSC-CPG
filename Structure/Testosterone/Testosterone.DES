@@ -35,6 +35,11 @@ Schema : DES V1.0
 
 <parm><name> K </name><val> 0.043 </val></parm>
 
+<var><name> WhiteT </name></var>
+<var><name> BlackT </name></var>
+<var><name> AsianT </name></var>
+<var><name> HispanicT </name></var>
+
 </variables>
 
 <equations>
@@ -58,29 +63,36 @@ Schema : DES V1.0
   <false> TargetConcMale </false>
 </conditional>
 
-<call>EthChange</call>
+<if><test> Context-Sex.Index EQ 0 </test>
+  <true>
+  <call> EthnicityChange </call>
+  </true>
+</if>
+
+<call>EthnicityChange</call>
 
 <def><name> InitialMass </name><val> TargetConc * ECFV.InitialVol(L) </val></def>
 <def><name> Mass </name><val> InitialMass </val></def>
 
 </block>
 
-<block><name>EthChange</name>
+<block><name>EthnicityChange</name>
 
-<!--<if><test>Context-Ethnicity.IsBlack </test>
-<true><call> CalcBlack </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsHispanic </test>
-<true><call> CalcHispanic </call></true>
-</if>
-
-<if><test>Context-Ethnicity.IsAsian </test>
-<true><call> CalcAsian </call></true>
-</if>-->
+<def><name> AsianT </name><val> 1.08 </val></def> 
+<def><name> BlackT </name><val> 1.03 </val></def> 
+<def><name> WhiteT </name><val> 1.00 </val></def>
+<def><name> HispanicT </name><val> 0.993 </val></def>
+<def><name> TargetConc </name>
+  <val> TargetConc
+    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianT ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackT )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteT )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicT )
+    - 1 <!-- This substraction accounts for how the default value leads to a +1 addition here -->
+  </val>
+</def>
 
 </block>
-
 
 <block><name> Conc </name>
   <def><name> [Conc(nMol/L)] </name><val> Mass / ECFV.Vol(L) </val></def>
@@ -104,49 +116,8 @@ Schema : DES V1.0
 
 </block>
 
-<block><name> CalcBlack </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 1 </test>
-<def><name> TargetConc </name><val> TargetConc * 0.5 </val></def>
-
-
-</case>
-
-</testcase>
-
-</block>
-
-<block><name> CalcHispanic </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 3 </test>
-<def><name> TargetConc </name><val> TargetConc * 1.03 </val></def>
-
-</case>
-
-</testcase>
-
-</block>
-
-<block><name> CalcAsian </name>
-
-<testcase>
-
-<case><test> Context-Ethnicity.Index EQ 2 </test>
-<def><name> TargetConc </name><val> TargetConc * 0.97 </val></def>
-
-
-</case>
-
-</testcase>
-
-</block>
-
-
 </definitions>
+
 </structure>
 
 End

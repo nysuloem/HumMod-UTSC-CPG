@@ -52,9 +52,9 @@ By : University of Mississippi Medical Center
 <functions>
 
 <curve><name> MuscularityAdjustAge </name>
-<point><x> 0 </x><y> 0.2 </y><slope> 0.025 </slope></point>
+<point><x> 0 </x><y> 0.08 </y><slope> 0.025 </slope></point>
 <point><x> 16 </x><y> 0.85 </y><slope>0.025</slope></point>
-<point><x> 30 </x><y> 1.0 </y><slope> 0.025 </slope></point>
+<point><x> 20 </x><y> 1.0 </y><slope> 0.025 </slope></point>
 <point><x> 60 </x><y> 0.85 </y><slope>0.025</slope></point>
 <point><x> 70 </x><y> 1 </y><slope> 0.025 </slope></point>
 <point><x> 90 </x><y> 0.40 </y><slope>0.025</slope></point>

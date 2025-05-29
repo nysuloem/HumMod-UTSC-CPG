@@ -59,7 +59,7 @@ By: Jason Brown
 </label>
 
 <showvalue>
-  <row> 11 </row><col>1</col>
+  <row> 12 </row><col>1</col>
   <name> Symptoms.Number1 </name>
   <nolabel/>
   <format>
@@ -69,7 +69,7 @@ By: Jason Brown
 </showvalue>
 
 <showvalue>
-  <row> 12 </row><col>1</col>
+  <row> 11 </row><col>1</col>
   <name> Symptoms.Number2 </name>
   <nolabel/>
   <format>
