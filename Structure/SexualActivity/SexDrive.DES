@@ -1,0 +1,134 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+
+<structure><name> SexDrive </name>
+
+<variables>
+
+<parm><name> Index </name><val> 1 </val></parm>
+<!-- Index = 0 means not sexually active and Index = 1 means sexually active -->
+
+<constant><name> IS_SEXUALLYINACTIVE </name><val> 0 </val></constant>
+<constant><name> IS_SEXUALLYACTIVE </name><val> 1 </val></constant>
+
+<var><name> IsSexuallyInactive </name></var>
+<var><name> IsSexuallyActive </name></var>
+
+<var><name> Libido </name></var>
+<var><name> Mood </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Init </name>
+
+<if><test> Context-Age.Age(Years) GE 18 </test>
+<true>
+    <def><name> IsSexuallyActive</name><val> TRUE </val></def>
+    <def><name> IsSexuallyInactive</name><val> FALSE </val></def>
+    <def><name> Index </name><val> 1 </val></def>
+</true>
+<false>
+    <def><name> IsSexuallyActive</name><val> FALSE </val></def>
+    <def><name> IsSexuallyInactive</name><val> TRUE </val></def>
+    <def><name> Index </name><val> 0 </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
+</false>
+</if>
+
+</block>
+
+<block><name> Parms </name>
+
+<onjustchanged><name> Index </name>
+<call> Override </call>
+</onjustchanged>
+
+</block>
+
+<block><name> Override </name>
+
+<if><test> Index EQ IS_SEXUALLYINACTIVE </test>
+<true>
+    <def><name> IsSexuallyInactive </name><val> TRUE </val></def>
+    <def><name> IsSexuallyActive </name><val> FALSE </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_SEXUALLYACTIVE </test>
+<true>
+    <def><name> IsSexuallyInactive </name><val> FALSE </val></def>
+    <def><name> IsSexuallyActive </name><val> TRUE </val></def>
+    <call> Libido </call>
+</true>
+<false>
+</false>
+</if>
+
+</block>
+
+<block><name> Libido </name>
+
+<if><test> IsSexuallyActive EQ FALSE </test>
+<true>
+    <def><name> Libido </name>
+    <val> 0 </val></def>
+    <def><name> Mood </name><val> 2 </val></def>
+    <exitblock/>
+</true>
+<false>
+    <call> LibidoCalc </call>
+</false>
+</if>
+
+<if><test> Libido GE 20 </test>
+<true>
+    <call> Refractory </call>
+</true>
+<false>
+  <def><name> Mood </name><val> 0 </val></def>
+</false>
+</if>
+</block>
+
+<block><name> LibidoCalc </name>
+    <if><test> Context-Sex.Index EQ 0 </test>
+    <true>
+    <def><name> Libido </name>
+    <val> Testosterone.[Conc(nMol/L)] - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val>
+    </def>
+    </true>
+    <false>
+    <def><name> Libido </name>
+    <val> ( Estradiol.[Conc(nMol/L)] * 50 ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val></def>
+    </false>
+    </if>
+</block>
+
+<block><name> Refractory</name>
+    <if><test> SexualIntercourse.Refractory EQ 0 </test>
+        <true>
+    <def><name> Mood </name><val> 1 </val></def>
+    <call> SexualIntercourse.Parms </call>
+</true>
+<false>
+    <def><name> Mood </name><val> 0 </val></def>
+    <call> SexualIntercourse.Parms </call>
+</false>
+</if>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
