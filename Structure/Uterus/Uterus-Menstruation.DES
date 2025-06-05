@@ -32,7 +32,7 @@ Schema : DES V1.0
 <conditional>
     <name> EndometriumDeg </name>
     <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) </test>
-    <true> Endometrium.Functionalis</true>
+    <true> Endometrium.Functionalis </true>
     <false> 0.0 </false>
 </conditional>
 

@@ -166,11 +166,15 @@ By : University of Mississippi Medical Center
 
 
 <block><name> Dervs </name>
+<def>
+  <name> EndometrialShedRate </name>
+  <val> Endometrium-LuminalEpithelium.Change + Endometrium-Glands.Change + Endometrium-StromalCells.Change + Endometrium-Vasculature.Change </val>
+</def>
 
 <!-- ==================== ENDOMETRIAL SHEDDING ==================== -->
 <def>
   <name> EndometrialShedding </name>
-  <val> EndometrialShedRate * ProstaglandinLevel </val>
+  <val> EndometrialShedRate * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 
@@ -185,12 +189,12 @@ By : University of Mississippi Medical Center
 </def>
 <def>
   <name> ContractionForce </name>
-  <val> 1.0 + ( ContractionAmplitude * ProstaglandinLevel ) </val>
+  <val> 1.0 + ( ContractionAmplitude * Endometrium-StromalCells.PGE2 ) </val>
 </def>
 
 <def>
   <name> ContractionTrigger </name>
-  <val> ContractionAmplitude * ProstaglandinLevel </val>
+  <val> ContractionAmplitude * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 <!-- ==================== UTERINE CALCULATIONS ==================== -->
@@ -207,7 +211,7 @@ By : University of Mississippi Medical Center
 <!-- ==================== CERVICAL CALCULATIONS ==================== -->
 <def>
   <name> CervicalDilation </name>
-  <val> CervicalDilationCurve [ UterinePressure ] * ProstaglandinLevel </val>
+  <val> CervicalDilationCurve [ UterinePressure ] * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 <def>
@@ -223,7 +227,7 @@ By : University of Mississippi Medical Center
 <!-- Pressure and prostaglandin-dependent uterine outflow -->
 <def>
   <name> UterineOutflow </name>
-  <val> BaseContractionRate * UterineBlood * ( 1.0 + ( UterinePressure / 20.0 ) ) * ProstaglandinLevel </val>
+  <val> BaseContractionRate * UterineBlood * ( 1.0 + ( UterinePressure / 20.0 ) ) * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 <def>
