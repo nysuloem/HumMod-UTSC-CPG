@@ -1,0 +1,24 @@
+HumMod / Hemorrhage DES
+
+Created : 10-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+
+<branch>
+  <name> Pathogen </name>
+  <label> Pathogen </label>
+  <parent> TRAUMA </parent>
+</branch>
+
+<leaf>
+  <name> Influenza </name>
+  <label> Influenza </label>
+  <parent> Pathogen </parent>
+</leaf>
+
+End
