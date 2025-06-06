@@ -11,11 +11,13 @@ By : University of Mississippi Medical Center
 <variables>
 
 <parm><name> Switch </name><val> 0.0 </val></parm>
+<parm><name> Sleep </name><val> 0.0 </val></parm>
 <parm><name> WorkLevel </name><val> 20.0 </val></parm>
 <parm><name> WorkDuration </name><val> 50.0 </val></parm>
 <parm><name> AerobicsLevel </name><val> 100.0 </val></parm>
 <parm><name> AerobicsDuration </name><val> 30.0 </val></parm>
 <parm><name> MealsDuration </name><val> 30.0 </val></parm>
+<parm><name> SleepSchedule </name><val> 0 </val></parm>
 
 <var><name> FeedingTime </name></var>
 <var><name> FeedingFraction </name></var>

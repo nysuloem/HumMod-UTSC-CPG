@@ -7,6 +7,7 @@ Copyright : 2008-2012
 By : University of Mississippi Medical Center
 
 <structure><name> BladderChloride </name>
+  
 <variables>
 
 <var><name> [Cl-] </name></var>

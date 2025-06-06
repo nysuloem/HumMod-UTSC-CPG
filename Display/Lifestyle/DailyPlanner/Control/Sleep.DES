@@ -1,0 +1,35 @@
+HumMod / Switch
+
+Created : 27-Feb-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<groupbox>
+   <row> 16.5 </row>
+   <col> 32 </col>
+   <high> 4.4 </high>
+   <wide> 30.0 </wide>
+   <title> Sleep </title>
+
+<structurename> DailyPlannerControl </structurename>
+
+<maplist>
+  <name> Sleep </name>
+  <map><val> 0 </val><img> Sleep Based on Schedule </img></map>
+  <map><val> 1 </val><img> Sleep Based on Fatigue </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> Sleep </name>
+  <listname> Sleep </listname>
+  <nolabel/>
+  <layout> VERT </layout>
+</radiobuttons>
+
+</groupbox>
+
+End
