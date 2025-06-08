@@ -37,6 +37,8 @@ By : University of Mississippi Medical Center
 <constant><name> BEDREST </name><val> 0 </val></constant>
 <constant><name> NORMAL </name><val> 1 </val></constant>
 
+<var><name> Melatonin </name><val> 3 </val></var> <!-- This is just a placeholder variable until the melatonin stuff gets completed -->
+
 </variables>
 
 <definitions>
@@ -73,7 +75,8 @@ By : University of Mississippi Medical Center
 
 </block>
 
-<block><name> Wrapup </name>
+<block><name> Wrapup </name> 
+
   <testcase>
 
   <case>
@@ -92,15 +95,16 @@ By : University of Mississippi Medical Center
   </case>
 
   </testcase>
+
 </block>
 
 <block><name> StartWaiting </name>
+
   <def><name> MinutesIntoDay </name><val> System.X REM 1440.0 </val></def>
 
   <if>
   <test> MinutesIntoDay </test>
   <true>
- <!--   <message> Daily planner will start at midnight. </message>-->
     <def><name> Status </name><val> 1 </val></def>
     <timer><name> WaitingTimer </name><val> 1440.0 - MinutesIntoDay </val><state> DOWN </state></timer>
   </true>
@@ -143,7 +147,6 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> Start </name>
- <!-- <message> Daily planner is starting. </message>-->
   <def><name> Status </name><val> 2 </val></def>
   <call> NewTask </call>
 </block>
@@ -170,6 +173,7 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> NewTask </name>
+
   <call> GetTask </call>
 
   <testcase>
@@ -337,6 +341,15 @@ By : University of Mississippi Medical Center
 <!-- START SLEEP -->
 
 <block><name> StartSleep </name>
+
+  <if>
+    <test> DailyPlannerControl.Sleep EQ 1 </test>
+    <true> 
+      <call> FatigueSleep </call>
+      <exitblock/>
+    </true>
+  </if>
+
   <def><name> Status.Activity </name><val> 0 </val></def>
   <def><name> Status.Exertion </name><val> 0 </val></def>
 
@@ -344,10 +357,27 @@ By : University of Mississippi Medical Center
      <name> PostureControl.Request </name>
      <val> PostureControl.LYING </val>
   </def>
+
   <call> PostureControl.RequestChange </call> 
 
   <def><name> Status.Nutrition </name><val> 1 </val></def>
+
 </block>
+
+<block><name> FatigueSleep </name>
+
+  <if>
+    <test> Melatonin GT 4 </test>
+    <true>
+    </true>
+    <false>
+      <call> StartRest </call>
+      <def><name> Status.Activity </name><val> 4 </val></def>
+    </false>
+  </if>
+
+  </block>
+
 
 <!-- STOP SLEEP -->
 
@@ -434,6 +464,7 @@ By : University of Mississippi Medical Center
 <!-- START RESTING -->
 
 <block><name> Resting </name>
+
   <def><name> Status.Activity </name><val> 1 </val></def>
   <def><name> Status.Exertion </name><val> 0 </val></def>
 
@@ -444,9 +475,11 @@ By : University of Mississippi Medical Center
   <call> PostureControl.RequestChange </call> 
 
   <def><name> Status.Nutrition </name><val> 1 </val></def>
+
 </block>
 
 </definitions>
+
 </structure>
 
 End

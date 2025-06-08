@@ -82,6 +82,11 @@ By : University Of Mississippi Medical Center
 
 <testcase>
 
+<case> 
+  <test> Activity EQ 4 </test>
+  <def><name> Sleeping </name><val> 2 </val></def>
+</case>
+
 <case>
 <test> Activity EQ 3 </test>
 <def><name> NotDefined </name><val> 1 </val></def>

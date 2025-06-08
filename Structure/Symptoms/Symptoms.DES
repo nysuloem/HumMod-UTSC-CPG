@@ -148,6 +148,11 @@ Edited by CPG
 <def><name>Number2</name><val> 25 </val></def>
 </case>
 
+  <case>
+    <test> Status.Sleeping EQ 2 </test>
+    <def><name> Number2 </name><val> 37 </val></def>
+  </case>
+
   <!-- OK -->
   <case>
   <test> Status.Resting EQ 1 </test>
