@@ -176,7 +176,7 @@ By : University of Mississippi Medical Center
 
 <branch>
   <name> Drugs-Epi </name>
-  <label> Epinephrine Bolus </label>
+  <label> Epinephrine Autoinjector </label>
   <parent> Drugs </parent>
 </branch>
 
