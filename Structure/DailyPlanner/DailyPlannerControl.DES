@@ -394,19 +394,17 @@ By : University of Mississippi Medical Center
 <!-- START WORK -->
 
 <block><name> StartWork </name>
+
   <timer><name> WorkTimer </name><val> WorkDuration </val><state> DOWN </state></timer>
 
   <def><name> Status.Activity </name><val> 1 </val></def>
   <def><name> Status.Exertion </name><val> 3 </val></def>
+  <def><name> PostureControl.Request </name><val> PostureControl.STANDING </val></def>
 
-  <def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
-  </def>
   <call> PostureControl.RequestChange </call> 
 
-
   <def><name> Status.Nutrition </name><val> 1 </val></def>
+  
 </block>
 
 <!-- STOP WORK -->

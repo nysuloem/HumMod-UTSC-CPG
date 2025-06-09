@@ -102,7 +102,11 @@ By : University of Mississippi Medical Center
 
 <block><name> Calc </name>
 
-<def><name> drandom </name><val> 0.25 * ( random - randomeffect ) * 0</val></def>
+<def>
+  <name> drandom </name>
+  <val> 0.25 * ( random - randomeffect ) * 0 </val>
+</def>
+
 <def>
   <name> DPTargetWork </name>
   <val> DailyPlannerControl.WorkLevel </val>
@@ -122,7 +126,6 @@ By : University of Mississippi Medical Center
   <name> dAerobics </name>
   <val> 0.25 * ( DPTargetAerobics - DPAerobics ) </val>
 </def>
-
 
 <testcase>
 
@@ -186,7 +189,7 @@ By : University of Mississippi Medical Center
 </def>
 <def>
   <name> TargetContractionRate </name>
-  <val> 10.0 </val>
+  <val> DailyPlannerControl.WorkLevel </val>
 </def>
 </case>
 

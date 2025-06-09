@@ -49,6 +49,9 @@ By: Jason Brown
   <map><val> 35 </val><img> </img></map>
   <map><val> 36 </val><img> Patient is tipsy </img></map>
   <map><val> 37 </val><img> "I can't fall asleep" </img></map>
+  <map><val> 38 </val><img> "I'm awake, resting, but feeling sleepy." </img></map>
+  <map><val> 39 </val><img> "I'm working, but feeling sleepy." </img></map>
+  <map><val> 40 </val><img> "I'm eating a meal but feeling sleepy." </img></map>
  
 </maplist>
 

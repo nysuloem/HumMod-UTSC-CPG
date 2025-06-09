@@ -9,7 +9,7 @@ By: Jason Brown
 
 <variables>
 
-<parm><name> Index </name><val> 1 </val></parm>
+<parm><name> Index </name><val> 0 </val></parm>
 <!-- Index = 0 means not sexually active and Index = 1 means sexually active -->
 
 <constant><name> IS_SEXUALLYINACTIVE </name><val> 0 </val></constant>
@@ -31,7 +31,7 @@ By: Jason Brown
 <true>
     <def><name> IsSexuallyActive</name><val> TRUE </val></def>
     <def><name> IsSexuallyInactive</name><val> FALSE </val></def>
-    <def><name> Index </name><val> 1 </val></def>
+    <def><name> Index </name><val> 0 </val></def>
 </true>
 <false>
     <def><name> IsSexuallyActive</name><val> FALSE </val></def>

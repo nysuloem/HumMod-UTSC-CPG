@@ -10,9 +10,7 @@ By : Tiffany Bishun
 
 <variables>
 
-<var>
-  <name> Effect </name>
-</var>
+<var><name> Effect </name></var>
 
 </variables>
 
@@ -27,6 +25,7 @@ By : Tiffany Bishun
 </functions>
 
 <definitions>
+
 <block><name> Calc </name>
 
 <def>
@@ -35,7 +34,9 @@ By : Tiffany Bishun
 </def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End
