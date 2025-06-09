@@ -24,7 +24,7 @@ By : University of Mississippi Medical Center
 <?include Model\Model.DES ?>
 <?include Quizzes\Quizzes.DES ?>
 <common>
-  <displayfirst> Chart </displayfirst>
+  <displayfirst> Menstrual Blood Loss </displayfirst>
 </common>
 
 </display>

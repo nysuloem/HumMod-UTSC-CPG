@@ -167,10 +167,14 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 
-<!-- ==================== ENDOMETRIAL SHEDDING ==================== -->
+<!-- ==================== ENDOMETRIAL SHEDDING ==================== 
+<def> <name> ProstaglandinLevel </name>
+<val> Required to create a Prostaglandin model ... </val>
+</def> 
+-->
 <def>
   <name> EndometrialShedding </name>
-  <val> EndometrialShedRate * ProstaglandinLevel </val>
+  <val> EndometrialShedRate * ProstaglandinLevel  </val>
 </def>
 
 

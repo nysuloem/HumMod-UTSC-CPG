@@ -1,0 +1,15 @@
+<script>
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<restart/> 
+
+<gofor>
+  <solutionint> 10 </solutionint>
+  <displayint> 1 </displayint>
+</gofor>
+
+
+</script>
