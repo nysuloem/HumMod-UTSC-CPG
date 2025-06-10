@@ -19,6 +19,13 @@ By: Jason Brown
 
 <block><name> Parms </name>
 
+<if><test> SexDrive.Index EQ 0 </test>
+    <true>
+        <def><name> HaveSex </name><val> 0 </val></def>
+        <exitblock/>
+    </true>
+</if>
+
 <if><test> SexualIntercourse.Refractory EQ 0 </test>
     <true>
         <def><name> HaveSex</name>

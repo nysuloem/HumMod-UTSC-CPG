@@ -27,7 +27,7 @@ By: Jason Brown
 
 <block><name> Init </name>
 
-<if><test> Context-Age.Age(Years) GE 18 </test>
+<if><test> Context-Age.Age(Years) GE 13 </test>
 <true>
     <def><name> IsSexuallyActive</name><val> TRUE </val></def>
     <def><name> IsSexuallyInactive</name><val> FALSE </val></def>

@@ -11,33 +11,22 @@ Schema : DES V1.0
    <row> 2.0 </row>
    <col> 1.0 </col>
    <high> 10.2 </high>
-   <wide> 30.0 </wide>
+   <wide> 40.0 </wide>
    <title> Single Dose Oral </title>
 
 <structurename> EpiBolus </structurename>
 
-<actionbutton>
+<actionbutton> 
   <row> 1.4 </row><col> 1.0 </col>
-  <blockname> TakeDoseNow </blockname>
-  <label> Take Dose Now </label>
+  <blockname> TakeAdultDoseNow </blockname>
+  <label> Inject Now (Adult Dose = 0.3mg) </label>
 </actionbutton>
 
-<maplist>
-  <name> EpiSingleDose.Dose </name>
-  <map><val>     0 </val><img> None </img></map>
-  <map><val> 0.04 </val><img> 0.04 </img></map>
-  <map><val> 0.08 </val><img> 0.08 </img></map>
-  <map><val> 0.4</val><img> 0.4 </img></map>
-  <map><val> 0.8 </val><img> 0.8 </img></map>
-
-</maplist>
-
-<slidebar>
-  <row> 3.2 </row><col> 1.0 </col>
-  <name> Dose </name>
-  <listname> EpiSingleDose.Dose </listname>
-  <label> Dose </label>
-</slidebar>
+<actionbutton> 
+  <row> 3.0 </row><col> 1.0 </col>
+  <blockname> TakeChildDoseNow </blockname>
+  <label> Inject Now (Child Dose = 0.15mg) </label>
+</actionbutton>
 
 <showvalue>
    <row> 4.6 </row><col> 1.0 </col>
@@ -68,12 +57,6 @@ Schema : DES V1.0
   <blockname> Reset </blockname>
   <label> Reset </label>
 </actionbutton>
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 26.0 </col>
-  <line> Typical dose is 0.04 - 0.08 mG/Dose. </line>
-</infobutton>
 
 </groupbox>
 

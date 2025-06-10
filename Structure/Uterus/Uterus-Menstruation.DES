@@ -22,8 +22,29 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def><name> Rate </name><val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND 
-( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.0005 * UterineLining </val> </def>
+<conditional>
+    <name> EndometriumDeg </name>
+    <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) </test>
+    <true> Endometrium.Functionalis </true>
+    <false> 0.0 </false>
+</conditional>
+
+
+
+<conditional> 
+<name> Rate </name> 
+<test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 )  </test>
+<true> ( Estradiol.[Conc(nMol/L)] + Progesterone.[Conc(nMol/L)] ) * 0.0125 * EndometriumDeg  </true>
+<false> 0.0 </false>
+</conditional>
+
+
+
+
+<!--  
+<def><name> Rate </name><val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.0005 * Endometrium.Thickness  </val> </def>
+
+--> 
 
 <def><name> Bloodloss </name><val> Sex.IsFemale * Rate </val></def>
 
