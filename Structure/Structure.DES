@@ -700,7 +700,6 @@ By : University of Mississippi Medical Center
   <call> ThyroidGland.Dervs </call>
 
   <call> PortalVein.CalcConc </call>
-  <call> NO.LateDervs </call>
   <call> Insulin.LateDervs </call>
   <call> Liver-Fuel.Dervs </call>
   <call> Metabolism-Glucose.Calc </call>
