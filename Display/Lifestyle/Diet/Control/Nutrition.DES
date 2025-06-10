@@ -65,31 +65,17 @@ By : University of Mississippi Medical Center
 <structurename> DietGoalNutrition </structurename>
 
 <repeatlist>
-  <name> DegF </name>
-  <firstval> 40.0 </firstval>
-  <repeat><reps> 14 </reps><stepsize> 10.0 </stepsize></repeat>
+  <name> DegC </name>
+  <firstval> 0 </firstval>
+  <repeat><reps> 100 </reps><stepsize> 1.0 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
   <row> 13.6 </row><col> 1.0 </col>
-  <name> DegF </name>
-  <listname> DegF </listname>
-  <label> Temp (F) </label>
-</slidebar>
-
-<showvalue>
-  <row> 14.8 </row><col> 3.0 </col>
   <name> DegC </name>
-  <format><decimal> 1 </decimal></format>
+  <listname> DegC </listname>
   <label> Temp (C) </label>
-</showvalue>
-
-<showvalue>
-  <row> 15.8 </row><col> 3.0 </col>
-  <name> DegK </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Temp (K) </label>
-</showvalue>
+</slidebar>
 
 </groupbox>
 
