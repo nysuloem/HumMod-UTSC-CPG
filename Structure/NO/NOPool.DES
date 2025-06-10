@@ -16,7 +16,9 @@ HumMod / NOPool
 <var><name> [NO--(mEq/L)-Initial] </name></var>
 <var><name> InitialMass </name></var>
 
-<var><name> Target[NO] </name><val>  0.1 </val></var> <!-- typical value in plasma -->
+<var><name> Target[NO] </name><val> 50 </val></var> <!-- 10.3 - 66.8 mmol/L -->
+<!-- varies based on lifestyle (diet, exercise) and genetic factors (sex, diseases/conditions) -->
+ <!-- ethnicity diffs -->
 
 </variables>
 
@@ -53,7 +55,7 @@ HumMod / NOPool
 </block>
 
 <block><name> Dervs </name>
-<call> NOClearance.Dervs </call> 
+
 <call> NODrugPool.Dervs </call> 
 
  <def>
@@ -65,7 +67,7 @@ HumMod / NOPool
   </def>
 
 
-<def><name> Loss </name><val> NOClearance.RenalDegradation </val></def>
+<def><name> Loss </name><val> NOKidney.UrineLoss </val></def>
   
  <def><name> Change </name><val> Gain - Loss </val></def>
 
