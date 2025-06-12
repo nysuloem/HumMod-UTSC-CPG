@@ -7,12 +7,11 @@ Author : Tom Coleman
 Copyright : 2012-2012
 By : University of Mississippi Medical Center
 
-<structure>
-<name> MenstrualExpulsion </name>
+<structure><name> MenstrualExpulsion </name>
 
 <variables>
 <!-- ==================== UTERINE VARIABLES ==================== -->
-<var><name> UterinePressure </name></var>
+<var><name> MEUterinePressure </name></var>
 <var><name> UterineVolume </name></var>
 <var><name> EndometrialThickness </name></var>
 
@@ -204,14 +203,14 @@ By : University of Mississippi Medical Center
 </def>
 
 <def>
-  <name> UterinePressure </name>
+  <name> MEUterinePressure </name>
   <val> UterinePressureCurve [ UterineVolume ] * ContractionForce </val>
 </def>
 
 <!-- ==================== CERVICAL CALCULATIONS ==================== -->
 <def>
   <name> CervicalDilation </name>
-  <val> CervicalDilationCurve [ UterinePressure ] * Endometrium-StromalCells.PGE2 </val>
+  <val> CervicalDilationCurve [ MEUterinePressure ] * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 <def>
@@ -221,13 +220,13 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> CervicalTransitRate </name>
-  <val> BaseCervicalTransitRate * ( 1.0 + ( UterinePressure / 30.0 ) ) / CervicalResistance </val>
+  <val> BaseCervicalTransitRate * ( 1.0 + ( MEUterinePressure / 30.0 ) ) / CervicalResistance </val>
 </def>
 
 <!-- Pressure and prostaglandin-dependent uterine outflow -->
 <def>
   <name> UterineOutflow </name>
-  <val> BaseContractionRate * UterineBlood * ( 1.0 + ( UterinePressure / 20.0 ) ) * Endometrium-StromalCells.PGE2 </val>
+  <val> BaseContractionRate * UterineBlood * ( 1.0 + ( MEUterinePressure / 20.0 ) ) * Endometrium-StromalCells.PGE2 </val>
 </def>
 
 <def>
