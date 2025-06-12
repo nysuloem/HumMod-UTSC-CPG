@@ -9,8 +9,6 @@ By: Jason Brown
 
 <variables>
 
-<!--<parm><name> Index </name><val> 0 </val></parm>-->
-
 <parm><name> White_Percentage </name><val> 100 </val></parm>
 <parm><name> Black_Percentage </name><val> 0.0 </val></parm>
 <parm><name> Asian_Percentage </name><val> 0.0 </val></parm>
@@ -21,16 +19,6 @@ By: Jason Brown
 <var><name> TrueAsian_Percentage </name></var>
 <var><name> TrueHispanic_Percentage </name></var>
 <var><name> TotalPercentage </name></var>
-
-<!--<constant><name> IS_WHITE </name><val> 0 </val></constant>
-<constant><name> IS_BLACK </name><val> 1 </val></constant>
-<constant><name> IS_ASIAN </name><val> 2 </val></constant>
-<constant><name> IS_HISPANIC </name><val>3</val></constant>
-
-<var><name> IsWhite </name></var>
-<var><name> IsBlack </name></var>
-<var><name> IsAsian </name></var>
-<var><name>IsHispanic</name></var>-->
 
 </variables>
 
@@ -67,6 +55,7 @@ By: Jason Brown
       <if>
         <test> TotalPercentage NE 100 </test>
         <true>
+          <call> ZeroFixer </call>
           <def><name> TrueWhite_Percentage </name><val> White_Percentage / TotalPercentage * 100 </val></def>
           <def><name> TrueBlack_Percentage </name><val> Black_Percentage / TotalPercentage * 100 </val></def>
           <def><name> TrueAsian_Percentage </name><val> Asian_Percentage / TotalPercentage * 100 </val></def>
@@ -204,6 +193,14 @@ By: Jason Brown
 
       </testcase>
     </block>
+
+<block><name> ZeroFixer </name>
+  <if><test> TotalPercentage EQ 0 </test>
+    <true>
+      <def><name> TotalPercentage </name><val> 1 </val></def>
+    </true>
+  </if>
+</block>
         
 
 <block><name> Second </name>

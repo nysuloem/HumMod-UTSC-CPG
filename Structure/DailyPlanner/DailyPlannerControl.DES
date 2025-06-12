@@ -11,7 +11,7 @@ By : University of Mississippi Medical Center
 <variables>
 
 <parm><name> Switch </name><val> 0.0 </val></parm>
-<parm><name> Sleep </name><val> 0.0 </val></parm>
+<parm><name> Sleep </name><val> 0.0 </val></parm> <!-- 0 = sleep based on schedule / 1 = sleep based on fatigue -->
 <parm><name> WorkLevel </name><val> 20.0 </val></parm>
 <parm><name> WorkDuration </name><val> 50.0 </val></parm>
 <parm><name> AerobicsLevel </name><val> 100.0 </val></parm>
@@ -28,6 +28,9 @@ By : University of Mississippi Medical Center
 <timervar><name> WorkTimer </name></timervar>
 <timervar><name> AerobicsTimer </name></timervar>
 <timervar><name> MealsTimer </name></timervar>
+<timervar><name> SleepTimer </name><val> UNDEFINED </val></timervar>
+
+<var><name> HoursSleep </name><val> UNDEFINED </val></var>
 
 <var><name> MinutesIntoDay </name></var>
 <var><name> HoursIntoDay </name></var>
@@ -37,7 +40,7 @@ By : University of Mississippi Medical Center
 <constant><name> BEDREST </name><val> 0 </val></constant>
 <constant><name> NORMAL </name><val> 1 </val></constant>
 
-<var><name> Melatonin </name><val> 3 </val></var> <!-- This is just a placeholder variable until the melatonin stuff gets completed -->
+<var><name> Melatonin </name><val> 10 </val></var> <!-- This is just a placeholder variable until the melatonin stuff gets completed -->
 
 </variables>
 
@@ -52,11 +55,15 @@ By : University of Mississippi Medical Center
 <case>
   <test> Switch EQ NORMAL </test>
   <call> Start </call>
+  <timer><name> SleepTimer </name><val> 0 </val></timer>
+  <def><name> HoursSleep </name><val> 0 </val></def>
 </case>
 
 <case>
   <test> Switch EQ BEDREST </test>
   <call> Stop </call>
+  <timer><name> SleepTimer </name><val> UNDEFINED </val></timer>
+  <def><name> HoursSleep </name><val> UNDEFINED </val></def>
 </case>
 
 </testcase>
@@ -186,21 +193,37 @@ By : University of Mississippi Medical Center
   <case>
   <test> Task EQ 1 </test>
   <call> StartRest </call>
+  <timer>
+      <name> SleepTimer </name> 
+      <state> OFF </state>
+  </timer>
   </case>
 
   <case>
   <test> Task EQ 2 </test>
   <call> StartWork </call>
+  <timer>
+      <name> SleepTimer </name> 
+      <state> OFF </state>
+  </timer>
   </case>
 
   <case>
   <test> Task EQ 3 </test>
   <call> StartAerobics </call>
+  <timer>
+      <name> SleepTimer </name> 
+      <state> OFF </state>
+  </timer>
   </case>
 
   <case>
   <test> Task EQ 4 </test>
   <call> StartMeals </call>
+  <timer>
+      <name> SleepTimer </name> 
+      <state> OFF </state>
+  </timer>
   </case>
 
   </testcase>
@@ -277,6 +300,12 @@ By : University of Mississippi Medical Center
   <case>
   <test> HoursIntoDay EQ 12 </test>
   <def><name> Task </name><val> DailyPlannerSchedule.Hour12PM-1PM </val></def>
+    <timer> 
+      <name> SleepTimer </name>
+      <val> 0 </val>
+    </timer>
+  <def><name> HoursSleep </name><val> 0 </val></def>
+   <!-- The sleep timer resets every day at noon to give a 24h value in display -->
   </case>
 
   <case>
@@ -369,6 +398,11 @@ By : University of Mississippi Medical Center
   <if>
     <test> Melatonin GT 4 </test>
     <true>
+      <timer>
+      <name> SleepTimer </name>
+      <state> UP </state>
+    </timer>  
+    <def><name> HoursSleep </name><val> SleepTimer / 60 </val></def>
     </true>
     <false>
       <call> StartRest </call>
@@ -395,9 +429,14 @@ By : University of Mississippi Medical Center
 
 <block><name> StartWork </name>
 
+  <if>
+    <test> Melatonin GT 4 </test>
+    <true><def><name> Status.Activity </name><val> 5 </val></def></true>
+    <false><def><name> Status.Activity </name><val> 1 </val></def></false>
+  </if>
+
   <timer><name> WorkTimer </name><val> WorkDuration </val><state> DOWN </state></timer>
 
-  <def><name> Status.Activity </name><val> 1 </val></def>
   <def><name> Status.Exertion </name><val> 3 </val></def>
   <def><name> PostureControl.Request </name><val> PostureControl.STANDING </val></def>
 

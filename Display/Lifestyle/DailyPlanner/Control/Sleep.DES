@@ -10,8 +10,8 @@ Schema : DES V1.0
 <groupbox>
    <row> 16.5 </row>
    <col> 32 </col>
-   <high> 4.4 </high>
-   <wide> 30.0 </wide>
+   <high> 6.4 </high>
+   <wide> 40 </wide>
    <title> Sleep </title>
 
 <structurename> DailyPlannerControl </structurename>
@@ -29,6 +29,13 @@ Schema : DES V1.0
   <nolabel/>
   <layout> VERT </layout>
 </radiobuttons>
+
+<showvalue>
+  <row> 4.8 </row><col> 1.0 </col>
+   <name> DailyPlannerControl.HoursSleep </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Hours of Sleep (in last 24 hours) </label>
+</showvalue>
 
 </groupbox>
 
