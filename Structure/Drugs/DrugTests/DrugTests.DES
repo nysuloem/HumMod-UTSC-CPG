@@ -1,0 +1,15 @@
+
+HumMod / Breathalyzer
+
+Created : 02-Apr-09
+Revised : Tiffany
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+
+<?path Structure\Drugs\DrugTests\ ?>
+
+<?include Breathalyzer.DES ?>
