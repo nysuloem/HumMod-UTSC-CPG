@@ -29,7 +29,7 @@ Schema : DES V1.0
 <def>
   <name> LungsLoss </name>
   <val>
-      K
+      K * EthanolPool.EthanolMass
   </val>
 </def> 
 

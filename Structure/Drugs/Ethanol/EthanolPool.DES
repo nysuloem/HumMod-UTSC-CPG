@@ -17,6 +17,10 @@ Schema : DES V1.0
 <var><name> R </name></var>
 <var><name> BAC </name></var>
 
+<var>
+  <name> EthanolMass </name>
+</var>
+
 </variables>
 
 <equations>
@@ -42,6 +46,11 @@ Schema : DES V1.0
 <def>
   <name> [Ethanol] </name>
   <val> ( Mass /  ECFV.Vol(L) ) / 10 </val>  <!-- Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
+</def>
+
+<def>
+  <name> EthanolMass </name>         
+  <val> [Ethanol] * 0.789 </val>
 </def>
 
 </block>
