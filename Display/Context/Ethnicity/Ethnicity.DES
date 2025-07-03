@@ -33,11 +33,7 @@ By: Jason Brown UTSC
 
 <structurename> Context-Ethnicity</structurename>
 
-<!--<radiobuttons>
-  <row> 5 </row><col> 1.0 </col>
-  <name> Index </name>
-  <listname> Common.Ethnicity </listname>
-</radiobuttons> -->
+<!-- It shows the % ethnicity for the patient -->
 
 <showvalue>
     <row>2.0</row>
@@ -71,10 +67,12 @@ By: Jason Brown UTSC
     <label>Hispanic (%)</label>
   </showvalue>
 
+  <!-- Here's where you can control the ethnic mix of your patient -->
+
   <repeatlist>
   <name> EthnicityPercentage </name>
   <repeat><reps> 100 </reps><stepsize> 1.0 </stepsize></repeat>
-</repeatlist>
+  </repeatlist>
 
   <slidebar>
     <row>8.0</row>
@@ -108,9 +106,6 @@ By: Jason Brown UTSC
     <label>Hispanic</label>
   </slidebar>
 
-
-
 </panel>
-
 
 End

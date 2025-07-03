@@ -1,5 +1,5 @@
 
-<panel><name> Menstruation </name>
+<panel><name> MenstrualExplusion </name>
 
 <showbitmap>
   <row> 0.3 </row>
@@ -21,42 +21,11 @@
   <days/>
 </showclock>
 
-<groupbox> 
+<structurename> MenstrualExpulsion </structurename>
 
-  <row> 2.0 </row>
-   <col> 1.0 </col>
-   <high> 24.6 </high>
-   <wide> 30.0 </wide>
+<?path Display\Organs\Uterus\Menstruation\ ?>
 
-<structurename> Menstruation </structurename>
-
-<showvalue>
-   <row> 1.4 </row><col> 1.0 </col>
-   <name> Menstruation.Volume </name>
-   <format><decimal> 1 </decimal></format>
-   <label> Volume </label>
-</showvalue>
-
-<showgraph>
-  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
-  <leftmargin> 4 </leftmargin>
-  <xaxis>
-    <name> System.X </name>
-    <label> Time </label>
-    <scale><min> 0 </min><max> 2 </max></scale>
-  </xaxis>
-  <yaxis>
-    <yvar>
-      <name> Menstruation.Volume </name>
-      <nolabel/>
-      <linecolor> BLUE </linecolor>
-    </yvar>
-    <scale>
-      <min> 10 </min><max> 20 </max>
-    </scale>
-  </yaxis>
-</showgraph>
- </groupbox>
+<!--<?include MenstrualExpulsion.DES ?>-->
 
 </panel>
 

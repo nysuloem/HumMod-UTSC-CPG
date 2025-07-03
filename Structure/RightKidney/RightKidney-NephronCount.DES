@@ -13,7 +13,7 @@ Schema : DES V1.0
 
 <parm>
   <name> Total </name>
-  <val> 1200000 </val>2400000
+  <val> 1000000 </val>1000000   
 </parm>
 
 <var>
@@ -22,7 +22,7 @@ Schema : DES V1.0
 
 <constant>
   <name> Normal </name>
-  <val> 1200000 </val>
+  <val> 1000000 </val>    <!-- For reference cannot change-->
 </constant>
 
 <parm>
@@ -30,16 +30,79 @@ Schema : DES V1.0
   <val> 100.0 </val>
 </parm>
 
+<var><name> AgeEffects </name></var>
+
 <var>
   <name> Filtering(xNormal) </name>
 </var>
 
 <var><name> NumFiltering </name></var>
 
+<parm>
+  <name> Age </name>
+  <val> 38 </val>     <!-- Used to determine NL based on age -->
+</parm>
+
+<var>
+  <name> AgeFactor </name>  
+</var>
+
+<parm>
+  <name> NephronLossRate </name>
+  <val> 0.073 </val>    <!-- Rate of nephron loss per decade  -->
+</parm>
+
+<var>
+  <name> NephronLossFactor </name>
+</var>
+
+<var>
+  <name> InitialTotal </name>
+  <val> 1500000 </val>
+</var>
+
+<var>
+  <name> AbsoluteNephronLoss </name>
+</var>
+
+<var> 
+  <name> SexNephronAdjustment </name>   
+</var>
+
+<var>
+  <name> EthnicityNephronAdjustment </name>
+</var>
+
 </variables>
+<functions>
+<curve>
+  <name> AgeEffects </name>
+  <point><x> 0.0 </x><y> 1000000 </y><slope> 0.0 </slope></point>
+  <point><x> 18 </x><y> 1000000 </y><slope> 0 </slope></point>
+  <point><x> 79 </x><y> 634568 </y><slope> 0.0 </slope></point>3
+  <point><x> 100 </x><y> 572697 </y><slope> 0.0 </slope></point>3
+</curve>
+</functions>
 
 <definitions>
 <block><name> Calc </name>
+
+<def><name> AgeEffects </name><val> AgeEffects [ Context-Age.Age(Years) ] </val></def>
+
+<def>
+  <name> AgeFactor </name>
+  <val> ( Age - 18 ) / 10 </val> <!-- Determines NL factor based on age starting at 18 -->
+</def>
+
+<def>
+  <name> NephronLossFactor </name>
+  <val> 1 - ( NephronLossRate * AgeFactor ) </val>   <!-- Reduction factor based off of age -->
+</def>
+
+<def>
+  <name> Total </name>
+  <val> AgeEffects </val>  <!-- Caluculates remainding nephrons and ensures it doesnt go below 0-->
+</def>
 
 <def>
   <name> Total(xNormal) </name>
@@ -51,7 +114,35 @@ Schema : DES V1.0
   <val> 0.01 * Filtering(%) * Total(xNormal) </val>
 </def>
 
+<conditional>
+  <name> SexNephronAdjustment </name>
+  <test> Context-Sex.Index EQ 0 </test>
+  <true> 85000 </true>  <!--If male (0), add 85,000 nephrons--> 
+  <false> 0 </false>  <!--If female (1), add 0-->
+</conditional> 
+
+<!--<if> 
+  <test> Context-Ethnicity.IS_BLACK </test> 
+  <true> <def> <name> EthnicityNephronAdjustment </name> 
+<val> 50800 </val>
+  </def> </true>
+  <false> <def> <name> EthnicityNephronAdjustment </name> 
+<val> 0 </val>
+  </def> </false>
+</if>-->
+
+<def>
+  <name> Total </name>
+  <val> Total + SexNephronAdjustment <!-- + EthnicityNephronAdjustment --> </val>
+</def>
+
+
 <def><name> NumFiltering </name><val> Total * Filtering(xNormal) </val></def> 
+
+<def>
+  <name> AbsoluteNephronLoss </name>
+  <val> InitialTotal - Total </val>
+</def>
 
 </block>
 </definitions>

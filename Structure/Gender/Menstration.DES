@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <structure><name> Menstration </name>
 
 <variables>
-<var><name> Index </name></var>
+<parm><name> Index </name><val> 2 </val></parm>
 
 <var><name> IsAbsent </name></var>
 <var><name> IsEarly </name></var>
@@ -17,23 +17,35 @@ By : University of Mississippi Medical Center
 <var><name> IsLate </name></var>
 
 
-<var><name> Absent </name> <val> 0 </val>
-<var><name> Light </name> <val> 1 </val>
-<var><name> Average </name> <val> 2 </val>
-<var><name> Heavy </name> <val> 3 </val>
+<constant><name> Absent </name> <val> 0 </constant>
+<constant><name> Light </name> <val> 1 </constant>
+<constnat><name> Average </name> <val> 2 </constant>
+<constant><name> Heavy </name> <val> 3 </constant>
 
 
+
+<block><name> Parms </name>
+<conditional> <name> Index </name>
+    <test> 
+
+
+</block>
 
 <block><name> Dervs </name>
 
-<if><test> Sex.IsFemale </test>
+
+    <!--  Trying to do without a conditional statement for the follicular phase since it would increase the loss anyway. 
+<if>
+    
+<test> Sex.IsFemale </test>
 <true>
 <andif><test> Ovaries.Phase EQ IS_FOLLICULAR </test> 
-<true> 
+
+    <true> 
 
 <def><name> Menstration </name> 
-<val> 1 </val> 
+<val> Index </val> 
 </andif>
 </if>
-
+-->
 <def><name> 

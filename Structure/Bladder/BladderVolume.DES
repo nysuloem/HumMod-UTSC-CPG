@@ -16,7 +16,7 @@ By : University of Mississippi Medical Center
 <constant><name> NORMAL_CAN_VOID_VOLUME </name><val> 300 </val></constant>
 <constant><name> NORMAL_MUST_VOID_VOLUME </name><val> 700 </val></constant>
 
-<var><name>BladderAgeEffect</name></var>
+<var><name> BladderAgeEffect </name></var>
 
 <var><name> ResidualVolume </name></var>
 <var><name> InitialVolume </name></var>
@@ -25,6 +25,9 @@ By : University of Mississippi Medical Center
 
 <var><name> CanVoid </name><val> FALSE </val></var>
 <var><name> MustVoid </name><val> FALSE </val></var>
+
+<var><name> DailyVolumeVoid </name><val> 0 </val></var>
+<var><name> VoidDay </name><val> 0 </val></var>
 
 </variables>
 
@@ -100,6 +103,7 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
+
 </structure>
 
 End

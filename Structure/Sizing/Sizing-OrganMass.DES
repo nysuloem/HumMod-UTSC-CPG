@@ -31,8 +31,12 @@ By : University of Mississippi Medical Center
 <parm><name> RightHeart_Percent        </name><val>  0.2 </val></parm>
 <constant><name> Skin_Percent              </name><val> 10.7 </val></constant>
 <constant><name> Spleen_Percent </name><val> 0.2 </val></constant>
-<constant><name> Uterus_Percent </name><val> 0.36 </val></constant>
-<constant><name> Genitalia_Percent</name><val> 0.36 </val></constant>
+<var><name> Uterus_Percent </name><val> 0.0 </val></var> 
+<var><name> Genitalia_Percent</name><val> 0.9 </val></var>
+
+<!-- genetalia and uterus percent - and endometrium 2025-04-09 were - changed for validity 
+and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 TY 
+<var><name> Endometrium_Percent </name><val> 0.0 </val></var> -->
 
 <constant><name> AdrenalGland_Percent   </name><val> 0.058 </val></constant>
 <constant><name> Pancreas_Percent       </name><val> 0.407 </val></constant>
@@ -54,6 +58,7 @@ By : University of Mississippi Medical Center
 <var><name> Spleen_Mass </name></var>
 <var><name> Uterus_Mass </name></var>
 <var><name> Genitalia_Mass</name></var>
+<!-- <var><name> Endometrium_Mass</name></var> -->
 
 <var><name> Fat_Mass </name></var>
 <var><name> SkeletalMuscle_Mass </name></var>
@@ -84,6 +89,30 @@ By : University of Mississippi Medical Center
   <val> 1000 * Context-Muscularity.Mass(kG) </val>
 </def>
 
+<!-- conditional added for male genitalia to be 0.9% and female to be 0.3% to accurately represent differences in 
+genetalia size to be x3 larger for males, this can be further modified into conditional with testcases to add ethnic components
+ Söylemez et al. 2011 -->
+
+<conditional> <name> Genitalia_Percent </name>
+   <test> Context-Sex.Index EQ 1 </test>
+   <true> 0.3 </true>
+   <false> 0.9 </false>
+  </conditional> 
+
+<conditional> <name> Uterus_Percent </name>
+   <test> Context-Sex.Index EQ 1 </test>
+   <true> 0.3 </true>
+   <false> 0.0 </false>
+  </conditional> 
+  
+  <!-- 
+  <conditional> <name> Endometrium_Percent </name>
+    <test> Context-Sex.Index EQ 1 </test>
+    <true> 0.3 </true>
+    <false> 0.0 </false>
+   </conditional> 
+ -->
+
 <def>
   <name> OtherTissue_Percent </name>
   <val>
@@ -104,6 +133,7 @@ By : University of Mississippi Medical Center
   </val>
 </def>
 
+<!--    + Endometrium_Percent -->
 
 <def>
   <name> CheckSum_Percent </name>
@@ -125,6 +155,7 @@ By : University of Mississippi Medical Center
   </val>
 </def>
 
+<!--     + Endometrium_Percent  -->
 <!-- ============== Base Organs ============== -->
 
 <def>
@@ -187,14 +218,32 @@ By : University of Mississippi Medical Center
   <val> ( Spleen_Percent / 100 ) * BaseMass(G) </val>
 </def>
 
+<conditional> 
+  <name> Uterus_Mass </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> ( Uterus_Percent / 100 ) * BaseMass(G) </true>
+  <false> 0.0 </false>
+</conditional>
+
+<!-- To make this conditional 
 <def>
   <name> Uterus_Mass </name>
   <val> ( Uterus_Percent / 100 ) * BaseMass(G) </val>
 </def>
+-->
+<!--
+<conditional> 
+  <name> Endometrium_Mass </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> ( Endometrium_Percent / 100 ) * BaseMass(G) </true> 
+  This can be split for Endometrium as a fraction of Uterus 
+  <false> 0.0 </false>
+</conditional>
+-->
 
 <def>
 <name> Genitalia_Mass </name>
-<val> (Genitalia_Percent / 100 ) * BaseMass(G) </val>
+<val> ( Genitalia_Percent / 100 ) * BaseMass(G) </val>
 </def>
 
 <def>
@@ -216,6 +265,8 @@ By : University of Mississippi Medical Center
     + Genitalia_Mass
   </val>
 </def>
+
+<!--     + Endometrium_Mass -->
 
 <def>
   <name> Fat_Mass </name>
@@ -279,6 +330,7 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
+
 </structure>
 
 End

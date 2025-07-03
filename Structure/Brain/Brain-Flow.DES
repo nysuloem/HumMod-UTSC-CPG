@@ -15,7 +15,7 @@ By : University Of Mississippi Medical Center
 <var><name> BasicConductance </name></var>
 <parm><name> Multiplier </name><val> 1.0 </val></parm>
 <var><name> NominalConductance </name></var>
-<constant><name> Conductance(/G) </name><val> 0.00597 </val></constant>0.00497
+<constant><name> Conductance(/G) </name><val> 0.00597 </val></constant>
 
 <var><name> PO2OnTension </name></var>
 <var><name> PCO2OnTension </name></var>
@@ -175,7 +175,9 @@ By : University Of Mississippi Medical Center
 <def><name> PlasmaFlow </name><val> BloodFlow * BloodVol.PVCrit </val></def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

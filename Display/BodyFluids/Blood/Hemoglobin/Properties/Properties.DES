@@ -32,7 +32,7 @@ Schema : 2005.0
 
 <?include Concentration.DES ?>
 <?include Sensitivity.DES ?>
-<?include Hemoglobin A1C.DES ?>
+<?include HemoglobinA1C.DES ?>
 
 </panel>
 

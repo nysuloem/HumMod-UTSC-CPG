@@ -22,7 +22,7 @@ By : University of Mississippi Medical Center
   <map><val>  4 </val><img> Flat </img></map>
 </maplist>
 
-<showvalue>
+<!--<showvalue>
   <row> 3 </row><col> 28 </col>
   <name> Heart-ECG.Now </name>
   <format><list> Heart-ECG.Now </list></format>
@@ -32,6 +32,6 @@ By : University of Mississippi Medical Center
 <label>
   <row> 6.4 </row><col> 28 </col>
   <text></text>
-</label>
+</label>-->
 
 End

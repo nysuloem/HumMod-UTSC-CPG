@@ -23,9 +23,9 @@ Schema : DES V1.0
 <definitions>
 
 <block><name> Parms </name>
-  <call> EthanolSingleDose.Parms </call>
+  <!-- <call> EthanolSingleDose.Parms </call>-->
   <call> EthanolDailyDose.Parms </call>
-  <call> MethanolSingleDose.Parms </call>
+  <!--<call> MethanolSingleDose.Parms </call>-->
 </block>
 
 <block><name> CalcConc </name>

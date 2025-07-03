@@ -25,9 +25,9 @@ Schema : 2007.0
 
 <showvalue>
    <row> 2.4 </row><col> 1.0 </col>
-   <name> DietGoalH2O.DegF </name>
+   <name> DietGoalH2O.DegC </name>
    <format><decimal> 1 </decimal></format>
-   <label> Temp (F) </label>
+   <label> Temp (C) </label>
 </showvalue>
 
 <infobutton>

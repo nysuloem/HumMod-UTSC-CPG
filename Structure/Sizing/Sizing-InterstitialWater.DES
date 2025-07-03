@@ -35,6 +35,9 @@ By : Tom Coleman
 <var><name> Vol-Skin </name></var>
 <var><name> Vol-Spleen </name></var>
 <var><name> Vol-Uterus </name></var>
+<!-- 
+<var><name> Vol-Endometrium </name></var>
+-->
 </variables>
 
 <definitions>
@@ -126,12 +129,19 @@ By : Tom Coleman
   <name> Vol-Spleen </name>
   <val> Vol * Sizing-Composition-Spleen.LiquidVol / Sizing-TissueH2O.Volume </val>
 </def>
+
+<def>
+  <name> Vol-Endometrium </name>
+  <val> Vol * Sizing-Composition-Endometrium.LiquidVol / Sizing-TissueH2O.Volume </val>
+</def>
 -->
 
 <def>
   <name> Vol-Uterus </name>
   <val> Vol * Sizing-Composition-Uterus.LiquidVol / Sizing-TissueH2O.Volume </val>
 </def>
+
+
 
 </block>
 

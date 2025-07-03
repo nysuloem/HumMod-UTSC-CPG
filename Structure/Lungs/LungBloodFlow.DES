@@ -33,6 +33,7 @@ Schema : DES V1.0
 </variables>
 
 <definitions>
+
 <block><name> Calc </name>
 
 <def>
@@ -96,7 +97,9 @@ Schema : DES V1.0
 </def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

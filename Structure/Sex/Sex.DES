@@ -38,14 +38,10 @@ By: Terry Yavorskyy UTSC
 <true>
 <def><name> IsMale </name><val> TRUE </val></def>
 <def><name> IsFemale </name><val> FALSE </val></def>
-<def><name> NoUterus </name><val> TRUE </val></def>
-<def><name> HasUterus </name><val> FALSE </val></def>
 </true>
 <false>
 <def><name> IsMale </name><val> FALSE </val></def>
 <def><name> IsFemale </name><val> TRUE </val></def>
-<def><name> NoUterus </name><val> TRUE </val></def>
-<def><name> HasUterus </name><val> FALSE </val></def>
 </false>
 </if>
 

@@ -26,7 +26,6 @@ By : University of Mississippi Medical Center
 <?include Sizing-Composition-Skin.DES ?>
 <?include Sizing-Composition-Uterus.DES ?>
 <?include Sizing-Composition-Genitalia.DES ?>
-
 <?include Sizing-BloodVolume.DES ?>
 
 <?include Sizing-TissueH2O.DES ?>
@@ -38,6 +37,7 @@ By : University of Mississippi Medical Center
 <?include Sizing-Interstitium.DES ?>
 <?include Sizing-CellH2O.DES ?>
 
+<?include Sizing-NOPool.DES ?>
 <?include Sizing-SodiumPool.DES ?>
 <?include Sizing-PotassiumPool.DES ?>
 <?include Sizing-PotassiumCell.DES ?>
@@ -157,7 +157,6 @@ By : University of Mississippi Medical Center
   <call> Sizing-Composition-Skin.Calc </call>
   <call> Sizing-Composition-Uterus.Calc </call>
   <call> Sizing-Composition-Genitalia.Calc </call>
-
   <call> Sizing-BloodVolume.Calc </call>
 
   <call> Sizing-TissueH2O.Calc </call>
@@ -169,6 +168,7 @@ By : University of Mississippi Medical Center
   <call> Sizing-Interstitium.Calc </call>
   <call> Sizing-CellH2O.Calc </call>
 
+  <call> Sizing-NOPool.Calc </call>
   <call> Sizing-SodiumPool.Calc </call>
   <call> Sizing-PotassiumPool.Calc </call>
   <call> Sizing-PotassiumCell.Calc </call>

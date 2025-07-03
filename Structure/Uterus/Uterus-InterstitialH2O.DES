@@ -52,7 +52,9 @@
 <definitions>
 
 <block><name> Init </name>
-
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 <def>
   <name> TotalVol </name>
   <val> Sizing-InterstitialWater.Vol-Uterus </val>
@@ -118,17 +120,92 @@
   <name> V0 </name>
   <val> Sizing-Interstitium.V0 </val>
 </def>
+ </true>
+ 
+<false> 
+<def>
+  <name> TotalVol </name>
+  <val> 0.0 </val>
+</def>
+
+
+<def>
+  <name> Vol </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> Vol0 </name>
+  <val> 0.0 </val>
+</def>
+
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+<!-- =========================================================  -->
+
+
+<def>
+  <name> GWVA </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> GWVS </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> GWVm </name>
+  <val> 0</val>
+</def>
+
+<def>
+  <name> GVA </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> GVB </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> GVS </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> GVm </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> Compliance </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> V0 </name>
+  <val> 0 </val>
+</def>
+</false>
+</if>
+
+
 
 </block>
 
 
+<!-- =========== Playing around with larger if conditionals  TY ================  -->
 <!-- =========================================================  -->
-<!-- =========================================================  -->
-<!-- =========================================================  -->
+<!-- Every definition was inserted within the true argument
+for false every definition was zeroed out  -->
 
 
 <block><name> Calc </name>
-
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
 <def>
   <name> LymphRate</name>
   <val> InterstitialWater.LymphBase * Uterus-Size.SolidMass  </val>
@@ -163,12 +240,21 @@
   <name> PI </name>
   <val> ( TotalVol - V0 ) / Compliance </val>
 </def>
+ </true>
+
+</if>
+
 
 </block>
 
 
 
 <block><name> Dervs </name>
+
+<if> 
+<test> Context-Sex.Index EQ 1 </test>
+<true> 
+
 <def>
   <name> Gain-H2O </name>
   <val> InterstitialWater.BasePermeability * Uterus-Size.SolidMass * ( Uterus-Pressure.CapPressure  - PI - PlasmaProtein.COP + Uterus-InterstitialProtein.COP ) </val>
@@ -210,6 +296,54 @@
 
 </val>
 </def>
+ </true>
+<false> 
+
+<def>
+  <name> Gain-H2O </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> LymphFlow </name>
+  <val>  0</val>
+</def>
+
+<def>
+  <name> CellFlow </name>
+  <val>  0  </val>
+</def>
+
+<def>
+  <name> HeatFlow </name>
+  <val> 0 </val>
+</def>
+
+<def>
+  <name> Loss-H2O </name>
+  <val> 0 </val>
+</def>
+
+
+
+
+<def>
+  <name> dVol </name>
+  <val> 
+	0
+</val>
+</def>
+<def>
+  <name> Loss </name>
+  <val> 
+0
+
+</val>
+</def>
+</false>
+</if>
+
+
 
 
 </block>

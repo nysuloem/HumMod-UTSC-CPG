@@ -38,9 +38,9 @@ By : University Of Mississippi Medical Center
 <impliciteq>
   <name> Uptake </name>
   <startname> Uptake </startname>
-  <initialval> 250.0 </initialval>
+  <initialval> 250 </initialval>
   <endname> EndUptake </endname>
-  <errorlim> .25 </errorlim>
+  <errorlim> 1 </errorlim>
 </impliciteq>
 
 </equations>

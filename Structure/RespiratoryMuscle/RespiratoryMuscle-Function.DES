@@ -11,32 +11,13 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> Failed </name>
-  <val> FALSE </val>
-</var>
-
+<var><name> Failed </name><val> FALSE </val></var>
 <var><name> Labored? </name><val> 0 </val></var>
-
-<var>
-  <name> Effect </name>
-</var>
-
-<var>
-  <name> PhEffect </name>
-</var>
-
-<var>
-  <name> ProteinEffect </name>
-</var>
-
-<var>
-  <name> FuelEffect </name>
-</var>
-
-<var>
-  <name> TemperatureEffect </name>
-</var>
+<var><name> Effect </name></var>
+<var><name> PhEffect </name></var>
+<var><name> ProteinEffect </name></var>
+<var><name> FuelEffect </name></var>
+<var><name> TemperatureEffect </name></var>
 
 </variables>
 
@@ -105,7 +86,6 @@ Schema : DES V1.0
   </val>
 </def>
 
-
 </block>
 
 <block><name> Wrapup </name>
@@ -129,6 +109,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

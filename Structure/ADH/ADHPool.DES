@@ -61,13 +61,6 @@ Schema : DES V1.0
   <false> Mass / ECFV.Vol(L) </false>
 </conditional>
 
-<conditional>
-<name> [ADH] </name>
-<test> Context-Ethnicity.IsBlack</test>
-<true> [ADH] * 2 </true>
-<false> [ADH] </false>
-</conditional>
-
 <def>
   <name> [ADH(pMol/L)] </name>
   <val> PGTOPMOL * [ADH] </val>

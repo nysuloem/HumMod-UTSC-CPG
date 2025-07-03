@@ -23,6 +23,14 @@ Schema : DES V1.0
   <name> TemperatureEffect </name>
 </var>
 
+<!-- <var>
+  <name> NOEffect </name>
+</var> -->
+
+<var>
+  <name> SizedNO </name>
+</var>
+
 </variables>
 
 <equations>
@@ -58,10 +66,23 @@ Schema : DES V1.0
   <point><x> 46.0 </x><y> 0.05 </y><slope> 0 </slope></point>
 </curve>
 
+<!-- <curve>
+  <name> NOOnStructure </name>
+  <point><x> 44.0 </x><y> 0.00 </y><slope> 0 </slope></point>
+  <point><x> 46.0 </x><y> 0.05 </y><slope> 0 </slope></point>
+</curve> -->
+
 </functions>
 
 <definitions>
 <block><name> Calc </name>
+
+<!-- <def>
+    <name> SizedNO </name>
+    <val> NOPool.[NOtwodashes] * RightHeart-Size.Mass </val>
+</def> -->
+<!-- REPLACE NO TWO DASHES WITH ACTUAL NAME (NO FOLLOWED BY TWO ACTUAL DASHES) WHEN UNCOMMENTING -->
+
 
 <def>
   <name> PhEffect </name>
@@ -78,6 +99,11 @@ Schema : DES V1.0
   <val> TemperatureOnStructure [ HeatCore.Temp(C) ] </val>
 </def>
 
+<!-- <def>
+  <name> NOEffect </name>
+  <val> NOOnStructure [ SizedNO ] </val>
+</def> -->
+
 <def>
   <name> F1 </name>
   <val> 0.0 </val>
@@ -89,6 +115,7 @@ Schema : DES V1.0
       PhEffect
     + TemperatureEffect
     + FuelEffect
+  <!-- + NOEffect -->   
   </val>
 </def>
 

@@ -1,0 +1,298 @@
+HumMod / MenstrualExpulsion
+
+Created : 2012-02-13
+Revised : 2025-05-25
+Modified : By Terry Yavorskyy
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> MenstrualExpulsion </name>
+
+<variables>
+<!-- ==================== UTERINE VARIABLES ==================== -->
+<var><name> MEUterinePressure </name></var>
+<var><name> UterineVolume </name></var>
+<var><name> EndometrialThickness </name></var>
+
+<!-- Uterine parameters -->
+<parm><name> BaseContractionRate </name><val> 0.1 </val></parm>
+<parm><name> UterineCapacity </name><val> 50 </val></parm> <!-- mL -->
+<parm><name> EndometrialShedRate </name><val> 2.0 </val></parm> <!-- mL/Hour -->
+ <var> <name> EndometrialShedding </name> </var>
+
+<!-- ==================== CERVICAL VARIABLES ==================== -->
+<var><name> CervicalDilation </name></var>
+<var><name> CervicalResistance </name></var>
+
+<!-- Cervical parameters -->
+<parm><name> BaseCervicalDilation </name><val> 2.0 </val></parm> <!-- mm -->
+<parm><name> MaxCervicalDilation </name><val> 8.0 </val></parm> <!-- mm -->
+
+<!-- ==================== TRANSIT RATE PARAMETERS ==================== -->
+<parm><name> BaseCervicalTransitRate </name><val> 0.3 </val></parm>
+<parm><name> BaseVaginalTransitRate </name><val> 0.8 </val></parm>
+
+<!-- ==================== VAGINAL VARIABLES ==================== -->
+<var><name> VaginalVolume </name></var>
+<var><name> VaginalPressure </name></var>
+
+<!-- Vaginal parameters -->
+<parm><name> VaginalCapacity </name><val> 30 </val></parm> <!-- mL -->
+
+<!-- ==================== CONTRACTION WAVE VARIABLES ==================== -->
+<parm><name> BaseContractionAmplitude </name><val> 1.0 </val></parm>
+<parm><name> ContractionFrequency </name><val> 0.02 </val></parm> <!-- Contractions per minute -->
+<var><name> ContractionAmplitude </name></var>
+<var><name> ContractionForce </name></var>
+
+<!-- ==================== HORMONAL INFLUENCES ==================== -->
+<parm><name> ProstaglandinLevel </name><val> 1.0 </val></parm>
+<parm><name> EstrogenLevel </name><val> 0.5 </val></parm>
+<parm><name> ProgesteroneLevel </name><val> 0.2 </val></parm>
+
+<!-- ==================== FLOW VARIABLES ==================== -->
+<var><name> MenstrualFlow </name></var>
+<var><name> FlowRate </name></var>
+<var><name> CumulativeFlow </name></var>
+
+<!-- ==================== CLOT FORMATION ==================== -->
+<var><name> ClotFormation </name></var>
+<parm><name> ClottingTendency </name><val> 0.3 </val></parm>
+
+</variables>
+
+<equations>
+<!-- ==================== UTERINE BLOOD ACCUMULATION ==================== -->
+<diffeq>
+  <name> UterineBlood_Mass </name>
+  <integralname> UterineBlood </integralname>
+  <initialval> 5.0 </initialval>
+  <dervname> dUterineBlood/dt </dervname>
+  <errorlim> 0.5 </errorlim>
+</diffeq>
+
+<!-- ==================== CERVICAL TRANSIT ==================== -->
+<delay>
+  <name> UterineToCervical </name>
+  <outputname> CervicalInflow </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> UterineOutflow </inputname>
+  <rateconstname> CervicalTransitRate </rateconstname>
+  <dervname> dCervicalInflow/dt </dervname>
+</delay>
+
+<!-- ==================== VAGINAL TRANSIT ==================== -->
+<delay>
+  <name> CervicalToVaginal </name>
+  <outputname> VaginalInflow </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> CervicalOutflow </inputname>
+  <rateconstname> VaginalTransitRate </rateconstname>
+  <dervname> dVaginalInflow/dt </dervname>
+</delay>
+
+<!-- ==================== VAGINAL BLOOD ACCUMULATION ==================== -->
+<diffeq>
+  <name> VaginalBlood_Mass </name>
+  <integralname> VaginalBlood </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> dVaginalBlood/dt </dervname>
+  <errorlim> 0.2 </errorlim>
+</diffeq>
+
+<!-- ==================== CUMULATIVE FLOW TRACKING ==================== -->
+<diffeq>
+  <name> TotalFlow_Mass </name>
+  <integralname> TotalMenstrualFlow </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> dTotalFlow/dt </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+<!-- ==================== CONTRACTION WAVE PROPAGATION ==================== -->
+<delay>
+  <name> ContractionWave </name>
+  <outputname> ContractionSignal </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> ContractionTrigger </inputname>
+  <rateconstname> ContractionWaveSpeed </rateconstname>
+  <dervname> dContractionSignal/dt </dervname>
+</delay>
+
+</equations>
+
+<functions>
+<!-- ==================== UTERINE PRESSURE-VOLUME RELATIONSHIP ==================== -->
+<curve>
+  <name> UterinePressureCurve </name>
+  <point><x> 0 </x><y> 5 </y><slope> 0 </slope></point>
+  <point><x> 20 </x><y> 15 </y><slope> 0.5 </slope></point>
+  <point><x> 40 </x><y> 40 </y><slope> 2.0 </slope></point>
+  <point><x> 60 </x><y> 120 </y><slope> 5.0 </slope></point>
+</curve>
+
+<!-- ==================== CERVICAL DILATION CURVE ==================== -->
+<curve>
+  <name> CervicalDilationCurve </name>
+  <point><x> 0 </x><y> 2.0 </y><slope> 0 </slope></point>
+  <point><x> 30 </x><y> 4.0 </y><slope> 0.1 </slope></point>
+  <point><x> 80 </x><y> 8.0 </y><slope> 0.02 </slope></point>
+  <point><x> 150 </x><y> 8.0 </y><slope> 0 </slope></point>
+</curve>
+
+<!-- ==================== FLOW RESISTANCE CURVE ==================== -->
+<curve>
+  <name> FlowResistanceCurve </name>
+  <point><x> 2.0 </x><y> 10.0 </y><slope> 0 </slope></point>
+  <point><x> 4.0 </x><y> 5.0 </y><slope> -1.0 </slope></point>
+  <point><x> 6.0 </x><y> 2.0 </y><slope> -0.5 </slope></point>
+  <point><x> 8.0 </x><y> 1.0 </y><slope> 0 </slope></point>
+</curve>
+
+<!-- ==================== CLOT FORMATION CURVE ==================== -->
+<curve>
+  <name> ClotFormationCurve </name>
+  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> 10 </x><y> 0.2 </y><slope> 0.02 </slope></point>
+  <point><x> 30 </x><y> 0.8 </y><slope> 0.01 </slope></point>
+  <point><x> 50 </x><y> 1.0 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+
+<block><name> Dervs </name>
+<def>
+  <name> EndometrialShedRate </name>
+  <val> Endometrium-LuminalEpithelium.Change + Endometrium-Glands.Change + Endometrium-StromalCells.Change + Endometrium-Vasculature.Change </val>
+</def>
+
+<!-- ==================== ENDOMETRIAL SHEDDING ==================== -->
+<def>
+  <name> EndometrialShedding </name>
+  <val> EndometrialShedRate * Endometrium-StromalCells.PGE2 </val>
+</def>
+
+
+<!-- ==================== UTERINE CONTRACTIONS ==================== -->
+<def>
+  <name> ContractionAmplitude </name>
+  <val> BaseContractionAmplitude * SIN ( 2 * System.Pi * ContractionFrequency * System.X ) MAX 0 </val>
+</def>
+<def>
+  <name> ContractionWaveSpeed </name>
+  <val> 0.5 * ContractionAmplitude </val>
+</def>
+<def>
+  <name> ContractionForce </name>
+  <val> 1.0 + ( ContractionAmplitude * Endometrium-StromalCells.PGE2 ) </val>
+</def>
+
+<def>
+  <name> ContractionTrigger </name>
+  <val> ContractionAmplitude * Endometrium-StromalCells.PGE2 </val>
+</def>
+
+<!-- ==================== UTERINE CALCULATIONS ==================== -->
+<def>
+  <name> UterineVolume </name>
+  <val> UterineBlood </val>
+</def>
+
+<def>
+  <name> MEUterinePressure </name>
+  <val> UterinePressureCurve [ UterineVolume ] * ContractionForce </val>
+</def>
+
+<!-- ==================== CERVICAL CALCULATIONS ==================== -->
+<def>
+  <name> CervicalDilation </name>
+  <val> CervicalDilationCurve [ MEUterinePressure ] * Endometrium-StromalCells.PGE2 </val>
+</def>
+
+<def>
+  <name> CervicalResistance </name>
+  <val> FlowResistanceCurve [ CervicalDilation ] </val>
+</def>
+
+<def>
+  <name> CervicalTransitRate </name>
+  <val> BaseCervicalTransitRate * ( 1.0 + ( MEUterinePressure / 30.0 ) ) / CervicalResistance </val>
+</def>
+
+<!-- Pressure and prostaglandin-dependent uterine outflow -->
+<def>
+  <name> UterineOutflow </name>
+  <val> BaseContractionRate * UterineBlood * ( 1.0 + ( MEUterinePressure / 20.0 ) ) * Endometrium-StromalCells.PGE2 </val>
+</def>
+
+<def>
+  <name> dUterineBlood/dt </name>
+  <val> EndometrialShedding - UterineOutflow </val>
+</def>
+
+<!-- ==================== CERVICAL FLOW ==================== -->
+<def>
+  <name> CervicalOutflow </name>
+  <val> CervicalTransitRate * CervicalInflow </val>
+</def>
+
+<!-- ==================== VAGINAL CALCULATIONS ==================== -->
+<def>
+  <name> VaginalTransitRate </name>
+  <val> BaseVaginalTransitRate * ( 1.0 + ( CervicalInflow / 5.0 ) ) </val>
+</def>
+
+<def>
+  <name> VaginalVolume </name>
+  <val> VaginalBlood </val>
+</def>
+
+<def>
+  <name> VaginalPressure </name>
+  <val> VaginalVolume / 5.0 </val>
+</def>
+
+<!-- External menstrual flow -->
+<def>
+  <name> MenstrualFlow </name>
+  <val> VaginalTransitRate * VaginalBlood * ( 1.0 + ( VaginalPressure / 10.0 ) ) </val>
+</def>
+
+<def>
+  <name> dVaginalBlood/dt </name>
+  <val> VaginalInflow - MenstrualFlow </val>
+</def>
+
+<def>
+  <name> dTotalFlow/dt </name>
+  <val> MenstrualFlow </val>
+</def>
+
+<!-- ==================== CLOT FORMATION ==================== -->
+<def>
+  <name> ClotFormation </name>
+  <val> ClotFormationCurve [ UterineVolume ] * ClottingTendency </val>
+</def>
+
+
+
+<!-- ==================== FLOW RATE CALCULATION ==================== -->
+<def>
+  <name> FlowRate </name>
+  <val> MenstrualFlow </val>
+</def>
+
+<def>
+  <name> CumulativeFlow </name>
+  <val> TotalMenstrualFlow </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
