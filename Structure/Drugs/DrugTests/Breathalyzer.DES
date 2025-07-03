@@ -1,0 +1,30 @@
+
+HumMod / Breathalyzer
+
+Created : 02-Apr-09
+Revised : Tiffany
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> Breathalyzer </name>
+
+<variables>
+    <var><name> BreathEthanol </name></var>
+</variables>
+
+<definitions>
+<block>
+    <name> BreathCalculation </name>
+
+<def>
+    <name> BreathEthanol </name>
+    <val> EthanolLungs.LungsLoss / LungVolumes.TotalCapacity </val>
+    </def>
+    </block>
+
+  </definitions>
+
+</structure>

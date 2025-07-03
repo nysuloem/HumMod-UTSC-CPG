@@ -23,6 +23,10 @@ Schema : DES V1.0
   <name> Loss </name>
 </var>
 
+<var>
+  <name> EthanolMass </name>
+</var>
+
 </variables>
 
 <equations>
@@ -44,6 +48,11 @@ Schema : DES V1.0
 <def>
   <name> [Ethanol] </name>
   <val> Mass / ECFV.Vol(L) </val>
+</def>
+
+<def>
+  <name> EthanolMass </name>         
+  <val> [Ethanol] * 0.789 </val>
 </def>
 
 </block>
