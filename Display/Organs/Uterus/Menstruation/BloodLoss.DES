@@ -1,0 +1,27 @@
+HumMod / Gender
+
+Created : 2012-02-03
+Revised : 2012-02-03
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1 </col>
+   <high> 11.4 </high>
+   <wide> 30.0 </wide>
+   <title> Menstrual Blood Loss </title>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Rate </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Rate </label>
+</showvalue>
+
+</groupbox>
+
+End

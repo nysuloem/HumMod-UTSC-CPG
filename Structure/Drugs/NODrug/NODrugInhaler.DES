@@ -53,7 +53,7 @@ By : University Of Mississippi Medical Center
 </equations>
 
 <definitions>
-
+  
 <block><name> Inhale </name> <!-- Defines inhalation dynamics -->
 
 <def>
@@ -70,7 +70,6 @@ By : University Of Mississippi Medical Center
   <name> Mass </name>
   <val> Mass + Dose </val> <!-- adds new inhaled dose to NO -->
 </def>
-
 <def>
   <name> TimeLastDose </name>
   <val> System.X </val> <!-- system time = time last dose -->

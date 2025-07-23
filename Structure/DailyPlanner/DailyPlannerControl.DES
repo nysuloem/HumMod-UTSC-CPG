@@ -180,7 +180,6 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> NewTask </name>
-
   <call> GetTask </call>
 
   <testcase>
@@ -501,7 +500,6 @@ By : University of Mississippi Medical Center
 <!-- START RESTING -->
 
 <block><name> Resting </name>
-
   <def><name> Status.Activity </name><val> 1 </val></def>
   <def><name> Status.Exertion </name><val> 0 </val></def>
 

@@ -40,7 +40,6 @@ By : University of Mississippi Medical Center
   <def><name> Status.Exertion </name><val> Request </val></def>
   <def><name> LastValidRequest </name><val> Request </val></def>
   <call> UpdateStatus </call>
-
 </onjustchanged>
 
 </block>
@@ -180,7 +179,6 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
-
 </structure>
 
 End

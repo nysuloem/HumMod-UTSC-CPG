@@ -119,6 +119,7 @@ By : University of Mississippi Medical Center
 <?include LungGases\LungGases.DES ?>
 <?include Lungs\Lungs.DES ?>
 <?include Menstruation\Menstruation.DES ?>
+<?include Melatonin\Melatonin.DES ?>
 <?include Metabolism\Metabolism.DES ?>
 <?include MineralocorticoidReceptor\MineralocorticoidReceptor.DES ?>
 <?include Na\Na.DES ?>
@@ -143,7 +144,6 @@ By : University of Mississippi Medical Center
 <?include Pressures\Pressures.DES ?>
 <?include PressureTools\PressureTools.DES ?>
 <?include Progesterone\Progesterone.DES ?>
-<?include Quizzes\Quizzes.DES ?> 
 <?include Renin\Renin.DES ?>
 <?include RespiratoryCenter\RespiratoryCenter.DES ?>
 <?include RespiratoryMuscle\RespiratoryMuscle.DES ?>
@@ -270,6 +270,7 @@ By : University of Mississippi Medical Center
   <call> CPR.Parms </call>
   <call> SkeletalMuscle-MetabolicVasodilation.Parms </call>
   <call> Leptin.Parms </call>
+  <call> Melatonin.Parms </call>
   <call> HeartValves.Parms </call>
   <call> LH.Parms </call>
   <call> FSH.Parms </call>
@@ -298,7 +299,6 @@ By : University of Mississippi Medical Center
   <call> CollectingDuct_H2O.Parms </call>
   <call> ACTHTest.Parms </call>
   <call> Trauma.Parms </call>
-  <call> Quizzes.Parms </call>
 </block>
 
 <block><name> Dervs </name>
@@ -388,6 +388,7 @@ By : University of Mississippi Medical Center
   <call> ThyroidGland.CalcConc </call>
   <call> Thyroid.CalcEffect </call>
   <call> Leptin.Conc </call>
+  <call> Melatonin.Conc </call>
 
   <call> DesglymidodrinePool.CalcConc </call>
   <call> Catechols.CalcConc </call>
@@ -779,6 +780,7 @@ By : University of Mississippi Medical Center
   <call> RightKidney-Myogenic.Dervs </call>
   <call> SkeletalMuscle-MetabolicVasodilation.Dervs </call>
   <call> Leptin.Dervs </call>
+  <call> Melatonin.Dervs </call>
 
   <call> HaveSex.Parms</call>
   <call> Ovaries.Dervs </call>
