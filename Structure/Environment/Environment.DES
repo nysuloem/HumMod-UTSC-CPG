@@ -16,6 +16,7 @@ Schema : DES V1.0
 <?include EquivalentAltitude.DES ?>
 <?include RelativeHumidity.DES ?>
 <?include Wind.DES ?>
+<?include Light.DES ?>
 
 <structure><name> Environment </name>
 
@@ -34,10 +35,24 @@ Schema : DES V1.0
 
   <call> EquivalentAltitude.Parms </call>
 
+  <if><test> Light.Intensity EQ 1 </test>
+    <true>
+      <call> Light.VariableLight </call>
+    </true>
+  </if>
+
+  <if><test> Light.Intensity EQ 0 </test>
+    <true>
+      <def><name> Light.LuxActual </name>
+        <val> Light.Lux </val>
+      </def>
+    </true>
+  </if> 
+
 </block>
 
-
 </definitions>
+
 </structure>
 
 End

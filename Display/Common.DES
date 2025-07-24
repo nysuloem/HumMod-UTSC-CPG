@@ -19,6 +19,12 @@ By : University of Mississippi Medical Center
 </maplist>
 
 <maplist>
+  <name> Common.Light </name>
+  <map><val> 0 </val><img> Constant Light </img></map>
+  <map><val> 1 </val><img> Variable Light </img></map>
+</maplist>
+
+<maplist>
   <name> Common.Frequency </name>
   <map><val>0</val><img> Never </img></map>
   <map><val>1</val><img> Daily </img></map>

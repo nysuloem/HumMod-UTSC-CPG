@@ -188,7 +188,7 @@ By : University of Mississippi Medical Center
   <call> Hydrostatics.Context </call>
 </block>
 
-<block><name> Parms </name>
+<block><name> Parms </name>   <!--Parms are only called at the initial calculation-->
   <call> Context.Parms </call>
 
   <call> Environment.Parms </call>
@@ -301,7 +301,7 @@ By : University of Mississippi Medical Center
   <call> Trauma.Parms </call>
 </block>
 
-<block><name> Dervs </name>
+<block><name> Dervs </name>  <!-- Dervs are called at every calculation step-->
 
   <call> Pain.Dervs </call>
   <call> BloodVolume.CalcVol </call>
@@ -309,6 +309,7 @@ By : University of Mississippi Medical Center
   <call> TissueH2O.CalcVol </call>
   <call> ExternalH2O.CalcVol </call>
   <call> H2O.CalcVol </call>
+  <call> Environment.FinishParms </call>
 
   <call> NOPool.CalcDiffusion </call>
   <call> SO4Pool.CalcOsmoles </call>
