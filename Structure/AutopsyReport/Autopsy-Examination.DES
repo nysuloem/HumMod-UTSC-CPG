@@ -52,7 +52,7 @@ By : University Of Mississippi Medical Center
 
 <var><name> COPoisoning </name><val> FALSE </val></var>
 
-<var><name> TimeOfDeath </name><val> 0 </val></var>
+<var><name> TimeOfDeath </name></var>
 
 </variables>
 
