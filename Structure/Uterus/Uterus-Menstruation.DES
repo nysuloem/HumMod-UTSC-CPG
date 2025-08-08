@@ -7,53 +7,84 @@ Copyright : 2008-2010
 By : 
 Schema : DES V1.0
 
-<structure><name> Menstruation </name>
+<structure><name> Uterus-Menstruation </name>
+<!-- This structure determines the RATE at which blood flows into the uterus lumen from the sprial arteries -->
 
 <variables>
 
-<var><name> Bloodloss </name></var>
-<var><name> Rate </name></var>
-
+<var><name> BloodLoss </name><val> 0 </val></var>
+<timervar><name> Duration </name></timervar>
+<var><name> DurationDays </name></var>
 
 </variables>
 
+<equations>
+
+<diffeq>
+  <name> UterusBloodLeakedVol </name>
+  <integralname> UterusBloodLeakedVol </integralname>
+  <initialval> 0 </initialval>
+  <dervname> Rate </dervname>
+</diffeq>
+
+</equations>
 
 <definitions>
 
 <block><name> Dervs </name>
 
-<conditional>
-    <name> EndometriumDeg </name>
-    <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) </test>
-    <true> Endometrium.Functionalis </true>
-    <false> 0.0 </false>
-</conditional>
+    <def>
+        <name> Rate </name> 
+        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow </val>
+    </def>
 
+    <def>
+        <name> BloodLoss </name><val> Sex.IsFemale * Rate </val>
+    </def>
 
+    <testcase>
 
-<conditional> 
-<name> Rate </name> 
-<test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 )  </test>
-<true> ( Estradiol.[Conc(nMol/L)] + Progesterone.[Conc(nMol/L)] ) * 0.0125 * EndometriumDeg  </true>
-<false> 0.0 </false>
-</conditional>
+    <case>
+        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 0 </test>
+        <timer>
+            <name> Duration </name>
+            <state> OFF </state>
+        </timer>
+    </case>
 
+    <case>
+        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 1 </test>
+        <timer>
+            <name> Duration </name>
+            <state> UP </state>
+        </timer>
+    </case>
 
+    </testcase>
 
-
-<!--  
-<def><name> Rate </name><val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.0005 * Endometrium.Thickness  </val> </def>
-
---> 
-
-<def><name> Bloodloss </name><val> Sex.IsFemale * Rate </val></def>
-
+    <def><name> DurationDays </name>
+        <val> Duration / 1440 </val>
+    </def>
 
 </block>
+
+<block><name> ResetMenstrualDuration </name>
+
+    <def><name> Duration </name>
+    <val> 0 </val>
+    </def>
+
+</block>
+
+<block><name> ResetBloodLost </name>
+
+    <def><name> Uterus-Lumen.MenstrualBloodExpulsed </name>
+    <val> 0 </val>
+    </def>
+
+</block>
+
 </definitions>
-
-
-
 
 </structure>
 

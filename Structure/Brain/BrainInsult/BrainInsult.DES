@@ -22,7 +22,6 @@ Schema : DES V1.0g
 <variables>
 
 <var><name> Effect </name></var>
-
 <var><name> Test_1 </name></var>
 <var><name> Test_2 </name></var>
 <var><name> Test_3 </name></var>

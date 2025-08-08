@@ -1,5 +1,5 @@
 
-<panel><name> MenstrualExplusion </name>
+<panel><name> Uterus-Menstruation </name>
 
 <showbitmap>
   <row> 0.3 </row>
@@ -24,6 +24,8 @@
 <structurename> MenstrualExpulsion </structurename>
 
 <?path Display\Organs\Uterus\Menstruation\ ?>
+
+<?include BloodLoss.DES ?>
 
 <!--<?include MenstrualExpulsion.DES ?>-->
 

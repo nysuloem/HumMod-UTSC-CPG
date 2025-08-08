@@ -30,11 +30,11 @@ Edited by CPG
 
 <def>
 <name> ExhaustedQ </name>
-<val> ( SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation ) 
-             AND ( 1 -  SkeletalMuscle-Function.Failed ) 
-             AND ( 1 - Brain-Function.Comatose ) 
-             AND ( 1 - Brain-Function.Impaired )
-             AND ( 1 - RespiratoryMuscle-Function.Failed )
+<val> ( SkeletalMuscle-Ph.Ph LT Exercise-Motivation.Motivation ) 
+             OR ( SkeletalMuscle-Function.Failed ) 
+             OR ( Brain-Function.Comatose ) 
+             OR ( Brain-Function.Impaired )
+             OR ( RespiratoryMuscle-Function.Failed )
 </val>
 </def>
 
@@ -145,7 +145,7 @@ Edited by CPG
 
   <!-- On Treadmill -->
   <case>
-    <test> 1 - ExhaustedQ </test>
+    <test> ExhaustedQ </test>
     <def><name> Number2 </name><val> 15 </val></def>
   </case>
 

@@ -11,9 +11,7 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> Effect </name>
-</var>
+<var><name> Effect </name></var>
 
 </variables>
 

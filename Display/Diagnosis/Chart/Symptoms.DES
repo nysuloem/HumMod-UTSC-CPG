@@ -12,7 +12,7 @@ By: Jason Brown
 <maplist>
   <name> Symptoms.Number </name>
   <map><val>  0 </val><img> "I'm awake, resting, and feeling fine." </img></map>
-  <map><val>  1 </val><img>  Patient is not responding. - </img></map>
+  <map><val>  1 </val><img>  Patient is not responding. </img></map>
   <map><val>  2 </val><img>  "I've got a bad chest pain."  </img></map>
   <map><val>  3 </val><img>  "I can't get enough air." </img></map>
   <map><val>  4 </val><img>  "I get tired really easily." </img></map>

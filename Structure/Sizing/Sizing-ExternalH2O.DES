@@ -39,8 +39,8 @@ By : University of Mississippi Medical Center
 </def>
 <!-- 
 <def>
-  <name> UterusLumen_Mass </name>
-  <val> ( UterusLumen_Percent / 100 ) * Sizing-OrganMass.BaseMass(G) </val>
+  <name> Uterus-Lumen_Mass </name>
+  <val> ( Uterus-Lumen_Percent / 100 ) * Sizing-OrganMass.BaseMass(G) </val>
 </def>
 -->
 <def>
@@ -113,7 +113,7 @@ By : University of Mississippi Medical Center
   <name> ExternalOther </name>
   <val> GILumen_Mass </val>
 </def>
-<!--   <val> GILumen_Mass + UterusLumen_Mass </val> -->
+<!--   <val> GILumen_Mass + Uterus-Lumen_Mass </val> -->
 </block>
 
 </definitions>
