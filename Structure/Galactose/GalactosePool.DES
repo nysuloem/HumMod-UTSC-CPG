@@ -1,0 +1,106 @@
+HumMod / GalactosePool
+
+Created : 07-Apr-05
+Last Modified : 2011-10-17
+Author : Tom Coleman
+Copyright : 2006-2011
+By : University Of Mississippi Medical Center
+
+<structure><name> GalactosePool </name>
+
+<variables>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+
+<var><name> [Galactose] </name></var>
+<var><name> [Galactose(mG/dL)] </name></var>
+<var><name> [Galactose(mMol/L)] </name></var>
+
+<var><name> [BloodGalactose] </name></var>
+<var><name> [BloodGalactose(mG/dL)] </name></var>
+<var><name> [BloodGalactose(mMol/L)] </name></var>
+
+<constant><name> BLOOD_TO_PLASMA </name><val> 1.15 </val></constant>
+
+<constant><name> PER_ML_TO_PER_DL </name><val> 100.0 </val></constant>
+<constant><name> MG_TO_MMOL </name><val> 5.551 </val></constant>
+
+<var><name> Osmoles </name></var>
+<var><name> [Osm] </name></var>
+<var><name> [Osm(mOsm/L)] </name></var>
+
+<constant><name> MW </name><val> 180.0 </val></constant>
+
+<var><name> InitialMass </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name><!-- in mg -->
+  <integralname> Mass </integralname>
+  <dervname> Change </dervname>
+  <errorlim> 165.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> Mass </name>
+  <val> InitialMass </val>
+</def>
+
+</block>
+
+<block><name> CalcOsmoles </name>
+
+<def><name> Osmoles </name><val> Mass / MW </val></def>
+
+</block>
+
+<block><name> CalcConc </name>
+
+<def><name> [Galactose] </name><val> Mass / ECFV.Vol </val></def>
+<def><name> [Galactose(mG/dL)] </name><val> PER_ML_TO_PER_DL * [Galactose] </val></def>
+<def><name> [Galactose(mMol/L)] </name><val> MG_TO_MMOL * [Galactose] </val></def>
+
+<def><name> [BloodGalactose] </name><val> [Glucose] / BLOOD_TO_PLASMA </val></def>
+<def><name> [BloodGalactose(mG/dL)] </name><val> PER_ML_TO_PER_DL * [BloodGalactose] </val></def>
+<def><name> [BloodGalactose(mMol/L)] </name><val> MG_TO_MMOL * [BloodGalactose] </val></def>
+
+<def><name> [Osm] </name><val> Osmoles / ECFV.Vol </val></def>
+<def><name> [Osm(mOsm/L)] </name><val> 1000.0 * [Osm] </val></def>
+
+</block>
+
+<block><name> CalcDervs </name>
+
+<def><name> Gain </name>
+  <val>
+    GILumenLactose.Absorption
+  </val>
+</def>
+
+<def><name> Loss </name>
+  <val>
+      Metabolism-Glucose.TotalUptake
+    + LiverMetabolism_Glucose.Uptake
+    + NephronGlucose.Spillover
+    + GlucoseDecomposition.Rate
+  </val>
+</def>
+
+<def><name> Change </name><val> Gain - Loss </val></def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

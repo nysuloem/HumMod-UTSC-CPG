@@ -14,15 +14,28 @@ By : University of Mississippi Medical Center
 <parm><name> FAAvailable </name><val> 70 </val></parm>
 <parm><name> LacAvailable </name><val> 50 </val></parm>
 
+<!--new fructose galactose -->
+<parm><name> FructoseAvailable </name><val> 50 </val></parm>
+<parm><name> GalactoseAvailable </name><val> 50 </val></parm>
+
 <var><name> InsulinEffect </name></var>
 
 <var><name> GlucoseDelivered(mG/Min) </name></var>
 <var><name> FADelivered(mG/Min) </name></var>
 <var><name> LacDelivered(mG/Min) </name></var>
 
+<!--new fructose galactose -->
+<var><name> FructoseDelivered(mG/Min) </name></var>
+<var><name> GalactoseDelivered(mG/Min) </name></var>
+
 <var><name> GlucoseDelivered(Cals/Min) </name></var>
 <var><name> FADelivered(Cals/Min) </name></var>
 <var><name> LacDelivered(Cals/Min) </name></var>
+
+<!--new fructose galactose -->
+<var><name> FructoseDelivered(Cals/Min) </name></var>
+<var><name> GalactoseDelivered(Cals/Min) </name></var>
+
 <var><name> TotalDelivered(Cals/Min) </name></var>
 
 <var><name> FADeliveredFraction </name></var>
@@ -34,7 +47,14 @@ By : University of Mississippi Medical Center
 <var><name> LacGradient </name></var>
 <var><name> LacUsed(Cals/Min) </name></var>
 <var><name> TotalGlucoseUsed(Cals/Min) </name></var>
+
+<!--new fructose galactose -->
+<var><name> TotalGalactoseUsed(Cals/Min) </name></var>
+<var><name> TotalFructoseUsed(Cals/Min) </name></var>
 <var><name> TotalUsed(Cals/Min) </name></var>
+
+<param><name> GALK_Activity </name><val> 10 </val></param>
+<param><name> Fructokinase_Activity </name><val> 10 </val></param>
 
 <var><name> Glucose(%) </name></var>
 <var><name> Fat(%) </name></var>
@@ -45,8 +65,12 @@ By : University of Mississippi Medical Center
 <var><name> AerobicGlucoseUsed(mG/Min) </name></var>
 <var><name> AnaerobicGlucoseUsed(mG/Min) </name></var>
 <var><name> LacUsed(mG/Min) </name></var>
-
 <var><name> TotalGlucoseUsed(mG/Min) </name></var>
+
+<!--new fructose galactose -->
+<var><name> TotalGalactoseUsed(mG/Min) </name></var>
+<var><name> TotalFructoseUsed(mG/Min) </name></var>
+
 
 <var><name> IsFailed </name></var>
 
@@ -122,6 +146,17 @@ By : University of Mississippi Medical Center
   <val> 0.01 * GlucoseAvailable * GlucosePool.[Glucose] * HepaticArtery-Flow.PlasmaFlow </val>
 </def>
 
+<!--new fructose galactose -->
+<def>
+  <name> FructoseDelivered(mG/Min) </name>
+  <val> 0.01 * FructoseAvailable * FructosePool.[Fructose] * HepaticArtery-Flow.PlasmaFlow </val>
+</def>
+
+<def>
+  <name> GalactoseDelivered(mG/Min) </name>
+  <val> 0.01 * GalactoseAvailable * GalactosePool.[Galactose] * HepaticArtery-Flow.PlasmaFlow </val>
+</def>
+
 <def>
   <name> FADelivered(mG/Min) </name>
   <val> 0.01 * FAAvailable * FAPool.[FA] * HepaticArtery-Flow.PlasmaFlow </val>
@@ -137,6 +172,17 @@ By : University of Mississippi Medical Center
   <val> Metabolism-Tools.Carbo(Cal/mG) * GlucoseDelivered(mG/Min) </val>
 </def>
 
+<!--new fructose galactose -->
+<def>
+  <name> FructoseDelivered(Cals/Min) </name>
+  <val> Metabolism-Tools.Carbo(Cal/mG) * FructoseDelivered(mG/Min) </val>
+</def>
+
+<def>
+  <name> GalactoseDelivered(Cals/Min) </name>
+  <val> Metabolism-Tools.Carbo(Cal/mG) * GalactoseDelivered(mG/Min) </val>
+</def>
+
 <def>
   <name> FADelivered(Cals/Min) </name>
   <val> Metabolism-Tools.Fat(Cal/mG) * FADelivered(mG/Min) </val>
@@ -149,7 +195,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> TotalDelivered(Cals/Min) </name>
-  <val> GlucoseDelivered(Cals/Min) + FADelivered(Cals/Min) + LacDelivered(Cals/Min) </val>
+  <val> GlucoseDelivered(Cals/Min) + FADelivered(Cals/Min) + LacDelivered(Cals/Min) + FructoseDelivered(Cals/Min) + GalactoseDelivered(Cals/Min) </val>
 </def>
 
 <def>
@@ -158,9 +204,10 @@ By : University of Mississippi Medical Center
 </def>
 
 <def>
-  <name> LacUsed(Cals/Min) </name>
-  <val> ( LacGradient * Liver-Lactate.DC ) MIN LacDelivered(Cals/Min) </val>
-</def>
+      <name> LacUsed(Cals/Min) </name>
+      <val> ( LacGradient * Liver-Lactate.DC ) MIN LacDelivered(Cals/Min) </val>
+    </def>
+
 
 <def>
   <name> FADeliveredFraction </name>
@@ -192,9 +239,23 @@ By : University of Mississippi Medical Center
   <val> AerobicGlucoseUsed(Cals/Min) + AnaerobicGlucoseUsed(Cals/Min) </val>
 </def>
 
+<!--new fructose galactose -->
+
+<def>
+  <name> TotalFructoseUsed(Cals/Min) </name>
+  <val> ( FructoseDelivered(Cals/Min) * Metabolism-Fructose.FructoseBurn ) MIN FructoseDelivered(Cals/Min) </val>
+</def>
+
+<call> GalactosePool.CalcConc </call>
+
+<def>
+  <name> TotalGalactoseUsed(Cals/Min) </name>
+  <val> GalactosePool.[BloodGalactose] * GALK_Activity </val>
+</def>
+
 <def>
   <name> TotalUsed(Cals/Min) </name>
-  <val> TotalGlucoseUsed(Cals/Min) + FAUsed(Cals/Min) + LacUsed(Cals/Min) </val>
+  <val> TotalGlucoseUsed(Cals/Min) + FAUsed(Cals/Min) + LacUsed(Cals/Min) + TotalFructoseUsed(Cals/Min) + TotalGalactoseUsed(Cals/Min) </val>
 </def>
 
 <def>
@@ -217,9 +278,22 @@ By : University of Mississippi Medical Center
   <val> 100 * LacUsed(Cals/Min) / TotalUsed(Cals/Min) </val>
 </def>
 
+<!--new fructose galactose -->
+
+<def>
+  <name> Fructose(%) </name>
+  <val> 100 * TotalFructoseUsed(Cals/Min) / TotalUsed(Cals/Min) </val>
+</def>
+
+<def>
+  <name> Galactose(%) </name>
+  <val> 100 * TotalGalactoseUsed(Cals/Min) / TotalUsed(Cals/Min) </val>
+</def>
+
+
 <def>
   <name> Total(%) </name>
-  <val> Glucose(%) + Fat(%) + Lactate(%) </val>
+  <val> Glucose(%) + Fat(%) + Lactate(%) + Fructose(%) + Galactose(%) </val>
 </def>
 
 <def>
@@ -247,6 +321,18 @@ By : University of Mississippi Medical Center
   <val> AerobicGlucoseUsed(mG/Min) + AnaerobicGlucoseUsed(mG/Min) </val>
 </def>
 
+<!--new fructose galactose -->
+
+ <def>
+      <name> TotalFructoseUsed(mG/Min) </name>
+      <val> TotalFructoseUsed(Cals/Min) * Metabolism-Tools.CarboAerobic(mG/Cal) </val>
+    </def>
+
+    <def>
+      <name> TotalGalactoseUsed(mG/Min) </name>
+      <val> TotalGalactoseUsed(Cals/Min) * Metabolism-Tools.CarboAerobic(mG/Cal) </val>
+    </def>
+
 </block>
 
 <block><name> Failed </name>
@@ -254,10 +340,14 @@ By : University of Mississippi Medical Center
 <def><name> GlucoseDelivered(mG/Min) </name><val> 0 </val></def>
 <def><name> FADelivered(mG/Min) </name><val> 0 </val></def>
 <def><name> LacDelivered(mG/Min) </name><val> 0 </val></def>
+<def><name> FructoseDelivered(mG/Min) </name><val> 0 </val></def>
+<def><name> GalactoseDelivered(mG/Min) </name><val> 0 </val></def>
 
 <def><name> GlucoseDelivered(Cals/Min) </name><val> 0 </val></def>
 <def><name> FADelivered(Cals/Min) </name><val> 0 </val></def>
 <def><name> LacDelivered(Cals/Min) </name><val> 0 </val></def>
+<def><name> FructoseDelivered(Cals/Min) </name><val> 0 </val></def>
+<def><name> GalactoseDelivered(Cals/Min) </name><val> 0 </val></def>
 
 <def><name> TotalDelivered(Cals/Min) </name><val> 0 </val></def>
 
@@ -269,6 +359,8 @@ By : University of Mississippi Medical Center
 <def><name> AerobicGlucoseUsed(Cals/Min) </name><val> 0 </val></def>
 <def><name> AnaerobicGlucoseUsed(Cals/Min) </name><val> 0 </val></def>
 <def><name> TotalGlucoseUsed(Cals/Min) </name><val> 0 </val></def>
+<def><name> TotalFructoseUsed(Cals/Min) </name><val> 0 </val></def>
+<def><name> TotalGalactoseUsed(Cals/Min) </name><val> 0 </val></def>
 
 <def><name> TotalUsed(Cals/Min) </name><val> 0 </val></def>
 
@@ -277,6 +369,8 @@ By : University of Mississippi Medical Center
 <def><name> Glucose(%) </name><val> UNDEFINED </val></def>
 <def><name> Fat(%) </name><val> UNDEFINED </val></def>
 <def><name> Lactate(%) </name><val> UNDEFINED </val></def>
+<def><name> Fructose(%) </name><val> UNDEFINED </val></def>
+<def><name> Galactose(%) </name><val> UNDEFINED </val></def>
 <def><name> Total(%) </name><val> UNDEFINED </val></def>
 
 <def><name> FAUsed(mG/Min) </name><val> 0 </val></def>
@@ -284,6 +378,8 @@ By : University of Mississippi Medical Center
 <def><name> LacUsed(mG/Min) </name><val> 0 </val></def>
 <def><name> AnaerobicGlucoseUsed(mG/Min) </name><val> 0 </val></def>
 <def><name> TotalGlucoseUsed(mG/Min) </name><val> 0 </val></def>
+<def><name> TotalFructoseUsed(mG/Min) </name><val> 0 </val></def>
+<def><name> TotalGalactoseUsed(mG/Min) </name><val> 0 </val></def>
 
 </block>
 

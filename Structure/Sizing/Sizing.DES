@@ -47,6 +47,8 @@ By : University of Mississippi Medical Center
 <?include Sizing-SulfatePool.DES ?>
 <?include Sizing-PhosphatePool.DES ?>
 <?include Sizing-Glucose.DES ?>
+<?include Sizing-Fructose.DES ?>
+<?include Sizing-Galactose.DES ?>
 <?include Sizing-UreaPool.DES ?>
 <?include Sizing-UreaCell.DES ?>
 
@@ -178,6 +180,8 @@ By : University of Mississippi Medical Center
   <call> Sizing-SulfatePool.Calc </call>
   <call> Sizing-PhosphatePool.Calc </call>
   <call> Sizing-Glucose.Calc </call>
+  <call> Sizing-Fructose.Calc </call>
+  <call> Sizing-Galactose.Calc </call>
   <call> Sizing-UreaPool.Calc </call>
   <call> Sizing-UreaCell.Calc </call>
 

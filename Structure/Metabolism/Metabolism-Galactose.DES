@@ -1,0 +1,37 @@
+HumMod / Metabolism-Galactose
+
+Created : 01-Aug-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> Metabolism-Galactose </name>
+
+<variables>
+
+<var><name> TotalBurn </name></var>
+<var><name> GalactoseBurn </name></var>
+
+<var><name> TotalUptake </name></var>
+<var><name> GalactoseUptake </name></var>
+
+</variables>
+
+<definitions>
+<block><name> Calc </name>
+
+<def><name> GalactoseBurn </name>
+  <val>
+     Liver-Fuel.TotalGalactoseUsed(mG/Min)
+  </val>
+</def>
+
+<def><name> GalactoseUptake </name><val> GalactoseBurn </val></def>
+<def><name> TotalUptake </name><val> GalactoseUptake </val></def>
+
+</block>
+</definitions>
+</structure>
+

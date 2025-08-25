@@ -1,0 +1,55 @@
+HumMod / Sizing-Galactose
+
+Created : 2025-08-25
+Revised : 2025-08-25
+Author  : HumMod Assistant
+Copyright : University of Mississippi Medical Center
+
+<structure><name> Sizing-Galactose </name>
+
+<variables>
+
+  <!-- default plasma concentration for galactose -->
+  <constant><name> [Galactose] </name><val> 0.0 </val></constant>
+
+  <!-- molecular weight (approx same as glucose) -->
+  <constant><name> MW </name><val> 180 </val></constant>
+
+  <var><name> Mass </name></var>
+  <var><name> Volume </name></var>
+  <var><name> Osmoles </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Calc </name>
+
+  <def>
+    <name> Volume </name>
+    <val> Sizing-ECFV.Vol / 1000 </val>
+  </def>
+
+  <def>
+    <name> Mass </name>
+    <val> [Galactose] * Volume </val>
+  </def>
+
+  <def>
+    <name> Osmoles </name>
+    <val> Mass / MW </val>
+  </def>
+
+  <def>
+    <name> GalactosePool.InitialMass </name>
+    <val> Mass </val>
+  </def>
+
+  <call> GalactosePool.Init </call>
+
+</block>
+
+</definitions>
+</structure>
+
+End

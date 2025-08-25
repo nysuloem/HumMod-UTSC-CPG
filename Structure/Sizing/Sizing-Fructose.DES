@@ -1,0 +1,58 @@
+HumMod / Sizing-Fructose
+
+Created : 2025-08-25
+Revised : 2025-08-25
+Author  : HumMod Assistant
+Copyright : University of Mississippi Medical Center
+
+<structure><name> Sizing-Fructose </name>
+
+<variables>
+
+  <!-- default plasma concentration (units: e.g. uM or mG/L depending on your pool conventions)
+       Set to a realistic starting value or 0 if you prefer to initialize in the pool. -->
+  <constant><name> [Fructose] </name><val> 0.0 </val></constant>
+
+  <!-- molecular weight (mG / mmol) — fructose ~= glucose -->
+  <constant><name> MW </name><val> 180 </val></constant>
+
+  <var><name> Mass </name></var>
+  <var><name> Volume </name></var>
+  <var><name> Osmoles </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Calc </name>
+
+  <!-- match Glucose sizing: use extracellular fluid volume scaled to appropriate units -->
+  <def>
+    <name> Volume </name>
+    <val> Sizing-ECFV.Vol / 1000 </val>
+  </def>
+
+  <def>
+    <name> Mass </name>
+    <val> [Fructose] * Volume </val>
+  </def>
+
+  <def>
+    <name> Osmoles </name>
+    <val> Mass / MW </val>
+  </def>
+
+  <!-- set the pool's initial mass and initialize the pool -->
+  <def>
+    <name> FructosePool.InitialMass </name>
+    <val> Mass </val>
+  </def>
+
+  <call> FructosePool.Init </call>
+
+</block>
+
+</definitions>
+</structure>
+
+End

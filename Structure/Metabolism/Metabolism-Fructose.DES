@@ -1,0 +1,38 @@
+HumMod / Metabolism-Fructose
+
+Created : 01-Aug-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> Metabolism-Fructose </name>
+
+<variables>
+
+<var><name> TotalBurn </name></var>
+<var><name> FructoseBurn </name></var>
+
+<var><name> TotalUptake </name></var>
+<var><name> FructoseUptake </name></var>
+
+</variables>
+
+<definitions>
+<block><name> Calc </name>
+
+<def><name> FructoseBurn </name>
+  <val>
+     Liver-Fuel.TotalFructoseUsed(mG/Min)
+  </val>
+</def>
+
+<def><name> FructoseUptake </name><val> FructoseBurn </val></def>
+<def><name> TotalUptake </name><val> FructoseUptake </val></def>
+
+</block>
+</definitions>
+</structure>
+
+End

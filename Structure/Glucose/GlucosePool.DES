@@ -84,6 +84,7 @@ By : University Of Mississippi Medical Center
 <def><name> Gain </name>
   <val>
       GILumenCarbohydrates.Absorption
+    + GILumenLactose.Absorption
     + LiverMetabolism_Glucose.Release
     + GlucosePump.Rate
   </val>

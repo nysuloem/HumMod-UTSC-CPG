@@ -16,6 +16,8 @@ By : University of Mississippi Medical Center
 
 <?include CO2\CO2.DES ?>
 <?include Glucose\Glucose.DES ?>
+<?include Fructose\Fructose.DES ?>
+<?include Galactose\Galactose.DES ?>
 <?include Hemoglobin\Hemoglobin.DES ?>
 <?include Apnea\Apnea.DES ?>
 <?include A-VFistula\A-VFistula.DES ?>
@@ -313,7 +315,9 @@ By : University of Mississippi Medical Center
   <call> NOPool.CalcDiffusion </call>
   <call> SO4Pool.CalcOsmoles </call>
   <call> PO4Pool.CalcOsmoles </call>
+  <call> FructosePool.CalcOsmoles </call>
   <call> GlucosePool.CalcOsmoles </call>
+  <call> GalactosePool.CalcOsmoles </call>
   <call> Urea.CalcOsmoles </call>
   <call> KAPool.CalcOsmoles </call>
 
@@ -405,6 +409,8 @@ By : University of Mississippi Medical Center
   <call> Triglyceride.Conc </call>
   <call> Triglyceride.Rate </call>
   <call> GlucosePool.CalcConc </call>
+  <call> FructosePool.CalcConc </call>
+  <call> GalactosePool.CalcConc </call>
   <call> AminoAcid.Conc </call>
   <call> Urea.CalcConc </call>
   <call> Creatine.Calc </call>
@@ -716,6 +722,8 @@ By : University of Mississippi Medical Center
   <call> Triglyceride.Dervs </call>
   <call> GlucoseDecomposition.Dervs </call>
   <call> GlucosePool.CalcDervs </call>
+  <call> FructosePool.CalcDervs </call>
+  <call> GalactosePool.CalcDervs </call>
   <call> AminoAcid.Dervs </call>
 
   <call> Organs-Lactate.CalcDervs </call>

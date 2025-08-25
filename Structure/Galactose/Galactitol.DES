@@ -1,0 +1,33 @@
+HumMod / Galactitol
+
+Created : 07-Apr-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> Galactitol </name>
+
+<variables>
+    <var> <name> k_AR </name> <val> 10 </val> </var>
+</variables>
+
+<definitions>
+<block><name> Galactitol </name>
+    <conditional>
+        <name> Galactitol </name>
+        <test> GalactosePool.[BloodGalactose] GT 0.8 </test>  <!-- 0.8 mmol/L = ~14.4 mg/dL -->
+        <true> k_AR * GalactosePool.[BloodGalactose] </true>
+        <false> 0 </false>
+    </conditional>
+</block>
+</definitions>
+
+
+
+
+
+
+
+End

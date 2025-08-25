@@ -19,6 +19,8 @@ Schema : DES V1.0
 <?include Metabolism-CaloriesUsed.DES ?>
 
 <?include Metabolism-Glucose.DES ?>
+<?include Metabolism-Fructose.DES ?>
+<?include Metabolism-Galactose.DES ?>
 <?include Metabolism-FattyAcid.DES ?>
 
 End

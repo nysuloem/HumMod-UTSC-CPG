@@ -11,6 +11,14 @@ By : University Of Mississippi Medical Center
 <variables>
 
 <parm><name> Carbo_kCal/Day </name><val>1000</val></parm>
+<parm><name> Lactose_kCal/Day </name><val>0</val></parm>
+<parm><name> Galactose_kCal/Day </name><val>0</val></parm>
+<parm><name> Fructose_kCal/Day </name><val>0</val></parm>
+<parm><name> Sucrose_kCal/Day </name><val>0</val></parm>
+<parm><name> Glucose_kCal/Day </name><val>0</val></parm>
+<parm><name> Starch_kCal/Day </name><val>0</val></parm>
+<parm><name> Fiber_kCal/Day </name><val>0</val></parm>
+
 <parm><name> Fat_kCal/Day </name><val>500</val></parm>
 <parm><name> Protein_kCal/Day </name><val>500</val></parm>
 <var><name> Total_kCal/Day </name></var>
@@ -38,6 +46,30 @@ By : University Of Mississippi Medical Center
       + ( 30.3 * Weight.InitialOtherMass(kG) )
     ) ROUNDAT 10 </true>
   <false> Carbo_kCal/Day </false>
+</conditional>
+
+<conditional>
+  <name> Lactose_kCal/Day </name>
+  <test> DietIntakeNutrition.Fixed? EQ 0 </test>
+  <true> 
+    (   ( 1.48 * Fat-Size.InitialMass(kG) )
+      + ( 4.14 * SkeletalMuscle-Size.InitialMass(kG) )
+      + ( 30.3 * Weight.InitialOtherMass(kG) )
+      / 10
+    ) ROUNDAT 10 </true>
+  <false> Lactose_kCal/Day </false>
+</conditional>
+
+<conditional>
+  <name> Galactose_kCal/Day </name>
+  <test> DietIntakeNutrition.Fixed? EQ 0 </test>
+  <true> 
+    (   ( 1.48 * Fat-Size.InitialMass(kG) )
+      + ( 4.14 * SkeletalMuscle-Size.InitialMass(kG) )
+      + ( 30.3 * Weight.InitialOtherMass(kG) )
+      / 10
+    ) ROUNDAT 10 </true>
+  <false> Galactose_kCal/Day </false>
 </conditional>
 
 <conditional>
