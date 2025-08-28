@@ -1,0 +1,21 @@
+HumMod / Fructose
+
+<structure><name> Fructose </name>
+
+    <variables>
+        <var><name> High_Fructose_Syrup </name><val> 0.0 </val></var>
+    </variables>
+
+    <equations>
+  <!-- no differential equations needed for stub -->
+    </equations>
+
+    <definitions>
+        <block><name> Init </name>
+            <def><name> Dummy </name><val> 0.0 </val></def>
+        </block>
+    </definitions>
+
+</structure>
+
+End
