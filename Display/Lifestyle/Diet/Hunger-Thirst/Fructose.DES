@@ -28,7 +28,7 @@ HumMod / Fructose
     <yvar>
       <name> FructosePool.[Fructose(mg/dL)] </name>
       <nolabel/>
-      <linecolor> RED </linecolor>
+      <linecolor> BLUE </linecolor>
     </yvar>
     <scale>
       <min> 0 </min><max> 10 </max><inc> 2 </inc>
@@ -62,6 +62,8 @@ HumMod / Fructose
 
   <line> </line>
 </infobutton>
+
+</groupbox>
 
 
 End
