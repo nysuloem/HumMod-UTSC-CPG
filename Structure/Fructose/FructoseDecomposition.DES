@@ -6,6 +6,7 @@ HumMod / FructoseDecomposition
     
         <var><name> Rate </name></var>
         <parm><name> K </name><val> 0.0007 </val></parm>
+        <param><name> Fructosekinase_Activity </name><val> 1.0 </val></param>
 
     </variables>
 
@@ -13,7 +14,7 @@ HumMod / FructoseDecomposition
     
         <block><name> Dervs </name>
         
-            <def><name> Rate </name><val> K * FructosePool.Mass </val></def>
+            <def><name> Rate </name><val> K * Fructokinase_Activity * FructosePool.Mass </val></def>
         
         </block>
 

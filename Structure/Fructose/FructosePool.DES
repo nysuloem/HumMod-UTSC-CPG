@@ -36,5 +36,77 @@ Last Modified : 27-Aug-25
 
         <diffeq>
           <name> Mass </name>
+            <integralname> Mass </integralname>
+            <dervname> Change </dervname>
+            <errorlim> 165.0 </errorlim>
+        </diffeq>
+
+    </equations>
+
+    <definitions>
+        <block><name> Init </name></block>
+              <def>
+                 <name> Mass </name>
+                 <val> InitialMass </val>
+              </def>
+
+        <block><name> CalcOsmoles </name>
+            <def><name> Osmoles </name>
+            <val> Mass / MW </val></def>
+        </block>
+
+        <block><name> CalcConc </name>
+            <def>
+              <name> [Fructose] </name>
+              <val> (Mass / 3000.0) * PER_ML_TO_PER_DL </val>
+            </def>
+            <def>
+              <name> [Fructose(mG/dL)] </name>
+              <val> [Fructose] </val>
+            </def>
+            <def>
+              <name> [Fructose(mMol/L)] </name>
+              <val> [Fructose(mG/dL)] / MG_TO_MMOL </val>
+            </def>
+
+            <def>
+              <name> [BloodFructose] </name>
+              <val> [Fructose] * BLOOD_TO_PLASMA </val>
+            </def>
+            <def>
+              <name> [BloodFructose(mG/dL)] </name>
+              <val> [BloodFructose] </val>
+            </def>
+            <def>
+              <name> [BloodFructose(mMol/L)] </name>
+              <val> [BloodFructose(mG/dL)] / MG_TO_MMOL </val>
+            </def>
+
+            <def><name> [Osm] </name><val> Osmoles * 1000.0 </val></def>
+            <def><name> [Osm(mOsm/L)] </name><val> [Osm] </val></def>
+
+        </block>
+
+        <block><name> Dervs </name>
+            <def><name> Gain </name>
+                <val>
+                    GILumenCarbohydrates.Absorption
+                    + LiverMetabolism_Fructose.Release
+                    + FructosePump.Rate
+                </val>
+            </def>
+
+            <def><name> Loss </name>
+                <val>
+                    FructoseDecomposition.Rate <!-- includes Fructokinase activity -->
+                    + KidneyFructoseExcretion.Rate
+                </val>
+            </def>
+
+            <def><name> Change </name><val> Gain - Loss </val></def>
+            
+
+        </block>
+    </definitions>
 
           

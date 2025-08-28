@@ -1,50 +1,75 @@
 HumMod / Fructose
 
+Created : 2012-02-13
+Revised : 2012-02-13
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+
 <groupbox>
    <row> 14.8 </row>
    <col> 63.0 </col>
    <high> 21.6 </high>
    <wide> 30.0 </wide>
-   <title> Fructose </title>
+   <title> Glucose </title>
 
-<structurename> DietHunger-Fructose </structurename>
+<structurename> DietHunger-Glucose </structurename>
 
 <showvalue>
-   <row> 20.0 </row><col> 1.0 </col>
-   <name> FructosePool.[Fructose(mg/dL)] </name>
+   <row> 1.4 </row><col> 63.0 </col>
+   <name> Effect  </name>
    <format><decimal> 2 </decimal></format>
-   <label> [Fructose(mg/dL)] </label>
+   <label> Effect </label>
 </showvalue>
 
 <showgraph>
-  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <row> 2.4 </row><col> 63.0 </col><high> 7 </high><wide> 28 </wide>
   <leftmargin> 6 </leftmargin>
   <xaxis>
     <name> System.X </name>
-    <label> Time (hr) </label>
+    <label> Time </label>
     <scale><min> 0 </min><max> 2 </max></scale>
   </xaxis>
   <yaxis>
     <yvar>
-      <name> FructosePool.[Fructose(mg/dL)] </name>
+      <name> Effect </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>
     <scale>
-      <min> 0 </min><max> 10 </max><inc> 2 </inc>
+      <min> 0 </min><max> 2 </max><inc> 1 </inc>
     </scale>
   </yaxis>
 </showgraph>
 
+<radiobuttons>
+  <row> 9.8 </row><col> 63.0 </col>
+  <name> Clamp </name>
+  <listname> Common.Switch </listname>
+  <label> Clamp </label>
+</radiobuttons>
+
+<repeatlist>
+  <name> Level </name>
+  <repeat><reps> 30 </reps><stepsize> 0.1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 11.2 </row><col> 63.0 </col>
+  <name> Level </name>
+  <listname> Level </listname>
+  <label> Level </label>
+</slidebar>
+
 <showcurve>
-  <row> 12.6 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <row> 12.6 </row><col> 63.0 </col><high> 7 </high><wide> 28 </wide>
   <leftmargin> 6 </leftmargin>
 
   <xaxis>
-    <name> FructosePool.[Fructose(mg/dL)] </name>
-    <label> [Fructose] </label>
+    <name> GlucosePool.[Glucose(mG/dL)] </name>
+    <label> [Glucose] </label>
     <scale>
-      <min> 0 </min><max> 10 </max><inc> 2 </inc>
+      <min> 0 </min><max> 200 </max><inc> 100 </inc>
     </scale>
   </xaxis>
 
@@ -56,6 +81,13 @@ HumMod / Fructose
   <curvename> Effect </curvename>
 </showcurve>
 
+<showvalue>
+   <row> 20.0 </row><col> 63.0 </col>
+   <name> GlucosePool.[Glucose(mG/dL)] </name>
+   <format><decimal> 1 </decimal></format>
+   <label> [Glucose(mG/dL)] </label>
+</showvalue>
+
 <infobutton>
   <row> 1.2 </row>
   <col> 26.0 </col>
@@ -64,6 +96,5 @@ HumMod / Fructose
 </infobutton>
 
 </groupbox>
-
 
 End

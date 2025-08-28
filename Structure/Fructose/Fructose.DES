@@ -2,9 +2,11 @@ HumMod / Fructose
 Created: 27-Aug-25 
 Last Modified: 27-Aug-25
 
+<?path Structure\Fructose\ ?>
+
 <include FructoseDecomposition.DES ?>
 <include FructosePool.DES ?>
 <include FructosePump.DES ?>
 
-    
+
 End

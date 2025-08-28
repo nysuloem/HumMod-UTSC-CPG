@@ -1,0 +1,33 @@
+HumMod / LiverMetabolism_Fructose
+
+Created : 27-Aug-25
+Last Modified : 27-Aug-25
+Author : Tom Coleman
+Copyright : 2025
+By : University of Mississippi Medical Center
+Solver : DES 2024
+Schema : 2024.0
+
+<structure><name> LiverMetabolism_Fructose </name>
+
+    <variables>
+
+        <var><name> NetUptake </name></var>
+
+        <var><name> Uptake </name></var>
+        <var><name> Release </name></var>
+
+    </variables>
+
+    <definitions>
+        <block><name> Dervs </name>
+
+            <def><name> Uptake </name><val> FructosePump.Rate </val></def>
+            <def><name> Release </name><val> FructoseDecomposition.Rate </val></def>
+
+            <def><name> NetUptake </name><val> Uptake - Release </val></def>
+
+        </block>
+    </definitions>
+</structure>
+End 
