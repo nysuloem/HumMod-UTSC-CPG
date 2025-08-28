@@ -1,0 +1,40 @@
+HumMod / FructosePool 
+Created : 27-Aug-25
+Last Modified : 27-Aug-25
+
+<structure><name> FructosePool </name>  
+
+    <variables>
+
+        <var><name> Gain </name></var>
+        <var><name> Loss </name></var>
+
+        <var><name> [Fructose] </name></var>
+        <var><name> [Fructose(mG/dL)] </name></var>
+        <var><name> [Fructose(mMol/L)] </name></var>
+
+        <var><name> [BloodFructose] </name></var>
+        <var><name> [BloodFructose(mG/dL)] </name></var>
+        <var><name> [BloodFructose(mMol/L)] </name></var>
+
+        <constant><name> BLOOD_TO_PLASMA </name><val> 1.15 </val></constant>
+
+        <constant><name> PER_ML_TO_PER_DL </name><val> 100.0 </val></constant>
+        <constant><name> MG_TO_MMOL </name><val> 5.551 </val></constant>
+
+        <var><name> Osmoles </name></var>
+        <var><name> [Osm] </name></var>
+        <var><name> [Osm(mOsm/L)] </name></var>
+
+        <constant><name> MW </name><val> 180.0 </val></constant>
+
+        <var><name> InitialMass </name></var>
+
+    </variables>
+
+    <equations>
+
+        <diffeq>
+          <name> Mass </name>
+
+          
