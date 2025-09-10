@@ -47,6 +47,7 @@ By : University Of Mississippi Medical Center
    + RespiratoryMuscle-Flow.BloodFlow
    + SkeletalMuscle-Flow.BloodFlow
    + Skin-Flow.BloodFlow
+   + Uterus-Flow.BloodFlow
   </val>
 </def>
 
