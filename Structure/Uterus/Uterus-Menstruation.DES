@@ -83,10 +83,16 @@ Schema : DES V1.0
     </def>
 
 <!-- Can also do this so the blood count resets after each period. Then also can have a culminative blood loss 
-    <onjustchanged> <name> Duration </name> 
-   <def><name> Uterus-Lumen.MenstrualBloodExpulsed </name>
+    <onjustchanged> 
+    <name> Duration </name> 
+    <if> 
+    <test> DurationDays LE 0 </test>
+    <true>  <def><name> Uterus-Lumen.MenstrualBloodExpulsed </name>
     <val> 0 </val>
     </def>
+    </true> 
+    </if>
+  
 </onjustchanged>
 -->
 
