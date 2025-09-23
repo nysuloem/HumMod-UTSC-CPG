@@ -81,7 +81,7 @@
 
 <def>
   <name> NODrugSL.Mass </name>
-  <val> NODrugSL.Mass + ( 1000 * Dose ) </val>
+  <val> NODrugSL.Mass + ( 1000 * Dose ) </val> <!-- Dose is in mg, and Mass is in µg, this is be a unit conversion -->
 </def>
 
 <def>
@@ -119,3 +119,4 @@
 </structure>
 
 End
+
