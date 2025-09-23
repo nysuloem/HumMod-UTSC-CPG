@@ -1,23 +1,3 @@
-<!--
-NODrugInhaler.DES - Defines inhalation delivery of NO in HumMod
-
-Overview
-This file models of Nitric Oxide (NO) when administered via inhalation.
-It manages dosing, lung retention, and systemic circulation absorption.
-
-1. Dosing Variables: Tracks inhaled dose, last dose time, and cumulative doses.
-2. Respiratory Timing: Computes inhalation time using the respiratory rate.
-3. Lung vs. Systemic Distribution: Splits the dose into lung-retained and systemically absorbed fractions.
-4. Drug Clearance
-
- How to Replicate for Another Drug
-1. Change `<name> NODrugInhaler </name>` to `<name> NewDrugInhaler </name>`.
-2. Modify Dose values to reflect the new drug's inhaled concentration (e.g., ppm for gases).
-3. Adjust LungFraction based on how much of the drug stays in the lungs vs. systemic circulation.
-4. Modify the clearance rate (K) to match the new drug’s elimination properties.
-
--->
-
 HumMod / NODrug
 
 Created : 15-Jul-13
@@ -30,7 +10,7 @@ By : University Of Mississippi Medical Center
 
 <variables>
 
-<parm><name> Dose </name><val> 20000 </val></parm> <!-- Defines dose in ppm -->
+<parm><name> Dose </name><val> 20 </val></parm> <!-- Defines dose in ppm -->
 <var><name> TimeLastDose </name><val> UNDEFINED </val></var> <!-- Tracks last dose timestamp, initially undefined -->
 <var><name> TotalDoses </name><val> 0.0 </val></var> <!-- Counts total doses administered, initially 0 -->
 <var><name> CumulativeDose </name><val> 0.0 </val></var> <!-- Accumulates total dose intake, initially 0 -->
@@ -53,7 +33,6 @@ By : University Of Mississippi Medical Center
 
 <definitions>
 <block><name> Inhale </name> <!-- Defines inhalation dynamics -->
-
 <def>
   <name> TimeSpan </name> <!-- Calculates inhalation duration per breath -->
   <val> 60 / RespiratoryCenter-Output.Rate </val>
@@ -93,10 +72,10 @@ By : University Of Mississippi Medical Center
   <val> - K * Mass </val> <!-- drug clearance with negative K (clearance rate) value -->
 </def>
 
-<def>
+<!-- <def>
   <name> NODrugSL.Mass </name>
   <val> NODrugSL.Mass - ( ( 1 - LungFraction ) * Change ) </val>
-</def> <!-- Fraction of drug entering systemic circulation -->
+</def>  Fraction of drug entering systemic circulation (doesn't do this anymore) -->
 
 <def>
   <name> NODrugLung.Mass </name>
@@ -128,3 +107,4 @@ By : University Of Mississippi Medical Center
 </structure>
 
 End
+
