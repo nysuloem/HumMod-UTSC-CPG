@@ -44,7 +44,7 @@ Schema : DES V1.0
 
 <constant>
   <name> SublingualVolume(L) </name>
-  <val> 0.01 </val> 
+  <val> 0.001 </val> <!-- typically 0.2 to 1 mL -->
 </constant>
 
 <var>
