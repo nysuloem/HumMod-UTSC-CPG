@@ -6,9 +6,6 @@ Author : Tom Coleman
 Copyright : 2008-2013
 By : University of Mississippi Medical Center
 
-
-
-
 <?path Structure\ ?>
 
 <?include Context\Context.DES ?>
@@ -76,7 +73,6 @@ By : University of Mississippi Medical Center
 <?include FattyAcid\FattyAcid.DES ?>
 <?include FSH\FSH.DES ?>
 <?include Sex\Sex.DES ?>
-<?include Genitalia\Genitalia.DES ?>
 <?include GILumen\GILumen.DES ?>
 <?include GITract\GITract.DES ?>
 <?include Glucagon\Glucagon.DES ?>
@@ -118,12 +114,12 @@ By : University of Mississippi Medical Center
 <?include LowerExternalPressure\LowerExternalPressure.DES ?>
 <?include LungGases\LungGases.DES ?>
 <?include Lungs\Lungs.DES ?>
-<?include Menstruation\Menstruation.DES ?>
 <?include Metabolism\Metabolism.DES ?>
 <?include MineralocorticoidReceptor\MineralocorticoidReceptor.DES ?>
 <?include Na\Na.DES ?>
 <?include Nephrons\Nephrons.DES ?>
 <?include Nerves\Nerves.DES ?>
+<?include NO\NO.DES ?>
 <?include OR\OR.DES ?>
 <?include O2\O2.DES ?>
 <?include OralH2OGlucoseLoad\OralH2OGlucoseLoad.DES ?>
@@ -175,6 +171,8 @@ By : University of Mississippi Medical Center
 <?include Ovaries\Ovaries.DES ?>
 <?include Testes\Testes.DES ?>
 <?include Uterus\Uterus.DES ?>
+<?include Placenta\Placenta.DES ?>
+
 
 <structure><name> Structure </name>
 
@@ -242,6 +240,7 @@ By : University of Mississippi Medical Center
   <call> ADH.Parms </call>
   <call> ANP.Parms </call>
   <call> EPO.Parms </call>
+  <call> NO.Parms </call>
   <call> Insulin.Parms </call>
   <call> ThyroidGland.Parms </call>
   <call> Renin.Parms </call>
@@ -306,6 +305,7 @@ By : University of Mississippi Medical Center
   <call> ExternalH2O.CalcVol </call>
   <call> H2O.CalcVol </call>
 
+  <call> NOPool.CalcDiffusion </call>
   <call> SO4Pool.CalcOsmoles </call>
   <call> PO4Pool.CalcOsmoles </call>
   <call> GlucosePool.CalcOsmoles </call>
@@ -353,6 +353,9 @@ By : University of Mississippi Medical Center
   <call> VeinsVol.Calc </call>
   <call> AlbuminPool.CalcConc </call>
 
+
+  <call> NO.CalcConc </call>
+  <call> NOPool.CalcConc </call>
   <call> Drugs.CalcConc </call>
 
   <call> NaPool.CalcConc </call>
@@ -405,11 +408,11 @@ By : University of Mississippi Medical Center
   <call> BloodIons.FinishSums </call>
   <call> BloodPhValues.Calc </call>
 
+
   <call> Organs-Lactate.CalcConc </call>
   <call> Organs-Ph.CalcSID </call>
   <call> Organs-CO2.CalcConc </call>
   <call> Organs-Ph.CalcPh </call>
-  
 
   <call> Exercise-Bike.Calc </call>
   <call> Exercise-Treadmill.Calc </call>
@@ -429,7 +432,6 @@ By : University of Mississippi Medical Center
   <call> GlasgowComaScale.Calc </call>
 
   <call> Organs-Function.Calc </call>
-  
 
   <call> Hypothalamus.CalcEffect </call>
   <call> Heat.Cals </call>
@@ -480,6 +482,7 @@ By : University of Mississippi Medical Center
 
   <call> O2.CalcPO2 </call>
 
+
   <call> LeftDistalTubule_H2OChannels.CalcActive </call>
   <call> RightDistalTubule_H2OChannels.CalcActive </call>
   <call> LeftCollectingDuct_H2OChannels.CalcActive </call>
@@ -487,7 +490,6 @@ By : University of Mississippi Medical Center
 
   <call> Organs-AlphaReceptors.Calc </call>
   <call> Organs-BetaReceptors.Calc </call>
-  
 
   <call> BloodVolume.CalcV0 </call>
 
@@ -593,6 +595,9 @@ By : University of Mississippi Medical Center
 
   <call> GlomerulusFiltrate.Calc </call>
   <call> ProximalTubule_NH3.Calc </call>
+
+  <call> NO.Dervs </call>
+  <call> NOPool.Dervs </call>
 
   <call> LeftHeart-Work.Calc </call>
   <call> RespiratoryMuscle-Breathing.Calc </call>
@@ -716,6 +721,9 @@ By : University of Mississippi Medical Center
   <call> LeftCollectingDuct_H2OChannels.CalcDervs </call>
 
   <call> O2.Dervs </call>
+  <call> NODrug.Dervs </call>
+  <call> NODrug.Parms </call>
+
 
   <call> BVSeqArtys.Dervs </call>
   <call> BVSeqVeins.Dervs </call>
@@ -765,8 +773,8 @@ By : University of Mississippi Medical Center
 
   <call> Ovaries.Dervs </call>
   <call> Uterus.Dervs </call>
+  <call> Placenta.Dervs </call>
   <call> Testes.Dervs </call>
-  <call> Genitalia.Dervs </call>
 
   <call> GnRH.Dervs </call>
   <call> hCG.Dervs </call>
@@ -807,12 +815,10 @@ By : University of Mississippi Medical Center
 
   <call> ProthrombinComplexActivity.Init </call>
   <call> ProthrombinComplexActivity.Dervs </call>
-  <call> Menstruation.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>
   <call> Organs-Function.Wrapup </call>
-  
   <call> Age.Calc </call>
   <call> Control.Wrapup </call>
 
@@ -829,6 +835,7 @@ By : University of Mississippi Medical Center
   <call> SystemicArtys.Wrapup </call>
 
   <call> Drugs.Wrapup </call>
+  <call> NODrug.Wrapup </call>
   <call> Creatine.Wrapup </call>
   <call> Catechols.Wrapup </call>
   <call> Hypothalamus.Wrapup </call>
@@ -865,9 +872,8 @@ By : University of Mississippi Medical Center
   <call> Trauma.Wrapup </call>
   <call> Uterus.Dervs </call>
 
+
 </block>
 
 </definitions>
 </structure>
-
-End
