@@ -44,6 +44,11 @@ Schema : DES V1.0
   <name> Mass </name>
   <val> InitialMass </val>
 </def>
+<def>
+  <name> InitialMass  </name>
+  <val> Mass </val>
+</def>
+
 <def><name> [Ethanol] </name> <val> 0 </val></def>
 
 </block>

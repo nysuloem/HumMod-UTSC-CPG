@@ -98,7 +98,7 @@ By : University Of Mississippi Medical Center
 <def><name> [Protein-] </name><val> BloodIons.Protein </val></def>
 <def><name> AllButProtein </name><val> BloodIons.AnionsLessProtein </val></def>
 <def><name> HgbA1C </name><val> HgbA1C.A1C </val></def>
-<def><name> Ethanol </name><val> EthanolPool.[Ethanol] </val></def>
+<def><name> [Ethanol] </name><val> EthanolPool.[Ethanol] </val></def>
 
 </block>
 
