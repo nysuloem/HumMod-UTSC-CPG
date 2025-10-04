@@ -263,7 +263,7 @@ By : University of Mississippi Medical Center
   <call> Size-ThyroidHormone.Calc </call>
   <call> Size-Triglyceride.Calc </call>
   <call> Size-VitaminD.Calc </call>
-
+<call> EthanolPool.Init </call>  <!-- This is to initiate the ethanol mass if there has been no drinking going on! -->
 </block>
 
 </definitions>

@@ -1,4 +1,4 @@
-HumMod / Chlorothiazide
+HumMod / Ethanol Pool
 
 Created : 02-Feb-2025
 Last Modified : ---
@@ -16,7 +16,8 @@ Schema : DES V1.0
 <var><name> Loss </name></var>
 <var><name> R </name></var>
 <var><name> BAC </name></var>
-
+<var><name> [Ethanol(g/dL)-Initial] </name></var>
+<var><name> InitialMass </name><val> 0 </val></var>
 <var>
   <name> EthanolMass </name>
 </var>
@@ -36,6 +37,16 @@ Schema : DES V1.0
 </equations>
 
 <definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> Mass </name>
+  <val> InitialMass </val>
+</def>
+<def><name> [Ethanol] </name> <val> 0 </val></def>
+
+</block>
 
 <block><name> CalcConc </name>
 
