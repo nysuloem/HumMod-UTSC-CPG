@@ -25,11 +25,12 @@ Schema : DES V1.0
 <?include Uterus-Lactate.DES ?>
 <?include Uterus-Metabolism.DES ?>
 <?include Uterus-Menstruation.DES ?>
-<?include Pregnancy.DES ?>
+
 <?include Uterus-Lumen.DES ?>
 <?path Structure\Uterus\Endometrium\ ?>
 <?include Endometrium.DES ?>
-
+<?path Structure\Uterus\Pregnancy\ ?>
+<?include Pregnancy.DES ?>
 
 <structure><name> Uterus </name>
 
@@ -52,7 +53,8 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 
     <call> Uterus-Lumen.Dervs </call>
-
+ <call> Placenta-Size.NonPregnant </call>
+  <call> Fetus-Size.NonPregnant </call>
 <call> Endometrium.Dervs </call>
     <if>
     <test> Context-Sex.Index EQ 1 </test>

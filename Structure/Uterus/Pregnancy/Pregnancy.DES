@@ -7,11 +7,10 @@ Copyright : 2011-2013
 By : University of Mississippi Medical Center
 
 
-<?path Structure\Uterus ?>
-
-<!--<?include Fetus-Size.DES ?>-->
-<!--<?include Fetus-Metabolism.DES ?>-->
-<!--<?include Fetus-Fuel.DES ?>-->
+<?path Structure\Uterus\Pregnancy\Fetus\ ?>
+<?include Fetus.DES ?>
+<?path Structure\Uterus\Pregnancy\Placenta\ ?>
+<?include Placenta.DES ?>
 
 <structure><name> Pregnancy </name>
 
@@ -104,6 +103,9 @@ By : University of Mississippi Medical Center
         <page> Pregnant just now. </page>
         <def><name> AnnouncePregnancy </name><val> FALSE </val></def>
       </true>
+      <false> 
+      
+      </false>
     </andif>
   </false>
 </if>
@@ -112,6 +114,8 @@ By : University of Mississippi Medical Center
   <true>
     <def><name> Positive(+) </name><val> TRUE </val></def>
     <def><name> Negative(-) </name><val> FALSE </val></def>
+    <call> Placenta.Dervs </call>
+    <call> Fetus.Dervs </call>
   </true>
   <false>
     <def><name> Negative(-) </name><val> TRUE </val></def>

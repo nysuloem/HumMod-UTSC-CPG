@@ -1,0 +1,106 @@
+<structure><name> Placenta-Size </name>
+
+<variables>
+
+<var><name> PlacentaTimer </name><val> 0 </val></var>
+<var><name> Flag </name><val> 0 </val></var>
+
+<var><name> ka </name><val> 0 </val></var>
+<var><name> kaeven </name><val> 0.000046 </val></var>
+<var><name> Mult </name><val> .0027 </val></var>
+
+<var><name> ImplantationTime </name><val> 0 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> Mass </name>
+<integralname> Mass </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+<diffeq>
+<name> A </name>
+<integralname> A </integralname>
+<initialval> 100 </initialval>
+<dervname> dAdt </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+<diffeq>
+<name> SecretingCells </name>
+<integralname> SecretingCells </integralname>
+<initialval> 0 </initialval>
+<dervname> dBdt </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+<diffeq>
+<name> AnchoringCells </name>
+<integralname> AnchoringCells </integralname>
+<initialval> 0 </initialval>
+<dervname> dCdt </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<def><name> ImplantationTime </name><val> (Fetus.PregnancyTime - 8640 ) MAX 0 </val></def>
+
+<if>
+  <test> ( Progesterone.[Conc(nG/mL)] GT 6 ) AND ( ImplantationTime GT 0 ) </test>
+  <true>
+    <def><name> PlacentaTimer </name><val> ImplantationTime / 10080 </val></def>
+  </true>
+  <false>
+       
+    <def><name> PlacentaTimer </name><val> 0 </val></def>
+  </false>
+</if>
+
+<if>
+  <test> ( ImplantationTime GT 0 ) AND ( PlacentaTimer EQ 0 ) </test>
+  <true>
+    <def><name> Fetus.FertilizationTime </name><val> UNDEFINED </val></def>
+    <page> Implantation failed. </page>
+  </true>
+</if>
+
+<if><test> PlacentaTimer GT 0 </test>
+<true>
+<def><name> Flag </name><val> 1 </val></def>
+<def><name> ka </name><val> kaeven </val></def>
+</true>
+</if>
+
+<def>
+  <name> Change </name>
+  <val> 0.000114 * ( ( ( PlacentaTimer ^ 2 ) + 999.319 ) / ( ( ( PlacentaTimer - 15.3585 ) ^ 2 ) + 38.4236 ) ) * Flag </val>
+</def>
+
+<def><name> dAdt </name><val> - ka * A </val></def>
+<def><name> dCdt </name><val> Mult * Change * SecretingCells </val></def>
+<def><name> dBdt </name><val> - dAdt - dCdt </val></def>
+
+</block>
+
+<block><name> NonPregnant </name>
+
+<def><name> Change </name><val> 0 </val></def>
+<def><name> dAdt </name><val> 0 </val></def>
+<def><name> dBdt </name><val> 0 </val></def>
+<def><name> dCdt </name><val> 0 </val></def>
+
+</block>
+
+</definitions>
+
+</structure>
