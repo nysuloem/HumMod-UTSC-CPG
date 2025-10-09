@@ -11,17 +11,9 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> TotalCalsUsed </name>
-</var>
-
-<var>
-  <name> NormalCalsUsed </name>
-</var>
-
-<var>
-  <name> InitialNormalCalsUsed </name>
-</var>
+<var><name> TotalCalsUsed </name></var>
+<var><name> NormalCalsUsed </name></var>
+<var><name> InitialNormalCalsUsed </name></var>
 
 <constant>
   <name> NormalCalsUsed((Cal/Min)/G) </name>
@@ -33,21 +25,10 @@ Schema : DES V1.0
   <val> 1.0 </val>
 </parm>
 
-<var>
-  <name> AerobicCals </name>
-</var>
-
-<var>
-  <name> AnaerobicCals </name>
-</var>
-
-<var>
-  <name> O2Need </name>
-</var>
-
-<var>
-  <name> O2Lack </name>
-</var>
+<var><name> AerobicCals </name></var>
+<var><name> AnaerobicCals </name></var>
+<var><name> O2Need </name></var>
+<var><name> O2Lack </name></var>
 
 </variables>
 

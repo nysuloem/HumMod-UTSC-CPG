@@ -4,6 +4,10 @@
 
   <var><name> Gain </name></var>
 
+
+
+  <var><name> Change </name></var>
+
   <var><name> NOInFlux(ppm) </name></var>
   <var><name> NOInFlux(uMol/min) </name></var> 
 
@@ -71,8 +75,10 @@
 
     <call> iNODrugPool.Init </call>
     <call> iNODrugPool.Parms </call>
+
     <call> PO2Artys.Calc </call>
     <call> HgbConc.Calc </call>
+
 
     <def><name> NOInFlux(uMol/min) </name><val> 1000 * NOInFlux(ppm) / 30.01 </val></def>
 

@@ -137,6 +137,15 @@ By : University Of Mississippi Medical Center
   <val> 0.0 </val>
 </def>
 
+<!-- <conditional> 
+  <name> ExternalPressure </name>
+  <test> TensionPneumothorax.On </test>
+  <true> 1.0 </true>
+  <false> 0.0 </false>
+  </conditional> 
+  The above can be used to add a tension pneumothorax effect later, with the value being further replaced by another equation that is based on the actual pressure differential 
+  -->
+
 <def>
   <name> Pressure </name>
   <val> ( StressedVol / ( Compliance ) ) + ExternalPressure </val>

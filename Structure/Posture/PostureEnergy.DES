@@ -11,11 +11,17 @@ By : University of Mississippi Medical Center
 <variables>
 
 <var><name> Cals </name><val> 0 </val></var>
+<var><name> MenstrualPostureFlowEffect </name></var>
 
-<parm><name> Lying </name><val> 0 </val></parm>
+<parm><name> Lying </name><val> 10 </val></parm>
 <parm><name> Sitting </name><val> 250 </val></parm>
 <parm><name> Standing </name><val> 500 </val></parm>
-<parm><name> Tilting </name><val> 0 </val></parm>
+<parm><name> Tilting </name><val> 10 </val></parm>
+
+<var><name> LyingM </name><val> .75 </val></var>
+<var><name> SittingM </name><val> .85 </val></var>
+<var><name> StandingM </name><val> 1 </val></var>
+<var><name> TiltingM </name><val> .75 </val></var>
 
 </variables>
 
@@ -32,6 +38,11 @@ By : University of Mississippi Medical Center
   <val> Lying * Gravity.Gz </val>
 </def>
 
+<def>
+  <name> MenstrualPostureFlowEffect </name>
+  <val> LyingM * Gravity.Gz </val>
+</def>
+
 </case>
 
 <case><test> Status.Posture EQ PostureControl.SITTING </test>
@@ -39,6 +50,11 @@ By : University of Mississippi Medical Center
 <def>
   <name> Cals </name>
   <val> Sitting * Gravity.Gz </val>
+</def>
+
+<def>
+  <name> MenstrualPostureFlowEffect </name>
+  <val> SittingM * Gravity.Gz </val>
 </def>
 
 </case>
@@ -50,6 +66,11 @@ By : University of Mississippi Medical Center
   <val> Standing * Gravity.Gz </val>
 </def>
 
+<def>
+  <name> MenstrualPostureFlowEffect </name>
+  <val> StandingM * Gravity.Gz </val>
+</def>
+
 </case>
 
 <case><test> Status.Posture EQ PostureControl.TILTING </test>
@@ -57,6 +78,11 @@ By : University of Mississippi Medical Center
 <def>
   <name> Cals </name>
   <val> Tilting * Gravity.Gz </val>
+</def>
+
+<def>
+  <name> MenstrualPostureFlowEffect </name>
+  <val> TiltingM * Gravity.Gz </val>  <!-- Also depends on tilt angle, still to be added-->
 </def>
 
 </case>

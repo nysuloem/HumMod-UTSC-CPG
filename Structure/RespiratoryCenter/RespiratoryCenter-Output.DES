@@ -34,12 +34,13 @@ By : University Of Mississippi Medical Center
 <curve>
   <name> MorphineOnRate </name>
   <point><x>  0 </x><y>  0 </y><slope> 0 </slope></point>
-  <point><x>  0.7 </x><y> -4  </y><slope>  0 </slope></point>
+  <point><x>  0.7 </x><y> -10  </y><slope>  0 </slope></point>
 </curve>
 
 </functions>
 
 <definitions>
+  
 <block><name> Calc </name>
 
 <conditional>

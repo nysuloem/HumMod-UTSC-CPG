@@ -8,7 +8,7 @@ By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
 <groupbox>
-   <row> 2.0 </row>
+   <row> 10 </row>
    <col> 32.0 </col>
    <high> 12.4 </high>
    <wide> 30.0 </wide>

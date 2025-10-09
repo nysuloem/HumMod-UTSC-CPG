@@ -1,0 +1,62 @@
+HumMod / Wind
+
+Created : 21-Dec-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> Light </name>
+
+<variables>
+
+<parm><name> Lux </name><val> 10000 </val></parm>
+<var><name> LuxActual </name></var>
+<parm><name> Intensity </name><val> 0 </val></parm>
+<var><name> RadiansPerDay </name></var>
+<var><name> DaylightPhase </name></var>
+<timervar><name> Day </name><val> 0.0 </val><state> OFF </state></timervar>
+
+</variables>
+
+<definitions>
+
+<block><name> VariableLight </name>
+
+    <timer>
+        <name> Day </name>
+        <state> UP </state>
+    </timer>
+
+    <def>
+        <name> RadiansPerDay </name>
+        <val> ( 2 * 3.14159 * Day ) / 1440 </val>
+    </def>
+
+    <def>
+        <name> DaylightPhase </name>
+        <val> RadiansPerDay - ( 3.14159 / 2 ) </val> <!-- Shift so sine rises at 6:00 -->
+    </def>
+            
+    <def>
+        <name> LuxActual </name>
+        <val> ( Lux * SIN ( DaylightPhase ) ) MAX 0.0 </val>
+    </def>
+        
+    <if><test> Day GE 1440 </test> <!-- 1440 minutes/day; reset the day after 24 hours-->
+        <true>
+            <timer>
+                <name> Day </name>
+                <val> 0 </val>
+                </timer>
+        </true>
+    </if>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

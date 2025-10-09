@@ -18,9 +18,9 @@ By : University Of Mississippi Medical Center
 <var><name> Fat_G/Day </name></var>
 <var><name> Protein_G/Day </name></var>
 
-<parm><name> DegF </name><val> 70.0 </val></parm>
+<parm><name> DegC </name><val> 20.0 </val></parm>
 
-<var><name> DegC </name></var>
+<var><name> DegF </name></var>
 <var><name> DegK </name></var>
 
 </variables>
@@ -89,7 +89,7 @@ By : University Of Mississippi Medical Center
   <val> Protein_kCal/Day / Energy-Tools.PROTEIN_KCAL_PER_G </val>
 </def>
 
-<def><name> DegC  </name><val> ( 5 / 9 ) * ( DegF - 32 ) </val></def>
+<def><name> DegF  </name><val> ( DegC * 9 / 5 ) + 32 </val></def>
 <def><name> DegK </name><val> DegC + 273.15 </val></def>
 
 </block>

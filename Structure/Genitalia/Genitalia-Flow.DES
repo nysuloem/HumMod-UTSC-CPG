@@ -130,7 +130,7 @@ By : University Of Mississippi Medical Center
 
 <def>
   <name> SexEffect </name>
-  <val> SexOnConductance [ HaveSex.TrySex ] </val>
+  <val> SexOnConductance [ HaveSex.SexOutcome ] </val>
 </def>
 
 <implicitmath><name> PO2 </name>
@@ -151,7 +151,7 @@ By : University Of Mississippi Medical Center
     * ADHEffect
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
-    * Genitalia-Vasculature.Effect
+    * OtherTissue-Vasculature.Effect
     * SystemicArtys.NOEffect 
     * SexEffect
 </false>
@@ -198,6 +198,7 @@ By : University Of Mississippi Medical Center
   <test> BloodFlow GT 100 </test>
   <def><name> Status-Erect </name><val> 1 </val></def>
   <def><name> Status-Flaccid</name><val> 0 </val></def>
+  <call> SexualIntercourse.Parms </call>
   </case>
 </testcase>
 
@@ -209,6 +210,7 @@ By : University Of Mississippi Medical Center
 </def>
 
 </block>
+
 </definitions>
 </structure>
 

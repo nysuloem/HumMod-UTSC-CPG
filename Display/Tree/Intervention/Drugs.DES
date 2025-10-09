@@ -55,6 +55,24 @@ By : University of Mississippi Medical Center
 </branch>
 
 <branch>
+  <name> Drugs-Ethanol </name>
+  <label> Ethanol </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Ethanol-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Ethanol </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Ethanol-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Ethanol </parent>
+</leaf>
+
+<branch>
   <name> Drugs-Lisinopril </name>
   <label> Lisinopril </label>
   <parent> Drugs </parent>
@@ -158,7 +176,7 @@ By : University of Mississippi Medical Center
 
 <branch>
   <name> Drugs-Epi </name>
-  <label> Epinephrine Bolus </label>
+  <label> Epinephrine Autoinjector </label>
   <parent> Drugs </parent>
 </branch>
 
@@ -318,6 +336,22 @@ By : University of Mississippi Medical Center
 <parent> Drugs-Nicotine</parent>
 </leaf>
 
+<branch>
+  <name> Drugs-NODrug </name>
+  <label> NODrug </label>
+  <parent> Drugs </parent>
+</branch>
 
+<leaf>
+  <name> Drugs-NODrug-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-NODrug </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-NODrug-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-NODrug </parent>
+</leaf>
 
 End

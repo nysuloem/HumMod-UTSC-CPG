@@ -11,6 +11,7 @@ By : University Of Mississippi Medical Center
 <variables>
 
 <var><name> BloodFlow </name><val> 5400 </val></var>
+<var><name> NODrugInhalerK </name><val> 2 </val></var>
 
 </variables>
 

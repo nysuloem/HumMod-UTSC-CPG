@@ -1,0 +1,42 @@
+HumMod / Low[Osm]
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<structure><name> BrainInsult-Ethanol </name>
+
+<variables>
+
+<var><name> Effect </name></var>
+
+</variables>
+
+<functions>
+ 
+<curve>
+  <name> Intoxication </name>
+  <point><x> 170 </x><y> 0.0 </y><slope> 0 </slope></point>
+  <point><x> 230 </x><y> 1.0 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<def>
+  <name> Effect </name>
+  <val> Low[Osm] [ OsmBody.CellWall(mOsm/L) ] </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

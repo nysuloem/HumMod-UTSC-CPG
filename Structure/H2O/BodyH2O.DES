@@ -21,10 +21,6 @@ By : University of Mississippi Medical Center
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
 
-<!--
-<var><name> Change </name></var>
--->
-
 <var><name> IntravascularVol </name></var>
 <var><name> IntravascularVol(L) </name></var>
 <var><name> ExtravascularVol </name></var>
@@ -46,7 +42,9 @@ By : University of Mississippi Medical Center
 
 <definitions>
 
-<block><name> Init </name>
+<block>
+  <name> Init </name>
+  <!-- This appears to be an empty block-->
 </block>
 
 <block><name> CalcTotal </name>

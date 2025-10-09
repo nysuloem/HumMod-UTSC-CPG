@@ -21,7 +21,7 @@ Schema : DES V1.0
 
 <leaf>
   <name> H2O-Storage </name>
-  <label> Storage </label>
+  <label> Balance </label>
   <parent> H2O </parent>
 </leaf>
 

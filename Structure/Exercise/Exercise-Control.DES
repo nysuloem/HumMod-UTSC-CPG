@@ -28,25 +28,14 @@ By : University of Mississippi Medical Center
 
 <onjustchanged><name> Request </name>
 
- <!-- <if>
-  <test> DailyPlannerControl.Switch </test>
-  <true>
- <message> The daily planner is controlling exercise now. </message>
-    <def><name> Request </name><val> LastValidRequest </val></def>
-    <exitblock/>
-  </true>
-  </if>-->
-
   <if>
   <test> Brain-Function.Comatose </test>
   <true>
-<!--    <message> Subject is comatose and can't exercise. </message>-->
+    <message> Subject is comatose and can't exercise. </message>
     <def><name> Request </name><val> LastValidRequest </val></def>
     <exitblock/>
   </true>
   </if>
-
-
 
   <def><name> Status.Exertion </name><val> Request </val></def>
   <def><name> LastValidRequest </name><val> Request </val></def>
@@ -56,62 +45,71 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> UpdateStatus </name>
+
   <testcase>
 
-  <case><test> Request EQ REQUEST_RESTING </test>
-  <def>
-    <name> Exercise-Bike.Status </name>
-    <val> Exercise-Bike.IS_INACTIVE </val>
-  </def>
+  <case>
+    <test> Request EQ REQUEST_RESTING </test>
+      <def>
+      <name> Exercise-Bike.Status </name>
+      <val> Exercise-Bike.IS_INACTIVE </val>
+      </def>
 
-  <def>
-    <name> Exercise-Treadmill.Status </name>
-    <val> Exercise-Treadmill.IS_INACTIVE </val>
-  </def>
+      <def>
+      <name> Exercise-Treadmill.Status </name>
+      <val> Exercise-Treadmill.IS_INACTIVE </val>
+      </def>
 
-<def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
-  </def>
-  <call> PostureControl.RequestChange </call> 
-
-  </case>
-
-  <case><test> Request EQ REQUEST_EXERCISEBIKE </test>
-  <def>
-    <name> Exercise-Bike.Status </name>
-    <val> Exercise-Bike.IS_ACTIVE </val>
-  </def>
-
-  <def>
-    <name> Exercise-Treadmill.Status </name>
-    <val> Exercise-Treadmill.IS_INACTIVE </val>
-  </def>
-
-<def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.SITTING </val>
-  </def>
-  <call> PostureControl.RequestChange </call> 
+      <def>
+      <name> PostureControl.Request </name>
+      <val> PostureControl.LYING </val>
+      </def>
+  
+      <call> PostureControl.RequestChange </call> 
 
   </case>
 
-  <case><test> Request EQ REQUEST_TREADMILL </test>
-  <def>
-    <name> Exercise-Bike.Status </name>
-    <val> Exercise-Bike.IS_INACTIVE </val>
-  </def>
+  <case>
+    <test> Request EQ REQUEST_EXERCISEBIKE </test>
 
-  <def>
-    <name> Exercise-Treadmill.Status </name>
-    <val> Exercise-Treadmill.IS_ACTIVE </val>
-  </def>
+      <def>
+      <name> Exercise-Bike.Status </name>
+      <val> Exercise-Bike.IS_ACTIVE </val>
+      </def>
 
-<def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.STANDING </val>
-  </def>
-  <call> PostureControl.RequestChange </call>
+      <def>
+      <name> Exercise-Treadmill.Status </name>
+      <val> Exercise-Treadmill.IS_INACTIVE </val>
+      </def>
+
+      <def>
+      <name> PostureControl.Request </name>
+      <val> PostureControl.SITTING </val>
+      </def>
+  
+      <call> PostureControl.RequestChange </call> 
+
+  </case>
+
+  <case>
+    <test> Request EQ REQUEST_TREADMILL </test>
+      <def>
+      <name> Exercise-Bike.Status </name>
+      <val> Exercise-Bike.IS_INACTIVE </val>
+      </def>
+
+      <def>
+      <name> Exercise-Treadmill.Status </name>
+      <val> Exercise-Treadmill.IS_ACTIVE </val>
+      </def>
+
+      <def>
+      <name> PostureControl.Request </name>
+      <val> PostureControl.STANDING </val>
+      </def>
+  
+      <call> PostureControl.RequestChange </call>
+  
   </case>
 
   </testcase>
@@ -119,6 +117,7 @@ By : University of Mississippi Medical Center
 </block>
 
 <block><name> Wrapup </name>
+
   <if>
   <test> Request EQ NO_EXERCISE </test>
   <true><exitblock/></true>
@@ -127,49 +126,54 @@ By : University of Mississippi Medical Center
 <testcase>
 
 <case>
-<test> SkeletalMuscle-Ph.Ph LE Exercise-Motivation.Motivation </test>
+  <test> SkeletalMuscle-Ph.Ph LE Exercise-Motivation.Motivation </test>
   <call> StopExercising </call>
   <message> I stopped exercising. My muscles are burning!. </message>
 </case>
 
 <case>
-<test> SkeletalMuscle-Function.Failed </test>
+  <test> SkeletalMuscle-Function.Failed </test>
   <call> StopExercising </call>
   <message> I stopped exercising. My muscles are too tired to continue. </message>
 </case>
 
 <case>
-<test> Brain-Function.Comatose </test>
+  <test> Brain-Function.Comatose </test>
   <call> StopExercising </call>
-<!--  <message> This subject is not conscious. Exercise is over. </message>-->
+  <message> This subject is not conscious. Exercise is over. </message>
 </case>
 
 <case>
-<test> Brain-Function.Impaired </test>
+  <test> Brain-Function.Impaired </test>
   <call> StopExercising </call>
-  <message> I stopped exercising. I was starting to get dizzy </message>
+  <message> I stopped exercising. I was starting to get dizzy. </message>
 </case>
 
 <case>
-<test> RespiratoryMuscle-Function.Failed </test>
+  <test> RespiratoryMuscle-Function.Failed </test>
   <call> StopExercising </call>
   <message> I stopped exercising. I can't catch my breath!. </message>
 </case>
 
 </testcase>
+
 </block>
 
 <block><name> StopExercising </name>
+
   <def><name> Request </name><val> NO_EXERCISE </val></def>
   <def><name> LastValidRequest </name><val> NO_EXERCISE </val></def>
   <def><name> Status.Exertion </name><val> NO_EXERCISE </val></def>
-<def><name>Exercise-Bike.Status</name><val>Exercise-Bike.IS_INACTIVE</val></def>
-<def><name>Exercise-Treadmill.Status</name><val>Exercise-Treadmill.IS_INACTIVE</val></def>
-<call>Symptoms.Calc</call>
-<def>
+  <def><name>Exercise-Bike.Status</name><val>Exercise-Bike.IS_INACTIVE</val></def>
+  <def><name>Exercise-Treadmill.Status</name><val>Exercise-Treadmill.IS_INACTIVE</val></def>
+
+  <call>Symptoms.Calc</call>
+
+  <def>
      <name> PostureControl.Request </name>
      <val> PostureControl.LYING </val>
   </def>
+  
   <call> PostureControl.RequestChange </call> 
 
 </block>

@@ -11,42 +11,38 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> A1C </name></var>
 <var><name> React </name></var>
+<var><name> Degrade </name></var>
+<var><name> K </name><val> 0.00001 </val></var>
 
 </variables>
+
+<equations>
+
+<diffeq>
+  <name> A1C </name>
+  <integralname> A1C </integralname>
+  <initialval> 5 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 10.0  </errorlim>
+</diffeq>
+
+</equations>
 
 <definitions>
 
 <block><name> GluReact </name>
 
-<conditional>
-<name> React </name>
-<test> Ethnicity.IsBlack </test>
-<true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1.04 </true>
-</conditional>
+<def><name> React </name>
+<val> GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] * K </val>
+</def>
 
-<conditional>
-<name> React </name>
-<test> Ethnicity.IsHispanic </test>
-<true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1.02 </true>
-</conditional>
+<def><name> Degrade </name>
+<val> React * RBCClearance.K * 10 </val>
+</def>
 
-<conditional>
-<name> React </name>
-<test> Ethnicity.IsWhite </test>
-<true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1 </true>
-</conditional>
-
-<conditional>
-<name> React </name>
-<test> Ethnicity.IsAsian </test>
-<true> ( GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] ) * 1 </true>
-</conditional>
-
-<def>
-<name> A1C </name>
-<val>  (( React ) / HgbConc.[Total] ) - 1  </val>
+<def><name> Change </name>
+<val> React - Degrade </val>
 </def>
 
 </block>

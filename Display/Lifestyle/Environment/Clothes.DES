@@ -17,6 +17,7 @@ Schema : DES V1.0
 <maplist>
   <name> Clothes.Weight </name>
   <map><val> 0 </val><img> Naked </img></map>
+  <map><val> 0.5 </val><img> Swimsuit </img></map>
   <map><val> 1 </val><img> T-Shirt and Shorts </img></map>
   <map><val> 2 </val><img> Long Sleeve Shirt and Pants </img></map>
   <map><val> 3 </val><img> Sweater and Jacket </img></map>

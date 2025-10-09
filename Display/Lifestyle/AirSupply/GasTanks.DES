@@ -84,24 +84,15 @@ By : University Of Mississippi Medical Center
 
 <repeatlist>
   <name> AnestheticValve(%) </name>
-  <repeat><reps> 50 </reps><stepsize> 0.1 </stepsize></repeat>
-  <repeat><reps> 95 </reps><stepsize> 1.0 </stepsize></repeat>
+  <repeat><reps> 100 </reps><stepsize> 0.1 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
   <row> 9.8 </row><col> 1.0 </col>
   <name> AnestheticValve(%) </name>
   <listname> AnestheticValve(%) </listname>
-  <label> Anesthetic (%) </label>
+  <label> Isofluane (%) </label>
 </slidebar>
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 26.0 </col>
-
-  <line> Inspired % may be a bit different </line>
-  <line> than the gas tank settings. </line>
-</infobutton>
 
 </groupbox>
 

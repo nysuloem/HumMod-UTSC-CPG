@@ -36,6 +36,7 @@ By : University of Mississippi Medical Center
 <var><name> IsMorbidlyObese </name></var>
 
 <var><name> Stochasm </name></var>
+<var><name> FatAdjust </name></var>
 
 <normaldist>
   <name> Normal </name>
@@ -50,6 +51,19 @@ By : University of Mississippi Medical Center
 </whitenoise>
 
 </variables>
+
+<functions>
+
+<curve><name> FatAdjustAge </name>
+<point><x> 0 </x><y> 0.02 </y><slope> 0.025 </slope></point>
+<point><x> 1 </x><y> 0.11 </y><slope>0.025</slope></point>
+<point><x> 5 </x><y> 0.15 </y><slope> 0.025 </slope></point>
+<point><x> 25 </x><y> 0.65 </y><slope>0.025</slope></point>
+<point><x> 70 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 100 </x><y> 0.60 </y><slope>0.025</slope></point>
+</curve>
+
+</functions>
 
 <definitions>
 
@@ -80,12 +94,16 @@ By : University of Mississippi Medical Center
 
 <call> CalcStochasm </call>
 
+<def><name>FatAdjust</name>
+<val> FatAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
 <def>
   <name> Mass(kG) </name>
   <val>
        NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
+     * FatAdjust
   </val>
 </def>
 

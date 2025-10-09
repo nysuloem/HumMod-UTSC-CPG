@@ -35,10 +35,11 @@ Schema : DES V1.0
 <?include Low[Osm].DES ?>
 <?include Temperature.DES ?>
 <?include Structure.DES ?>
+<?include PO2.DES ?>
 
 <?include Fuel.DES ?>
 <?include High[Osm].DES ?>
-<?if ANESTHESIA Anesthetic.DES ?>
+<?include Anesthetic.DES ?>
 
 </panel>
 

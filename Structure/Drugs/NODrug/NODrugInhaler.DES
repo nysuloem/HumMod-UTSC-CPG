@@ -17,6 +17,7 @@ By : University Of Mississippi Medical Center
 <var><name> TimeSpan </name></var> <!-- Inhalation duration per breath -->
 <var><name> K </name><val> 0 </val></var> <!-- Drug clearance rate -->
 <parm><name> LungFraction </name><val> 0.4 </val></parm> <!-- Fraction of dose retained in the lungs -->
+
 </variables>
 
 <equations>
@@ -32,6 +33,7 @@ By : University Of Mississippi Medical Center
 </equations>
 
 <definitions>
+  
 <block><name> Inhale </name> <!-- Defines inhalation dynamics -->
 <def>
   <name> TimeSpan </name> <!-- Calculates inhalation duration per breath -->
@@ -65,7 +67,7 @@ By : University Of Mississippi Medical Center
 </block>
 
 <block>
- <name> Dervs </name> <!-- Defines drug elimination and lung distribution -->
+<name> Dervs </name> <!-- Defines drug elimination and lung distribution -->
 
 <def>
   <name> Change </name>

@@ -19,7 +19,7 @@ By : University of Mississippi Medical Center
 <constant><name> MALE_TRAINEDATHLETE </name><val> 58.0 </val></constant>
 
 <constant><name> FEMALE_BELOWNORMAL    </name><val> 12.0 </val></constant>
-<constant><name> FEMALE_NORMAL         </name><val> 16.8 </val></constant> 14.6
+<constant><name> FEMALE_NORMAL         </name><val> 16.8 </val></constant>
 <constant><name> FEMALE_ABOVENORMAL    </name><val> 23.0 </val></constant>
 <constant><name> FEMALE_TRAINEDATHLETE </name><val> 34.0 </val></constant>
 
@@ -33,6 +33,7 @@ By : University of Mississippi Medical Center
 <var><name> IsTrainedAthlete </name></var>
 
 <var><name> Stochasm </name></var>
+<var><name> MuscleAdjust </name></var>
 
 <normaldist>
   <name> Normal </name>
@@ -42,11 +43,24 @@ By : University of Mississippi Medical Center
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -50 </lowerlim>
-  <upperlim> 50 </upperlim>
+  <lowerlim> -10 </lowerlim>
+  <upperlim> 10 </upperlim>
 </whitenoise>
 
 </variables>
+
+<functions>
+
+<curve><name> MuscularityAdjustAge </name>
+<point><x> 0 </x><y> 0.08 </y><slope> 0.025 </slope></point>
+<point><x> 16 </x><y> 0.85 </y><slope>0.025</slope></point>
+<point><x> 20 </x><y> 1.0 </y><slope> 0.025 </slope></point>
+<point><x> 60 </x><y> 0.85 </y><slope>0.025</slope></point>
+<point><x> 70 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 90 </x><y> 0.40 </y><slope>0.025</slope></point>
+</curve>
+
+</functions>
 
 <definitions>
 
@@ -70,11 +84,14 @@ By : University of Mississippi Medical Center
 <def><name> IsTrainedAthlete </name><val> FALSE </val></def>
 
 <if><test> Context-Sex.IsFemale </test>
-  <true><call> CalcFemale </call></true>
+  <true><call> CalcMale </call></true> <!-- If  you do the female muscularity, then women die when they have to work-->
   <false><call> CalcMale </call></false>
 </if>
 
 <call> CalcStochasm </call>
+
+<def><name>MuscleAdjust</name>
+<val> MuscularityAdjustAge [ Context-Age.Age(Years) ] </val></def>
 
 <def>
   <name> Mass(kG) </name>
@@ -82,6 +99,7 @@ By : University of Mississippi Medical Center
      NominalMass
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
+     * MuscleAdjust
   </val>
 </def>
 
@@ -152,10 +170,10 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Stochasm </name>
-  <val> 0 </val>
+  <val> Flat </val>
 </def>
 
-<if>
+<!--<if>
   <test> NOT Random.Adiposity </test>
   <true>
     <exitblock/>
@@ -174,7 +192,7 @@ By : University of Mississippi Medical Center
   <test> Random.Distribution EQ Random.IS_NORMAL </test>
   <true> Normal </true>
   <false> Flat </false>
-</conditional>
+</conditional>-->
 
 </block>
 

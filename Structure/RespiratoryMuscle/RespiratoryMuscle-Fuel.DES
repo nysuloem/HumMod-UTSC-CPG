@@ -195,7 +195,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> TotalUsed(Cals/Min) </name>
-  <val> TotalGlucoseUsed(Cals/Min) + FAUsed(Cals/Min) + LacUsed(Cals/Min) </val>
+  <val> TotalGlucoseUsed(Cals/Min) + FAUsed(Cals/Min) + LacUsed(Cals/Min) MAX 0.1 </val>
 </def>
 
 <def>

@@ -10,6 +10,7 @@ Schema : DES V1.0
 <structure><name> NOKidney </name>
 
 <variables>
+
 <var><name> NitrateLevel </name><val> 0 </val>/</var>
 <var><name> UrineLoss </name><val> 0 </val>/</var>
 
@@ -17,12 +18,23 @@ Schema : DES V1.0
   <name> K </name>
   <val> 0.01 </val>
 </constant>
-</variables>
 
+
+
+  <var><name> NitrateLevel </name><val> 0 </val></var>
+  <var><name> UrineLoss </name><val> 0 </val></var>
+
+  <constant><name> K </name><val> 0.01 </val></constant>
+
+
+
+</variables>
 
 <definitions>
 
 <block><name> Dervs </name>
+
+
 <def><name> NitrateLevel </name><val> NitratePool.[Nitrate] </val></def>
 <def>
   <name> UrineLoss </name>
@@ -36,6 +48,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

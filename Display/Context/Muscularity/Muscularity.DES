@@ -44,6 +44,14 @@ By: Jason Brown UTSC
   <label> Muscle Mass (kg) </label>
 </showvalue>
 
+<infobutton>
+  <row> 7 </row>
+  <col> 47 </col>
+  <line> "Trained Athlete" only indicates a high level</line>
+  <line> of muscularity but does not imply that the </line>
+  <line> participant has any other athletic characteristics </line>
+</infobutton>
+
 </panel>
 
 End

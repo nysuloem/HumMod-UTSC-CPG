@@ -11,12 +11,12 @@ Author : Tom Coleman
 Copyright : 2008-2014
 By : University of Mississippi Medical Center
 
-This version has been created by Terry Yavorskyy and Jason Brown with assistance from Drew Pruett. 
+This version was based on the AVP model of HumMod and has been revised by Terry Yavorskyy and Jason Brown with assistance from Drew Pruett. 
 We also acknowledge the contributions of Shree, Faria, Karson, Tiffany, Khadijee, and Aaesha as part of the pilot of the UTSC Computational Physiology Project
 -->
 
 <title>
-   <basic> UTSC BIOC32 Inclusive Version - Updated March 21, 2025  </basic>
+   <basic> UTSC CPG Version - August 8, 2025 - COPYRIGHT - University of Mississippi Medical Center   </basic>
 </title>
 
 <?include Structure\Structure.DES ?>
@@ -33,7 +33,6 @@ We also acknowledge the contributions of Shree, Faria, Karson, Tiffany, Khadijee
 <?include Control\Control.DES ?>
 <?include Display\Display.DES ?>
 
-<?attach Docs\Docs.DOCS ?>
 
 End
 

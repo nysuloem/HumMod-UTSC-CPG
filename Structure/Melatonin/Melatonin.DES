@@ -1,0 +1,40 @@
+HumMod / Melatonin
+
+Created : 15-Aug-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<?path Structure\Melatonin\ ?>
+
+<?include MelatoninPool.DES ?>
+<?include MelatoninClearance.DES ?>
+<?include MelatoninSecretion.DES ?>
+<?include MelatoninPump.DES ?>
+
+<structure><name> Melatonin </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> MelatoninPump.Parms </call>
+</block>
+
+<block><name> Conc </name>
+  <call> MelatoninPool.Conc </call>
+</block>
+
+<block><name> Dervs </name>
+
+  <call> MelatoninSecretion.Dervs </call>
+  <call> MelatoninClearance.Dervs </call>
+  <call> MelatoninPool.Dervs </call>
+
+</block>
+
+</definitions>
+</structure>
+
+End

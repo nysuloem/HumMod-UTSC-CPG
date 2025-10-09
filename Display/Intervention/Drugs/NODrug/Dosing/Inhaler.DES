@@ -23,8 +23,7 @@ By : University Of Mississippi Medical Center
 
 <repeatlist>
   <name> NODrugInhaler.Dose </name>
-  <firstval> 0.14 </firstval>
-  <repeat><reps> 7 </reps><stepsize> 0.07 </stepsize></repeat>
+  <repeat><reps> 20 </reps><stepsize> 5 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>

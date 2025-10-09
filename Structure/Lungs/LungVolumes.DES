@@ -30,10 +30,22 @@ By : University of Mississippi Medical Center
 <var><name> Correction </name></var>
 <var><name> Scale </name></var>
 
+<var><name> LungVolAgeAdjust </name></var>
+
 </variables>
 
+
+
 <definitions>
+
 <block><name> Calc </name>
+
+<!--<def><name>LungVolAgeAdjust</name>
+<val> Breathing.LungVolAdjustAge [ Context-Age.Age(Years) ] </val></def> -->
+
+<def><name> TotalCapacity </name>
+<val> 5800 * Breathing.LungVolAgeAdjust </val>
+</def>
 
 <def>
   <name> TidalVolume(%) </name>
@@ -90,7 +102,9 @@ By : University of Mississippi Medical Center
 <def><name> LeftCapacity </name><val> TotalCapacity / 2 </val></def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

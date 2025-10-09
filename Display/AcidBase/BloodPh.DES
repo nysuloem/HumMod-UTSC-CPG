@@ -18,9 +18,9 @@ Schema : DES V1.0
   <row> 1</row><col> 1.0 </col><high> 10 </high><wide> 28 </wide>
   <leftmargin> 5 </leftmargin>
   <xaxis>
-    <name> System.X </name>
-    <label> Time </label>
-    <scale><min> 0 </min><max> 2 </max></scale>
+    <name> CO2Veins.[HCO3] </name>
+    <label> HCO3- </label>
+    <scale><min> 0 </min><max> .05 </max></scale>
   </xaxis>
   <yaxis>
     <yvar>

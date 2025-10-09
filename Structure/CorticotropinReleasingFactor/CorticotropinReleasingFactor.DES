@@ -64,12 +64,12 @@ By : University of Mississippi Medical Center
 
 <!--Whites exhibit a greater response to stress than Blacks as per Chong et al. (2008) Pyschoneuroendocrinology 33: 246-->
 
-<conditional>
+<!-- <conditional>
 <name>StressEffect</name>
 <test>Context-Ethnicity.IsWhite</test>
 <true> StressEffect [ Stress ] * 1.5 </true>
 <false>StressEffect [ Stress ] </false>
-</conditional>
+</conditional>-->
 <!-- 
 <conditional>
 <name>Age-Effect</name>
@@ -90,7 +90,7 @@ By : University of Mississippi Medical Center
   <false>
       [CRF(pG/mL)-Basic]
     * NeuralEffect 
-    * StressEffect 
+    <!--* StressEffect -->
     * [Cortisol]Effect 
     * Brain-Function.Effect                     
   </false>

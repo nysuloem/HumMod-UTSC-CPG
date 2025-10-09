@@ -50,10 +50,10 @@ By : University of Mississippi Medical Center
 <block><name> Calc </name>
 
 <if><test> Status.Exertion EQ 1 </test>
-<true>
-  <timer><name> ElapsedTime </name><state> UP </state></timer>
-</true>
-<false>
+  <true>
+    <timer><name> ElapsedTime </name><state> UP </state></timer>
+  </true>
+  <false>
   <timer><name> ElapsedTime </name><state> OFF </state></timer>
 </false>
 </if>

@@ -12,7 +12,7 @@ By: Jason Brown
 <maplist>
   <name> Symptoms.Number </name>
   <map><val>  0 </val><img> "I'm awake, resting, and feeling fine." </img></map>
-  <map><val>  1 </val><img>  Your patient is not responding. - </img></map>
+  <map><val>  1 </val><img>  Patient is not responding. </img></map>
   <map><val>  2 </val><img>  "I've got a bad chest pain."  </img></map>
   <map><val>  3 </val><img>  "I can't get enough air." </img></map>
   <map><val>  4 </val><img>  "I get tired really easily." </img></map>
@@ -29,16 +29,30 @@ By: Jason Brown
   <map><val> 15 </val><img>  "I can't continue exercising."  </img></map>
   <map><val> 16 </val><img>  Heart is asystole/can't fibrillate  </img></map>
   <map><val> 17 </val><img>  Heart is fibrillating  </img></map>
-  <map><val> 18 </val><img>  Flat ECG  </img></map>
-  <map><val> 19 </val><img>  Your patient is convulsing  </img></map>
+  <map><val> 18 </val><img>  Flatline ECG  </img></map>
+  <map><val> 19 </val><img>  Patient is convulsing  </img></map>
   <map><val> 20 </val><img>  Must breathe again  </img></map>
   <map><val> 21 </val><img>  "I'm getting nauseated."  </img></map>
   <map><val> 22 </val><img>  Heart is beating again </img></map>
   <map><val> 23 </val><img>  Still no heartbeat  </img></map>
   <map><val> 24 </val><img>  Ovulation just occured  </img></map>
-  <map><val> 25 </val><img>  Your patient is sleeping. </img></map>
+  <map><val> 25 </val><img>  Patient is sleeping...zzz. </img></map>
   <map><val> 26 </val><img> "I'm eating a meal and feeling fine." </img></map>
   <map><val> 27 </val><img> Patient is bedridden and on parenteral feeding </img></map>
+  <map><val> 28 </val><img> "I'm having sexual intercourse"</img></map>
+  <map><val> 29 </val><img> Patient is at risk of blacking out from excess alcohol consumption </img></map>
+  <map><val> 30 </val><img> Incomprehensible sounds </img></map>
+  <map><val> 31 </val><img> Unresponsive, snorring respirations </img></map>
+  <map><val> 32 </val><img> Patient is sober </img></map>
+  <map><val> 33 </val><img> Patient is legally drunk </img></map>
+  <map><val> 34 </val><img> "I'm horny" </img></map>
+  <map><val> 35 </val><img> </img></map>
+  <map><val> 36 </val><img> Patient is tipsy </img></map>
+  <map><val> 37 </val><img> "I can't fall asleep" </img></map>
+  <map><val> 38 </val><img> "I'm awake, resting, but feeling sleepy." </img></map>
+  <map><val> 39 </val><img> "I'm working, but feeling sleepy." </img></map>
+  <map><val> 40 </val><img> "I'm eating a meal but feeling sleepy." </img></map>
+ 
 </maplist>
 
 
@@ -49,8 +63,28 @@ By: Jason Brown
 </label>
 
 <showvalue>
+  <row> 12 </row><col>1</col>
+  <name> Symptoms.Number1 </name>
+  <nolabel/>
+  <format>
+    <list> Symptoms.Number </list>
+    <fieldwidth> 26 </fieldwidth>
+  </format>
+</showvalue>
+
+<showvalue>
   <row> 11 </row><col>1</col>
-  <name> Symptoms.Number </name>
+  <name> Symptoms.Number2 </name>
+  <nolabel/>
+  <format>
+    <list> Symptoms.Number </list>
+    <fieldwidth> 26 </fieldwidth>
+  </format>
+</showvalue>
+
+<showvalue>
+  <row> 13 </row><col>1</col>
+  <name> Symptoms.Number3 </name>
   <nolabel/>
   <format>
     <list> Symptoms.Number </list>

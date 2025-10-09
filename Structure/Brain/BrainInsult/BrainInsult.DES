@@ -5,7 +5,7 @@ Last Modified : 2012-01-02
 Author : Tom Coleman
 Copyright : 2006-2012
 By : University Of Mississippi Medical Center
-Schema : DES V1.0
+Schema : DES V1.0g
 
 <?path Structure\Brain\BrainInsult\ ?>
 
@@ -22,7 +22,6 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Effect </name></var>
-
 <var><name> Test_1 </name></var>
 <var><name> Test_2 </name></var>
 <var><name> Test_3 </name></var>
@@ -75,13 +74,22 @@ Schema : DES V1.0
   <val> Test_5 MIN BrainInsult-PO2.Effect </val>
 </def>
 
+<!-- 
+<def>
+  <name> Test_7 </name> 
+  <val> Test_6 MIN BrainInsult-Ethanol </val>
+<def>
+--> 
+
 <def>
   <name> Effect </name>
   <val> Test_6 MIN BrainInsult-Structure.Effect </val>
 </def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

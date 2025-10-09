@@ -14,7 +14,7 @@ By: Terry Yavorskyy UTSC
 
   <variables>
   
-  <parm><name> Index </name><val> 0 </val></parm>0
+  <parm><name> Index </name><val> 0 </val></parm>
   
   <constant><name> IS_MALE </name><val> 0 </val></constant>
   <constant><name> IS_FEMALE </name><val> 1 </val></constant>
@@ -35,29 +35,35 @@ By: Terry Yavorskyy UTSC
   <definitions>
   
   <block><name> Parms </name>
+    
     <call> Context-Sex.Calc </call>
-  <onjustchanged><name> Index </name>
-  <if><test> Index EQ IS_FEMALE </test>
-  
-  <true>     
-  <def><name> NoUterus </name><val> FALSE </val></def>
-    <def><name> HasUterus </name><val> TRUE </val></def> 
-    <def><name> UIndex </name> <val> 1 </val></def>
-    </true>
-<false> 
- <def><name> NoUterus </name><val> TRUE </val></def>
-    <def><name> HasUterus </name><val> FALSE </val></def> 
-    <def><name> UIndex </name> <val> 0 </val></def>
-</false>
-</if>
 
-  </onjustchanged>
+    <onjustchanged><name> Index </name>
+
+    <call> Context.Calc </call>
+    
+    <!--<if><test> Index EQ IS_FEMALE </test>
   
-  <onjustchanged><name> UIndex </name>
+    <true>     
+    <def><name> HasUterus </name><val> 1 </val></def> 
+    <def><name> UIndex </name> <val> 0 </val></def>
+    </true>
+
+    <false> 
+    <def><name> HasUterus </name><val> 0 </val></def> 
+    <def><name> UIndex </name> <val> 0 </val></def>
+    </false>
+
+    </if>-->
+
+    </onjustchanged>
+  
+    <onjustchanged><name> UIndex </name>
+    
     <call> Context-Sex.CalcU </call>
+    
     </onjustchanged>
     
-  
   </block>
   
   <block><name> Calc </name>
@@ -66,10 +72,12 @@ By: Terry Yavorskyy UTSC
   <true>
   <def><name> IsMale </name><val> TRUE </val></def>
   <def><name> IsFemale </name><val> FALSE </val></def>
+  <def><name> HasUterus </name><val> 0 </val></def>
   </true>
   <false>
   <def><name> IsMale </name><val> FALSE </val></def>
   <def><name> IsFemale </name><val> TRUE </val></def>
+  <def><name> HasUterus </name><val> 1 </val></def>
   </false>
   </if>
   
@@ -83,26 +91,39 @@ By: Terry Yavorskyy UTSC
   </block>
   
   <block><name> CalcU </name>
-  
-  <if><test> UIndex EQ No_Uterus </test>
+
+    <if><test> Index EQ IS_MALE</test>
     <true>
-    <def><name> NoUterus </name><val> TRUE </val></def>
-    <def><name> HasUterus </name><val> FALSE </val></def>
+    <def><name> UIndex </name><val> 0 </val></def>
+    <def><name> HasUterus </name><val> 0 </val></def>
+    <exitblock/>
     </true>
-    <false>
-    <def><name> NoUterus </name><val> FALSE </val></def>
-    <def><name> HasUterus </name><val> TRUE </val></def>
-    </false>
-    </if>
+  </if>
+
+     <if><test> UIndex EQ 1 </test>
+    <true>
+    <def><name> HasUterus </name><val> 0 </val></def>
+    <call> Uterus.Dervs </call>
+    <exitblock/>
+    </true>
+  </if>
   
-  
-  
-  <def>
+
+  <if><test> Index EQ IS_FEMALE</test>
+    <true>
+  <def><name> HasUterus </name><val> 1 </val></def>
+  <def><name> UIndex </name><val> 0 </val></def>
+  <exitblock/>
+  </true>
+</if>
+
+    
+  <!--<def>
     <name> Sex.UIndex </name>
     <val> UIndex </val>
-  </def>
+  </def>-->
   
-  <call> Sex.Init </call>
+  <!--<call> Sex.Init </call>-->
   
   </block>
   

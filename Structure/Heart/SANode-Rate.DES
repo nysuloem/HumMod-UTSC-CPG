@@ -53,7 +53,9 @@ Schema : DES V1.0
 <def><name> Rate </name><val> BasicRate + ParasympatheticEffect + SympatheticEffect </val></def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

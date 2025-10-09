@@ -32,6 +32,7 @@ By : University of Mississippi Medical Center
 <var><name> IsVeryTall     </name></var>
 
 <var><name> Stochasm </name></var>
+<var><name> HeightAdjust </name></var>
 
 <normaldist>
   <name> Normal </name>
@@ -46,6 +47,19 @@ By : University of Mississippi Medical Center
 </whitenoise>
 
 </variables>
+
+<functions>
+
+<curve><name> HeightAdjustAge </name>
+<point><x> 0 </x><y> 0.28 </y><slope> 0.025 </slope></point>
+<point><x> 1 </x><y> 0.42 </y><slope>0.025</slope></point>
+<point><x> 13 </x><y> 0.98 </y><slope> 0.025 </slope></point>
+<point><x> 15 </x><y> 1 </y><slope>0.025</slope></point>
+<point><x> 40 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 100 </x><y> 0.95 </y><slope>0.025</slope></point>
+</curve>
+
+</functions>
 
 <definitions>
 
@@ -75,12 +89,16 @@ By : University of Mississippi Medical Center
 
 <call> CalcStochasm </call>
 
+<def><name>HeightAdjust</name>
+<val> HeightAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
 <def>
   <name> Height(cM) </name>
   <val>
      NominalHeight
      * ( 1.0 + ( PlusMinus / 100 ) )
      * ( 1.0 + ( Stochasm / 100 ) )
+     * HeightAdjust
   </val>
 </def>
 
