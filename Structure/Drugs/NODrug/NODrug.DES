@@ -15,7 +15,8 @@ By : University Of Mississippi Medical Center
 <?include NODrugLung.DES ?>  <!-- Defines lung metabolism/clearance -->
 <?include NODrugSL.DES ?> 
 <?include NODrugSpray.DES ?>
-<?include NODrugPool.DES ?>  <!-- Defines drug pooling in plasma and systemic distribution -->
+<?include NTGPool.DES ?> <!-- amount of nitroglycerin coming in -->
+<?include NODrugPool.DES ?>  <!-- amount of broken down nitroglycerin having effects  -->
 <?include iNODrugPool.DES ?>
 
 
@@ -27,6 +28,8 @@ By : University Of Mississippi Medical Center
 <block><name> Parms </name>
   <call> NODrugSpray.Parms </call>  <!-- calls spray parameter settings -->
   <call> iNODrugPool.Parms </call>
+<call> NODrugPool.Parms </call>
+  <call> NODrugPool.NTGtoNO_Pathway </call>
 </block>
 
 <block><name> CalcConc </name>
@@ -41,13 +44,14 @@ By : University Of Mississippi Medical Center
   <call> NODrugInhaler.Dervs </call>  <!-- Inhalation absorption kinetics -->
   <call> NODrugLung.Dervs </call>  <!-- Lung clearance calculations -->
   <call> NODrugSL.Dervs </call>  <!-- Sublingual administration absorption -->
+ <call> NTGPool.Dervs </call>
   <call> NODrugPool.Dervs </call>  <!-- Overall pooling and redistribution -->
   <call> iNODrugPool.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>
    <call> NODrugSpray.Wrapup </call>
-   <!--<call> iNODrugPool.Wrapup </call>-->
+ 
 
 </block>
 </definitions>

@@ -12,8 +12,8 @@ By : University Of Mississippi Medical Center
 <?include Amlodipine\Amlodipine.DES ?>
 <?include Chlorothiazide\Chlorothiazide.DES ?>
 <?include Digoxin\Digoxin.DES ?>
-<?include Furosemide\Furosemide.DES ?>
 <?include Ethanol\Ethanol.DES ?>
+<?include Furosemide\Furosemide.DES ?>
 <?include Midodrine\Midodrine.DES ?>
 <?include Lisinopril\Lisinopril.DES ?>
 <?include Spironolactone\Spironolactone.DES ?>
@@ -25,7 +25,7 @@ By : University Of Mississippi Medical Center
 <?include Isoproterenol\Isoproterenol.DES ?>
 <?include Propranolol\Propranolol.DES ?>
 <?include Warfarin\Warfarin.DES ?>
-<?include Nicotine\Nicotine.DES ?>
+<!--<?include Nicotine\Nicotine.DES ?>-->
 <?include NODrug\NODrug.DES ?>
 
 

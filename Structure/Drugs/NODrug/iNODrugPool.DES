@@ -3,20 +3,26 @@
 
   <variables>
   
-  <parm><name> HbBindRate </name><val> 0.05 </val></parm> <!-- hemoglobin uptake -->
-  <parm><name> OxidationRate </name><val> 0.02 </val></parm> <!-- to nitrite/nitrate -->
-  
   <var><name> Gain </name></var>
-  <var><name> Change </name></var>
   <var><name> NOInFlux(ppm) </name></var>
   <var><name> NOInFlux(uMol/min) </name></var> 
-  <var><name> Loss_Hb </name></var>
-  <var><name> Loss_Oxidation </name></var>
+<var><name> LosstoNitrate </name></var>
+  <var><name> LosstoHbNO </name></var>
   <var><name> TotalLoss </name></var>
+ <var><name> FracDeoxyHb </name></var>
+  <var><name> FracOxyHb </name></var>
+  <var><name> RateNOtoNitrate </name></var>
+  <var><name> RateNOtoHbNO </name></var>
   
   <var><name> [NO](uMol) </name></var>
-  <var><name> [HbNO](uMol) </name></var>
-  <var><name> [NO2_Nitrate](uMol) </name></var>
+ 
+<parm>
+    <name> VolDist </name> <!-- Theoretical volume needed to evenly distribute NO -->
+    <val> 50 </val> <!-- L/kg -->
+  </parm>
+
+<parm><name> BaseRate_Nitrate </name><val> 0.1 </val></parm>
+<parm><name> BaseRate_HbNO </name><val> 0.05 </val></parm>
   
   </variables>
   
@@ -26,24 +32,8 @@
     <name> NOmass </name>
     <integralname> NOmass </integralname>
     <initialval> 0.0 </initialval>
-    <dervname> dNO/dt </dervname>
+    <dervname> Change </dervname>
     <errorlim> 0.5 </errorlim>
-  </diffeq>
-  
-  <diffeq>
-    <name> HbNOmass </name>
-    <integralname> HbNOmass </integralname>
-    <initialval> 0.0 </initialval>
-    <dervname> dHbNO/dt </dervname>
-    <errorlim> 0.1 </errorlim>
-  </diffeq>
-  
-  <diffeq>
-    <name> NO2mass </name>
-    <integralname> NO2mass </integralname>
-    <initialval> 0.0 </initialval>
-    <dervname> dNO2/dt </dervname>
-    <errorlim> 0.1 </errorlim>
   </diffeq>
   
   </equations>
@@ -52,21 +42,19 @@
   
   <block><name> Init </name>
     <def><name> [NO](uMol) </name><val> 0 </val></def>
-    <def><name> [HbNO](uMol) </name><val> 0 </val></def>
-    <def><name> [NO2_Nitrate](uMol) </name><val> 0 </val></def>
-
-    <def><name> Loss_Hb </name><val> 0 </val></def>
-    <def><name> Loss_Oxidation </name><val> 0 </val></def>
-    <def><name> TotalLoss </name><val> 0 </val></def>
-  
-    <def><name> dNO/dt </name><val> 0 </val></def>
-    <def><name> dHbNO/dt </name><val> 0 </val></def>
-    <def><name> dNO2/dt </name><val> 0 </val></def>
+    <def><name> LosstoHbNO </name><val> 0 </val></def>
+    <def><name> LosstoNitrate </name><val> 0 </val></def>
+    <def><name> TotalLoss </name><val> 0 </val></def>  
 
     <def><name> NOInFlux(ppm) </name><val> 0 </val></def>
     <def><name> NOInFlux(uMol/min) </name><val> 0 </val></def>
+ <def><name> FracDeoxyHb </name><val> 0 </val></def>
+    <def><name> FracOxyHb </name><val> 0 </val></def>
+
+    <def><name> RateNOtoNitrate </name><val> 0 </val></def>
+    <def><name> RateNOtoHbNO </name><val> 0 </val></def>
     <def><name> Gain </name><val> 0 </val></def>
-    <def><name> Change </name><val> 0 </val></def>
+    
 
   </block>
     
@@ -77,37 +65,46 @@
   <block><name> Dervs </name>
 
     <call> iNODrugPool.Init </call>
+   <call> iNODrugPool.Init </call>
     <call> iNODrugPool.Parms </call>
+    <call> PO2Artys.Calc </call>
+    <call> HgbConc.Calc </call>
 
     <def><name> NOInFlux(uMol/min) </name><val> 1000 * NOInFlux(ppm) / 30.01 </val></def>
 
     <def><name> [NO](uMol) </name><val> NOmass </val></def>
-    <def><name> [HbNO](uMol) </name><val> HbNOmass </val></def>
-    <def><name> [NO2_Nitrate](uMol) </name><val> NO2mass </val></def>
+  <def>
+      <name> FracOxyHb </name>
+      <val> PO2Artys.Pressure / ( PO2Artys.Pressure + 26 ) </val> <!-- 26 mmHg = P50 for Hb -->
+    </def>
+    <def>
+      <name> FracDeoxyHb </name>
+      <val> 1 - FracOxyHb </val>
+    </def>
+    <def>
+      <name> RateNOtoNitrate </name>
+      <val> BaseRate_Nitrate * HgbConc.[Total] * FracOxyHb </val>
+    </def>
+    <def>C
+      <name> RateNOtoHbNO </name>
+      <val> BaseRate_HbNO * HgbConc.[Total] * FracDeoxyHb </val>
+    </def>
 
-    <def><name> Loss_Hb </name><val> HbBindRate * [NO](uMol) </val></def>
-    <def><name> Loss_Oxidation </name><val> OxidationRate * [NO](uMol) </val></def>
-    <def><name> TotalLoss </name><val> Loss_Hb + Loss_Oxidation </val></def>
-  
-    <def><name> dNO/dt </name><val> Gain - TotalLoss </val></def>
-    <def><name> dHbNO/dt </name><val> Loss_Hb </val></def>
-    <def><name> dNO2/dt </name><val> Loss_Oxidation </val></def>
+    <def><name> LosstoHbNO </name><val> 0.05 * RateNOtoHbNO * [NO](uMol) </val></def>
+    <def><name> LosstoNitrate </name><val> 0.02 * RateNOtoNitrate * [NO](uMol) </val></def>
+
+
+    <def><name> TotalLoss </name><val> LosstoHbNO + LosstoNitrate </val></def>
 
     <def><name> Gain </name><val> NOInFlux(uMol/min) </val></def>
     <def><name> Change </name><val> Gain - TotalLoss </val></def>
   
   </block>
   
-  <!-- <block><name> Wrapup </name>
 
-  
-    <def><name> Graph_Gain </name><val> Gain </val></def>
-    <def><name> Graph_LossHb </name><val> Loss_Hb </val></def>
-    <def><name> Graph_LossOx </name><val> Loss_Oxidation </val></def>
-    <def><name> Graph_TotalLoss </name><val> TotalLoss </val></def> 
-    <def><name> Graph_Change </name><val> Change </val></def> 
-  </block> -->
   
   </definitions>
   </structure>
   
+ <!-- Kinetics of methemoglobin and serum nitrogen oxide production during inhalation of nitric oxide in volunteers
+By D Young, John Sear -->
