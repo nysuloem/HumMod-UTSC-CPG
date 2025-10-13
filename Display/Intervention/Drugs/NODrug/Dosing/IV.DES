@@ -12,7 +12,7 @@ Schema : DES V1.0
    <col> 1.0 </col>
    <high> 5.8 </high>
    <wide> 30.0 </wide>
-   <title> Continuous IV </title>
+   <title> NO Continuous IV </title>
 
 <structurename> NODrugIV </structurename>
 
