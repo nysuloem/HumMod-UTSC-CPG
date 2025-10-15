@@ -832,6 +832,7 @@ By : University of Mississippi Medical Center
   <call> ProthrombinComplexActivity.Dervs </call>
   <call> Menstruation.Dervs </call>
   <call> Uterus-Menstruation.Dervs </call>
+  <call> Rectum.Dervs </call>
   
 </block>
 
@@ -889,6 +890,7 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
+  <call> Rectum.Wrapup </call>
   <if>
     <test> Sex.IsFemale </test>
     <true><call> Endometrium.Wrapup </call></true>
