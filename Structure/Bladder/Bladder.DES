@@ -21,6 +21,7 @@ By : University of Mississippi Medical Center
 <?include BladderProtein.DES ?>
 <?include BladderSulphate.DES ?>
 <?include BladderUrea.DES ?>
+<?include BladderNitrate.DES ?>
 <?include BladderPh.DES ?>
 
 <structure><name> Bladder </name>
@@ -49,6 +50,7 @@ By : University of Mississippi Medical Center
   <call> BladderProtein.Init </call>
   <call> BladderSulphate.Init </call>
   <call> BladderUrea.Init </call>
+  <call> BladderNitrate.Init </call>
 
 </block>
 
@@ -67,6 +69,7 @@ By : University of Mississippi Medical Center
   <call> BladderProtein.Dervs </call>
   <call> BladderSulphate.Dervs </call>
   <call> BladderUrea.Dervs </call>
+  <call> BladderNitrate.Dervs </call>
 
 </block>
 
@@ -97,6 +100,7 @@ By : University of Mississippi Medical Center
 <call> BladderProtein.Conc </call>
 <call> BladderSulphate.Conc </call>
 <call> BladderUrea.Conc </call>
+<call> BladderNitrate.Conc </call>
 
 <call> BladderPh.Calc </call>
 
@@ -119,6 +123,7 @@ By : University of Mississippi Medical Center
 <call> BladderProtein.Void </call>
 <call> BladderSulphate.Void </call>
 <call> BladderUrea.Void </call>
+<call> BladderNitrate.Void </call>
 
 </block>
 

@@ -24,4 +24,6 @@ Schema : DES V1.0
 <?include GITract-Structure.DES ?>
 <?include GITract-Vasculature.DES ?>
 
+<?include Rectum.DES ?>
+
 End

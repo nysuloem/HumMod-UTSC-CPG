@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 19.7 </high>
+   <high> 20.8 </high>
    <wide> 30.0 </wide>
 
 <structurename> UrineAnalysis </structurename>
@@ -115,7 +115,14 @@ By : University of Mississippi Medical Center
 </showvalue>
 
 <showvalue>
-  <row> 18.1 </row><col> 1.0 </col>
+    <row> 17.8 </row><col> 1.0 </col>
+  <name> Nitrate </name>
+  <format><integer/></format>
+  <label> [Nitrate] </label>
+</showvalue>
+
+<showvalue>
+  <row> 19.1 </row><col> 1.0 </col>
   <name> BladderVolume.VolumeVoid </name>
   <format><integer/></format>
   <label> Specimen Volume </label>
@@ -139,6 +146,7 @@ By : University of Mississippi Medical Center
   <line> [Protein] = 0.0 G/mL </line>
   <line> [SO4--] = 10.3 mEq/L </line>
   <line> [Urea] = 646 mG/dL </line>
+ <line> [Nitrate] = 0.7677 mMol/L </line> <!-- source: https://www.sciencedirect.com/science/article/abs/pii/0041008X78900285 -->
 </infobutton>
 
 </groupbox>

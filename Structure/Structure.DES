@@ -734,6 +734,8 @@ By : University of Mississippi Medical Center
   <call> LeftCollectingDuct_H2OChannels.CalcDervs </call>
 
   <call> O2.Dervs </call>
+<call> NODrug.Dervs </call>
+  <call> NODrug.Parms </call>
 
   <call> BVSeqArtys.Dervs </call>
   <call> BVSeqVeins.Dervs </call>
@@ -830,6 +832,7 @@ By : University of Mississippi Medical Center
   <call> ProthrombinComplexActivity.Dervs </call>
   <call> Menstruation.Dervs </call>
   <call> Uterus-Menstruation.Dervs </call>
+  <call> Rectum.Dervs </call>
   
 </block>
 
@@ -852,6 +855,7 @@ By : University of Mississippi Medical Center
   <call> SystemicArtys.Wrapup </call>
 
   <call> Drugs.Wrapup </call>
+  <call> NODrug.Wrapup </call>
   <call> Creatine.Wrapup </call>
   <call> Catechols.Wrapup </call>
   <call> Hypothalamus.Wrapup </call>
@@ -886,6 +890,7 @@ By : University of Mississippi Medical Center
   <call> RespiratoryMuscle-Energy.Wrapup </call>
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
+  <call> Rectum.Wrapup </call>
   <if>
     <test> Sex.IsFemale </test>
     <true><call> Endometrium.Wrapup </call></true>

@@ -1,0 +1,15 @@
+<structure><name> Placenta-CRF </name>
+
+<variables>
+
+<var><name> [CRH(pmol/L)] </name></var>
+<var><name> [CRH_BP(pmol/L)] <name><val> 1000 </val></var>
+
+</variables>
+
+<definitions>
+
+
+</definitions>
+
+</structure>

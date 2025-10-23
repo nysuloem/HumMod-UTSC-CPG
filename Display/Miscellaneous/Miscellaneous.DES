@@ -12,5 +12,6 @@ By : University of Mississippi Medical Center
 <?include CellProtein\CellProtein.DES ?>
 <?include Orthostasis\Orthostasis.DES ?>
 <?include Torso\Torso.DES ?>
+<?include GIPeristalsis\GIPeristalsis.DES ?>
 
 End

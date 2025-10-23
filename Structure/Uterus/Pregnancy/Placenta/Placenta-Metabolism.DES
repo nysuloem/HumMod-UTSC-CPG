@@ -1,0 +1,47 @@
+<structure><name> Placenta-Metabolism </name>
+
+<variables>
+
+<constant><name> NormalCalsUsed((Cal/Min)/G) </name><val> 0.0252 </val></constant>
+
+<var><name> NormalPlacentaCals </name><val> 0 </val></var>
+<var><name> PlacentaCals </name><val> 0 </val></var>
+<var><name> AerobicCals </name><val> 0 </val></var>
+<var><name> AnaerobicCals </name><val> 0 </val></var>
+
+
+</variables>
+
+<definitions>
+
+<block><name> CalcCals </name>
+
+<def>
+  <name> NormalPlacentaCals </name> 
+  <val> ( Placenta-Size.Mass * NormalCalsUsed((Cal/Min)/G) ) + ( 7 * Placenta-Size.Change ) </val>
+</def>
+
+<def>
+  <name> PlacentaCals </name>
+  <val> 
+      NormalPlacentaCals 
+<!--    * Thyroid.Effect
+    * HeatMetabolism.Core-->
+  </val>
+</def>
+
+<def>
+  <name> AerobicCals </name>
+  <val> PlacentaCals </val>
+</def>
+
+<def>
+  <name> AnaerobicCals </name>
+  <val> 0 * PlacentaCals </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
