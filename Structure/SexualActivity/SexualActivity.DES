@@ -9,7 +9,7 @@ By: Jason Brown
 
 <?include HaveSex.DES ?>
 <?include SexDrive.DES ?>
-<?include UseProtection.DES ?>
+<!-- <?include UseProtection.DES ?> -->
 <?include SexualIntercourse.DES ?>
 
 <structure><name> SexualActivity </name>
