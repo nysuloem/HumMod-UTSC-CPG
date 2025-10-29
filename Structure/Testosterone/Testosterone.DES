@@ -78,6 +78,7 @@ Schema : DES V1.0
 
 <block><name>EthnicityChange</name>
 
+  <!-- Replicate this for ALDH -->
 <def><name> AsianT </name><val> 1.08 </val></def> 
 <def><name> BlackT </name><val> 1.03 </val></def> 
 <def><name> WhiteT </name><val> 1.00 </val></def>

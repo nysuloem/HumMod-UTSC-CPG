@@ -7,6 +7,9 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+<!-- Models the ethanol content in the body after it’s been absorbed from the GI lumen (EthanolGILumen).
+It integrates gains from absorption and subtracts losses from elimination routes (liver metabolism, kidneys, lungs).-->
+
 <structure><name> EthanolPool </name>
 
 <variables>
@@ -39,18 +42,21 @@ Schema : DES V1.0
 
 <block><name> CalcConc </name>
 
-<def><name> R </name>
+
+<def><name> R </name> Distribution ratio 
 <val> 0.68 </val> <!-- Should be 0.55 for females. Will change later -->
 </def>
 
+
 <def>
   <name> [Ethanol] </name>
-  <val> ( Mass /  ECFV.Vol(L) ) / 10 </val>  <!-- Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
+  <val> ( Mass /  PlasmaVol.Vol ) * 100 </val>  
+  <!-- Total mass (grams) and multiply by plasma volume to get dL. Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
 </def>
 
 <def>
   <name> EthanolMass </name>         
-  <val> [Ethanol] * 0.789 </val>
+  <val> [Ethanol] * 0.789 </val> <!-- Converts concentration back to grams using ethanol’s density (0.789 g/mL) -->
 </def>
 
 </block>
@@ -59,18 +65,24 @@ Schema : DES V1.0
 
 <def>
   <name> Gain </name>
-  <val> EthanolGILumen.Loss
+  <val> EthanolGILumen.Loss 
   </val>
 </def>
 
-<!-- Below Lung loss was added with an estimated constant of 0.002 -->
-<def>
-  <name> Loss </name>
-  <val> EthanolKidney.UrineLoss 
+<!-- Below Lung loss was added with an estimated constant of 0.02 
+   <val> EthanolKidney.UrineLoss
   +   EthanolLungs.LungsLoss
   +   EthanolLiver.Loss 
   </val>
+  -->
+
+<def>
+  <name> Loss </name>
+  <val> 0 </val> 
 </def>
+ 
+
+<!-- Reserach loss rates (validate numbers) -->
 
 <def>
   <name> Change </name>

@@ -1,0 +1,123 @@
+HumMod / 
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiffany 
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<!-- Simulates hepatic clearance of ethanol into acetaldehyde and acetate:
+
+Ethanol converted to Acetaldehyde (via alcohol dehydrogenase, ALCDH)
+Acetaldehyde converted to Acetate (via aldehyde dehydrogenase, ALDH) -->
+
+<structure><name> EthanolLiver </name>
+
+<variables>
+
+<var><name> Loss </name></var>
+<var><name> LossToAcetaldehyde </name></var>
+<var><name> TransferToALDH </name></var>
+<var><name> [Acetaldehyde] </name></var>
+<var><name> [Acetate] </name></var>
+<var><name> LossToAcetate </name></var>
+<var><name> GainAcetaldehyde </name></var>
+<var><name> GainAcetate </name></var>
+<var><name> LossAcetaldehyde </name></var>
+<var><name> Asian </name></var>
+<var><name> Black </name></var>
+<var><name> White </name></var>
+<var><name> Hispanic </name></var>
+
+<!-- Asian Flush Variables -->
+<var><name> ALDH2_Activity </name></var>
+<var><name> ALDH2_DeficiencyFraction </name></var>
+
+
+
+<parm><name> ALCDH_K </name><val> 0.003 </val></parm> <!-- Rate constant for alcohol dehydrogenase (ethanol → acetaldehyde) -->
+<parm><name> ALDH_K </name><val> 0.0167 </val></parm> <!-- Rate constant for aldehyde dehydrogenase (acetaldehyde → acetate) -->
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> MassAcetaldehyde </name>
+  <integralname> MassAcetaldehyde </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeAcetaldehyde </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> MassAcetate </name>
+  <integralname> MassAcetate </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeAcetate </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+  <!-- Call ethnicity-based ALDH2 adjustment on initialization -->
+
+  <!-- Replicate this for ALDH -->
+<def><name> Asian </name><val> 0.5 </val></def> 
+<def><name> Black </name><val> 1 </val></def> 
+<def><name> White </name><val> 1 </val></def>
+<def><name> Hispanic </name><val> 1 </val></def>
+<def><name> ALDH_K </name>
+  <val> ALDH_K
+    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    - 1 <!-- This substraction accounts for how the default value leads to a +1 addition here -->
+  </val>
+</def>
+
+  <def>
+    <name> GainAcetaldehyde </name>
+    <val> ALCDH_K * EthanolPool.[Ethanol] * HepaticVein.PlasmaFlow / 1000 </val>
+  </def>
+
+  <def>
+    <name> Loss </name>
+    <val> GainAcetaldehyde </val>
+  </def>
+
+  <!-- Acetaldehyde clearance scales by ALDH2_Activity -->
+  <def>
+    <name> LossAcetaldehyde </name>
+    <val> ( ALDH_K * MassAcetaldehyde ) + 0.1 </val>
+  </def>
+
+  <def>
+    <name> GainAcetate </name>
+    <val> LossAcetaldehyde </val>
+  </def>
+
+  <def>
+    <name> ChangeAcetaldehyde </name>
+    <val> GainAcetaldehyde - LossAcetaldehyde </val>
+  </def>
+
+  <def>
+    <name> ChangeAcetate </name>
+    <val> GainAcetate </val>
+  </def>
+
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

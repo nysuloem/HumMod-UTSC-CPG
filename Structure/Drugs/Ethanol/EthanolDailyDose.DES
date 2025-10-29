@@ -7,19 +7,21 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+<!-- Simulates oral ethanol dosing over time (daily, multiple times per day, or irregularly) -->
 
 <structure><name> EthanolDailyDose </name>
 
 <variables>
 
-<parm><name> Dose </name><val> 0.0 </val></parm>
+<parm><name> Dose </name><val> 0.0 </val></parm> <!-- Size of each drink (volume in mL) -->
 <parm><name> TakeDaily </name><val> FALSE </val></parm>
 <parm><name> TimesADay </name><val> 1.0 </val></parm>
 <var><name> TimeLastDose </name><val> UNDEFINED </val></var>
 <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
 <var><name> TotalDoses </name><val> 0.0 </val></var>
 <var><name> CumulativeDose </name><val> 0.0 </val></var>
-<constant><name> Density_ETOH </name><val> 0.789 </val></constant>
+<constant><name> Density_ETOH </name><val> 0.789 </val></constant> <!-- 0.789 g/mL (ethanol density, used to convert volume to grams).-->
+<var><name> Mass </name></var>
 
 <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
 <var><name> Interval </name></var>
@@ -27,7 +29,7 @@ Schema : DES V1.0
 
 <!--  Flag determining irregular dosing -->
 <parm><name> IrregularQ </name><val> 0 </val></parm>
-<parm><name> PercentageofAlcohol </name> <val> 0.07 </val></parm>
+<parm><name> PercentageofAlcohol </name> <val> 0.0 </val></parm> <!-- % ethanol in the drink (default 0.07 = 7%, like beer)-->
 <parm><name> NumberLeft </name><val> 0 </val></parm>
 <parm><name> NumberGiven </name><val> 0 </val></parm>
 <whitenoise><name> Likelihood </name></whitenoise>
@@ -89,7 +91,7 @@ Schema : DES V1.0
 
 <def>
   <name> Interval </name>
-  <val> 1440.0 / TimesADay </val>
+  <val> 1440.0 / TimesADay </val> <!-- Caculates interval (1440 minutes/day ÷ doses/day = minutes between doses) -->
 </def>
 
 <if>
@@ -123,10 +125,26 @@ Schema : DES V1.0
   <name> TimeNextDose </name>
   <val> System.X + Interval </val>
 </def>
-
+<!--
 <def>
   <name> EthanolGILumen.Mass </name>
-  <val> EthanolGILumen.Mass + ( Dose * Density_ETOH * ( PercentageofAlcohol / 100 ) ) </val>
+  <val> EthanolGILumen.Mass + ( Dose * Density_ETOH * ( PercentageofAlcohol / 100 ) ) </val> 
+   Takes a drink amount (volume mL) and converts into grams of ethanol, 
+   then adds to the ethanol already in the GI lumen.
+</def>
+--> 
+
+<def>
+  <name> Mass </name>
+  <val> ( PercentageofAlcohol / 100 ) * ( Dose * EthanolDailyDose.Density_ETOH ) </val> <!-- Calculate ethanol mass in grams --> 
+  <!-- %Alc / 100 → converts % to fraction. 
+   Volume (mL) × Density_ETOH (0.789 g/mL) is the grams of pure ethanol if it were 100% alcohol.
+   Multiply by fraction alcohol to get grams of ethanol in the drink.-->
+</def>
+
+<def>
+  <name> EthanolGILumen.Mass </name> 
+  <val> EthanolGILumen.Mass + Mass </val> <!-- Add ethanol to the GI lumen -->
 </def>
 
 <def>

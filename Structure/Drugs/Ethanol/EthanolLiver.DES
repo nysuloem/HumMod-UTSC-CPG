@@ -8,6 +8,12 @@ By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
 
+<!-- Simulates hepatic clearance of ethanol into acetaldehyde and acetate:
+
+Ethanol converted to Acetaldehyde (via alcohol dehydrogenase, ALCDH)
+Acetaldehyde converted to Acetate (via aldehyde dehydrogenase, ALDH) -->
+
+
 <structure><name> EthanolLiver </name>
 
 <variables>
@@ -21,16 +27,57 @@ Schema : DES V1.0
 <var><name> GainAcetaldehyde </name></var>
 <var><name> GainAcetate </name></var>
 <var><name> LossAcetaldehyde </name></var>
+<!-- <var><name> ALDH2_Activity </name></var> -->
 
-<parm><name> ALCDH_K </name><val> 0.03 </val></parm> <!-- This is alcohol dehydrogenase -->
-<parm> <name> ALDH_K </name><val> 0.167 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
+<parm><name> ALCDH_K </name><val> 0.003 </val></parm> <!-- Rate constant for alcohol dehydrogenase (ethanol → acetaldehyde) -->
+<parm> <name> ALDH_K </name><val> 0.0167 </val></parm> <!-- Rate constant for acetaldehyde (aldehyde) dehydrogenase (acetaldehyde → acetate) -->
+
+<!-- Asian Flush Parameters
+<parm><name> ALDH2_ResidualFraction </name><val> 0.10 </val></parm> <!-- minimum residual ALDH2 activity (fraction of normal) -->
+
+<call> EthnicityChange </call>
+
+<def><name> InitialMass </name><val> TargetConc * ECFV.InitialVol(L) </val></def>
+<def><name> Mass </name><val> InitialMass </val></def>
+
+</block>
+
+<block><name>EthnicityChange</name>
+
+  <!-- Replicate this for ALDH -->
+<def><name> Asian </name><val> 1.08 </val></def> 
+<def><name> Black </name><val> 1.03 </val></def> 
+<def><name> White </name><val> 1.00 </val></def>
+<def><name> Hispanic </name><val> 0.993 </val></def>
+<def><name> TargetConc </name>
+  <val> TargetConc
+    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianT ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackT )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteT )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicT )
+    - 1 <!-- This substraction accounts for how the default value leads to a +1 addition here -->
+  </val>
+</def>
+
+<!-- Ethnicity-specific default deficiency fractions (0..1). Tweak these to change how strongly each ethnicity contributes) -->
+<parm><name> ALDH2_Asian_DefFrac </name><val> 0.50 </val></parm> 
+<parm><name> ALDH2_Black_DefFrac </name><val> 0.02 </val></parm>
+<parm><name> ALDH2_White_DefFrac </name><val> 0.01 </val></parm>
+<parm><name> ALDH2_Hispanic_DefFrac </name><val> 0.08 </val></parm>
+
+<!-- Setup as value of deficiency determined by ethnicity (do in this file refer to testosterone) -->
+
+<!--ALDH Deficiency (%) parameters
+0% → normal enzyme (no flush)
+50–60% → heterozygous deficiency (moderate flush)
+100% → homozygous deficiency (severe flush) --> 
 
 </variables>
 
 <equations>
 
 <diffeq>
-  <name> MassAcetaldehyde </name>
+  <name> MassAcetaldehyde </name> <!-- Amount of acetaldehyde currently in the liver pool-->
   <integralname> MassAcetaldehyde </integralname>
   <initialval> 0.0 </initialval>
   <dervname> ChangeAcetaldehyde </dervname>
@@ -38,7 +85,7 @@ Schema : DES V1.0
 </diffeq>
 
 <diffeq>
-  <name> MassAcetate </name>
+  <name> MassAcetate </name> <!-- Amount of acetate currently in the liver pool-->
   <integralname> MassAcetate </integralname>
   <initialval> 0.0 </initialval>
   <dervname> ChangeAcetate </dervname>
@@ -51,13 +98,12 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-  <!-- ALDH_K should vary with ethnicity -->
-
 <def>
   <name> GainAcetaldehyde </name> 
-  <val> ALCDH_K * EthanolPool.[Ethanol] * HepaticVein.PlasmaFlow / 1000 </val> <!-- Create max for Loss to ALDH -->
-  <!-- Should also consider liver MR? -->
-</def>
+  <val> ALCDH_K * EthanolPool.[Ethanol] * HepaticVein.PlasmaFlow / 1000 </val> 
+  </def>
+  <!-- Multiplying Ethanol concentration × flow gives grams of ethanol delivered to the liver per minute. 
+   Mulipty by ALCDH rate constant (fraction of ethanol metabolized by ALCDH) and / by 1000 to convert ml to L  -->
 
 <def>
   <name> Loss </name>
@@ -65,10 +111,32 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> LossAcetaldehyde </name> 
-  <val> ALDH_K * MassAcetaldehyde  </val> <!-- Create max for Loss to Acetaldehyde -->
-  <!-- Should also consider the liver MR? -->
+  <name> LossAcetaldehyde </name>
+  <val> ( ALDH_K * ALDH2_Activity * MassAcetaldehyde ) + 0.1 </val>
+  <!-- Mulipty ALDH rate constant (fraction of acetaldehyde converted to acetate) by total amount 
+   of acetaldehyde in the liver pool (grams) for rate of acetaldehyde removal -->
 </def>
+
+<!--
+ASIAN FLUSH
+<def>
+  <name> ALDH2_Activity </name>
+  <val> 1.0 - ALDH2_Deficiency(%) / 100.0 </val>
+</def>
+
+ALDH2 enzyme activity fraction (ALDH2 deficiency affect acetaldehyde clearance)
+Translates deficiency percentage into a remaining enzyme activity fraction.
+Starts from full activity (1.0)
+Reduces proportionally to ALDH2_Deficiency(%)
+But can never drop below the ALDH2_ResidualFraction --> 
+
+<!--
+Scaled rate constant for ALDH2 metabolism
+Clearance of acetaldehyde depends on the current enzyme activity fraction.
+If ALDH2_Activity = 1.0 → normal clearance (no flush).
+If ALDH2_Activity = 0.5 → half the normal clearance → acetaldehyde accumulates.
+If ALDH2_Activity = 0.1 → only 10% clearance → large buildup → red flush and
+--> 
 
 <def>
   <name> GainAcetate </name>
@@ -76,13 +144,13 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> ChangeAcetaldehyde </name>
+  <name> ChangeAcetaldehyde </name> <!-- Acetaldehyde changes: production minus clearance -->
   <val> GainAcetaldehyde - LossAcetaldehyde </val>
 </def>
 
 <def>
   <name> ChangeAcetate </name>
-  <val> GainAcetate </val>
+  <val> GainAcetate </val> 
 </def>
 
 </block>

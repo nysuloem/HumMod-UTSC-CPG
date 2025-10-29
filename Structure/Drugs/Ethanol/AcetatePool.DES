@@ -1,0 +1,86 @@
+HumMod / AcetatePool
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiffany
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+
+<structure><name> AcetatePool </name>
+
+<!-- Defination for each ethnicity (dependant on amount of acetealdehyde breakdown (0-1)) -->
+
+
+<variables>
+
+  <var><name> [Acetate] </name></var>        <!-- conc g/L or appropriate units -->
+  <var><name> Gain </name></var>             <!-- input from liver: EthanolLiver.GainAcetate -->
+  <var><name> Loss </name></var>             <!-- total removal -->
+  <var><name> TransferToAcetylCoA </name></var> <!-- available to TCA/fatty-acid modules -->
+
+  <!-- parameter: first-order utilization constant (1/min) -->
+  <parm><name> K_ACETATE_UTIL </name><val> 0.03 </val></parm>
+
+  <!-- fraction sent to periphery?? -->
+  <parm><name> F_PERIPHERY </name><val> 0.4 </val></parm> 
+  <parm><name> Liver </name><val> 0.6 </val></parm> <!-- 60% remains in liver -->
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+  <!-- concentration in g/L  -->
+  <def>
+    <name> [Acetate] </name>
+    <val> Mass / ECFV.Vol(L) </val>   <!-- HERE IS IMPORTANT -->
+  </def>
+
+</block>
+
+<block><name> Dervs </name>
+
+  <!-- Gain comes from liver: EthanolLiver.GainAcetate should be in g/min (check units) or same units as Mass -->
+  <def>
+    <name> Gain </name>
+    <val> EthanolLiver.GainAcetate </val>
+  </def>
+
+  <!-- conversion to acetyl-CoA: first order -->
+  <def>
+    <name> TransferToAcetylCoA </name> <!-- Used in fatty acid metabolism (Lipogenesis) -->
+    <val> K_ACETATE_UTIL * Mass </val>
+  </def>
+
+  <!-- split some fraction to periphery?? -->
+
+  <def>
+    <name> Loss </name>
+    <val> TransferToAcetylCoA </val>
+  </def>
+
+  <def>
+    <name> Change </name>
+    <val> Gain - Loss </val>
+  </def>
+
+</block>
+
+</definitions>
+</structure>

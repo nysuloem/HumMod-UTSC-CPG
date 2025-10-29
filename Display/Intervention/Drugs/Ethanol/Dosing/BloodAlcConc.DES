@@ -20,7 +20,7 @@
   </xaxis>
   <yaxis>
     <yvar>
-      <name> EthanolPool.[Ethanol] </name>
+      <name> EthanolPool.EthanolMass </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>
@@ -32,9 +32,16 @@
 
 <showvalue>
    <row> 1.2 </row><col> 1.0 </col>
-   <name> EthanolPool.[Ethanol] </name>
+   <name> EthanolPool.EthanolMass </name>
    <format><decimal> 2 </decimal></format>
    <label> Blood Alcohol Concentration (g/dL) </label>
+</showvalue>
+
+<showvalue>
+   <row> 3.2 </row><col> 1.0 </col>
+   <name> Acetaldehyde.[BloodAcetaldehyde] </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Blood Acetaldehyde </label>
 </showvalue>
 
 <infobutton>

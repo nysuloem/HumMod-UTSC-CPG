@@ -7,15 +7,18 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+<!-- Models absorption from the GI lumen into systemic circulation,
+ with concentration tracking based on lumen water content -->
+
 <structure><name> EthanolGILumen </name>
 
 <variables>
 
-<var><name> BIOAVAIL </name><val> 0.20 </val></var>
-<var><name> PERM </name><val> 0.8 </val></var>
+<var><name> BIOAVAIL </name><val> 1 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
+<var><name> PERM </name><val> 1 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
 
 <var><name> [Ethanol] </name></var>
-<var><name> Loss </name></var>
+<var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
 
 </variables>
 
@@ -37,7 +40,7 @@ Schema : DES V1.0
 
 <def>
   <name> [Ethanol] </name>
-  <val> Mass / GILumenH2O.Mass(L) </val> 
+  <val> Mass / GILumenH2O.Mass(L) </val> <!-- Converts ethanol mass into a concentration using the lumen’s water mass (volume).-->
   
   <!-- What is ethanol mass? Volume or mass? Concentration?? (1L of water) 1% = 10ml --> 
 <!-- Density Ethanol = 0.789 __ Mass = D X V--> 
@@ -50,13 +53,13 @@ Schema : DES V1.0
 
 <def>
   <name> Loss </name>
-  <val> BIOAVAIL * PERM * Mass
+  <val> BIOAVAIL * PERM * Mass <!-- Proportional loss from lumen depends on both bioavailability and permeability, and is scaled to the total ethanol mass present -->
   </val>
 </def>
 
 <def>
   <name> Change </name>
-  <val> - Loss </val>
+  <val> - Loss </val> 
 </def>
 
 </block>

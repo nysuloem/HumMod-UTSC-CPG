@@ -31,6 +31,8 @@ By : University Of Mississippi Medical Center
 <var><name> BloodFlow </name></var>
 <var><name> PlasmaFlow </name></var>
 
+<var><name> AcetaldehydeEffect </name></var>
+
 </variables>
 
 <equations>
@@ -103,6 +105,25 @@ By : University Of Mississippi Medical Center
   <point><x> 20.0 </x><y> 1.0 </y><slope> 0 </slope></point>
 </curve>
 
+<curve>
+  <name> AcetaldehydeEffect </name>
+  <point><x> 0.0 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 0.0002 </x><y> 1.2 </y><slope> 0.5 </slope></point>
+  <point><x> 0.0005 </x><y> 1.6 </y><slope> 0.0 </slope></point>
+  <point><x> 0.0010 </x><y> 2.0 </y><slope> 0 </slope></point>
+</curve> 
+
+<!--
+x = [Acetaldehyde] (g/L), y = conductance multiplier
+
+When acetaldehyde is near zero, multiplier = 1.0 (normal).
+As [Acetaldehyde] rises to ~0.0005 g/L, conductance doubles (flush)
+
+no acetaldehyde, y = 1.0 → normal blood flow.
+As acetaldehyde increases (because ALDH2 is deficient), y rises → skin vessels dilate → blood flow increases → red flush.
+The y-values define how strong the flush response is, and x-values define what acetaldehyde levels trigger it.
+-->
+
 </functions>
 
 <definitions>
@@ -157,6 +178,16 @@ By : University Of Mississippi Medical Center
 </def>
 
 <def>
+  <name> AcetaldehydeEffect </name>
+  <val> AcetaldehydeEffect [ Acetaldehyde.[BloodAcetaldehyde] ] </val>
+</def>
+
+<!--
+This is how the skin “reads” the chemical signal circulating in the blood.
+Each time, HumMod caculates the actual acetaldehyde level → looks it up in the curve → produces a scaling factor (e.g. 1.7× normal conductance)
+--> 
+
+<def>
   <name> SearchMax </name>
   <val> PO2Artys.Pressure </val>
 </def>
@@ -181,6 +212,7 @@ By : University Of Mississippi Medical Center
     * OtherTissue-Vasculature.Effect
     * SympsDilateEffect
     * LocalTempEffect
+    * AcetaldehydeEffect
   </val>
 </def>
 

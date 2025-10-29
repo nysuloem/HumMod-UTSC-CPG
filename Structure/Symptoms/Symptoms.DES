@@ -93,6 +93,8 @@ Edited by CPG
     <def><name> Number2 </name><val> 1 </val></def>
   </case>
 
+  <!-- Add flushed (conductance above threshold, value 41 = -->
+
   <case>
     <test> HaveSex.SexOutcome EQ 1 </test>
     <def><name> Number2 </name><val> 27 </val></def>

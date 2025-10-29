@@ -1,4 +1,4 @@
-HumMod / Chlorothiazide
+HumMod / Acetaldehyde
 
 Created : 02-Feb-2025
 Last Modified : ---
@@ -7,21 +7,29 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
-<structure><name> AcetaldehydePool </name>
+<!-- Acetaldehyde is the intermediate product formed when ethanol is metabolized in the liver before 
+ being further converted to acetate. This tracks production from ethanol metabolism and removal 
+ via conversion to acetate.-->
+
+<structure><name> Acetaldehyde </name>
 
 <variables>
 
 <var>
-  <name> [Acetaldehyde] </name>
+  <name> [Acetaldehyde] </name> <!-- Total systemic concentration in (g/L) -->
+</var>
+
+<var><name> [BloodAcetaldehyde] </name></var> <!-- Peripheral/blood concentration driving skin flow -->
+
+<var>
+  <name> Gain </name> <!-- Rate at which acetaldehyde is produced (from ethanol metabolism in liver) -->
 </var>
 
 <var>
-  <name> Gain </name>
+  <name> Loss </name> <!-- Rate at which acetaldehyde is removed (converted to acetate) -->
 </var>
 
-<var>
-  <name> Loss </name>
-</var>
+<var><name> ExchangeRate </name></var> 
 
 </variables>
 
@@ -42,9 +50,14 @@ Schema : DES V1.0
 <block><name> CalcConc </name>
 
 <def>
-  <name> [Acetaldehyde] </name>
-  <val> Mass / ECFV.Vol(L) </val>
+  <name> [Acetaldehyde] </name> 
+  <val> Mass / ECFV.Vol(L) </val> <!-- Divides mass by extracellular fluid volume to get concentration -->
 </def>
+
+<!-- 
+Acetaldehyde concentration - base off of acetate: Periferary value + liver conc.
+Blood pool concentration have an impact on blood flow
+
 
 </block>
 
@@ -52,13 +65,13 @@ Schema : DES V1.0
 
 <def>
   <name> Gain </name>
-  <val> EthanolLiver.LossToALDH
+  <val> EthanolLiver.GainAcetaldehyde <!-- Ethanol metabolism via alcohol dehydrogenase (ADH) producing acetaldehyde -->
   </val>
 </def>
 
 <def>
   <name> Loss </name>
-  <val> EthanolLiver.LossToAcetaldehyde <!-- Converted in Acetate -->
+  <val> EthanolLiver.LossAcetaldehyde <!-- Rate at which acetaldehyde is removed, aldehyde dehydrogenase (ALDH) converting acetaldehyde to acetate -->
   </val>
 </def>
 
@@ -68,6 +81,9 @@ Schema : DES V1.0
 </def>
 
 </block>
+
+<!-- Create blood Acealdehyde for prephriary. Blood acealdeyhde will be used in skin blood flow to effect conducatnce-->
+<!-- how does Acetyaldence get metabolized/lost after flush?? -->
 
 </definitions>
 </structure>
