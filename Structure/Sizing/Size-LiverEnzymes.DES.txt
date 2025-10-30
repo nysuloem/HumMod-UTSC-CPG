@@ -1,0 +1,29 @@
+HumMod / Size-LiverEnzymes
+
+Created : 
+
+Author : Tom Coleman
+Copyright : 2006-2013
+
+<?path Structure\LiverEnzymes\ ?>
+<?include LiverEnzymesPool.DES ?>
+<!-- <?include LiverEnzymesPool.DES ?> -->
+
+<structure><name> Size-LiverEnzymes </name>
+
+<variables> ... </variables>
+<eqautions> ... </equations>
+
+<definitions>
+<block><name> Init </name>
+<call> LiverMetabolism_LiverEnzymes.Init </call>
+<!-- <call> LiverEnzymesPump.Init </call> -->
+
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

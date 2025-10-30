@@ -1,0 +1,45 @@
+HumMod / Adiposity
+
+Created : 2012-03-10
+Revised : 2012-06-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+Edited: 2024-04-24
+By: Jason Brown UTSC
+
+<panel><name> Context-Ethnicity </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> WholeBody </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Participants | Ethnicity </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<structurename> Context-Ethnicity</structurename>
+
+<radiobuttons>
+  <row> 5 </row><col> 1.0 </col>
+  <name> Index </name>
+  <listname> Common.Ethnicity </listname>
+</radiobuttons>
+
+</panel>
+
+
+End

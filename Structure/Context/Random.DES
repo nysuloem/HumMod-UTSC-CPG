@@ -1,0 +1,42 @@
+HumMod / Random
+
+Created : 2012-06-28
+Revised : 2012-06-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Random </name>
+
+<variables>
+
+<parm><name> State </name><val> 1 </val></parm>
+
+<constant><name> IS_DETERMINISTIC </name><val> 0 </val></constant>
+<constant><name> IS_STOCHASTIC    </name><val> 1 </val></constant>
+
+<parm><name> Distribution </name><val> 0 </val></parm>
+
+<constant><name> IS_NORMAL </name><val> 0 </val></constant>
+<constant><name> IS_FLAT   </name><val> 1 </val></constant>
+
+<parm><name> Age         </name><val> 1 </val></parm>
+<parm><name> Height      </name><val> 1 </val></parm>
+<parm><name> Adiposity   </name><val> 1 </val></parm>
+<parm><name> Muscularity </name><val> 1 </val></parm>
+<parm><name> OtherMass   </name><val> 1 </val></parm>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<call> Context.Calc </call>
+
+</block>
+
+</definitions>
+</structure>
+
+End

@@ -1,0 +1,25 @@
+
+
+<?path Structure\X\ ?>
+
+
+<structure>
+
+<variables>
+<parm><name> Index </name> <!-- student evaluation -->
+
+<constant><name> Poor </name><val> 50 </val><constant>
+<constant><name> Adequate </name><val> 60 </val><constant>
+<constant><name> Good </name><val> 75 </val><constant>
+<constant><name> Excellent </name><val> 95 </val><constant>
+
+
+</variables>
+
+<definitions>
+<block>
+
+</definitions>
+
+<structure>
+End

@@ -1,0 +1,21 @@
+HumMod / Context
+
+Created : 2012-03-10
+Revised : 2012-03-10
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+Edited: 2024-04-24
+By: Jason Brown UTSC
+
+<?path Display\Context\ ?>
+
+<?include Adiposity\Adiposity.DES ?>
+<?include Ethnicity\Ethnicity.DES ?>
+<?include Age\Age.DES ?>
+<?include Sex\Sex.DES ?>
+<?include Height\Height.DES ?>
+<?include Muscularity\Muscularity.DES ?>
+
+End
