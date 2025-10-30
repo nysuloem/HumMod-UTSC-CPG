@@ -1,0 +1,37 @@
+HumMod / LiverMetabolism_LiverEnzymes
+
+Created : 29-Mar-08
+Last Modified : 26-Jan-10
+Author : Farih Rahmani
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Solver : DES 2005
+Schema : 2005.0
+
+<structure><name> LiverMetabolism_LiverEnzymes </name>
+
+<variables>
+
+<var><name> LiverPool </name></var>
+<var><name> BloodPool </name></var>
+<!-- <var><name> ALSBloodPool -->
+
+
+</variables>
+
+<definitions>
+<block><name> Init </name>
+
+<def><name> LiverPool </name><val> LiverMetabolism_Gluconeogenesis.Rate </val></def>
+
+<def><name> BloodPool </name><val> LiverPool * ( 1 / Liver-Function.Effect + 0.01 ) </val></def>
+
+
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
