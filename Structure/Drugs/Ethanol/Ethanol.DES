@@ -17,6 +17,8 @@ Schema : DES V1.0
 <?include EthanolSingleDose.DES ?>
 <?include EthanolDailyDose.DES ?>
 <?include MethanolSingleDose.DES ?>
+<?include AcetatePool.DES ?>
+<?include Acetaldehyde.DES ?>
 
 <structure><name> Ethanol </name>
 
@@ -31,6 +33,8 @@ Schema : DES V1.0
 <block><name> CalcConc </name>
   <call> EthanolGILumen.CalcConc </call>
   <call> EthanolPool.CalcConc </call>
+  <call> Acetaldehyde.CalcConc </call>
+  <call> AcetatePool.CalcConc </call>
 </block>
 
 <block><name> Dervs </name>
@@ -40,10 +44,13 @@ Schema : DES V1.0
   <call> EthanolLungs.Dervs </call>
   <call> EthanolPool.Dervs </call>
   <call> Breathalyzer.BreathCalculation </call>
+  <call> Acetaldehyde.Dervs </call>
+  <call> AcetatePool.Dervs </call>
 </block>
 
 <block><name> Wrapup </name>
   <call> EthanolDailyDose.Wrapup </call>
+  <call> EthanolSingleDose.Wrapup </call>
 </block>
 
 </definitions>

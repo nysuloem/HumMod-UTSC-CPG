@@ -12,7 +12,8 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> Loss </name></var>
+<var><name> PoolLoss </name></var>
+<var><name> FirstPassLoss </name></var>
 <var><name> LossToAcetaldehyde </name></var>
 <var><name> TransferToALDH </name></var>
 <var><name> [Acetaldehyde] </name></var>
@@ -22,8 +23,8 @@ Schema : DES V1.0
 <var><name> GainAcetate </name></var>
 <var><name> LossAcetaldehyde </name></var>
 
-<parm><name> ALCDH_K </name><val> 0.003 </val></parm> <!-- This is alcohol dehydrogenase -->
-<parm> <name> ALDH_K </name><val> 0.0167 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
+<parm><name> ALCDH_K </name><val> 0.3 </val></parm> <!-- This is alcohol dehydrogenase -->
+<parm> <name> ALDH_K </name><val> 1.67 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
 
 </variables>
 
@@ -55,13 +56,18 @@ Schema : DES V1.0
 
 <def>
   <name> GainAcetaldehyde </name> 
-  <val> ALCDH_K * EthanolPool.[Ethanol] * HepaticVein.PlasmaFlow / 1000 </val> <!-- Create max for Loss to ALDH -->
+  <val> ALCDH_K * EthanolPool.[Ethanol] * EthanolGILumen.Loss / SplanchnicVeins.Vol * 1000 * HepaticVein.PlasmaFlow </val> <!-- Create max for Loss to ALDH -->
   <!-- Should also consider liver MR? -->
 </def>
 
 <def>
-  <name> Loss </name>
-  <val> GainAcetaldehyde </val>
+  <name> PoolLoss </name>
+  <val> ALCDH_K * EthanolPool.[Ethanol] </val> 
+</def>
+
+<def>
+  <name> FirstPassLoss </name>
+  <val> ALCDH_K * EthanolGILumen.Loss / SplanchnicVeins.Vol / 1000 * HepaticVein.PlasmaFlow </val>
 </def>
 
 <def>

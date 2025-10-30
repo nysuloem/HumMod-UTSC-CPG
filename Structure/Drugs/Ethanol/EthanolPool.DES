@@ -7,6 +7,9 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+<!-- Models the ethanol content in the body after it’s been absorbed from the GI lumen (EthanolGILumen).
+It integrates gains from absorption and subtracts losses from elimination routes (liver metabolism, kidneys, lungs).-->
+
 <structure><name> EthanolPool </name>
 
 <variables>
@@ -16,10 +19,7 @@ Schema : DES V1.0
 <var><name> Loss </name></var>
 <var><name> R </name></var>
 <var><name> BAC </name></var>
-
-<var>
-  <name> EthanolMass </name>
-</var>
+<var><name> EthanolMass </name></var>
 
 </variables>
 
@@ -39,43 +39,42 @@ Schema : DES V1.0
 
 <block><name> CalcConc </name>
 
-<def><name> R </name>
-<val> 0.68 </val> <!-- Should be 0.55 for females. Will change later -->
-</def>
+    <def><name> R </name> <!-- Distribution Ratio -->
+      <val> 0.68 </val> <!-- Should be 0.55 for females. Will change later -->
+    </def>
 
-<def>
-  <name> [Ethanol] </name>
-  <val> ( Mass /  ECFV.Vol(L) ) / 10 </val>  <!-- Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
-</def>
+  <def>
+    <name> [Ethanol] </name>
+    <val> ( Mass /  PlasmaVol.Vol ) * 100 </val>  
+    <!-- Total mass (grams) and multiply by plasma volume to get dL. Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
+  </def>
 
-<def>
-  <name> EthanolMass </name>         
-  <val> [Ethanol] * 0.789 </val>
-</def>
+  <def>
+    <name> EthanolMass </name>         
+    <val> [Ethanol] * 0.789 </val> <!-- Converts concentration back to grams using ethanol’s density (0.789 g/mL) -->
+  </def>
+<!-- I don't understand the point of this calculation -->
 
 </block>
 
 <block><name> Dervs </name>
 
-<def>
-  <name> Gain </name>
-  <val> EthanolGILumen.Loss
-  </val>
-</def>
+  <def>
+    <name> Gain </name>
+    <val> EthanolGILumen.Loss - EthanolLiver.FirstPassLoss </val>
+  </def>
 
-<!-- Below Lung loss was added with an estimated constant of 0.002 -->
-<def>
-  <name> Loss </name>
-  <val> EthanolKidney.UrineLoss 
-  +   EthanolLungs.LungsLoss
-  +   EthanolLiver.Loss 
-  </val>
-</def>
+  <def>
+    <name> Loss </name>
+    <val> EthanolKidney.UrineLoss + EthanolLungs.LungsLoss + EthanolLiver.PoolLoss </val>
+  </def>
+ 
+<!-- Reserach loss rates (validate numbers) -->
 
-<def>
-  <name> Change </name>
-  <val> Gain - Loss </val>
-</def>
+  <def>
+    <name> Change </name>
+    <val> Gain - Loss </val>
+  </def>
 
 </block>
 

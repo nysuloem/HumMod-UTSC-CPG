@@ -52,6 +52,7 @@ By: Jason Brown
   <map><val> 38 </val><img> "I'm awake, resting, but feeling sleepy." </img></map>
   <map><val> 39 </val><img> "I'm working, but feeling sleepy." </img></map>
   <map><val> 40 </val><img> "I'm eating a meal but feeling sleepy." </img></map>
+  <map><val> 41 </val><img> Patient appears flushed </img></map>
  
 </maplist>
 

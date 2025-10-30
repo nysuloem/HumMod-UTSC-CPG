@@ -11,14 +11,8 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> LungsLoss </name>
-</var>
-
-<constant>
-  <name> K </name>
-  <val> 0.0028 </val>  <!-- Check notes Ethanol clerance rate-->
-</constant>
+<var><name> LungsLoss </name></var>
+<constant><name> K </name><val> 0.00028 </val></constant>
 
 </variables>
 
@@ -26,17 +20,14 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def>
-  <name> LungsLoss </name>
-  <val>
-      K * EthanolPool.EthanolMass
-  </val>
-</def> 
-
+  <def><name> LungsLoss </name>
+    <val> K * EthanolPool.Mass </val>
+  </def> 
 
 </block>
 
 </definitions>
+
 </structure>
 
 End
