@@ -110,6 +110,10 @@ By : University Of Mississippi Medical Center
   <!-- <val> ( A2OnConductance [ A2Pool.Log10Conc ] * ( 2 - LosartanPool.AT1REffect ) ) MIN 1.05 </val> -->
 </def>
 
+<!-- <def> <name> OxytocinEffect </name>
+  <val> OxytocinOnConductance [ OxytocinPool.Log10Conc ] </val> - this is an interesting suggestion by the copilot 'but there is no data to support it at this time' ... I just had to quote the CoPilot. 
+</def> -->
+
 <def>
   <name> SympsEffect </name>
   <val> SympsOnConductance [ Uterus-AlphaReceptors.Activity ] </val>
@@ -145,8 +149,17 @@ By : University Of Mississippi Medical Center
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
     * OtherTissue-Vasculature.Effect
-    *  SystemicArtys.NOEffect 
+    * SystemicArtys.NOEffect 
+    
 </false>
+
+<!--
+
+Above we can  add Uterus Menstruation Effect to reduce the conductance in the uterus during bleeding 
+* OxytocinEffect is also required  
+* Uterus-Menstruation.Effect
+-->
+
 </conditional>
 
 <def>

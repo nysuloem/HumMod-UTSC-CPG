@@ -5,3 +5,24 @@ By: Jason Brown
 
 
 
+<structure><name> UseProtection </name> 
+<variables> 
+<constant><name> None </name><val> 0 </val></constant>
+<constant><name> Withdrawal </name> <val> 1 </val></constant>    
+<constant><name> Condom </name> <val> 2 </val></constant>
+<constant><name> Hormonal </name> <val> 3 </val></constant>
+<constant><name> IUD </name> <val> 4 </val></constant>
+<constant><name> Sterilization </name> <val> 5 </val></constant>
+
+<parm><name> Method </name><val> 0 </val></parm>
+
+</variables>    
+
+<definitions> 
+
+    <block> </block>
+<test>  
+    <def><name> PregnancyOdds </name></def>
+
+</test>
+</definitions>
