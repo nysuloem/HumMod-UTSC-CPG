@@ -74,7 +74,7 @@ Schema : DES V1.0
        <def><name> Uterus-Size.InitialSolidMass </name> <val> 0.001 </val> </def>
        <def><name> Uterus-Flow.BloodFlow </name><val> 0.001 </val></def>
        <def><name> Uterus-Flow.Conductance</name><val> 0.001 </val></def>
-
+       <def><name> Uterus-Fuel.TotalGlucoseUsed(mG/Min) </name><val> 0.001 </val></def>
     <def><name> Uterus-Function.Effect </name><val> 0.0 </val></def>
     <def><name> Uterus-Lactate.F1 </name><val> 1 </val></def>
     <def><name> Uterus-Lactate.F2 </name><val> 1 </val></def>
