@@ -34,8 +34,10 @@ Schema : DES V1.0
 <?include Pool.DES ?>
 <?include Pump.DES ?>
 <?include Secretion.DES ?>
-<?include AdiposeEffect.DES ?>
+<?include LightEffect.DES ?>
 <?include Clearance.DES ?>
+<?include Cycle.DES ?>
+<?include Light.DES ?>  
 
 </panel>
 

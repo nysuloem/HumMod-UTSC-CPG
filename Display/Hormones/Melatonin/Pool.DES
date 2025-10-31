@@ -19,7 +19,7 @@ Schema : DES V1.0
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
    <name> [Melatonin(nG/mL)] </name>
-   <format><decimal> 1 </decimal></format>
+   <format><decimal> 3 </decimal></format>
    <label> [Melatonin(nG/mL)] </label>
 </showvalue>
 
@@ -38,7 +38,7 @@ Schema : DES V1.0
       <linecolor> BLUE </linecolor>
     </yvar>
     <scale>
-      <min> 6 </min><max> 10 </max><inc> 2 </inc>
+      <min> 0 </min><max> 0.2 </max><inc> 2 </inc>
     </scale>
   </yaxis>
 </showgraph>
@@ -70,13 +70,6 @@ Schema : DES V1.0
    <format><decimal> 3 </decimal></format>
    <label> Loss </label>
 </showvalue>
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 26.0 </col>
-
-  <line> [Melatonin(nG/mL)] is typically 8 nG/mL. </line>
-</infobutton>
 
 </groupbox>
 

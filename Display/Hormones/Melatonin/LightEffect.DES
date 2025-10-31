@@ -8,8 +8,8 @@ By : University of Mississippi Medical Center
 Schema : DES V1.0
 
 <groupbox>
-   <row> 16.4 </row>
-   <col> 32.0 </col>
+   <row> 14.5 </row>
+   <col> 63 </col>
    <high> 11.4 </high>
    <wide> 30.0 </wide>
    <title> Light Effect  </title>
@@ -29,8 +29,8 @@ Schema : DES V1.0
   <leftmargin> 6 </leftmargin>
 
   <xaxis>
-    <name> LipidDeposits.Mass </name>
-    <label> LipidMass </label>
+    <name> Light.LuxActual </name>
+    <label> Light Intensity </label>
     <scale><min> 0 </min><max> 100000 </max><inc> 10000 </inc></scale>
   </xaxis>
 
