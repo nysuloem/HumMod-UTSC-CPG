@@ -31,6 +31,7 @@ Schema : DES V1.0
      + RightHeart-Fuel.FAUsed(mG/Min)
      + SkeletalMuscle-Fuel.FAUsed(mG/Min)
      + Skin-Fuel.FAUsed(mG/Min)
+     + Uterus-Fuel.FAUsed(mG/Min)
   </val>
 </def>
 

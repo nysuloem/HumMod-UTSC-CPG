@@ -38,6 +38,7 @@ Schema : DES V1.0
      + RightHeart-Fuel.TotalGlucoseUsed(mG/Min)
      + SkeletalMuscle-Fuel.AerobicGlucoseUsed(mG/Min)
      + Skin-Fuel.TotalGlucoseUsed(mG/Min)
+     + Uterus-Fuel.TotalGlucoseUsed(mG/Min)
   </val>
 </def>
 <def><name> GlycogenBurn </name>
