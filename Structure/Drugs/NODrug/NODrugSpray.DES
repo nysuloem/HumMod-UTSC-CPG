@@ -1,3 +1,6 @@
+
+
+
 <structure><name> NODrugSpray </name>
 
 <variables>
@@ -16,44 +19,93 @@
 </variables>
 
 <definitions>
+
 <block><name> Parms </name>
+
+<onjustchanged><name> TimesADay </name>
+
+<if><test> TakeDaily EQ 1 </test>
+  <true>
+    <def>
+      <name> Interval </name>
+      <val> 1440 / TimesADay </val>
+    </def>
+
+    <timer>
+      <name> Timer </name>
+        <val> 0 </val>
+        <state> DOWN </state>
+    </timer>
+
+    <def>
+      <name> TimeLastDose </name>
+      <val> System.X </val>
+    </def>
+
+    <def>
+      <name> TimeNextDose </name>
+      <val> System.X + Interval </val>
+    </def>
+
+  </true>
+
+  <false>
+
+    <timer>
+      <name> Timer </name>
+      <state> OFF </state>
+    </timer>
+
+    <def>
+      <name> TimeNextDose </name>
+      <val> UNDEFINED </val>
+    </def>
+
+  </false>
+</if>
+
+</onjustchanged>
 
 <onjustchanged><name> TakeDaily </name>
 
-<if><test> TakeDaily </test>
+  <if><test> TakeDaily EQ 1 </test>
+  <true>
+    <def>
+      <name> Interval </name>
+      <val> 1440 / TimesADay </val>
+    </def>
 
-<true>
+    <timer>
+      <name> Timer </name>
+        <val> 0 </val>
+        <state> DOWN </state>
+    </timer>
 
-<def>
-  <name> Interval </name>
-  <val> 1440.0 / TimesADay </val>
-</def>
+    <def>
+      <name> TimeLastDose </name>
+      <val> System.X </val>
+    </def>
 
-<timer>
-  <name> Timer </name>
-  <val> PREPTIME </val>
-  <state> DOWN </state>
-</timer>
+    <def>
+      <name> TimeNextDose </name>
+      <val> System.X + Interval </val>
+    </def>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> System.X + PREPTIME </val>
-</def>
+  </true>
 
-</true>
-<false>
+  <false>
 
-<timer>
-  <name> Timer </name>
-  <state> OFF </state>
-</timer>
+    <timer>
+      <name> Timer </name>
+      <state> OFF </state>
+    </timer>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> UNDEFINED </val>
-</def>
+    <def>
+      <name> TimeNextDose </name>
+      <val> UNDEFINED </val>
+    </def>
 
-</false>
+  </false>
 </if>
 
 </onjustchanged>
@@ -81,7 +133,7 @@
 
 <def>
   <name> NODrugSL.Mass </name>
-  <val> NODrugSL.Mass + ( 1000 * Dose ) </val>
+  <val> NODrugSL.Mass + ( 1000 * Dose ) </val> <!-- Dose is in mg, and Mass is in µg, this is be a unit conversion -->
 </def>
 
 <def>
@@ -95,6 +147,7 @@
 </def>
 
 </ontimedout>
+
 </block>
 
 <block><name> Reset </name>
@@ -115,7 +168,9 @@
 </def>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

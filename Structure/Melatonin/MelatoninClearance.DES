@@ -12,7 +12,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Rate </name></var>
-<parm><name> K </name><val> 0.01 </val></parm>
+<parm><name> K </name><val> 0.1 </val></parm>
 
 </variables>
 

@@ -1,0 +1,31 @@
+
+
+
+
+<groupbox>
+   <row> 26.5 </row>
+   <col> 63 </col>
+   <high> 12.4 </high>
+   <wide> 30 </wide>
+   <title> Light Intensity </title>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (H) </label>
+    <scale><min> 0 </min><max> 24 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Light.LuxActual </name>
+      <label>
+        Lux
+      </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 2 </max><inc> 1 </inc></scale>
+  </yaxis>
+</showgraph>
+</groupbox>

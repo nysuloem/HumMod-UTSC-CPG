@@ -24,6 +24,7 @@ By : University of Mississippi Medical Center
 <var><name> Protein </name><val> UNDEFINED </val></var>
 <var><name> Sulphate </name><val> UNDEFINED </val></var>
 <var><name> Urea </name><val> UNDEFINED </val></var>
+<var><name> Nitrate </name><val> UNDEFINED </val></var>
 <var><name> CantVoid </name><val> 0 </val></var>
 
 </variables>
@@ -54,6 +55,7 @@ By : University of Mississippi Medical Center
     <def><name> Protein </name><val> BladderProtein.[Protein(G/mL)] </val></def>
     <def><name> Sulphate </name><val> BladderSulphate.[SO4--(mEq/L)] </val></def>
     <def><name> Urea </name><val> BladderUrea.[Urea(mG/dL)] </val></def>
+      <def><name> Nitrate </name><val> BladderNitrate.[Nitrate(mMol/L)]  </val></def>
   </true>
   <false>
 <def><name> CantVoid </name><val>1</val></def>

@@ -319,26 +319,8 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
-  <name> Drugs-Nicotine </name>
-  <label> Nicotine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf> 
-<name> Drugs-Nicotine-Dosing </name>
-<label> Dosing </label>
-<parent> Drugs-Nicotine</parent>
-</leaf>
-
-<leaf>
-<name> Drugs-Nicotine-Kinetics </name>
-<label> Kinetics </label>
-<parent> Drugs-Nicotine</parent>
-</leaf>
-
-<branch>
   <name> Drugs-NODrug </name>
-  <label> NODrug </label>
+  <label> NO/Nitroglycerin </label>
   <parent> Drugs </parent>
 </branch>
 

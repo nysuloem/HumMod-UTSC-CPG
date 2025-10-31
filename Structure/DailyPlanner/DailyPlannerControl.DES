@@ -395,13 +395,16 @@ By : University of Mississippi Medical Center
 <block><name> FatigueSleep </name>
 
   <if>
-    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.01 </test>
+    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.1 </test>
     <true>
       <timer>
       <name> SleepTimer </name>
       <state> UP </state>
     </timer>  
     <def><name> HoursSleep </name><val> SleepTimer / 60 </val></def>
+    <def><name> DailyPlannerControl.Status </name>
+    <val> 0 </val>
+  </def>
     </true>
     <false>
       <call> StartRest </call>
@@ -429,7 +432,7 @@ By : University of Mississippi Medical Center
 <block><name> StartWork </name>
 
   <if>
-    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.01 </test>
+    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.1 </test>
     <true><def><name> Status.Activity </name><val> 5 </val></def></true>
     <false><def><name> Status.Activity </name><val> 1 </val></def></false>
   </if>

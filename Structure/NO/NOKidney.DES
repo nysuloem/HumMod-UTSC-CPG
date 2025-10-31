@@ -11,8 +11,8 @@ Schema : DES V1.0
 
 <variables>
 
-  <var><name> NitrateLevel </name><val> 0 </val></var>
-  <var><name> UrineLoss </name><val> 0 </val></var>
+  <var><name> NitrateLevel </name><val> 0 </val>/</var>
+<var><name> UrineLoss </name><val> 0 </val>/</var>
 
   <constant><name> K </name><val> 0.01 </val></constant>
 

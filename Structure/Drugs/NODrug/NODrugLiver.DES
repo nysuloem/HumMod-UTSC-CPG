@@ -1,21 +1,3 @@
-<!--
-NODrugLiver.DES - Defines liver metabolism of NO in HumMod
-
-Overview
-This file models the metabolism of Nitric Oxide (NO) in the liver, specifically how NO is processed from the portal vein into systemic circulation.
-
-1. Portal Vein Drug Concentration: Calculates NO levels in the portal vein, which is where blood from the digestive system enters the liver.
-2. Conversion to Different Units: Converts NO mass to different concentration units for calculations.
-3. Liver Metabolism Rate: Uses a constant rate (K = 0.75) to define how much NO is processed by the liver.
-
-How to Replicate for Another Drug
-1. Change `<name> NODrugLiver </name>` to `<name> NewDrugLiver </name>`.
-2. Adjust K (metabolism rate) to match the new drug’s liver metabolism properties.
-3. Modify PortalMass calculations to ensure correct mass transport.
-4. Reference this file in the main drug model (`NODrug.DES` or equivalent).
-
--->
-
 HumMod / FurosemideKidney
 
 Created : 05-Jun-06

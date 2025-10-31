@@ -65,6 +65,11 @@ Edited by CPG
 <testcase>
 
   <case>
+    <test> Skin-Flow.BloodFlow GT 300 </test>
+    <def><name> Number1 </name><val> 41 </val></def>
+  </case>
+
+  <case>
     <test> EthanolPool.[Ethanol] GT 0.15 </test>
     <def><name> Number1 </name><val> 29 </val></def>
   </case>

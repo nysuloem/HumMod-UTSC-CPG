@@ -11,23 +11,20 @@ By : University Of Mississippi Medical Center
 <variables>
 
 <var><name> Conductance </name></var>
-
 <var><name> BasicConductance </name></var>
 <parm><name> Multiplier </name><val> 1.0 </val></parm>
 <var><name> NominalConductance </name></var>
 <constant><name> Conductance(/G) </name><val> 0.00112 </val></constant>
-
 <var><name> A2Effect </name></var>
 <var><name> SympsEffect </name></var>
 <var><name> ADHEffect </name></var>
 <var><name> PO2Effect </name></var>
 <var><name> SympsDilateEffect </name></var>
 <var><name> LocalTempEffect </name></var>
+<var><name> AcetaldehydeEffect </name></var>
 <var><name> AerobicFraction </name></var>
-
 <var><name> O2Use </name></var>
 <var><name> [O2] </name></var>
-
 <var><name> BloodFlow </name></var>
 <var><name> PlasmaFlow </name></var>
 
@@ -103,6 +100,14 @@ By : University Of Mississippi Medical Center
   <point><x> 20.0 </x><y> 1.0 </y><slope> 0 </slope></point>
 </curve>
 
+<curve>
+  <name> AcetaldehydeEffect </name>
+  <point><x> 0.0 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 0.0002 </x><y> 1.2 </y><slope> 0.5 </slope></point>
+  <point><x> 0.0005 </x><y> 1.6 </y><slope> 0.0 </slope></point>
+  <point><x> 0.0010 </x><y> 2.0 </y><slope> 0 </slope></point>
+</curve> 
+
 </functions>
 
 <definitions>
@@ -157,6 +162,11 @@ By : University Of Mississippi Medical Center
 </def>
 
 <def>
+  <name> AcetaldehydeEffect </name>
+  <val> AcetaldehydeEffect [ Acetaldehyde.[BloodAcetaldehyde] ] </val>
+</def>
+
+<def>
   <name> SearchMax </name>
   <val> PO2Artys.Pressure </val>
 </def>
@@ -181,6 +191,7 @@ By : University Of Mississippi Medical Center
     * OtherTissue-Vasculature.Effect
     * SympsDilateEffect
     * LocalTempEffect
+    * AcetaldehydeEffect
   </val>
 </def>
 
