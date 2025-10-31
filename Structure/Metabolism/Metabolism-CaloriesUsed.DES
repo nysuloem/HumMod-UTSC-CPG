@@ -68,6 +68,7 @@ Schema : DES V1.0
     + LeftHeart-Metabolism.TotalCalsUsed
     + Liver-Metabolism.TotalCalsUsed
     + OtherTissue-Metabolism.TotalCalsUsed
+    + Uterus-Metabolism.TotalCalsUsed
     + RespiratoryMuscle-Metabolism.TotalCalsUsed
     + RightHeart-Metabolism.TotalCalsUsed
 
