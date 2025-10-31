@@ -28,7 +28,6 @@ By : University Of Mississippi Medical Center
 <definitions>
 
 <block><name> ScaleCals </name>
-
 <def>
   <name> InitialNormalCalsUsed </name>
   <val>
@@ -63,7 +62,7 @@ By : University Of Mississippi Medical Center
 
 <def>
   <name> O2Need </name>
-  <val> Metabolism-Tools.CalToO2 * TotalCalsUsed </val>
+  <val> Metabolism-Tools.CalToO2 * TotalCalsUsed      </val>
 </def>
 
 </block>

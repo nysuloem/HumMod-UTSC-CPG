@@ -26,7 +26,7 @@ Schema : 2005.0
   <curve>
     <name> USexOnFunction </name>
     <point><x> 0.0 </x><y> 0.0 </y><slope> 0 </slope></point>
-    <point><x> 2 </x><y> 1.0 </y><slope> 0 </slope></point>
+    <point><x> 1 </x><y> 1.0 </y><slope> 0 </slope></point>
   </curve>
 
 <curve>
@@ -59,16 +59,23 @@ Schema : 2005.0
 
 <definitions>
 <block><name> Calc </name>
-<if> 
+  <def><name> USex-Index </name><val> USexOnFunction [ Sex.Index ] </val> </def>
+
+<if>
   <test> Context-Sex.Index EQ 1 </test>
-  <true> <def><name> PhEffect </name><val> PhOnFunction [ Uterus-Ph.Ph ] </val></def> </true>
-  <false> <def><name> PhEffect </name><val> 0.0  </val></def> </false>
+
+    <true> <def><name> PhEffect </name><val> PhOnFunction [ Uterus-Ph.Ph ] </val></def>
+<def><name> ProteinEffect </name><val> ProteinOnFunction [ CellProtein.Mass(G) ]  </val></def>
+<def><name> FuelEffect </name><val> FuelOnFunction [ Uterus-Fuel.FractUseDelay ]  </val></def>
+<def><name> TemperatureEffect </name><val> TemperatureOnFunction [ HeatCore.Temp(C) ]  </val></def>
+ </true>
+  <false> <def><name> PhEffect </name><val> 0.0  </val></def>
+  <def><name> ProteinEffect </name><val> 0.0  </val></def>
+  <def><name> FuelEffect </name><val> 0.0  </val></def>
+  <def><name> TemperatureEffect </name><val> 0.0  </val></def>
+  </false>
 </if>
 
-<def><name> ProteinEffect </name><val> ProteinOnFunction [ CellProtein.Mass(G) ] </val></def>
-<def><name> FuelEffect </name><val> FuelOnFunction [ Uterus-Fuel.FractUseDelay ] </val></def>
-<def><name> TemperatureEffect </name><val> TemperatureOnFunction [ HeatCore.Temp(C) ] </val></def>
-<def><name> USex-Index </name><val> USexOnFunction [ Sex.Index ] </val> </def>
 
 <def>
   <name> Effect </name>
@@ -78,7 +85,7 @@ Schema : 2005.0
     * FuelEffect
     * TemperatureEffect
     * Uterus-Structure.Effect
-    * USex-Index
+    * Context-Sex.Index
   </val>
 </def>
 <!-- Adding index argument here to turn off the effect for males, I am pretty sure this should help MAY 1, 2025 -->
