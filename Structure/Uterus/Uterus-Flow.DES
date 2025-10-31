@@ -142,6 +142,7 @@ By : University Of Mississippi Medical Center
 <true> Level </true>
 <false> 
       BasicConductance
+          * SystemicArtys.NOEffect 
     * A2Effect
     * SympsEffect
     * PO2Effect
@@ -149,7 +150,7 @@ By : University Of Mississippi Medical Center
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
     * OtherTissue-Vasculature.Effect
-    * SystemicArtys.NOEffect 
+
     
 </false>
 
