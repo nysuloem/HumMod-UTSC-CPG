@@ -50,14 +50,14 @@ By : University of Mississippi Medical Center
 
 <showvalue>
    <row> 3.4 </row><col> 50.0 </col>
-   <name> Uterus-Lumen.UterusBloodHct </name>
+   <name> Uterus-Lumen.HctComposition </name>
    <format><decimal> 3 </decimal></format>
    <label> Hematocrit Portion </label>
 </showvalue>
 
 <showvalue>
    <row> 7.4 </row><col> 50 </col>
-   <name> Uterus-Lumen.UterusBloodH2O </name>
+   <name> Uterus-Lumen.H2OComposition </name>
    <format><decimal> 3 </decimal></format>
    <label> Plasma Portion </label>
 </showvalue>
