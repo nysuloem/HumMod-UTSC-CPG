@@ -59,9 +59,11 @@ By : University of Mississippi Medical Center
        RBCClearance.Rate
      + Hemorrhage.RBCRate
      + Pericardium-Hemorrhage.RBCFlow
+     + Uterus-Lumen.HctLoss
+
  </val>
 </def>
-
+ <!--     + Uterus-Menstruation.UterusRBCLeakedVol -->
 <def><name> Change </name><val> Gain - Loss </val></def>
 
 </block>

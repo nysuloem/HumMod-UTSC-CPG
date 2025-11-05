@@ -35,7 +35,7 @@ Schema : DES V1.0
 
     <def>
         <name> Rate </name> 
-        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow </val>
+        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow + ( 0.0125 * Endometrium.Thickness ) </val>
     </def>
 
     <def>

@@ -70,7 +70,7 @@ By : University of Mississippi Medical Center
    + Hemorrhage.PlasmaRate
    + Pericardium-Hemorrhage.PlasmaFlow
    + DialyzerActivity.UltrafiltrationRate
-   + Uterus-Menstruation.BloodLoss
+   + Uterus-Lumen.H2OLoss
   </val>
 </def>
 

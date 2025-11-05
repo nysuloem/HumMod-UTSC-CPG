@@ -17,6 +17,13 @@ Schema : DES V1.0
 <var><name> BleedRate </name></var>
 <var><name> UterusContraction </name></var>
 <var><name> PGEStimulation </name></var>
+<!-- These variables are for breaking down blood lost into components, Ideally we remove the uterine tissue from total volume lost -->
+<var><name> HctComposition </name><val> 0 </val></var>
+<var><name> H2OComposition </name><val> 0 </val></var>
+<var><name> EndometriumComp </name><val> 0 </val></var>
+
+<var><name> HctLoss</name><val> 0 </val></var>
+<var><name> H2OLoss </name><val> 0 </val></var>
 
 </variables>
 
@@ -61,7 +68,19 @@ Schema : DES V1.0
 </equations>
 
 <definitions> 
+<block><name> CalcComposition </name>
 
+
+<!-- Volumes -->
+  <def><name> EndometriumComp </name><val>  0.0125 * Endometrium.Thickness  </val></def>
+  <def><name> H2OComposition </name><val> Uterus-Menstruation.UterusBloodLeakedVol - EndometriumComp * BloodVol.PVCrit  </val></def>
+  <def><name> HctComposition </name><val> Uterus-Menstruation.UterusBloodLeakedVol - EndometriumComp * BloodVol.Hct(%)  </val></def>
+<!-- Rates -->
+
+<def><name> HctLoss</name><val> Uterus-Menstruation.Rate - EndometriumComp * BloodVol.Hct(%)  </val></def>
+<def><name> H2OLoss </name><val> Uterus-Menstruation.Rate - EndometriumComp * BloodVol.PVCrit  </val></def>
+
+</block>
 <block><name> Dervs </name>
 
   <def><name> Change </name>
@@ -69,7 +88,7 @@ Schema : DES V1.0
   </def>
 
   <def><name> BleedRate </name>
-    <val> PostureEnergy.MenstrualPostureFlowEffect </val>
+    <val> PostureEnergy.MenstrualPostureFlowEffect  </val>
   </def>
 
   <def><name> PGEStimulation </name>
@@ -83,6 +102,8 @@ Schema : DES V1.0
   <def><name> MenstrualBloodLoss </name>
     <val> BleedRate * UterusContraction *  Uterus-Menstruation.BloodLoss </val>
   </def>
+
+
 
 </block>
 
