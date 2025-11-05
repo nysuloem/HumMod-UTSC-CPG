@@ -33,10 +33,12 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-    <def>
-        <name> Rate </name> 
-        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow + ( 0.0125 * Endometrium.Thickness ) </val>
-    </def>
+
+    <conditional><name> Rate </name>
+    <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) </test>
+    <true> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow + ( 0.00125 * Endometrium.Thickness ) </true>
+    <false> 0 </false>
+    </conditional>
 
     <def>
         <name> BloodLoss </name><val> Sex.IsFemale * Rate </val>

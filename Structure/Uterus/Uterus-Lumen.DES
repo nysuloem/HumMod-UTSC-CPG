@@ -72,7 +72,7 @@ Schema : DES V1.0
 
 
 <!-- Volumes -->
-  <def><name> EndometriumComp </name><val>  0.0125 * Endometrium.Thickness  </val></def>
+  <def><name> EndometriumComp </name><val>  0.00125 * Endometrium.Thickness  </val></def>
   <def><name> H2OComposition </name><val> Uterus-Menstruation.UterusBloodLeakedVol - EndometriumComp * BloodVol.PVCrit  </val></def>
   <def><name> HctComposition </name><val> Uterus-Menstruation.UterusBloodLeakedVol - EndometriumComp * BloodVol.Hct(%)  </val></def>
 <!-- Rates -->
