@@ -19,7 +19,7 @@ By : University Of Mississippi Medical Center
 <var><name> OtherTissueFlow </name></var>
 <var><name> SkeletalMuscleFlow </name></var>
 <var><name> SkinFlow </name></var>
-
+<var><name> UterusPressure </name><val> 0 </val></var>
 </variables>
 
 <definitions>
@@ -60,17 +60,17 @@ By : University Of Mississippi Medical Center
   <name> SkinFlow </name>
   <val> VenaeCava.InferiorFraction * Skin-Flow.BloodFlow </val>
 </def>
-
+<def><name> UterusPressure </name><val> 1 </val></def> <!-- This is where pregnant uterus will impede blood flow based on position -->
 <def>
   <name> TotalFlow </name>
   <val> 
-      BoneFlow
+    ( BoneFlow
     + FatFlow
     + HepaticVeinFlow
     + KidneyFlow
     + OtherTissueFlow
     + SkeletalMuscleFlow
-    + SkinFlow
+    + SkinFlow ) * UterusPressure
   </val>
 </def>
 

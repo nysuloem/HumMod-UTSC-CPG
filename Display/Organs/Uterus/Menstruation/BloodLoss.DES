@@ -48,6 +48,27 @@ By : University of Mississippi Medical Center
    <label> Duration of Last Menstruation (days)  </label>
 </showvalue>
 
+<showvalue>
+   <row> 3.4 </row><col> 50.0 </col>
+   <name> Uterus-Lumen.UterusBloodHct </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Hematocrit Portion </label>
+</showvalue>
+
+<showvalue>
+   <row> 7.4 </row><col> 50 </col>
+   <name> Uterus-Lumen.UterusBloodH2O </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Plasma Portion </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.4 </row><col> 50 </col>
+   <name> Uterus-Lumen.EndometriumComp </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Endometrial Tissue </label>
+</showvalue>
+
 </groupbox>
 
 End
