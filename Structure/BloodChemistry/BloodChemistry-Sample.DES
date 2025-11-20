@@ -51,7 +51,7 @@ By : University Of Mississippi Medical Center
 <var><name> AllButProtein </name><val> UNDEFINED </val></var>
 <var><name> HgbA1C </name><val> UNDEFINED </val></var>
 <var><name> [Ethanol] </name><val> UNDEFINED </val></var>
-
+<var><name> [hCG] </name><val> UNDEFINED </val></var>
 </variables>
 
 <definitions>
@@ -99,7 +99,7 @@ By : University Of Mississippi Medical Center
 <def><name> AllButProtein </name><val> BloodIons.AnionsLessProtein </val></def>
 <def><name> HgbA1C </name><val> HgbA1C.A1C </val></def>
 <def><name> [Ethanol] </name><val> EthanolPool.[Ethanol] </val></def>
-
+<def><name> [hCG] </name><val> hCG.[Conc(IU/L)] </val></def>
 </block>
 
 </definitions>

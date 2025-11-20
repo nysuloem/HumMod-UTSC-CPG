@@ -1,7 +1,7 @@
 <script>
 <launch>
-  <solver> Model Solver.EXE </solver>
-  <model> HumMod.DES </model>
+	<solver>  C:\GitHub\small-stoch-model\Model Solver.EXE </solver>
+	<model> C:\GitHub\small-stoch-model\HumMod.DES </model>
 </launch>
 
 <?include varroster.Script ?>

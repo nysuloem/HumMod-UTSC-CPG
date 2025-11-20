@@ -9,7 +9,7 @@ By : University Of Mississippi Medical Center
 <groupbox>
    <row> 7.0 </row>
    <col> 1.0 </col>
-   <high> 28.4 </high>
+   <high> 30.0 </high>
    <wide> 30.0 </wide>
 
 <structurename> BloodChemistry-Sample </structurename>
@@ -119,6 +119,13 @@ By : University Of Mississippi Medical Center
   <label> Hgb A1C (%) </label>
 </showvalue>
 
+<showvalue>
+  <row> 17.6 </row><col> 1.0 </col>
+  <name> [hCG] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> HcG (IU/L) </label>
+</showvalue>
+
 <infobutton>
   <row> 1.2 </row>
   <col> 26.0 </col>
@@ -146,63 +153,63 @@ By : University Of Mississippi Medical Center
 </infobutton>
 
 <showvalue>
-  <row> 18.0 </row><col> 1.0 </col>
+  <row> 19.0 </row><col> 1.0 </col>
   <name> [Angiotensin] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Angiotensin] </label>
 </showvalue>
 
 <showvalue>
-  <row> 19.0 </row><col> 1.0 </col>
+  <row> 20.0 </row><col> 1.0 </col>
   <name> PlasmaReninActiviy </name>
   <format><decimal> 1 </decimal></format>
   <label> Plasma Renin Activity </label>
 </showvalue>
 
 <showvalue>
-  <row> 20.0 </row><col> 1.0 </col>
+  <row> 21.0 </row><col> 1.0 </col>
   <name> [Aldosterone] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Aldosterone] </label>
 </showvalue>
 
 <showvalue>
-  <row> 21.0 </row><col> 1.0 </col>
+  <row> 22.0 </row><col> 1.0 </col>
   <name> [AntidiureticHormone] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Antidiuretic Hormone] </label>
 </showvalue>
 
 <showvalue>
-  <row> 22.0 </row><col> 1.0 </col>
+  <row> 23.0 </row><col> 1.0 </col>
   <name> [ANP] </name>
   <format><decimal> 1 </decimal></format>
   <label> [ANP] </label>
 </showvalue>
 
 <showvalue>
-  <row> 23.4 </row><col> 1.0 </col>
+  <row> 24.4 </row><col> 1.0 </col>
   <name> [TotalT4/T3] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Total T4/T3] </label>
 </showvalue>
 
 <showvalue>
-  <row> 24.4 </row><col> 1.0 </col>
+  <row> 25.4 </row><col> 1.0 </col>
   <name> [TSH] </name>
   <format><decimal> 1 </decimal></format>
   <label> [TSH] </label>
 </showvalue>
 
 <showvalue>
-  <row> 25.8 </row><col> 1.0 </col>
+  <row> 26.8 </row><col> 1.0 </col>
   <name> [Norepineshrine] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Norepinephrine] </label>
 </showvalue>
 
 <showvalue>
-  <row> 26.8 </row><col> 1.0 </col>
+  <row> 27.8 </row><col> 1.0 </col>
   <name> [Epinephrine] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Epinephrine] </label>
