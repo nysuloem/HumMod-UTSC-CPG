@@ -76,11 +76,11 @@ By: Jason Brown
 
 <if><test> Orgasm GE 30 </test> <!-- Once the patient achieves orgasm, they are done having sexual intercourse and return to rest -->
   <true>
-    <def><name> Exercise-Control.Request </name><val> 0 </val></def>
+    <!--<def><name> Exercise-Control.Request </name><val> 0 </val></def>
     <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
     <call> Exercise-Control.UpdateStatus </call>
-    <call> Status.Exertion </call>
-    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
+    <call> Status.Exertion </call>-->
+    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>-
     <timer> 
       <name> Orgasm </name>
       <val> 0 </val>

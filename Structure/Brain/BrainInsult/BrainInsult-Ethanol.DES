@@ -18,8 +18,8 @@ By : Tiffany Bishun
  
 <curve>
   <name> Intoxication </name>
-  <point><x> 170 </x><y> 0.0 </y><slope> 0 </slope></point>
-  <point><x> 230 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 0 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 0.05 </x><y> 0.8 </y><slope> 0 </slope></point>
 </curve>
 
 </functions>
