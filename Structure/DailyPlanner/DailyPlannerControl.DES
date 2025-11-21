@@ -402,8 +402,7 @@ By : University of Mississippi Medical Center
       <state> UP </state>
     </timer>  
     <def><name> HoursSleep </name><val> SleepTimer / 60 </val></def>
-    <def><name> DailyPlannerControl.Status </name>
-    <val> 0 </val>
+    <def><name> DailyPlannerControl.Status </name><val> 0 </val>
   </def>
     </true>
     <false>

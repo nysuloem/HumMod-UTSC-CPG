@@ -11,18 +11,13 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> Rate </name>
-</var>
-
-<constant>
-  <name> K </name>
-  <val> 0.000176 </val>
-</constant>
+<var><name> Rate </name></var> <!-- We think the rate is mL/min -->
+<constant><name> K </name><val> 0.000176 </val></constant>
 
 </variables>
 
 <definitions>
+
 <block><name> Dervs </name>
 
 <def>
@@ -33,6 +28,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

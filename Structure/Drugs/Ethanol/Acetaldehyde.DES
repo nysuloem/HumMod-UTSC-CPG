@@ -33,7 +33,7 @@ Schema : DES V1.0
   <errorlim> 1.0 </errorlim>
 </diffeq>
 
-<diffeq> <!-- This calculates the blood mass -->
+<diffeq>
   <name> MassBlood </name>
   <integralname> MassBlood </integralname>
   <initialval> 0.0 </initialval>
@@ -41,17 +41,17 @@ Schema : DES V1.0
   <errorlim> 1.0 </errorlim>
 </diffeq>
 
-<!-- Mass blood - Implict equation: variable is part of math - ASK TERRY 
+<!-- Mass blood - Implict equation: variable is part of math - ASK TERRY -->
 
-<impliciteq>
-  <name> PO2 </name>
-  <startname> PO2 </startname>
-  <initialval> 40.0 </initialval>
-  <endname> PO2End </endname>
+<!--<impliciteq>
+  <name> MassBlood </name>
+  <startname> MassBlood </startname>
+  <initialval> 0 </initialval>
+  <endname> MassBlood </endname>
   <errorlim> 0.40 </errorlim>
   <searchmin> 0.0 </searchmin>
   <searchmaxname> SearchMax </searchmaxname>
-</impliciteq> -->
+</impliciteq>-->
 
 </equations>
 

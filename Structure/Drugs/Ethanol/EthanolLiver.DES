@@ -55,12 +55,6 @@ Schema : DES V1.0
   <!-- ALDH_K should vary with ethnicity -->
 
 <def>
-  <name> GainAcetaldehyde </name> 
-  <val> ALCDH_K * EthanolPool.[Ethanol] * EthanolGILumen.Loss / SplanchnicVeins.Vol * 1000 * HepaticVein.PlasmaFlow </val> <!-- Create max for Loss to ALDH -->
-  <!-- Should also consider liver MR? -->
-</def>
-
-<def>
   <name> PoolLoss </name>
   <val> ALCDH_K * EthanolPool.[Ethanol] </val> 
 </def>
@@ -71,8 +65,14 @@ Schema : DES V1.0
 </def>
 
 <def>
+  <name> GainAcetaldehyde </name> 
+  <val> PoolLoss + FirstPassLoss </val> <!-- Create max for Loss to ALDH -->
+  <!-- Should also consider liver MR? -->
+</def>
+
+<def>
   <name> LossAcetaldehyde </name> 
-  <val> ALDH_K * MassAcetaldehyde  </val> <!-- Create max for Loss to Acetaldehyde -->
+  <val> ALDH_K * Acetaldehyde.[Acetaldehyde] </val> <!-- Create max for Loss to Acetaldehyde -->
   <!-- Should also consider the liver MR? -->
 </def>
 
