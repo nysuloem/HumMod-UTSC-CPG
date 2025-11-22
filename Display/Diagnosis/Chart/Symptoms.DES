@@ -93,4 +93,10 @@ By: Jason Brown
   </format>
 </showvalue>
 
+<showvalue>
+  <row> 14 </row><col>1</col>
+  <name> Status.Sleeping </name>
+  <label> StatusSleep </label>
+</showvalue>
+
 End

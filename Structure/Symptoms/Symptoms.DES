@@ -155,13 +155,13 @@ Edited by CPG
   </case>
 
   <case>
-    <test> Status.Sleeping EQ 1 </test>
-    <def><name>Number2</name><val> 25 </val></def>
+    <test> Status.Sleeping EQ 5 </test>
+    <def><name> Number2 </name><val> 37 </val></def>
   </case>
 
   <case>
-    <test> Status.Sleeping EQ 2 </test>
-    <def><name> Number2 </name><val> 37 </val></def>
+    <test> Status.Sleeping EQ 1 </test>
+    <def><name>Number2</name><val> 25 </val></def>
   </case>
 
   <case>
