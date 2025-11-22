@@ -98,6 +98,11 @@ By : University Of Mississippi Medical Center
 </case>
 
 <case>
+  <test> Activity EQ 6 </test>
+  <def><name> Sleeping </name><val> 5 </val></def>
+</case>
+
+<case>
 <test> Activity EQ 0 </test>
 <def><name> Sleeping </name><val> 1 </val></def>
 </case>

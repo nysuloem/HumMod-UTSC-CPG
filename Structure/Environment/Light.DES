@@ -11,7 +11,7 @@ Schema : DES V1.0
 
 <variables>
 
-<parm><name> Lux </name><val> 10000 </val></parm>
+<parm><name> Lux </name><val> 100 </val></parm>
 <var><name> LuxActual </name></var>
 <parm><name> Intensity </name><val> 0 </val></parm>
 <var><name> RadiansPerDay </name></var>

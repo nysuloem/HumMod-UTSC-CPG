@@ -12,7 +12,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Rate </name></var> <!-- We think the rate is mL/min -->
-<constant><name> K </name><val> 0.00158 </val></constant> <!-- The original was like WAY lower, not sure why -->
+<constant><name> K </name><val> 0.000158 </val></constant> <!-- The original was like WAY lower, not sure why -->
 
 </variables>
 

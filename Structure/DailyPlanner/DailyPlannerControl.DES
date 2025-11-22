@@ -40,8 +40,6 @@ By : University of Mississippi Medical Center
 <constant><name> BEDREST </name><val> 0 </val></constant>
 <constant><name> NORMAL </name><val> 1 </val></constant>
 
-<var><name> Melatonin </name><val> 10 </val></var> <!-- This is just a placeholder variable until the melatonin stuff gets completed -->
-
 </variables>
 
 <definitions>
@@ -378,16 +376,11 @@ By : University of Mississippi Medical Center
     </true>
   </if>
 
+  <def><name> Status.Sleeping </name><val> 1 </val></def>
   <def><name> Status.Activity </name><val> 0 </val></def>
   <def><name> Status.Exertion </name><val> 0 </val></def>
-
-  <def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
-  </def>
-
+  <def><name> PostureControl.Request </name><val> PostureControl.LYING </val></def>
   <call> PostureControl.RequestChange </call> 
-
   <def><name> Status.Nutrition </name><val> 1 </val></def>
 
 </block>
@@ -398,21 +391,29 @@ By : University of Mississippi Medical Center
     <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.1 </test>
     <true>
       <timer>
-      <name> SleepTimer </name>
-      <state> UP </state>
-    </timer>  
-    <def><name> HoursSleep </name><val> SleepTimer / 60 </val></def>
-    <def><name> DailyPlannerControl.Status </name><val> 0 </val>
-  </def>
+        <name> SleepTimer </name>
+        <state> UP </state>
+      </timer>  
+      <def><name> HoursSleep </name><val> SleepTimer / 60 </val></def>
+      <def><name> Status.Sleeping </name><val> 1 </val></def>
+      <def><name> Status.Activity </name><val> 0 </val></def>
+      <def><name> Status.Exertion </name><val> 0 </val></def>
+      <def><name> PostureControl.Request </name><val> PostureControl.LYING </val></def>
+      <call> PostureControl.RequestChange </call>
+      <def><name> Status.Nutrition </name><val> 1 </val></def>
     </true>
     <false>
-      <call> StartRest </call>
-      <def><name> Status.Activity </name><val> 4 </val></def>
+      <def><name> Status.Sleeping </name><val> 5 </val></def>
+      <def><name> Status.Activity </name><val> 6 </val></def>
+      <!--<def><name> Status.Activity </name><val> 1 </val></def>-->
+      <def><name> Status.Exertion </name><val> 0 </val></def>
+      <def><name> PostureControl.Request </name><val> PostureControl.LYING </val></def>
+      <call> PostureControl.RequestChange </call>
+      <def><name> Status.Nutrition </name><val> 1 </val></def>
     </false>
   </if>
 
   </block>
-
 
 <!-- STOP SLEEP -->
 
@@ -431,18 +432,15 @@ By : University of Mississippi Medical Center
 <block><name> StartWork </name>
 
   <if>
-    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.1 </test>
+    <test> MelatoninPool.[Melatonin(nG/mL)] GT 0.05 </test>
     <true><def><name> Status.Activity </name><val> 5 </val></def></true>
-    <false><def><name> Status.Activity </name><val> 1 </val></def></false>
+    <false><def><name> Status.Activity </name><val> 1 </val></def></false> <!-- A value of 1 means awake -->
   </if>
 
   <timer><name> WorkTimer </name><val> WorkDuration </val><state> DOWN </state></timer>
-
   <def><name> Status.Exertion </name><val> 3 </val></def>
   <def><name> PostureControl.Request </name><val> PostureControl.STANDING </val></def>
-
-  <call> PostureControl.RequestChange </call> 
-
+  <call> PostureControl.RequestChange </call>
   <def><name> Status.Nutrition </name><val> 1 </val></def>
   
 </block>
@@ -463,7 +461,7 @@ By : University of Mississippi Medical Center
 
   <def>
      <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
+     <val> PostureControl.STANDING </val>
   </def>
   <call> PostureControl.RequestChange </call> 
 
@@ -473,44 +471,40 @@ By : University of Mississippi Medical Center
 <!-- STOP AEROBICS -->
 
 <block><name> StopAerobics </name>
+
   <call> Resting </call>
+
 </block>
 
 <!-- START MEALS -->
 
 <block><name> StartMeals </name>
+
   <timer><name> MealsTimer </name><val> MealsDuration </val><state> DOWN </state></timer>
-
   <def><name> Status.Activity </name><val> 1 </val></def>
-  <def><name> Status.Exertion </name><val> 0 </val></def>
+  <def><name> Status.Exertion </name><val> 0 </val></def> <!-- A zero values means resting -->
+  <def><name> PostureControl.Request </name><val> PostureControl.SITTING </val></def>
+  <call> PostureControl.RequestChange </call>
+  <def><name> Status.Nutrition </name><val> 0 </val></def> <!-- A zero value means eating -->
 
-  <def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
-  </def>
-  <call> PostureControl.RequestChange </call> 
-
-  <def><name> Status.Nutrition </name><val> 0 </val></def>
 </block>
 
 <!-- STOP MEALS -->
 
 <block><name> StopMeals </name>
+
   <call> Resting </call>
+
 </block>
 
 <!-- START RESTING -->
 
 <block><name> Resting </name>
+
   <def><name> Status.Activity </name><val> 1 </val></def>
   <def><name> Status.Exertion </name><val> 0 </val></def>
-
-  <def>
-     <name> PostureControl.Request </name>
-     <val> PostureControl.LYING </val>
-  </def>
-  <call> PostureControl.RequestChange </call> 
-
+  <def><name> PostureControl.Request </name><val> PostureControl.LYING </val></def>
+  <call> PostureControl.RequestChange </call>
   <def><name> Status.Nutrition </name><val> 1 </val></def>
 
 </block>
