@@ -37,7 +37,8 @@ Schema : DES V1.0
 <?include LightEffect.DES ?>
 <?include Clearance.DES ?>
 <?include Cycle.DES ?>
-<?include Light.DES ?>  
+<?include Light.DES ?> 
+<?include Age.DES ?> 
 
 </panel>
 
