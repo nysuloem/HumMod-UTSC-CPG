@@ -53,7 +53,7 @@
 
 <block><name> Calc </name>
 
-<def><name> ImplantationTime </name><val> (Fetus.PregnancyTime - 8640 ) MAX 0 </val></def>
+<def><name> ImplantationTime </name><val> ( Fetus.PregnancyTime - 8640 ) MAX 0 </val></def>
 
 <if>
   <test> ( Progesterone.[Conc(nG/mL)] GT 6 ) AND ( ImplantationTime GT 0 ) </test>
