@@ -13,15 +13,15 @@ Schema : DES V1.0
 
 <var><name> Temp(F) </name></var>
 <var><name> Temp(C) </name></var>
-<var><name> Temp(K) </name><val> 310 </val></var>
+<var><name> Temp(K) </name></var>
 
 <var><name> Flux </name></var>
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
 
-<parm><name> InitialTemp(F) </name><val> 98.6 </val></parm>
+<parm><name> InitialTemp(C) </name><val> 36.7 </val></parm>
+<var><name> InitialTemp(K) </name><val> 309.85 </val></var>
 
-<var><name> InitialTemp(K) </name></var>
 <var><name> InitialMass </name></var>
 
 </variables>
@@ -42,11 +42,6 @@ Schema : DES V1.0
 <block><name> Initialize </name>
 
 <def>
-  <name> InitialTemp(K) </name>
-  <val> ( 5 / 9 ) * ( InitialTemp(F) - 32.0 ) + 273.15 </val>
-</def>
-
-<def>
   <name> InitialMass </name>
   <val>
        Weight.InitialCore
@@ -65,9 +60,30 @@ Schema : DES V1.0
   <val> InitialTemp(K) </val>
 </def>
 
+<def>
+  <name> Temp(C) </name>
+  <val> InitialTemp(C) </val>
+</def>
+
 </block>
 
 <block><name> CalcTemp </name>
+
+   <onjustchanged><name> InitialTemp(C) </name>
+    <def><name> Temp(C) </name>
+      <val> InitialTemp(C) </val>
+    </def>
+    <def><name> Temp(K) </name>
+      <val> Temp(C) + 273.15 </val>
+    </def>
+    <def><name> Mass </name>
+    <val>
+       Weight.Core
+     * SpecificHeat.Tissue(kCal/G)
+     * Temp(K)
+  </val>
+  </def>
+  </onjustchanged>
 
 <def>
   <name> Temp(K) </name>

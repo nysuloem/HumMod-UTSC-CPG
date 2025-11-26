@@ -42,6 +42,19 @@ By : University Of Mississippi Medical Center
   </yaxis>
 </showgraph>
 
+<repeatlist>
+  <name> CoreTemp </name>
+  <firstval> 20 </firstval>
+  <repeat><reps> 250 </reps><stepsize> 0.1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 12 </row><col> 1 </col>
+  <name> InitialTemp(C) </name>
+  <listname> CoreTemp </listname>
+  <label> Core Temp Setpoint </label>
+</slidebar>
+
 </groupbox>
 
 End
