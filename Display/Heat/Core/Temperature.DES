@@ -43,16 +43,15 @@ By : University Of Mississippi Medical Center
 </showgraph>
 
 <repeatlist>
-  <name> CoreTemp </name>
-  <firstval> 20 </firstval>
-  <repeat><reps> 250 </reps><stepsize> 0.1 </stepsize></repeat>
+  <name> FeverLevel </name>
+  <repeat><reps> 2 </reps><stepsize> 1 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
   <row> 12 </row><col> 1 </col>
-  <name> InitialTemp(C) </name>
-  <listname> CoreTemp </listname>
-  <label> Core Temp Setpoint </label>
+  <name> FeverLevel </name>
+  <listname> FeverLevel </listname>
+  <label> Fever Level </label>
 </slidebar>
 
 </groupbox>

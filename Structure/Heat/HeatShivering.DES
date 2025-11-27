@@ -12,6 +12,7 @@ By : University Of Mississippi Medical Center
 
 <var><name> Cals </name></var>
 <var><name> NerveEffect </name></var>
+<var><name> FeverEffect </name></var>
 
 <var><name> SkeletalCals </name></var>
 <var><name> RespiratoryCals </name></var>
@@ -29,6 +30,13 @@ By : University Of Mississippi Medical Center
   <point><x> 4.0 </x><y> 5000.0 </y><slope> 0 </slope></point>
 </curve>
 
+<curve>
+  <name> FeverEffect </name>
+  <point><x> 0.0 </x><y>  1 </y><slope> 0 </slope></point>
+  <point><x> 1.0 </x><y> 1.5 </y><slope> 0 </slope></point>
+  <point><x> 2.0 </x><y> 2 </y><slope> 0 </slope></point>
+</curve>
+
 </functions>
 
 <definitions>
@@ -40,11 +48,17 @@ By : University Of Mississippi Medical Center
 </def>
 
 <def>
+  <name> FeverEffect </name>
+  <val> FeverEffect [ HeatCore.FeverLevel ] </val>
+</def>
+
+<def>
   <name> SkeletalCals </name>
   <val>
        NerveEffect
      * SkeletalFraction
      * SkeletalMuscle-Structure.Effect
+     * FeverEffect
   </val>
 </def>
 

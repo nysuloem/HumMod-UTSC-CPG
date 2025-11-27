@@ -19,12 +19,27 @@ Schema : DES V1.0
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
 
-<parm><name> InitialTemp(C) </name><val> 36.7 </val></parm>
+<var><name> InitialTemp(C) </name><val> 36.7 </val></var>
 <var><name> InitialTemp(K) </name><val> 309.85 </val></var>
 
 <var><name> InitialMass </name></var>
 
+<parm><name> FeverLevel </name><val> 0 </val></parm>
+
+<var><name> FeverEffect </name></var>
+
 </variables>
+
+<functions>
+
+  <curve>
+  <name> FeverEffect </name>
+  <point><x>  0.0 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 1.0 </x><y> 0.4 </y><slope> 0 </slope></point>
+  <point><x> 2.0 </x><y> 0.29 </y><slope> 0 </slope></point>
+  </curve>
+
+</functions>
 
 <equations>
 
@@ -69,22 +84,6 @@ Schema : DES V1.0
 
 <block><name> CalcTemp </name>
 
-   <onjustchanged><name> InitialTemp(C) </name>
-    <def><name> Temp(C) </name>
-      <val> InitialTemp(C) </val>
-    </def>
-    <def><name> Temp(K) </name>
-      <val> Temp(C) + 273.15 </val>
-    </def>
-    <def><name> Mass </name>
-    <val>
-       Weight.Core
-     * SpecificHeat.Tissue(kCal/G)
-     * Temp(K)
-  </val>
-  </def>
-  </onjustchanged>
-
 <def>
   <name> Temp(K) </name>
   <val> Mass / ( Weight.Core(kG) * SpecificHeat.Tissue ) </val>
@@ -104,12 +103,17 @@ Schema : DES V1.0
 
 <block><name> Flux </name>
 
+  <def><name> FeverEffect </name>
+  <val> FeverEffect [ HeatCore.FeverLevel ] </val>
+  </def>
+
 <def>
   <name> Flux </name>
   <val>
     ( Skin-Flow.BloodFlow / 1000.0 + 0.045 )
     * ( HeatCore.Temp(K) - HeatSkin.Temp(K) )
     * SpecificHeat.Blood
+    * FeverEffect
   </val>
 </def>
 
