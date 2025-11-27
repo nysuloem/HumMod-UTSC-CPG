@@ -1,0 +1,4 @@
+# Treat .DES files as XML for GitHub language stats
+*.DES linguist-language=XML
+*.des linguist-language=XML
+HumMod.DES linguist-language=XML
