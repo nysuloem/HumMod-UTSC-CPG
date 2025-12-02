@@ -44,9 +44,9 @@ Schema : DES V1.0
 
 <showvalue>
    <row> 9.8 </row><col> 1.0 </col>
-   <name> LipidDeposits.Mass </name>
+   <name> Light.LuxActual </name>
    <format><decimal> 1 </decimal></format>
-   <label> Lipid Mass </label>
+   <label> Lux </label>
 </showvalue>
 
 <infobutton>
@@ -54,7 +54,7 @@ Schema : DES V1.0
   <col> 26.0 </col>
 
   <line> Melatonin secretion is proportional to the </line>
-  <line> size of the lipid deposits. </line>
+  <line> intensity of light. </line>
 </infobutton>
 
 </groupbox>

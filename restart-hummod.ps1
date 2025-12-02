@@ -1,5 +1,5 @@
 # restart-hummod.ps1
-$humModPath = "C:\Users\Shafin Shah\HumMod-UTSC-CPG-1\HumMod.EXE"
+$humModPath = "C:\Users\Shafin\HumMod-UTSC-CPG\HumMod.EXE"
 
 # Kill existing HumMod instance (if running)
 Get-Process "HumMod" -ErrorAction SilentlyContinue | Stop-Process
