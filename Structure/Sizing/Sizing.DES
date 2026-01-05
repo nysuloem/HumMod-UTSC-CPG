@@ -138,10 +138,10 @@ By : University of Mississippi Medical Center
 <if><test> System.X GT System.InitialX </test>
 <true> <exitblock/> </true>
 </if>
-
+<!-- The Calc blocks contain all the Init blocks to converge them into the main context math block -->
   <call> Sizing-Pressures.Calc </call>
   <call> Sizing-OrganMass.Calc </call>
-
+<!-- think of these as partitions of body masses, the composition structures reak down 'othertissues' into water and nonwater portions with some specialized -->
   <call> Sizing-Composition-Bone.Calc </call>
   <call> Sizing-Composition-Brain.Calc </call>
   <call> Sizing-Composition-Fat.Calc </call>

@@ -13,7 +13,7 @@ By : University Of Mississippi Medical Center
    <wide> 30.0 </wide>
 
 <structurename> BloodChemistry-Sample </structurename>
-
+<!-- The action button is equivalent of making a 'call' -->
 <actionbutton>
    <row> 1.4 </row><col> 1.0 </col>
    <blockname> GetSample </blockname>
