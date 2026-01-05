@@ -12,7 +12,7 @@ By: Jason Brown UTSC
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 17 </high>
+   <high> 18 </high>
    <wide> 40 </wide>
    <title> Sexual Activity </title>
 
@@ -60,6 +60,12 @@ By: Jason Brown UTSC
   <row> 15.4 </row><col> 1 </col>
   <name> SexualIntercourse.Attempt </name>
   <label> Attempt Timer </label>
+</showvalue>
+
+<showvalue>
+  <row> 16.4 </row><col> 1 </col>
+  <name> SexualIntercourse.SpermTimer </name>
+  <label> Sperm Timer </label>
 </showvalue>
 
 <maplist>
@@ -132,6 +138,12 @@ By: Jason Brown UTSC
   <row> 4.0 </row><col> 1 </col>
   <name> SexualIntercourse.FailedSex </name>
   <label> Times Failed to Erection </label>
+</showvalue>
+
+<showvalue>
+  <row> 5.5 </row><col> 1 </col>
+  <name> SexualIntercourse.TotalSex </name>
+  <label> Total Number of Sexual Encounters </label>
 </showvalue>
 
 <infobutton>
