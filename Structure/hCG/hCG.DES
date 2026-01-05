@@ -7,30 +7,31 @@ Copyright : 2008-2010
 By : University of Mississippi Medical Center
 Schema : DES V1.0
 
+
+
 <structure><name> hCG </name>
 
 <variables>
 
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
-<var> <name> Placenta-hCG-Secretion </name> <val> 0.0 </val></var>
+
+<!-- <var><name> Loss </name></var> -->
+<var> <name> Placenta-hCG-Secretion </name> <val> 50.0 </val></var>
 <var><name> Secretion </name></var>
-<var><name> Degradation </name></var>
+<!-- <var><name> Degradation </name></var> -->
 
-<parm><name> TargetConcFemale </name><val> 0.5 </val></parm>
-<parm><name> TargetConcMale </name><val> 0.1 </val></parm>
-
-<var><name> TargetConc </name></var>
-<var><name> InitialMass </name></var>
 
 <var><name> [Conc(IU/L)] </name></var>
+<var> <name> PregnanthCG </name> <val> 0 </val></var>
 
 <parm><name> PumpSwitch </name><val> TRUE </val></parm>
 <parm><name> PumpSetting </name><val> 0.0 </val></parm>
 
-<parm><name> K </name><val> 0.0009 </val></parm>
+<parm><name> K </name><val> 0.00008 </val></parm>
+<var><name> UrineLoss </name><val> 0 </val></var>
 
-
+<var><name> TestOutcome </name></var>
 
 </variables>
 
@@ -39,6 +40,7 @@ Schema : DES V1.0
 <diffeq>
   <name> Mass </name>
   <integralname> Mass </integralname>
+  <initialval> 0 </initialval>
   <dervname> Change </dervname>
   <errorlim> 1.0 </errorlim>
 </diffeq>
@@ -49,45 +51,59 @@ Schema : DES V1.0
 
 <block><name> Init </name>
 
-<conditional><name> TargetConc </name>
+<def><name> PregnanthCG </name> <val> Pregnancy.AnnouncePregnancy </val></def>
+
+<!-- <conditional><name> TargetConc </name>
   <test> Sex.IsFemale </test>
   <true> TargetConcFemale </true>
   <false> TargetConcMale </false>
-</conditional>
-
-<def><name> InitialMass </name><val> TargetConc * ECFV.InitialVol(L) </val></def>
-<def><name> Mass </name><val> InitialMass </val></def>
+</conditional> -->
 
 </block>
 
-
-
 <block><name> Conc </name>
-  <def><name> [Conc(IU/L)] </name><val> Mass / ECFV.Vol(L) </val></def>
+  
+<def><name> [Conc(IU/L)] </name><val> ( Mass / ECFV.Vol(L) ) </val></def>
+
 </block>
 
 <block><name> Dervs </name>
 
-
 <if><test> Pregnancy.FertilizationTime EQ UNDEFINED </test>
   <true>
-
     <def><name> Secretion </name><val> 0.009 </val></def>
-
   </true>
+
   <false>
-    <def><name> Secretion </name><val> 0.009 + Placenta-hCG-Secretion </val></def>
+    <def><name> Secretion </name><val> 0.009 + Placenta-hCG-Secretion </val></def> 
   </false>
-</if>
+  </if>
 
+  <def>
+    <name> UrineLoss </name>
+    <val>
+      K
+      * [Conc(IU/L)]
+      *  (    ( 0.5 * RightKidney-NephronCount.Filtering(xNormal) * RightKidney-Function.Effect ) 
+      + ( 0.5 * LeftKidney-NephronCount.Filtering(xNormal) * LeftKidney-Function.Effect ) )
+    </val>
+  </def>
 
-
-  <def><name> Degradation </name><val> K * Mass </val></def>
-
-  <def><name> Gain </name><val> Secretion + ( PumpSetting * PumpSwitch ) </val></def>
-  <def><name> Loss </name><val> Degradation </val></def>
-
+  <def><name> Gain </name><val> Pregnancy.AnnouncePregnancy * K ^ 2.5  </val></def>
+  <def><name> Loss </name><val> ( K * Mass ) + UrineLoss </val></def> 
   <def><name> Change </name><val> Gain - Loss </val></def>
+
+  <testcase> 
+    <case><test> UrineLoss GE 25 </test>
+      <def><name> TestOutcome </name><val> 1 </val></def>
+    </case>
+    <case><test> UrineLoss GE 20 </test>
+    <def><name> TestOutcome </name><val> 2 </val></def>
+  </case>
+  <case><test> UrineLoss LT 20 </test>
+    <def><name> TestOutcome </name><val> 3 </val></def>
+  </case>
+  </testcase>
 
 </block>
 
