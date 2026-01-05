@@ -128,6 +128,9 @@ Schema : DES V1.0
     </false>
     </if>
 
+<call> Pregnancy.ProbabilityCalc </call>
+<call> Pregnancy.Sample </call>
+
     </block>
 
 <block> <name> WrapUp </name>
