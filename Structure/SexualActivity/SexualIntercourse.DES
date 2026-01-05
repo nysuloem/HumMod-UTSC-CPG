@@ -14,6 +14,8 @@ By: Jason Brown
 <var><name> FailedSex </name><val> 0.0 </val></var>
 <var><name> CumulativeDose </name><val> 0.0 </val></var>
 
+
+<timervar><name> SpermTimer </name><val> 0 </val></timervar>
 <timervar><name> Orgasm </name><val> 0 </val></timervar>
 <timervar><name> Refractory </name><val> 0 </val></timervar>
 <timervar><name> Attempt </name><val> 10 </val></timervar>
@@ -68,19 +70,27 @@ By: Jason Brown
   </true>
 </if>
 
+
 <if><test> Refractory GT 0 </test>
   <true>
     <exitblock/>
   </true>
 </if>
 
-<if><test> Orgasm GE 30 </test> <!-- Once the patient achieves orgasm, they are done having sexual intercourse and return to rest -->
+<if><test> Orgasm GE 30 AND TimeLastSex NE System.X </test> <!-- Once the patient achieves orgasm, they are done having sexual intercourse and return to rest -->
   <true>
-    <!--<def><name> Exercise-Control.Request </name><val> 0 </val></def>
+    <def><name> TimeLastSex </name><val> System.X </val></def>
+    <def><name> TotalSex </name><val> TotalSex + 1 </val></def>
+    <timer>
+      <name> SpermTimer </name>
+      <val> 7200 </val>
+      <state> DOWN </state>
+    </timer>
+    <def><name> Exercise-Control.Request </name><val> 0 </val></def>
     <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
     <call> Exercise-Control.UpdateStatus </call>
-    <call> Status.Exertion </call>-->
-    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>-
+    <call> Status.Exertion </call>
+    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
     <timer> 
       <name> Orgasm </name>
       <val> 0 </val>
@@ -108,6 +118,18 @@ By: Jason Brown
 
 <if><test> HaveSex.SexOutcome EQ 1 </test>
 <true>
+  
+  <def>
+    <name> TotalSex </name>
+    <val> TotalSex + 1 </val>
+  </def>
+
+    <timer>
+      <name> SpermTimer </name>
+      <val> 7200 </val>
+      <state> DOWN </state>
+    </timer>
+
   <def><name> Exercise-Control.Request</name><val> 1 </val></def> <!-- I am using the exercise bike to mimic the physical activity of having sexual intercourse -->
   <def><name> Exercise-Bike.Power(W)</name><val> 350 </val></def>
   <call> Exercise-Control.UpdateStatus </call>
@@ -132,7 +154,8 @@ By: Jason Brown
     <name> Attempt </name>
     <state> DOWN </state>
   </timer>
-</true></if>
+</true>
+</if>
 
 </block>
 
