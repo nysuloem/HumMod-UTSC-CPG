@@ -6,104 +6,12 @@ Author : Tom Coleman
 Copyright : 2011-2013
 By : University of Mississippi Medical Center
 
+<?path Structure\Uterus\Pregnancy\ ?>
 
-<?path Structure\Uterus\Pregnancy\Fetus\ ?>
+<?include Pregnancy-Occurence.DES ?>
+
+<!--<?path Structure\Uterus\Pregnancy\Fetus ?>
 <?include Fetus.DES ?>
 
-<?path Structure\Uterus\Pregnancy\Placenta\ ?>
-<?include Placenta.DES ?>
-
-<structure>
-
-  <name> Pregnancy </name>
-
-  <variables>
-
-    <timervar><name> AnnouncePregnancy </name><val> 0 </val></timervar>
-    <var><name> Fertilization </name><val> UNDEFINED </val></var>
-    <var><name> FertilizationTime </name><val> UNDEFINED </val></var>
-    <var><name> PregnantQ </name><val> FALSE </val></var>
-
-    <var><name> PregnancyTime </name><val> 0 </val></var>
-    <var><name> PregnancyWeek </name><val> 0 </val></var>
-    <var><name> EmbryonicAge </name><val> 0 </val></var>
-    <var><name> GestationalAge </name><val> 0 </val></var>
-
-    <var><name> Probability </name><val> 0 </val></var>
-
-  <var><name> TestOutcome </name></var>
-
-
-
-  </variables>
-
-  <definitions>
-
-  <block><name> ProbabilityCalc </name>
-  <def><name> Probability </name><val> SexualIntercourse.SpermTimer * Ovaries-Ovulation.EggTimer </val></def>
-  
-  <if><test> Probability NE 0 </test>
-    <true>
-      <def><name> Fertilization </name><val> TRUE </val></def> 
-      <timer>
-        <name> AnnouncePregnancy </name> 
-        <val> 0 </val>
-        <state> UP </state>
-      </timer> 
-      <def><name> FertilizationTime </name><val> System.X </val></def> 
-    </true>
-    <false>
-      <def><name> Fertilization </name><val> FALSE </val></def>
-    </false>
-  </if>
-
-  <!-- <if><test> AnnouncePregnancy </test>
-    <true>
-      <def><name> AnnouncePregnancy </name><val> FALSE </val></def>
-      <def><name> PregnantMessage </name><val> "Pregnant just now." </val></def>
-    </true>
-  </if> -->
-</block>
-
-<block><name> Sample </name>
-  
-<testcase> 
-  <case><test> hCG.[Conc(IU/L)] GE 25 </test>
-    <def><name> TestOutcome </name><val> 1 </val></def>
-  </case>
-  <case><test> hCG.[Conc(IU/L)] GE 5 </test>
-  <def><name> TestOutcome </name><val> 2 </val></def>
-</case>
-<case><test> hCG.[Conc(IU/L)] LT 5 </test>
-  <def><name> TestOutcome </name><val> 3 </val></def>
-</case>
-</testcase>
-</block>
-
-  
-    <block><name> Wrapup </name>
-
-      <def><name> FertilizationTime </name><val> System.X </val></def>
-      
-      <if><test> FertilizationTime EQ UNDEFINED </test>
-        <true>
-          <def><name> PregnancyTime </name><val> 0 </val></def>
-        </true>
-        <false>
-          <def><name> PregnancyTime </name><val> System.X - FertilizationTime </val></def>
-          <def><name> EmbryonicAge </name><val> PregnancyTime / 1440 </val></def>
-          <def><name> GestationalAge </name><val> EmbryonicAge + 15 </val></def>
-          <def><name> PregnantQ </name><val> TRUE </val></def>
-        </false>
-      </if>
-      <def>
-        <name> PregnancyWeek </name>
-        <val> ROUND GestationalAge </val>
-      </def>
-
-      
-    </block>
-
-  </definitions>
-
-</structure>
+<?path Structure\Uterus\Pregnancy\Placenta ?>
+<?include Placenta.DES ?>-->

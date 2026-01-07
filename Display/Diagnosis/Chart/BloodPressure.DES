@@ -9,29 +9,38 @@ By : Tom Coleman
 Edited: 2024 - 04 - 24
 By: Jason Brown UTSC
 
+
+<groupbox>
+   <row> 18 </row>
+   <col> 1.0 </col>
+   <high> 23 </high>
+   <wide> 105 </wide>
+   <title> Participant's Vital Signs </title>
+</groupbox>
+
 <showvalue>
-   <row> 16 </row><col> 1 </col>
+   <row> 20 </row><col> 3 </col>
    <name> SystemicArtys.SBP </name>
    <format><integer/></format>
    <label> Blood Pressure (mmHg) </label>
 </showvalue>
 
 <label>
-  <row> 16 </row>
-  <col> 25 </col>
+  <row> 20 </row>
+  <col> 27 </col>
   <text> / </text>
 </label>
 
 
 <showvalue>
-   <row> 16 </row><col> 27 </col>
+   <row> 20 </row><col> 29 </col>
    <name> SystemicArtys.DBP </name>
    <format><integer/></format>
    <nolabel/>
 </showvalue>
 
 <showgraph>
-  <row> 18 </row><col> 1.0 </col><high> 7 </high><wide> 26 </wide>
+  <row> 22 </row><col> 3 </col><high> 7 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>

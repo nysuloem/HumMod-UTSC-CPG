@@ -14,6 +14,7 @@ By : University of Mississippi Medical Center
 <var><name> Pain </name></var>
 <var><name> PainEffect </name></var>
 <var><name> CombinedMorphine </name></var>
+
 </variables>
 
 <functions>
@@ -23,7 +24,6 @@ By : University of Mississippi Medical Center
   <point><x> 0 </x><y> 1.0 </y><slope> 0 </slope></point>
   <point><x> 0.7 </x><y> 0.4 </y><slope> 0 </slope></point>
 </curve>
-
 
 </functions>
 
@@ -39,7 +39,6 @@ By : University of Mississippi Medical Center
 
 </equations>
 
-
 <definitions>
 
 <block><name> Dervs </name>
@@ -51,9 +50,8 @@ By : University of Mississippi Medical Center
 
 </block>
 
-
-
 </definitions>
+
 </structure>
 
 End

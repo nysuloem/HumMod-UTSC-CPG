@@ -27,6 +27,8 @@ Schema : DES V1.0
 <?include Symptoms.DES ?>
 <?include BloodPressure.DES ?>
 <?include RespiratoryRate.DES ?>
+<?include BloodOxygenSaturation.DES ?>
+<?include Pain.DES ?>
 
 -----------------------------------------
 

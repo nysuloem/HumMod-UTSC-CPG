@@ -338,9 +338,9 @@ By : University of Mississippi Medical Center
   <call> Calcitonin.Conc </call>
   <call> Estradiol.Conc </call>
   <call> FSH.Conc </call>
-  <call> hCG.Conc </call>
   <call> Inhibin.Conc </call>
   <call> LH.Conc </call>
+  <call> hCG.Conc </call>
   <call> Progesterone.Conc </call>
   <call> Testosterone.Conc </call>
   <call> VitaminD.Conc </call>
@@ -786,17 +786,17 @@ By : University of Mississippi Medical Center
 
   <call> HaveSex.Parms</call>
   <call> Ovaries.Dervs </call>
-  <call> Uterus.Dervs </call>
+  <call> Uterus-Conditional.Dervs </call>
   <call> Testes.Dervs </call>
   <call> Genitalia.Dervs </call>
   <call> SexualIntercourse.Parms </call>
 
   <call> GnRH.Dervs </call>
-  <call> hCG.Dervs </call>
   <call> Estradiol.Dervs </call>
   <call> FSH.Dervs </call>
   <call> Inhibin.Dervs </call>
   <call> LH.Dervs </call>
+  <call> hCG.Dervs </call>
   <call> Progesterone.Dervs </call>
   <call> Testosterone.Dervs </call>
   <call> CO.Dervs </call>

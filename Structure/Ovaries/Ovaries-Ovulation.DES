@@ -14,6 +14,8 @@ Schema : DES V1.0
 <parm><name> AnnounceOvulation </name><val> FALSE </val></parm>
 <var><name> LastOvulation </name><val> UNDEFINED </val></var>
 
+<timervar><name> EggTimer </name><val> 0 </val><state> OFF </state></timervar>
+
 </variables>
 
 <definitions>
@@ -28,6 +30,7 @@ Schema : DES V1.0
 <true>
   <def><name> LastOvulation </name><val> System.X </val></def>
   <def><name> Ovaries.Phase </name><val> Ovaries.IS_LUTEAL </val></def>
+  <timer><name> EggTimer </name><val> 1440 </val><state> DOWN </state></timer>
   <andif>
     <test> AnnounceOvulation </test>
     <true><!--<page> Ovulation just now. </page>--></true>
@@ -38,6 +41,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

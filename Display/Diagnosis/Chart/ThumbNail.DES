@@ -6,13 +6,6 @@ Author : Tom Coleman
 Copyright : 2008-2013
 By : University of Mississippi Medical Center
 
-<showvalue>
-   <row> 8 </row><col> 1 </col>
-   <name> BMI.BMI </name>
-   <format><decimal> 1 </decimal></format>
-   <label> BMI </label>
-</showvalue>
-
 <maplist>
   <name> Heart-ECG.Now </name>
   <map><val>  0 </val><img> Normal </img></map>

@@ -17,6 +17,7 @@ Edited by CPG
 <var><name> Number1 </name></var>
 <var><name> Number2 </name></var>
 <var><name> Number3 </name></var>
+<var><name> Number4 </name></var>
 <var><name> ExhaustedQ </name><val> FALSE </val></var>
 <var><name> TestElement </name></var>
 
@@ -26,22 +27,20 @@ Edited by CPG
 
 <block><name> Calc </name>
 
-<call> EthanolPool.Dervs </call>
+  <call> EthanolPool.Dervs </call>
 
-<def>
-<name> ExhaustedQ </name>
-<val> ( SkeletalMuscle-Ph.Ph LT Exercise-Motivation.Motivation ) 
+  <def><name> ExhaustedQ </name>
+    <val> ( SkeletalMuscle-Ph.Ph LT Exercise-Motivation.Motivation ) 
              OR ( SkeletalMuscle-Function.Failed ) 
              OR ( Brain-Function.Comatose ) 
              OR ( Brain-Function.Impaired )
              OR ( RespiratoryMuscle-Function.Failed )
-</val>
-</def>
+    </val>
+  </def>
 
-<def>
-<name> TestElement </name>
-<val> SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation </val>
-</def>
+  <def><name> TestElement </name>
+    <val> SkeletalMuscle-Ph.Ph GT Exercise-Motivation.Motivation </val>
+  </def>
 
 <testcase>
 
@@ -58,6 +57,20 @@ Edited by CPG
   <case>
     <test> HaveSex.SexOutcome EQ 0 </test>
     <def><name> Number3 </name><val> 35 </val></def>
+  </case>
+
+</testcase>
+
+<testcase>
+
+  <case>
+    <test> Pregnancy-Occurence.TestOutcome EQ 1 </test>
+    <def><name> Number4 </name><val> 60 </val></def>
+  </case>
+
+  <case>
+    <test> Pregnancy-Occurence.TestOutcome GT 1 </test>
+    <def><name> Number4 </name><val> 35 </val></def>
   </case>
 
 </testcase>
@@ -86,7 +99,7 @@ Edited by CPG
 
   <case>
     <test> EthanolPool.[Ethanol] LE 0.03 </test>
-    <def><name> Number1 </name><val> 32 </val></def>
+    <def><name> Number1 </name><val> 35 </val></def>
   </case>
 
 </testcase>

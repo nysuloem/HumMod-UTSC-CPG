@@ -1,4 +1,7 @@
 
+
+
+
 <panel><name> Pregnancy </name>
 
   <label>
@@ -22,29 +25,7 @@
    <wide> 30.0 </wide>
    <title> Pregnancy Overview </title>
 
-<structurename> Pregnancy </structurename>
-
-<!-- <actionbutton>
-   <row> 1.4 </row><col> 1.0 </col>
-   <blockname> BloodChemistry-Sample.GetSample </blockname>
-   <label> Sample Vein Now </label>
-</actionbutton>
-
-<showvalue>
-   <row> 3.0 </row><col> 1.0 </col>
-   <name> BloodChemistry-Sample.Timestamp </name>
-   <format>
-     <timestamp/>
-     <fieldwidth> 16 </fieldwidth>
-   </format>
-   <label> Timestamp </label>
-</showvalue>
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 26 </col>
-  <line> Draw a venous blood sample. </line>
-</infobutton> -->
+<structurename> Pregnancy-Occurence </structurename>
 
 <label>
   <row> 1.4 </row><col> 1.0 </col>
@@ -65,14 +46,6 @@
    <label> Test Result </label>
 </showvalue>
 
-<!--
-<checkmark>
-  <row> 8.4 </row><col> 2.0 </col>
-  <name> Inconclusive </name>
-  <label> Inconclusive </label>
-</checkmark>
--->
-
 <label>
   <row> 4.4 </row><col> 1.0 </col>
   <text> Overview </text>
@@ -81,7 +54,7 @@
 
 <showvalue>
   <row> 5.4 </row><col> 1.0 </col>
-  <name> Pregnancy.Probability </name>
+  <name> Pregnancy-Occurence.Probability </name>
   <label> Conception Probability </label>
 </showvalue>
 
@@ -99,43 +72,43 @@
 
 <checkmark>
   <row> 8.4 </row><col> 2.0 </col>
-  <name> Pregnancy.Fertilization </name>
+  <name> Pregnancy-Occurence.Fertilization </name>
   <label> Fertlized? </label>
 </checkmark>
 
 <showvalue>
   <row> 9.4 </row><col> 1.0 </col>
-  <name> Pregnancy.FertilizationTime </name>
+  <name> Pregnancy-Occurence.FertilizationTime </name>
   <label> Fertilization Time </label>
 </showvalue>
 
 <showvalue>
   <row> 10.4 </row><col> 1.0 </col>
-  <name> Pregnancy.PregnancyTime </name>
+  <name> Pregnancy-Occurence.PregnancyTime </name>
   <label> Pregnancy Time (min) </label>
 </showvalue>
 
 <showvalue>
   <row> 11.4 </row><col> 2.0 </col>
-  <name> Pregnancy.EmbryonicAge </name>
+  <name> Pregnancy-Occurence.EmbryonicAge </name>
   <label> Embryonic Age (days) </label>
 </showvalue>
 
 <showvalue>
   <row> 12.4 </row><col> 2.0 </col>
-  <name> Pregnancy.GestationalAge </name>
+  <name> Pregnancy-Occurence.GestationalAge </name>
   <label> Gestational Age (days) </label>
 </showvalue>
 
 <showvalue>
   <row> 13.4 </row><col> 2.0 </col>
-  <name> Pregnancy.PregnancyWeek </name>
+  <name> Pregnancy-Occurence.PregnancyWeek </name>
   <label> Gestational Week (weeks) </label>
 </showvalue>
 
 <showvalue>
   <row> 14.4 </row><col> 2.0 </col>
-  <name> Pregnancy.AnnouncePregnancy </name>
+  <name> Pregnancy-Occurence.AnnouncePregnancy </name>
   <label> Preg Test Valid (test) </label>
 </showvalue>
 
@@ -162,11 +135,6 @@
   </yaxis>
 </showgraph>
 
-<!-- <showvalue>
-  <row> 18.4 </row><col> 1.0 </col>
-  <name> Pregnancy.Trimester </name>
-  <label> Trimester </label>
-</showvalue> -->
-
 </groupbox>
+
 </panel>
