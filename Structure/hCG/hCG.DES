@@ -63,7 +63,7 @@ Schema : DES V1.0
   </true>
 
   <false>
-    <def><name> Secretion </name><val> ( LH-AnteriorPituitary.Secretion * 0.001 ) + (Pregnancy-Occurence.AnnouncePregnancy * K ^ 2.5 ) </val></def> 
+    <def><name> Secretion </name><val> ( LH-AnteriorPituitary.Secretion * 0.001 ) + ( Pregnancy-Occurence.AnnouncePregnancy * K ^ 2.5 ) </val></def> 
   </false>
   </if>
 

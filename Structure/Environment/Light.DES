@@ -13,7 +13,7 @@ Schema : DES V1.0
 
 <parm><name> Lux </name><val> 100 </val></parm>
 <var><name> LuxActual </name></var>
-<parm><name> Intensity </name><val> 0 </val></parm>
+<parm><name> Intensity </name><val> 1 </val></parm>
 <var><name> RadiansPerDay </name></var>
 <var><name> DaylightPhase </name></var>
 <timervar><name> Day </name><val> 0.0 </val><state> OFF </state></timervar>
