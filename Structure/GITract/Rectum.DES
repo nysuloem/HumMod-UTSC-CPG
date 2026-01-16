@@ -7,7 +7,7 @@
 
 <variables>
 
-    <var><name> ColonFlowRate </name><val> .2 </val></var>
+    <var><name> ColonFlowRate </name><val> 0.2 </val></var>
     <parm><name> EmptyingRate </name><val> 0.1 </val></parm>
     <parm><name> VolumeToPressure </name><val> 2.0 </val></parm>
     <parm><name> ReflexThreshold </name><val> 5.0 </val></parm>
@@ -47,8 +47,8 @@
       
     <def>
       <name> dRectalVolume/dt </name>
-      <val> ColonFlowRate </val>
-    </def>
+      <val> Stomach.DietOutflowRate + Stomach.WaterOutflowRate </val>
+    </def> 
 
     <def>
       <name> RectalPressure </name>

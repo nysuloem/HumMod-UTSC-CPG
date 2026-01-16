@@ -25,5 +25,6 @@ Schema : DES V1.0
 <?include GITract-Vasculature.DES ?>
 
 <?include Rectum.DES ?>
+<?include Stomach.DES ?>
 
 End

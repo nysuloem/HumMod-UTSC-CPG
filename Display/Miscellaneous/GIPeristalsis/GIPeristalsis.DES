@@ -11,4 +11,8 @@ By : University of Mississippi Medical Center
 
 <?include Rectum.DES ?>
 
+<?path Display\Miscellaneous\GIPeristalsis\ ?>
+
+<?include Stomach.DES ?>
+
 End

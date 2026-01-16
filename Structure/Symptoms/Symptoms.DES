@@ -107,6 +107,11 @@ Edited by CPG
 <testcase>
 
   <case>
+    <test> Autopsy-Examination.IsDead </test>
+    <def><name> Number2 </name><val> 69 </val></def>
+  </case>
+
+  <case>
     <test> Brain-Function.NotResponding </test>
     <def><name> Number2 </name><val> 1 </val></def>
   </case>

@@ -78,4 +78,24 @@ By : University Of Mississippi Medical Center
   <parent> GITract </parent>
 </leaf>
 
+<branch>
+  <name> GIPeristalsis </name>
+  <label> GI Peristalsis </label>
+  <parent> GITract </parent>
+</branch>
+
+<leaf>
+  <name> Stomach </name>
+  <label> Stomach Volume </label>
+  <parent> GIPeristalsis </parent>
+</leaf>
+
+<leaf>
+  <name> Rectum </name>
+  <label> Defecation </label>
+  <parent> GIPeristalsis </parent>
+</leaf>
+
+End
+
 End
