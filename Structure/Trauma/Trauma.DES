@@ -2,19 +2,23 @@ Trauma.DES
 
 <?path Structure\Trauma\ ?>
 <?include BluntInjury.DES ?>
+
 <structure><name> Trauma </name>
 
 <definitions>
-<block><name> Parms </name>
-  <call> BluntInjury.Parms </call>
-</block>
 
-<block><name> Dervs </name>
+  <block><name> Parms </name>
+   
+  </block>
 
-</block>
+  <block><name> Dervs </name>
+    <call> BluntInjury.Dervs </call>
+  </block>
 
-<block><name> Wrapup </name>
+  <block><name> Wrapup </name>
 
-</block>
+  </block>
+
 </definitions>
+
 </structure>
