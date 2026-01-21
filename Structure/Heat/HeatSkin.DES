@@ -19,7 +19,7 @@ Schema : DES V1.0
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
 
-<parm><name> InitialTemp(F) </name><val> 78.0 </val></parm>84
+<parm><name> InitialTemp(F) </name><val> 78.0 </val></parm>
 
 <var><name> InitialTemp(K) </name></var>
 <var><name> InitialMass </name></var>

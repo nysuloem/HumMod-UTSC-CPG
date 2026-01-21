@@ -40,6 +40,7 @@ Schema : DES V1.0
 <?include Clothes.DES ?>
 <?include Gravity.DES ?>
 <?include Light.DES ?>
+<?include Submerged.DES ?>
 
 </panel>
 

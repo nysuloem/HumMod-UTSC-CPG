@@ -12,9 +12,10 @@ Schema : DES V1.0
 <variables>
 
 <parm><name> SubmergedQ </name><val> FALSE </val></parm>
+<parm><name> Percentage </name><val> 0 </val></parm> 
+<parm><name> Temperature </name><val> 25 </val></parm>
 
 </variables>
-
 
 </structure>
 

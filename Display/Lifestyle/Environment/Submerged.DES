@@ -1,10 +1,10 @@
 
 <groupbox>
-   <row> 17.4 </row>
-   <col> 32.0 </col>
-   <high> 3.2 </high>
-   <wide> 30.0 </wide>
-   <title> Submerged </title>
+   <row> 2.0 </row>
+   <col> 104 </col>
+   <high> 7.0 </high>
+   <wide> 35.0 </wide>
+   <title> Water Submersion </title>
 
 <radiobuttons>
   <row> 1.4 </row><col> 1.0 </col>
@@ -12,5 +12,26 @@
   <listname> Common.Switch </listname>
   <label> Submerged? </label>
 </radiobuttons>
+
+<slidebar>
+  <row> 3.4 </row><col> 1.0 </col>
+  <name> Submerged.Percentage </name>
+  <listname> Common.Percent </listname>
+  <label> % Body in Water </label>
+</slidebar>
+
+<repeatlist>
+  <name> Submerged.Temperature </name>
+  <firstval> -48 </firstval>
+  <repeat><reps> 96 </reps><stepsize> 1 </stepsize></repeat>
+  
+</repeatlist>
+
+<slidebar>
+  <row> 5.4 </row><col> 1.0 </col>
+  <name> Submerged.Temperature </name>
+  <listname> Submerged.Temperature </listname>
+  <label> Temp (C) </label>
+</slidebar>
 
 </groupbox>
