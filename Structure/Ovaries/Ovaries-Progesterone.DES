@@ -56,6 +56,23 @@ Schema : DES V1.0
 
 </if>
 
+
+<if><test> Pregnancy-Occurence.FertilizationTime NE 0 AND Pregnancy-Occurence.AnnouncePregnancy LE 100800 </test> <!-- ovary prod. of progestrone drops signficiantly after 10 weeks -->
+  <true>
+  <def>
+    <name> BasicSecretion </name>
+    <val> 5.0 </val>
+  </def>
+</true>
+  <false>
+    <def>
+      <name> BasicSecretion </name>
+      <val> 0.1 </val>
+    </def>
+  </false>
+  </if>
+  <!-- works for now, needs to be looked at in the future. what truly inhibits ovulation? -->
+
 </block>
 
 </definitions>
