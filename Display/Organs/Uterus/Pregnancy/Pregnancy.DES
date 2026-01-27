@@ -95,6 +95,7 @@
 <showvalue>
   <row> 12.4 </row><col> 2.0 </col>
   <name> Pregnancy-Occurence.PregnancyWeek </name>
+  <format><decimal> 0 </decimal></format>
   <label> Gestational Week (weeks) </label>
 </showvalue>
 

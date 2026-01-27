@@ -298,10 +298,12 @@ By : University of Mississippi Medical Center
   <call> CollectingDuct_H2O.Parms </call>
   <call> ACTHTest.Parms </call>
   <call> Trauma.Parms </call>
+  <call> BluntInjury.Parms </call>
 </block>
 
 <block><name> Dervs </name>  <!-- Dervs are called at every calculation step-->
 
+  <call> Trauma.Calc </call>
   <call> Pain.Dervs </call>
   <call> BloodVolume.CalcVol </call>
   <call> Transfusion.CalcVol </call>

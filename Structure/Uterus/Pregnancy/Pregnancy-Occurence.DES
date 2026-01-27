@@ -16,68 +16,68 @@
 
 </variables>
 
-  <definitions>
+<definitions>
 
   <block><name> ProbabilityCalc </name>
 
-  <def><name> Probability </name><val> SexualIntercourse.SpermTimer * Ovaries-Ovulation.EggTimer </val></def>
+    <call> GestationWeeks </call>
+
+    <def><name> Probability </name><val> SexualIntercourse.SpermTimer * Ovaries-Ovulation.EggTimer </val></def>
   
-  <if><test> Probability NE 0 </test>
-    <true>
-      <def><name> Fertilization </name><val> TRUE </val></def> 
-      <timer>
-        <name> AnnouncePregnancy </name> <!-- tied to hcg -->
-        <val> 0 </val>
-        <state> UP </state>
-      </timer> 
-      <def><name> FertilizationTime </name><val> System.X </val></def> 
-      <timer>
-        <name> PregnancyTimer </name> <!-- tied to hcg -->
-        <val> 10080 </val>
-        <state> DOWN </state>
-      </timer> 
-    </true>
-    <false>
-      <def><name> Fertilization </name><val> FALSE </val></def>
-    </false>
-  </if>
+    <if><test> Probability NE 0 </test>
+      <true>
+        <def><name> Fertilization </name><val> TRUE </val></def> 
+        <timer>
+          <name> AnnouncePregnancy </name> <!-- tied to hcg -->
+          <val> 0 </val>
+          <state> UP </state>
+        </timer> 
+        <call> SetFertilizationTime </call>
+      </true>
+      <false>
+        <def><name> Fertilization </name><val> FALSE </val></def>
+      </false>
+    </if>
 
-</block>
+  </block>
 
-<block><name> Sample </name>
+  <block><name> SetFertilizationTime </name>
+
+    <if><test> FertilizationTime EQ UNDEFINED </test>
+      <true>
+        <def><name> FertilizationTime </name><val> System.X </val></def> 
+      </true>
+    </if>
+
+  </block>
+
+  <block><name> GestationWeeks </name>
+  
+    <if><test> FertilizationTime EQ UNDEFINED </test>
+      <false>
+        <def><name> PregnancyWeek </name>
+          <val> ( System.X - FertilizationTime ) / 10080 </val>
+        </def>
+      </false>
+    </if>
+
+  </block>
+
+  <block><name> Sample </name>
 
 <!-- This is for a blood-based pregancy test -->
   
-<testcase> 
-  <case><test> hCG.[Conc(IU/L)] GE 25 </test>
-    <def><name> TestOutcome </name><val> 1 </val></def>
-  </case>
-  <case><test> hCG.[Conc(IU/L)] GE 5 </test>
-    <def><name> TestOutcome </name><val> 2 </val></def>
-  </case>
-  <case><test> hCG.[Conc(IU/L)] LT 5 </test>
-    <def><name> TestOutcome </name><val> 3 </val></def>
-  </case>
-</testcase>
-
-</block>
-
-  
-<block><name> Wrapup </name>
-  
-    <def>
-      <name> FertilizationTime </name>
-      <val> System.X </val>
-    </def>
-
-    <ontimedout><name> PregnancyTimer </name> 
-      <def><name> PregnancyWeek </name><val> PregnancyWeek + 1 </val></def>
-      <timer> 
-        <name> PregnancyTimer </name> <!-- tied to hcg -->
-        <val> 10080 </val>
-        <state> DOWN </state>
-      </timer>
-    </ontimedout>
+    <testcase> 
+      <case><test> hCG.[Conc(IU/L)] GE 25 </test>
+       <def><name> TestOutcome </name><val> 1 </val></def>
+      </case>
+      <case><test> hCG.[Conc(IU/L)] GE 5 </test>
+        <def><name> TestOutcome </name><val> 2 </val></def>
+      </case>
+      <case><test> hCG.[Conc(IU/L)] LT 5 </test>
+        <def><name> TestOutcome </name><val> 3 </val></def>
+      </case>
+    </testcase>
 
 </block>
 

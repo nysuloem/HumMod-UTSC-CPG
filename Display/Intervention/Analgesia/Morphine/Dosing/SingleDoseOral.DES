@@ -61,6 +61,13 @@ Schema : DES V1.0
    <label> Cumulative Dose </label>
 </showvalue>
 
+<showvalue>
+   <row> 8.6 </row><col> 1.0 </col>
+   <name> MorphinePool.[Morphine] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Morphine Conc. </label>
+</showvalue>
+
 <actionbutton>
   <row> 8.2 </row><col> 1.0 </col>
   <blockname> Reset </blockname>

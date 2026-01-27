@@ -96,7 +96,7 @@ Appears that this works and the application does not crash or freeze, however li
 
     </block>
 
-<block> <name> WrapUp </name>
+<block><name> WrapUp </name>
 
     <call> Pregnancy.WrapUp </call>
 

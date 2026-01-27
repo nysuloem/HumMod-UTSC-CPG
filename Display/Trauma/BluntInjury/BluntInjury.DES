@@ -26,8 +26,10 @@ Schema : 2005.0
 <?path Display\Trauma\BluntInjury\ ?>
 
 
-<?include SkeletalMuscle.DES ?>
+
+<?include InjuryNow.DES ?>
 <!--
+<?include SkeletalMuscle.DES ?>
 <?include RightRespiratory.DES ?>
 <?include LeftRespiratory.DES ?>
 -->

@@ -13,7 +13,7 @@ By : University of Mississippi Medical Center
 <parm><name> TargetPain </name><val> 0 </val></parm>
 <var><name> Pain </name></var>
 <var><name> PainEffect </name></var>
-<var><name> CombinedMorphine </name></var>
+<var><name> CombinedMorphine </name><val> 0 </val></var>
 
 </variables>
 
@@ -44,7 +44,7 @@ By : University of Mississippi Medical Center
 <block><name> Dervs </name>
 
 <def><name> Change </name><val> 0.75 * ( TargetPain - AbsPain ) </val></def>     
-<def><name> CombinedMorphine </name><val> OR.[MR] + ( 0.25 * OR.[M6GR] ) </val></def>
+<def><name> CombinedMorphine </name><val> MorphinePool.[Morphine] + ( 0.25 * MorphinePool.[M6G] ) </val></def>
 
 <def><name> Pain </name><val> AbsPain * MorphineOnPain [ CombinedMorphine ] </val></def>
 
