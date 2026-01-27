@@ -6,5 +6,6 @@ HumMod / Template
 <?include Diabetes\Diabetes.DES ?>
 <?include AdrenalInsufficiency\AdrenalInsufficiency.DES ?>
 <?include PagetsDisease\PagetsDisease.DES ?>
+<?include PreEclampsia\PreEclampsia.DES ?>
 
 
