@@ -25,6 +25,8 @@ Schema : DES V1.0
 <?include Uterus-Menstruation.DES ?>
 <?include Uterus-Lumen.DES ?>
 <?include Uterus-Conditional.DES ?>
+<?include Uterus-PE.DES ?>
+
 
 <?path Structure\Uterus\Pregnancy\ ?>
 <?include Pregnancy.DES ?>
