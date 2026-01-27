@@ -22,7 +22,7 @@
    <row> 2.0 </row>
    <col> 3.0 </col>
    <high> 25.0 </high>
-   <wide> 30.0 </wide>
+   <wide> 40.0 </wide>
    <title> Pregnancy Overview </title>
 
 <structurename> Pregnancy-Occurence </structurename>
@@ -79,37 +79,23 @@
 <showvalue>
   <row> 9.4 </row><col> 1.0 </col>
   <name> Pregnancy-Occurence.FertilizationTime </name>
-  <label> Fertilization Time </label>
+  <format>
+     <timestamp/>
+     <fieldwidth> 14 </fieldwidth>
+  </format>
+  <label> Fertilization Timestamp </label>
 </showvalue>
 
 <showvalue>
-  <row> 10.4 </row><col> 1.0 </col>
-  <name> Pregnancy-Occurence.PregnancyTime </name>
-  <label> Pregnancy Time (min) </label>
-</showvalue>
-
-<showvalue>
-  <row> 11.4 </row><col> 2.0 </col>
-  <name> Pregnancy-Occurence.EmbryonicAge </name>
-  <label> Embryonic Age (days) </label>
+  <row> 10.4 </row><col> 2.0 </col>
+  <name> Pregnancy-Occurence.AnnouncePregnancy </name>
+  <label> Pregnancy Timer (minutes) </label>
 </showvalue>
 
 <showvalue>
   <row> 12.4 </row><col> 2.0 </col>
-  <name> Pregnancy-Occurence.GestationalAge </name>
-  <label> Gestational Age (days) </label>
-</showvalue>
-
-<showvalue>
-  <row> 13.4 </row><col> 2.0 </col>
   <name> Pregnancy-Occurence.PregnancyWeek </name>
   <label> Gestational Week (weeks) </label>
-</showvalue>
-
-<showvalue>
-  <row> 14.4 </row><col> 2.0 </col>
-  <name> Pregnancy-Occurence.AnnouncePregnancy </name>
-  <label> Preg Test Valid (test) </label>
 </showvalue>
 
 <label>
