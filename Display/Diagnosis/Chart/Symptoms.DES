@@ -63,6 +63,7 @@ By: Jason Brown
   <map><val> 41 </val><img> Participant appears flushed </img></map>
   <map><val> 60 </val><img> Participant is pregnant </img></map>
   <map><val> 69 </val><img> Participant is dead. </img></map>
+  <map><val> 70 </val><img> Participant is pregnant. </img></map>
  
 </maplist>
 

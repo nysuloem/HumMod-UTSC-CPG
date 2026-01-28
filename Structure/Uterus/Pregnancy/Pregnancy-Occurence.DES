@@ -56,7 +56,7 @@
     <if><test> FertilizationTime EQ UNDEFINED </test>
       <false>
         <def><name> PregnancyWeek </name>
-          <val> ( System.X - FertilizationTime ) / 10080 </val>
+          <val> ROUNDDOWN ( System.X - FertilizationTime ) / 10080 </val>
         </def>
       </false>
     </if>

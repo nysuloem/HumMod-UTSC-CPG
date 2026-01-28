@@ -59,6 +59,11 @@ Edited by CPG
     <def><name> Number3 </name><val> 35 </val></def>
   </case>
 
+  <case>
+    <test> hCG.[Conc(IU/L)] GE 25 </test>
+    <def><name> Number3 </name><val> 70 </val></def>
+  </case>
+
 </testcase>
 
 <testcase>
