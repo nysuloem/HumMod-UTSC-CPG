@@ -106,7 +106,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Photosynthesis </name>
-  <val> 2.5 * Sunlight </val>
+  <val> 0.25 * Light.LuxActual / Context-Ethnicity.SkinMelanin </val>
 </def>
 
 <def>

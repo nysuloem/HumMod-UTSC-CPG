@@ -47,27 +47,34 @@ By: Jason Brown
 
 <showvalue>
    <row> 5.5 </row><col> 3.0 </col>
+   <name> Context-Ethnicity.SkinMelanin </name>
+   <format> <integer/> </format>
+   <label> Skin Melanin </label>
+</showvalue>
+
+<showvalue>
+   <row> 6.5 </row><col> 3.0 </col>
    <name> Age.Age(Years) </name>
    <format> <integer/> </format>
    <label> Age (yrs) </label>
 </showvalue>
 
 <showvalue>
-  <row> 6.5 </row><col> 3.0 </col>
+  <row> 7.5 </row><col> 3.0 </col>
   <name> Context-Height.Height(cM) </name>
   <label> Height (cm) </label>
   <format><decimal> 0 </decimal></format>
 </showvalue>
 
 <showvalue>
-   <row> 7.5 </row><col> 3.0 </col>
+   <row> 8.5 </row><col> 3.0 </col>
    <name> Weight.Weight(kG) </name>
    <format> <integer/> </format>
    <label> Weight (kg) </label>
 </showvalue>
 
 <showvalue>
-   <row> 8.5 </row><col> 3 </col>
+   <row> 9.5 </row><col> 3 </col>
    <name> BMI.BMI </name>
    <format><decimal> 1 </decimal></format>
    <label> BMI </label>
