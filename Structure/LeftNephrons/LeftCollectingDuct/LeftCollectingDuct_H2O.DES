@@ -30,6 +30,13 @@ By : University Of Mississippi Medical Center
 <parm><name> ADH_STarget </name><val> 3.5 </val></parm>4.15
 <parm><name> ADH_BTarget </name><val> 0.3 </val></parm>
 
+<var><name> WhiteADHEffect </name></var>
+<var><name>BlackADHEffect </name></var>
+<var><name>AsianADHEffect </name></var>
+<var><name>HispanicADHEffect </name></var>
+
+
+
 <parm><name> Perm_ATarget </name><val> 1 </val></parm>
 <parm><name> Perm_mTarget </name><val> 6 </val></parm>
 <parm><name> Perm_STarget </name><val> 0.67 </val></parm>
@@ -116,6 +123,7 @@ By : University Of Mississippi Medical Center
 
 <functions>
 
+
 <curve>
   <name> ADHOnPerm </name>
   <point><x>  0.0 </x><y> 0.3 </y><slope> 0 </slope></point>
@@ -169,6 +177,19 @@ By : University Of Mississippi Medical Center
 
 <def><name> ADHEffect </name><val> ADHOnPerm [ LeftNephronADH.[ADH] ]  </val></def>
 
+
+<def><name> AsianADHEffect </name><val> 1.00 </val></def> 
+<def><name> BlackADHEffect </name><val> 2.00 </val></def> 
+<def><name> WhiteADHEffect </name><val> 1.00 </val></def>
+<def><name> HispanicADHEffect </name><val> 1.00 </val></def>
+<def><name> ADHEffect </name>
+  <val> ADHEffect
+    * ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianADHEffect ) 
+    * ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackADHEffect )
+    * ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteADHEffect )
+    * ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicADHEffect )
+  </val>
+</def>
 
 <conditional>
   <name> Perm </name>

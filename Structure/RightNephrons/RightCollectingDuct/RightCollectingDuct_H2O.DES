@@ -18,6 +18,12 @@ By : University Of Mississippi Medical Center
 <var><name> ADHEffect </name></var>
 <var><name> Perm </name></var>
 
+<var><name> WhiteADHEffect </name></var>
+<var><name>BlackADHEffect </name></var>
+<var><name>AsianADHEffect </name></var>
+<var><name>HispanicADHEffect </name></var>
+
+
 <parm><name> BasicPerm </name><val> 1.0 </val></parm>
 <var><name> ModPerm </name></var>
 <parm><name> PermSwitch </name><val> FALSE </val></parm>
@@ -72,6 +78,19 @@ By : University Of Mississippi Medical Center
 <def><name> ADHEffect </name><val> ADHOnPerm [ RightNephronADH.[ADH] ]  </val></def>
 
 <def><name> ModPerm </name><val> CollectingDuct_H2O.RightPerm </val></def>
+
+<def><name> AsianADHEffect </name><val> 1.00 </val></def> 
+<def><name> BlackADHEffect </name><val> 2.00 </val></def> 
+<def><name> WhiteADHEffect </name><val> 1.00 </val></def>
+<def><name> HispanicADHEffect </name><val> 1.00 </val></def>
+<def><name> ADHEffect </name>
+  <val> ADHEffect
+    * ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianADHEffect ) 
+    * ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackADHEffect )
+    * ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteADHEffect )
+    * ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicADHEffect )
+  </val>
+</def>
 
 <conditional>
   <name> Perm </name>
