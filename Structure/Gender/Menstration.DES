@@ -1,0 +1,51 @@
+HumMod / Menstration
+
+Created : 05-20-2024
+Revised : 
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Menstration </name>
+
+<variables>
+<parm><name> Index </name><val> 2 </val></parm>
+
+<var><name> IsAbsent </name></var>
+<var><name> IsEarly </name></var>
+<var><name> IsAverage </name></var>
+<var><name> IsLate </name></var>
+
+
+<constant><name> Absent </name> <val> 0 </constant>
+<constant><name> Light </name> <val> 1 </constant>
+<constnat><name> Average </name> <val> 2 </constant>
+<constant><name> Heavy </name> <val> 3 </constant>
+
+
+
+<block><name> Parms </name>
+<conditional> <name> Index </name>
+    <test> 
+
+
+</block>
+
+<block><name> Dervs </name>
+
+
+    <!--  Trying to do without a conditional statement for the follicular phase since it would increase the loss anyway. 
+<if>
+    
+<test> Sex.IsFemale </test>
+<true>
+<andif><test> Ovaries.Phase EQ IS_FOLLICULAR </test> 
+
+    <true> 
+
+<def><name> Menstration </name> 
+<val> Index </val> 
+</andif>
+</if>
+-->
+<def><name> 

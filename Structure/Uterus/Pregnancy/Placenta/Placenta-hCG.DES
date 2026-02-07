@@ -1,0 +1,28 @@
+<structure><name> Placenta-hCG </name>
+
+<variables>
+
+<var><name> Secretion </name></var>
+<parm><name> BasicSecretion </name><val> 0.01 </val></parm>
+<var><name> MassEffect </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> MassEffect </name>
+  <val> 1000 * Placenta-Size.SecretingCells </val>
+</def>
+
+<def>
+  <name> Secretion </name>
+  <val> BasicSecretion * MassEffect </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>

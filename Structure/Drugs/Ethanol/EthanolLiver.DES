@@ -1,0 +1,138 @@
+HumMod / Chlorothiazide
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiffany 
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> EthanolLiver </name>
+
+<variables>
+
+<var><name> PoolLoss </name></var>
+<var><name> FirstPassLoss </name></var>
+<var><name> LossToAcetaldehyde </name></var>
+<var><name> TransferToALDH </name></var>
+<var><name> [Acetaldehyde] </name></var>
+<var><name> [Acetate] </name></var>
+<var><name> LossToAcetate </name></var>
+<var><name> GainAcetaldehyde </name></var>
+<var><name> GainAcetate </name></var>
+<var><name> LossAcetaldehyde </name></var>
+<var><name> ALCDH_Vmax </name><val> 0.15 </val></var> <!-- Added this variable -->
+
+<parm><name> ALCDH_K </name><val> 0.002 </val></parm> <!-- This is alcohol dehydrogenase (orignally 3) -->
+<parm> <name> ALDH_K </name><val> 0.3 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> MassAcetaldehyde </name>
+  <integralname> MassAcetaldehyde </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeAcetaldehyde </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> MassAcetate </name>
+  <integralname> MassAcetate </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeAcetate </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+  <!-- ALDH_K should vary with ethnicity -->
+<!--
+<def><name> Asian </name><val> 0.5 </val></def> 
+<def><name> Black </name><val> 1 </val></def> 
+<def><name> White </name><val> 1 </val></def>
+<def><name> Hispanic </name><val> 1 </val></def>
+<def><name> ALDH_K </name>
+  <val> ALDH_K
+    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    - 1 
+  </val>
+</def> 
+
+-->
+
+<def>
+  <name> PoolLoss </name>
+  <val> ( ALCDH_Vmax * EthanolPool.[Ethanol] ) / ( ALCDH_K + EthanolPool.[Ethanol] )
+        * Liver-Function.Effect </val> 
+</def> 
+<!-- Was orignally: ALCDH_K * EthanolPool.[Ethanol] -->
+<!-- Addition: Multiplied by HepaticArtery-Flow.PlasmaFlow -->
+
+<def>
+  <name> FirstPassLoss </name>
+  <val> ( ALCDH_Vmax * EthanolGILumen.Loss ) / ( ALCDH_K + EthanolGILumen.Loss )
+        * Liver-Function.Effect 
+  </val>
+</def>
+<!-- Orignally had:
+ ALCDH_K
+    * EthanolGILumen.Loss 
+    * Liver-Function.Effect -->
+<!-- Commented out * ( PortalVein-Flow.PlasmaFlow ) -->
+<!-- **** Do portal vein plasma flow INSTEAD OF hepatic - specifically 1st pass loss -->
+<!-- Used to have: ALCDH_K * EthanolGILumen.Loss / SplanchnicVeins.Vol / 1000 * HepaticVein.PlasmaFlow -->
+
+<def>
+  <name> GainAcetaldehyde </name> 
+  <val> PoolLoss + FirstPassLoss </val> <!-- Create max for Loss to ALDH -->
+  <!-- Should also consider liver MR? -->
+</def>
+<!-- Gain acetyaldehyde / mass of ethanol = clearance 
+Do conditional so its above zero 
+
+<conditional><name> Liver Clearance </name>
+  <test> Ethanol Mass GT 0.0 </test>
+  <true> GainAcetaldehyde / EthanolMass </true>
+  <false> 0.0 </false>
+</conditional>
+-->
+
+<def>
+  <name> LossAcetaldehyde </name> 
+  <val> ALDH_K * Acetaldehyde.[Acetaldehyde] </val> <!-- Create max for Loss to Acetaldehyde -->
+  <!-- Should also consider the liver MR? -->
+</def>
+
+<def>
+  <name> GainAcetate </name>
+  <val> LossAcetaldehyde </val>
+</def>
+
+<def>
+  <name> ChangeAcetaldehyde </name>
+  <val> GainAcetaldehyde - LossAcetaldehyde </val>
+</def>
+
+<def>
+  <name> ChangeAcetate </name>
+  <val> GainAcetate </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

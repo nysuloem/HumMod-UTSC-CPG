@@ -1,0 +1,56 @@
+HumMod / Wind
+
+Created : 21-Dec-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<groupbox>
+   <row> 11.3 </row>
+   <col> 63 </col>
+   <high> 7 </high>
+   <wide> 40 </wide>
+   <title> Light </title>
+
+<radiobuttons>
+  <row> 2 </row><col> 1.0 </col>
+  <name> Light.Intensity </name>
+  <listname> Common.Light </listname>
+</radiobuttons>
+
+<repeatlist>
+  <name> Light.Lux </name>
+  <repeat>
+    <reps> 1200 </reps>
+    <stepsize> 100 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 3.8 </row><col> 1.0 </col>
+  <name> Light.Lux </name>
+  <listname> Light.Lux </listname>
+  <label> lux </label>
+</slidebar>
+
+<showvalue>
+   <row> 5.5 </row><col> 1 </col>
+   <name> Light.LuxActual </name>
+   <format><decimal> 0 </decimal></format>
+   <label> Light Intensity (lux) </label>
+</showvalue>
+
+<infobutton>
+  <row> 1.2 </row>
+  <col> 36 </col>
+
+  <line> For constant light, set intensity. </line>
+  <line> For variable light, set max intensity. </line>
+  <line> Light intensity varies on a 12-hour day. </line>
+</infobutton>
+
+</groupbox>
+
+End

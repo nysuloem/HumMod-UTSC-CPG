@@ -1,0 +1,99 @@
+HumMod / Ethanol
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<!-- Models absorption from the GI lumen into systemic circulation,
+ with concentration tracking based on lumen water content -->
+<!-- But ethanonl doesn't go directly into the systemic circulation -->
+
+<structure><name> EthanolGILumen </name>
+
+<variables>
+
+<var><name> BIOAVAIL </name><val> 0.05 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
+<var><name> PERM </name><val> 0.00075 </val></var> <!-- Permeability factor for ethanol across the GI wall (orignally 0.015) -->
+<var><name> [Ethanol] </name></var>
+<var><name> Gain </name></var>
+<var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
+
+<!-- <var><name> PERM_Vmax </name><val> 100 </val></var> Tried this -->
+<!-- <var><name> PERM_K </name><val> 10 </val></var> Tried this -->
+
+<!-- Drink selector: 1=Beer, 2=Wine, 3=Vodka --> 
+<parm>
+  <name> DrinkType </name>
+  <val> 1 </val>   
+</parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+  <def>
+    <name> [Ethanol] </name> <!-- This is the ethanol concentration in the GI Lumen-->
+      <val> Mass / GILumenH2O.Mass(L) </val> <!-- Converts ethanol mass into a concentration using the lumen’s water mass (volume).-->
+<!-- Density Ethanol = 0.789 __ Mass = D X V--> 
+
+
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<testcase>
+  <case>
+    <test> DrinkType EQ 2 </test>
+    <def><name> PERM </name><val> 0.07 </val></def> 
+  </case>
+
+  <case>
+    <test> DrinkType EQ 3 </test>
+    <def><name> PERM </name><val> 0.1 </val></def> 
+  </case>
+</testcase>
+
+
+<def><name> Gain </name>
+  <val> EthanolSingleDose.Mass + EthanolDailyDose.Mass </val>
+</def>
+
+<def>
+  <name> Loss </name>
+  <val> PERM * [Ethanol] </val>
+</def>
+<!-- Tried: ( PERM_Vmax * [Ethanol] ) / ( PERM_K + [Ethanol] ) -->
+<!-- Proportional loss from lumen depends on both bioavailability and permeability, and is scaled to the total ethanol mass present -->
+<!-- Took bioavl out -->
+
+<def>
+  <name> Change </name>
+  <val> Gain - Loss </val> 
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

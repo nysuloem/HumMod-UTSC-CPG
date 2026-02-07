@@ -1,0 +1,34 @@
+HumMod / Dosing
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 70.0 </col>
+   <high> 10.2 </high>
+   <wide> 30.0 </wide>
+   <title> Methanol Concentration </title>
+
+<structurename> MethanolSingleDose </structurename>
+
+<repeatlist>
+  <name> MethanolSingleDose.Dose </name>
+  <repeat><reps> 20 </reps><stepsize> 28.0 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 7.0 </row><col> 1.0 </col>
+  <name> Dose </name>
+  <listname> MethanolSingleDose.Dose </listname>
+  <label> Dose in ml </label>
+</slidebar> 
+
+</groupbox>
+
+
+End

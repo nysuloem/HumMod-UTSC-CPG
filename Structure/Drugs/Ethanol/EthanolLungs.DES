@@ -1,0 +1,49 @@
+HumMod / Chlorothiazide
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiffany and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> EthanolLungs </name>
+
+<variables>
+  <var><name> LungsLoss </name></var>
+
+<constant><name> K </name><val> 0.00008 </val></constant> <!-- K was orignally 0.018-->
+
+<!-- <constant><name> KInverse </name><val> 55.5556 </val></constant> -->
+
+</variables>
+
+<!--
+<equations>
+
+<diffeq>
+<name> AUC </name>
+<integralname> LungLossAUC </integralname>
+<initialval> 0 </initialval>
+<dervname> LungsLoss  </dervname>
+<errorlim> 0.0001 </errorlim>
+</diffeq>
+
+</equations>
+--> 
+
+<definitions>
+
+<block><name> Dervs </name>
+
+  <def><name> LungsLoss </name>
+    <val> K * EthanolPool.Mass </val>
+  </def> 
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

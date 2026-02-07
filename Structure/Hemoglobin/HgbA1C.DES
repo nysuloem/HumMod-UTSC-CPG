@@ -1,0 +1,53 @@
+HumMod / HgbTissue
+
+Created : 28-Mar-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> HgbA1C </name>
+
+<variables>
+
+<var><name> React </name></var>
+<var><name> Degrade </name></var>
+<var><name> K </name><val> 0.00001 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> A1C </name>
+  <integralname> A1C </integralname>
+  <initialval> 5 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 10.0  </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> GluReact </name>
+
+<def><name> React </name>
+<val> GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] * K </val>
+</def>
+
+<def><name> Degrade </name>
+<val> React * RBCClearance.K * 10 </val>
+</def>
+
+<def><name> Change </name>
+<val> React - Degrade </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

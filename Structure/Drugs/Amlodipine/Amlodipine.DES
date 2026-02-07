@@ -1,0 +1,47 @@
+HumMod / Amlodipine
+
+Created : 10-Apr-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<?path Structure\Drugs\Amlodipine\ ?>
+
+<?include AmlodipinePool.DES ?>
+<?include AmlodipineKidney.DES ?>
+<?include AmlodipineLiver.DES ?>
+<?include AmlodipineGILumen.DES ?>
+<?include AmlodipineSingleDose.DES ?>
+<?include AmlodipineDailyDose.DES ?>
+
+<structure><name> Amlodipine </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> AmlodipineSingleDose.Parms </call>
+  <call> AmlodipineDailyDose.Parms </call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> AmlodipineGILumen.CalcConc </call>
+  <call> AmlodipinePool.CalcConc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> AmlodipineGILumen.Dervs </call>
+  <call> AmlodipineKidney.Dervs </call>
+  <call> AmlodipineLiver.Dervs </call>
+  <call> AmlodipinePool.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+  <call> AmlodipineDailyDose.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+
+End

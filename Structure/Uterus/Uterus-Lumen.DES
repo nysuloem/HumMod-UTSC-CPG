@@ -1,0 +1,117 @@
+HumMod / Uterus-Lumen
+<!-- 
+
+Created : 23-May-25      
+Modified : By Terry Yavorskyy
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+ -->
+
+<structure><name> Uterus-Lumen </name>
+
+<variables>
+
+<var><name> BloodPool </name></var>
+<var><name> BleedRate </name></var>
+<var><name> UterusContraction </name></var>
+<var><name> PGEStimulation </name></var>
+
+</variables>
+
+<equations> 
+
+<!-- Terry's Old Model
+  <diffeq>
+    <name> MenstrualBleeding </name>
+    <integralname> MenstrualBleeding </integralname>
+    <initialval> 0.0  </initialval>
+    <dervname> Change </dervname>
+    <errorlim> 1.0 </errorlim>
+  </diffeq>
+
+  <delay>
+    <name> BloodExpulsion </name>
+    <outputname> Expulsion </outputname>
+    <initialval> 0.1 </initialval>
+    <inputname> BleedRate </inputname>
+    <rateconstname> ExpulsionRate </rateconstname>
+    <dervname> ExpulsionDerv </dervname>
+    <errorlim> 0.5 </errorlim>
+  </delay>
+-->
+
+<diffeq>
+  <name> MenstrualBloodExpulsed </name>
+  <integralname> MenstrualBloodExpulsed </integralname>
+  <initialval> 0 </initialval>
+  <dervname> MenstrualBloodLoss </dervname>
+</diffeq>
+
+<diffeq>
+  <name> UterusBloodPool </name>
+  <integralname> UterusBloodPool </integralname>
+  <initialval> 0 </initialval>
+  <dervname> Change </dervname>
+</diffeq>
+
+<!-- New model based on Tom's Time Delay-->
+
+</equations>
+
+<definitions> 
+
+<block><name> Dervs </name>
+
+  <def><name> Change </name>
+    <val> Uterus-Menstruation.UterusBloodLeakedVol - MenstrualBloodExpulsed </val>
+  </def>
+
+  <def><name> BleedRate </name>
+    <val> PostureEnergy.MenstrualPostureFlowEffect </val>
+  </def>
+
+  <def><name> PGEStimulation </name>
+    <val> 1 </val> <!-- This could be multipled by aspirin effect in the future -->
+  </def>
+
+  <def><name> UterusContraction </name>
+    <val> PGEStimulation </val>
+    </def>
+
+  <def><name> MenstrualBloodLoss </name>
+    <val> BleedRate * UterusContraction *  Uterus-Menstruation.BloodLoss </val>
+  </def>
+
+</block>
+
+<block><name> Init </name>
+
+<def><name> BloodPool </name> <val> 0.0 </val></def>
+
+</block>
+
+<block><name> Parms </name>
+<def><name> ExpulsionRate </name><val> Uterus-Menstruation.Rate - Expulsion  </val></def>
+
+</block>
+
+<!--
+<block> <name> Dervs </name>
+    <call> Init </call>
+    
+    <def><name> BleedRate </name><val> BloodPool </val></def>
+
+
+<def><name> Gain </name><val> Uterus-Menstruation.Rate </val></def>
+<def><name> Loss </name> <val> Expulsion </val></def>
+<def><name> Change </name><val> Gain - Loss  </val></def>
+<def><name> BloodPool </name> <val> Uterus-Menstruation.Volume - MenstrualBleeding </val></def>
+
+</block>  
+-->  
+</definitions>
+</structure>   
+
+End 

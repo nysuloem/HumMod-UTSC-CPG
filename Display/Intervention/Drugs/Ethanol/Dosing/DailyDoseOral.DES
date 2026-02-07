@@ -1,0 +1,177 @@
+HumMod / DailyDoseOral
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 34 </col>
+   <high> 27 </high>
+   <wide> 36 </wide>
+   <title> Chronic Alcohol Consumption </title>
+
+<structurename> EthanolDailyDose </structurename>
+
+<maplist>
+  <name> Ethanol-Control.Request </name>
+  <map><val> 0 </val><img> No </img></map>
+  <map><val> 1 </val><img> Yes </img></map>
+  <map><val> 2 </val><img> When I have it </img></map>
+  <map><val> 3 </val><img> When I want to </img></map>
+  <map><val> 4 </val><img> When I have it and want to </img></map>
+</maplist>
+
+<maplist>
+  <name> EthanolGILumen.DrinkType </name>
+  <map><val> 1 </val><img> Beer </img></map>
+  <map><val> 2 </val><img> Wine </img></map>
+  <map><val> 3 </val><img> Vodka / Spirits </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 7 </row><col> 1.0 </col>
+  <name> EthanolGILumen.DrinkType </name>
+  <listname> EthanolGILumen.DrinkType </listname>
+  <label> Drink Type </label>
+  <layout> VERT </layout>
+</radiobuttons>
+
+<radiobuttons>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> TakeDaily </name>
+  <listname> Ethanol-Control.Request </listname>
+  <label> Drink?... </label>
+  <layout> VERT </layout>
+</radiobuttons>
+
+<repeatlist>
+  <name> EthanolDailyDose.Dose </name>
+  <repeat><reps> 1000 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 14.0 </row><col> 1.0 </col>
+  <name> Dose </name>
+  <listname> EthanolDailyDose.Dose </listname>
+  <label> Volume (mL) </label>
+</slidebar>
+
+<repeatlist>
+  <name> EthanolDailyDose.PercentageofAlcohol </name>
+  <repeat><reps> 400 </reps><stepsize> 0.1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 16 </row><col> 1.0 </col>
+  <name> EthanolDailyDose.PercentageofAlcohol </name>
+  <listname> EthanolDailyDose.PercentageofAlcohol </listname>
+  <label> Alcohol (%) </label>
+</slidebar>
+
+<repeatlist>
+  <name> EthanolDailyDose.TimesADay </name>
+  <firstval> 1.0 </firstval>
+  <repeat><reps> 24 </reps><stepsize> 1.0 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 18 </row><col> 1.0 </col>
+  <name> TimesADay </name>
+  <listname> EthanolDailyDose.TimesADay </listname>
+  <label> Drinks per Day </label>
+</slidebar>
+
+<maplist>
+  <name> EthanolDailyDose.DrinksAlloted </name>
+  <map><val>     0 </val><img> None </img></map>
+  <map><val> 6 </val><img> 6 </img></map>
+  <map><val> 12 </val><img> 12 </img></map>
+  <map><val> 24 </val><img> 24 </img></map>
+  <map><val> 1000 </val><img> 1000 </img></map>
+  <map><val> 1E308 </val><img> Unlimited </img></map>
+</maplist>
+
+<slidebar>
+  <row> 20 </row><col> 1.0 </col>
+  <name> NumberGiven </name>
+  <listname> EthanolDailyDose.DrinksAlloted </listname>
+  <label> Drinks Alloted </label>
+</slidebar>
+
+<repeatlist>
+  <name> EthanolDailyDose.PercentChance  </name>
+  <firstval> 0.0 </firstval>
+  <repeat><reps> 20 </reps><stepsize> 0.05 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 22 </row><col> 1.0 </col>
+  <name> PercentChance  </name>
+  <listname> EthanolDailyDose.PercentChance  </listname>
+  <label> Likelihood of taking </label>
+</slidebar>
+
+
+<actionbutton>
+  <row> 24 </row><col> 1.0 </col>
+  <blockname> RenewScript </blockname>
+  <label> Get more alcohol </label>
+</actionbutton>
+
+
+<showvalue>
+   <row> 26 </row><col> 1.0 </col>
+   <name> TimeLastDose </name>
+   <format>
+      <timestamp/>
+      <fieldwidth> 14 </fieldwidth>
+   </format>
+   <label> Last Dose </label>
+</showvalue>
+
+<showvalue>
+   <row> 28 </row><col> 1.0 </col>
+   <name> TimeNextDose </name>
+   <format>
+      <timestamp/>
+      <fieldwidth> 14 </fieldwidth>
+   </format>
+   <label> Next Dose </label>
+</showvalue>
+
+<showvalue>
+   <row> 30 </row><col> 1.0 </col>
+   <name> TotalDoses </name>
+   <format> <integer/> </format>
+   <label> Total Doses </label>
+</showvalue>
+
+<showvalue>
+   <row> 32 </row><col> 1.0 </col>
+   <name> CumulativeDose </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Cumulative Dose </label>
+</showvalue>
+
+<showvalue>
+   <row> 34 </row><col> 1.0 </col>
+   <name> Timer </name>
+   <format> <integer/> </format>
+   <label> Time Until Next Drink </label>
+</showvalue>
+
+<showvalue>
+   <row> 36 </row><col> 1.0 </col>
+   <name> NumberLeft </name>
+   <format>
+      <integer/>
+   </format>
+   <label> Number Remaining </label>
+</showvalue>
+
+</groupbox>
+
+End

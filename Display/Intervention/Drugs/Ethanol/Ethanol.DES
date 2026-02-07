@@ -1,0 +1,14 @@
+HumMod / Ethanol
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<?path Display\Intervention\Drugs\Ethanol\ ?>
+
+<?include Dosing\Dosing.DES ?>
+<?include Kinetics\Kinetics.DES ?>
+
+End

@@ -1,0 +1,86 @@
+HumMod / Chlorothiazide
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<!-- Models the ethanol content in the body after it’s been absorbed from the GI lumen (EthanolGILumen).
+It integrates gains from absorption and subtracts losses from elimination routes (liver metabolism, kidneys, lungs).-->
+
+<structure><name> EthanolPool </name>
+
+<variables>
+
+<var><name> [Ethanol] </name></var>
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+<var><name> R </name></var>
+<var><name> BAC </name></var>
+<var><name> EthanolMass </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+    <def><name> R </name> <!-- Distribution Ratio -->
+      <val> 0.68 </val> <!-- Should be 0.55 for females. Will change later -->
+    </def>
+
+  <def>
+    <name> [Ethanol] </name>
+    <val> ( Mass /  ( 2 * ECFV.Vol ) ) * 100 </val>  
+    <!-- Total mass (grams) and multiply by plasma volume to get dL. Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
+  </def>
+  <!-- Made correction to account for distribution volume,  -->
+
+  <def>
+    <name> EthanolMass </name>         
+    <val> [Ethanol] * 0.789 </val> <!-- Converts concentration back to grams using ethanol’s density (0.789 g/mL) -->
+  </def>
+<!-- I don't understand the point of this calculation. You cannot multiply a concentration by a density to get mass-->
+
+</block>
+
+<block><name> Dervs </name>
+
+  <def>
+    <name> Gain </name>
+    <val> EthanolGILumen.Loss - EthanolLiver.FirstPassLoss </val>
+  </def>
+
+  <def>
+    <name> Loss </name>
+    <val> EthanolKidney.UrineLoss + EthanolLungs.LungsLoss + EthanolLiver.PoolLoss </val>
+  </def>
+ 
+<!-- Reserach loss rates (validate numbers) -->
+
+  <def>
+    <name> Change </name>
+    <val> Gain - Loss </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

@@ -1,0 +1,40 @@
+<structure><name> Placenta-Progesterone </name>
+
+<variables>
+
+<var><name> Secretion </name></var>
+
+<parm><name> BasicSecretion </name><val> 9.0 </val></parm>
+
+<var><name> MassEffect </name></var>
+
+</variables>
+
+<functions>
+
+<curve>
+  <name> MassEffect </name>
+  <point><x>    0.0 </x><y>  0.0 </y><slope> 0.0 </slope></point>
+  <point><x> 700.0 </x><y> 150.0 </y><slope> 0.0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> MassEffect </name>
+  <val>  MassEffect [ Placenta-Size.Mass ] </val>
+</def>
+
+<def>
+  <name> Secretion </name>
+  <val> BasicSecretion * MassEffect </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>

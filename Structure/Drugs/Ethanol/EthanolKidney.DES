@@ -1,0 +1,53 @@
+HumMod / Ethanol
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> EthanolKidney </name>
+
+<variables>
+  <var><name> UrineLoss </name></var>
+
+<constant><name> K </name><val> 0.0001 </val>  <!-- K was orignally 0.06 - Ethanol clearance rate --> </constant>
+
+
+</variables>
+<!--
+<equations>
+
+<diffeq>
+<name> AUC </name>
+<integralname> UrineLossAUC </integralname>
+<initialval> 0 </initialval>
+<dervname> UrineLoss  </dervname>
+<errorlim> 0.0001 </errorlim>
+</diffeq>
+
+</equations>
+--> 
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> UrineLoss </name>
+  <val>
+      K
+    * EthanolPool.Mass
+    * ( ( LeftGlomerulusFiltrate.GFRxNormal * LeftKidney-Function.Effect )
+           + ( RightGlomerulusFiltrate.GFRxNormal * RightKidney-Function.Effect ) )
+  </val>
+</def> 
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

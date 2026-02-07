@@ -1,0 +1,85 @@
+HumMod / Genitalia
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<branch>
+  <name> Genitalia </name>
+  <label> Genitalia </label>
+  <parent> ORGANS </parent>
+</branch>
+
+
+<leaf>
+  <name> Genitalia-Size </name>
+  <label> Size </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Circulation </name>
+  <label> Circulation </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Metabolism </name>
+  <label> Metabolism </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Fuel </name>
+  <label> Fuel </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-CO2 </name>
+  <label> CO2 </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Lactate </name>
+  <label> Lactate </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-AcidBase </name>
+  <label> Acid-Base </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Nerves </name>
+  <label> Nerves </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Function </name>
+  <label> Function </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+<leaf>
+  <name> Genitalia-Structure </name>
+  <label> Structure </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+
+<leaf>
+  <name> Genitalia-Vasculature </name>
+  <label> Vasculature </label>
+  <parent> Genitalia </parent>
+</leaf>
+
+
+End
