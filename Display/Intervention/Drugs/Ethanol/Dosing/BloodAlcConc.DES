@@ -46,9 +46,9 @@
 
 <showvalue>
    <row> 10.2 </row><col> 1.0 </col>
-   <name> EthanolGILumen.Mass </name>
+   <name> EthanolPool.Gain </name>
    <format><decimal> 2 </decimal></format>
-   <label> GI Lumen Mass </label>
+   <label> Ethanol Gain </label>
 </showvalue>
 
 <showvalue>
@@ -60,16 +60,9 @@
 
 <showvalue>
    <row> 14.2 </row><col> 1.0 </col>
-   <name> EthanolDailyDose.Mass </name>
+   <name> EthanolPool.Loss </name>
    <format><decimal> 2 </decimal></format>
-   <label> Daily Consumed Mass </label>
-</showvalue>
-
-<showvalue>
-   <row> 14.2 </row><col> 1.0 </col>
-   <name> EthanolKidney.UrineLoss </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Urine Loss </label>
+   <label> Ethanol Loss </label>
 </showvalue>
 
 <infobutton>

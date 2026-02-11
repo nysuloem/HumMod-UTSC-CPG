@@ -16,7 +16,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> BIOAVAIL </name><val> 0.05 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
-<var><name> PERM </name><val> 0.00075 </val></var> <!-- Permeability factor for ethanol across the GI wall (orignally 0.015) -->
+<var><name> PERM </name><val> 0.001 </val></var> <!-- 0.0006 --> <!-- Permeability factor for ethanol across the GI wall (orignally 0.015) -->
 <var><name> [Ethanol] </name></var>
 <var><name> Gain </name></var>
 <var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
@@ -59,15 +59,14 @@ Schema : DES V1.0
 </block>
 
 <block><name> Dervs </name>
-
 <testcase>
   <case>
-    <test> DrinkType EQ 2 </test>
+    <test> DrinkType EQ 2 </test> <!-- WINE -->
     <def><name> PERM </name><val> 0.07 </val></def> 
   </case>
 
   <case>
-    <test> DrinkType EQ 3 </test>
+    <test> DrinkType EQ 3 </test> <!-- VODKA -->
     <def><name> PERM </name><val> 0.1 </val></def> 
   </case>
 </testcase>
@@ -79,9 +78,10 @@ Schema : DES V1.0
 
 <def>
   <name> Loss </name>
-  <val> PERM * [Ethanol] </val>
+  <val> PERM * Mass </val>
 </def>
-<!-- Tried: ( PERM_Vmax * [Ethanol] ) / ( PERM_K + [Ethanol] ) -->
+<!-- Tiff: Orignally: PERM * [Ethanol] but changed to mass
+Tried: ( PERM_Vmax * [Ethanol] ) / ( PERM_K + [Ethanol] ) -->
 <!-- Proportional loss from lumen depends on both bioavailability and permeability, and is scaled to the total ethanol mass present -->
 <!-- Took bioavl out -->
 

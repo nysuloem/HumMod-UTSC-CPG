@@ -12,8 +12,6 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> PoolLoss </name></var>
-<var><name> FirstPassLoss </name></var>
 <var><name> LossToAcetaldehyde </name></var>
 <var><name> TransferToALDH </name></var>
 <var><name> [Acetaldehyde] </name></var>
@@ -22,9 +20,24 @@ Schema : DES V1.0
 <var><name> GainAcetaldehyde </name></var>
 <var><name> GainAcetate </name></var>
 <var><name> LossAcetaldehyde </name></var>
-<var><name> ALCDH_Vmax </name><val> 0.15 </val></var> <!-- Added this variable -->
+<var><name> ALCDH_Vmax </name><val> 4.67 </val></var> <!-- Added this variable -->
+<parm><name> ALCDH_K </name><val> 0.05 </val></parm> <!-- This is alcohol dehydrogenase (orignally 3) -->
 
-<parm><name> ALCDH_K </name><val> 0.002 </val></parm> <!-- This is alcohol dehydrogenase (orignally 3) -->
+<!-- Added:-->
+<var><name> CYP2E1_Vmax </name><val> 0.67 </val></var> 
+<var><name> CYP2E1_K </name><val> 0.46 </val></var>
+
+<!--Added -->
+<var><name> PoolLoss </name></var>
+<var><name> FirstPassLoss </name></var>
+<var><name> PoolLoss2 </name></var>
+<var><name> FirstPassLoss2 </name></var>
+
+<!-- Tiff: Added these variables: 
+<var><name> FirstPass_Vmax </name><val> 0.18 </val></var>
+<var><name> FirstPass_K </name><val> 0.0001 </val></var>
+-->
+
 <parm> <name> ALDH_K </name><val> 0.3 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
 
 </variables>
@@ -73,23 +86,52 @@ Schema : DES V1.0
 
 <def>
   <name> PoolLoss </name>
-  <val> ( ALCDH_Vmax * EthanolPool.[Ethanol] ) / ( ALCDH_K + EthanolPool.[Ethanol] )
-        * Liver-Function.Effect </val> 
+  <val> ( ( ALCDH_Vmax * EthanolPool.[Ethanol] ) / ( ALCDH_K + EthanolPool.[Ethanol] ) )
+         * Liver-Function.Effect
+    </val>
 </def> 
-<!-- Was orignally: ALCDH_K * EthanolPool.[Ethanol] -->
+
+<def><name> EthanolPool.[Ethanol] </name>
+<val> EthanolPool.[Ethanol] - PoolLoss </val>
+</def>
+
+<def><name> PoolLoss2 </name>
+<val> ( ( CYP2E1_Vmax * EthanolPool.[Ethanol] ) / ( CYP2E1_K + EthanolPool.[Ethanol] ) ) 
+      * Liver-Function.Effect
+      </val>
+</def>
+
+<!--Orignally: ( ALCDH_Vmax * EthanolPool.[Ethanol] ) / ( ALCDH_K + EthanolPool.[Ethanol] )
+        * Liver-Function.Effect 
+Was orignally: ALCDH_K * EthanolPool.[Ethanol] - made change with prof. -->
 <!-- Addition: Multiplied by HepaticArtery-Flow.PlasmaFlow -->
 
 <def>
   <name> FirstPassLoss </name>
-  <val> ( ALCDH_Vmax * EthanolGILumen.Loss ) / ( ALCDH_K + EthanolGILumen.Loss )
-        * Liver-Function.Effect 
+  <val> ( ( CYP2E1_Vmax * EthanolGILumen.[Ethanol] ) / ( CYP2E1_K + EthanolGILumen.[Ethanol] ) )
+        * Liver-Function.Effect
   </val>
 </def>
-<!-- Orignally had:
+
+<def><name> EthanolGILumen.[Ethanol] </name>
+<val> EthanolGILumen.[Ethanol] - FirstPassLoss </val>
+</def>
+
+<def><name> FirstPassLoss2 </name>
+<val> ( ( ALCDH_Vmax * EthanolGILumen.[Ethanol] ) / ( ALCDH_K + EthanolGILumen.[Ethanol] ) )
+        * Liver-Function.Effect
+  </val>
+</def>
+
+<!-- Tiff: Used to have: ( ALCDH_Vmax * EthanolGILumen.Loss ) / ( ALCDH_K + EthanolGILumen.Loss )
+        * Liver-Function.Effect
+ Changed values to 1st pass variables (added).  
+
+Orignally had:
  ALCDH_K
     * EthanolGILumen.Loss 
     * Liver-Function.Effect -->
-<!-- Commented out * ( PortalVein-Flow.PlasmaFlow ) -->
+<!-- W/ prof: Commented out * ( PortalVein-Flow.PlasmaFlow ) -->
 <!-- **** Do portal vein plasma flow INSTEAD OF hepatic - specifically 1st pass loss -->
 <!-- Used to have: ALCDH_K * EthanolGILumen.Loss / SplanchnicVeins.Vol / 1000 * HepaticVein.PlasmaFlow -->
 
@@ -99,7 +141,7 @@ Schema : DES V1.0
   <!-- Should also consider liver MR? -->
 </def>
 <!-- Gain acetyaldehyde / mass of ethanol = clearance 
-Do conditional so its above zero 
+DREW: Do conditional so its above zero 
 
 <conditional><name> Liver Clearance </name>
   <test> Ethanol Mass GT 0.0 </test>

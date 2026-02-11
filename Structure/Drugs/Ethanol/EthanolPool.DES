@@ -45,16 +45,20 @@ It integrates gains from absorption and subtracts losses from elimination routes
 
   <def>
     <name> [Ethanol] </name>
-    <val> ( Mass /  ( 2 * ECFV.Vol ) ) * 100 </val>  
+    <val> ( Mass /  ( ECFV.Vol + ICFV.Vol / 1000 ) ) / 10 </val>  
     <!-- Total mass (grams) and multiply by plasma volume to get dL. Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
   </def>
-  <!-- Made correction to account for distribution volume,  -->
+  <!-- Tiff updated formula, was orignally: ( Mass /  ( 2 * ECFV.Vol ) ) * 100
+   / 10 to convert g/L to g/dL
+  -->
 
-  <def>
+
+<!-- Commented out:
+    <def>
     <name> EthanolMass </name>         
-    <val> [Ethanol] * 0.789 </val> <!-- Converts concentration back to grams using ethanol’s density (0.789 g/mL) -->
+    <val> [Ethanol] * 0.789 </val> Converts concentration back to grams using ethanol’s density (0.789 g/mL)
   </def>
-<!-- I don't understand the point of this calculation. You cannot multiply a concentration by a density to get mass-->
+I don't understand the point of this calculation. You cannot multiply a concentration by a density to get mass-->
 
 </block>
 
@@ -62,12 +66,12 @@ It integrates gains from absorption and subtracts losses from elimination routes
 
   <def>
     <name> Gain </name>
-    <val> EthanolGILumen.Loss - EthanolLiver.FirstPassLoss </val>
+    <val> EthanolGILumen.Loss - EthanolLiver.FirstPassLoss - EthanolLiver.FirstPassLoss2 </val> 
   </def>
 
   <def>
     <name> Loss </name>
-    <val> EthanolKidney.UrineLoss + EthanolLungs.LungsLoss + EthanolLiver.PoolLoss </val>
+    <val> EthanolKidney.UrineLoss + EthanolLungs.LungsLoss + EthanolLiver.PoolLoss + EthanolLiver.PoolLoss2 </val>
   </def>
  
 <!-- Reserach loss rates (validate numbers) -->
