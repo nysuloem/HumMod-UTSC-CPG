@@ -23,8 +23,9 @@ Schema : DES V1.0
 <var><name> GainAcetate </name></var>
 <var><name> LossAcetaldehyde </name></var>
 
-<parm><name> ALCDH_K </name><val> 0.3 </val></parm> <!-- This is alcohol dehydrogenase -->
-<parm> <name> ALDH_K </name><val> 1.67 </val></parm> <!-- This is acetaldehyde dehydrogenase-->
+<var><name> ALCDH_Vmax </name><val> 0.1 </val></var>
+<var><name> ALCDH_K </name><val> 0.005 </val></var> <!-- This is alcohol dehydrogenase -->
+<var> <name> ALDH_K </name><val> 1.67 </val></var> <!-- This is acetaldehyde dehydrogenase-->
 
 </variables>
 
@@ -52,16 +53,33 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-  <!-- ALDH_K should vary with ethnicity -->
+   <!-- ALDH_Vmax should vary with ethnicity -->
+   <!-- Need to work on this later -->
+<!--
+<def><name> Asian </name><val> 0.5 </val></def> 
+<def><name> Black </name><val> 1 </val></def> 
+<def><name> White </name><val> 1 </val></def>
+<def><name> Hispanic </name><val> 1 </val></def>
+<def><name> ALDH_K </name>
+  <val> ALDH_K
+    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    - 1 
+  </val>
+</def> 
+
+-->
 
 <def>
   <name> PoolLoss </name>
-  <val> ALCDH_K * EthanolPool.[Ethanol] </val> 
+  <val> ( ALCDH_Vmax * EthanolPool.[Ethanol] ) / ( ALCDH_K + EthanolPool.[Ethanol] ) </val> 
 </def>
 
 <def>
   <name> FirstPassLoss </name>
-  <val> ALCDH_K * EthanolGILumen.Loss / SplanchnicVeins.Vol / 1000 * HepaticVein.PlasmaFlow </val>
+  <val> ( ALCDH_Vmax * EthanolGILumen.PortalVein[Ethanol] ) / ( ALCDH_K + EthanolGILumen.PortalVein[Ethanol] ) </val>
 </def>
 
 <def>

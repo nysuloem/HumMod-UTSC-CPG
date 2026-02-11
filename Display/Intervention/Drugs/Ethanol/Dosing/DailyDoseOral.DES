@@ -8,7 +8,7 @@ By : Tiffany Bishun
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 34 </col>
+   <col> 71 </col>
    <high> 27 </high>
    <wide> 36 </wide>
    <title> Chronic Alcohol Consumption </title>
@@ -44,17 +44,11 @@ By : Tiffany Bishun
   <label> Volume (mL) </label>
 </slidebar>
 
-<repeatlist>
-  <name> EthanolDailyDose.PercentageofAlcohol </name>
-  <repeat><reps> 40 </reps><stepsize> 1 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-  <row> 9 </row><col> 1.0 </col>
-  <name> EthanolDailyDose.PercentageofAlcohol </name>
-  <listname> EthanolDailyDose.PercentageofAlcohol </listname>
-  <label> Alcohol (%) </label>
-</slidebar>
+<showvalue>
+   <row> 9.0 </row><col> 1.0 </col>
+   <name> PercentageofAlcohol </name>
+   <label> % Alcohol </label>
+</showvalue>
 
 <repeatlist>
   <name> EthanolDailyDose.TimesADay </name>

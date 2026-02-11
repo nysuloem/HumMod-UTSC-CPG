@@ -93,7 +93,6 @@ Schema : DES V1.0
   <errorlim> 0.25 </errorlim>
 </diffeq>
 
-
 <diffeq>
   <name> M6G </name>
   <integralname> M6G </integralname>
@@ -184,6 +183,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

@@ -8,7 +8,7 @@ By : Tiffany Bishun
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 1.0 </col>
+   <col> 38.0 </col>
    <high> 15 </high>
    <wide> 32 </wide>
    <title> Single Oral Alcoholic Drink </title>
@@ -33,17 +33,11 @@ By : Tiffany Bishun
   <label> Volume (mL) </label>
 </slidebar>
 
-<repeatlist>
-  <name> EthanolSingleDose.%Alc </name>
-  <repeat><reps> 40 </reps><stepsize> 1 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-  <row> 5.2 </row><col> 1.0 </col>
-  <name> %Alc </name>
-  <listname> EthanolSingleDose.%Alc </listname>
-  <label> Alcohol (%) </label>
-</slidebar>
+<showvalue>
+   <row> 5.2 </row><col> 1.0 </col>
+   <name> %Alc </name>
+   <label> % Alcohol </label>
+</showvalue>
 
 <showvalue>
    <row> 7.2 </row><col> 1.0 </col>

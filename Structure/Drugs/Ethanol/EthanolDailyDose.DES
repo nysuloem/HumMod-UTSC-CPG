@@ -29,7 +29,7 @@ Schema : DES V1.0
 
 <!--  Flag determining irregular dosing -->
 <parm><name> IrregularQ </name><val> 0 </val></parm>
-<parm><name> PercentageofAlcohol </name> <val> 0.0 </val></parm> <!-- % ethanol in the drink (default 0.07 = 7%, like beer)-->
+<var><name> PercentageofAlcohol </name> <val> 5.0 </val></var> <!-- % ethanol in the drink (default 0.07 = 7%, like beer)-->
 <parm><name> NumberLeft </name><val> 0 </val></parm>
 <parm><name> NumberGiven </name><val> 0 </val></parm>
 <whitenoise><name> Likelihood </name></whitenoise>
