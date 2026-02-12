@@ -12,6 +12,9 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Rate(L/Day) </name></var>
+<var><name> ThirstRating </name></var>
+
+<!-- I don't see the point of these parameters. They don't seem to be used to determine thirst -->
 
 <parm><name> targetOsm_A </name><val> 200 </val></parm>30
 <parm><name> targetOsm_S </name><val> 273 </val></parm>285
@@ -58,16 +61,38 @@ Schema : DES V1.0
 
 <functions>
 
+<!-- This curve determines OSMOTIC thirst -->
+
 <curve>
-  <name> Rate(L/Day) </name>
+  <name> OsmoticThirst </name>
   <point><x> 250 </x><y>  0.0 </y><slope> 0 </slope></point>
-  <point><x> 272 </x><y>  2.0 </y><slope> 0.225 </slope></point>274
+  <point><x> 272 </x><y>  2.0 </y><slope> 0.225 </slope></point>
   <point><x> 320 </x><y> 30.0 </y><slope> 0 </slope></point>
+</curve>
+
+<!-- This curve determines VOLUME thirst -->
+
+<curve>
+  <name> VolumeThirst </name>
+  <point><x> 0 </x><y>  0.0 </y><slope> 0 </slope></point>
+  <point><x> 10 </x><y>  1.0 </y><slope> 0.225 </slope></point>
+  <point><x> 50 </x><y> 30.0 </y><slope> 0 </slope></point>
+</curve>
+
+
+<curve>
+  <name> ThirstRating </name>
+  <point><x> 0 </x><y>  0.0 </y><slope> 0 </slope></point>
+  <point><x> 2 </x><y>  10.0 </y><slope> 0.225 </slope></point>
+  <point><x> 2.5 </x><y> 30.0 </y><slope> 0.225 </slope></point>
+  <point><x> 3 </x><y> 60.0 </y><slope> 0.225 </slope></point>
+  <point><x> 30 </x><y> 100.0 </y><slope> 0 </slope></point>
 </curve>
 
 </functions>
 
 <definitions>
+
 <block><name> Dervs </name>
 
 <def><name> dOsm_A </name><val> 0.05 * ( targetOsm_A - Osm_A ) </val></def>
@@ -75,23 +100,10 @@ Schema : DES V1.0
 <def><name> dOsm_m </name><val> 0.05 * ( targetOsm_m - Osm_m ) </val></def>
 <def><name> dmasterS </name><val> 0.05 * ( TargetMasterS - masterS ) </val></def>
 
-<def>
-  <name> Rate(L/Day) </name>
-  <val> ( 1 - OsmBody.OsmoreceptorDamage ) * Rate(L/Day) [ OsmBody.Osmoreceptors(mOsm/L) ] </val>
-</def>
-
-<!--
-<def>
-  <name> Rate(L/Day) </name>
-  <val> ( 1 - OsmBody.OsmoreceptorDamage ) * Osm_A * ( OsmBody.Osmoreceptors(mOsm/L) ^ Osm_m ) / ( ( ( masterS * Osm_S ) ^ Osm_m ) + ( OsmBody.Osmoreceptors(mOsm/L) ^ Osm_m ) )  </val>
-</def>
--->
-
-
-
 </block>
 
 </definitions>
+
 </structure>
 
 End

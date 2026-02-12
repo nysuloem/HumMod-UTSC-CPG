@@ -9,38 +9,11 @@ By : University of Mississippi Medical Center
 <groupbox>
    <row> 2.0 </row>
    <col> 32.0 </col>
-   <high> 17.4 </high>
+   <high> 9.0 </high>
    <wide> 30.0 </wide>
-   <title> H2O </title>
+   <title> Water </title>
 
 <structurename> DietIntakeH2O </structurename>
-
-<showvalue>
-   <row> 1.4 </row><col> 1.0 </col>
-   <name> Rate(L/Day) </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Intake (L/Day) </label>
-</showvalue>
-
-<showgraph>
-  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
-  <leftmargin> 6 </leftmargin>
-  <xaxis>
-    <name> System.X </name>
-    <label> Time </label>
-    <scale><min> 0 </min><max> 2 </max></scale>
-  </xaxis>
-  <yaxis>
-    <yvar>
-      <name> Rate(L/Day) </name>
-      <nolabel/>
-      <linecolor> BLUE </linecolor>
-    </yvar>
-    <scale>
-      <min> 0 </min><max> 3 </max><inc> 1 </inc>
-    </scale>
-  </yaxis>
-</showgraph>
 
 <maplist>
   <name> Fixed? </name>
@@ -49,7 +22,7 @@ By : University of Mississippi Medical Center
 </maplist>
 
 <radiobuttons>
-  <row> 9.8 </row><col> 1.0 </col>
+  <row> 2 </row><col> 1.0 </col>
   <name> Fixed? </name>
   <listname> Fixed? </listname>
   <nolabel/>
@@ -64,7 +37,7 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 13.2 </row><col> 1.0 </col>
+  <row> 4.5 </row><col> 1.0 </col>
   <name> Rate(L/Day) </name>
   <listname> Rate(L/Day) </listname>
   <label> L/day </label>
@@ -77,7 +50,7 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 14.7 </row><col> 1.0 </col>
+  <row> 7.0 </row><col> 1.0 </col>
   <name> DegC </name>
   <listname> DegC </listname>
   <label> Temp (C) </label>

@@ -35,7 +35,7 @@ By : University of Mississippi Medical Center
    <row> 3.0 </row>
    <col> 1.0 </col>
    <high> 20.0 </high>
-   <wide> 30.0 </wide>
+   <wide> 35.0 </wide>
    <title> Macronutrients </title>
 </groupbox>
 
@@ -59,46 +59,53 @@ By : University of Mississippi Medical Center
 
 <slidebar>
   <row> 9.0 </row><col> 3.0 </col>
+  <name> GILumenH2O.Fiber </name>
+  <listname> NutritionRate </listname>
+  <label> Dietary Fibre </label>
+</slidebar>
+
+<slidebar>
+  <row> 11.0 </row><col> 3.0 </col>
   <name> Fat_kCal/Day </name>
   <listname> NutritionRate </listname>
   <label> Fats </label>
 </slidebar>
 
 <slidebar>
-  <row> 11.0 </row><col> 3.0 </col>
+  <row> 13.0 </row><col> 3.0 </col>
   <name> Protein_kCal/Day </name>
   <listname> NutritionRate </listname>
   <label> Proteins </label>
 </slidebar>
 
 <showvalue>
-   <row> 13.0 </row><col> 3.0 </col>
+   <row> 15.0 </row><col> 3.0 </col>
    <name> Total_kCal/Day </name>
    <format><integer/></format>
    <label> Total </label>
 </showvalue>
 
 <label>
-  <row> 16.0</row><col> 3.0 </col>
+  <row> 17.0</row><col> 3.0 </col>
   <text> (g/day) </text>
 </label>
 
 <showvalue>
-   <row> 18.0 </row><col> 3.0 </col>
+   <row> 19.0 </row><col> 3.0 </col>
    <name> Carbo_G/Day </name>
    <format><integer/></format>
    <label> Carbs </label>
 </showvalue>
 
 <showvalue>
-   <row> 19.0 </row><col> 3.0 </col>
+   <row> 20.0 </row><col> 3.0 </col>
    <name> Fat_G/Day </name>
    <format><integer/></format>
    <label> Fat </label>
 </showvalue>
 
 <showvalue>
-   <row> 20.0 </row><col> 3.0 </col>
+   <row> 21.0 </row><col> 3.0 </col>
    <name> Protein_G/Day </name>
    <format><integer/></format>
    <label> Protein </label>
@@ -108,14 +115,14 @@ By : University of Mississippi Medical Center
 
 <groupbox>
    <row> 3.0 </row>
-   <col> 32 </col>
+   <col> 37 </col>
    <high> 20.0 </high>
    <wide> 30.0 </wide>
    <title> Micronutrients </title>
 </groupbox>
 
 <label>
-  <row> 5.0 </row><col> 34.0 </col>
+  <row> 5.0 </row><col> 39.0 </col>
   <text> (mMol/day) </text>
 </label>
 
@@ -128,21 +135,21 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 7.0 </row><col> 34.0 </col>
+  <row> 7.0 </row><col> 39.0 </col>
   <name> Salt_mMol/Day </name>
   <listname> Rate </listname>
   <label> Salt </label>
 </slidebar>
 
 <slidebar>
-  <row> 9.0 </row><col> 34.0 </col>
+  <row> 9.0 </row><col> 39.0 </col>
   <name> KCl_mMol/Day </name>
   <listname> Rate </listname>
   <label> KCl </label>
 </slidebar>
 
 <slidebar>
-  <row> 11.0 </row><col> 34.0 </col>
+  <row> 11.0 </row><col> 39.0 </col>
   <name> DietaryK+_mMol/Day </name>
   <listname> Rate </listname>
   <label> Dietary K+ </label>
@@ -154,33 +161,33 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 13.0 </row><col> 34.0 </col>
+  <row> 13.0 </row><col> 39.0 </col>
   <name> Ca++_mMol/Day </name>
   <listname> Calcium </listname>
   <label> Ca++ </label>
 </slidebar>
 
 <slidebar>
-  <row> 15.0 </row><col> 34.0 </col>
+  <row> 15.0 </row><col> 39.0 </col>
   <name> PO4---_mMol/Day </name>
   <listname> Rate </listname>
   <label> PO4--- </label>
 </slidebar>
 
 <slidebar>
-  <row> 17.0 </row><col> 34.0 </col>
+  <row> 17.0 </row><col> 39.0 </col>
   <name> SO4--_mMol/Day </name>
   <listname> Rate </listname>
   <label> SO4-- </label>
 </slidebar>
 
 <showvalue>
-   <row> 19.0 </row><col> 45 </col>
+   <row> 19.0 </row><col> 50 </col>
    <name> NH4+_mMol/Day </name>
    <format><integer/></format>
    <label> NH4+ </label>
 </showvalue> <showvalue>
-   <row> 21.0 </row><col> 45 </col>
+   <row> 21.0 </row><col> 50 </col>
    <name> HCO3-_mMol/Day </name>
    <format><integer/></format>
    <label> HCO3- </label>
