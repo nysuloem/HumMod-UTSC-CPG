@@ -11,8 +11,8 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> BIOAVAIL </name><val> 0.05 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
-<var><name> PERM </name><val> 0.05 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
+<var><name> BIOAVAIL </name><val> 1 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
+<var><name> PERM </name><val> 0.01 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
 <var><name> [Ethanol] </name></var>
 <var><name> Gain </name></var>
 <var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
