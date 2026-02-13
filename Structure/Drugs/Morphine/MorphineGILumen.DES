@@ -11,23 +11,11 @@ Schema : DES V1.0
 
 <variables>
 
-<constant>
-  <name> BIOAVAIL </name>
-  <val> 0.9 </val>
-</constant>
-
-<constant>
-  <name> PERM </name>
-  <val> 0.010 </val>
-</constant>
-
-<var>
-  <name> [Morphine] </name>
-</var>
-
-<var>
-  <name> Loss </name>
-</var>
+<constant><name> BIOAVAIL </name><val> 0.9 </val></constant>
+<constant><name> PERM </name><val> 0.010 </val></constant>
+<var><name> [Morphine] </name></var>
+<var><name> Loss </name></var>
+<var><name> Gain </name></var>
 
 </variables>
 
@@ -56,19 +44,24 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
+ <def><name> Gain </name>
+    <val> MorphineSingleDose.Mass </val>
+  </def>
+
 <def>
   <name> Loss </name>
-  <val> BIOAVAIL * PERM * Mass  </val>
+  <val> BIOAVAIL * PERM * [Morphine]  </val>
 </def>
 
 <def>
   <name> Change </name>
-  <val> - Loss / BIOAVAIL </val>
+  <val> Gain - Loss </val>
 </def>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

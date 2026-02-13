@@ -11,69 +11,79 @@ Schema : DES V1.0
 
 <variables>
 
-<parm>
-  <name> Dose </name>
-  <val> 0.0 </val>
-</parm>
-
-<var>
-  <name> TimeLastDose </name>
-  <val> UNDEFINED </val>
-</var>
-
-<var>
-  <name> TotalDoses </name>
-  <val> 0.0 </val>
-</var>
-
-<var>
-  <name> CumulativeDose </name>
-  <val> 0.0 </val>
-</var>
-
-<parm><name> Dummy </name><val> 0 </val></parm>
+<parm><name> Dose </name><val> 0.0 </val></parm>
+<var><name> TimeLastDose </name><val> UNDEFINED </val></var>
+<var><name> TotalDoses </name><val> 0.0 </val></var>
+<var><name> CumulativeDose </name><val> 0.0 </val></var>
+<var><name> Mass </name><val> 0 </val></var>
+<timervar><name> ResetSingleDose </name><val> 0 </val><state> OFF </state></timervar>
 
 </variables>
-
 
 <definitions>
 
 <block><name> TakeDoseNow </name>
 
-<def><name> MorphineGILumen.Mass </name><val> MorphineGILumen.Mass + Dose </val></def>
-<call> Increment </call>
+<def>
+  <name> Mass </name>
+  <val> Dose </val>
+</def>
+
+<timer><name> ResetSingleDose </name>
+  <state> UP </state>
+</timer>
+
+<def>
+  <name> TimeLastDose </name>
+  <val> System.X </val>
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> TotalDoses + 1.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Mass </val>
+</def>
 
 </block>
 
+<block><name> Wrapup </name>
+  <if><test> ResetSingleDose GE 1 </test>
+    <true>
+      <timer><name> ResetSingleDose </name>
+        <val> 0 </val>
+        <state> OFF </state>
+      </timer>
+      <def><name> Mass </name>
+        <val> 0 </val>
+      </def>
+    </true>
+  </if>
+</block>
 
 <block><name> Parms </name>
 
-<onjustchanged><name> Dummy </name>
+<!--<onjustchanged><name> Dummy </name>
 <def><name> MorphineGILumen.Mass </name><val> MorphineGILumen.Mass + ( Dose * Dummy )  </val></def>
 <call> Increment </call>
 <def><name> Dummy </name><val> 0 </val></def>
-</onjustchanged>
+</onjustchanged>-->
 
 </block>
-
 
 <block><name> Reset </name>
 
-<def><name> TimeLastDose </name><val> UNDEFINED </val></def>
-<def><name> TotalDoses </name><val> 0.0 </val></def>
-<def><name> CumulativeDose </name><val> 0.0 </val></def>
-
-</block>
-
-<block><name> Increment </name>
-
-<def><name> TimeLastDose </name><val> System.X </val></def>
-<def><name> TotalDoses </name><val> TotalDoses + 1.0 </val></def>
-<def><name> CumulativeDose </name><val> CumulativeDose + Dose </val></def>
+  <def><name> TimeLastDose </name><val> UNDEFINED </val></def>
+  <def><name> TotalDoses </name><val> 0.0 </val></def>
+  <def><name> CumulativeDose </name><val> 0.0 </val></def>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

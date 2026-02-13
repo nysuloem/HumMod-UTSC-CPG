@@ -156,12 +156,12 @@ Schema : DES V1.0
 
 <def>
   <name> Gain </name>
-  <val> MorphineIV.Rate + MorphineIMBolus.Loss - MorphineGILumen.Loss </val>
+  <val> MorphineIV.Rate + MorphineIMBolus.Loss + MorphineGILumen.Loss </val>
 </def>
 
 <def>
   <name> Loss </name>
-  <val> MorphineLiver.Loss - MorphineKidney.Loss  </val>
+  <val> MorphineLiver.Loss + MorphineKidney.Loss  </val>
 </def>
 
 <def>
