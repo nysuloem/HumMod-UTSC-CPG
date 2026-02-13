@@ -62,7 +62,6 @@ By : University Of Mississippi Medical Center
   <val> EndogenousRate + A2Pump.Rate </val>
 </def>
 
-
 <conditional>
   <name> [A2(pG/mL)] </name>
   <test> Clamp </test>

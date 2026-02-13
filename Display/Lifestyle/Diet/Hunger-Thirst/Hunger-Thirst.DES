@@ -31,10 +31,10 @@ By : University Of Mississippi Medical Center
 <?path Display\Lifestyle\Diet\Hunger-Thirst\ ?>
 
 <?include Hunger.DES ?>
-<?include Glucose.DES ?>
+<!-- <?include Glucose.DES ?> -->
 
 <?include Thirst.DES ?>
-<?include Leptin.DES ?>
+<!--<?include Leptin.DES ?>-->
 
 </panel>
 

@@ -71,12 +71,13 @@ Schema : DES V1.0
 </curve>
 
 <!-- This curve determines VOLUME thirst -->
+<!-- Τhe values for this curve are lower because the thirst equation is multiplicative, so if both curves have high values, thirst skyrockets and he dies -->
 
 <curve>
   <name> VolumeThirst </name>
-  <point><x> 0 </x><y>  0.0 </y><slope> 0 </slope></point>
+  <point><x> 0 </x><y>  0.5 </y><slope> 0 </slope></point>
   <point><x> 10 </x><y>  1.0 </y><slope> 0.225 </slope></point>
-  <point><x> 50 </x><y> 30.0 </y><slope> 0 </slope></point>
+  <point><x> 50 </x><y> 1.5 </y><slope> 0 </slope></point>
 </curve>
 
 
