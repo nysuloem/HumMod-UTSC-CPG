@@ -51,6 +51,10 @@ By : University Of Mississippi Medical Center
 <var><name> AllButProtein </name><val> UNDEFINED </val></var>
 <var><name> HgbA1C </name><val> UNDEFINED </val></var>
 <var><name> [Ethanol] </name><val> UNDEFINED </val></var>
+<var><name> ALT </name><val> UNDEFINED </val></var>
+
+<var><name> EthanolCheck </name><val> FALSE </val></var>
+<var><name> ALTCheck </name><val> FALSE </val></var>
 
 </variables>
 
@@ -58,51 +62,64 @@ By : University Of Mississippi Medical Center
 
 <block><name> GetSample </name>
 
-<def><name> Timestamp </name><val> System.X </val></def>
+    <def><name> Timestamp </name><val> System.X </val></def>
 
-<def><name> [Glucose] </name><val> GlucosePool.[Glucose(mG/dL)] </val></def>
-<def><name> [FattyAcids] </name><val> FAPool.[FA(mG/dL)] </val></def>
-<def><name> [Triglycerides] </name><val> TriglyceridePool.[Triglyceride(mG/dL)] </val></def>
-<def><name> [AminoAcids] </name><val> AAPool.[AA(mG/dL)] </val></def>
-<def><name> [Creatinine] </name><val> CreatininePool.[Creatinine(mG/dL)] </val></def>
-<def><name> [Urea] </name><val> UreaPool.[Urea(mG/dL)] </val></def>
-<def><name> [BUN] </name><val> UreaPool.[BUN] </val></def>
-<def><name> [SID] </name><val> BloodIons.[SID(mEq/L)] </val></def>
-<def><name> pH </name><val> BloodPhValues.VeinsPh </val></def>
-<def><name> [H+] </name><val> BloodPhValues.Veins[H+] </val></def>
-<def><name> [Protein] </name><val> PlasmaProtein.[Protein(G/dL)] </val></def>
-<def><name> ColloidPressure </name><val> PlasmaProtein.COP </val></def>
-<def><name> Osmolarity </name><val> OsmBody.CellWall(mOsm/L) </val></def>
-<def><name> Hematocrit(%) </name><val> BloodVol.Hct(%) </val></def>
-<def><name> [Angiotensin] </name><val> A2Pool.[A2(pG/mL)] </val></def>
-<def><name> PlasmaReninActiviy </name><val> ReninPool.[PRA] </val></def>
-<def><name> [Aldosterone] </name><val> AldoPool.[Aldo(pMol/L)] </val></def>
-<def><name> [AntidiureticHormone] </name><val> ADHPool.[ADH] </val></def>
-<def><name> [ANP] </name><val> ANPPool.[ANP] </val></def>
-<def><name> [TotalT4/T3] </name><val> ThyroidPool.[Total_T4-T3] </val></def>
-<def><name> [TSH] </name><val> ThyroidTSH.[TSH] </val></def>
-<def><name> [Norepineshrine] </name><val> NEPool.[NE(pG/mL)] </val></def>
-<def><name> [Epinephrine] </name><val> EpiPool.[Epi(pG/mL)] </val></def>
-<def><name> Cations </name><val> BloodIons.Cations </val></def>
-<def><name> [Na+] </name><val> NaPool.[Na+(mEq/L)] </val></def>
-<def><name> [K+] </name><val> KPool.[K+(mEq/L)] </val></def>
-<def><name> Anions </name><val> BloodIons.Anions </val></def>
-<def><name> StrongAnions </name><val> BloodIons.StrongAnions </val></def>
-<def><name> [Cl-] </name><val> ClPool.[Cl-(mEq/L)] </val></def>
-<def><name> [Lac-] </name><val> LacPool.[Lac-(mEq/L)] </val></def>
-<def><name> [KA-] </name><val> KAPool.[KA(mMol/L)] </val></def>
-<def><name> [SO4--] </name><val> SO4Pool.[SO4--(mEq/L)] </val></def>
-<def><name> [PO4--] </name><val> PO4Pool.[PO4--(mEq/L)] </val></def>
-<def><name> WeakAnions </name><val> BloodIons.WeakAnions </val></def>
-<def><name> [HCO3-] </name><val> CO2Veins.[HCO3(mEq/L)] </val></def>
-<def><name> [Protein-] </name><val> BloodIons.Protein </val></def>
-<def><name> AllButProtein </name><val> BloodIons.AnionsLessProtein </val></def>
-<def><name> HgbA1C </name><val> HgbA1C.A1C </val></def>
-<def><name> [Ethanol] </name><val> EthanolPool.[Ethanol] </val></def>
+    <def><name> [Glucose] </name><val> GlucosePool.[Glucose(mG/dL)] </val></def>
+    <def><name> [FattyAcids] </name><val> FAPool.[FA(mG/dL)] </val></def>
+    <def><name> [Triglycerides] </name><val> TriglyceridePool.[Triglyceride(mG/dL)] </val></def>
+    <def><name> [AminoAcids] </name><val> AAPool.[AA(mG/dL)] </val></def>
+    <def><name> [Creatinine] </name><val> CreatininePool.[Creatinine(mG/dL)] </val></def>
+    <def><name> [Urea] </name><val> UreaPool.[Urea(mG/dL)] </val></def>
+    <def><name> [BUN] </name><val> UreaPool.[BUN] </val></def>
+    <def><name> [SID] </name><val> BloodIons.[SID(mEq/L)] </val></def>
+    <def><name> pH </name><val> BloodPhValues.VeinsPh </val></def>
+    <def><name> [H+] </name><val> BloodPhValues.Veins[H+] </val></def>
+    <def><name> [Protein] </name><val> PlasmaProtein.[Protein(G/dL)] </val></def>
+    <def><name> ColloidPressure </name><val> PlasmaProtein.COP </val></def>
+    <def><name> Osmolarity </name><val> OsmBody.CellWall(mOsm/L) </val></def>
+    <def><name> Hematocrit(%) </name><val> BloodVol.Hct(%) </val></def>
+    <def><name> [Angiotensin] </name><val> A2Pool.[A2(pG/mL)] </val></def>
+    <def><name> PlasmaReninActiviy </name><val> ReninPool.[PRA] </val></def>
+    <def><name> [Aldosterone] </name><val> AldoPool.[Aldo(pMol/L)] </val></def>
+    <def><name> [AntidiureticHormone] </name><val> ADHPool.[ADH] </val></def>
+    <def><name> [ANP] </name><val> ANPPool.[ANP] </val></def>
+    <def><name> [TotalT4/T3] </name><val> ThyroidPool.[Total_T4-T3] </val></def>
+    <def><name> [TSH] </name><val> ThyroidTSH.[TSH] </val></def>
+    <def><name> [Norepineshrine] </name><val> NEPool.[NE(pG/mL)] </val></def>
+    <def><name> [Epinephrine] </name><val> EpiPool.[Epi(pG/mL)] </val></def>
+    <def><name> Cations </name><val> BloodIons.Cations </val></def>
+    <def><name> [Na+] </name><val> NaPool.[Na+(mEq/L)] </val></def>
+    <def><name> [K+] </name><val> KPool.[K+(mEq/L)] </val></def>
+    <def><name> Anions </name><val> BloodIons.Anions </val></def>
+    <def><name> StrongAnions </name><val> BloodIons.StrongAnions </val></def>
+    <def><name> [Cl-] </name><val> ClPool.[Cl-(mEq/L)] </val></def>
+    <def><name> [Lac-] </name><val> LacPool.[Lac-(mEq/L)] </val></def>
+    <def><name> [KA-] </name><val> KAPool.[KA(mMol/L)] </val></def>
+    <def><name> [SO4--] </name><val> SO4Pool.[SO4--(mEq/L)] </val></def>
+    <def><name> [PO4--] </name><val> PO4Pool.[PO4--(mEq/L)] </val></def>
+    <def><name> WeakAnions </name><val> BloodIons.WeakAnions </val></def>
+    <def><name> [HCO3-] </name><val> CO2Veins.[HCO3(mEq/L)] </val></def>
+    <def><name> [Protein-] </name><val> BloodIons.Protein </val></def>
+    <def><name> AllButProtein </name><val> BloodIons.AnionsLessProtein </val></def>
+    <def><name> HgbA1C </name><val> HgbA1C.A1C </val></def>
+    <def><name> [Ethanol] </name><val> EthanolPool.[Ethanol] </val></def>
+    <def><name> ALT </name><val> LiverMetabolism-Enzymes.ALTBloodPool </val></def>
+
+
+    <conditional><name> EthanolCheck </name>
+        <test> [Ethanol] GT 0.08 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ALTCheck </name>
+        <test> ALT GT 40 </test>
+        <true> TRUE </true>
+    </conditional>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

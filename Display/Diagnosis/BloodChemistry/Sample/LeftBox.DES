@@ -209,11 +209,30 @@ By : University Of Mississippi Medical Center
 </showvalue>
 
 <showvalue>
-  <row> 26.8 </row><col> 1.0 </col>
+  <row> 27.8 </row><col> 3.0 </col>
   <name> [Ethanol] </name>
   <format><decimal> 1 </decimal></format>
-  <label> Blood Alcohol Conc. </label>
+  <label> BAC </label>
 </showvalue>
+
+<checkmark>
+   <row> 27.8 </row><col> 1.0 </col>
+   <name> EthanolCheck </name>
+   <label> </label>
+</checkmark>
+
+<showvalue>
+  <row> 28.8 </row><col> 3.0 </col>
+  <name> ALT </name>
+  <format><decimal> 1 </decimal></format>
+  <label> ALT </label>
+</showvalue>
+
+<checkmark>
+   <row> 28.8 </row><col> 1.0 </col>
+   <name> ALTCheck </name>
+   <label> </label>
+</checkmark>
 
 <infobutton>
   <row> 16.6 </row>
@@ -232,8 +251,8 @@ By : University Of Mississippi Medical Center
   <line> </line>
   <line> [Norepinephrine] = 240 pG/mL </line>
   <line> [Epinephrine] = 80 pG/mL </line>
-  <line> </line>
-  <line> </line>
+  <line> BAC over 0.08 g/dL is above legal limit </line>
+  <line> ALT = 20-40 U/L </line>
   <line> </line>
 
 </infobutton>

@@ -1,0 +1,28 @@
+HumMod / Liver-Enzymes
+
+This was created by Tiffany Bishun in consultation with Jason Brown
+
+<structure><name> LiverMetabolism-Enzymes </name>
+
+<variables>
+
+<var><name> ALTLiverPool </name></var>
+<var><name> ALTBloodPool </name></var>
+
+</variables>
+
+
+<definitions>
+
+<block><name> Dervs </name>
+    
+    <def><name> ALTLiverPool </name><val> LiverMetabolism_Gluconeogenesis.Rate </val></def>
+    <def><name> ALTBloodPool </name><val> ALTLiverPool * ( 1 / Liver-Structure.Effect + 0.01 ) </val></def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
