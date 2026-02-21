@@ -9,7 +9,7 @@ By : University Of Mississippi Medical Center
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 30 </high>
+   <high> 25 </high>
    <wide> 100 </wide>
    <title> Control </title>
 
@@ -74,27 +74,17 @@ By : University Of Mississippi Medical Center
   <label> Having Sex</label>
 </checkmark>
 
-<!-- 
-
-<infobutton>
-  <row> 1.4 </row>
-  <col> 26.0 </col>
-  <line> A request for exercise is not executed </line>
-  <line> when exercise is being controlled by the daily </line>
-  <line> planner or when the subject is comatose. </line>
-</infobutton>
-
- -->
+<!-- Exercise Bike -->
 
 <structurename> Exercise-Bike </structurename>
 
 <label>
-  <row> 1.4 </row><col> 30 </col>
+  <row> 1.4 </row><col> 36 </col>
   <text> Exercise Bike </text>
 </label>
 
 <showvalue>
-  <row> 3.4 </row><col> 30.0 </col>
+  <row> 2.4 </row><col> 36.0 </col>
   <name> Status </name>
   <format><list> Common.Active </list></format>
   <label> Status </label>
@@ -103,16 +93,16 @@ By : University Of Mississippi Medical Center
 <maplist>
   <name> Exercise-Bike.Level </name>
   <map><val>  50 </val><img> Warmup </img></map>
-  <map><val> 100 </val><img> 100 </img></map>
+  <map><val> 100 </val><img> 100 Watts </img></map>
   <map><val> 150 </val><img> Moderate </img></map>
-  <map><val> 200 </val><img> 200 </img></map>
+  <map><val> 200 </val><img> 200 Watts </img></map>
   <map><val> 250 </val><img> Heavy </img></map>
-  <map><val> 300 </val><img> 300 </img></map>
+  <map><val> 300 </val><img> 300 Watts </img></map>
   <map><val> 350 </val><img> Maximum </img></map>
 </maplist>
 
 <slidebar>
-  <row> 4.8 </row><col> 30.0 </col>
+  <row> 4.4 </row><col> 36.0 </col>
   <wide> 8.0 </wide>
   <name> Power(W) </name>
   <listname> Exercise-Bike.Level </listname>
@@ -120,27 +110,20 @@ By : University Of Mississippi Medical Center
   <fieldwidth> 10 </fieldwidth>
 </slidebar>
 
-<showvalue>
-   <row> 7 </row><col> 30.0 </col>
-   <name> Power(W) </name>
-   <format> <integer/> </format>
-   <label> Power (Watts) </label>
-</showvalue>
-
 <repeatlist>
   <name> Exercise-Bike.RPM </name>
   <repeat><reps> 100 </reps><stepsize> 1 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
-  <row> 9.5 </row><col> 30.0 </col>
+  <row> 6.4 </row><col> 36.0 </col>
   <name> RPM </name>
   <listname> Exercise-Bike.RPM </listname>
   <label> RPM </label>
 </slidebar>
 
 <showvalue>
-   <row> 12 </row><col> 30.0 </col>
+   <row> 9.4 </row><col> 36.0 </col>
    <name> ElapsedTime </name>
    <format>
      <timer/>
@@ -150,35 +133,12 @@ By : University Of Mississippi Medical Center
 </showvalue>
 
 <actionbutton>
-   <row> 17 </row><col> 30.0 </col>
+   <row> 11.4 </row><col> 36.0 </col>
    <blockname> ResetElapsedTime </blockname>
    <label> Reset Elapsed Time </label>
 </actionbutton>
 
-<repeatlist>
-  <name> Exercise-Bike.Efficiency(%) </name>
-  <firstval> 1 </firstval>
-  <repeat><reps> 99 </reps><stepsize> 1 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-  <row> 14.5 </row><col> 30.0 </col>
-  <name> Efficiency(%) </name>
-  <listname> Exercise-Bike.Efficiency(%) </listname>
-  <label> Efficiency (%) </label>
-  <fieldwidth> 5 </fieldwidth>
-</slidebar>
-
-<!-- 
-
-<showvalue>
-   <row> 14.6 </row><col> 30.0 </col>
-   <name> TotalWatts </name>
-   <format> <integer/> </format>
-   <label> Total Watts </label>
-</showvalue>
-
- -->
+<!-- Treadmill -->
 
 <structurename> Exercise-Treadmill </structurename>
 
@@ -188,7 +148,7 @@ By : University Of Mississippi Medical Center
 </label>
 
 <showvalue>
-  <row> 3.4 </row><col> 70 </col>
+  <row> 2.4 </row><col> 70 </col>
   <name> Status </name>
   <format><list> Common.Active </list></format>
   <label> Status </label>
@@ -200,30 +160,23 @@ By : University Of Mississippi Medical Center
 </maplist>
 
 <radiobuttons>
-  <row> 4.8 </row><col> 70 </col>
+  <row> 4.4 </row><col> 70 </col>
   <name> RunOrWalk </name>
   <listname> Exercise-Treadmill.RunOrWalk </listname>
   <nolabel/>
 </radiobuttons>
 
 <repeatlist>
-  <name> Exercise-Treadmill.Speed(MPH) </name>
+  <name> Exercise-Treadmill.Speed(KPH) </name>
   <repeat><reps> 30 </reps><stepsize>  0.5 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
-  <row> 7.0 </row><col> 70 </col>
+  <row> 5.9 </row><col> 70 </col>
   <name> Speed(MPH) </name>
-  <listname> Exercise-Treadmill.Speed(MPH) </listname>
-  <label> Speed (MPH) </label>
-</slidebar>
-
-<showvalue>
-  <row> 8.3</row><col> 70 </col>
-  <name> Speed(KPH) </name>
-  <format><decimal> 1 </decimal></format>
+  <listname> Exercise-Treadmill.Speed(KPH) </listname>
   <label> Speed (km/h) </label>
-</showvalue>
+</slidebar>
 
 <repeatlist>
   <name> Exercise-Treadmill.Grade(%) </name>
@@ -231,49 +184,42 @@ By : University Of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 10.5 </row><col> 70 </col>
+  <row> 7.5 </row><col> 70 </col>
   <name> Grade(%) </name>
   <listname> Exercise-Treadmill.Grade(%) </listname>
   <label> Grade (%) </label>
 </slidebar>
 
 <showvalue>
-  <row> 11.8 </row><col> 70 </col>
-  <name> Degrees </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Degrees </label>
-</showvalue>
-
-<showvalue>
-  <row> 14 </row><col> 70 </col>
+  <row> 10 </row><col> 70 </col>
   <name> Power(W) </name>
   <format> <integer/> </format>
   <label> Power (Watts) </label>
 </showvalue>
 
 <showvalue>
-  <row> 15 </row><col> 70 </col>
+  <row> 11 </row><col> 70 </col>
   <name> StepsPerMinute </name>
   <format> <integer/> </format>
   <label> Steps / Minute </label>
 </showvalue>
 
 <showvalue>
-   <row> 17.5 </row><col> 70 </col>
+   <row> 14 </row><col> 70 </col>
    <name> ElapsedTime </name>
    <format><timer/></format>
    <label> Elapsed Time </label>
 </showvalue>
 
 <showvalue>
-  <row> 18.5 </row><col> 70 </col>
+  <row> 15 </row><col> 70 </col>
   <name> Distance(kM) </name>
   <format><decimal> 2 </decimal></format>
   <label> Distance (kM) </label>
 </showvalue>
 
 <actionbutton>
-   <row> 25 </row><col> 70 </col>
+   <row> 18 </row><col> 70 </col>
    <blockname> ResetTime&Distance </blockname>
    <label> Reset Time And Distance </label>
 </actionbutton>
@@ -283,21 +229,6 @@ By : University Of Mississippi Medical Center
   <firstval> 1 </firstval>
   <repeat><reps> 99 </reps><stepsize> 1 </stepsize></repeat>
 </repeatlist>
-
-<slidebar>
-  <row> 21 </row><col> 70 </col>
-  <name> Efficiency(%) </name>
-  <listname> Exercise-Treadmill.Efficiency(%) </listname>
-  <label> Efficiency (%) </label>
-  <fieldwidth> 5 </fieldwidth>
-</slidebar>
-
-<showvalue>
-   <row> 23 </row><col> 70 </col>
-   <name> TotalWatts </name>
-   <format> <integer/> </format>
-   <label> Total Watts </label>
-</showvalue>
 
 </groupbox>
 

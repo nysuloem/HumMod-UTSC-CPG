@@ -28,48 +28,50 @@ By : University of Mississippi Medical Center
 </variables>
 
 <definitions>
+
 <block><name> Parms </name>
 
-<def>
-  <name> Power(kPM/Min) </name>
-  <val> WattToKPMM * Power(W) </val>
-</def>
+  <def>
+    <name> Power(kPM/Min) </name>
+    <val> WattToKPMM * Power(W) </val>
+  </def>
 
-<def>
-  <name> Efficiency </name>
-  <val> 0.01 * Efficiency(%) </val>
-</def>
+  <def>
+    <name> Efficiency </name>
+    <val> 0.01 * Efficiency(%) </val>
+  </def>
 
-<def>
-  <name> TotalWatts </name>
-  <val> Power(W) / Efficiency </val>
-</def>
+  <def>
+    <name> TotalWatts </name>
+    <val> Power(W) / Efficiency </val>
+  </def>
 
 </block>
 
 <block><name> Calc </name>
 
-<if><test> Status.Exertion EQ 1 </test>
-  <true>
-    <timer><name> ElapsedTime </name><state> UP </state></timer>
-  </true>
-  <false>
-  <timer><name> ElapsedTime </name><state> OFF </state></timer>
-</false>
-</if>
+  <if><test> Status.Exertion EQ 1 </test>
+    <true>
+      <timer><name> ElapsedTime </name><state> UP </state></timer>
+    </true>
+    <false>
+    <timer><name> ElapsedTime </name><state> OFF </state></timer>
+  </false>
+  </if>
 
 </block>
 
 <block><name> ResetElapsedTime </name>
 
-<timer>
-  <name> ElapsedTime </name>
-  <val> 0.0 </val>
-</timer>
+  <timer>
+    <name> ElapsedTime </name>
+    <val> 0.0 </val>
+  </timer>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

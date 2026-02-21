@@ -88,7 +88,7 @@
   <block><name> Dervs </name>
 
     <def><name> Gain </name>
-      <val> InjuryNow.RightArmDegree + InjuryNow.LeftArmDegree + InjuryNow.RightLegDegree </val>
+      <val> InjuryNow.RightArmDegree + InjuryNow.LeftArmDegree + InjuryNow.RightLegDegree + InjuryNow.LeftLegDegree + InjuryNow.RightChestDegree + InjuryNow.LeftChestDegree </val>
     </def>
 
     <def><name> K </name>

@@ -83,6 +83,12 @@ By : University of Mississippi Medical Center
   <val> [Cortisol]Effect [ Cortisol.[Conc(uG/dL)] ] </val>
 </def>
 
+<def>
+  <name> StressEffect </name>
+  <val> StressEffect [ CorticotropinReleasingFactor.Stress ] </val>
+  
+</def>
+
 <conditional>
   <name> [CRF(pG/mL)] </name>
   <test> Clamp </test>
@@ -90,7 +96,7 @@ By : University of Mississippi Medical Center
   <false>
       [CRF(pG/mL)-Basic]
     * NeuralEffect 
-    <!--* StressEffect -->
+    * StressEffect
     * [Cortisol]Effect 
     * Brain-Function.Effect                     
   </false>
@@ -99,6 +105,7 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
+
 </structure>
 
 End
