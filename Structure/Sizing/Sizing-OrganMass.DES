@@ -74,36 +74,36 @@ and to reflect the starting parameters of MALE or Sex set to FALSE, 2025-03-26 T
 
 <block><name> Calc </name>
 
-<def>
-  <name> BaseMass(G) </name>
-  <val> 1000 * Context-OtherMass.Mass(kG) </val>
-</def>
+  <def>
+    <name> BaseMass(G) </name>
+    <val> 1000 * Context-OtherMass.Mass(kG) </val>
+  </def>
 
-<def>
-  <name> FatMass(G) </name>
-  <val> 1000 * Context-Adiposity.Mass(kG) </val>
-</def>
+  <def>
+    <name> FatMass(G) </name>
+    <val> 1000 * Context-Adiposity.Mass(kG) </val>
+  </def>
 
-<def>
-  <name> SkeletalMuscleMass(G) </name>
-  <val> 1000 * Context-Muscularity.Mass(kG) </val>
-</def>
+  <def>
+    <name> SkeletalMuscleMass(G) </name>
+    <val> 1000 * Context-Muscularity.Mass(kG) </val>
+  </def>
 
-<!-- conditional added for male genitalia to be 0.9% and female to be 0.3% to accurately represent differences in 
-genetalia size to be x3 larger for males, this can be further modified into conditional with testcases to add ethnic components
- Söylemez et al. 2011 -->
+  <!-- conditional added for male genitalia to be 0.9% and female to be 0.3% to accurately represent differences in 
+  genetalia size to be x3 larger for males, this can be further modified into conditional with testcases to add ethnic components
+  Söylemez et al. 2011 -->
 
-<conditional> <name> Genitalia_Percent </name>
-   <test> Context-Sex.Index EQ 1 </test>
-   <true> 0.3 </true>
-   <false> 0.9 </false>
-  </conditional> 
+  <conditional> <name> Genitalia_Percent </name>
+    <test> Context-Sex.Index EQ 1 </test>
+    <true> 0.3 </true>
+    <false> 0.9 </false>
+    </conditional> 
 
-<conditional> <name> Uterus_Percent </name>
-   <test> Context-Sex.Index EQ 1 </test>
-   <true> 0.3 </true>
-   <false> 0.0 </false>
-  </conditional> 
+  <conditional> <name> Uterus_Percent </name>
+    <test> Context-Sex.Index EQ 1 </test>
+    <true> 0.3 </true>
+    <false> 0.0 </false>
+    </conditional> 
   
   <!-- 
   <conditional> <name> Endometrium_Percent </name>
@@ -156,6 +156,7 @@ genetalia size to be x3 larger for males, this can be further modified into cond
 </def>
 
 <!--     + Endometrium_Percent  -->
+
 <!-- ============== Base Organs ============== -->
 
 <def>
@@ -225,12 +226,6 @@ genetalia size to be x3 larger for males, this can be further modified into cond
   <false> 0.0 </false>
 </conditional>
 
-<!-- To make this conditional 
-<def>
-  <name> Uterus_Mass </name>
-  <val> ( Uterus_Percent / 100 ) * BaseMass(G) </val>
-</def>
--->
 <!--
 <conditional> 
   <name> Endometrium_Mass </name>
@@ -330,6 +325,7 @@ genetalia size to be x3 larger for males, this can be further modified into cond
 </block>
 
 </definitions>
+
 </structure>
 
 End

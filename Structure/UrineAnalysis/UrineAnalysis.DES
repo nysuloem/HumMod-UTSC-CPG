@@ -25,6 +25,7 @@ By : University of Mississippi Medical Center
 <var><name> Sulphate </name><val> UNDEFINED </val></var>
 <var><name> Urea </name><val> UNDEFINED </val></var>
 <var><name> Nitrate </name><val> UNDEFINED </val></var>
+<var><name> pH </name><val> UNDEFINED </val></var>
 <var><name> CantVoid </name><val> 0 </val></var>
 
 </variables>
@@ -33,43 +34,47 @@ By : University of Mississippi Medical Center
 
 <block><name> GetSpecimen </name>
 
-<call> BladderVolume.TestVolume </call>
+  <call> BladderVolume.TestVolume </call>
 
-<if>
-  <test> BladderVolume.CanVoid </test>
-  <true>
-    <call> Bladder.CalcConc </call>
-    <call> Bladder.Void </call>
+  <if>
+    <test> BladderVolume.CanVoid </test>
+    <true>
+      <call> Bladder.CalcConc </call>
+      <call> Bladder.Void </call>
 
-    <def><name> Timestamp </name><val> System.X </val></def>
+        <def><name> Timestamp </name><val> System.X </val></def>
 
-    <def><name> Sodium </name><val> BladderSodium.[Na+(mEq/L)] </val></def>
-    <def><name> Chloride </name><val> BladderChloride.[Cl-(mEq/L)] </val></def>
-    <def><name> Creatinine </name><val> BladderCreatinine.[Creatinine(mG/dL)] </val></def>
-    <def><name> Glucose </name><val> BladderGlucose.[Glucose(mMol/L)] </val></def>
-    <def><name> Bicarbonate </name><val> BladderBicarbonate.[HCO3-(mEq/L)] </val></def>
-    <def><name> Potassium </name><val> BladderPotassium.[K+(mEq/L)] </val></def>
-    <def><name> Ketoacid </name><val> BladderKetoacid.[KA-(mMol/L)] </val></def>
-    <def><name> Ammonia </name><val> BladderAmmonia.[NH4+(mEq/L)] </val></def>
-    <def><name> Phosphate </name><val> BladderPhosphate.[PO4--(mEq/L)] </val></def>
-    <def><name> Protein </name><val> BladderProtein.[Protein(G/mL)] </val></def>
-    <def><name> Sulphate </name><val> BladderSulphate.[SO4--(mEq/L)] </val></def>
-    <def><name> Urea </name><val> BladderUrea.[Urea(mG/dL)] </val></def>
-      <def><name> Nitrate </name><val> BladderNitrate.[Nitrate(mMol/L)]  </val></def>
-  </true>
-  <false>
-<def><name> CantVoid </name><val>1</val></def>
-<call>Message</call>
-  </false>
-</if>
+        <def><name> Sodium </name><val> BladderSodium.[Na+(mEq/L)] </val></def>
+        <def><name> Chloride </name><val> BladderChloride.[Cl-(mEq/L)] </val></def>
+        <def><name> Creatinine </name><val> BladderCreatinine.[Creatinine(mG/dL)] </val></def>
+        <def><name> Glucose </name><val> BladderGlucose.[Glucose(mMol/L)] </val></def>
+        <def><name> Bicarbonate </name><val> BladderBicarbonate.[HCO3-(mEq/L)] </val></def>
+        <def><name> Potassium </name><val> BladderPotassium.[K+(mEq/L)] </val></def>
+        <def><name> Ketoacid </name><val> BladderKetoacid.[KA-(mMol/L)] </val></def>
+        <def><name> Ammonia </name><val> BladderAmmonia.[NH4+(mEq/L)] </val></def>
+        <def><name> Phosphate </name><val> BladderPhosphate.[PO4--(mEq/L)] </val></def>
+        <def><name> Protein </name><val> BladderProtein.[Protein(G/mL)] </val></def>
+        <def><name> Sulphate </name><val> BladderSulphate.[SO4--(mEq/L)] </val></def>
+        <def><name> Urea </name><val> BladderUrea.[Urea(mG/dL)] </val></def>
+        <def><name> Nitrate </name><val> BladderNitrate.[Nitrate(mMol/L)] </val></def>
+        <def><name> pH </name><val> BladderPh.pH </val></def>
+    </true>
+    <false>
+      <def><name> CantVoid </name><val> 1 </val></def>
+      <call> Message </call>
+    </false>
+  </if>
 
 </block>
 
-<block><name>Message</name>
-<message> I can't pee right now. My bladder is not full enough </message>
+<block><name> Message </name>
+
+  <message> I can't pee right now. My bladder is not full enough </message>
+
 </block>
 
 </definitions>
+
 </structure>
 
 End

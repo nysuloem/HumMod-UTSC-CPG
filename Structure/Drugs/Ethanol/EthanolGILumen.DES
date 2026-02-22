@@ -80,7 +80,8 @@ Schema : DES V1.0
 
   <def>
     <name> PortalVein[Ethanol] </name>
-    <val> Loss / PortalVein.BloodFlow </val>
+    <val> Loss / ( PortalVein.BloodFlow + 1 ) </val>
+    <!-- +1 was added b/c this equation kept crashing HumMod due to divide by zero -->
   </def>
 
 </block>

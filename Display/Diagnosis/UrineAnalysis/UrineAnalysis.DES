@@ -29,7 +29,8 @@ By : University of Mississippi Medical Center
 <?path Display\Diagnosis\UrineAnalysis\ ?>
 
 <?include Box.DES ?>
-<?include PregTest.DES ?>
+<?include GetSample.DES ?>
+<!--<?include PregTest.DES ?>-->
 
 
 </panel>

@@ -70,18 +70,18 @@ By : University of Mississippi Medical Center
 
 <block><name>EthnicityChange</name>
 
-<def><name> Asian </name><val> 0.9 </val></def> 
-<def><name> Black </name><val> 0.99 </val></def> 
-<def><name> White </name><val> 1.00 </val></def>
-<def><name> Hispanic </name><val> 0.91 </val></def>
-<def><name> EthnicHeightAdjust </name>
-  <val>
-    ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
-    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
-    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
-    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
-  </val>
-</def>
+  <def><name> Asian </name><val> 0.9 </val></def> 
+  <def><name> Black </name><val> 0.99 </val></def> 
+  <def><name> White </name><val> 1.00 </val></def>
+  <def><name> Hispanic </name><val> 0.93 </val></def>
+  <def><name> EthnicHeightAdjust </name>
+    <val>
+      ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+      + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+      + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+      + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    </val>
+  </def>
 
 </block>
 

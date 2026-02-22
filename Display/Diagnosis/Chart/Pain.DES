@@ -13,13 +13,6 @@ By : Tom Coleman
    <label> Pain </label>
 </showvalue>
 
-<showvalue>
-   <row> 31 </row><col> 71 </col>
-   <name> Pain.CombinedMorphine </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Morphine </label>
-</showvalue>
-
 <showgraph>
   <row> 32 </row><col> 71 </col><high> 6.8 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
