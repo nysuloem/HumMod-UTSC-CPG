@@ -22,7 +22,7 @@ Schema : DES V1.0
 <var><name> TestOutcome </name><val> UNDEFINED </val></var>
 <var><name> UrineLoss </name><val> 0 </val></var>
 <var><name> LiverLoss </name><val> 0 </val></var>
-<var><name> Timestamp </name><val> 0 </val></var>
+<var><name> Timestamp </name><val> UNDEFINED </val></var>
 <var><name> PregTest </name><val> UNDEFINED </val></var>
 
 <parm><name> PumpSwitch </name><val> TRUE </val></parm>

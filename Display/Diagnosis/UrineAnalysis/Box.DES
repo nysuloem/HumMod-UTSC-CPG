@@ -107,7 +107,7 @@ By : University of Mississippi Medical Center
 <showvalue>
   <row> 16.4 </row><col> 7.0 </col>
   <name> Nitrate </name>
-  <format><integer/></format>
+  <format><decimal> 2 </decimal></format>
   <label> [Nitrate] (mMol/L) </label>
 </showvalue>
 
@@ -127,7 +127,7 @@ By : University of Mississippi Medical Center
 
 <showvalue>
   <row> 22.4 </row><col> 7.0 </col>
-  <name> BladderVolume.VolumeVoid </name>
+  <name> SpecimenVolume </name>
   <format><integer/></format>
   <label> Specimen Volume (mL) </label>
 </showvalue>

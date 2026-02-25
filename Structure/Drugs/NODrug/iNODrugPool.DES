@@ -48,24 +48,25 @@
 
     <def><name> NOInFlux(ppm) </name><val> 0 </val></def>
     <def><name> NOInFlux(uMol/min) </name><val> 0 </val></def>
- <def><name> FracDeoxyHb </name><val> 0 </val></def>
+    <def><name> FracDeoxyHb </name><val> 0 </val></def>
     <def><name> FracOxyHb </name><val> 0 </val></def>
 
     <def><name> RateNOtoNitrate </name><val> 0 </val></def>
     <def><name> RateNOtoHbNO </name><val> 0 </val></def>
     <def><name> Gain </name><val> 0 </val></def>
     
-
   </block>
     
   <block><name> Parms </name>
-  <def><name> NOInFlux(ppm) </name><val> NODrugInhaler.CumulativeDose </val></def>
+  
+    <def><name> NOInFlux(ppm) </name><val> NODrugInhaler.CumulativeDose </val></def>
+  
   </block>
 
   <block><name> Dervs </name>
 
     <call> iNODrugPool.Init </call>
-   <call> iNODrugPool.Init </call>
+    <call> iNODrugPool.Init </call>
     <call> iNODrugPool.Parms </call>
     <call> PO2Artys.Calc </call>
     <call> HgbConc.Calc </call>
@@ -73,7 +74,7 @@
     <def><name> NOInFlux(uMol/min) </name><val> 1000 * NOInFlux(ppm) / 30.01 </val></def>
 
     <def><name> [NO](uMol) </name><val> NOmass </val></def>
-  <def>
+    <def>
       <name> FracOxyHb </name>
       <val> PO2Artys.Pressure / ( PO2Artys.Pressure + 26 ) </val> <!-- 26 mmHg = P50 for Hb -->
     </def>

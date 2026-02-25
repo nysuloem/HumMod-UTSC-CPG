@@ -10,7 +10,7 @@ By : University Of Mississippi Medical Center
 
 <variables>
 
-<var><name> Timestamp </name><val> 0 </val></var>
+<var><name> Timestamp </name><val> UNDEFINED </val></var>
 
 <var><name> [Glucose] </name><val> UNDEFINED </val></var>
 <var><name> [FattyAcids] </name><val> UNDEFINED </val></var>

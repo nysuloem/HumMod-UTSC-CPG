@@ -10,7 +10,7 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-<var><name> Timestamp </name><val> 0 </val></var>
+<var><name> Timestamp </name><val> UNDEFINED </val></var>
 
 <var><name> Sodium </name><val> UNDEFINED </val></var>
 <var><name> Chloride </name><val> UNDEFINED </val></var>
@@ -26,6 +26,7 @@ By : University of Mississippi Medical Center
 <var><name> Urea </name><val> UNDEFINED </val></var>
 <var><name> Nitrate </name><val> UNDEFINED </val></var>
 <var><name> pH </name><val> UNDEFINED </val></var>
+<var><name> SpecimenVolume </name><val> UNDEFINED </val></var>
 <var><name> CantVoid </name><val> 0 </val></var>
 
 </variables>
@@ -58,6 +59,8 @@ By : University of Mississippi Medical Center
         <def><name> Urea </name><val> BladderUrea.[Urea(mG/dL)] </val></def>
         <def><name> Nitrate </name><val> BladderNitrate.[Nitrate(mMol/L)] </val></def>
         <def><name> pH </name><val> BladderPh.pH </val></def>
+        <def><name> SpecimenVolume </name><val> BladderVolume.VolumeVoid </val></def>
+>
     </true>
     <false>
       <def><name> CantVoid </name><val> 1 </val></def>
