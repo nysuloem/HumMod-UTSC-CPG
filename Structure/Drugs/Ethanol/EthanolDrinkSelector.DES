@@ -1,0 +1,54 @@
+HumMod / Ethanol
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> EthanolDrinkSelector </name>
+
+<variables>
+
+<!-- No variables declared  here -->
+
+</variables>
+
+<definitions>
+
+<block><name> DrinkSelect </name>
+
+<onjustchanged><name> EthanolGILumen.DrinkType </name>
+
+  <if><test> EthanolGILumen.DrinkType EQ 1 </test>
+    <true>
+      <def><name> EthanolSingleDose.%Alc </name><val> 5 </val></def>
+      <def><name> EthanolDailyDose.PercentageofAlcohol </name><val> 5.1 </val></def> <!-- Changed to match study for Tiffany's D98 -->
+    </true>
+  </if>
+
+  <if><test> EthanolGILumen.DrinkType EQ 2 </test>
+    <true>
+      <def><name> EthanolSingleDose.%Alc </name><val> 14 </val></def>
+      <def><name> EthanolDailyDose.PercentageofAlcohol </name><val> 12.5 </val></def> <!-- Changed to match study for Tiffany's D98 -->
+    </true>
+  </if>
+
+  <if><test> EthanolGILumen.DrinkType EQ 3 </test>
+    <true>
+      <def><name> EthanolSingleDose.%Alc </name><val> 40 </val></def>
+      <def><name> EthanolDailyDose.PercentageofAlcohol </name><val> 20 </val></def> <!-- Changed to match study for Tiffany's D98 -->
+    </true>
+  </if>
+
+</onjustchanged>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

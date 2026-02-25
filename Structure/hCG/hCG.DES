@@ -1,0 +1,107 @@
+HumMod / hCG
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+
+<structure><name> hCG </name>
+
+<variables>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+<var><name> Placenta-hCG-Secretion </name> <val> 50.0 </val></var>
+<var><name> Secretion </name></var>
+<var><name> [Conc(IU/L)] </name></var>
+<var> <name> PregnanthCG </name> <val> 0 </val></var>
+<var><name> TestOutcome </name></var>
+<var><name> UrineLoss </name><val> 0 </val></var>
+<var><name> LiverLoss </name><val> 0 </val></var>
+
+<parm><name> PumpSwitch </name><val> TRUE </val></parm>
+<parm><name> PumpSetting </name><val> 0.0 </val></parm>
+<parm><name> K </name><val> 0.00008 </val></parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+  <def><name> PregnanthCG </name> <val> Pregnancy-Occurence.AnnouncePregnancy </val></def>
+
+</block>
+
+<block><name> Conc </name>
+  
+  <def><name> [Conc(IU/L)] </name><val> ( Mass / ECFV.Vol(L) ) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<if><test> Pregnancy-Occurence.FertilizationTime EQ UNDEFINED </test>
+  <true>
+    <def><name> Secretion </name><val> LH-AnteriorPituitary.Secretion * 0.001 </val></def>
+  </true>
+
+  <false>
+    <def><name> Secretion </name><val> ( LH-AnteriorPituitary.Secretion * 0.001 ) + ( Pregnancy-Occurence.AnnouncePregnancy * K ^ 2.5 ) </val></def> 
+  </false>
+  </if>
+
+  <def>
+    <name> UrineLoss </name>
+    <val>
+      K
+      * [Conc(IU/L)]
+      *  (    ( 0.5 * RightKidney-NephronCount.Filtering(xNormal) * RightKidney-Function.Effect ) 
+      + ( 0.5 * LeftKidney-NephronCount.Filtering(xNormal) * LeftKidney-Function.Effect ) )
+    </val>
+  </def>
+
+  <def>
+    <name> LiverLoss </name>
+    <val> K * [Conc(IU/L)] * Liver-Metabolism.TotalCalsUsed </val>
+  </def>
+
+  <def><name> Gain </name><val> Secretion  </val></def>
+  <def><name> Loss </name><val> LiverLoss + UrineLoss </val></def> 
+  <def><name> Change </name><val> Gain - Loss </val></def>
+
+  <testcase> <!-- This is for the urine pregnancy test -->
+    <case><test> UrineLoss GE 25 </test>
+      <def><name> TestOutcome </name><val> 1 </val></def>
+    </case>
+    <case><test> UrineLoss GE 20 </test>
+    <def><name> TestOutcome </name><val> 2 </val></def>
+  </case>
+  <case><test> UrineLoss LT 20 </test>
+    <def><name> TestOutcome </name><val> 3 </val></def>
+  </case>
+  </testcase>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

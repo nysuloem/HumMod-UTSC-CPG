@@ -1,0 +1,48 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+<structure><name> HaveSex </name>
+
+<variables>
+
+<parm><name> PartnerProbability </name><val> 100 </val></parm>
+
+<var><name> HaveSex </name><val> 0 </val></var>
+<var><name> SexOutcome </name><val> 0 </val></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<if><test> SexDrive.Index EQ 0 </test>
+    <true>
+        <def><name> HaveSex </name><val> 0 </val></def>
+        <exitblock/>
+    </true>
+</if>
+
+<if><test> SexualIntercourse.Refractory EQ 0 </test>
+    <true>
+        <def><name> HaveSex</name>
+        <val> SexDrive.Libido * PartnerProbability </val>
+        </def>
+    </true>
+    <false>
+        <def><name> HaveSex </name>
+        <val> 0 </val>
+        </def>    
+    </false>
+</if>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

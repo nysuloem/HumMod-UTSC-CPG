@@ -1,0 +1,53 @@
+HumMod / Gender
+
+Created : 2012-02-03
+Revised : 2012-02-03
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1 </col>
+   <high> 11.4 </high>
+   <wide> 45.0 </wide>
+   <title> Menstrual Blood Loss </title>
+
+<actionbutton>
+   <row> 9.4 </row><col> 1.0 </col>
+   <blockname> Uterus-Menstruation.ResetMenstrualDuration </blockname>
+   <label> Reset Menstrual Duration </label>
+</actionbutton>
+
+<actionbutton>
+   <row> 7.4 </row><col> 1.0 </col>
+   <blockname> Uterus-Menstruation.ResetBloodLost </blockname>
+   <label> Reset Blood Lost </label>
+</actionbutton>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Uterus-Lumen.MenstrualBloodExpulsed </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Blood Lost (mL)  </label>
+</showvalue>
+
+<showvalue>
+   <row> 3.4 </row><col> 1.0 </col>
+   <name> Uterus-Lumen.MenstrualBloodLoss </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Blood Loss Rate (mL/min)  </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.4 </row><col> 1.0 </col>
+   <name> Uterus-Menstruation.DurationDays </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Duration of Last Menstruation (days)  </label>
+</showvalue>
+
+</groupbox>
+
+End

@@ -1,0 +1,49 @@
+HumMod / Template
+
+
+<panel><name> PagetsDiseaseControl </name>
+
+<showclock>
+  <row> 0.3 </row><col> 36.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 3.8 </high>
+   <wide> 32.0 </wide>
+   <title> Paget's Disease </title>
+
+<structurename> Bone-Pagets </structurename>
+
+<repeatlist>
+  <name> Severity </name>
+  <firstval> 1 </firstval>
+  <repeat><reps> 4 </reps><stepsize> 0.5 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 2.4 </row><col> 1.0 </col>
+  <name> Severity </name>
+  <listname> Severity </listname>
+  <label> Severity  </label>
+</slidebar>
+
+<infobutton>
+  <row> 1.0 </row>
+  <col> 27.5 </col>
+  <line> Severity = 1 means the patient does not have Paget's Disease </line>
+</infobutton>
+
+</groupbox>
+
+</panel>
+
+End
+
+
+

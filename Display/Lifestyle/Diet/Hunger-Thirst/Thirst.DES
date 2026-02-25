@@ -1,0 +1,95 @@
+HumMod / Thirst
+
+Created : 24-Jun-06
+Revised : 2012-02-12
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 64.0 </col>
+   <high> 25.0 </high>
+   <wide> 62.0 </wide>
+   <title> Thirst </title>
+
+<structurename> DietThirst </structurename>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> DietThirst.ThirstRating </name>
+   <format><decimal> 0 </decimal></format>
+   <label> "How thirsty are you?" (0-100 scale) </label>
+</showvalue>
+
+<showcurve>
+  <row> 5.0 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 7 </leftmargin>
+
+  <xaxis>
+    <name> OsmBody.Osmoreceptors(mOsm/L) </name>
+    <label> [Osm] </label>
+    <scale>
+      <min> 230 </min><max> 320 </max><inc> 10 </inc>
+    </scale>
+  </xaxis>
+  <yaxis>
+    <label> Osmotic Thirst </label>
+    <scale>
+      <min> 0 </min><max> 30 </max>
+    </scale>
+  </yaxis>
+
+  <curvename> OsmoticThirst </curvename>
+</showcurve>
+
+<showcurve>
+  <row> 14.0 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 7 </leftmargin>
+
+  <xaxis>
+    <name> A2Pool.[A2(pG/mL)] </name>
+    <label> [AngII] </label>
+    <scale>
+      <min> 0 </min><max> 50 </max><inc> 10 </inc>
+    </scale>
+  </xaxis>
+  <yaxis>
+    <label> Volume Thirst </label>
+    <scale>
+      <min> 0 </min><max> 30 </max>
+    </scale>
+  </yaxis>
+
+  <curvename> VolumeThirst </curvename>
+</showcurve>
+
+<showvalue>
+   <row> 5.0 </row><col> 35 </col>
+   <name> DietIntakeH2O.Rate(mL/Min) </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Water Intake (mL/Min) </label>
+</showvalue>
+
+<showgraph>
+  <row> 6.5 </row><col> 30 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> DietIntakeH2O.Rate(mL/Min) </name><label> Intake </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 2 </max><inc> 1 </inc>
+    </scale>
+  </yaxis>
+</showgraph>
+
+</groupbox>
+
+End

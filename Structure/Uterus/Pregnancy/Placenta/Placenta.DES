@@ -1,0 +1,26 @@
+<?path Structure\Uterus\Pregnancy\Placenta ?>
+
+<?include Placenta-Size.DES ?>
+<?include Placenta-Metabolism.DES ?>
+<?include Placenta-Progesterone.DES ?>
+<?include Placenta-Estradiol.DES ?>
+<?include Placenta-hCG.DES ?>
+
+<structure><name> Placenta </name>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<call> Placenta-Size.Calc </call>
+<call> Placenta-Metabolism.CalcCals </call>
+
+<call> Placenta-Progesterone.Dervs </call>
+<call> Placenta-Estradiol.Dervs </call>
+<call> Placenta-hCG.Dervs </call>
+
+</block>
+
+</definitions>
+
+</structure>

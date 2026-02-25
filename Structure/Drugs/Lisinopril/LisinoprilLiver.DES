@@ -1,0 +1,36 @@
+HumMod / LisinoprilLiver
+
+<structure><name> LisinoprilLiver </name>
+
+<variables>
+
+<var>
+  <name> HepaticLoss </name>
+</var>
+
+<constant>
+  <name> K </name>
+  <val> 0.0000  </val> 0.000024
+</constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> HepaticLoss </name>
+  <val>
+      K
+    * LisinoprilPool.Mass
+    * ( ( HepaticArtery-Flow.PlasmaFlow + PortalVein-Flow.PlasmaFlow ) * Liver-Function.Effect )
+  </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

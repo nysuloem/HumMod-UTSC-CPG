@@ -1,0 +1,86 @@
+
+
+<structure><name> Pregnancy-Occurence </name>
+
+<variables>
+
+    <timervar><name> AnnouncePregnancy </name><val> 0 </val></timervar>
+    <timervar><name> PregnancyTimer </name><val> 0 </val></timervar>
+
+    <var><name> Fertilization </name><val> UNDEFINED </val></var>
+    <var><name> FertilizationTime </name><val> UNDEFINED </val></var>
+
+    <var><name> PregnancyWeek </name><val> 0 </val></var>
+    <var><name> Probability </name><val> 0 </val></var>
+    <var><name> TestOutcome </name><val> 3 </val></var>
+
+</variables>
+
+<definitions>
+
+  <block><name> ProbabilityCalc </name>
+
+    <call> GestationWeeks </call>
+
+    <def><name> Probability </name><val> SexualIntercourse.SpermTimer * Ovaries-Ovulation.EggTimer </val></def>
+  
+    <if><test> Probability NE 0 </test>
+      <true>
+        <def><name> Fertilization </name><val> TRUE </val></def> 
+        <timer>
+          <name> AnnouncePregnancy </name> <!-- tied to hcg -->
+          <val> 0 </val>
+          <state> UP </state>
+        </timer> 
+        <call> SetFertilizationTime </call>
+      </true>
+      <false>
+        <def><name> Fertilization </name><val> FALSE </val></def>
+      </false>
+    </if>
+
+  </block>
+
+  <block><name> SetFertilizationTime </name>
+
+    <if><test> FertilizationTime EQ UNDEFINED </test>
+      <true>
+        <def><name> FertilizationTime </name><val> System.X </val></def> 
+      </true>
+    </if>
+
+  </block>
+
+  <block><name> GestationWeeks </name>
+  
+    <if><test> FertilizationTime EQ UNDEFINED </test>
+      <false>
+        <def><name> PregnancyWeek </name>
+          <val> ROUNDDOWN ( System.X - FertilizationTime ) / 10080 </val>
+        </def>
+      </false>
+    </if>
+
+  </block>
+
+  <block><name> Sample </name>
+
+<!-- This is for a blood-based pregancy test -->
+  
+    <testcase> 
+      <case><test> hCG.[Conc(IU/L)] GE 25 </test>
+       <def><name> TestOutcome </name><val> 1 </val></def>
+      </case>
+      <case><test> hCG.[Conc(IU/L)] GE 5 </test>
+        <def><name> TestOutcome </name><val> 2 </val></def>
+      </case>
+      <case><test> hCG.[Conc(IU/L)] LT 5 </test>
+        <def><name> TestOutcome </name><val> 3 </val></def>
+      </case>
+    </testcase>
+
+</block>
+
+</definitions>
+
+</structure>

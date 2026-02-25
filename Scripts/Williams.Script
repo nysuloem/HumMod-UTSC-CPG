@@ -1,0 +1,150 @@
+<script>
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<?include varroster.Script ?>
+
+<restart/>
+<?include init.Script ?>
+<setvalue><var> System.X </var><val> -3500 </val> </setvalue>
+
+<dumppoint>
+  <filename> data\Williams-fast.txt </filename>
+</dumppoint>
+
+<dumppoint>
+  <filename> data\Williams-slow.txt </filename>
+</dumppoint>
+
+<setvalue>
+  <var> DietIntakeH2O.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietGoalH2O.Rate(L/Day) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<gofor>
+  <solutionint> 1080 </solutionint>
+  <displayint> 1080 </displayint>
+</gofor>
+
+<setvalue>
+  <var> DietIntakeNutrition.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietIntakeNutrition.FixedIntake(xGoal) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<gofor>
+  <solutionint> 1080 </solutionint>
+  <displayint> 1080 </displayint>
+</gofor>
+
+
+<saveics><filename> dummy.ics </filename></saveics>
+<restart/>
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -3.5 </val> </setvalue>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 300 </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 3.5 </solutionint>
+  <displayint> 3.5 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<dumpsolution>
+  <filename>data\Williams-fast.txt </filename>
+<append/>
+</dumpsolution>
+
+<restart/>
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -3.5 </val> </setvalue>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 1 </val>
+</setvalue>  
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.H2ORate </var>
+  <val> 20 </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 3.5 </solutionint>
+  <displayint> 3.5 </displayint>
+</gofor>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Switch </var>
+  <val> 0 </val>
+</setvalue>  
+ 
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+
+<dumpsolution>
+  <filename> data\Williams-slow.txt </filename>
+  <append/>
+</dumpsolution>
+
+
+<exit/>
+
+</script>
+
+
+
