@@ -3,30 +3,39 @@ Hummod / NTGPool
 <structure><name> NTGPool </name>
 
  <variables>
+
   <var><name> NTGIV </name><val> 0 </val></var>
   <var><name> NTGOral </name><val> 0 </val></var>
+  <var><name> NTGSpray </name><val> 0 </val></var>
+  <var><name> NTGIntake </name><val> 0 </val></var>
+
 </variables>
  
-<equations>
+<!-- <equations>
 
     <diffeq>
         <name> NTGmass </name>
-        <integralname> NTGmass </integralname> <!-- in mcg -->
+        <integralname> NTGmass </integralname>  in mcg
         <initialval> 0.0 </initialval>
         <dervname> NTGIntake </dervname>
         <errorlim> 0.5 </errorlim>
       </diffeq>
-</equations>
 
+</equations> --> <!-- The dervename has to be a RATE, not mass -->
 
 <definitions>
 
 <block><name> Dervs </name>
-  <def><name> NTGIV </name><val> NODrugIV.CumulativeDose </val></def>
+
+  <def><name> NTGIV </name><val> NODrugIV.Rate </val></def>
   <def><name> NTGOral </name><val> NODrugSL.Mass / 1000 </val></def>
-  <def><name> NTGIntake </name><val> NTGIV + NTGOral </val></def>
+  <def><name> NTGSpray </name><val> NODrugSpray.Mass </val></def>
+  <def><name> NTGIntake </name><val> NTGIV + NTGSpray </val></def> <!-- All these masses are mg/min = RATE -->
+
 </block>
 
 </definitions>
+
 </structure>
+
 End

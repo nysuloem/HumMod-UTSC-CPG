@@ -9,8 +9,6 @@ HumMod / NO
 <?include NitratePool.DES ?>
 <?include NOKidney.DES ?>
 
-
-
 <structure><name> NO </name>
 
 <definitions>
@@ -33,11 +31,10 @@ HumMod / NO
   <call> NitratePool.Dervs </call>
   <call> NOKidney.Dervs </call>
 
-
-
 </block>
 
 </definitions>
+
 </structure>
 
 End

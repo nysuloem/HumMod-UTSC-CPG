@@ -14,14 +14,15 @@
   <label> Take Daily </label>
 </radiobuttons>
 
+<!-- Typical subligual spray doses are 0.3 to 1.2 mg -->
 <maplist>
   <name> NODrugSpray.Dose </name>
   <map><val>     0 </val><img> None </img></map>
-  <map><val> 2.5 </val><img> 2.5 </img></map>
-  <map><val> 5 </val><img> 5 </img></map>
-  <map><val> 7.5 </val><img> 7.5 </img></map>
-  <map><val> 10.0 </val><img> 10 </img></map>
-  <map><val> 15 </val><img> 15 </img></map>
+  <map><val> 0.3 </val><img> 0.3 </img></map>
+  <map><val> 0.4 </val><img> 0.4 </img></map>
+  <map><val> 0.6 </val><img> 0.6 </img></map>
+  <map><val> 0.8 </val><img> 0.8 </img></map>
+  <map><val> 1.2 </val><img> 1.2 </img></map>
 </maplist>
 
 <slidebar>
@@ -107,7 +108,7 @@
 <infobutton>
   <row> 1.2 </row>
   <col> 26.0 </col>
-  <line> Typical dose is 20 ppm. </line>
+  <line> Typical dose is 0.4 mg </line>
 </infobutton>
 
 </groupbox>

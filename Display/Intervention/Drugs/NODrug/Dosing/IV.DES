@@ -12,7 +12,7 @@ Schema : DES V1.0
    <col> 1.0 </col>
    <high> 5.8 </high>
    <wide> 30.0 </wide>
-   <title> NO Continuous IV </title>
+   <title> Nitroglycerin IV </title>
 
 <structurename> NODrugIV </structurename>
 
@@ -25,7 +25,7 @@ Schema : DES V1.0
 
 <repeatlist>
   <name> NODrugIVRate.Rate </name>
-  <repeat><reps> 10 </reps><stepsize> 1 </stepsize></repeat>
+  <repeat><reps> 80 </reps><stepsize> 0.005 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
@@ -45,7 +45,7 @@ Schema : DES V1.0
 <infobutton>
   <row> 1.2 </row>
   <col> 26.0 </col>
-  <line> Typical dose is 20 ppm, additional dosage varies with other factors. </line>
+  <line> Typical dose is 0.005mg/min. </line>
 </infobutton>
 
 </groupbox>

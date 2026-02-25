@@ -9,17 +9,17 @@ Schema : DES V1.0
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 18.4 </high>
+   <high> 12.0 </high>
    <wide> 30.0 </wide>
    <title> Pool </title>
 
 <structurename> NODrugPool </structurename>
 
 <showvalue>
-   <row> 1.4 </row><col> 1.0 </col>
-   <name> [NODrug(pG/mL)] </name>
-   <format><decimal> 2 </decimal></format>
-   <label> [NODrug] </label>
+   <row> 1.4 </row><col> 2.0 </col>
+   <name> [NODrug(nM)] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [NO] (nM) </label>
 </showvalue>
 
 <showgraph>
@@ -32,67 +32,13 @@ Schema : DES V1.0
   </xaxis>
   <yaxis>
     <yvar>
-      <name> [NODrug(pG/mL)] </name>
+      <name> [NODrug(nM)] </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>
-    <scale><min> 0 </min><max> 2.0 </max></scale>
+    <scale><min> 0 </min><max> 0.1 </max></scale>
   </yaxis>
 </showgraph>
-
-<showvalue>
-   <row> 10.0 </row><col> 1.0 </col>
-   <name> Mass </name>
-   <format><decimal> 1 </decimal></format>
-   <label> Mass </label>
-</showvalue>
-
-<showvalue>
-   <row> 11.0 </row><col> 3 </col>
-   <name> Change </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Change </label>
-</showvalue>
-
-<showvalue>
-   <row> 12.4 </row><col> 1.0 </col>
-   <name> Gain </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Gain </label>
-</showvalue>
-
-<showvalue>
-   <row> 13.4 </row><col> 1.0 </col>
-   <name> Loss </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Loss </label>
-</showvalue>
-
-<showvalue>
-   <row> 14.4 </row><col> 3 </col>
-   <name> NODrugLiver.Gain </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Hepatic </label>
-</showvalue>
-
-<showvalue>
-   <row> 15.8 </row><col> 1.0 </col>
-   <name> VolDist </name>
-   <format><decimal> 2 </decimal></format>
-   <label> Volume Distribution </label>
-</showvalue>
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 26.0 </col>
-
-  <line> Units are </line>
-  <line> </line>
-  <line> [Conc] = mMol </line>
-  <line> Mass = mG </line>
-  <line> Various Rates = mG/Min </line>
-  <line> Volume Of Distribution = L </line>
-</infobutton>
 
 </groupbox>
 

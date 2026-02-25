@@ -1,20 +1,20 @@
 
-
-
 <structure><name> NODrugSpray </name>
 
 <variables>
 
-<parm><name> Dose </name><val> 0.0 </val></parm>
-<parm><name> TakeDaily </name><val> FALSE </val></parm>
-<parm><name> TimesADay </name><val> 1.0 </val></parm>
-<var><name> TimeLastDose </name><val> UNDEFINED </val></var>
-<var><name> TimeNextDose </name><val> UNDEFINED </val></var>
-<var><name> TotalDoses </name><val> 0.0 </val></var>
-<var><name> CumulativeDose </name><val> 0.0 </val></var>
-<timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
-<var><name> Interval </name></var>
-<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+  <parm><name> Dose </name><val> 0.0 </val></parm>
+  <parm><name> TakeDaily </name><val> FALSE </val></parm>
+  <parm><name> TimesADay </name><val> 1.0 </val></parm>
+  <var><name> TimeLastDose </name><val> UNDEFINED </val></var>
+  <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
+  <var><name> TotalDoses </name><val> 0.0 </val></var>
+  <var><name> CumulativeDose </name><val> 0.0 </val></var>
+  <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
+  <timervar><name> ResetDoseMass </name><val> 0 </val><state> OFF </state></timervar>
+  <var><name> Interval </name></var>
+  <constant><name> PREPTIME </name><val> 0.5 </val></constant>
+  <var><name> Mass </name><val> 0 </val></var>
 
 </variables>
 
@@ -22,150 +22,178 @@
 
 <block><name> Parms </name>
 
-<onjustchanged><name> TimesADay </name>
-
-<if><test> TakeDaily EQ 1 </test>
-  <true>
-    <def>
-      <name> Interval </name>
-      <val> 1440 / TimesADay </val>
-    </def>
-
-    <timer>
-      <name> Timer </name>
-        <val> 0 </val>
-        <state> DOWN </state>
-    </timer>
-
-    <def>
-      <name> TimeLastDose </name>
-      <val> System.X </val>
-    </def>
-
-    <def>
-      <name> TimeNextDose </name>
-      <val> System.X + Interval </val>
-    </def>
-
-  </true>
-
-  <false>
-
-    <timer>
-      <name> Timer </name>
-      <state> OFF </state>
-    </timer>
-
-    <def>
-      <name> TimeNextDose </name>
-      <val> UNDEFINED </val>
-    </def>
-
-  </false>
-</if>
-
-</onjustchanged>
-
-<onjustchanged><name> TakeDaily </name>
+  <onjustchanged><name> TimesADay </name>
 
   <if><test> TakeDaily EQ 1 </test>
-  <true>
-    <def>
-      <name> Interval </name>
-      <val> 1440 / TimesADay </val>
-    </def>
+    <true>
 
-    <timer>
-      <name> Timer </name>
-        <val> 0 </val>
-        <state> DOWN </state>
-    </timer>
+      <def>
+        <name> Interval </name>
+        <val> 1440 / TimesADay </val>
+      </def>
 
-    <def>
-      <name> TimeLastDose </name>
-      <val> System.X </val>
-    </def>
+      <timer>
+        <name> Timer </name>
+          <val> PREPTIME </val>
+          <state> DOWN </state>
+      </timer>
 
-    <def>
-      <name> TimeNextDose </name>
-      <val> System.X + Interval </val>
-    </def>
+      <def>
+        <name> TimeNextDose </name>
+        <val> System.X + PREPTIME </val>
+      </def>
 
-  </true>
+    </true>
 
-  <false>
+    <false>
 
-    <timer>
-      <name> Timer </name>
-      <state> OFF </state>
-    </timer>
+      <timer>
+        <name> Timer </name>
+        <state> OFF </state>
+      </timer>
 
-    <def>
-      <name> TimeNextDose </name>
-      <val> UNDEFINED </val>
-    </def>
+      <def>
+        <name> TimeNextDose </name>
+        <val> UNDEFINED </val>
+      </def>
 
-  </false>
-</if>
+    </false>
 
-</onjustchanged>
+  </if>
+
+  </onjustchanged>
+
+    <onjustchanged><name> TakeDaily </name>
+
+      <if><test> TakeDaily EQ 1 </test>
+        
+        <true>
+
+        <def>
+          <name> Interval </name>
+          <val> 1440 / TimesADay </val>
+        </def>
+
+        <timer>
+          <name> Timer </name>
+            <val> PREPTIME </val>
+            <state> DOWN </state>
+        </timer>
+
+        <def>
+          <name> TimeNextDose </name>
+          <val> System.X + PREPTIME </val>
+        </def>
+
+        </true>
+
+      <false>
+
+        <timer>
+          <name> Timer </name>
+          <state> OFF </state>
+        </timer>
+
+        <def>
+          <name> TimeNextDose </name>
+          <val> UNDEFINED </val>
+        </def>
+
+      </false>
+    
+    </if>
+
+    </onjustchanged>
 
 </block>
 
 <block><name> Wrapup </name>
 
-<ontimedout><name> Timer </name>
+  <ontimedout><name> Timer </name>
 
-<timer>
-  <name> Timer </name>
-  <val> Interval </val>
-</timer>
+  <def>
+    <name> Interval </name>
+    <val> 1440.0 / TimesADay </val> 
+  </def>
+  
+  <if><test> TakeDaily EQ 1 </test>
+    <true>
+      <call> SprayNow </call>
+    </true>
+  </if>
+  
+  </ontimedout>
 
-<def>
-  <name> TimeLastDose </name>
-  <val> System.X </val>
-</def>
+  <if><test> ResetDoseMass GE 1 </test>
+  <true> 
+    <timer><name> ResetDoseMass </name>
+      <val> 0 </val>
+      <state> OFF </state>
+    </timer>
+    <def><name> Mass </name>
+      <val> 0 </val>
+    </def>
+    </true>
+  </if>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> System.X + Interval </val>
-</def>
+</block>
 
-<def>
-  <name> NODrugSL.Mass </name>
-  <val> NODrugSL.Mass + ( 1000 * Dose ) </val> <!-- Dose is in mg, and Mass is in µg, this is be a unit conversion -->
-</def>
+<block><name> SprayNow </name>
 
-<def>
-  <name> TotalDoses </name>
-  <val> TotalDoses + 1.0 </val>
-</def>
+  <timer>
+    <name> Timer </name>
+    <val> Interval </val>
+  </timer>
 
-<def>
-  <name> CumulativeDose </name>
-  <val> CumulativeDose + Dose </val>
-</def>
+  <def>
+    <name> TimeLastDose </name>
+    <val> System.X </val>
+  </def>
 
-</ontimedout>
+  <def>
+    <name> TimeNextDose </name>
+    <val> System.X + Interval </val>
+  </def>
+
+  <def>
+    <name> Mass </name>
+    <val> Dose </val>
+  </def>
+
+  <!-- If we assume instantenous absorption into the blood, then Mass = Rate -->
+
+  <timer><name> ResetDoseMass </name>
+    <state> UP </state>
+  </timer>
+
+  <def>
+    <name> TotalDoses </name>
+    <val> TotalDoses + 1.0 </val>
+  </def>
+
+  <def>
+    <name> CumulativeDose </name>
+    <val> CumulativeDose + Dose </val>
+  </def>
 
 </block>
 
 <block><name> Reset </name>
 
-<def>
-  <name> TimeLastDose </name>
-  <val> UNDEFINED </val>
-</def>
+    <def>
+      <name> TimeLastDose </name>
+      <val> UNDEFINED </val>
+    </def>
 
-<def>
-  <name> TotalDoses </name>
-  <val> 0.0 </val>
-</def>
+    <def>
+      <name> TotalDoses </name>
+      <val> 0.0 </val>
+    </def>
 
-<def>
-  <name> CumulativeDose </name>
-  <val> 0.0 </val>
-</def>
+    <def>
+      <name> CumulativeDose </name>
+      <val> 0.0 </val>
+    </def>
 
 </block>
 
