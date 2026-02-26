@@ -41,6 +41,11 @@ By : University Of Mississippi Medical Center
 
 <block><name> Calc </name>
 
+<def>
+  <name> NOEffect </name>
+  <val> NOOnConductance [ NOPool.[NO--] ] </val>
+</def>
+
 <if>
 <test> LeftKidney-ArcuateArtery.Conductance * LeftKidney-AfferentArtery.Conductance * LeftKidney-EfferentArtery.Conductance GT 0 </test>
 <true>
