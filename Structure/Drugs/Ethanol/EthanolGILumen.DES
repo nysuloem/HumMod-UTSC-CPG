@@ -12,7 +12,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> BIOAVAIL </name><val> 1 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
-<var><name> PERM </name><val> 0.01 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
+<var><name> PERM </name><val> 0.013 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
 <var><name> [Ethanol] </name></var>
 <var><name> Gain </name></var>
 <var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
@@ -55,12 +55,12 @@ Schema : DES V1.0
   <testcase>
     <case>
       <test> DrinkType EQ 2 </test> <!-- WINE -->
-      <def><name> PERM </name><val> 0.07 </val></def> 
+      <def><name> PERM </name><val> 0.021 </val></def> 
     </case>
 
     <case>
       <test> DrinkType EQ 3 </test> <!-- VODKA -->
-      <def><name> PERM </name><val> 0.1 </val></def> 
+      <def><name> PERM </name><val> 0.045 </val></def> 
     </case>
   </testcase>
 
@@ -80,8 +80,7 @@ Schema : DES V1.0
 
   <def>
     <name> PortalVein[Ethanol] </name>
-    <val> Loss / ( PortalVein.BloodFlow + 1 ) </val>
-    <!-- +1 was added b/c this equation kept crashing HumMod due to divide by zero -->
+    <val> Loss / ( PortalVein.BloodFlow ) </val>
   </def>
 
 </block>

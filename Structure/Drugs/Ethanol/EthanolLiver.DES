@@ -23,8 +23,8 @@ Schema : DES V1.0
 <var><name> GainAcetate </name></var>
 <var><name> LossAcetaldehyde </name></var>
 
-<var><name> ALCDH_Vmax </name><val> 0.1 </val></var>
-<var><name> ALCDH_K </name><val> 0.005 </val></var> <!-- This is alcohol dehydrogenase -->
+<var><name> ALCDH_Vmax </name><val> 0.2 </val></var>
+<var><name> ALCDH_K </name><val> 0.01 </val></var> <!-- This is alcohol dehydrogenase -->
 <var> <name> ALDH_K </name><val> 1.67 </val></var> <!-- This is acetaldehyde dehydrogenase-->
 
 </variables>
