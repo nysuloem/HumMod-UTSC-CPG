@@ -1,0 +1,110 @@
+HumMod / Acetaldehyde
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> Acetaldehyde </name>
+
+<variables>
+
+<var><name> [Acetaldehyde] </name></var> <!-- Total liver concentration (g/L) -->
+<var><name> [BloodAcetaldehyde] </name></var> <!-- Peripheral/blood concentration driving skin flow -->
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+<var><name> ExchangeRate </name></var>
+
+<parm><name> BloodExchange_K </name><val> 0.15 </val></parm> <!-- how quickly liver acetaldehyde equilibrates with blood -->
+<parm><name> PeripheralClear_K </name><val> 0.02 </val></parm> <!-- slow extrahepatic clearance -->
+
+</variables>
+
+<equations>
+
+<diffeq> <!-- This calculates the liver mass -->
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> MassBlood </name>
+  <integralname> MassBlood </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeBlood </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<!-- Mass blood - Implict equation: variable is part of math - ASK TERRY -->
+
+<!--<impliciteq>
+  <name> MassBlood </name>
+  <startname> MassBlood </startname>
+  <initialval> 0 </initialval>
+  <endname> MassBlood </endname>
+  <errorlim> 0.40 </errorlim>
+  <searchmin> 0.0 </searchmin>
+  <searchmaxname> SearchMax </searchmaxname>
+</impliciteq>-->
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+  <def>
+    <name> [Acetaldehyde] </name>
+    <val> ( Mass / Liver-Size.Vol ) * 1000 </val>
+  </def>
+
+<def>
+  <name> [BloodAcetaldehyde] </name>
+  <val> MassBlood / ECFV.Vol(L) </val>
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<!-- Liver generates acetaldehyde -->
+  <def>
+    <name> Gain </name>
+    <val> EthanolLiver.GainAcetaldehyde </val>
+  </def>
+
+<!-- Liver converts it to acetate -->
+<def>
+  <name> Loss </name>
+  <val> EthanolLiver.LossAcetaldehyde </val>
+</def>
+
+<!-- Liver acetaldehyde dynamics -->
+<def>
+  <name> ExchangeRate </name>
+  <val> BloodExchange_K * ( [Acetaldehyde] - [BloodAcetaldehyde] ) </val>
+</def>
+
+<def>
+  <name> Change </name>
+  <val> Gain - Loss - ExchangeRate </val>
+</def>
+
+<!-- Blood acetaldehyde dynamics -->
+<def>
+  <name> ChangeBlood </name>
+  <val> ExchangeRate - ( PeripheralClear_K * MassBlood ) </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

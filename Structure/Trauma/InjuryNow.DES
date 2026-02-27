@@ -1,0 +1,145 @@
+HumMod / InjuryNow
+
+This module was completely
+reimagined by Dr. Jason Brown
+in Jan. 2026
+
+<structure><name> InjuryNow </name>
+
+<variables>
+
+<parm><name> ArmFraction </name><val> 0.12 </val></parm>
+<parm><name> LegFraction </name><val> 0.24 </val></parm>
+<parm><name> ChestFraction </name><val> 0.03 </val></parm>
+
+<parm><name> RightArmDamage </name><val> 0.0 </val></parm>
+<parm><name> RightLegDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftArmDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftLegDamage </name><val> 0.0 </val></parm>
+<parm><name> RightChestDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftChestDamage </name><val> 0.0 </val></parm>
+
+<var><name> RightArmDegree </name><val> 0 </val></var>
+<var><name> LeftArmDegree </name><val> 0 </val></var>
+<var><name> RightLegDegree </name><val> 0 </val></var>
+<var><name> LeftLegDegree </name><val> 0 </val></var>
+<var><name> RightChestDegree </name><val> 0 </val></var>
+<var><name> LeftChestDegree </name><val> 0 </val></var>
+
+<timervar><name> ResetRightArm </name><state> OFF </state></timervar>
+<timervar><name> ResetLeftArm </name><state> OFF </state></timervar>
+<timervar><name> ResetRightLeg </name><state> OFF </state></timervar>
+<timervar><name> ResetLeftLeg </name><state> OFF </state></timervar>
+<timervar><name> ResetRightChest </name><state> OFF </state></timervar>
+<timervar><name> ResetLeftChest </name><state> OFF </state></timervar>
+
+<var><name> TotalRightArmInjury </name><val> 0 </val></var>
+<var><name> TotalLeftArmInjury </name><val> 0 </val></var>
+<var><name> TotalRightLegInjury </name><val> 0 </val></var>
+<var><name> TotalLeftLegInjury </name><val> 0 </val></var>
+<var><name> TotalRightChestInjury </name><val> 0 </val></var>
+<var><name> TotalLeftChestInjury </name><val> 0 </val></var>
+
+</variables>
+
+<definitions>
+
+<block><name> InjureRightArmNow </name>
+
+<def>
+  <name> TotalRightArmInjury </name>
+  <val> TotalRightArmInjury + 1 </val>
+</def>
+
+<def>
+  <name> RightArmDegree </name>
+  <val> ( TotalRightArmInjury / 5 ) * ArmFraction </val>
+</def>
+
+<timer><name> ResetRightArm </name>
+  <state> UP </state>
+</timer>
+
+</block>
+
+<block><name> InjureLeftArmNow </name>
+
+<def>
+  <name> TotalLeftArmInjury </name>
+  <val> TotalLeftArmInjury + 1 </val>
+</def>
+
+<def>
+  <name> LeftArmDegree </name>
+  <val> ( TotalLeftArmInjury / 5 ) * ArmFraction </val>
+</def>
+
+<timer><name> ResetLeftArm </name>
+  <state> UP </state>
+</timer>
+
+</block>
+
+<block><name> InjureRightLegNow </name>
+
+<def>
+  <name> TotalRightLegInjury </name>
+  <val> TotalRightLegInjury + 1 </val>
+</def>
+
+<def>
+  <name> RightLegDegree </name>
+  <val> ( TotalRightLegInjury / 5 ) * LegFraction </val>
+</def>
+
+<timer><name> ResetRightLeg </name>
+  <state> UP </state>
+</timer>
+
+</block>
+
+<block><name> Wrapup </name>
+
+  <if><test> ResetRightArm GE 1 </test>
+    <true>
+      <timer><name> ResetRightArm </name>
+        <val> 0 </val>
+        <state> OFF </state>
+      </timer>
+      <def><name> RightArmDegree </name>
+        <val> 0 </val>
+      </def>
+    </true>
+  </if>
+
+<if><test> ResetLeftArm GE 1 </test>
+    <true>
+      <timer><name> ResetLeftArm </name>
+        <val> 0 </val>
+        <state> OFF </state>
+      </timer>
+      <def><name> LeftArmDegree </name>
+        <val> 0 </val>
+      </def>
+    </true>
+  </if>
+
+  <if><test> ResetRightLeg GE 1 </test>
+    <true>
+      <timer><name> ResetRightLeg </name>
+        <val> 0 </val>
+        <state> OFF </state>
+      </timer>
+      <def><name> RightLegDegree </name>
+        <val> 0 </val>
+      </def>
+    </true>
+  </if>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

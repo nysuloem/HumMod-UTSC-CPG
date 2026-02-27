@@ -1,0 +1,36 @@
+<panel><name> Endometrium </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Uterus </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Uterus - Endometrium </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<?path Display\Organs\Uterus\Endometrium\ ?>
+
+<!--<?include Volume.DES ?>
+<?include Compartments.DES ?>
+<?include Decidualization.DES ?>
+<?include Mass.DES ?>
+<?include Density.DES ?>-->
+<?include Size.DES ?>
+<?include Stroma.DES ?>
+
+
+</panel>
+
+End

@@ -1,0 +1,145 @@
+<script>
+
+<launch>
+	<solver> Model Solver.EXE </solver>
+	<model> HumMod.DES </model>
+</launch>
+
+<restart/>
+
+
+<?include tomroster.Script ?>
+
+<gofor>
+	<solutionint> 20160.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<saveics><filename> steady-ic.ICS </filename></saveics>
+
+<loadics><filename> steady-ic.ICS </filename></loadics>
+
+<setvalue><var> Apnea.EventRateTarget </var><val> 8 </val></setvalue> 
+
+<gofor>
+	<solutionint> 20160.0 </solutionint>
+	<displayint> 2880.0 </displayint>
+</gofor>
+
+
+<saveics><filename> apnea-8.ICS </filename></saveics>
+
+<setvalue><var> Apnea.EventRateTarget </var><val> 10 </val></setvalue> 
+
+<gofor>
+	<solutionint> 20160.0 </solutionint>
+	<displayint> 2880.0 </displayint>
+</gofor>
+
+
+<saveics><filename> apnea-10.ICS </filename></saveics>
+
+
+
+<!-- generate aortic stenosis patient -->
+
+<loadics><filename> steady-ic.ICS </filename></loadics>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.95 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.9 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.85 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.8 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<saveics><filename> aorticSten-80.ICS </filename></saveics>
+
+
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.75 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.7 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.65 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.6 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<saveics><filename> aorticSten-60.ICS </filename></saveics>
+
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.55 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.5 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.45 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<setvalue><var> AorticValve-Stenosis.Area </var><val> 0.4 </val></setvalue> 
+
+<gofor>
+	<solutionint> 10080.0 </solutionint>
+	<displayint> 1440.0 </displayint>
+</gofor>
+
+<saveics><filename> aorticSten-40.ICS </filename></saveics>
+
+
+
+<exit/>
+</script>
+

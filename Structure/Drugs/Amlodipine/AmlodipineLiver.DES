@@ -1,0 +1,35 @@
+
+<structure><name> AmlodipineLiver </name>
+
+<variables>
+
+<var>
+  <name> Metabolism </name>
+</var>
+
+<constant>
+  <name> K </name>
+  <val> 0.00008  </val>0.008
+</constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Metabolism </name>
+  <val>
+      K
+    * AmlodipinePool.[Amlodipine] 
+    * ( ( HepaticArtery-Flow.PlasmaFlow + PortalVein-Flow.PlasmaFlow ) * Liver-Function.Effect )
+  </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

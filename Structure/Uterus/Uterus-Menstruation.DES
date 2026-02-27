@@ -1,0 +1,107 @@
+HumMod / Uterus-Menstration
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : 
+Schema : DES V1.0
+
+<structure><name> Uterus-Menstruation </name>
+<!-- This structure determines the RATE at which blood flows into the uterus lumen from the sprial arteries -->
+
+<variables>
+
+<var><name> BloodLoss </name><val> 0 </val></var>
+<timervar><name> Duration </name></timervar>
+<var><name> DurationDays </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> UterusBloodLeakedVol </name>
+  <integralname> UterusBloodLeakedVol </integralname>
+  <initialval> 0 </initialval>
+  <dervname> Rate </dervname>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+    <def>
+        <name> Rate </name> 
+        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow </val>
+    </def>
+
+    <def>
+        <name> BloodLoss </name><val> Sex.IsFemale * Rate </val>
+    </def>
+
+    <testcase>
+
+    <case>
+        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 0 </test>
+        <timer>
+            <name> Duration </name>
+            <state> OFF </state>
+        </timer>
+    </case>
+
+    <case>
+        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 1 </test>
+        <timer>
+            <name> Duration </name>
+            <state> UP </state>
+        </timer>
+    </case>
+
+    </testcase>
+
+    <def><name> DurationDays </name>
+        <val> Duration / 1440 </val>
+    </def>
+
+</block>
+
+<block><name> ResetMenstrualDuration </name>
+
+    <def><name> Duration </name>
+    <val> 0 </val>
+    </def>
+
+</block>
+
+<block><name> ResetBloodLost </name>
+
+    <def><name> Uterus-Lumen.UterusBloodPool </name>
+    <val> 0 </val>
+    </def>
+
+<!-- Can also do this so the blood count resets after each period. Then also can have a culminative blood loss 
+    <onjustchanged> 
+    <name> Duration </name> 
+    <if> 
+    <test> DurationDays LE 0 </test>
+    <true>  <def><name> Uterus-Lumen.MenstrualBloodExpulsed </name>
+    <val> 0 </val>
+    </def>
+    </true> 
+    </if>
+  
+</onjustchanged>
+-->
+
+</block>
+
+
+
+</definitions>
+
+</structure>
+
+End

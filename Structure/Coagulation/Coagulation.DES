@@ -1,0 +1,26 @@
+
+
+<?path Structure\Coagulation\ ?>
+
+<?include ProthrombinComplexActivity.DES ?>
+
+
+<structure><name> Coagulation</name>
+
+<definitions>
+
+<block><name> Init </name>
+
+<call> ProthrombinComplexActivity.Init </call>
+
+</block>
+
+<block><name> Dervs </name>
+
+<call> ProthrombinComplexActivity.Dervs </call>
+
+</block>
+
+</definitions>
+</structure>
+

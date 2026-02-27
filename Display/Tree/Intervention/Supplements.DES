@@ -1,0 +1,33 @@
+HumMod / Drugs
+
+Created : 10-Oct-08
+Revised : 2013-03-19
+Author : Tom Coleman
+Copyright : 2008-2013
+By : University of Mississippi Medical Center
+
+<branch>
+  <name> Supplements </name>
+  <label> Supplements </label>
+  <parent> INTERVENTION </parent>
+</branch>
+
+<branch>
+  <name> Supplements-Creatine </name>
+  <label> Creatine </label>
+  <parent> Supplements </parent>
+</branch>
+
+<leaf>
+  <name> Supplements-Creatine-Dosing </name>
+  <label> Dosing </label>
+  <parent> Supplements-Creatine </parent>
+</leaf>
+
+<leaf>
+  <name> Supplements-Creatine-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Supplements-Creatine </parent>
+</leaf>
+
+End

@@ -1,0 +1,110 @@
+HumMod / PreEclampsia
+
+<panel><name> Control </name>
+
+    <showclock>
+      <row> 0.3 </row><col> 36.0 </col>
+      <name> System.X </name>
+      <ampm/>
+      <secs/>
+      <days/>
+    </showclock>
+    
+    <groupbox>
+       <row> 2.0 </row>
+       <col> 1.0 </col>
+       <high> 15.8 </high>
+       <wide> 50.0 </wide>
+       <title> Pre-Eclampsia (PE) Controls </title>
+    
+    <structurename> Uterus-PE </structurename>
+
+    <radiobuttons>
+      <row> 1.4 </row><col> 1.0 </col>
+      <name> Switch </name>
+      <listname> Common.Switch </listname>
+      <label> Family history of PE? </label>
+    </radiobuttons>
+
+    <showvalue>
+      <row> 2.4 </row><col> 1.0 </col>
+      <name> Pregnancy-Occurence.PregnancyWeek </name>
+      <label> Week of Pregnancy </label>
+   </showvalue>
+
+    <maplist><name> PE.Result </name>
+      <map><val> 1 </val><img> Extremely high (very likely to be diagnosed) </img></map>
+      <map><val> 2 </val><img> Moderate (continue to monitor risk) </img></map>
+      <map><val> 3 </val><img> Low (very unlikely to be diagnosed) </img></map>
+    </maplist>
+    
+    <showvalue>
+       <row> 4.4 </row><col> 1.0 </col>
+       <name> RiskOutcome </name>
+       <format><list> PE.Result </list></format>
+       <label> Level of Risk </label>
+    </showvalue>
+
+    <!-- add checklist of risk factors
+    <label>
+      <row> 6.4 </row><col> 1.0 </col>
+      <text> Risk Factors </text>
+    </label>
+
+    <checkmark>
+      <row> 7.4 </row><col> 2.0 </col>
+      <name> History </name>
+      <label> Family History </label>
+   </checkmark>
+
+   <checkmark>
+    <row> 8.4 </row><col> 2.0 </col>
+    <name> RFTwo </name>
+    <label> 20+ weeks pregnant </label>
+ </checkmark>
+
+   <checkmark>
+    <row> 9.4 </row><col> 2.0 </col>
+    <name> RFThree </name>
+    <label> Obesity </label>
+ </checkmark>
+
+ <checkmark>
+  <row> 10.4 </row><col> 2.0 </col>
+  <name> RFFour </name>
+  <label> Advanced Maternal Age </label>
+</checkmark>
+
+<checkmark>
+  <row> 11.4 </row><col> 2.0 </col>
+  <name> RFFive </name>
+  <label> Short Stature </label>
+</checkmark>
+
+<checkmark>
+  <row> 12.4 </row><col> 2.0 </col>
+  <name> RFSix </name>
+  <label> Diabetes </label>
+</checkmark>
+
+<checkmark>
+  <row> 13.4 </row><col> 2.0 </col>
+  <name> RFSeven </name>
+  <label> High BMI </label>
+</checkmark> -->
+   
+    <infobutton>
+      <row> 1.2 </row>
+      <col> 47 </col>
+      <line> Level of risk asseses the likelihood of developing PE. </line>
+      <line> After 20 weeks of pregnancy, risk factors </line>
+      <line> associated with PE included in this calculation are </line>
+      <line> heredity, obesity, high BMI, short stature, diabetes mellitus, </line>
+      <line> and advanced maternal age (Karrar et al., 2024). </line>
+    </infobutton>
+<!-- link: https://www.ncbi.nlm.nih.gov/books/NBK570611/ -->
+
+  </groupbox>
+
+</panel>
+

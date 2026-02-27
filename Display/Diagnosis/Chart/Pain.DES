@@ -1,0 +1,41 @@
+HumMod / Pain
+
+Created : 2014-02-25
+Revised : 2014-02-25
+Author : Tom Coleman
+Copyright : 2014-2014
+By : Tom Coleman
+
+<showvalue>
+   <row> 30 </row><col> 71 </col>
+   <name> Pain.TargetPain </name>
+   <format><decimal> 0 </decimal></format>
+   <label> Pain </label>
+</showvalue>
+
+<showvalue>
+   <row> 31 </row><col> 71 </col>
+   <name> Pain.CombinedMorphine </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Morphine </label>
+</showvalue>
+
+<showgraph>
+  <row> 32 </row><col> 71 </col><high> 6.8 </high><wide> 26 </wide>
+  <leftmargin> 4 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Pain.TargetPain </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 10 </min><max> 20 </max></scale>
+  </yaxis>
+</showgraph>
+
+End

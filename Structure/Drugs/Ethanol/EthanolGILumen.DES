@@ -1,0 +1,92 @@
+HumMod / Ethanol
+
+Created : 02-Feb-2025
+Last Modified : ---
+Author : Tiff and Faria
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> EthanolGILumen </name>
+
+<variables>
+
+<var><name> BIOAVAIL </name><val> 1 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
+<var><name> PERM </name><val> 0.01 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
+<var><name> [Ethanol] </name></var>
+<var><name> Gain </name></var>
+<var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
+<var><name> PortalVein[Ethanol] </name></var>
+
+<!-- Drink selector: 1=Beer, 2=Wine, 3=Vodka --> 
+<parm><name> DrinkType </name><val> 1 </val></parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+  <def>
+    <name> [Ethanol] </name> <!-- This is the ethanol concentration in the GI Lumen-->
+    <val> Mass / GILumenH2O.Mass(L) </val> <!-- Converts ethanol mass into a concentration using the lumen’s water mass (volume).-->
+  
+    <!-- What is ethanol mass? Volume or mass? Concentration?? (1L of water) 1% = 10ml --> 
+    <!-- Density Ethanol = 0.789 __ Mass = D X V--> 
+
+  </def>
+
+</block>
+
+<block><name> Dervs </name>
+
+  <testcase>
+    <case>
+      <test> DrinkType EQ 2 </test> <!-- WINE -->
+      <def><name> PERM </name><val> 0.07 </val></def> 
+    </case>
+
+    <case>
+      <test> DrinkType EQ 3 </test> <!-- VODKA -->
+      <def><name> PERM </name><val> 0.1 </val></def> 
+    </case>
+  </testcase>
+
+  <def><name> Gain </name>
+    <val> EthanolSingleDose.Mass + EthanolDailyDose.Mass </val>
+  </def>
+
+  <def>
+    <name> Loss </name>
+    <val> BIOAVAIL * PERM * [Ethanol] </val>
+  </def>
+
+  <def>
+    <name> Change </name>
+    <val> Gain - Loss </val> 
+  </def>
+
+  <def>
+    <name> PortalVein[Ethanol] </name>
+    <val> Loss / PortalVein.BloodFlow </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

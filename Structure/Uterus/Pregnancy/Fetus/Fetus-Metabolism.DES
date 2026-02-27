@@ -1,0 +1,53 @@
+<structure><name> Fetus-Metabolism </name>
+
+<variables>
+
+<constant><name> NormalCalsUsed((Cal/Min)/G) </name><val> 0.0252 </val></constant>
+
+<var><name> NormalFetalCals </name><val> 0 </val></var>
+<var><name> FetalCals </name><val> 0 </val></var>
+<var><name> AerobicCals </name><val> 0 </val></var>
+<var><name> AnaerobicCals </name><val> 0 </val></var>
+<var><name> GrowthCals </name><val> 0 </val></var>
+
+
+</variables>
+
+<definitions>
+
+<block><name> CalcCals </name>
+
+<def>
+  <name> GrowthCals </name>
+  <val> ( 7 * Fetus-Size.ProteinFract ) + ( 11 * Fetus-Size.LipidFract ) </val>
+</def>
+
+<def>
+  <name> NormalFetalCals </name> 
+  <val> ( Fetus-Size.FetalWeight * NormalCalsUsed((Cal/Min)/G) ) + ( GrowthCals * Fetus-Size.Change ) </val>
+</def>
+
+<def>
+  <name> FetalCals </name>
+  <val> 
+      NormalFetalCals 
+    * 1 <!-- Thyroid.Effect-->
+    * 1 <!-- HeatMetabolism.Core -->
+  </val>
+</def>
+
+<def>
+  <name> AerobicCals </name>
+  <val> FetalCals </val>
+</def>
+
+<def>
+  <name> AnaerobicCals </name>
+  <val> 0 * FetalCals </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>

@@ -1,0 +1,69 @@
+HumMod / LisinoprilPool
+
+
+<structure><name> LisinoprilPool </name>
+
+<variables>
+
+<var>
+  <name> [Lisinopril] </name>
+</var>
+
+<var>
+  <name> Gain </name>
+</var>
+
+<var>
+  <name> Loss </name>
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def>
+  <name> [Lisinopril] </name>
+  <val> Mass / ECFV.Vol(L) </val>
+</def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Gain </name>
+  <val> LisinoprilGILumen.Loss
+  </val>
+</def>
+
+<def>
+  <name> Loss </name>
+  <val> LisinoprilKidney.UrineLoss + LisinoprilLiver.HepaticLoss
+  </val>
+</def>
+
+<def>
+  <name> Change </name>
+  <val> Gain - Loss </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

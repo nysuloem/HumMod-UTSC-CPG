@@ -1,0 +1,263 @@
+<!--
+
+NODrugPool.DES - Defines systemic NO drug distribution in HumMod
+
+Overview
+This file models the **systemic distribution and clearance** of Nitric Oxide (NO) in the body.
+It calculates drug concentration, conversion between units, and overall mass balance, incorporating inputs from **IV infusion, lung absorption, and sublingual administration**.
+
+Key Functions
+1. Drug Concentration Calculation: Converts NO mass into relevant physiological units (pg/mL, nMol).
+2. Volume of Distribution (`VolDist`): Defines the theoretical volume needed to distribute NO evenly.
+3. Mass Balance Equations: Integrates NO gain from different sources (`NODrugIV`, `NODrugLung`, `NODrugSL`) and removes it via `NitricOxideClearance`.
+
+How to Replicate for Another Drug
+1. Change `<name> NODrugPool </name>` to `<name> NewDrugPool </name>`.
+2. Adjust MW (Molecular Weight) for the new drug.
+3. Modify VolDist (Volume of Distribution) based on pharmacokinetic data.
+4. Ensure that Gain and Loss account for the new drug’s administration routes and clearance.
+5. Link this file in the main drug model (`NODrug.DES`).
+
+-->
+
+HumMod / NODrugPool
+
+Created : 10-Apr-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> NODrugPool </name> <!-- Defines systemic NO distribution and clearance -->
+
+<variables>
+
+<!-- conversion variables -->
+
+<var>
+  <name> [NODrug] </name> <!-- NO concentration in systemic circulation -->
+</var>
+
+<var>
+  <name> [NODrug(pG/mL)] </name> <!-- NO concentration converted to pg/mL -->
+</var>
+
+<var>
+  <name> [NODrug(nMol)] </name> <!-- NO concentration in nanomolar units -->
+</var>
+
+<constant>
+	<name> MW </name><val> 30.01 </val>
+</constant> 
+<!-- Molecular Weight of NO (g/mol) -->
+
+<parm>
+  <name> VolDist </name> <!-- Theoretical volume needed to evenly distribute NO -->
+  <val> 50 </val> <!-- L/kg -->
+</parm>
+
+<!-- derv variables -->
+
+<var>
+  <name> Gain </name> <!-- Total NO entering circulation -->
+</var>
+
+<var>
+  <name> Loss </name> <!-- Total NO leaving circulation -->
+</var>
+
+<!-- new NTG to NO conversion variables -->
+
+<var>
+   <name> NTGmass_uG </name> <!-- Nitroglycerin coming in in mcg-->
+</var>
+
+<var>
+  <name> NTGtoNitrite_uG </name> <!-- NTG made into nitrite during conversion cascade-->
+</var>
+
+<var>
+  <name> NO2toNO_Efficiency </name> <!-- factors determining nitrie conversion to NO -->
+</var>
+
+<var>
+  <name> NOfromNTG </name><val> 0 </val> <!-- NO produced from NTG, in mcg -->
+</var>
+
+<var>
+  <name> pH </name> <!-- a part of the -->
+</var>
+
+<var>
+  <name> PO2 </name>
+</var>
+
+<var>
+  <name> HbFactor </name>
+</var>
+
+<var>
+  <name> O2Factor </name>
+</var>
+
+<var>
+  <name> NOtoNitrate_k </name>
+</var>
+
+<var>
+  <name> NOtoNitrate </name>
+</var>
+
+<var>
+  <name> Mass(nG) </name>
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name> <!-- Defines NO mass balance in the system -->
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval> <!-- Starts with no NO present -->
+  <dervname> Change </dervname>
+  <errorlim> 0.00025 </errorlim> <!-- Controls numerical error tolerance -->
+</diffeq>
+<!-- Units: micrograms -->
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+ <def><name> O2Factor </name><val> 0 </val></def>
+  <def><name> HbFactor </name><val> 0 </val></def>
+
+<def>
+  <name> Mass(nG) </name>
+  <val> Mass * 1000 </val> <!-- Converts NO mass to nanograms -->
+</def>
+
+<def>
+  <name> [NODrug(nMol)] </name>
+  <val> 1000 * [NODrug] / MW </val> <!-- Converts NO concentration to nanomolar -->
+</def>
+
+<def><name> NTGmass_uG </name><val> 0 </val></def>
+  <def><name> PO2 </name><val> 0 </val></def>
+
+  <def><name> pH </name><val> 0 </val></def>
+  <def><name> NOfromNTG </name><val> 0 </val></def>
+
+  <def><name> NO2toNO_Efficiency </name><val> 0 </val></def>
+  <def><name> NTGtoNitrite_uG </name><val> 0 </val></def>
+
+</block>
+
+<block><name> Parms </name>
+
+  <def><name> pH </name><val> BloodPhValues.VeinsPh </val></def>
+  <def><name> PO2 </name><val> O2Veins.[O2] </val></def> <!-- undefined; remains zero -->
+  <def><name> NTGmass_uG </name><val> NTGPool.NTGIntake </val></def>
+
+</block>
+
+<block><name> NTGtoNO_Pathway </name>
+
+<call> NODrugPool.Init </call>
+<call> NODrugPool.Parms </call>
+
+<!-- pool just for sake of conversion, activity process highlighted in systemic veins section 
+  <call> O2Veins.CalcConc </call>
+  <call> NTGPool.Dervs </call> -->
+
+  <!-- Step 2: ALDH2 activity approximation: ~35% NTG becomes nitrite, no dynamic ALDH2 modulators to use here? -->
+  <def><name> NTGtoNitrite_uG </name>
+    <val> NTGmass_uG * 0.35 </val>
+  </def>
+  <!-- citation: Beretta M, Gorren AC, Wenzl MV, Weis R, Russwurm M, Koesling D, Schmidt K, Mayer B. Characterization of the East Asian variant of aldehyde dehydrogenase-2: bioactivation of nitroglycerin and effects of Alda-1. J Biol Chem. 2010 Jan 8;285(2):943-52. doi: 10.1074/jbc.M109.014548. Epub 2009 Nov 11. PMID: 19906643; PMCID: PMC2801295.-->
+<!-- ADLH2's activator common in East Asians (ALDA-1) also significant in Asian Flush phenomenon -->
+<!-- clarify ALDH2 function in East Asians - promotes/doesn't promote ALDH2 production? -->
+
+
+  <!-- Step 3: Nitrite to NO conversion efficiency (modulated by O2 and pH to make more dynamic) -->
+  <def><name> NO2toNO_Efficiency </name>
+    <val>
+      0.10
+      + 0.15 * ( 1 - PO2 / 100 )
+      + 0.10 * ( 9 - pH )
+    </val>
+  </def>
+
+  <!-- 0.10: kept as baseline efficiency (10%) for NO formation from nitrite  under normal conditions.
+   2nd line: as venous PO₂ decreases (i.e., hypoxia), this term increases, ex. when PO2 = 100 mmHg: → this term = 0
+   3rd line: As blood becomes more acidic (pH < 7.37), this term increases, ex. at 7.37, this term = 0. 7.37 is used as baseline pH in Hummod.
+  -->
+  <!-- Step 4: Final NO yield -->
+  <def><name> NOfromNTG </name>
+    <val> NTGtoNitrite_uG * NO2toNO_Efficiency </val>
+  </def>
+
+</block>
+
+<block><name> CalcConc </name> 
+<def>
+<name> [NODrug] </name>
+  <val> Mass / VolDist </val> <!-- Computes systemic NO concentration -->
+</def>
+
+<!-- mcg/L -->
+<def>
+<name> [NODrug(nMol)] </name>
+<val> 1000 * [NODrug] / MW </val> <!-- Converts NO concentration to nanomolar from microgram -->
+</def>
+
+</block>
+
+<block><name> Dervs </name> <!-- Defines how NO is added or removed from circulation -->
+
+<call> NODrugLiver.Dervs </call>
+<call> PO2Artys.Calc </call>
+<call> HgbConc.Calc </call>
+
+<!-- Define NO to Nitrate -->
+<def><name> O2Factor </name>
+  <val> 1.0 + ( PO2Artys.Pressure / 100 ) </val>
+</def>
+<def><name> HbFactor </name>
+  <val> 1.0 + ( HgbConc.[Total] / 15 ) </val>
+</def>
+<def><name> NOtoNitrate_k </name>
+  <val> 0.02 * O2Factor * HbFactor </val>
+</def>
+<def><name> NOtoNitrate </name>
+  <val> Mass * NOtoNitrate_k </val>
+</def>
+
+<def>
+  <name> Gain </name>
+ <val> NOfromNTG * 1000 </val> <!-- Total NO entering the pool -->
+</def>
+
+<def>
+  <name> Loss </name>
+  <val>  NOtoNitrate + NODrugLiver.PortalMass </val> <!-- Total NO leaving circulation (clearance or liver) -->
+</def>
+
+<def>
+  <name> Change </name>
+  <val> Gain - Loss </val> <!-- Net NO change in the body -->
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End
+
+<!-- source for conversion: 
+  Parmar, V., Orabi, E. A., English, A. M., & Peslherbe, G. H. (2024). Modeling predicts facile release of nitrite but not nitric oxide from the thionitrate CH3SNO2 with relevance to nitroglycerin bioactivation. Scientific Reports, 14(1), Article 31552. https://doi.org/10.1038/s41598-024-80230-7
+ -->
