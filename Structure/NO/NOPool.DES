@@ -8,7 +8,7 @@ HumMod / NOPool
 <var><name> [NO--(mMol/L)] </name></var>
 <var><name> [NO--(mEq/L)] </name></var>
 
-<var><name> K </name><val> 0.05 </val></var>
+<var><name> K </name><val> 5.0 </val></var>
 
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
@@ -29,8 +29,9 @@ HumMod / NOPool
 <diffeq>
   <name> Mass </name>
   <integralname> Mass </integralname>
+  <initialval> 25 </initialval>
   <dervname> Change </dervname>
-  <errorlim> 0.01 </errorlim> <!-- accounts for more control w multiple sinks/sources -->
+  <errorlim> 1 </errorlim> <!-- accounts for more control w multiple sinks/sources -->
 </diffeq>
 
 </equations>
@@ -39,14 +40,14 @@ HumMod / NOPool
 
  <block><name> Init </name>
 
-  <def><name> InitialMass </name><val> Target[NO] * ECFV.InitialVol(L) </val></def>
-  <def><name> Mass </name><val> InitialMass </val></def>
+  <!--<def><name> InitialMass </name><val> Target[NO] * ECFV.InitialVol(L) </val></def>
+  <def><name> Mass </name><val> InitialMass </val></def>-->
 
 </block>
 
 <block><name> CalcDiffusion </name>
 
-  <def><name> Diffusion </name><val> Mass / 1.5 </val></def> <!-- NO diffuses relatively quickly -->
+  <!--<def><name> Diffusion </name><val> Mass / 1.5 </val></def>--> <!-- NO diffuses relatively quickly -->
 
 </block>
 
@@ -66,11 +67,12 @@ HumMod / NOPool
     <name> Gain </name>
     <val>
           NOPump.Rate
-        + NODrugPool.Change 
+        + GlomerularEndothelium.NOProduction
+        + VascularEndothelium.NOProduction
       </val>
     </def>
 
-  <def><name> Loss </name><val>  K * NOPool.[NO--] * GlomerulusFiltrate.GFR </val></def>
+  <def><name> Loss </name><val>  K * NOPool.[NO--] <!--* GlomerulusFiltrate.GFR--> </val></def>
   
   <def><name> Change </name><val> Gain - Loss </val></def>
 

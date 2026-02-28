@@ -9,7 +9,7 @@ Schema : DES V1.0
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 12.0 </high>
+   <high> 13.0 </high>
    <wide> 30.0 </wide>
    <title> Pool </title>
 
@@ -17,13 +17,27 @@ Schema : DES V1.0
 
 <showvalue>
    <row> 1.4 </row><col> 2.0 </col>
-   <name> [NODrug(nM)] </name>
+   <name> NOPool.[NO--(mMol/L)] </name>
    <format><decimal> 3 </decimal></format>
-   <label> [NO] (nM) </label>
+   <label> [NO] Endogenous (nM) </label>
+</showvalue>
+
+<showvalue>
+   <row> 2.4 </row><col> 2.0 </col>
+   <name> NODrugPool.[NODrug(nM)] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [NO] Drug (nM) </label>
+</showvalue>
+
+<showvalue>
+   <row> 3.4 </row><col> 2.0 </col>
+   <name> NODrugPool.[TotalNO] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [NO] Total (nM) </label>
 </showvalue>
 
 <showgraph>
-  <row> 3.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <row> 4.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
   <leftmargin> 6 </leftmargin>
   <xaxis>
     <name> System.X </name>
@@ -32,7 +46,7 @@ Schema : DES V1.0
   </xaxis>
   <yaxis>
     <yvar>
-      <name> [NODrug(nM)] </name>
+      <name> NODrugPool.[TotalNO] </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>

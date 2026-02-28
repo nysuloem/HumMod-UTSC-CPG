@@ -83,6 +83,7 @@ Schema : DES V1.0
 <var><name> NOtoNitrate_k </name></var>
 <var><name> NOtoNitrate </name></var>
 <var><name> Mass(nG) </name></var>
+<var><name> [TotalNO] </name></var>
 
 </variables>
 
@@ -191,6 +192,8 @@ Schema : DES V1.0
   <name> [NODrug(nM)] </name>
   <val> 1000000 * [NODrug] / MW </val> <!-- Converts NO concentration to nanomolar from mg/L-->
   </def>
+
+  <def><name> [TotalNO] </name><val> NOPool.[NO--(mMol/L)]  + NODrugPool.[NODrug(nM)] </val></def>
 
 </block>
 

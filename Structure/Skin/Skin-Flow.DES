@@ -111,14 +111,11 @@ By : University Of Mississippi Medical Center
   <point><x> 0.0010 </x><y> 2.0 </y><slope> 0 </slope></point>
 </curve> 
 
+<!-- Just Jason trying random numbers -->
 <curve>
   <name> NOOnConductance </name>
-  <point><x> 0.00 </x><y> 0.80 </y><slope> 0.0 </slope></point>
-  <point><x> 0.05 </x><y> 1.00 </y><slope> 6.0 </slope></point> <!-- baseline -->
-  <point><x> 0.10 </x><y> 1.25 </y><slope> 3.0 </slope></point>
-  <point><x> 0.15 </x><y> 1.40 </y><slope> 1.0 </slope></point>
-  <point><x> 0.20 </x><y> 1.50 </y><slope> 0.0 </slope></point>
-  <point><x> 1.00 </x><y> 1.50 </y><slope> 0.0 </slope></point>
+  <point><x> 0.00 </x><y> 1.00 </y><slope> 0.0 </slope></point>
+  <point><x> 20.0 </x><y> 2.00 </y><slope> 0.0 </slope></point>
 </curve>
 
 </functions>
@@ -186,7 +183,7 @@ By : University Of Mississippi Medical Center
 
 <def>
   <name> NOEffect </name>
-  <val> NOOnConductance [ NOPool.[NO--] ] </val>
+  <val> NOOnConductance [ NODrugPool.[TotalNO] ] </val>
 </def>
 
 <implicitmath><name> PO2 </name>
