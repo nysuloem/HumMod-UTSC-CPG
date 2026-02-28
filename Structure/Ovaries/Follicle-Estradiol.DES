@@ -11,21 +11,20 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> Secretion </name></var>
-
-<parm><name> BasicSecretion </name><val> 0.30 </val></parm>
-
-<var><name> MassEffect </name></var>
+  <var><name> Secretion </name></var>
+  <parm><name> BasicSecretion </name><val> 0.30 </val></parm>
+  <var><name> MassEffect </name></var>
 
 </variables>
 
 <functions>
 
-<curve>
-  <name> MassEffect </name>
-  <point><x>    0.0 </x><y>  0.0 </y><slope> 0.0 </slope></point>
-  <point><x> 4000.0 </x><y> 10.0 </y><slope> 0.0 </slope></point>
-</curve>
+  <curve>
+    <name> MassEffect </name>
+    <point><x> 0.0 </x><y>  0.0 </y><slope> 0.0 </slope></point>
+    <point><x> 400 </x><y> 0.1 </y><slope> 0.0 </slope></point>
+    <point><x> 4000.0 </x><y> 10.0 </y><slope> 0.0 </slope></point>
+  </curve>
 
 </functions>
 
@@ -33,36 +32,37 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def>
-  <name> MassEffect </name>
-  <val> MassEffect [ Ovaries-Follicle.Mass ] </val>
-</def>
+  <def>
+    <name> MassEffect </name>
+    <val> MassEffect [ Ovaries-Follicle.Mass ] </val>
+  </def>
 
-<if><test> Sex.IsFemale </test>
+  <if><test> Sex.IsFemale </test>
 
-<true>
-<def>
-  <name> Secretion </name>
-  <val>
-      BasicSecretion
-    * MassEffect
-    * ( Ovaries.Phase EQ Ovaries.IS_FOLLICULAR )
-  </val>
-</def>
-</true>
+  <true>
+  <def>
+    <name> Secretion </name>
+    <val>
+        BasicSecretion
+      * MassEffect
+      * ( ( Ovaries.Phase EQ Ovaries.IS_FOLLICULAR ) + ( Ovaries.Phase EQ Ovaries.IS_OVULATORY ) )
+    </val>
+  </def>
+  </true>
 
-<false>
-<def>
-  <name> Secretion </name>
-  <val> 0.0 </val>
-</def>
-</false>
+  <false>
+  <def>
+    <name> Secretion </name>
+    <val> 0.0 </val>
+  </def>
+  </false>
 
-</if>
+  </if>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

@@ -28,6 +28,8 @@ Schema : DES V1.0
 
 <block><name> BreathCalculation </name>
 
+    <def><name> OverLimit </name><val> FALSE </val></def>
+
     <def>
         <name> BreathEthanol </name>
         <val> EthanolLungs.LungsLoss / Breathing.TotalVentilation(L) </val>
