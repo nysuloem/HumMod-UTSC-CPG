@@ -49,6 +49,18 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
+  <name> Drugs-Contraceptives </name>
+  <label> Contraceptives </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Contraceptives-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Contraceptives </parent>
+</leaf>
+
+<branch>
   <name> Drugs-Digoxin </name>
   <label> Digoxin </label>
   <parent> Drugs </parent>

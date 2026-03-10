@@ -1,0 +1,34 @@
+
+
+HumMod / Contraceptives
+
+Created : 1-Dec-15
+Revised : 
+Author : N Sufian
+Copyright : 2015-2015
+By : University Of Mississippi Medical Center
+
+<?path Structure\Drugs\Contraceptives\ ?>
+
+<?include ContraceptivesGILumen.DES ?>
+<?include ContraceptivesDailyDose.DES ?>
+
+<structure><name> Contraceptives </name>
+
+<definitions>
+
+    <block><name> Parms </name>
+    <call> ContraceptivesDailyDose.Parms </call>
+    </block>
+
+    <block><name> CalcConc </name>
+    <call> ContraceptivesGILumen.CalcConc </call>
+    </block>
+
+    <block><name> Dervs </name>
+    <call> ContraceptivesGILumen.Dervs </call>
+    </block>
+
+</definitions>
+
+</structure>
