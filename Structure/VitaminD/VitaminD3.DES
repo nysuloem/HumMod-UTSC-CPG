@@ -131,7 +131,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Hydroxylation </name>
-  <val> [25-H]Effect * K * Mass </val>
+  <val> [25-H]Effect * K * Mass * ( Liver-Metabolism.TotalCalsUsed / 200 ) </val>
 </def>
 
 <def>

@@ -54,20 +54,6 @@ By: Jason Brown
 <call> Context.Calc </call>
 </onjustchanged>
 
-<def><name>Melanin_White</name><val>10</val></def>
-<def><name>Melanin_Black</name><val>90</val></def>
-<def><name>Melanin_Asian</name><val>20</val></def>
-<def><name>Melanin_Hispanic</name><val>40</val></def>
-
-<def>
-   <name>SkinMelanin</name>
-  <val> ( ( ( Context-Ethnicity.TrueWhite_Percentage ) / 100 ) * Melanin_White )
-        + ( ( ( Context-Ethnicity.TrueBlack_Percentage ) / 100 ) * Melanin_Black )
-        + ( ( ( Context-Ethnicity.TrueAsian_Percentage ) / 100 ) * Melanin_Asian )
-        + ( ( ( Context-Ethnicity.TrueHispanic_Percentage ) / 100 ) * Melanin_Hispanic )
-  </val>
-</def>
-
 <def>
   <name> Stochasm </name>
   <val> Flat </val>
@@ -84,7 +70,7 @@ By: Jason Brown
 </block>
 
 <block> <name> CalcPercent </name>
-      
+
 <def>
   <name> TotalPercentage </name>
   <val> White_Percentage + Black_Percentage + Asian_Percentage + Hispanic_Percentage </val>
@@ -107,6 +93,25 @@ By: Jason Brown
           <def><name> TrueHispanic_Percentage </name><val> Hispanic_Percentage </val></def>
          </false>
       </if>
+
+<def><name>Melanin_White</name><val>10</val></def>
+<def><name>Melanin_Black</name><val>90</val></def>
+<def><name>Melanin_Asian</name><val>20</val></def>
+<def><name>Melanin_Hispanic</name><val>40</val></def>
+
+<def>
+   <name>SkinMelanin</name>
+  <val> ( ( ( Context-Ethnicity.TrueWhite_Percentage ) / 100 ) * Melanin_White )
+        + ( ( ( Context-Ethnicity.TrueBlack_Percentage ) / 100 ) * Melanin_Black )
+        + ( ( ( Context-Ethnicity.TrueAsian_Percentage ) / 100 ) * Melanin_Asian )
+        + ( ( ( Context-Ethnicity.TrueHispanic_Percentage ) / 100 ) * Melanin_Hispanic )
+  </val>
+</def>
+
+<if> 
+  <test> SkinMelanin EQ 0 </test>
+    <true> <call> ZeroFixer </call> </true>
+</if>
 
       <testcase>
 
@@ -239,6 +244,12 @@ By: Jason Brown
       <def><name> TotalPercentage </name><val> 1 </val></def>
     </true>
   </if>
+<if><test> SkinMelanin EQ 0 </test>
+    <true>
+      <def><name> SkinMelanin </name><val> 1 </val></def>
+    </true>
+  </if>
+
 </block>
         
 
