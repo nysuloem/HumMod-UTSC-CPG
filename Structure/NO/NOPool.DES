@@ -8,7 +8,7 @@ HumMod / NOPool
 <var><name> [NO--(mMol/L)] </name></var>
 <var><name> [NO--(mEq/L)] </name></var>
 
-<var><name> K </name><val> 5.0 </val></var>
+<var><name> K </name><val> 1.1 </val></var>
 
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
@@ -72,7 +72,7 @@ HumMod / NOPool
       </val>
     </def>
 
-  <def><name> Loss </name><val>  K * NOPool.[NO--] <!--* GlomerulusFiltrate.GFR--> </val></def>
+  <def><name> Loss </name><val>  K * [NO--(mEq/L)] <!--* GlomerulusFiltrate.GFR--> </val></def>
   
   <def><name> Change </name><val> Gain - Loss </val></def>
 
