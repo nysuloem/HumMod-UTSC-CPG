@@ -36,6 +36,15 @@ HumMod / Uterus-PE
     <name> RFSeven </name>
 </var>
 
+<var><name> FlagHistory </name><val> 0 </val></var>
+<var><name> FlagPregnant </name><val> 0 </val></var>
+<var><name> Flag20Weeks </name><val> 0 </val></var>
+<var><name> FlagObese </name><val> 0 </val></var>
+<var><name> FlagAge </name><val> 0 </val></var>
+<var><name> FlagShort </name><val> 0 </val></var>
+<var><name> FlagDiabetes </name><val> 0 </val></var>
+<var><name> FlagHighBMI </name><val> 0 </val></var>
+
 
 <parm><name> Risk </name><val> 1 </val></parm>
 
@@ -50,7 +59,7 @@ HumMod / Uterus-PE
 
 <block><name> RiskCalc  </name>
 
-<!-- test for family history -->
+<!-- test for family history
 <conditional>
     <name> History </name>
     <test> Switch </test>
@@ -58,8 +67,6 @@ HumMod / Uterus-PE
     <false> 1.0 </false>
   </conditional>
 
-
-<!-- test if pregnant -->
 <if>
     <test> Pregnancy-Occurence.AnnouncePregnancy GE 0 </test>
     <true> 
@@ -70,9 +77,9 @@ HumMod / Uterus-PE
     </false>
 </if>
 
-<!-- test if 20 weeks pregnant -->
+
 <if>
-    <test> Pregnancy-Occurence.PregnancyWeek GE 20 </test>
+    <test> Pregnancy-Occurence.PregnancyWeek GT 20 </test>
     <true> 
     <def><name> RFTwo </name><val> 10 </val></def>
     </true>
@@ -81,7 +88,7 @@ HumMod / Uterus-PE
     </false>
 </if>
 
-<!-- test for obesity -->
+
 <if>
     <test> ( Context-Adiposity.Index EQ 1 ) OR ( Context-Adiposity.Index EQ 2 ) OR ( Context-Adiposity.Index EQ 3 ) </test>
     <true> 
@@ -92,9 +99,8 @@ HumMod / Uterus-PE
         </false>
 </if>
 
-<!-- test for maternal age -->
 <if>
-    <test> ( Context-Age.Index EQ 4 ) OR ( Context-Age. EQ 5 ) </test>
+    <test> ( Context-Age.Index EQ 4 ) OR ( Context-Age.Index EQ 5 ) </test>
     <true> 
         <def><name> RFFour </name><val> 2 </val></def>
     </true>
@@ -103,7 +109,6 @@ HumMod / Uterus-PE
     </false>
 </if>
 
-<!-- test for shortness -->
 <if>
     <test> Context-Height.Index EQ 0  </test>
     <true> 
@@ -114,7 +119,6 @@ HumMod / Uterus-PE
      </false>
 </if>
 
-<!-- test for diabetes -->
 <if>
     <test> InsulinPump.Switch2 EQ TRUE </test>
     <true> 
@@ -125,7 +129,6 @@ HumMod / Uterus-PE
     </false>
 </if>
 
-<!-- test for BMI -->
 <if>
     <test> BMI.BMI GE 26  </test>
     <true> 
@@ -134,27 +137,118 @@ HumMod / Uterus-PE
     <false>
         <def><name> RFSeven </name><val> 1 </val></def>
     </false>
-</if>
+</if> -->
 
-
-<def><name> Risk </name>
-<val> 
-   ( History + RFThree + RFFour + RFFive + RFSix + RFSeven ) * RFTwo * RFOne
-</val>
-</def>
-
+    <!-- family history -->
+    <if>
+        <test> Switch EQ TRUE </test>
+        <true>
+            <def><name> FlagHistory </name><val> 1 </val></def>
+            <def><name> History </name><val> 5.0 </val></def>
+        </true>
+        <false>
+            <def><name> FlagHistory </name><val> 0 </val></def>
+            <def><name> History </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    <!-- pregnant -->
+    <if>
+        <test> Pregnancy-Occurence.PregnancyWeek GT 0 </test>
+        <true>
+            <def><name> FlagPregnant </name><val> 1 </val></def>
+            <def><name> RFOne </name><val> 1 </val></def>
+        </true>
+        <false>
+            <def><name> FlagPregnant </name><val> 0 </val></def>
+            <def><name> RFOne </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    <!-- 20+ weeks pregnant -->
+    <if>
+        <test> Pregnancy-Occurence.PregnancyWeek GE 20 </test>
+        <true>
+            <def><name> Flag20Weeks </name><val> 1 </val></def>
+            <def><name> RFTwo </name><val> 1 </val></def>
+        </true>
+        <false>
+            <def><name> Flag20Weeks </name><val> 0 </val></def>
+            <def><name> RFTwo </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    <!-- obesity -->
+    <if>
+        <test> ( Context-Adiposity.Index EQ 0 ) OR ( Context-Adiposity.Index EQ 1 ) </test>
+        <true>
+            <def><name> FlagObese </name><val> 0 </val></def>
+            <def><name> RFThree </name><val> 0 </val></def>
+        </true>
+        <false>
+            <def><name> FlagObese </name><val> 1 </val></def>
+            <def><name> RFThree </name><val> 2 </val></def>
+        </false>
+    </if>
+    
+    <!-- maternal age -->
+    <if>
+        <test> Context-Age.Age(Years) GE 35 </test>
+        <true>
+            <def><name> FlagAge </name><val> 1 </val></def>
+            <def><name> RFFour </name><val> 2 </val></def>
+        </true>
+        <false>
+            <def><name> FlagAge </name><val> 0 </val></def>
+            <def><name> RFFour </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    <!-- short stature -->
+    <if>
+        <test> Context-Height.Index EQ 0 </test>
+        <true>
+            <def><name> FlagShort </name><val> 1 </val></def>
+            <def><name> RFFive </name><val> 2 </val></def>
+        </true>
+        <false>
+            <def><name> FlagShort </name><val> 0 </val></def>
+            <def><name> RFFive </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    <!-- diabetes -->
+    <if>
+        <test> InsulinPump.Switch2 EQ TRUE </test>
+        <true>
+            <def><name> FlagDiabetes </name><val> 1 </val></def>
+            <def><name> RFSix </name><val> 2 </val></def>
+        </true>
+        <false>
+            <def><name> FlagDiabetes </name><val> 0 </val></def>
+            <def><name> RFSix </name><val> 0 </val></def>
+        </false>
+    </if>
+    
+    
+    <def><name> Risk </name>
+        <val>
+            ( History + RFThree + RFFour + RFFive + RFSix ) * RFTwo * RFOne
+        </val>
+    </def>
+    
 
 </block>
 
-<block><name> RiskOutcome </name>
+<block><name> RiskOutcomeCalc </name>
 <testcase> 
-    <case><test> Risk GE 10 </test>
+    <case><test> Risk GE 9 </test>
       <def><name> RiskOutcome </name><val> 1 </val></def>
     </case>
-    <case><test> Risk GE 5 </test>
+    <case><test> Risk GE 9 </test>
       <def><name> RiskOutcome </name><val> 2 </val></def>
     </case>
-    <case><test> Risk LT 4 </test>
+    <case><test> Risk LT 5 </test>
       <def><name> RiskOutcome </name><val> 3 </val></def>
     </case>
   </testcase>
@@ -175,6 +269,9 @@ HumMod / Uterus-PE
   </testcase> -->
 
 </definitions>
+</structure>
+
+End
 </structure>
 
 End
