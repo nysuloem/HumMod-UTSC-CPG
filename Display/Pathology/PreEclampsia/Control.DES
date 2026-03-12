@@ -13,7 +13,7 @@ HumMod / PreEclampsia
     <groupbox>
        <row> 2.0 </row>
        <col> 1.0 </col>
-       <high> 15.8 </high>
+       <high> 16.8 </high>
        <wide> 50.0 </wide>
        <title> Pre-Eclampsia (PE) Controls </title>
     
@@ -26,7 +26,7 @@ HumMod / PreEclampsia
       <label> Family history of PE? </label>
     </radiobuttons>
 
-    <showvalue>
+  <showvalue>
       <row> 2.4 </row><col> 1.0 </col>
       <name> Pregnancy-Occurence.PregnancyWeek </name>
       <label> Week of Pregnancy </label>
@@ -45,53 +45,77 @@ HumMod / PreEclampsia
        <label> Level of Risk </label>
     </showvalue>
 
-    <!-- add checklist of risk factors
-    <label>
-      <row> 6.4 </row><col> 1.0 </col>
-      <text> Risk Factors </text>
-    </label>
+<label>
+  <row> 6.4 </row><col> 1.0 </col>
+  <text> Risk Factors </text>
+</label>
 
-    <checkmark>
-      <row> 7.4 </row><col> 2.0 </col>
-      <name> History </name>
-      <label> Family History </label>
-   </checkmark>
+<checkmark>
+  <row> 7.4 </row><col> 2.0 </col>
+  <name> FlagHistory </name>
+  <label> Family History </label>
+</checkmark>
 
-   <checkmark>
-    <row> 8.4 </row><col> 2.0 </col>
-    <name> RFTwo </name>
-    <label> 20+ weeks pregnant </label>
- </checkmark>
+<checkmark>
+  <row> 8.4 </row><col> 2.0 </col>
+  <name> Flag20Weeks </name>
+  <label> 20+ weeks pregnant </label>
+</checkmark>
 
-   <checkmark>
-    <row> 9.4 </row><col> 2.0 </col>
-    <name> RFThree </name>
-    <label> Obesity </label>
- </checkmark>
+<checkmark>
+  <row> 9.4 </row><col> 2.0 </col>
+  <name> FlagObese </name>
+  <label> Obesity </label>
+</checkmark>
 
- <checkmark>
+<checkmark>
   <row> 10.4 </row><col> 2.0 </col>
-  <name> RFFour </name>
+  <name> FlagAge </name>
   <label> Advanced Maternal Age </label>
 </checkmark>
 
 <checkmark>
   <row> 11.4 </row><col> 2.0 </col>
-  <name> RFFive </name>
+  <name> FlagShort </name>
   <label> Short Stature </label>
 </checkmark>
 
 <checkmark>
   <row> 12.4 </row><col> 2.0 </col>
-  <name> RFSix </name>
+  <name> FlagDiabetes </name>
   <label> Diabetes </label>
 </checkmark>
 
 <checkmark>
   <row> 13.4 </row><col> 2.0 </col>
-  <name> RFSeven </name>
+  <name> FlagHighBMI </name>
   <label> High BMI </label>
-</checkmark> -->
+</checkmark>
+
+<!-- <showvalue><row> 16.0 </row><col> 1.0 </col><name> FlagHistory </name><label> Family history flag </label></showvalue>
+<showvalue><row> 17.0 </row><col> 1.0 </col><name> History </name><label> History weight </label></showvalue>
+
+<showvalue><row> 18.0 </row><col> 1.0 </col><name> FlagPregnant </name><label> Pregnant flag </label></showvalue>
+<showvalue><row> 19.0 </row><col> 1.0 </col><name> RFOne </name><label> Pregnancy multiplier </label></showvalue>
+
+<showvalue><row> 20.0 </row><col> 1.0 </col><name> Flag20Weeks </name><label> 20+ weeks flag </label></showvalue>
+<showvalue><row> 21.0 </row><col> 1.0 </col><name> RFTwo </name><label> 20+ weeks multiplier </label></showvalue>
+
+<showvalue><row> 22.0 </row><col> 1.0 </col><name> FlagObese </name><label> Obesity flag </label></showvalue>
+<showvalue><row> 23.0 </row><col> 1.0 </col><name> RFThree </name><label> Obesity weight </label></showvalue>
+
+<showvalue><row> 24.0 </row><col> 1.0 </col><name> FlagAge </name><label> Maternal age flag </label></showvalue>
+<showvalue><row> 25.0 </row><col> 1.0 </col><name> RFFour </name><label> Maternal age weight </label></showvalue>
+
+<showvalue><row> 26.0 </row><col> 1.0 </col><name> FlagShort </name><label> Short stature flag </label></showvalue>
+<showvalue><row> 27.0 </row><col> 1.0 </col><name> RFFive </name><label> Short stature weight </label></showvalue>
+
+<showvalue><row> 28.0 </row><col> 1.0 </col><name> FlagDiabetes </name><label> Diabetes flag </label></showvalue>
+<showvalue><row> 29.0 </row><col> 1.0 </col><name> RFSix </name><label> Diabetes weight </label></showvalue>
+
+<showvalue><row> 32.0 </row><col> 1.0 </col><name> Risk </name><label> Total risk score </label></showvalue>
+<showvalue><row> 33.0 </row><col> 1.0 </col><name> RiskOutcome </name><label> Risk outcome </label></showvalue> -->
+
    
     <infobutton>
       <row> 1.2 </row>
@@ -107,4 +131,5 @@ HumMod / PreEclampsia
   </groupbox>
 
 </panel>
+
 
