@@ -45,12 +45,12 @@ Schema : DES V1.0
 
 <def>
     <name> NOEffect </name>
-    <val> 1.0 + ( kNO * ( ( ( 0.005 - NOPool.[NO--] ) MAX 0 ) / 0.0005 ) ) </val>
+    <val> 1.0 + ( kNO * ( ( ( 2.364 - NODrugPool.[TotalNO] ) MAX 0 ) / 2.364 ) ) </val>
 </def>
 
-<!-- NOEffect = 1 + (% drop in NO) , assuming 0.05 as threshold: modify 0.05 fot better baseline if needed -->
+<!-- NOEffect = 1 + (% drop in NO) , assuming 2.364 as threshold -->
 
-<def><name> AlbPerm </name><val> kAlb * ( ( 0.005 - NOPool.[NO--] ) MAX 0 ) </val></def> <!-- NO drops below threshold, NOEffect > 1, AlbRate increases = proteinuria -->
+<def><name> AlbPerm </name><val> kAlb * ( ( 2.364 - NOPool.[NO--] ) MAX 0 ) </val></def> <!-- NO drops below threshold, NOEffect > 1, AlbRate increases = proteinuria -->
 <def><name> [Protein] </name><val> PlasmaProtein.[Total] </val></def>
 <def><name> ModPerm </name><val> GlomerulusProtein.RightPerm </val></def>
 <def><name> AlbRate </name><val> AlbuminPool.[Alb] * ( ModPerm + AlbPerm ) * RightGlomerulusFiltrate.GFR / 1000 </val></def>
