@@ -1,67 +1,80 @@
 
 Created by Aaesha Angbin as part of her BIOD98 project
 
+  
 <structure><name> GlomerularEndothelium </name>
-  
-<variables>
-  
-  <var><name> NOProduction </name></var>
-  <var><name> ArginineConc </name></var>
-  <var><name> CalciumLevel </name></var>
-  <!-- <var><name> ShearStress </name></var> -->
-  <var><name> eNOSactivity </name></var>
-  <var><name> PregnancyFactor </name></var>
-  <var><name> PEFactor </name></var>
-  <parm><name> eNOSrate </name><val> 0.00005 </val></parm>
-  
-</variables>    
-  
-<definitions>
-  
-  <block><name> Dervs </name>
 
-    <def>
-      <name> ArginineConc </name>
-      <val> AA-Arginine.[Conc(uMol/L)] </val>
-    </def>
+<variables>
     
-    <def>
-      <name> CalciumLevel </name>
-      <val> Ca.[Ionized(mMol/L)] </val>
-    </def>
+    <var><name> NOProduction </name></var>
+    <var><name> ArginineConc </name></var>
+    <var><name> CalciumLevel </name></var>
+    <!-- <var><name> ShearStress </name></var> -->
+    <var><name> eNOSactivity </name></var>
+    <var><name> PregnancyFactor </name></var>
+    <var><name> PEFactor </name></var>
+ <parm><name> eNOSrate </name><val> 1 </val></parm>
+ <var><name> eNOSLevel </name></var>
+
     
-    <!-- <def>
-      <name> ShearStress </name>
-      <val> SystemicArtys.Outflow / ( SystemicArtys.Compliance + 0.01 ) </val>
-    </def> -->
+  </variables>    
+    
+  <definitions>
+    
+    <block><name> Dervs </name>
   
-    <def>
-      <name> PregnancyFactor </name>
-      <val> 1.0 + ( 0.5 * Pregnancy-Occurence.AnnouncePregnancy ) </val>
-    </def>
-  
-    <if>
-      <test> Uterus-PE.Risk GE 10 </test>
-        <true> 
-          <def><name> PEFactor </name><val> 0.5 </val></def> 
-        </true>
-        <false> 
-          <def><name> PEFactor </name><val> 1.0 </val></def> 
-        </false>
-    </if>
-  
-    <def>
-      <name> eNOSactivity </name>
-      <val> eNOSrate * PregnancyFactor * PEFactor </val>
-    </def>
-  
-    <def>
-      <name> NOProduction </name>
-      <val> eNOSactivity * ArginineConc * CalciumLevel </val>
-    </def>
-  
-    </block>    
-  
-  </definitions>
-  
-  </structure>
+      <def>
+        <name> ArginineConc </name>
+        <val> AA-Arginine.[Conc(uMol/L)] </val>
+      </def>
+      
+      <def>
+        <name> CalciumLevel </name>
+        <val> Ca.[Ionized(mMol/L)] </val>
+      </def>
+      
+      <!-- <def>
+        <name> ShearStress </name>
+        <val> SystemicArtys.Outflow / ( SystemicArtys.Compliance + 0.01 ) </val>
+      </def> -->
+    
+      <if>
+        <test> Pregnancy-Occurence.PregnancyWeek GT 0 </test>
+          <true>
+            <def><name> PregnancyFactor </name><val> 1.8 </val></def>
+          </true>
+          <false>
+            <def><name> PregnancyFactor </name><val> 1.0 </val></def>
+          </false>
+      </if>
+    
+      <if>
+        <test> Uterus-PE.Risk GE 9 </test>
+          <true> 
+            <def><name> PEFactor </name><val> 0.4 </val></def> 
+          </true>
+          <false> 
+            <def><name> PEFactor </name><val> 1.0 </val></def> 
+          </false>
+      </if>
+    
+      <def>
+        <name> eNOSactivity </name>
+        <val> eNOSrate * PregnancyFactor * PEFactor </val>
+      </def>
+
+      <def> 
+        <name> eNOSLevel </name> 
+        <val> ( ( 0.0125 * ArginineConc ) * CalciumLevel ) MIN 1.3 </val>
+      </def>
+
+      <def>
+        <name> NOProduction </name>
+        <val> eNOSactivity * eNOSLevel </val>
+      </def>
+    
+      </block>    
+    
+    </definitions>
+
+    </structure>
