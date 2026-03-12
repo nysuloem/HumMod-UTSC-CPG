@@ -108,12 +108,11 @@ By : University Of Mississippi Medical Center
 
 <curve>
   <name> NOOnConductance </name>
-  <point><x> 0.00 </x><y> 0.80 </y><slope> 0.0 </slope></point>
-  <point><x> 0.05 </x><y> 1.00 </y><slope> 6.0 </slope></point> <!-- baseline -->
-  <point><x> 0.10 </x><y> 1.25 </y><slope> 3.0 </slope></point>
-  <point><x> 0.15 </x><y> 1.40 </y><slope> 1.0 </slope></point>
-  <point><x> 0.20 </x><y> 1.50 </y><slope> 0.0 </slope></point>
-  <point><x> 1.00 </x><y> 1.50 </y><slope> 0.0 </slope></point>
+  <point><x> 1.00 </x><y> 0.75 </y><slope> 0.00 </slope></point>
+  <point><x> 1.702 </x><y> 0.88 </y><slope> 0.18 </slope></point>
+  <point><x> 2.364 </x><y> 1.00 </y><slope> 0.14 </slope></point>
+  <point><x> 4.255 </x><y> 1.18 </y><slope> 0.04 </slope></point>
+  <point><x> 6.00 </x><y> 1.22 </y><slope> 0.00 </slope></point>
 </curve>
 
 </functions>
