@@ -10,12 +10,11 @@ Edited: 2024 - 04 - 24
 By: Jason Brown
 
 <groupbox>
-   <row> 10.5 </row>
+   <row> 11.5 </row>
    <col> 1.0 </col>
    <high> 7.0 </high>
    <wide> 75 </wide>
    <title> Participant's Current Status </title>
-</groupbox>
 
 <maplist>
   <name> Symptoms.Number </name>
@@ -68,7 +67,7 @@ By: Jason Brown
 </maplist>
 
 <showvalue>
-  <row> 13 </row><col>3</col>
+  <row> 1 </row><col>2</col>
   <name> Symptoms.Number1 </name>
   <nolabel/>
   <format>
@@ -77,7 +76,7 @@ By: Jason Brown
 </showvalue>
 
 <showvalue>
-  <row> 12 </row><col>3</col>
+  <row> 2 </row><col>2</col>
   <name> Symptoms.Number2 </name>
   <nolabel/>
   <format>
@@ -86,7 +85,7 @@ By: Jason Brown
 </showvalue>
 
 <showvalue>
-  <row> 14 </row><col>3</col>
+  <row> 3 </row><col>2</col>
   <name> Symptoms.Number3 </name>
   <nolabel/>
   <format>
@@ -95,12 +94,14 @@ By: Jason Brown
 </showvalue>
 
 <showvalue>
-  <row> 15 </row><col>3</col>
+  <row> 4 </row><col>2</col>
   <name> Symptoms.Number4 </name>
   <nolabel/>
   <format>
     <list> Symptoms.Number </list>
   </format>
 </showvalue>
+
+</groupbox>
 
 End

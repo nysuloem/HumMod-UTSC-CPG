@@ -87,6 +87,12 @@ By : University of Mississippi Medical Center
     </val>
   </def>
 
+  <if><test> EthnicFatAdjust EQ 0 </test>
+    <true>
+      <def><name> EthnicFatAdjust </name><val> 1.0 </val></def>
+    </true>
+  </if>
+
 </block>
 
 <block><name> Parms </name>

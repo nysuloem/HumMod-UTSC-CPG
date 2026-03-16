@@ -84,7 +84,7 @@ By : University of Mississippi Medical Center
 <def><name> IsTrainedAthlete </name><val> FALSE </val></def>
 
 <if><test> Context-Sex.IsFemale </test>
-  <true><call> CalcFeMale </call></true> <!-- If  you do the female muscularity, then women die when they have to work-->
+  <true><call> CalcFemale </call></true> <!-- If  you do the female muscularity, then women die when they have to work-->
   <false><call> CalcMale </call></false>
 </if>
 

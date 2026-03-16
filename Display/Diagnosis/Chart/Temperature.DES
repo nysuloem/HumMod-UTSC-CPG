@@ -7,7 +7,7 @@ Copyright : 2014-2014
 By : Tom Coleman
 
 <showgraph>
-  <row> 22 </row><col> 37 </col><high> 7 </high><wide> 26 </wide>
+  <row> 23 </row><col> 37 </col><high> 7 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>
@@ -25,7 +25,7 @@ By : Tom Coleman
 </showgraph>
 
 <showvalue>
-   <row> 20 </row><col> 37 </col>
+   <row> 21 </row><col> 37 </col>
    <name> HeatCore.Temp(C) </name>
    <format><decimal> 1 </decimal></format>
    <label> Temperature (degrees C) </label>

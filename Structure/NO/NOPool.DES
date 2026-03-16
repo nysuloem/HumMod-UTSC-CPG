@@ -4,35 +4,37 @@ HumMod / NOPool
 
 <variables>
 
-<var><name> [NO--] </name></var>
-<var><name> [NO--(mMol/L)] </name></var>
-<var><name> [NO--(mEq/L)] </name></var>
+  <var><name> [NO--] </name></var>
+  <var><name> [NO--(mMol/L)] </name></var>
+  <var><name> [NO--(mEq/L)] </name></var>
 
-<var><name> K </name><val> 5.0 </val></var>
+  <var><name> K </name><val> .01 </val></var>
 
-<var><name> Gain </name></var>
-<var><name> Loss </name></var>
+  <var><name> Gain </name></var>
+  <var><name> Loss </name></var>
 
-<var><name> Diffusion </name></var>
+  <var><name> Diffusion </name></var>
 
-<var><name> [NO--(mEq/L)-Initial] </name></var>
-<var><name> InitialMass </name></var>
+  <var><name> [NO--(mEq/L)-Initial] </name></var>
+  <var><name> InitialMass </name></var>
 
-<var><name> Target[NO] </name><val> 50 </val></var> <!-- 10.3 - 66.8 mmol/L -->
-<!-- varies based on lifestyle (diet, exercise) and genetic factors (sex, diseases/conditions) -->
- <!-- ethnicity diffs -->
+  <var><name> Target[NO] </name><val> 50 </val></var> 
+  
+  <!-- 10.3 - 66.8 mmol/L -->
+  <!-- varies based on lifestyle (diet, exercise) and genetic factors (sex, diseases/conditions) -->
+  <!-- ethnicity diffs -->
 
 </variables>
 
 <equations>
 
-<diffeq>
-  <name> Mass </name>
-  <integralname> Mass </integralname>
-  <initialval> 25 </initialval>
-  <dervname> Change </dervname>
-  <errorlim> 1 </errorlim> <!-- accounts for more control w multiple sinks/sources -->
-</diffeq>
+  <diffeq>
+    <name> Mass </name>
+    <integralname> Mass </integralname>
+    <initialval> 100 </initialval>
+    <dervname> Change </dervname>
+    <errorlim> 1 </errorlim>
+  </diffeq>
 
 </equations>
 
@@ -42,6 +44,7 @@ HumMod / NOPool
 
   <!--<def><name> InitialMass </name><val> Target[NO] * ECFV.InitialVol(L) </val></def>
   <def><name> Mass </name><val> InitialMass </val></def>-->
+  <!-- This block is not likely needed because initial mass value can be set in diffeq-->
 
 </block>
 
@@ -67,10 +70,10 @@ HumMod / NOPool
     <name> Gain </name>
     <val>
           NOPump.Rate
-        + GlomerularEndothelium.NOProduction
+        <!--+ GlomerularEndothelium.NOProduction-->
         + VascularEndothelium.NOProduction
-      </val>
-    </def>
+    </val>
+  </def>
 
   <def><name> Loss </name><val>  K * NOPool.[NO--] <!--* GlomerulusFiltrate.GFR--> </val></def>
   
