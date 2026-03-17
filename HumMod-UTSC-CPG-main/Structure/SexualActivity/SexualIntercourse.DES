@@ -1,0 +1,175 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+<structure><name> SexualIntercourse </name>
+
+<variables>
+
+<var><name> TimeLastSex </name><val> UNDEFINED </val></var>
+<var><name> TimeNextSex </name><val> UNDEFINED </val></var>
+<var><name> TotalSex </name><val> 0.0 </val></var>
+<var><name> FailedSex </name><val> 0.0 </val></var>
+<var><name> CumulativeDose </name><val> 0.0 </val></var>
+
+
+<timervar><name> SpermTimer </name><val> 0 </val></timervar>
+<timervar><name> Orgasm </name><val> 0 </val></timervar>
+<timervar><name> Refractory </name><val> 0 </val></timervar>
+<timervar><name> Attempt </name><val> 10 </val></timervar>
+
+<var><name> Interval </name></var>
+
+<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+
+<var><name> Length </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<if>
+  <test> HaveSex.SexOutcome EQ 1 </test>
+  <true>
+    <call> Parms2 </call>
+    <exitblock/>
+  </true>
+</if>
+
+<conditional><name> HaveSex.SexOutcome </name>
+<test> HaveSex.HaveSex LT 2000 </test>
+<true> 0 </true> <!-- Patient is not having sexual intercourse -->
+<false> 5 </false> <!-- Patient is attempting sexual intercourse -->
+</conditional>
+
+<if><test> HaveSex.SexOutcome EQ 5 </test>
+<true>
+  <call> Parms2 </call>
+</true>
+</if>
+
+</block>
+
+<block><name> Parms2 </name>
+
+<if><test> Attempt EQ 0 </test>
+  <true>
+    <def><name> FailedSex </name>
+      <val> FailedSex + 1 </val>
+    </def>
+    <timer>
+      <name> Refractory</name> <!-- After having an orgasm, the patient is refractory to having sexual intercourse again for some period of time -->
+      <val> 420 </val>
+      <state> DOWN </state>
+    </timer>  
+    <exitblock/>
+  </true>
+</if>
+
+
+<if><test> Refractory GT 0 </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
+
+<if><test> Orgasm GE 30 AND TimeLastSex NE System.X </test> <!-- Once the patient achieves orgasm, they are done having sexual intercourse and return to rest -->
+  <true>
+    <def><name> TimeLastSex </name><val> System.X </val></def>
+    <def><name> TotalSex </name><val> TotalSex + 1 </val></def>
+    <timer>
+      <name> SpermTimer </name>
+      <val> 7200 </val>
+      <state> DOWN </state>
+    </timer>
+    <def><name> Exercise-Control.Request </name><val> 0 </val></def>
+    <def><name>Exercise-Bike.Power(W)</name><val> 0 </val></def>
+    <call> Exercise-Control.UpdateStatus </call>
+    <call> Status.Exertion </call>
+    <def><name> HaveSex.SexOutcome </name><val> 0 </val></def>
+    <timer> 
+      <name> Orgasm </name>
+      <val> 0 </val>
+      <state> OFF </state>
+    </timer>
+    <timer>
+      <name> Attempt </name>
+      <val> 10 </val>
+      <state> OFF </state>
+    </timer>
+    <timer>
+      <name> Refractory</name> <!-- After having an orgasm, the patient is refractory to having sexual intercourse again for some period of time -->
+      <val> 420 </val>
+      <state> DOWN </state>
+    </timer>
+    <exitblock/>
+  </true>
+</if>
+
+<conditional><name> HaveSex.SexOutcome </name>
+<test> Genitalia-Flow.Status-Erect EQ 1 </test>
+<true> 1 </true> <!-- Patient achieved erection and is having sexual intercourse -->
+<false> 6 </false> <!-- Patient is not yet erect -->
+</conditional>
+
+<if><test> HaveSex.SexOutcome EQ 1 </test>
+<true>
+  
+  <def>
+    <name> TotalSex </name>
+    <val> TotalSex + 1 </val>
+  </def>
+
+    <timer>
+      <name> SpermTimer </name>
+      <val> 7200 </val>
+      <state> DOWN </state>
+    </timer>
+
+  <def><name> Exercise-Control.Request</name><val> 1 </val></def> <!-- I am using the exercise bike to mimic the physical activity of having sexual intercourse -->
+  <def><name> Exercise-Bike.Power(W)</name><val> 350 </val></def>
+  <call> Exercise-Control.UpdateStatus </call>
+  <call> Status.Exertion </call>
+  <call> Exercise-Control.Wrapup </call>
+  <timer>
+    <name> Orgasm </name> <!-- This determines how long it takes the patients to orgasm -->
+    <state> UP </state>
+  </timer>
+  <call> Wrapup </call>
+  <timer>
+    <name> Attempt </name>
+    <val> 10 </val>
+    <state> OFF </state>
+  </timer>
+</true>
+</if>
+
+<if><test> HaveSex.SexOutcome EQ 6 </test>
+<true>
+  <timer>
+    <name> Attempt </name>
+    <state> DOWN </state>
+  </timer>
+</true>
+</if>
+
+</block>
+
+<block><name> Wrapup </name>
+
+<def>
+  <name> TimeLastSex </name>
+  <val> System.X </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

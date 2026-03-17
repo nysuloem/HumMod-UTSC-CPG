@@ -1,0 +1,61 @@
+
+HumMod / Breathalyzer
+
+Created : 02-Apr-09
+Revised : Tiffany
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+
+<structure><name> Breathalyzer </name>
+
+<variables>
+
+    <var><name> BreathEthanol </name><val> UNDEFINED </val></var> 
+    <var><name> CalculatedBAC </name><val> UNDEFINED </val></var>
+    <var><name> Timestamp </name><val> UNDEFINED </val></var>
+    <var><name> OverLimit </name><val> FALSE </val></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Blow </name>
+    <call> BreathCalculation </call> 
+</block>
+
+<block><name> BreathCalculation </name>
+
+    <def><name> OverLimit </name><val> FALSE </val></def>
+
+    <def>
+        <name> BreathEthanol </name>
+        <val> EthanolLungs.LungsLoss / Breathing.TotalVentilation(L) </val>
+        </def>
+        <!-- If you take LungsLoss (g/min) and divide by Total (Minute) Ventilation (L/min), then you get g/L -->
+
+    <def>
+        <name> CalculatedBAC </name>
+        <val> BreathEthanol * 210 </val> 
+    </def>
+
+    <def>
+        <name> Timestamp </name>
+        <val> System.X </val>
+    </def>
+
+    <conditional><name> OverLimit </name>
+        <test> CalculatedBAC GT 0.08 </test>
+        <true> TRUE </true>
+    </conditional>
+
+</block>
+
+<!-- estimated BAC based from legal conversion (breath ethanol x 2100-) Compare to actual BAC we are measuring -->
+<!-- Sex effects vs race effects -->
+ 
+</definitions>
+
+</structure>

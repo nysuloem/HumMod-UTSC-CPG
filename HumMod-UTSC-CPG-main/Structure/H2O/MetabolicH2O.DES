@@ -1,0 +1,34 @@
+HumMod / MetabolicH2O
+
+Created : 27-Jun-06
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> MetabolicH2O </name>
+
+<variables>
+
+<var><name> Rate </name></var> <!-- We think the rate is mL/min -->
+<constant><name> K </name><val> 0.000158 </val></constant> <!-- The original was like WAY lower, not sure why -->
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def>
+  <name> Rate </name>
+  <val> K * Metabolism-CaloriesUsed.Total </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

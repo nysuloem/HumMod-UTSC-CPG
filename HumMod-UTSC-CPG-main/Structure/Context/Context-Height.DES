@@ -1,0 +1,206 @@
+HumMod / Context-Height
+
+Created : 2012-03-10
+Revised : 2012-06-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Context-Height </name>
+
+<variables>
+
+<parm><name> Index </name><val> 1 </val></parm>
+<parm><name> PlusMinus </name><val> 0 </val></parm>
+
+<constant><name> MALE_SHORT    </name><val> 160.0 </val></constant>
+<constant><name> MALE_NORMAL   </name><val> 176.0 </val></constant>
+<constant><name> MALE_TALL     </name><val> 185.0 </val></constant>
+<constant><name> MALE_VERYTALL </name><val> 193.0 </val></constant>
+
+<constant><name> FEMALE_SHORT    </name><val> 150.0 </val></constant>
+<constant><name> FEMALE_NORMAL   </name><val> 165.0 </val></constant>
+<constant><name> FEMALE_TALL     </name><val> 172.0 </val></constant>
+<constant><name> FEMALE_VERYTALL </name><val> 178.0 </val></constant>
+
+<var><name> NominalHeight </name></var>
+<var><name> Height(cM) </name></var>
+
+<var><name> IsShort        </name></var>
+<var><name> IsNormalHeight </name></var>
+<var><name> IsTall         </name></var>
+<var><name> IsVeryTall     </name></var>
+
+<var><name> Stochasm </name></var>
+<var><name> HeightAdjust </name></var>
+<var><name> White </name></var>
+<var><name> Black </name></var>
+<var><name> Asian </name></var>
+<var><name> Hispanic </name></var>
+<var><name> EthnicHeightAdjust </name></var>
+
+<normaldist>
+  <name> Normal </name>
+  <mean> 0 </mean>
+  <stddev> 5 </stddev>
+</normaldist>
+
+<whitenoise>
+  <name> Flat </name>
+  <lowerlim> -5 </lowerlim>
+  <upperlim> 5 </upperlim>
+</whitenoise>
+
+</variables>
+
+<functions>
+
+<curve><name> HeightAdjustAge </name>
+<point><x> 0 </x><y> 0.28 </y><slope> 0.025 </slope></point>
+<point><x> 1 </x><y> 0.42 </y><slope>0.025</slope></point>
+<point><x> 13 </x><y> 0.98 </y><slope> 0.025 </slope></point>
+<point><x> 15 </x><y> 1 </y><slope>0.025</slope></point>
+<point><x> 40 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 100 </x><y> 0.95 </y><slope>0.025</slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name>EthnicityChange</name>
+
+  <def><name> Asian </name><val> 0.9 </val></def> 
+  <def><name> Black </name><val> 0.99 </val></def> 
+  <def><name> White </name><val> 1.00 </val></def>
+  <def><name> Hispanic </name><val> 0.93 </val></def>
+  <def><name> EthnicHeightAdjust </name>
+    <val>
+      ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+      + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+      + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+      + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    </val>
+  </def>
+
+</block>
+
+<block><name> Parms </name>
+
+  <onjustchanged><name> Index </name>
+  <call> Context.Calc </call>
+  </onjustchanged>
+
+  <onjustchanged><name> PlusMinus </name>
+  <call> Context.Calc </call>
+  </onjustchanged>
+
+</block>
+
+<block><name> Calc </name>
+
+  <def><name> IsShort        </name><val> FALSE </val></def>
+  <def><name> IsNormalHeight </name><val> FALSE </val></def>
+  <def><name> IsTall         </name><val> FALSE </val></def>
+  <def><name> IsVeryTall     </name><val> FALSE </val></def>
+
+  <if><test> Context-Sex.IsFemale </test>
+    <true><call> CalcFemale </call></true>
+    <false><call> CalcMale </call></false>
+  </if>
+
+  <call> CalcStochasm </call>
+  <call> EthnicityChange </call>
+
+  <def><name>HeightAdjust</name>
+  <val> HeightAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
+  <def>
+    <name> Height(cM) </name>
+    <val>
+      NominalHeight
+      * ( 1.0 + ( Stochasm / 100 ) )
+      * HeightAdjust
+      * EthnicHeightAdjust
+    </val>
+  </def>
+
+  <def>
+    <name> Height.InitialHeight </name>
+    <val> Height(cM) </val>
+  </def>
+
+  <call> Height.Init </call>
+
+</block>
+
+<block><name> CalcMale </name>
+
+  <testcase>
+
+  <case><test> Index EQ 0 </test>
+  <def><name> NominalHeight </name><val> MALE_SHORT </val></def>
+  <def><name> IsShort </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 1 </test>
+  <def><name> NominalHeight </name><val> MALE_NORMAL </val></def>
+  <def><name> IsNormalHeight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 2 </test>
+  <def><name> NominalHeight </name><val> MALE_TALL </val></def>
+  <def><name> IsTall </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 3 </test>
+  <def><name> NominalHeight </name><val> MALE_VERYTALL </val></def>
+  <def><name> IsVeryTall </name><val> TRUE </val></def>
+  </case>
+
+  </testcase>
+
+</block>
+
+<block><name> CalcFemale </name>
+
+  <testcase>
+
+  <case><test> Index EQ 0 </test>
+  <def><name> NominalHeight </name><val> FEMALE_SHORT </val></def>
+  <def><name> IsShort </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 1 </test>
+  <def><name> NominalHeight </name><val> FEMALE_NORMAL </val></def>
+  <def><name> IsNormalHeight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 2 </test>
+  <def><name> NominalHeight </name><val> FEMALE_TALL </val></def>
+  <def><name> IsTall </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 3 </test>
+  <def><name> NominalHeight </name><val> FEMALE_VERYTALL </val></def>
+  <def><name> IsVeryTall </name><val> TRUE </val></def>
+  </case>
+
+  </testcase>
+
+</block>
+
+<block><name> CalcStochasm </name>
+
+  <def>
+    <name> Stochasm </name>
+    <val> Flat </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

@@ -1,0 +1,309 @@
+
+
+
+
+
+
+<!-- ==================== INTAKE CONTROLS ==================== -->
+<!--<groupbox>
+  <row> 2.0 </row><col> 1.0 </col>
+  <high> 6.0 </high><wide> 30.0 </wide>
+  <title> Intake Rates </title>
+
+  <structurename> Rectum </structurename>
+
+  <repeatlist>
+    <name> H2ORate </name>
+    <repeat><reps> 20 </reps><stepsize> 10 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> H2OIntakeRate </name>
+    <listname> H2ORate </listname>
+    <label> H2O (mL/Min) </label>
+  </slidebar>
+
+  <repeatlist>
+    <name> CarboRate </name>
+    <repeat><reps> 20 </reps><stepsize> 20 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 3.0 </row><col> 1.0 </col>
+    <name> CarboIntakeRate </name>
+    <listname> CarboRate </listname>
+    <label> Carbohydrates (mG/Min) </label>
+  </slidebar>
+
+  <repeatlist>
+    <name> FiberFrac </name>
+    <firstval> 0.05 </firstval>
+    <repeat><reps> 15 </reps><stepsize> 0.02 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> FiberFraction </name>
+    <listname> FiberFrac </listname>
+    <label> Fiber Fraction </label>
+  </slidebar>
+
+</groupbox>-->
+
+<!-- ==================== STOMACH STATUS ==================== -->
+<!--<groupbox>
+  <row> 8.5 </row><col> 1.0 </col>
+  <high> 5.0 </high><wide> 30.0 </wide>
+  <title> Stomach </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> StomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> StomachPressure </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Pressure (mmHg) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.5 </row><col> 1.0 </col>
+    <name> StomachH2OOutflow </name>
+    <format><decimal> 1 </decimal></format>
+    <label> H2O Outflow (mL/Min) </label>
+  </showvalue>
+
+</groupbox>-->
+
+<!-- ==================== COLON STATUS ==================== -->
+<!--groupbox>
+  <row> 14.0 </row><col> 1.0 </col>
+  <high> 6.0 </high><wide> 30.0 </wide>
+  <title> Colon </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> ColonVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> ColonPressure </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Pressure (mmHg) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.5 </row><col> 1.0 </col>
+    <name> FecalOutput </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Fecal Output (mL/Min) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> ColonH2OAbsorption </name>
+    <format><decimal> 1 </decimal></format>
+    <label> H2O Absorption (mL/Min) </label>
+  </showvalue>
+
+</groupbox>-->
+
+<!-- ==================== Rectum Status ==================== -->
+<!--<groupbox>
+  <row> 20.5 </row><col> 1.0 </col>
+  <high> 5.0 </high><wide> 30.0 </wide>
+  <title> Rectum </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> Rectum.RectalVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> Rectum.RectalPressure </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Pressure (mmHg) </label>
+  </showvalue>
+
+</groupbox>-->
+
+
+<!-- ==================== RIGHT SIDE GRAPHS ==================== -->
+
+<!-- Stomach Volume Over Time -->
+<!--<showgraph>
+  <row> 2.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> StomachVolume </name>
+      <label> Stomach Volume </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 800 </max></scale>
+  </yaxis>
+</showgraph>-->
+
+<!-- Transit Flow Rates -->
+<!--<showgraph>
+  <row> 9.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> DuodenumH2OInflow </name>
+      <label> Duodenum Inflow </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> JejunumH2OInflow </name>
+      <label> Jejunum Inflow </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+    <yvar>
+      <name> ColonH2OInflow </name>
+      <label> Colon Inflow </label>
+      <linecolor> MAGENTA </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 100 </max></scale>
+  </yaxis>
+</showgraph>
+<showgraph>
+  <row> 16.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> ColonVolume </name>
+      <label> Volume </label>
+      <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+      <name> FecalOutput </name>
+      <label> Fecal Output </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 300 </max></scale>
+  </yaxis>
+</showgraph>-->
+
+<!-- Defecation Reflex -->
+
+<!--<showgraph>
+  <row> 23.0 </row><col> 32.0 </col>
+  <high> 6 </high><wide> 30 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Rectum.RectalVolume </name>
+      <label> Rectal Volume </label>
+      <linecolor> MAGENTA </linecolor>
+    </yvar>
+    <yvar>
+      <name> Rectum.DefecationReflex </name>
+      <label> Reflex </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 300 </max></scale>
+  </yaxis>
+</showgraph>-->
+
+<showgraph>
+  <row> 22.5 </row><col> 35 </col>
+  <high> 6 </high><wide> 50 </wide>
+  <leftmargin> 20 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Rectum.RectalVolume </name>
+      <label> Rectal Volume (mL) </label>
+      <linecolor> MAGENTA </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 300 </max></scale>
+  </yaxis>
+</showgraph>
+
+<!-- Defecation Reflex button -->
+
+<groupbox>
+  <row> 20.5 </row><col> 1.0 </col>
+  <high> 9.0 </high><wide> 35.0 </wide> <title> Rectum </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> Rectum.RectalVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 2.5 </row><col> 1.0 </col>
+    <name> Rectum.RectalPressure </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Pressure (mmHg) </label>
+  </showvalue>
+
+  <radiobuttons>
+  <row> 4 </row><col> 1.0 </col>
+  <name> Rectum.AutoDefecationSwitch </name>
+  <listname> Common.Switch </listname>
+  <label> Defecation by Volume </label>
+</radiobuttons>
+
+  <repeatlist>
+    <name> DefecationVolumeList </name>
+    <firstval> 50 </firstval>
+    <repeat><reps> 20 </reps><stepsize> 10 </stepsize></repeat>
+  </repeatlist>
+
+  <slidebar>
+    <row> 5.5 </row><col> 1.0 </col>
+    <name> Rectum.AutoDefecationVolume </name>
+    <listname> DefecationVolumeList </listname>
+    <label> Trigger Volume (mL) </label>
+  </slidebar>
+
+   <showvalue>
+    <row> 7.0 </row><col> 1.0 </col>
+    <name> Rectum.TotalFecalVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Total Fecal Volume </label>
+  </showvalue>
+
+</groupbox>

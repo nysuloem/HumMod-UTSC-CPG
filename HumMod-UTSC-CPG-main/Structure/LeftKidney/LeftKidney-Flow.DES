@@ -1,0 +1,86 @@
+HumMod / LeftKidney-Flow
+
+Created : 09-Apr-05
+Revised : 2012-02-19
+Author : Tom Coleman
+Copyright : 2006-2012
+By : University Of Mississippi Medical Center
+
+<structure><name> LeftKidney-Flow </name>
+
+<variables>
+
+<var><name> Conductance </name></var>
+<var><name> BloodFlow </name></var>
+<var><name> PlasmaFlow </name></var>
+
+<var><name> NOEffect </name></var>=
+
+</variables>
+
+<functions>
+<curve>
+  <name> NOOnConductance </name>
+  <point><x> 0.00 </x><y> 0.80 </y><slope> 0.0 </slope></point>
+  <point><x> 0.05 </x><y> 1.00 </y><slope> 6.0 </slope></point> <!-- baseline -->
+  <point><x> 0.10 </x><y> 1.25 </y><slope> 3.0 </slope></point>
+  <point><x> 0.15 </x><y> 1.40 </y><slope> 1.0 </slope></point>
+  <point><x> 0.20 </x><y> 1.50 </y><slope> 0.0 </slope></point>
+  <point><x> 1.00 </x><y> 1.50 </y><slope> 0.0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name> Init </name>
+  <call> LeftKidney-ArcuateArtery.Init </call>
+  <call> LeftKidney-AfferentArtery.Init </call>
+  <call> LeftKidney-EfferentArtery.Init </call>
+</block>
+
+<block><name> Calc </name>
+
+<def>
+  <name> NOEffect </name>
+  <val> NOOnConductance [ NOPool.[NO--] ] </val>
+</def>
+
+<if>
+<test> LeftKidney-ArcuateArtery.Conductance * LeftKidney-AfferentArtery.Conductance * LeftKidney-EfferentArtery.Conductance GT 0 </test>
+<true>
+<def>
+  <name> Conductance </name>
+  <val>
+    INVERT (
+      ( INVERT LeftKidney-ArcuateArtery.Conductance )
+    + ( INVERT LeftKidney-AfferentArtery.Conductance )
+    + ( INVERT LeftKidney-EfferentArtery.Conductance )
+    )
+  * NOEffect
+  </val>
+</def>
+</true>
+<false>
+<def>
+  <name> Conductance </name>
+  <val> 0 </val>
+</def>
+</false>
+</if> 
+
+<def>
+  <name> BloodFlow </name>
+  <val> ( LeftKidney-Pressure.PressureGradient * Conductance ) MAX 0.0 </val>
+</def>
+
+<def>
+  <name> PlasmaFlow </name>
+  <val> BloodVol.PVCrit * BloodFlow </val>
+</def>
+
+</block>
+</definitions>
+</structure>
+
+End

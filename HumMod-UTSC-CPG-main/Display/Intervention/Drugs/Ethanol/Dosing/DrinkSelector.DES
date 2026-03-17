@@ -1,0 +1,35 @@
+HumMod / DrinkSelector
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 6 </high>
+   <wide> 36 </wide>
+   <title> "What Will You Have?" </title>
+
+<structurename> EthanolDrinkSelector </structurename>
+
+<maplist>
+  <name> EthanolGILumen.DrinkType </name>
+  <map><val> 1 </val><img> Beer </img></map>
+  <map><val> 2 </val><img> Wine </img></map>
+  <map><val> 3 </val><img> Vodka / Spirits </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 2 </row><col> 1.0 </col>
+  <name> EthanolGILumen.DrinkType </name>
+  <listname> EthanolGILumen.DrinkType </listname>
+  <label> Drink Type </label>
+  <layout> VERT </layout>
+</radiobuttons>
+
+</groupbox>
+
+End

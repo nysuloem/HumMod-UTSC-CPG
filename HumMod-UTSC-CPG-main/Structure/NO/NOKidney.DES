@@ -1,0 +1,34 @@
+
+
+<structure><name> NOKidney </name>
+
+<variables>
+
+  <var><name> NitrateLevel </name><val> 0 </val>/</var>
+  <var><name> UrineLoss </name><val> 0 </val>/</var>
+  <constant><name> K </name><val> 0.01 </val></constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+  <def><name> NitrateLevel </name><val> NitratePool.[Nitrate] </val></def>
+  <def>
+    <name> UrineLoss </name>
+    <val>
+        K
+      * NitrateLevel
+      *  (    ( 0.5 * RightKidney-NephronCount.Filtering(xNormal) * RightKidney-Function.Effect ) 
+    + ( 0.5 * LeftKidney-NephronCount.Filtering(xNormal) * LeftKidney-Function.Effect ) )
+    </val>
+  </def>
+  
+</block>
+
+</definitions>
+
+</structure>
+
+End

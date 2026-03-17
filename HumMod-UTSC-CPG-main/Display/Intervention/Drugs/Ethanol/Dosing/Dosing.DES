@@ -1,0 +1,41 @@
+HumMod / Dosing
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<panel><name> Drugs-Ethanol-Dosing </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Drink </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Ethanol Dosing </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<?path Display\Intervention\Drugs\Ethanol\Dosing\ ?>
+
+<?include SingleDoseOral.DES ?> 
+<?include DailyDoseOral.DES ?>
+<?include BloodAlcConc.DES ?>
+<?include DrinkSelector.DES ?>
+<!--<?include MethanolDose.DES ?>-->
+
+</panel>
+
+End

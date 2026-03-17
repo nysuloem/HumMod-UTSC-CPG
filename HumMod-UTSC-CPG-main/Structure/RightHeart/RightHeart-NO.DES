@@ -1,0 +1,56 @@
+HumMod / RightHeart-NO
+
+Created : 31-Mar-05
+Revised : 2013-03-28
+Author : Tom Coleman
+Copyright : 2008-2013
+By : University of Mississippi Medical Center
+
+<structure><name> RightHeart-NO </name>
+
+<variables>
+
+<var><name> VasodilationFactor </name></var> <!-- degree of vasodilation -->
+<var><name> DeoxygenatedDelivery </name></var> <!-- deoxygenated delivery to right heart (capillary conversion) -->
+
+<var><name> SizedNO </name></var> <!-- scaling [NO] to heart size for local effects -->
+
+</variables>
+
+<functions>
+
+<curve>
+    <name> NOOnVasodilation </name>
+    <point><x> 50 </x><y> 1.0 </y><slope> 0 </slope></point> <!-- standard level-->
+    <point><x> 55 </x><y> 1.2 </y><slope> 0.12 </slope></point>
+    <point><x> 60 </x><y> 1.5 </y><slope> 0 </slope></point>
+    <point><x> 65 </x><y> 1.8 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+  
+<definitions>
+      
+<block><name> Calc </name>
+
+<def>
+    <name> SizedNO </name>
+    <val> NOPool.[NO--] * RightHeart-Size.Mass </val>
+</def>
+
+<def>
+    <name> VasodilationFactor </name>
+    <val> NOOnVasodilation [ NOPool.[NO--] ] </val> <!-- mapping [NO] to curve -->
+</def>
+
+<def>
+    <name> DeoxygenatedDelivery </name>
+    <val> VasodilationFactor * RightHeart-Flow.O2Use </val> <!-- -->
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

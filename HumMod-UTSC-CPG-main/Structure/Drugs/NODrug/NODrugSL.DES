@@ -1,0 +1,100 @@
+<!--
+NODrugSL.DES - Defines sublingual absorption of NO in HumMod
+
+Overview
+This file models the pharmacokinetics of Nitric Oxide (NO) when administered sublingually.
+It calculates absorption based on drug mass, membrane permeability, and bioavailability.
+
+1. **Drug Concentration Calculation:** Determines drug concentration in the sublingual compartment.
+2. **Absorption Dynamics:** Defines how much drug is lost from the sublingual space and absorbed into systemic circulation.
+3. **First-Order Absorption:** Uses a permeability and bioavailability factor to simulate absorption kinetics.
+
+How to Replicate for Another Drug
+1. Change `<name> NODrugSL </name>` to `<name> NewDrugSL </name>`.
+2. Adjust **BIOAVAIL** (fraction absorbed into circulation) and **PERM** (absorption rate) values.
+3. Modify **SublingualVolume** based on the expected volume for the new drug.
+4. Ensure that the **differential equation for Mass** correctly represents the drug’s absorption process.
+5. Update `Loss` and `Change` formulas to fit the new drug’s absorption kinetics.
+
+-->
+
+HumMod / NODrugSL
+
+Created : 25-Jul-13
+Last Modified : 
+Author : W Pruett
+Copyright : 2006-2013
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+
+ <structure><name> NODrugSL </name>
+
+<variables>
+
+<constant>
+  <name> BIOAVAIL </name>
+  <val> 0.4 </val> 
+</constant>
+
+<constant>
+  <name> PERM </name> 
+  <val> 0.1 </val> 
+</constant>
+
+<constant>
+  <name> SublingualVolume(L) </name>
+  <val> 0.001 </val> <!-- typically 0.2 to 1 mL --> 
+</constant>
+
+<var>
+  <name> [NODrug] </name> 
+</var>
+
+<var>
+  <name> Loss </name> 
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval> 
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim> 
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name> 
+
+<def>
+  <name> [NODrug] </name>
+  <val> Mass / SublingualVolume(L) </val> 
+</def>
+
+</block>
+
+<block><name> Dervs </name> 
+
+<def>
+  <name> Loss </name>
+  <val> BIOAVAIL * PERM * Mass  </val> 
+</def>
+
+<def>
+  <name> Change </name>
+  <val> - Loss / BIOAVAIL </val> 
+</def>
+
+</block>
+
+</definitions>
+</structure> 
+
+End

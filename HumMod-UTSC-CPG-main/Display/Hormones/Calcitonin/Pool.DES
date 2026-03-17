@@ -1,0 +1,219 @@
+HumMod | Pool
+
+Created : 2012-01-28
+Revised : 2012-01-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University Of Mississippi Medical Center
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 15 </high>
+   <wide> 30.0 </wide>
+   <title> Pool </title>
+
+<structurename> Calcitonin </structurename>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> [Conc(nG/mL)] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [Conc (nG/mL)] </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> [Conc(nG/mL)] </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 0.02 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+
+<showvalue>
+   <row> 9.8 </row><col> 1.0 </col>
+   <name> [Conc(pMol/L)] </name>
+   <format><decimal> 2 </decimal></format>
+   <label> [Conc (pMol/L)] </label>
+</showvalue>
+
+<radiobuttons>
+  <row> 11.2 </row><col> 1.0 </col>
+  <name> ClampSwitch </name>
+  <listname> Common.Switch </listname>
+  <label> Clamp Switch </label>
+</radiobuttons>
+
+<repeatlist>
+  <name> Clamp </name>
+  <repeat><reps> 100 </reps><stepsize>  1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 12.6 </row><col> 1.0 </col>
+  <name> ClampSetting </name>
+  <listname> Clamp </listname>
+  <label> Setting </label>
+</slidebar>
+
+
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 32 </col>
+   <high> 47 </high>
+   <wide> 30.0 </wide>
+   <title> Secretion </title>
+
+<repeatlist>
+  <name> Secretion-Basic </name>
+  <repeat><reps> 100 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 10 </row><col> 1 </col>
+  <name> Secretion-Basic </name>
+  <listname> Secretion-Basic </listname>
+  <label> Basic Rate </label>
+</slidebar>
+
+
+<showvalue>  
+ <row> 1.4 </row><col> 1 </col>
+   <name> Secretion </name>
+   <format><integer/></format>
+   <label> Rate (nG/Min) </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 5 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Secretion </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 20 </min><max> 30 </max><inc> 10 </inc>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 13.4</row><col> 1 </col>
+   <name> [Ca++]Effect </name>
+   <format><decimal> 1 </decimal></format>
+   <label> [Ca++] Effect </label>
+</showvalue>
+
+<showcurve>
+  <row> 15.4 </row><col> 1 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+
+  <xaxis>
+    <name> Ca.[Ionized(mG/dL)] </name>
+    <label> [Ca++] </label>
+    <scale><min> 0 </min><max> 10 </max></scale>
+  </xaxis>
+
+  <yaxis>
+    <label> Effect </label>
+    <scale><min> 0 </min><max> 5 </max></scale>
+  </yaxis>
+
+  <curvename> [Ca++]Effect </curvename>
+</showcurve>
+
+<showvalue>
+   <row> 22.4 </row><col> 1 </col>
+   <name> Ca.[Ionized(mG/dL)] </name>
+   <format><decimal> 1 </decimal></format>
+   <label> [Ca++] </label>
+</showvalue>
+
+<showvalue>
+<row> 24.4 </row><col>1</col>
+<name>AgeEffect </name>
+<label> AgeEffect </label>
+</showvalue>
+
+<showcurve>
+<row> 25.4 </row><col>1</col><high> 7 </high><wide> 28 </wide>
+<leftmargin> 6 </leftmargin>
+
+<xaxis>
+<name> Context-Age.Age(Years) </name>
+<label> Age </label>
+<scale><min> 0 </min><max> 100 </max></scale>
+</xaxis>
+
+<yaxis>
+<label> Effect </label>
+<scale><min> 0 </min><max> 1 </max></scale>
+</yaxis>
+
+<curvename> AgeEffect </curvename>
+</showcurve>
+
+<showvalue>
+   <row> 33.4 </row><col> 1 </col>
+   <name> Context-Age.Age(Years) </name>
+   <format><decimal> 0 </decimal></format>
+   <label> Age (Years) </label>
+</showvalue>
+
+<showvalue>
+<row> 36 </row><col>1</col>
+<name>EstrogenEffect </name>
+<label> EstrogenEffect </label>
+</showvalue>
+
+<showcurve>
+<row> 37 </row><col>1</col><high> 7 </high><wide> 28 </wide>
+<leftmargin> 6 </leftmargin>
+
+<xaxis>
+<name> Estradiol.[Conc(nMol/L)]  </name>
+<label> [Estradiol] </label>
+<scale><min> 0 </min><max> 100 </max></scale>
+</xaxis>
+
+<yaxis>
+<label> Effect </label>
+<scale><min> 0 </min><max> 2 </max></scale>
+</yaxis>
+
+<curvename> EstrogenEffect </curvename>
+</showcurve>
+
+<showvalue>
+   <row> 45 </row><col> 1 </col>
+   <name> Estradiol.[Conc(nMol/L)]  </name>
+   <format><decimal> 0 </decimal></format>
+   <label> Estrogen </label>
+</showvalue>
+
+
+</groupbox>
+
+End

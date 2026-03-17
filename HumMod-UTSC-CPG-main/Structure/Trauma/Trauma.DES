@@ -1,0 +1,30 @@
+Trauma.DES
+
+<?path Structure\Trauma\ ?>
+<?include BluntInjury.DES ?>
+<?include InjuryNow.DES ?>
+
+<structure><name> Trauma </name>
+
+<definitions>
+
+  <block><name> Parms </name>
+   
+  </block>
+
+  <block><name> Calc </name>
+    <call> BluntInjury.CalcPain </call>
+  </block>>
+
+  <block><name> Dervs </name>
+    <call> BluntInjury.Dervs </call>
+  </block>
+
+  <block><name> Wrapup </name>
+    <call> InjuryNow.Wrapup </call>
+
+  </block>
+
+</definitions>
+
+</structure>

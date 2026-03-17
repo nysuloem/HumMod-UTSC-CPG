@@ -1,0 +1,60 @@
+HumMod / Degradation
+
+Created : 10-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 63 </col>
+   <high> 12.8 </high>
+   <wide> 30.0 </wide>
+   <title> Elimination </title>
+
+<structurename> hCG </structurename>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> UrineLoss </name>
+   <format><decimal> 4 </decimal></format>
+   <label> Urine Elimination Rate </label>
+</showvalue>
+
+<showvalue>
+   <row> 2.4 </row><col> 1.0 </col>
+   <name> LiverLoss </name>
+   <format><decimal> 4 </decimal></format>
+   <label> Liver Degradation Rate </label>
+</showvalue>
+
+<showgraph>
+  <row> 3.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> UrineLoss </name>
+      <nolabel/>
+      <linecolor> YELLOW </linecolor>
+    </yvar>
+    <yvar>
+      <name> LiverLoss </name>
+      <nolabel/>
+      <linecolor> GRAY </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 0.1 </max><inc> 0.1 </inc>
+    </scale>
+  </yaxis>
+</showgraph>
+
+</groupbox>
+
+End

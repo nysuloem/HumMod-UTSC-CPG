@@ -1,0 +1,17 @@
+<branch>
+    <name> PreEclampsia </name>
+    <label> Pre-Eclampsia </label>
+    <parent> PATHOLOGY </parent>
+  </branch>
+  
+  <leaf>
+    <name> Control </name>
+    <label> Control </label>
+    <parent> PreEclampsia </parent>
+  </leaf>
+  
+  <leaf>
+    <name> Activity </name>
+    <label> Activity </label>
+    <parent> PreEclampsia </parent>
+  </leaf>

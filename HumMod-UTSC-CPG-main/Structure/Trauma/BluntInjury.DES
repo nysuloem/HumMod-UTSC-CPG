@@ -1,0 +1,217 @@
+
+
+<structure><name> BluntInjury </name>
+
+<variables>
+
+<parm><name> RIGHT_ARM </name><val> 0 </val></parm>
+<parm><name> LEFT_ARM </name><val> 0 </val></parm>
+<parm><name> RIGHT_LEG </name><val> 0 </val></parm>
+<parm><name> LEFT_LEG </name><val> 0 </val></parm>
+<parm><name> RIGHT_CHEST </name><val> 0 </val></parm>
+<parm><name> LEFT_CHEST </name><val> 0 </val></parm>
+
+<parm><name> ArmFraction </name><val> 0.12 </val></parm>
+<parm><name> LegFraction </name><val> 0.24 </val></parm>
+<parm><name> ChestFraction </name><val> 0.03 </val></parm>
+
+<parm><name> RightRMDamage </name><val> 0.0 </val></parm>
+<var><name> TimeLastRightRespiratoryDamage </name><val> -1E308 </val></var>
+<var><name> CumulativeRightRespiratoryDamage </name><val> 0 </val></var>
+
+<var><name> BodyInjury </name><val> 0.0 </val></var>
+<var><name> TriggerBodyInjury </name><val> 0 </val></var>
+<var><name> ChestDummy </name><val> 0.0 </val></var>
+<parm><name> SkeletalDummy </name><val> 0.0 </val></parm>
+
+<var><name> RMDamage </name><val> 0.0 </val></var>
+<parm><name> LeftRMDamage </name><val> 0.0 </val></parm>
+<var><name> TimeLastLeftRespiratoryDamage </name><val> 0 </val></var>
+<var><name> CumulativeLeftRespiratoryDamage </name><val> 0 </val></var>
+
+<parm><name> RightArmDamage </name><val> 0.0 </val></parm>
+<parm><name> RightLegDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftArmDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftLegDamage </name><val> 0.0 </val></parm>
+<parm><name> RightChestDamage </name><val> 0.0 </val></parm>
+<parm><name> LeftChestDamage </name><val> 0.0 </val></parm>
+
+<var><name> TimeLastSkeletalDamage </name></var>
+<var><name> CumulativeSkeletalDamage </name><val> 0 </val></var>
+
+<var><name> TimeEffect </name></var>
+<var><name> InjuryTimeVal </name><val> 0 </val></var>
+<timervar><name> InjuryTime </name><val> 0 </val><state> OFF </state></timervar>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+
+<var><name> K </name></var>
+<var><name> BaseRate </name><val> 1 </val></var>
+
+</variables>
+
+<functions>
+
+<curve>
+  <name> KCalculator </name>
+  <point><x>  0 </x><y>  0.1 </y><slope> 0 </slope></point>
+  <point><x>  0.05 </x><y>  0.005 </y><slope> -0.1 </slope></point>
+  <point><x>  0.2 </x><y>  0.01 </y><slope> 0.1 </slope></point>
+  <point><x> 0.5 </x><y> 0.001 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
+<equations>
+
+<diffeq>
+  <name> SkeletalDamage </name>
+  <integralname> SkeletalDamage </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+  <block><name> CalcPain </name>
+
+    <def><name> Pain.TargetPain </name>
+      <val> ( 25 * SkeletalDamage ) * Pain.MorphineOnPain [ Pain.CombinedMorphine ] MIN 10 </val>
+    </def>
+
+  </block>
+
+  <block><name> Dervs </name>
+
+    <def><name> Gain </name>
+      <val> InjuryNow.RightArmDegree + InjuryNow.LeftArmDegree + InjuryNow.RightLegDegree + InjuryNow.LeftLegDegree + InjuryNow.RightChestDegree + InjuryNow.LeftChestDegree </val>
+    </def>
+
+    <def><name> K </name>
+      <val> KCalculator [ SkeletalDamage ] </val>
+    </def>
+
+    <if><test> SkeletalDamage GT 0 </test>
+      <true>
+        <def><name> Loss </name>
+          <val> K * SkeletalDamage </val>
+        </def>
+      </true>
+      <false>
+        <def><name> Loss </name>
+          <val> 0 </val>
+        </def>
+      </false>
+    </if>
+    
+    <def><name> Change </name>
+      <val> Gain - Loss </val>
+    </def>
+
+  </block> 
+
+  <!-- <onjustchanged><name> ChestDummy </name>
+
+      <def><name> RMDamage </name><val>  LeftRMDamage + RightRMDamage  </val></def>
+      <def><name> RespiratoryMuscle-Structure.Effect </name><val> RespiratoryMuscle-Structure.Effect  - ( ChestFraction * LeftRMDamage * LEFT_CHEST )  </val></def>
+      <def><name> CumulativeLeftRespiratoryDamage </name><val> CumulativeRespiratoryDamage + ( ChestFraction * LeftRMDamage * LEFT_CHEST  ) </val></def>
+      <def><name> TimeLastLeftRespiratoryDamage </name><val> System.X </val></def>
+      <def><name> ThoraxHemorrhage.LeftSwitch </name><val> 1 </val></def>
+      <def><name> ThoraxHemorrhage.LeftRate </name><val> ChestFraction * LeftRMDamage * 5 </val></def>
+
+      <def><name> RespiratoryMuscle-Structure.Effect </name><val> RespiratoryMuscle-Structure.Effect  - ( ChestFraction * RightRMDamage * RIGHT_CHEST )  </val></def>
+      <def><name> CumulativeRightRespiratoryDamage </name><val> CumulativeRightRespiratoryDamage + (  ChestFraction * RightRMDamage  * RIGHT_CHEST ) </val></def>
+      <def><name> TimeLastRightRespiratoryDamage </name><val> System.X </val></def>
+      <def><name> ThoraxHemorrhage.RightSwitch </name><val> 1 </val></def>
+      <def><name> ThoraxHemorrhage.RightRate </name><val> ChestFraction * RightRMDamage * 5 </val></def>
+
+      <def><name> Pain.TargetPain </name><val> ( Pain.TargetPain + ( 10 * RMDamage ) ) MIN 10 </val></def>
+
+      <def><name> ChestDummy </name><val> 0 </val></def>
+
+    </onjustchanged>-->
+    
+<!--<def><name> SkeletalMuscle-Structure.Effect </name><val> SkeletalMuscle-Structure.Effect - SkeletalDamage  </val></def>
+<def><name> CumulativeSkeletalDamage </name><val> CumulativeSkeletalDamage + SkeletalDamage  </val></def>
+<def><name> TimeLastSkeletalDamage </name><val> System.X </val></def>
+<def><name> Hemorrhage.Switch </name><val> 1 </val></def>
+<def><name> Hemorrhage.Rate </name><val> SkeletalDamage * 120 </val></def>
+<def><name> Pain.TargetPain </name><val> ( 15 * SkeletalDamage ) MIN 10 </val></def>
+<def><name> Pain.TargetPain </name><val> Pain.TargetPain * Pain.MorphineOnPain [ Pain.CombinedMorphine ] </val></def>
+<def><name> SkeletalDummy </name><val> 0 </val></def>-->
+
+
+<block><name> Parms </name>
+
+ <!--<def>
+  <name> SkeletalDamage </name>
+    <val> ( RIGHT_ARM * ArmFraction * RightArmDamage ) 
+        + ( LEFT_ARM * ArmFraction * LeftArmDamage )
+        + ( RIGHT_LEG * LegFraction * RightLegDamage ) 
+        + ( LEFT_LEG * LegFraction * LeftLegDamage )
+        + ( RIGHT_CHEST * ChestFraction * RightChestDamage )
+        + ( LEFT_CHEST * ChestFraction * LeftChestDamage )
+    </val>
+  </def>
+
+  <onjustchanged><name> RIGHT_ARM </name> 
+    <timer><name> InjuryTime </name><val> 10 </val><state> DOWN </state></timer>
+  </onjustchanged>
+
+  <ontimedout>
+    <name> InjuryTime </name>
+    <call> ResetDamage </call>
+  </ontimedout>-->
+
+
+</block>
+
+<block><name> ResetDamage </name>
+
+ <!--<def><name> RIGHT_ARMV </name><val> 0 </val></def>-->
+
+</block>
+
+<block><name> DamageRespiratory </name>
+
+<!--<def><name> RMDamage </name><val>  LeftRMDamage + RightRMDamage  </val></def>
+
+<def><name> RespiratoryMuscle-Structure.Effect </name><val> RespiratoryMuscle-Structure.Effect  - ( ChestFraction * LeftRMDamage * LEFT_CHEST )  </val></def>
+<def><name> CumulativeLeftRespiratoryDamage </name><val> CumulativeLeftRespiratoryDamage + ( ChestFraction * LeftRMDamage * LEFT_CHEST  ) </val></def>
+<def><name> TimeLastLeftRespiratoryDamage </name><val> System.X </val></def>
+<def><name> ThoraxHemorrhage.LeftSwitch </name><val> 1 </val></def>
+<def><name> ThoraxHemorrhage.LeftTargetRate </name><val> ChestFraction * LeftRMDamage * 5 </val></def>
+
+<def><name> RespiratoryMuscle-Structure.Effect </name><val> RespiratoryMuscle-Structure.Effect  - ( ChestFraction * RightRMDamage * RIGHT_CHEST )  </val></def>
+<def><name> CumulativeRightRespiratoryDamage </name><val> CumulativeRightRespiratoryDamage + (  ChestFraction * RightRMDamage  * RIGHT_CHEST ) </val></def>
+<def><name> TimeLastRightRespiratoryDamage </name><val> System.X </val></def>
+<def><name> ThoraxHemorrhage.RightSwitch </name><val> 1 </val></def>
+<def><name> ThoraxHemorrhage.RightTargetRate </name><val> ChestFraction * RightRMDamage * 5 </val></def>
+
+<def><name> Pain.TargetPain </name><val> ( Pain.TargetPain + ( 10 * RMDamage ) ) MIN 10 </val></def>-->
+
+</block>
+
+<block><name> DamageSkeletal </name>
+<!--<def>
+  <name> SkeletalDamage </name>
+  <val> ( RIGHT_ARM * ArmFraction * RightArmDamage ) 
+           + ( LEFT_ARM * ArmFraction * LeftArmDamage )
+           + ( RIGHT_LEG * LegFraction * RightLegDamage ) 
+           + ( LEFT_LEG * LegFraction * LeftLegDamage ) </val>
+</def>
+
+<def><name> SkeletalMuscle-Structure.Effect </name><val> SkeletalMuscle-Structure.Effect - SkeletalDamage </val></def>
+<def><name> CumulativeSkeletalDamage </name><val> CumulativeSkeletalDamage + SkeletalDamage </val></def>
+<def><name> TimeLastSkeletalDamage </name><val> System.X </val></def>
+<def><name> Hemorrhage.Switch </name><val> 1 </val></def>
+<def><name> Hemorrhage.TargetRate </name><val> SkeletalDamage * 120 </val></def>
+<def><name> SkeletalDamage </name><val> SkeletalDamage * TimeEffect </val></def>-->
+
+</block>
+</definitions>
+</structure>

@@ -1,0 +1,7 @@
+
+<?path Display\Intervention\Drugs\Warfarin\ ?>
+
+<?include Dosing\Dosing.DES ?>
+<?include Kinetics\Kinetics.DES ?>
+
+End

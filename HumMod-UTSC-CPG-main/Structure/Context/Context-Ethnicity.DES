@@ -1,0 +1,335 @@
+HumMod / Context-Ethnicity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+
+<structure><name> Context-Ethnicity </name>
+
+<variables>
+
+<parm><name> White_Percentage </name><val> 100 </val></parm>
+<parm><name> Black_Percentage </name><val> 0.0 </val></parm>
+<parm><name> Asian_Percentage </name><val> 0.0 </val></parm>
+<parm><name> Hispanic_Percentage </name><val> 0.0 </val></parm>
+
+<var><name> TrueWhite_Percentage </name></var>
+<var><name> TrueBlack_Percentage </name></var>
+<var><name> TrueAsian_Percentage </name></var>
+<var><name> TrueHispanic_Percentage </name></var>
+<var><name> TotalPercentage </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Parms </name>
+
+<onjustchanged><name> White_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Black_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Asian_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+<onjustchanged><name> Hispanic_Percentage </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
+</block>
+
+<block> <name> CalcPercent </name>
+      
+<def>
+  <name> TotalPercentage </name>
+  <val> White_Percentage + Black_Percentage + Asian_Percentage + Hispanic_Percentage </val>
+</def>
+
+      <!-- Normalize Percentages if Total is Not 100 -->
+      <if>
+        <test> TotalPercentage NE 100 </test>
+        <true>
+          <call> ZeroFixer </call>
+          <def><name> TrueWhite_Percentage </name><val> White_Percentage / TotalPercentage * 100 </val></def>
+          <def><name> TrueBlack_Percentage </name><val> Black_Percentage / TotalPercentage * 100 </val></def>
+          <def><name> TrueAsian_Percentage </name><val> Asian_Percentage / TotalPercentage * 100 </val></def>
+          <def><name> TrueHispanic_Percentage </name><val> Hispanic_Percentage / TotalPercentage * 100 </val></def>
+        </true>
+        <false>
+          <def><name> TrueWhite_Percentage </name><val> White_Percentage </val></def>
+          <def><name> TrueBlack_Percentage </name><val> Black_Percentage </val></def>
+          <def><name> TrueAsian_Percentage </name><val> Asian_Percentage </val></def>
+          <def><name> TrueHispanic_Percentage </name><val> Hispanic_Percentage </val></def>
+         </false>
+      </if>
+
+      <testcase>
+
+          <case> 
+          <test>TrueWhite_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 0 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+          <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 1 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 2 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage EQ 100 </test>
+          <def><name> Ethnicity.Index </name><val> 3 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueWhite_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 4 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 5 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 6 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage GT 50 </test>
+          <def><name> Ethnicity.Index </name><val> 7 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          </case>
+
+          <case> 
+          <test>TrueWhite_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 8 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 9 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 10 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage EQ 50 </test>
+          <def><name> Ethnicity.Index </name><val> 11 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueWhite_Percentage GE 33 </test>
+          <def><name> Ethnicity.Index </name><val> 8 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueBlack_Percentage GE 33 </test>
+          <def><name> Ethnicity.Index </name><val> 9 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueAsian_Percentage GE 33 </test>
+          <def><name> Ethnicity.Index </name><val> 10 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+          <case> 
+          <test>TrueHispanic_Percentage GE 33 </test>
+          <def><name> Ethnicity.Index </name><val> 11 </val></def>
+          <def><name> Ethnicity.Index2 </name><val> 0 </val></def>
+           <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+          <call> Second </call>
+          </case>
+
+      </testcase>
+    </block>
+
+<block><name> ZeroFixer </name>
+  <if><test> TotalPercentage EQ 0 </test>
+    <true>
+      <def><name> TotalPercentage </name><val> 1 </val></def>
+    </true>
+  </if>
+</block>
+        
+
+<block><name> Second </name>
+
+<testcase>
+
+<case>
+  <test> TrueHispanic_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 4 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+</case>
+
+<case>
+  <test> TrueAsian_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 3 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+</case>
+
+<case>
+  <test> TrueBlack_Percentage EQ 50 </test>
+  <def><name> Ethnicity.Index2 </name><val> 2 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+</case>
+
+<case>
+  <test> TrueHispanic_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index2 </name><val> 4 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+  <call> Third </call>
+</case>
+
+<case>
+  <test> TrueAsian_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index2 </name><val> 3 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+  <call> Third </call>
+</case>
+
+<case>
+  <test> TrueBlack_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index2 </name><val> 2 </val></def>
+   <def><name> Ethnicity.Index3 </name><val> 0 </val></def>
+  <call> Third </call>
+</case>
+
+</testcase>
+
+</block>
+
+<block><name> Third </name>
+
+<testcase>
+
+<case>
+  <test> TrueBlack_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index3 </name><val> 2 </val></def>
+</case>
+
+<case>
+  <test> TrueAsian_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index3 </name><val> 3 </val></def>
+</case>
+
+<case>
+  <test> TrueHispanic_Percentage GE 33 </test>
+  <def><name> Ethnicity.Index3 </name><val> 4 </val></def>
+</case>
+
+</testcase>
+
+</block>
+
+<block><name> Calc </name>
+
+<if><test> Index EQ IS_WHITE </test>
+<true>
+<def><name> IsWhite </name><val> TRUE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_BLACK </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> TRUE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_ASIAN </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>TRUE</val></def>
+<def><name>IsHispanic</name><val>FALSE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+<if><test> Index EQ IS_HISPANIC </test>
+<true>
+<def><name> IsWhite </name><val> FALSE </val></def>
+<def><name> IsBlack </name><val> FALSE </val></def>
+<def><name> IsAsian </name><val>FALSE</val></def>
+<def><name>IsHispanic</name><val>TRUE</val></def>
+</true>
+<false>
+</false>
+</if>
+
+
+<def>
+  <name> Ethnicity.Index </name>
+  <val> Index </val>
+</def>
+
+<call> Ethnicity.Init </call>
+
+</block>
+
+</definitions>
+</structure>
+
+End

@@ -1,0 +1,41 @@
+
+
+
+
+
+
+<groupbox>
+   <row> 2 </row>
+   <col> 63 </col>
+   <high> 12.0 </high>
+   <wide> 30 </wide>
+   <title> Melatonin Circadian Effect </title>
+
+   <showvalue>
+   <row> 1.4 </row>
+   <col> 1.0 </col>
+   <name> MelatoninSecretion.TwoFourHourEffect </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Effect </label>
+</showvalue>
+
+<showcurve>
+  <row> 3.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 5 </leftmargin>
+
+  <xaxis>
+    <name> MelatoninSecretion.Day </name>
+    <label> Minutes </label>
+    <scale><min> 0 </min><max> 1440</max><inc> 0.01 </inc></scale>
+  </xaxis>
+
+  <yaxis>
+    <label> Effect </label>
+    <scale><min> 0 </min><max> 0.015 </max></scale>
+  </yaxis>
+
+  <curvename> MelatoninSecretion.TwoFourHourEffect </curvename>
+
+</showcurve>
+
+</groupbox>
