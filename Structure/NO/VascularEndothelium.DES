@@ -71,7 +71,7 @@ Created by Aaesha Ahmed as part of her BIOD98 project in 2025-2026
 
     <def>
       <name> NOProduction </name>
-      <val> eNOSRate * EstrogenEffect * PEFactor </val>
+      <val> eNOSRate * EstrogenEffect * ArginineEffect * CalciumEffect * PEFactor </val>
     </def>
 
   </block>
