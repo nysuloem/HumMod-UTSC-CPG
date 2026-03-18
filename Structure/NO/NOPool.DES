@@ -8,7 +8,7 @@ HumMod / NOPool
   <var><name> [NO--(mMol/L)] </name></var>
   <var><name> [NO--(mEq/L)] </name></var>
 
-  <var><name> K </name><val> .01 </val></var>
+  <var><name> K </name><val> 0.9 </val></var>
 
   <var><name> Gain </name></var>
   <var><name> Loss </name></var>
@@ -69,8 +69,7 @@ HumMod / NOPool
   <def>
     <name> Gain </name>
     <val>
-          NOPump.Rate
-        <!--+ GlomerularEndothelium.NOProduction-->
+        NOPump.Rate
         + VascularEndothelium.NOProduction
     </val>
   </def>
