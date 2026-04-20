@@ -22,6 +22,20 @@ By : University Of Mississippi Medical Center
 </showvalue>
 
 <showvalue>
+  <row> 2.4 </row><col> 3.0 </col>
+  <name> [Na+] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Na+] </label>
+</showvalue>
+
+<showvalue>
+  <row> 3.4 </row><col> 3.0 </col>
+  <name> [K+] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [K+] </label>
+</showvalue>
+
+<showvalue>
   <row> 4.8 </row><col> 1.0 </col>
   <name> Anions </name>
   <format><decimal> 1 </decimal></format>

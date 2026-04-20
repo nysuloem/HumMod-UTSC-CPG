@@ -28,9 +28,6 @@ By : University Of Mississippi Medical Center
 <var><name> BloodFlow </name></var>
 <var><name> PlasmaFlow </name></var>
 
-<var><name> NOEffect </name></var>
-
-
 </variables>
 
 <equations>
@@ -111,13 +108,6 @@ By : University Of Mississippi Medical Center
   <point><x> 0.0010 </x><y> 2.0 </y><slope> 0 </slope></point>
 </curve> 
 
-<!-- Just Jason trying random numbers -->
-<curve>
-  <name> NOOnConductance </name>
-  <point><x> 0.00 </x><y> 1.00 </y><slope> 0.0 </slope></point>
-  <point><x> 20.0 </x><y> 2.00 </y><slope> 0.0 </slope></point>
-</curve>
-
 </functions>
 
 <definitions>
@@ -181,11 +171,6 @@ By : University Of Mississippi Medical Center
   <val> PO2Artys.Pressure </val>
 </def>
 
-<def>
-  <name> NOEffect </name>
-  <val> NOOnConductance [ NODrugPool.[TotalNO] ] </val>
-</def>
-
 <implicitmath><name> PO2 </name>
 
 <def>
@@ -201,7 +186,6 @@ By : University Of Mississippi Medical Center
     * SympsEffect
     * PO2Effect
     * ADHEffect
-    * NOEffect
     * Viscosity.ConductanceEffect
     * Anesthesia.VascularConductance
     * OtherTissue-Vasculature.Effect

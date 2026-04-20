@@ -44,7 +44,7 @@ By : University of Mississippi Medical Center
   <startname> ESV </startname>
   <initialval> 50 </initialval>
   <endname> ESV-End </endname>
-  <errorlim> 0.05 </errorlim>0.5
+  <errorlim> 0.05 </errorlim>
   <searchmin> 0 </searchmin>
 </impliciteq>
 

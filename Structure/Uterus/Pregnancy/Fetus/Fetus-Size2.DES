@@ -1,0 +1,85 @@
+<!-- <structure><name> GestationTracker </name>
+
+<variables>
+
+<parm>
+  <name> PregOn </name>
+  <val> 1.0 </val>
+</parm>
+
+<var>
+  <name> GA_wk </name>
+  <val> 8.0 </val>
+</var>
+
+<var>
+  <name> dt_day </name>
+</var>
+
+<var>
+  <name> g </name>
+</var>
+
+</variables>
+
+<definitions>
+
+<block><name> Timing </name>
+
+  <def>
+    <name> dt_day </name>
+    <val> System.Dx / 86400.0 </val>
+  </def>
+
+</block>
+
+<block><name> UpdateGA </name>
+
+  <conditional>
+    <name> GA_wk </name>
+    <test> PregOn GT 0.5 </test>
+    <true> GA_wk + ( dt_day / 7.0 ) </true>
+    <false> GA_wk </false>
+  </conditional>
+
+  <conditional>
+    <name> GA_wk </name>
+    <test> GA_wk GT 42.0 </test>
+    <true> 42.0 </true>
+    <false> GA_wk </false>
+  </conditional>
+
+  <conditional>
+    <name> GA_wk </name>
+    <test> GA_wk LT 0.0 </test>
+    <true> 0.0 </true>
+    <false> GA_wk </false>
+  </conditional>
+
+</block>
+
+<block><name> GestationProgress </name>
+
+  <def>
+    <name> g </name>
+    <val> GA_wk / 40.0 </val>
+  </def>
+
+  <conditional>
+    <name> g </name>
+    <test> g LT 0.0 </test>
+    <true> 0.0 </true>
+    <false> g </false>
+  </conditional>
+
+  <conditional>
+    <name> g </name>
+    <test> g GT 1.0 </test>
+    <true> 1.0 </true>
+    <false> g </false>
+  </conditional>
+
+</block>
+
+</definitions>
+</structure> -->

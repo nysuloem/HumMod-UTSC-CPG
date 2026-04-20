@@ -9,315 +9,143 @@ By : University Of Mississippi Medical Center
 <groupbox>
    <row> 7.0 </row>
    <col> 1.0 </col>
-   <high> 34 </high>
-   <wide> 40 </wide>
-   <title> Lab Report </title>
+   <high> 30.4 </high>
+   <wide> 30.0 </wide>
 
 <structurename> BloodChemistry-Sample </structurename>
 
-<label>
-  <row> 2.0 </row>
-  <col> 1.0 </col>
-  <text> LO </text>
-</label>
-
-<label>
-  <row> 2.0 </row>
-  <col> 4.0 </col>
-  <text> HI </text>
-</label>
-
 <showvalue>
-  <row> 3.4 </row><col> 7.0 </col>
-  <name> Hemoglobin </name>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> [Glucose] </name>
   <format><decimal> 1 </decimal></format>
-  <label> Hemoglobin (g/L) </label>
+  <label> [Glucose] </label>
 </showvalue>
 
-<checkmark>
-   <row> 3.4 </row><col> 1.0 </col>
-   <name> HemoglobinCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 3.4 </row><col> 4.0 </col>
-   <name> HemoglobinCheckHI </name>
-   <label> </label>
-</checkmark>
+<showvalue>
+  <row> 2.4 </row><col> 1.0 </col>
+  <name> [FattyAcids] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Fatty Acids] </label>
+</showvalue>
 
 <showvalue>
-  <row> 4.4 </row><col> 7.0 </col>
+  <row> 3.4 </row><col> 1.0 </col>
+  <name> [Triglycerides] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Triglycerides] </label>
+</showvalue>
+
+<showvalue>
+  <row> 4.4 </row><col> 1.0 </col>
+  <name> [AminoAcids] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Amino Acids] </label>
+</showvalue>
+
+<showvalue>
+  <row> 5.4 </row><col> 1.0 </col>
+  <name> [Creatinine] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Creatinine] </label>
+</showvalue>
+
+<showvalue>
+  <row> 6.4 </row><col> 1.0 </col>
+  <name> [Urea] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Urea] </label>
+</showvalue>
+
+<showvalue>
+  <row> 7.4 </row><col> 1.0 </col>
+  <name> [BUN] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [BUN] </label>
+</showvalue>
+
+<showvalue>
+  <row> 8.8 </row><col> 1.0 </col>
+  <name> [SID] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Strong Ion Difference </label>
+</showvalue>
+
+<showvalue>
+  <row> 9.8 </row><col> 1.0 </col>
+  <name> pH </name>
+  <format><decimal> 3 </decimal></format>
+  <label> pH </label>
+</showvalue>
+
+<showvalue>
+  <row> 10.8 </row><col> 1.0 </col>
+  <name> [H+] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [H+] </label>
+</showvalue>
+
+<showvalue>
+  <row> 12.2 </row><col> 1.0 </col>
+  <name> [Protein] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Protein] </label>
+</showvalue>
+
+<showvalue>
+  <row> 13.2 </row><col> 1.0 </col>
+  <name> ColloidPressure </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Colloid Pressure </label>
+</showvalue>
+
+<showvalue>
+  <row> 14.6 </row><col> 1.0 </col>
+  <name> Osmolarity </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Osmolarity </label>
+</showvalue>
+
+<showvalue>
+  <row> 15.6 </row><col> 1.0 </col>
   <name> Hematocrit(%) </name>
   <format><decimal> 1 </decimal></format>
   <label> Hematocrit (%) </label>
 </showvalue>
 
-<checkmark>
-   <row> 4.4 </row><col> 1.0 </col>
-   <name> HematocritCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 4.4 </row><col> 4.0 </col>
-   <name> HematocritCheckHI </name>
-   <label> </label>
-</checkmark>
-
 <showvalue>
-  <row> 5.4 </row><col> 7.0 </col>
-  <name> RBCNumber </name>
-  <format><decimal> 1 </decimal></format>
-  <label> RBC (no./L) </label>
-</showvalue>
-
-<checkmark>
-   <row> 5.4 </row><col> 1.0 </col>
-   <name> RBCNumberCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 5.4 </row><col> 4.0 </col>
-   <name> RBCNumberCheckHI </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 7.4 </row><col> 7.0 </col>
-  <name> [Glucose] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Glucose (mM) </label>
-</showvalue>
-
-<checkmark>
-   <row> 7.4 </row><col> 1.0 </col>
-   <name> GlucoseCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 7.4 </row><col> 4.0 </col>
-   <name> GlucoseCheckHI </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 8.4 </row><col> 7.0 </col>
+  <row> 16.6 </row><col> 1.0 </col>
   <name> HgbA1C </name>
   <format><decimal> 1 </decimal></format>
   <label> Hgb A1C (%) </label>
 </showvalue>
 
-<showvalue>
-  <row> 10.4 </row><col> 7.0 </col>
-  <name> [FattyAcids] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Fatty Acids (mg/dL) </label>
-</showvalue>
-
-<checkmark>
-   <row> 10.4 </row><col> 4.0 </col>
-   <name> FattyAcidsCheckHI </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 10.4 </row><col> 1.0 </col>
-   <name> FattyAcidsCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 11.4 </row><col> 7.0 </col>
-  <name> [Triglycerides] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Triglycerides (mg/dL) </label>
-</showvalue>
-
-<checkmark>
-   <row> 11.4 </row><col> 4.0 </col>
-   <name> TriglycerideCheckHI </name>
-   <label> </label>
-</checkmark>
-
-<checkmark>
-   <row> 11.4 </row><col> 1.0 </col>
-   <name> TriglycerideCheckLO </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 13.4 </row><col> 7.0 </col>
-  <name> [Creatinine] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Creatinine] (mg/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 14.4 </row><col> 7.0 </col>
-  <name> [Urea] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Urea] (mg/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 15.4 </row><col> 7.0 </col>
-  <name> [BUN] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [BUN] (mg/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 16.4 </row><col> 7.0 </col>
-  <name> [Na+] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Na+] (mM) </label>
-</showvalue>
-
-<showvalue>
-  <row> 17.4 </row><col> 7.0 </col>
-  <name> [K+] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [K+] (mM) </label>
-</showvalue>
-
-<showvalue>
-  <row> 18.4 </row><col> 7.0 </col>
-  <name> [Cl-] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Cl-](mM) </label>
-</showvalue>
-
-<showvalue>
-  <row> 19.4 </row><col> 7.0 </col>
-  <name> [HCO3-] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [HCO3-] (mM) </label>
-</showvalue>
-
-<showvalue>
-  <row> 20.4 </row><col> 7.0 </col>
-  <name> [Ca++] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Ca2+] (mg/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 21.4 </row><col> 7.0 </col>
-  <name> [PO4--] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [PO4--] (mM) </label>
-</showvalue>
-
-<showvalue>
-  <row> 23.4 </row><col> 7.0 </col>
-  <name> ALT </name>
-  <format><decimal> 1 </decimal></format>
-  <label> ALT (U/L) </label>
-</showvalue>
-
-<checkmark>
-   <row> 23.4 </row><col> 4.0 </col>
-   <name> ALTCheck </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 24.4 </row><col> 7.0 </col>
-  <name> Albumin </name>
-  <format><decimal> 1 </decimal></format>
-  <label> Albumin (g/dL) </label>
-</showvalue>
-
-<checkmark>
-   <row> 24.4 </row><col> 4.0 </col>
-   <name> AlbuminCheck </name>
-   <label> </label>
-</checkmark>
-
-<showvalue>
-  <row> 25.4 </row><col> 7.0 </col>
-  <name> [Protein] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Protein] (g/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 27.4 </row><col> 7.0 </col>
-  <name> [AminoAcids] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Amino Acids] (mg/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 29.4 </row><col> 7.0 </col>
-  <name> [TSH] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [TSH] (mIU/L)</label>
-</showvalue>
-
-<showvalue>
-  <row> 30.4 </row><col> 7.0 </col>
-  <name> [Cortisol] </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Cortisol] (ug/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 32.4 </row><col> 7.0 </col>
-  <name> [Ethanol] </name>
-  <format><decimal> 2 </decimal></format>
-  <label> BAC (g/dL) </label>
-</showvalue>
-
-<checkmark>
-   <row> 32.4 </row><col> 4.0 </col>
-   <name> EthanolCheck </name>
-   <label> </label>
-</checkmark>
-
 <infobutton>
   <row> 1.2 </row>
-  <col> 36 </col>
+  <col> 26.0 </col>
 
-<line> Lab Report - Typical Values </line>
-<line> </line>
-<line> Hemoglobin = 150 G/L </line>
-<line> Hematocrit = 44 % </line>
-<line> RBC = 4.8 x10^12/L </line>
-<line> </line>
-<line> [Glucose] = 5.0 mM </line>
-<line> HgbA1C = 5.0 % </line>
-<line> </line>
-<line> [Fatty Acids] = 15 mG/dL </line>
-<line> [Triglycerides] = 100 mG/dL </line>
-<line> </line>
-<line> [Creatinine] = 1.0 mG/dL </line>
-<line> [Urea] = 26 mG/dL </line>
-<line> [BUN] = 12 mG/dL </line>
-<line> [Na+] = 140 mEq/L </line>
-<line> [K+] = 4.0 mEq/L </line>
-<line> [Cl-] = 100 mEq/L </line>
-<line> [HCO3-] = 24 mEq/L </line>
-<line> [Ca2+] = 9.5 mG/dL </line>
-<line> [PO4-] = 3.5 mG/dL </line>
-<line> </line>
-<line> ALT = 17 U/L </line>
-<line> Albumin = 4.3 G/dL </line>
-<line> [Protein] = 7.0 G/dL </line>
-<line> </line>
-<line> [Amino Acids] = 50 mG/dL </line>
-<line> </line>
-<line> [TSH] = 2.0 uIU/mL </line>
-<line> [Cortisol] = 14 uG/dL </line>
-<line> </line>
-<line> BAC = 0.00 G/dL </line>
+  <line> Typical Values </line>
+  <line> </line>
+  <line> [Glucose] = 110 mG/dL </line>
+  <line> [Fatty Acids] = 15 mG/dL </line>
+  <line> [Triglycerides] = 100 mG/dL </line>
+  <line> [Amino Acids] = 50 mG/dL </line>
+  <line> [Creatinine] = 0.82 mG/dL </line>
+  <line> [Urea] = 26 mG/dL </line>
+  <line> [BUN] = 12 mG/dL </line>
+  <line> </line>
+  <line> Strong Ion Difference = 40 mEq/L </line>
+  <line> pH = 7.39 </line>
+  <line> [H+] = 41 nEq/L </line>
+  <line> </line>
+  <line> [Protein] = 7.0 G/dL </line>
+  <line> Colloid Pressure = 28 mmHg </line>
+  <line> </line>
+  <line> Osmolarity = 288 mOsm/L </line>
+  <line> Hematocrit = 44% </line>
 
 </infobutton>
 
-<!--<showvalue>
+<showvalue>
   <row> 18.0 </row><col> 1.0 </col>
   <name> [Angiotensin] </name>
   <format><decimal> 1 </decimal></format>
@@ -378,7 +206,37 @@ By : University Of Mississippi Medical Center
   <name> [Epinephrine] </name>
   <format><decimal> 1 </decimal></format>
   <label> [Epinephrine] </label>
-</showvalue>-->
+</showvalue>
+
+<showvalue>
+  <row> 26.8 </row><col> 1.0 </col>
+  <name> [Ethanol] </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Blood Alcohol Conc. </label>
+</showvalue>
+
+<infobutton>
+  <row> 16.6 </row>
+  <col> 26.0 </col>
+
+  <line> Typical Values </line>
+  <line> </line>
+  <line> [Angiotensin] = 20 pG/mL </line>
+  <line> PRA = 2.0 (nG aI/mL)/Hr </line>
+  <line> [Aldosterone] = 300 pMol/L </line>
+  <line> [ADH] = 2.0 pG/mL </line>
+  <line> [ANP] = 20 pMol/L </line>
+  <line> </line>
+  <line> [Total T4/T3] = 8.0 uG/dL </line>
+  <line> [TSH] = 4 uU/mmL </line>
+  <line> </line>
+  <line> [Norepinephrine] = 240 pG/mL </line>
+  <line> [Epinephrine] = 80 pG/mL </line>
+  <line> </line>
+  <line> </line>
+  <line> </line>
+
+</infobutton>
 
 </groupbox>
 

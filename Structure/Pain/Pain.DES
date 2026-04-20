@@ -22,7 +22,7 @@ By : University of Mississippi Medical Center
 <curve>
   <name> MorphineOnPain </name>
   <point><x> 0 </x><y> 1.0 </y><slope> 0 </slope></point>
-  <point><x> 0.2 </x><y> 0.2 </y><slope> 0 </slope></point>
+  <point><x> 0.7 </x><y> 0.4 </y><slope> 0 </slope></point>
 </curve>
 
 </functions>

@@ -8,10 +8,9 @@ in Jan. 2026
 
 <variables>
 
-<parm><name> ArmFraction </name><val> 0.055 </val></parm>
-<parm><name> LegFraction </name><val> 0.18 </val></parm>
-<parm><name> ChestFraction </name><val> 0.55 </val></parm>
-<parm><name> HeadFraction </name><val> 0.09 </val></parm>
+<parm><name> ArmFraction </name><val> 0.12 </val></parm>
+<parm><name> LegFraction </name><val> 0.24 </val></parm>
+<parm><name> ChestFraction </name><val> 0.03 </val></parm>
 
 <parm><name> RightArmDamage </name><val> 0.0 </val></parm>
 <parm><name> RightLegDamage </name><val> 0.0 </val></parm>
@@ -99,60 +98,6 @@ in Jan. 2026
 
 </block>
 
-<block><name> InjureLeftLegNow </name>
-
-<def>
-  <name> TotalLeftLegInjury </name>
-  <val> TotalLeftLegInjury + 1 </val>
-</def>
-
-<def>
-  <name> LeftLegDegree </name>
-  <val> ( TotalLeftLegInjury / 5 ) * LegFraction </val>
-</def>
-
-<timer><name> ResetLeftLeg </name>
-  <state> UP </state>
-</timer>
-
-</block>
-
-<block><name> InjureRightChestNow </name>
-
-<def>
-  <name> TotalRightChestInjury </name>
-  <val> TotalRightChestInjury + 1 </val>
-</def>
-
-<def>
-  <name> RightChestDegree </name>
-  <val> ( TotalRightChestInjury / 5 ) * ChestFraction </val>
-</def>
-
-<timer><name> ResetRightChest </name>
-  <state> UP </state>
-</timer>
-
-</block>
-
-<block><name> InjureLeftChestNow </name>
-
-<def>
-  <name> TotalLeftChestInjury </name>
-  <val> TotalLeftChestInjury + 1 </val>
-</def>
-
-<def>
-  <name> LeftChestDegree </name>
-  <val> ( TotalLeftChestInjury / 5 ) * ChestFraction </val>
-</def>
-
-<timer><name> ResetLeftChest </name>
-  <state> UP </state>
-</timer>
-
-</block>
-
 <block><name> Wrapup </name>
 
   <if><test> ResetRightArm GE 1 </test>
@@ -186,42 +131,6 @@ in Jan. 2026
         <state> OFF </state>
       </timer>
       <def><name> RightLegDegree </name>
-        <val> 0 </val>
-      </def>
-    </true>
-  </if>
-
-  <if><test> ResetLeftLeg GE 1 </test>
-    <true>
-      <timer><name> ResetLeftLeg </name>
-        <val> 0 </val>
-        <state> OFF </state>
-      </timer>
-      <def><name> LeftLegDegree </name>
-        <val> 0 </val>
-      </def>
-    </true>
-  </if>
-
-  <if><test> ResetRightChest GE 1 </test>
-    <true>
-      <timer><name> ResetRightChest </name>
-        <val> 0 </val>
-        <state> OFF </state>
-      </timer>
-      <def><name> RightChestDegree </name>
-        <val> 0 </val>
-      </def>
-    </true>
-  </if>
-
-  <if><test> ResetLeftChest GE 1 </test>
-    <true>
-      <timer><name> ResetLeftChest </name>
-        <val> 0 </val>
-        <state> OFF </state>
-      </timer>
-      <def><name> LeftChestDegree </name>
         <val> 0 </val>
       </def>
     </true>

@@ -22,6 +22,5 @@ By : University of Mississippi Medical Center
 <?include Exercise.DES ?>
 <?include Posture.DES ?>
 <?include SexualActivity.DES ?>
-<?include Stress.DES ?>
 
 End

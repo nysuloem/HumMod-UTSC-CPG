@@ -1,14 +1,14 @@
-HumMod / Creatinine
+HumMod / Creatine
 
-Created : 28-Mar-08
+Created : 29-Apr-05
 Last Modified : 26-Jan-10
 Author : Tom Coleman
-Copyright : 2008-2010
+Copyright : 2005-2010
 By : University of Mississippi Medical Center
 Solver : DES 2005
 Schema : 2005.0
 
-<panel><name> Metabolism_Creatinine </name>
+<panel><name> Metabolism_Creatine </name>
 
 <showbitmap>
   <row> 0.3 </row>
@@ -19,7 +19,7 @@ Schema : 2005.0
 <label>
   <row> 0.3 </row>
   <col> 4.5 </col>
-  <text> Creatinine </text>
+  <text> Creatine </text>
 </label>
 
 <showclock>
@@ -30,10 +30,10 @@ Schema : 2005.0
   <days/>
 </showclock>
 
-<?path Display\Metabolism\Creatinine\ ?>
+<?path Display\Metabolism\Creatine\ ?>
 
-<?include Concentration.DES ?>
-<?include Balance.DES ?>
+<?include Summary.DES ?>
+<?include SkeletalMuscle.DES ?>
 
 </panel>
 

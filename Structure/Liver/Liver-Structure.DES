@@ -11,10 +11,17 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> PhEffect </name></var>
-<var><name> FuelEffect </name></var>
-<var><name> TemperatureEffect </name></var>
-<var><name> FatEffect </name></var>  <!-- Need to figure this out -->
+<var>
+  <name> PhEffect </name>
+</var>
+
+<var>
+  <name> FuelEffect </name>
+</var>
+
+<var>
+  <name> TemperatureEffect </name>
+</var>
 
 </variables>
 
@@ -54,7 +61,6 @@ Schema : DES V1.0
 </functions>
 
 <definitions>
-
 <block><name> Calc </name>
 
 <def>
@@ -87,9 +93,7 @@ Schema : DES V1.0
 </def>
 
 </block>
-
 </definitions>
-
 </structure>
 
 End

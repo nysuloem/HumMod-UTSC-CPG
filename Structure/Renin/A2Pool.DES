@@ -62,6 +62,7 @@ By : University Of Mississippi Medical Center
   <val> EndogenousRate + A2Pump.Rate </val>
 </def>
 
+
 <conditional>
   <name> [A2(pG/mL)] </name>
   <test> Clamp </test>
@@ -81,29 +82,8 @@ By : University Of Mississippi Medical Center
   <false> 0.0 </false>
 </conditional>
 
-<def>
-  <name> DietThirst.Rate(L/Day) </name>
-  <val> ( 1 - OsmBody.OsmoreceptorDamage ) * DietThirst.OsmoticThirst [ OsmBody.Osmoreceptors(mOsm/L) ] * DietThirst.VolumeThirst [ A2Pool.[A2(pG/mL)] ] </val>
-</def>
-
-<def>
-  <name> DietThirst.ThirstRating </name>
-  <val> DietThirst.ThirstRating [ DietThirst.Rate(L/Day) ] </val>
-</def>
-
-<conditional>
-  <name> DietThirst.Rate(L/Day) </name>
-  <test> DietIntakeH2O.Fixed? </test>
-  <true> DietGoalH2O.Rate(L/Day)  </true>
-  <false> DietThirst.Rate(L/Day) </false>
-</conditional>
-
-<def><name> DietIntakeH2O.Rate(mL/Min) </name><val> 1000.0 * DietThirst.Rate(L/Day) * DietFeeding.Fraction </val></def>
-
 </block>
-
 </definitions>
-
 </structure>
 
 End

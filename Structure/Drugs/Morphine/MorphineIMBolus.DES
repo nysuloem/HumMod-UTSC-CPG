@@ -45,31 +45,32 @@ Schema : DES V1.0
 
 <block><name> Parms </name>
 
-<!--<onjustchanged><name> Dummy </name>
+<onjustchanged><name> Dummy </name>
 <def><name> Mass </name><val> Mass + ( Dose * Dummy )  </val></def>
 <def><name> TotalDoses </name><val> TotalDoses + Dummy </val></def>
 <def><name> CumulativeDose </name><val> CumulativeDose + ( Dummy * Dose ) </val></def>
 <def><name> TimeLastDose </name><val> System.X </val></def>
 <def><name> Dummy </name><val> 0 </val></def>
-</onjustchanged>-->
+</onjustchanged>
 
 </block>
+
 
 <block><name> Dervs </name>
 
-  <def><name> Loss  </name><val> K * Mass </val></def>
-  <def><name> Change  </name><val> - Loss </val></def>
+<def><name> Loss  </name><val> K * Mass </val></def>
+<def><name> Change  </name><val> - Loss </val></def>
 
 </block>
 
+
 <block><name> InjectNow </name>
 
-  <def><name> Mass </name><val> Mass + Dose </val></def>
+<def><name> Mass </name><val> Mass + Dose </val></def>
 
 </block>
 
 </definitions>
-
 </structure>
 
 End

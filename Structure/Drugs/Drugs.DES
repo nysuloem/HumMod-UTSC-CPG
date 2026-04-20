@@ -13,7 +13,6 @@ By : University Of Mississippi Medical Center
 <?include Atropine\Atropine.DES ?>
 <?include Ethanol\Ethanol.DES ?>
 <?include Chlorothiazide\Chlorothiazide.DES ?>
-<?include Contraceptives\Contraceptives.DES ?>
 <?include Digoxin\Digoxin.DES ?>
 <?include Furosemide\Furosemide.DES ?>
 <?include Midodrine\Midodrine.DES ?>
@@ -38,7 +37,6 @@ By : University Of Mississippi Medical Center
   <call> Acetazolamide.Parms </call>
   <call> Amlodipine.Parms </call>
   <call> Chlorothiazide.Parms </call>
-  <call> Contraceptives.Parms </call>
   <call> Digoxin.Parms </call>
   <call> Furosemide.Parms </call>
   <call> Ethanol.Parms </call>
@@ -60,7 +58,6 @@ By : University Of Mississippi Medical Center
   <call> Acetazolamide.CalcConc </call>
   <call> Amlodipine.CalcConc </call>
   <call> Chlorothiazide.CalcConc </call>
-  <call> Contraceptives.CalcConc </call>
   <call> Digoxin.CalcConc </call>
   <call> Furosemide.CalcConc </call>
   <call> Ethanol.CalcConc </call>
@@ -84,7 +81,6 @@ By : University Of Mississippi Medical Center
   <call> Acetazolamide.Dervs </call>
   <call> Amlodipine.Dervs </call>
   <call> Chlorothiazide.Dervs </call>
-  <call> Contraceptives.Dervs </call>
   <call> Digoxin.Dervs </call>
   <call> Furosemide.Dervs </call>
   <call> Ethanol.Dervs </call>
@@ -109,7 +105,7 @@ By : University Of Mississippi Medical Center
   <call> Amlodipine.Wrapup </call>
   <call> Chlorothiazide.Wrapup </call>
   <call> Digoxin.Wrapup </call>
-  <call> Ethanol.Wrapup </call>
+   <call> Ethanol.Wrapup </call>
   <call> Midodrine.Wrapup </call>
   <call> Lisinopril.Wrapup </call>
   <call> Spironolactone.Wrapup </call>
@@ -117,7 +113,6 @@ By : University Of Mississippi Medical Center
   <call> Phenylephrine.Wrapup </call>
   <call> Reserpine.Wrapup </call>
   <call> Warfarin.Wrapup </call>
-  <call> Morphine.Wrapup </call>
 
 </block>
 

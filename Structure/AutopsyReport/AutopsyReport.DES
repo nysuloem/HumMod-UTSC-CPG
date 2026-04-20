@@ -15,21 +15,20 @@ By : University Of Mississippi Medical Center
 
 <definitions>
 
-    <block><name> Calc </name>
+<block><name> Calc </name>
 
-    <if>
-    <test> NOT Brain-Function.IsReallyDead </test>
-    <true><exitblock/></true>
-    </if>
+<if>
+<test> NOT Brain-Function.IsReallyDead </test>
+<true><exitblock/></true>
+</if>
 
 
-    <call> Autopsy-Examination.Calc </call>
-    <call> Autopsy-Chemistry.Calc </call>
+<call> Autopsy-Examination.Calc </call>
+<call> Autopsy-Chemistry.Calc </call>
 
-    </block>
+</block>
 
 </definitions>
-
 </structure>
 
 End

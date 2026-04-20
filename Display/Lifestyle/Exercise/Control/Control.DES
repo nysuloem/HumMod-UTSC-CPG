@@ -7,7 +7,7 @@ Copyright : 2008-2010
 By : University of Mississippi Medical Center
 Schema : DES V1.0
 
-<panel><name> LifestyleExercise </name>
+<panel><name> ExerciseControl </name>
 
 <showbitmap>
   <row> 0.3 </row>
@@ -18,7 +18,7 @@ Schema : DES V1.0
 <label>
   <row> 0.3 </row>
   <col> 4.5 </col>
-  <text> Exercise </text>
+  <text> Exercise - Control </text>
 </label>
 
 <showclock>
@@ -34,7 +34,7 @@ Schema : DES V1.0
 <?path Display\Lifestyle\Exercise\Control\ ?>
 
 <?include Status.DES ?>
-<!-- <?include Metabolism.DES ?>-->
+<?include Metabolism.DES ?>
 <?include Motivation.DES ?>
 
 </panel>

@@ -19,8 +19,6 @@ Schema : 2005.0
 
 <?include LiverMetabolism_Insulin.DES ?>
 
-<?include LiverMetabolism-Enzymes.DES ?> 
-
 <structure><name> LiverMetabolism </name>
 
 <definitions>
@@ -37,11 +35,9 @@ Schema : 2005.0
   <call> LiverMetabolism_AminoAcids.Dervs </call>
   <call> LiverMetabolism_Glucose.Dervs </call>
   <call> LiverMetabolism_Insulin.Dervs </call>
-  <call> LiverMetabolism-Enzymes.Dervs </call>
 </block>
 
 </definitions>
-
 </structure>
 
 End

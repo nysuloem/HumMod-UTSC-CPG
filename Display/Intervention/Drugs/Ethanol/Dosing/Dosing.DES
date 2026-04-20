@@ -33,7 +33,6 @@ By : Tiffany Bishun
 <?include SingleDoseOral.DES ?> 
 <?include DailyDoseOral.DES ?>
 <?include BloodAlcConc.DES ?>
-<?include DrinkSelector.DES ?>
 <!--<?include MethanolDose.DES ?>-->
 
 </panel>

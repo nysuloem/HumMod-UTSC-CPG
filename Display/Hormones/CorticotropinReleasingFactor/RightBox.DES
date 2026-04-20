@@ -72,6 +72,23 @@ By : Tom Coleman
   <curvename> StressEffect </curvename>
 </showcurve>
 
+<maplist>
+  <name> Stress </name>
+  <map><val> 0 </val><img> None </img></map>
+  <map><val> 1 </val><img> Low </img></map>
+  <map><val> 2 </val><img> Normal </img></map>
+  <map><val> 3 </val><img> High </img></map>
+  <map><val> 4 </val><img> Very High </img></map>
+  <map><val> 5 </val><img> Extreme </img></map>
+</maplist>
+
+<slidebar>
+  <row> 23.4 </row><col> 1.0 </col>
+  <name> Stress </name>
+  <listname> Stress </listname>
+  <label> Stress </label>
+</slidebar>
+
 <showvalue>
    <row> 25.0 </row><col> 1 </col>
    <name> [Cortisol]Effect </name>

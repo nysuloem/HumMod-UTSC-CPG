@@ -13,7 +13,6 @@ By : University of Mississippi Medical Center
 <var><name> Carbo_mG/Min </name></var>
 <var><name> Fat_mG/Min </name></var>
 <var><name> Protein_mG/Min </name></var>
-<var><name> Fiber_mG/Min </name></var>
 
 <var><name> Total_mG/Min </name></var>
 <var><name> Total_G/Min </name></var>
@@ -25,7 +24,6 @@ By : University of Mississippi Medical Center
 <var><name> Carbo_Cal/Min </name></var>
 <var><name> Fat_Cal/Min </name></var>
 <var><name> Protein_Cal/Min </name></var>
-<var><name> Fiber_Cal/Min </name></var>
 
 <var><name> Total_Cal/Min </name></var>
 <var><name> Total_kCal/Day </name></var>
@@ -42,12 +40,10 @@ By : University of Mississippi Medical Center
   <def><name> Carbo_mG/Min </name><val> 0.0 </val></def>
   <def><name> Fat_mG/Min </name><val> 0.0 </val></def>
   <def><name> Protein_mG/Min </name><val> 0.0 </val></def>
-  <def><name> Fiber_mG/Min </name><val> 0.0 </val></def>
 
   <call> DailyCalories </call>
 
   <exitblock/>  
-
 </true>
 </if>
 
@@ -94,16 +90,6 @@ By : University of Mississippi Medical Center
   </val>
 </def>
 
-<def>
-  <name> Fiber_mG/Min </name>
-  <val>
-      1000.0
-    * DietFeeding.Fraction
-    * GILumenH2O.Fiber
-    * Intake(xGoal)
-  </val>
-</def>
-
 <call> DailyCalories </call>
 
 </block>
@@ -112,7 +98,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Total_mG/Min </name>
-  <val> Carbo_mG/Min + Fat_mG/Min + Protein_mG/Min + Fiber_mG/Min </val>
+  <val> Carbo_mG/Min + Fat_mG/Min + Protein_mG/Min </val>
 </def>
 
 <def>
@@ -143,8 +129,6 @@ By : University of Mississippi Medical Center
     * Metabolism-Tools.Protein(Cal/mG)
   </val>
 </def>
-
-<!-- We are so far assuming that fiber cannot be digested and, therefore, has no caloric content -->
 
 <def>
   <name> Total_Cal/Min </name>

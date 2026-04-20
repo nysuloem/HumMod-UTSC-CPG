@@ -106,7 +106,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Photosynthesis </name>
-  <val> 0.25 * Light.LuxActual / Context-Ethnicity.SkinMelanin </val>
+  <val> 2.5 * Sunlight </val>
 </def>
 
 <def>
@@ -131,7 +131,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Hydroxylation </name>
-  <val> [25-H]Effect * K * Mass * ( Liver-Metabolism.TotalCalsUsed / 200 ) </val>
+  <val> [25-H]Effect * K * Mass </val>
 </def>
 
 <def>
@@ -152,7 +152,6 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
-
 </structure>
 
 End
