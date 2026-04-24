@@ -1,113 +1,403 @@
-<?path Structure\Uterus\Pregnancy\Fetus\ ?>
+<!--NEW VERSION -->
+<!-- ========================================================= -->
+<!--  FETUS MODULE (STRUCTURE-ONLY)                            -->
+<!--  This file does NOT compute gestational age.              -->
+<!--                                                          -->
+<!--  Gestational age is computed in Pregnancy-Occurence.DES   -->
+<!--  Block: GestationWeeks                                   -->
+<!--  Variable: Pregnancy-Occurence.PregnancyWeek              -->
+<!--                                                          -->
+<!--  This file references that value directly.                -->
+<!-- ========================================================= -->
 
-<?include Fetus-Size.DES ?>
-<?include Fetus-Metabolism.DES ?>
-<?include Fetus-Fuel.DES ?>
 
-<structure><name> Fetus </name>
+<!-- ========================================================= -->
+<!--  FETAL GROWTH MODEL (DIFFEQ / MONOTONIC)                 -->
+<!--                                                           -->
+<!--  - Computes ideal logistic growth curve                  -->
+<!--  - Modifies growth based on placental O2 delivery        -->
+<!--  - Integrates fetal weight as a state variable           -->
+<!--  - Weight can NEVER decrease (monotonic growth)          -->
+<!-- ========================================================= -->
 
-<variables>
+<structure>
 
-<var><name> Timestamp </name><val> UNDEFINED </val></var>
+  <name> FetalGrowth-Model </name>
 
-<parm><name> AnnouncePregnancy </name><val> FALSE </val></parm>
-<var><name> FertilizationTime </name><val> UNDEFINED </val></var>
-<var><name> PregnantQ </name><val> FALSE </val></var>
+   <variables>
 
-<timervar><name> FertilityWindow </name></timervar>
-<var><name> PregnancyTime </name><val> 0 </val></var>
-<var><name> EmbryonicAge </name><val> 0 </val></var>
-<var><name> GestationalAge </name><val> 0 </val></var>
+    <var><name> FetalWeight </name><val> 0 </val></var>
 
-<var><name> Positive(+) </name><val> UNDEFINED </val></var>
-<var><name> Negative(-)</name><val> UNDEFINED </val></var>
+    <var><name> FetalWeight_Ideal </name><val> 0 </val></var>
+    <var><name> FetalWeight_Target </name><val> 0 </val></var>
 
-<timervar><name> Timer </name></timervar>
-<var><name> Fertile </name><val> FALSE </val></var>
-<var><name> P1 </name></var>
-<var><name> P2 </name></var>
-<var><name> Probability </name></var>
+    <parm><name> GrowthTau(min) </name><val> 10080 </val></parm>
+    <parm><name> O2Diffused_Baseline </name><val> 22.75 </val></parm>
 
-</variables>
+    <var><name> O2Ratio </name><val> 1 </val></var>
+    <var><name> O2GrowthEffect </name><val> 1 </val></var>
 
-<definitions>
+    <var><name> ScalingFactor </name><val> 0 </val></var>
+    <var><name> FetalMetabolicRate </name><val> 0 </val></var>
+    <var><name> FetalVolume_O2 </name><val> 0 </val></var>
 
-<block><name> Intercourse </name>
+  </variables>
 
-<def><name> Timestamp </name><val> System.X </val></def>
 
-<timer><name> Timer </name><val> 1440 </val><state> DOWN </state></timer>
+  <!-- ===================================================== -->
+  <!-- DIFFERENTIAL EQUATION FOR FETAL WEIGHT                -->
+  <!-- ===================================================== -->
 
-</block>
+    <equations>
 
-<block><name> Wrapup </name>
+    <diffeq>
+      <name> FetalWeight_State </name>
 
-<ontimedout><name> Timer </name>
-  <def><name> Timestamp </name><val> UNDEFINED </val></def>
-</ontimedout>
+      <integralname> FetalWeight_State </integralname>
 
-<if><test> Timestamp EQ UNDEFINED </test>
-  <true>
-    <def><name> P1 </name><val> 0 </val></def>
-  </true>
-  <false>
-    <def><name> P1 </name><val> 0.50 </val></def>
-  </false>
-</if>
+      <initialval> 0 </initialval>
 
-<ontimedout><name> FertilityWindow </name>
-  <def><name> Fertile </name><val> FALSE </val></def>
-</ontimedout>
+      <dervname> dWdt </dervname>
 
-<if><test> Fertile </test>
-  <true>
-    <def><name> P2 </name><val> 1.0 </val></def>
-  </true>
-  <false>
-    <def><name> P2 </name><val> 0.0 </val></def>
-  </false>
-</if>
+      <errorlim> 1 </errorlim>
+    </diffeq>
 
-<def><name> Probability </name><val> P1 * P2 </val></def>
+  </equations>
 
-<if><test> Probability GT 0.25 </test>
-  <true>
-    <def><name> FertilizationTime </name><val> System.X </val></def>
-  </true>
-</if>
 
-<if><test> FertilizationTime EQ UNDEFINED </test>
-  <true>
-    <def><name> PregnancyTime </name><val> 0 </val></def>
-  </true>
-  <false>
-    <def><name> PregnancyTime </name><val> System.X - FertilizationTime </val></def>
-    <def><name> EmbryonicAge </name><val> PregnancyTime / 1440 </val></def>
-    <def><name> GestationalAge </name><val> EmbryonicAge + 15 </val></def>
-    <def><name> PregnantQ </name><val> TRUE </val></def>
-    <andif>
-      <test> AnnouncePregnancy </test>
+  <definitions>
+
+    <!-- ===================================================== -->
+    <!-- STEP 1: Compute logistic ideal growth curve           -->
+    <!-- ===================================================== -->
+
+ <block>
+  <name> SeedAtPregnancyStart </name>
+
+  <onjustchanged>
+    <name> Pregnancy-Occurence.Fertilization </name>
+
+    <if><test> Pregnancy-Occurence.Fertilization </test>
       <true>
-        <page> Pregnant just now. </page>
-        <def><name> AnnouncePregnancy </name><val> FALSE </val></def>
+        <def>
+          <name> FetalWeight_State </name>
+          <val>
+            3500 / ( 1 + EXP ( -0.3 * ( Pregnancy-Occurence.PregnancyWeek - 20 ) ) )
+          </val>
+        </def>
       </true>
-    </andif>
-  </false>
-</if>
-<!--
-<if><test> BloodChemistry-Sample.[hCG] GT 25 </test>
-  <true>
-    <def><name> Positive(+) </name><val> TRUE </val></def>
-    <def><name> Negative(-) </name><val> FALSE </val></def>
-  </true>
-  <false>
-    <def><name> Negative(-) </name><val> TRUE </val></def>
-    <def><name> Positive(+) </name><val> FALSE </val></def>
-  </false>
-</if>
--->
+    </if>
+
+  </onjustchanged>
+
 </block>
 
-</definitions>
+
+    <block>
+      <name> GrowthTarget </name>
+
+      <if><test> Pregnancy-Occurence.Fertilization EQ UNDEFINED </test>
+        <true>
+          <def>
+            <name> FetalWeight_Ideal </name>
+            <val>
+              0
+            </val>
+          </def>
+        </true>
+        <false>
+          <def><name> FetalWeight_Ideal </name><val> 3500 / ( 1 + EXP ( -0.3 * ( Pregnancy-Occurence.PregnancyWeek - 20 ) ) ) </val></def>
+        </false>
+      </if>
+
+      <!-- Normalize current placental oxygen delivery, Baseline is clamped so it cannot be 0 -->
+      <def>
+        <name> O2Ratio </name>
+        <val> Placenta-Exchange.O2Diffused / ( O2Diffused_Baseline MAX 0.01 ) </val>
+      </def>
+
+      <!-- Clamp oxygen effect for stability -->
+      <!-- Minimum 0.5 (severe hypoxia) -->
+      <!-- Maximum 1.2 (mild hyperoxia boost) -->
+      <def>
+        <name> O2GrowthEffect </name>
+        <val> ( O2Ratio MAX 0.5 ) MIN 1.2 </val>
+      </def>
+
+      <!-- Final target weight -->
+      <def>
+        <name> FetalWeight_Target </name>
+        <val> FetalWeight_Ideal * O2GrowthEffect </val>
+      </def>
+
+    </block>
+
+
+    <!-- ===================================================== -->
+    <!-- STEP 2: Integrate weight toward target                -->
+    <!-- ===================================================== -->
+
+    <block>
+      <name> GrowthDerv </name>
+
+      <!-- Monotonic growth law:
+           (Target - State) / Tau
+           MAX 0 prevents negative growth -->
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+          <def>
+            <name> dWdt </name>
+            <val>
+              ( ( FetalWeight_Target - FetalWeight_State ) / GrowthTau(min) ) MAX 0
+            </val>
+          </def>
+        </true>
+        <false>
+          <def><name> dWdt </name><val> 0 </val></def>
+        </false>
+      </if>
+
+      <!-- Output state -->
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+          <def><name> FetalWeight </name><val> FetalWeight_State </val></def>
+        </true>
+        <false>
+          <def><name> FetalWeight </name><val> 0 </val></def>
+        </false>
+      </if>
+
+      <!-- Derived scaling variables -->
+      <def><name> ScalingFactor </name><val> FetalWeight / 3500 </val></def>
+      <def><name> FetalMetabolicRate </name><val> 8.0 * ScalingFactor </val></def>
+      <def><name> FetalVolume_O2 </name><val> 20 * ScalingFactor </val></def>
+
+    </block>
+
+  </definitions>
+
+</structure>
+
+
+<!-- ========================================================= -->
+<!--  PLACENTA EXCHANGE STRUCTURE                              -->
+<!--  Uses gestational week from Pregnancy-Occurence.DES        -->
+<!--  When not pregnant, flows and diffusion go to 0            -->
+<!-- ========================================================= -->
+
+ <!-- <structure>
+
+  <name> Placenta-Exchange </name>
+
+  <variables>
+
+ Maternal uterine blood flow (mL/min)
+    <var>
+      <name> UterineFlow </name>
+      <val> 0 </val>
+    </var>
+
+     Fetal umbilical blood flow (mL/min) 
+    <var>
+      <name> UmbilicalFlow </name>
+      <val> 0 </val>
+    </var>
+
+     Oxygen transferred to fetus (mL O2/min)
+    <var>
+      <name> O2Diffused </name>
+      <val> 0 </val>
+    </var>
+
+     Available maternal oxygen supply (mL O2/min or arbitrary cap)
+    <var>
+      <name> MaternalO2Supply </name>
+      <val> 100 </val>
+    </var>
+
+  </variables>
+
+  <definitions>
+
+    <block>
+      <name> Hemodynamics </name>
+
+      
+         If not pregnant: flows should be zero.
+        If pregnant: uterine flow rises with gestational week.
+
+        500 baseline + 20 per week is a placeholder relationship.
+        You can later replace this with Uterus-Flow.DES or a literature curve.
+        add (uterine flow to the urine in hummod itself, uterus-flow)
+      
+
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+
+          <def>
+            <name> UterineFlow </name>
+            <val>
+              500 + 20 * Pregnancy-Occurence.PregnancyWeek
+            </val>
+          </def>
+
+           Umbilical flow is assumed to be a fraction of uterine flow 
+          <def>
+            <name> UmbilicalFlow </name>
+            <val> 0.8 * UterineFlow </val>
+          </def>
+
+        </true>
+
+        <false>
+          <def><name> UterineFlow </name><val> 0 </val></def>
+          <def><name> UmbilicalFlow </name><val> 0 </val></def>
+        </false>
+      </if>
+
+    </block>
+
+    <block>
+      <name> O2Diffusion </name>
+
+      
+        Oxygen transfer is limited by:
+          (1) maternal supply cap
+          (2) flow-limited diffusion term
+
+        UmbilicalFlow * 0.05 is a placeholder extraction/diffusion efficiency.
+
+        MIN ( Supply , FlowTerm ) prevents extracting more O2 than available.
+      
+
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+          <def>
+            <name> O2Diffused </name>
+            <val>
+              MaternalO2Supply MIN ( UmbilicalFlow * 0.05 )
+            </val>
+          </def>
+        </true>
+        <false>
+          <def><name> O2Diffused </name><val> 0 </val></def>
+        </false>
+      </if>
+
+    </block>
+
+  </definitions>
+
+</structure> 
+-->
+<structure>
+
+  <name> Placenta-Exchange </name>
+
+  <variables>
+
+    <var><name> UterineFlow </name><val> 0 </val></var>
+    <var><name> UmbilicalFlow </name><val> 0 </val></var>
+    <var><name> O2Diffused </name><val> 0 </val></var>
+    <var><name> MaternalO2Supply </name><val> 0 </val></var>
+
+    <!-- Modern literature-based constants -->
+    <constant><name> UTERINE_FLOW_PER_KG </name><val> 200 </val></constant>
+    <constant><name> UMBILICAL_FLOW_PER_KG </name><val> 130 </val></constant>
+    <constant><name> FETAL_O2_UPTAKE_PER_KG </name><val> 6.5 </val></constant>
+    <constant><name> PLACENTA_FRACTION </name><val> 0.35 </val></constant>
+    <constant><name> O2_EXTRACT_PER_ML </name><val> 0.048 </val></constant>
+
+  </variables>
+
+  <definitions>
+
+    <block>
+      <name> Hemodynamics </name>
+
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+
+          <def>
+            <name> UterineFlow </name>
+            <val>
+              UTERINE_FLOW_PER_KG * ( FetalGrowth-Model.FetalWeight_Ideal / 1000 )
+            </val>
+          </def>
+
+          <def>
+            <name> UmbilicalFlow </name>
+            <val>
+              UMBILICAL_FLOW_PER_KG * ( FetalGrowth-Model.FetalWeight_Ideal / 1000 )
+            </val>
+          </def>
+
+        </true>
+        <false>
+          <def><name> UterineFlow </name><val> 0 </val></def>
+          <def><name> UmbilicalFlow </name><val> 0 </val></def>
+        </false>
+      </if>
+
+    </block>
+
+    <block>
+      <name> O2Diffusion </name>
+
+      <if><test> Pregnancy-Occurence.Fertilization </test>
+        <true>
+
+          <!-- Total uterine O2 supply -->
+          <def>
+            <name> MaternalO2Supply </name>
+            <val>
+              ( FETAL_O2_UPTAKE_PER_KG * ( FetalGrowth-Model.FetalWeight_Ideal / 1000 ) )
+              / ( 1 - PLACENTA_FRACTION )
+            </val>
+          </def>
+
+          <!-- Fetal O2 delivery -->
+          <def>
+            <name> O2Diffused </name>
+            <val>
+              ( UmbilicalFlow * O2_EXTRACT_PER_ML )
+              MIN
+              ( MaternalO2Supply * ( 1 - PLACENTA_FRACTION ) ) * 10
+              <!-- times by 100 to be visible on graph only (without its too small to be visible on graph)-->
+            </val>
+          </def>
+
+        </true>
+        <false>
+          <def><name> MaternalO2Supply </name><val> 0 </val></def>
+          <def><name> O2Diffused </name><val> 0 </val></def>
+        </false>
+      </if>
+
+    </block>
+
+  </definitions>
+
+</structure>
+
+
+<structure>
+
+  <name> Fetus </name>
+
+  <definitions>
+
+    <block>
+      <name> Dervs </name>
+
+      <call> Placenta-Exchange.Hemodynamics </call>
+      <call> Placenta-Exchange.O2Diffusion </call>
+      <call> FetalGrowth-Model.SeedAtPregnancyStart </call>
+      <call> FetalGrowth-Model.GrowthTarget </call>
+      <call> FetalGrowth-Model.GrowthDerv </call>
+
+    </block>
+
+  </definitions>
 
 </structure>

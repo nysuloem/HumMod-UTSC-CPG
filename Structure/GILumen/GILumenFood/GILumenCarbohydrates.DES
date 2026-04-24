@@ -10,22 +10,20 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-  <var><name> Intake </name></var>
-  <var><name> IntakeDiet </name></var>
-  <var><name> IntakeLoading </name></var>
+<var><name> Intake </name></var>
+<var><name> IntakeDiet </name></var>
+<var><name> IntakeLoading </name></var>
 
-  <var><name> Absorption </name></var>
+<var><name> Absorption </name></var>
 
-  <var><name> BasicAbsorption </name></var>
-  <parm><name> Transporter </name><val> 1.0 </val></parm>
+<var><name> BasicAbsorption </name></var>
+<parm><name> Transporter </name><val> 1.0 </val></parm>
 
-  <var>
-    <name> PlasmaFlowEffect </name>
-  </var>
+<var>
+  <name> PlasmaFlowEffect </name>
+</var>
 
-  <var><name> [Carbo] </name></var>
-
-  <parm><name> Perm </name><val> 10 </val></parm>
+<var><name> [Carbo] </name></var>
 
 </variables>
 
@@ -67,14 +65,22 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 
-<!-- This needs to be the intestine basically --> 
+<def>
+  <name> IntakeDiet </name>
+  <val> DietIntakeNutrition.Carbo_mG/Min </val>
+</def>
+
+<def>
+  <name> IntakeLoading </name>
+  <val> OralH2OGlucoseLoad.GlucoseRate + OGTT.Loss</val>
+</def>
 
 <def>
   <name> Intake </name>
-  <val> Stomach.CarboOutflowRate </val>
+  <val> IntakeDiet + IntakeLoading </val>
 </def>
 
-<!-- <def>
+<def>
   <name> BasicAbsorption </name>
   <val> BasicAbsorption [ Mass ] </val>
 </def>
@@ -91,9 +97,7 @@ By : University of Mississippi Medical Center
      * PlasmaFlowEffect
      * BasicAbsorption
    </val>
-</def> -->
-
-<def><name> Absorption </name><val> Mass * Perm </val></def>
+</def>
 
 <def>
   <name> Change </name>
@@ -103,7 +107,6 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
-
 </structure>
 
 End

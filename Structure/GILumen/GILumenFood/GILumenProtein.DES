@@ -11,45 +11,44 @@ Schema : DES V1.0
 
 <variables>
 
-  <var><name> Intake </name></var>
-  <var><name> Absorption </name></var>
+<var><name> Intake </name></var>
+<var><name> Absorption </name></var>
 
-  <var><name> [Protein] </name></var>
+<var><name> [Protein] </name></var>
 
-  <parm><name> Perm </name><val> 0.9 </val></parm>
+<parm><name> Perm </name><val> 0.05 </val></parm>
 
 </variables>
 
 <equations>
 
-  <diffeq>
-    <name> Mass </name>
-    <integralname> Mass </integralname>
-    <initialval> 1600.0 </initialval>
-    <dervname> Change </dervname>
-    <errorlim> 16.0 </errorlim>
-  </diffeq>
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 1600.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 16.0 </errorlim>
+</diffeq>
 
 </equations>
 
 <definitions>
 
-  <block><name> Conc </name>
+<block><name> Conc </name>
 
-    <def><name> [Protein] </name><val> Mass / GILumenH2O.Mass </val></def>
+<def><name> [Protein] </name><val> Mass / GILumenH2O.Mass </val></def>
 
-  </block>
+</block>
 
-  <block><name> Dervs </name>
+<block><name> Dervs </name>
 
-    <def><name> Intake </name><val> Stomach.ProteinOutflowRate </val></def>
-    <def><name> Absorption </name><val> Mass * Perm </val></def>
-    <def><name> Change </name><val> Intake - Absorption </val></def>
+<def><name> Intake </name><val> DietIntakeNutrition.Protein_mG/Min </val></def>
+<def><name> Absorption </name><val> Mass * Perm </val></def>
+<def><name> Change </name><val> Intake - Absorption </val></def>
 
-  </block>
+</block>
 
 </definitions>
-
 </structure>
 
 End

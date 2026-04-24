@@ -13,16 +13,12 @@
     <parm><name> ReflexThreshold </name><val> 5.0 </val></parm>
 
     <parm><name>AutoDefecationSwitch</name><val> 0 </val></parm>
-    <var><name> MustVoidVolume</name><val> 150 </val></var>
-    <var><name> MustVoid </name><val> FALSE </val></var>
+    <parm><name>AutoDefecationVolume</name><val> 150 </val></parm>
 
     <var><name> RectalPressure </name></var>
     <var><name> DefecationReflex </name><val> 0 </val></var>
     <var><name> FecalVolume </name><val> 0 </val></var>
     <var><name> TotalFecalVolume </name><val> 0 </val></var>
-    <var><name> Number </name><val> 0 </val></var>
-
-    <var><name> TimeLastPoop </name><val> UNDEFINED </val></var>
 
 </variables>
 
@@ -31,7 +27,7 @@
     <diffeq>
       <name> RectalVolume </name>
       <integralname> RectalVolume </integralname>
-      <initialval> 0 </initialval>
+      <initialval> 0.0 </initialval>
       <dervname> dRectalVolume/dt </dervname>
       <errorlim> 10 </errorlim>
     </diffeq>
@@ -42,65 +38,50 @@
 
   <block><name> Dervs </name>
 
+    <conditional>
+      <name> DefecationReflex </name>
+        <test> RectalVolume GT AutoDefecationVolume </test>
+        <true> 1 </true>
+        <false> 0 </false>
+    </conditional>
+      
     <def>
       <name> dRectalVolume/dt </name>
-      <val> GILumenCarbohydrates.Change </val>  
+      <val> Stomach.DietOutflowRate + Stomach.WaterOutflowRate </val>
     </def> 
 
-  </block>
-
-  <block><name> TestVolume </name>
-
-    <conditional>
-      <name> MustVoid </name>
-      <test> RectalVolume GE MustVoidVolume </test>
-      <true> TRUE </true>
-      <false> FALSE </false>
-    </conditional>
-
-  </block>
-
-  <block><name> Void </name>
-
-    <def><name> FecalVolume </name>
-      <val> RectalVolume </val>
+    <def>
+      <name> RectalPressure </name>
+      <val> VolumeToPressure * RectalVolume </val>
     </def>
 
-    <def><name> TotalFecalVolume </name>
-      <val> TotalFecalVolume + FecalVolume </val>
-    </def>
-
-    <def><name> TimeLastPoop </name>
-      <val> System.X </val>
-    </def>
-
-    <def><name> Number </name> 
-      <val> Number + 1 </val>
-    </def>
-
-    <def><name> RectalVolume </name>
-      <val> 0 </val>
-    </def>
+    <if>
+      <test> DefecationReflex EQ 1 </test>
+      <true> 
+        <def>
+          <name> FecalVolume </name>
+            <val> RectalVolume </val>
+        </def>
+        <def>
+          <name> TotalFecalVolume </name>
+            <val> TotalFecalVolume + FecalVolume </val>
+        </def>
+        <def>
+          <name> RectalVolume </name>
+          <val> 0 </val>
+        </def>
+      </true>
+    </if>
 
   </block>
 
   <block><name> Wrapup </name>
-
-    <call> TestVolume </call>
-     
-     <if><test> Rectum.MustVoid </test>
-      <true>
-        <call> Void </call>
-      </true>
-    </if>
-
-    <if>
+     <!-- <if>
         <test> RectalVolume LT 0 </test>
         <true>
           <def><name> RectalVolume </name><val> 0 </val></def>
         </true>
-      </if>
-
+      </if>-->
   </block>
 
 </definitions>

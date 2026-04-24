@@ -41,7 +41,6 @@
 <diffeq>
   <name> PCA </name>
   <integralname> PCA </integralname>
-  <initialval> 1 </initialval>
   <dervname> Change </dervname>
   <errorlim> 0.1 </errorlim>
 </diffeq>
@@ -51,7 +50,12 @@
 <definitions>
 
 <block><name> Init </name>
-<!-- This block is useless now because we defined the initial value directly in the diffeq -->
+
+<def>
+  <name> PCA </name>
+  <val> InitialActivity </val>
+</def>
+
 </block>
 
 

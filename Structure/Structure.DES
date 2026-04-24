@@ -183,6 +183,10 @@ By : University of Mississippi Medical Center
 
 <block><name> Context </name>
   <call> Context.Calc </call>
+  <call> Pregnancy-Occurence.GestationWeeks </call>
+  <call> Placenta-Exchange.Hemodynamics </call>
+  <call> Placenta-Exchange.O2Diffusion </call>
+  <call> FetalGrowth-Model.GrowthTarget </call>
   <call> SexDrive.Init </call>
   <call> Hydrostatics.Context </call>
 </block>
@@ -836,6 +840,7 @@ By : University of Mississippi Medical Center
   <call> Uterus-Menstruation.Dervs </call>
   <call> Stomach.Dervs </call>
   <call> Rectum.Dervs </call>
+  <call> FetalGrowth-Model.GrowthDerv </call>
   
 </block>
 

@@ -90,7 +90,6 @@ By : University of Mississippi Medical Center
 <?include Size-AminoAcid.DES ?>
 <?include Size-ANP.DES ?>
 <?include Size-Bladder.DES ?>
-<?include Size-StomachVolume.DES ?>
 <?include Size-BodySize.DES ?>
 <?include Size-Ca.DES ?>
 <?include Size-Calcitonin.DES ?>
@@ -232,7 +231,6 @@ By : University of Mississippi Medical Center
     <call> Size-AminoAcid.Calc </call>
     <call> Size-ANP.Calc </call>
     <call> Size-Bladder.Calc </call>
-    <call> Size-StomachVolume.Calc </call>
     <call> Size-Ca.Calc </call>
     <call> Size-Calcitonin.Calc </call>
     <call> Size-Cortisol.Calc </call>

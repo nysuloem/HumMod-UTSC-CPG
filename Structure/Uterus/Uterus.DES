@@ -31,5 +31,8 @@ Schema : DES V1.0
 <?path Structure\Uterus\Pregnancy\ ?>
 <?include Pregnancy.DES ?>
 
+<?path Structure\Uterus\Pregnancy\Fetus ?>
+<?include Fetus.DES ?>
+
 <?path Structure\Uterus\Endometrium ?>
 <?include Endometrium.DES ?>

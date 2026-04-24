@@ -1,4 +1,4 @@
-<structure><name> Fetus-Metabolism </name>
+<!--<structure><name> Fetus-Metabolism </name>
 
 <variables>
 
@@ -31,8 +31,8 @@
   <name> FetalCals </name>
   <val> 
       NormalFetalCals 
-    * 1 <!-- Thyroid.Effect-->
-    * 1 <!-- HeatMetabolism.Core -->
+    * Thyroid.Effect
+    * HeatMetabolism.Core
   </val>
 </def>
 
@@ -50,4 +50,4 @@
 
 </definitions>
 
-</structure>
+</structure> -->

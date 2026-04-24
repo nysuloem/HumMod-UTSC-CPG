@@ -20,6 +20,7 @@ Schema : DES V1.0
 <?include Menstruation\Menstruation.DES ?>
 <?include Nerves\Nerves.DES ?>
 <?include Pregnancy\Pregnancy.DES ?>
+<?include Fetus\Fetus.DES ?>
 <?include Size\Size.DES ?>
 <?include Structure\Structure.DES ?>
 <?include Endometrium\Endometrium.DES ?>
