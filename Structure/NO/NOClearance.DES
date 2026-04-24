@@ -1,0 +1,38 @@
+HumMod / NitricOxideClearance
+
+Created : 21-Jun-06
+Revised : 2012-07-04
+Author : Tom Coleman
+Copyright : 2006-2012
+By : University Of Mississippi Medical Center
+
+<!-- I don't think this structure is needed anymore -->
+
+<structure><name> NOClearance </name>
+
+<variables>
+
+<var><name> RenalDegradation </name></var>
+<parm><name> K </name><val> 0.18 </val></parm>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+  
+  <call> GlomerulusFiltrate.Calc </call>
+
+  <def>
+    <name> RenalDegradation </name>
+    <val> K * NOPool.[NO--] * GlomerulusFiltrate.GFR </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+
+End

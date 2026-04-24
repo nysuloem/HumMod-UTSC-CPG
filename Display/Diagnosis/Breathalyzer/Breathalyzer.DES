@@ -1,0 +1,80 @@
+HumMod / Breathalyzer
+
+Created : 02-Apr-09
+Revised : Tiffany
+Author : Tom Coleman
+Copyright : 2008-2012
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<panel><name> Breathalyzer </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Breathalyzer </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Breathalyzer </text>
+</label>
+
+-----------------------------------------
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 28 </col>
+  <name> Clock </name>
+</showbitmap>
+
+<showclock>
+  <row> 0.3 </row><col> 31.5 </col>
+  <name> System.X </name>
+  <ampm/><secs/><days/>
+</showclock>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 9.0 </high>
+   <wide> 30.0 </wide>
+   <title> Breathalyzer </title>
+
+<structurename> Breathalyzer </structurename>
+
+<actionbutton>
+   <row> 1.4 </row><col> 1.0 </col>
+   <blockname> Blow </blockname>
+   <label> BlowNow </label>
+</actionbutton>
+
+<showvalue>
+   <row> 4.0 </row><col> 1.0 </col>
+   <name> Timestamp </name>
+   <format>
+     <timestamp/>
+     <fieldwidth> 16 </fieldwidth>
+   </format>
+   <label> Timestamp </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.0 </row><col> 1.0 </col>
+   <name> Breathalyzer.CalculatedBAC </name>
+   <format><decimal> 2 </decimal></format>
+   <label> BAC (g/dL) </label>
+</showvalue>
+
+<checkmark>
+   <row> 6.5 </row><col> 1.0 </col>
+   <name> OverLimit </name>
+   <label> Over Limit </label>
+</checkmark>
+
+</groupbox>
+
+</panel>
+
+End

@@ -1,0 +1,56 @@
+HumMod / NODrug
+
+Created : 15-Jul-13
+Revised : 
+Author : W Pruett
+Copyright : 2013-2013
+By : University Of Mississippi Medical Center
+
+<?path Structure\Drugs\NODrug\ ?>
+
+<?include NODrugLiver.DES ?>  <!-- Defines liver metabolism for NO -->
+<?include NODrugIV.DES ?>  <!-- Defines IV administration -->
+<?include NODrugIVBolus.DES ?>  <!-- Defines IV administration -->
+<?include NODrugInhaler.DES ?>  <!-- Defines inhalation method -->
+<?include NODrugLung.DES ?>  <!-- Defines lung metabolism/clearance -->
+<?include NODrugSL.DES ?> 
+<?include NODrugSpray.DES ?>
+<?include NTGPool.DES ?> <!-- amount of nitroglycerin coming in -->
+<?include NODrugPool.DES ?>  <!-- amount of broken down nitroglycerin having effects  -->
+<?include iNODrugPool.DES ?>
+
+<structure><name> NODrug </name> <!-- Defines NO drug structure in HumMod -->
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> NODrugSpray.Parms </call>  <!-- calls spray parameter settings -->
+  <call> iNODrugPool.Parms </call>
+  <call> NODrugPool.Parms </call>
+  <call> NODrugPool.NTGtoNO_Pathway </call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> NODrugPool.CalcConc </call>  <!-- calls systemic concentration calculation -->
+  <call> NODrugSL.CalcConc </call>  <!-- calls sublingual concentration calculation -->
+</block>
+
+<block><name> Dervs </name>
+  <call> NODrugIV.Dervs </call>  <!-- IV dose rate and elimination -->
+  <call> NODrugIVBolus.Dervs </call>
+  <call> NODrugLiver.Dervs </call>  <!-- Liver metabolism and clearance -->
+  <call> NODrugInhaler.Dervs </call>  <!-- Inhalation absorption kinetics -->
+  <call> NODrugLung.Dervs </call>  <!-- Lung clearance calculations -->
+  <call> NODrugSL.Dervs </call>  <!-- Sublingual administration absorption -->
+  <call> NTGPool.Dervs </call>
+  <call> NODrugPool.Dervs </call>  <!-- Overall pooling and redistribution -->
+  <call> iNODrugPool.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+   <call> NODrugSpray.Wrapup </call>
+</block>
+
+</definitions>
+
+</structure>

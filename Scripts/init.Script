@@ -1,0 +1,13 @@
+<loadics><filename> Lying.ICS </filename></loadics>
+
+<setvalue>
+  <var> HeatIVDrip.TempAmend </var>
+  <val> 15 </val>
+</setvalue>
+
+<setvalue>
+  <var> OralH2OGlucoseLoad.Glucose(%) </var>
+  <val> 0 </val>
+</setvalue>  
+
+

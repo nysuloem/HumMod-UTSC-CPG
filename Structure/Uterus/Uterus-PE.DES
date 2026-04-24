@@ -1,0 +1,180 @@
+HumMod / Uterus-PE
+
+<structure><name> Uterus-PE </name>
+
+<variables>
+
+<!-- for the family history switch. borrowed from insulin pump (diabetes) -->
+<parm>
+    <name> Switch </name>
+    <val> FALSE </val>
+</parm>
+<var>
+    <name> History </name>
+</var>
+
+<!-- RF = risk factor -->
+<var>
+    <name> RFOne </name>
+</var>
+<var>
+    <name> RFTwo </name>
+</var>
+<var>
+    <name> RFThree </name>
+</var>
+<var>
+    <name> RFFour </name>
+</var>
+<var>
+    <name> RFFive </name>
+</var>
+<var>
+    <name> RFSix </name>
+</var>
+<var>
+    <name> RFSeven </name>
+</var>
+
+
+<parm><name> Risk </name><val> 1 </val></parm>
+
+
+<var><name> RiskOutcome </name><val> 3 </val></var>
+<!-- <var><name> DiagOutcome </name><val> 3 </val></var> -->
+
+
+</variables>
+
+<definitions>
+
+<block><name> RiskCalc  </name>
+
+<!-- test for family history -->
+<conditional>
+    <name> History </name>
+    <test> Switch </test>
+    <true> 5.0 </true>
+    <false> 1.0 </false>
+  </conditional>
+
+
+<!-- test if pregnant -->
+<if>
+    <test> Pregnancy-Occurence.AnnouncePregnancy GE 0 </test>
+    <true> 
+    <def><name> RFOne </name><val> 1 </val></def>
+    </true>
+    <false>
+    <def><name> RFOne </name><val> 0 </val></def>
+    </false>
+</if>
+
+<!-- test if 20 weeks pregnant -->
+<if>
+    <test> Pregnancy-Occurence.PregnancyWeek GE 20 </test>
+    <true> 
+    <def><name> RFTwo </name><val> 10 </val></def>
+    </true>
+    <false>
+    <def><name> RFTwo </name><val> 1 </val></def>
+    </false>
+</if>
+
+<!-- test for obesity -->
+<if>
+    <test> ( Context-Adiposity.Index EQ 1 ) OR ( Context-Adiposity.Index EQ 2 ) OR ( Context-Adiposity.Index EQ 3 ) </test>
+    <true> 
+        <def><name> RFThree </name><val> 2 </val></def>
+        </true>
+        <false>
+        <def><name> RFThree </name><val> 1 </val></def>
+        </false>
+</if>
+
+<!-- test for maternal age -->
+<if>
+    <test> ( Context-Age.Index EQ 4 ) OR ( Context-Age. EQ 5 ) </test>
+    <true> 
+        <def><name> RFFour </name><val> 2 </val></def>
+    </true>
+    <false>
+        <def><name> RFFour </name><val> 1 </val></def>
+    </false>
+</if>
+
+<!-- test for shortness -->
+<if>
+    <test> Context-Height.Index EQ 0  </test>
+    <true> 
+        <def><name> RFFive </name><val> 2 </val></def>
+    </true>
+     <false>
+        <def><name> RFFive </name><val> 1 </val></def>
+     </false>
+</if>
+
+<!-- test for diabetes -->
+<if>
+    <test> InsulinPump.Switch2 EQ TRUE </test>
+    <true> 
+        <def><name> RFSix </name><val> 2 </val></def>
+    </true>
+    <false>
+        <def><name> RFSix </name><val> 1 </val></def>
+    </false>
+</if>
+
+<!-- test for BMI -->
+<if>
+    <test> BMI.BMI GE 26  </test>
+    <true> 
+        <def><name> RFSeven </name><val> 2 </val></def>
+    </true>
+    <false>
+        <def><name> RFSeven </name><val> 1 </val></def>
+    </false>
+</if>
+
+
+<def><name> Risk </name>
+<val> 
+   ( History + RFThree + RFFour + RFFive + RFSix + RFSeven ) * RFTwo * RFOne
+</val>
+</def>
+
+
+</block>
+
+<block><name> RiskOutcome </name>
+<testcase> 
+    <case><test> Risk GE 10 </test>
+      <def><name> RiskOutcome </name><val> 1 </val></def>
+    </case>
+    <case><test> Risk GE 5 </test>
+      <def><name> RiskOutcome </name><val> 2 </val></def>
+    </case>
+    <case><test> Risk LT 4 </test>
+      <def><name> RiskOutcome </name><val> 3 </val></def>
+    </case>
+  </testcase>
+</block>
+
+<!-- <block><name> Diagnosis </name></block>
+
+<testcase> 
+    <case><test> UrineAnalysis.Protein GE 3 AND SystemicArtys.SBP GE 160 OR SystemicArtys.DBP EQ 110  </test>
+      <def><name> DiagOutcome </name><val> 1 </val></def>
+    </case>
+    <case><test> Risk GE 5 </test>
+      <def><name> DiagOutcome </name><val> 2 </val></def>
+    </case>
+    <case><test> Risk LT 4 </test>
+      <def><name> DiagOutcome </name><val> 3 </val></def>
+    </case>
+  </testcase> -->
+
+</definitions>
+</structure>
+
+End

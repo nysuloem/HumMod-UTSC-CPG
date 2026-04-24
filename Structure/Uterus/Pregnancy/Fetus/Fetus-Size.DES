@@ -1,0 +1,85 @@
+<structure><name> Fetus-Size </name>
+
+<variables>
+
+<var><name> LiquidMass </name><val> 0 </val></var>
+<var><name> SolidMass </name><val> 0 </val></var>
+<var><name> H2OFract </name><val> 88.6 </val></var>
+<var><name> OtherFract </name><val> 2.5 </val></var>
+<var><name> ProteinMass </name><val> 0 </val></var>
+<var><name> LipidMass </name><val> 0 </val></var>
+<var><name> OtherMass </name><val> 0 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> FetalWeight </name>
+<integralname> FetalWeight </integralname>
+<initialval> 0 </initialval>
+<dervname> Change </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+<diffeq>
+<name> ProteinFract </name>
+<integralname> ProteinFract </integralname>
+<initialval> 8.8 </initialval>
+<dervname> dPFract </dervname>
+<errorlim> .05 </errorlim>
+</diffeq>
+
+
+<diffeq>
+<name> LipidFract </name>
+<integralname> LipidFract </integralname>
+<initialval> 0.1 </initialval>
+<dervname> dLFract </dervname>
+<errorlim> .05 </errorlim>	
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Calc </name>
+
+<def>
+  <name> Change </name>
+  <val> 1.52093 * ( ( ( Fetus.PregnancyTime / 10080 ) ^ 2 ) + 13.0281 ) / ( ( ( ( Fetus.PregnancyTime / 10080 ) - 353.279 ) ^ 2 ) + 375.494 ) * Fetus.PregnantQ </val>
+</def>
+
+<if><test> System.X LT 241920 </test>
+<true>
+<def><name> dPFract </name><val> 0 </val></def>
+<def><name> dLFract </name><val> 0 </val></def>
+</true>
+
+<false>
+<def><name> dPFract </name><val> 0.2105 / 10080 </val></def>
+<def><name> dLFract </name><val> 0.6922 / 10080 </val></def>
+</false>
+</if>
+
+<def><name> H2OFract </name><val> 100 - ProteinFract - LipidFract - OtherFract </val></def>
+
+<def><name> LiquidMass </name><val> ( H2OFract / 100 ) * FetalWeight </val></def>
+<def><name> SolidMass </name><val> FetalWeight - LiquidMass </val></def>
+<def><name> ProteinMass </name><val> ( ProteinFract / 100 ) * FetalWeight </val></def>
+<def><name> LipidMass </name><val> ( LipidFract / 100 ) * FetalWeight </val></def>
+<def><name> OtherMass </name><val> ( OtherFract / 100 ) * FetalWeight </val></def>
+
+</block>
+
+<block><name> NonPregnant </name>
+
+<def><name> Change </name><val> 0 </val></def>
+<def><name> dPFract </name><val> 0 </val></def>
+<def><name> dLFract </name><val> 0 </val></def>
+
+</block>
+
+</definitions>
+
+</structure>

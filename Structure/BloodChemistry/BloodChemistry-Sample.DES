@@ -1,0 +1,424 @@
+HumMod / BloodChemistry-Sample
+
+Created : 2012-11-01
+Revised : 2012-11-01
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University Of Mississippi Medical Center
+
+<structure><name> BloodChemistry-Sample </name>
+
+<variables>
+
+<var><name> Timestamp </name><val> UNDEFINED </val></var>
+
+<var><name> [Glucose] </name><val> UNDEFINED </val></var>
+<var><name> [FattyAcids] </name><val> UNDEFINED </val></var>
+<var><name> [Triglycerides] </name><val> UNDEFINED </val></var>
+<var><name> [AminoAcids] </name><val> UNDEFINED </val></var>
+<var><name> [Creatinine] </name><val> UNDEFINED </val></var>
+<var><name> [Urea] </name><val> UNDEFINED </val></var>
+<var><name> [BUN] </name><val> UNDEFINED </val></var>
+<var><name> [SID] </name><val> UNDEFINED </val></var>
+<var><name> pH </name><val> UNDEFINED </val></var>
+<var><name> [H+] </name><val> UNDEFINED </val></var>
+<var><name> [Protein] </name><val> UNDEFINED </val></var>
+<var><name> ColloidPressure </name><val> UNDEFINED </val></var>
+<var><name> Osmolarity </name><val> UNDEFINED </val></var>
+<var><name> Hematocrit(%) </name><val> UNDEFINED </val></var>
+<var><name> [Angiotensin] </name><val> UNDEFINED </val></var>
+<var><name> PlasmaReninActiviy </name><val> UNDEFINED </val></var>
+<var><name> [Aldosterone] </name><val> UNDEFINED </val></var>
+<var><name> [AntidiureticHormone] </name><val> UNDEFINED </val></var>
+<var><name> [ANP] </name><val> UNDEFINED </val></var>
+<var><name> [TotalT4/T3] </name><val> UNDEFINED </val></var>
+<var><name> [TSH] </name><val> UNDEFINED </val></var>
+<var><name> [Cortisol] </name><val> UNDEFINED </val></var>
+<var><name> [Norepineshrine] </name><val> UNDEFINED </val></var>
+<var><name> [Epinephrine] </name><val> UNDEFINED </val></var>
+<var><name> Cations </name><val> UNDEFINED </val></var>
+<var><name> [Na+] </name><val> UNDEFINED </val></var>
+<var><name> [K+] </name><val> UNDEFINED </val></var>
+<var><name> Anions </name><val> UNDEFINED </val></var>
+<var><name> StrongAnions </name><val> UNDEFINED </val></var>
+<var><name> [Cl-] </name><val> UNDEFINED </val></var>
+<var><name> [Lac-] </name><val> UNDEFINED </val></var>
+<var><name> [KA-] </name><val> UNDEFINED </val></var>
+<var><name> [SO4--] </name><val> UNDEFINED </val></var>
+<var><name> [PO4--] </name><val> UNDEFINED </val></var>
+<var><name> [Ca++] </name><val> UNDEFINED </val></var>
+<var><name> WeakAnions </name><val> UNDEFINED </val></var>
+<var><name> [HCO3-] </name><val> UNDEFINED </val></var>
+<var><name> [Protein-] </name><val> UNDEFINED </val></var>
+<var><name> AllButProtein </name><val> UNDEFINED </val></var>
+<var><name> HgbA1C </name><val> UNDEFINED </val></var>
+<var><name> [Ethanol] </name><val> UNDEFINED </val></var>
+<var><name> ALT </name><val> UNDEFINED </val></var>
+<var><name> Albumin </name><val> UNDEFINED </val></var>
+<var><name> Hemoglobin </name><val> UNDEFINED </val></var>
+<var><name> RBCNumber </name><val> UNDEFINED </val></var>
+
+<var><name> GlucoseCheckHI </name><val> FALSE </val></var>
+<var><name> GlucoseCheckLO </name><val> FALSE </val></var>
+<var><name> EthanolCheck </name><val> FALSE </val></var>
+<var><name> ALTCheck </name><val> FALSE </val></var>
+<var><name> AlbuminCheck </name><val> FALSE </val></var>
+<var><name> HemoglobinCheckHI </name><val> FALSE </val></var>
+<var><name> HemoglobinCheckLO </name><val> FALSE </val></var>
+<var><name> HematocritCheckHI </name><val> FALSE </val></var>
+<var><name> HematocritCheckLO </name><val> FALSE </val></var>
+<var><name> RBCNumberCheckHI </name><val> FALSE </val></var>
+<var><name> RBCNumberCheckLO </name><val> FALSE </val></var>
+<var><name> FattyAcidsCheckHI </name><val> FALSE </val></var>
+<var><name> FattyAcidsCheckLO </name><val> FALSE </val></var>
+<var><name> TriglycerideCheckHI </name><val> FALSE </val></var>
+<var><name> TriglycerideCheckLO </name><val> FALSE </val></var>
+<var><name> HgbA1CCheckHI </name><val> FALSE </val></var>
+<var><name> HgbA1CCheckLO </name><val> FALSE </val></var>
+<var><name> CreatinineCheckHI </name><val> FALSE </val></var>
+<var><name> CreatinineCheckLO </name><val> FALSE </val></var>
+<var><name> UreaCheckHI </name><val> FALSE </val></var>
+<var><name> UreaCheckLO </name><val> FALSE </val></var>
+<var><name> BUNCheckHI </name><val> FALSE </val></var>
+<var><name> BUNCheckLO </name><val> FALSE </val></var>
+<var><name> SodiumCheckHI </name><val> FALSE </val></var>
+<var><name> SodiumCheckLO </name><val> FALSE </val></var>
+<var><name> PotassiumCheckHI </name><val> FALSE </val></var>
+<var><name> PotassiumCheckLO </name><val> FALSE </val></var>
+<var><name> ChlorideCheckHI </name><val> FALSE </val></var>
+<var><name> ChlorideCheckLO </name><val> FALSE </val></var>
+<var><name> BicarbonateCheckHI </name><val> FALSE </val></var>
+<var><name> BicarbonateCheckLO </name><val> FALSE </val></var>
+<var><name> CalciumCheckHI </name><val> FALSE </val></var>
+<var><name> CalciumCheckLO </name><val> FALSE </val></var>
+<var><name> PhosphateCheckHI </name><val> FALSE </val></var>
+<var><name> PhosphateCheckLO </name><val> FALSE </val></var>
+<var><name> ProteinCheckHI </name><val> FALSE </val></var>
+<var><name> ProteinCheckLO </name><val> FALSE </val></var>
+<var><name> AminoAcidsCheckHI </name><val> FALSE </val></var>
+<var><name> AminoAcidsCheckLO </name><val> FALSE </val></var>
+<var><name> TSHCheckHI </name><val> FALSE </val></var>
+<var><name> TSHCheckLO </name><val> FALSE </val></var>
+<var><name> CortisolCheckHI </name><val> FALSE </val></var>
+<var><name> CortisolCheckLO </name><val> FALSE </val></var>
+
+</variables>
+
+<definitions>
+
+<block><name> GetSample </name>
+
+    <def><name> GlucoseCheckHI </name><val> FALSE </val></def>
+    <def><name> GlucoseCheckLO </name><val> FALSE </val></def>
+    <def><name> EthanolCheck </name><val> FALSE </val></def>
+    <def><name> ALTCheck </name><val> FALSE </val></def>
+    <def><name> AlbuminCheck </name><val> FALSE </val></def>
+    <def><name> HemoglobinCheckHI </name><val> FALSE </val></def>
+    <def><name> HemoglobinCheckLO </name><val> FALSE </val></def>
+    <def><name> HematocritCheckHI </name><val> FALSE </val></def>
+    <def><name> HematocritCheckLO </name><val> FALSE </val></def>
+    <def><name> RBCNumberCheckHI </name><val> FALSE </val></def>
+    <def><name> RBCNumberCheckLO </name><val> FALSE </val></def>
+    <def><name> FattyAcidsCheckHI </name><val> FALSE </val></def>
+    <def><name> FattyAcidsCheckLO </name><val> FALSE </val></def>
+    <def><name> TriglycerideCheckHI </name><val> FALSE </val></def>
+    <def><name> TriglycerideCheckLO </name><val> FALSE </val></def>
+    <def><name> HgbA1CCheckHI </name><val> FALSE </val></def>
+    <def><name> HgbA1CCheckLO </name><val> FALSE </val></def>
+    <def><name> CreatinineCheckHI </name><val> FALSE </val></def>
+    <def><name> CreatinineCheckLO </name><val> FALSE </val></def>
+    <def><name> UreaCheckHI </name><val> FALSE </val></def>
+    <def><name> UreaCheckLO </name><val> FALSE </val></def>
+    <def><name> BUNCheckHI </name><val> FALSE </val></def>
+    <def><name> BUNCheckLO </name><val> FALSE </val></def>
+    <def><name> SodiumCheckHI </name><val> FALSE </val></def>
+    <def><name> SodiumCheckLO </name><val> FALSE </val></def>
+    <def><name> PotassiumCheckHI </name><val> FALSE </val></def>
+    <def><name> PotassiumCheckLO </name><val> FALSE </val></def>
+    <def><name> ChlorideCheckHI </name><val> FALSE </val></def>
+    <def><name> ChlorideCheckLO </name><val> FALSE </val></def>
+    <def><name> BicarbonateCheckHI </name><val> FALSE </val></def>
+    <def><name> BicarbonateCheckLO </name><val> FALSE </val></def>
+    <def><name> CalciumCheckHI </name><val> FALSE </val></def>
+    <def><name> CalciumCheckLO </name><val> FALSE </val></def>
+    <def><name> PhosphateCheckHI </name><val> FALSE </val></def>
+    <def><name> PhosphateCheckLO </name><val> FALSE </val></def>
+    <def><name> ProteinCheckHI </name><val> FALSE </val></def>
+    <def><name> ProteinCheckLO </name><val> FALSE </val></def>
+    <def><name> AminoAcidsCheckHI </name><val> FALSE </val></def>
+    <def><name> AminoAcidsCheckLO </name><val> FALSE </val></def>
+    <def><name> TSHCheckHI </name><val> FALSE </val></def>
+    <def><name> TSHCheckLO </name><val> FALSE </val></def>
+    <def><name> CortisolCheckHI </name><val> FALSE </val></def>
+    <def><name> CortisolCheckLO </name><val> FALSE </val></def>
+
+    <def><name> Timestamp </name><val> System.X </val></def>
+
+    <def><name> [Glucose] </name><val> GlucosePool.[Glucose(mMol/L)] </val></def>
+    <def><name> [FattyAcids] </name><val> FAPool.[FA(mG/dL)] </val></def>
+    <def><name> [Triglycerides] </name><val> TriglyceridePool.[Triglyceride(mG/dL)] </val></def>
+    <def><name> [AminoAcids] </name><val> AAPool.[AA(mG/dL)] </val></def>
+    <def><name> [Creatinine] </name><val> CreatininePool.[Creatinine(mG/dL)] </val></def>
+    <def><name> [Urea] </name><val> UreaPool.[Urea(mG/dL)] </val></def>
+    <def><name> [BUN] </name><val> UreaPool.[BUN] </val></def>
+    <def><name> [SID] </name><val> BloodIons.[SID(mEq/L)] </val></def>
+    <def><name> pH </name><val> BloodPhValues.VeinsPh </val></def>
+    <def><name> [H+] </name><val> BloodPhValues.Veins[H+] </val></def>
+    <def><name> [Protein] </name><val> PlasmaProtein.[Protein(G/dL)] </val></def>
+    <def><name> ColloidPressure </name><val> PlasmaProtein.COP </val></def>
+    <def><name> Osmolarity </name><val> OsmBody.CellWall(mOsm/L) </val></def>
+    <def><name> Hematocrit(%) </name><val> BloodVol.Hct(%) </val></def>
+    <def><name> [Angiotensin] </name><val> A2Pool.[A2(pG/mL)] </val></def>
+    <def><name> PlasmaReninActiviy </name><val> ReninPool.[PRA] </val></def>
+    <def><name> [Aldosterone] </name><val> AldoPool.[Aldo(pMol/L)] </val></def>
+    <def><name> [AntidiureticHormone] </name><val> ADHPool.[ADH] </val></def>
+    <def><name> [ANP] </name><val> ANPPool.[ANP] </val></def>
+    <def><name> [TotalT4/T3] </name><val> ThyroidPool.[Total_T4-T3] </val></def>
+    <def><name> [TSH] </name><val> ThyroidTSH.[TSH] </val></def>
+    <def><name> [Cortisol] </name><val> Cortisol.[Conc(uG/dL)] </val></def>
+    <def><name> [Norepineshrine] </name><val> NEPool.[NE(pG/mL)] </val></def>
+    <def><name> [Epinephrine] </name><val> EpiPool.[Epi(pG/mL)] </val></def>
+    <def><name> Cations </name><val> BloodIons.Cations </val></def>
+    <def><name> [Na+] </name><val> NaPool.[Na+(mEq/L)] </val></def>
+    <def><name> [K+] </name><val> KPool.[K+(mEq/L)] </val></def>
+    <def><name> Anions </name><val> BloodIons.Anions </val></def>
+    <def><name> StrongAnions </name><val> BloodIons.StrongAnions </val></def>
+    <def><name> [Cl-] </name><val> ClPool.[Cl-(mEq/L)] </val></def>
+    <def><name> [Lac-] </name><val> LacPool.[Lac-(mEq/L)] </val></def>
+    <def><name> [KA-] </name><val> KAPool.[KA(mMol/L)] </val></def>
+    <def><name> [SO4--] </name><val> SO4Pool.[SO4--(mEq/L)] </val></def>
+    <def><name> [PO4--] </name><val> PO4Pool.[PO4--(mEq/L)] </val></def>
+    <def><name> [Ca++] </name><val> Ca.[Conc(mG/dL)] </val></def>
+    <def><name> WeakAnions </name><val> BloodIons.WeakAnions </val></def>
+    <def><name> [HCO3-] </name><val> CO2Veins.[HCO3(mEq/L)] </val></def>
+    <def><name> [Protein-] </name><val> BloodIons.Protein </val></def>
+    <def><name> AllButProtein </name><val> BloodIons.AnionsLessProtein </val></def>
+    <def><name> HgbA1C </name><val> HgbA1C.A1C </val></def>
+    <def><name> [Ethanol] </name><val> EthanolPool.[Ethanol] </val></def>
+    <def><name> ALT </name><val> LiverMetabolism-Enzymes.ALTBloodPool </val></def>
+    <def><name> Albumin </name><val> AlbuminPool.[Alb(G/dL)] </val></def>
+    <def><name> Hemoglobin </name><val> HgbConc.[Total] * 1000 </val></def>
+    <def><name> RBCNumber </name><val> RBCVol.Vol / 9e-11 / BloodVol.Vol(L) </val></def>
+
+    <conditional><name> GlucoseCheckHI </name>
+        <test> [Glucose] GT 6.1 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> GlucoseCheckLO </name>
+        <test> [Glucose] LT 3.9 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> EthanolCheck </name>
+        <test> [Ethanol] GT 0.08 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ALTCheck </name>
+        <test> ALT GT 40 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> AlbuminCheck </name>
+        <test> Albumin LT 3.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HemoglobinCheckHI </name>
+        <test> Hemoglobin GT 175 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HemoglobinCheckLO </name>
+        <test> Hemoglobin LT 120 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HematocritCheckHI </name>
+        <test> Hematocrit(%) GT 50 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HematocritCheckLO </name>
+        <test> Hematocrit(%) LT 35 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> RBCNumberCheckHI </name>
+        <test> RBCNumber GT 6e12 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> RBCNumberCheckLO </name>
+        <test> RBCNumber LT 4e12 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> FattyAcidsCheckHI </name>
+        <test> [FattyAcids] GT 25 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> FattyAcidsCheckLO </name>
+        <test> [FattyAcids] LT 8 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> TriglycerideCheckHI </name>
+        <test> [Triglycerides] GT 150 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> TriglycerideCheckLO </name>
+        <test> [Triglycerides] LT 50 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HgbA1CCheckHI </name>
+        <test> HgbA1C GT 5.7 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> HgbA1CCheckLO </name>
+        <test> HgbA1C LT 4.0 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CreatinineCheckHI </name>
+        <test> [Creatinine] GT 1.3 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CreatinineCheckLO </name>
+        <test> [Creatinine] LT 0.6 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> UreaCheckHI </name>
+        <test> [Urea] GT 45 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> UreaCheckLO </name>
+        <test> [Urea] LT 15 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> BUNCheckHI </name>
+        <test> [BUN] GT 21 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> BUNCheckLO </name>
+        <test> [BUN] LT 8 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> SodiumCheckHI </name>
+        <test> [Na+] GT 145 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> SodiumCheckLO </name>
+        <test> [Na+] LT 135 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> PotassiumCheckHI </name>
+        <test> [K+] GT 5.0 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> PotassiumCheckLO </name>
+        <test> [K+] LT 3.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ChlorideCheckHI </name>
+        <test> [Cl-] GT 105 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ChlorideCheckLO </name>
+        <test> [Cl-] LT 95 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> BicarbonateCheckHI </name>
+        <test> [HCO3-] GT 29 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> BicarbonateCheckLO </name>
+        <test> [HCO3-] LT 18 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CalciumCheckHI </name>
+        <test> [Ca++] GT 10.2 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CalciumCheckLO </name>
+        <test> [Ca++] LT 8.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> PhosphateCheckHI </name>
+        <test> [PO4--] GT 4.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> PhosphateCheckLO </name>
+        <test> [PO4--] LT 2.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ProteinCheckHI </name>
+        <test> [Protein] GT 8.3 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> ProteinCheckLO </name>
+        <test> [Protein] LT 6.0 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> AminoAcidsCheckHI </name>
+        <test> [AminoAcids] GT 65 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> AminoAcidsCheckLO </name>
+        <test> [AminoAcids] LT 35 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> TSHCheckHI </name>
+        <test> [TSH] GT 5.0 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> TSHCheckLO </name>
+        <test> [TSH] LT 0.5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CortisolCheckHI </name>
+        <test> [Cortisol] GT 25 </test>
+        <true> TRUE </true>
+    </conditional>
+
+    <conditional><name> CortisolCheckLO </name>
+        <test> [Cortisol] LT 5 </test>
+        <true> TRUE </true>
+    </conditional>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

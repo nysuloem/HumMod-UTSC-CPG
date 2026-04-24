@@ -1,0 +1,225 @@
+HumMod / Context-Adiposity
+
+Created : 2012-03-10
+Revised : 2012-06-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University of Mississippi Medical Center
+
+<structure><name> Context-Adiposity </name>
+
+<variables>
+
+<parm><name> Index </name><val> 1 </val></parm>
+<parm><name> PlusMinus </name><val> 0 </val></parm>
+
+<constant><name> MALE_UNDERWEIGHT   </name><val>  10.0 </val></constant>
+<constant><name> MALE_NORMAL        </name><val>  16.1 </val></constant>
+<constant><name> MALE_OVERWEIGHT    </name><val>  26.0 </val></constant>
+<constant><name> MALE_OBESE         </name><val>  44.0 </val></constant>
+<constant><name> MALE_MORBIDLYOBESE </name><val> 110.0 </val></constant>
+
+<constant><name> FEMALE_UNDERWEIGHT   </name><val>  14.0 </val></constant>
+<constant><name> FEMALE_NORMAL        </name><val>  17.6 </val></constant>19.8
+<constant><name> FEMALE_OVERWEIGHT    </name><val>  32.0 </val></constant>
+<constant><name> FEMALE_OBESE         </name><val>  46.0 </val></constant>
+<constant><name> FEMALE_MORBIDLYOBESE </name><val> 110.0 </val></constant>
+
+<var><name> NominalMass </name></var>
+<var><name> Mass </name></var>
+<var><name> Mass(kG) </name></var>
+
+<var><name> IsUnderweight   </name></var>
+<var><name> IsNormalWeight  </name></var>
+<var><name> IsOverweight    </name></var>
+<var><name> IsObese         </name></var>
+<var><name> IsMorbidlyObese </name></var>
+
+<var><name> Stochasm </name></var>
+<var><name> FatAdjust </name></var>
+<var><name> White </name></var>
+<var><name> Black </name></var>
+<var><name> Asian </name></var>
+<var><name> Hispanic </name></var>
+<var><name> EthnicFatAdjust </name></var>
+
+<normaldist>
+  <name> Normal </name>
+  <mean> 0 </mean>
+  <stddev> 25 </stddev>
+</normaldist>
+
+<whitenoise>
+  <name> Flat </name>
+  <lowerlim> -5 </lowerlim>
+  <upperlim> 5 </upperlim>
+</whitenoise>
+
+</variables>
+
+<functions>
+
+<curve><name> FatAdjustAge </name>
+<point><x> 0 </x><y> 0.02 </y><slope> 0.025 </slope></point>
+<point><x> 1 </x><y> 0.08 </y><slope>0.025</slope></point>
+<point><x> 5 </x><y> 0.12 </y><slope> 0.025 </slope></point>
+<point><x> 25 </x><y> 0.65 </y><slope>0.025</slope></point>
+<point><x> 70 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 100 </x><y> 0.60 </y><slope>0.025</slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name>EthnicityChange</name>
+
+  <def><name> Asian </name><val> 0.85 </val></def> 
+  <def><name> Black </name><val> 0.9 </val></def> 
+  <def><name> White </name><val> 1.00 </val></def>
+  <def><name> Hispanic </name><val> 0.95 </val></def>
+  <def><name> EthnicFatAdjust </name>
+    <val>
+      ( Context-Ethnicity.TrueAsian_Percentage / 100 * Asian ) 
+      + ( Context-Ethnicity.TrueBlack_Percentage / 100 * Black )
+      + ( Context-Ethnicity.TrueWhite_Percentage / 100 * White )
+      + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * Hispanic )
+    </val>
+  </def>
+
+  <if><test> EthnicFatAdjust EQ 0 </test>
+    <true>
+      <def><name> EthnicFatAdjust </name><val> 1.0 </val></def>
+    </true>
+  </if>
+
+</block>
+
+<block><name> Parms </name>
+
+  <onjustchanged><name> Index </name>
+  <call> Context.Calc </call>
+  </onjustchanged>
+
+  <onjustchanged><name> PlusMinus </name>
+  <call> Context.Calc </call>
+  </onjustchanged>
+
+</block>
+
+<block><name> Calc </name>
+
+  <def><name> IsUnderweight   </name><val> FALSE </val></def>
+  <def><name> IsNormalWeight  </name><val> FALSE </val></def>
+  <def><name> IsOverweight    </name><val> FALSE </val></def>
+  <def><name> IsObese         </name><val> FALSE </val></def>
+  <def><name> IsMorbidlyObese </name><val> FALSE </val></def>
+
+  <if><test> Context-Sex.IsFemale </test>
+    <true><call> CalcFemale </call></true>
+    <false><call> CalcMale </call></false>
+  </if>
+
+  <call> CalcStochasm </call>
+  <call> EthnicityChange </call>
+
+  <def><name>FatAdjust</name>
+  <val> FatAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
+  <def>
+    <name> Mass(kG) </name>
+    <val>
+        NominalMass
+      * ( 1.0 + ( Stochasm / 100 ) )
+      * FatAdjust
+      * EthnicFatAdjust
+    </val>
+  </def>
+
+  <def>
+    <name> Mass </name>
+    <val> 1000 * Mass(kG) </val>
+  </def>
+
+</block>
+
+<block><name> CalcMale </name>
+
+  <testcase>
+
+  <case><test> Index EQ 0 </test>
+  <def><name> NominalMass </name><val> MALE_UNDERWEIGHT </val></def>
+  <def><name> IsUnderweight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 1 </test>
+  <def><name> NominalMass </name><val> MALE_NORMAL </val></def>
+  <def><name> IsNormalWeight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 2 </test>
+  <def><name> NominalMass </name><val> MALE_OVERWEIGHT </val></def>
+  <def><name> IsOverweight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 3 </test>
+  <def><name> NominalMass </name><val> MALE_OBESE </val></def>
+  <def><name> IsObese </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 4 </test>
+  <def><name> NominalMass </name><val> MALE_MORBIDLYOBESE </val></def>
+  <def><name> IsMorbidlyObese </name><val> TRUE </val></def>
+  </case>
+
+  </testcase>
+
+</block>
+
+<block><name> CalcFemale </name>
+
+  <testcase>
+
+  <case><test> Index EQ 0 </test>
+  <def><name> NominalMass </name><val> FEMALE_UNDERWEIGHT </val></def>
+  <def><name> IsUnderweight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 1 </test>
+  <def><name> NominalMass </name><val> FEMALE_NORMAL </val></def>
+  <def><name> IsNormalWeight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 2 </test>
+  <def><name> NominalMass </name><val> FEMALE_OVERWEIGHT </val></def>
+  <def><name> IsOverweight </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 3 </test>
+  <def><name> NominalMass </name><val> FEMALE_OBESE </val></def>
+  <def><name> IsObese </name><val> TRUE </val></def>
+  </case>
+
+  <case><test> Index EQ 4 </test>
+  <def><name> NominalMass </name><val> FEMALE_MORBIDLYOBESE </val></def>
+  <def><name> IsMorbidlyObese </name><val> TRUE </val></def>
+  </case>
+
+  </testcase>
+
+</block>
+
+<block><name> CalcStochasm </name>
+
+  <def>
+    <name> Stochasm </name>
+    <val> Flat </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

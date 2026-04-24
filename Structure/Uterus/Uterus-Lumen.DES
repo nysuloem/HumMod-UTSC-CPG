@@ -1,0 +1,67 @@
+HumMod / Uterus-Lumen
+
+Created by Terry Yavorskyy
+
+<structure><name> Uterus-Lumen </name>
+
+<variables>
+
+  <var><name> BloodPool </name></var>
+  <var><name> PostureEffect </name></var>
+  <var><name> UterusContraction </name></var>
+  <var><name> PGEStimulation </name></var>
+
+</variables>
+
+<equations> 
+
+<!-- The diffeq below calculates the total blood expelled from the uterus -->
+<diffeq>
+  <name> MenstrualBloodExpulsed </name>
+  <integralname> MenstrualBloodExpulsed </integralname>
+  <initialval> 0 </initialval>
+  <dervname> MenstrualBloodLoss </dervname>
+</diffeq>
+
+</equations>
+
+<definitions> 
+
+<block><name> Init </name>
+
+  <def><name> BloodPool </name> <val> 0.0 </val></def>
+  <def><name> Uterus-Menstruation.BloodLoss </name> <val> 0.0 </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+  <def><name> PostureEffect </name>
+    <val> PostureEnergy.MenstrualPostureFlowEffect </val>
+  </def>
+
+  <def><name> PGEStimulation </name>
+    <val> 1 </val> <!-- This could be multipled by aspirin effect in the future -->
+  </def>
+
+  <def><name> UterusContraction </name>
+    <val> PGEStimulation </val>
+    </def>
+
+  <def><name> MenstrualBloodLoss </name> <!-- This is the rate at which bleeding into the uterus is happening -->
+    <val> PostureEffect * UterusContraction *  Uterus-Menstruation.BloodLoss </val>
+  </def>
+
+</block>
+
+<block><name> Parms </name>
+    
+    <!--<def><name> ExpulsionRate </name><val> Uterus-Menstruation.Rate - Expulsion  </val></def>-->
+
+</block>
+
+</definitions>
+
+</structure>   
+
+End 

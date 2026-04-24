@@ -1,0 +1,90 @@
+<!--
+NODrugLung.DES - Defines lung metabolism and clearance of NO in HumMod
+
+Overview
+This file models the **metabolism and clearance of Nitric Oxide (NO) in the lungs, focusing on:
+1. Bioavailability of NO: How much NO remains available after passing through the lungs.
+2. Permeability Calculation: Determines how effectively NO crosses the lung barrier into systemic circulation.
+3. Clearance Dynamics: Tracks the rate at which NO is lost from the lungs over time.
+
+1. Defines Drug Availability: Uses `BIOAVAIL = 0.6` to specify that 60% of the inhaled NO is available after degradation.
+2. Models Lung Permeability: Uses `PERM = 0.1` to control how quickly NO crosses the lung barrier**.
+3. Calculates Drug Loss: Determines NO loss rate and its conversion to micromolar units.
+
+How to Replicate for Another Drug
+1. Change `<name> NODrugLung </name>` to `<name> NewDrugLung </name>`.
+2. Adjust BIOAVAIL to match the new drug’s lung absorption properties.
+3. Modify PERM to reflect the drug’s permeability in the lungs.
+
+-->
+
+HumMod / IsoproterenolLung
+
+Created : 25-Jul-13
+Last Modified : 
+Author : W Pruett
+Copyright : 2006-2013
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> NODrugLung </name> <!-- Defines NO metabolism and clearance in the lungs -->
+
+<variables>
+
+<constant>
+  <name> BIOAVAIL </name> <!-- Fraction of drug that enters the lungs after inhalation -->
+  <val> 0.6 </val> <!-- 60% remains available after degradation -->
+</constant>
+
+<constant>
+  <name> PERM </name> <!-- Permeability factor of NO across lung tissue -->
+  <val> 0.1 </val> <!-- Lower value between 0-1 indicates slower permeability. adjust based on the drug! -->
+</constant>
+
+<var>
+  <name> Loss </name> <!-- Tracks rate of NO loss from the lungs -->
+</var>
+
+<var>
+  <name> Loss(umol) </name> <!-- Loss converted into micromolar units -->
+</var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name> <!-- Tracks current NO mass in the lungs -->
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval> <!-- Starts with no NO in the lungs -->
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim> <!-- Controls integration error tolerance. See previous note about judging tolerance limit in prevous files. -->
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name> <!-- Defines NO clearance and absorption dynamics -->
+
+<def>
+  <name> Loss </name>
+  <val> BIOAVAIL * PERM * Mass </val> <!-- Computes NO loss based on lung availability and permeability -->
+</def>
+
+<def>
+  <name> Loss(umol) </name>
+  <val> Loss / NODrugPool.MW </val> <!-- Converts NO loss into micromolar concentration -->
+</def>
+
+<def>
+  <name> Change </name>
+  <val> - Loss / BIOAVAIL </val> <!-- Defines rate of NO clearance from the lungs -->
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

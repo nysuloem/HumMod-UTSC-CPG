@@ -1,0 +1,103 @@
+HumMod | Mass
+
+Created : 2012-01-28
+Revised : 2012-01-28
+Author : Tom Coleman
+Copyright : 2012-2012
+By : University Of Mississippi Medical Center
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 32.0 </col>
+   <high> 23.6 </high>
+   <wide> 30.0 </wide>
+   <title> Mass </title>
+
+<structurename> VitaminD3 </structurename>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Mass </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Mass (uG) </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Mass </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 100 </min><max> 200 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 9.8 </row><col> 1.0 </col>
+   <name> Change </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Change (uG/Min) </label>
+</showvalue>
+
+<showvalue>
+   <row> 11.2 </row><col> 1.0 </col>
+   <name> Gain(nG/Min) </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Gain (nG/Min) </label>
+</showvalue>
+
+<showvalue>
+   <row> 12.2 </row><col> 1.0 </col>
+   <name> Loss(nG/Min) </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Loss (nG/Min) </label>
+</showvalue>
+
+<showvalue>
+   <row> 14.6 </row><col> 1.0 </col>
+   <name> Photosynthesis </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Skin (from UV Light) </label>
+</showvalue>
+
+<showvalue>
+   <row> 15.8 </row><col> 1.0 </col>
+   <name> Diet </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Diet </label>
+</showvalue>
+
+<showvalue>
+   <row> 19.2 </row><col> 1.0 </col>
+   <name> Sequestration </name>
+   <format><integer/></format>
+   <label> Sequestration </label>
+</showvalue>
+
+<showvalue>
+   <row> 17.0 </row><col> 1.0 </col>
+   <name> Mobilization </name>
+   <format><integer/></format>
+   <label> Mobilization </label>
+</showvalue>
+
+<showvalue>
+   <row> 20.4 </row><col> 1.0 </col>
+   <name> Hydroxylation </name>
+   <format><decimal> 1 </decimal></format>
+   <label> Hydroxylation </label>
+</showvalue>
+
+</groupbox>
+
+End

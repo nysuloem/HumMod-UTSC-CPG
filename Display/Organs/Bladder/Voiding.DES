@@ -1,0 +1,66 @@
+HumMod / Voiding
+
+Created : 16-Mar-08
+Revised : 2012-10-31
+Author : Tom Coleman
+Copyright : 2006-2012
+By : University of Mississippi Medical Center
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 21.2 </high>
+   <wide> 30.0 </wide>
+   <title> Voiding </title>
+
+<structurename> BladderVolume </structurename>
+
+<showvalue>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> Mass </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Current Bladder Volume (mL) </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 4 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Mass </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1000 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<label>
+  <row> 12 </row><col> 1.0 </col>
+  <text> Last Urine Void </text>
+</label>
+
+<showvalue>
+  <row> 13 </row><col> 3.0 </col>
+  <name> Bladder.TimeLastVoid </name>
+  <format><timestamp/><fieldwidth> 20 </fieldwidth></format>
+  <label> Time </label>
+</showvalue>
+
+<showvalue>
+  <row> 14 </row><col> 3.0 </col>
+  <name> VolumeVoid </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Volume of Urine Excreted (mL) </label>
+</showvalue>
+
+</groupbox>
+
+End

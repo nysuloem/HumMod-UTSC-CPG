@@ -1,0 +1,41 @@
+HumMod / Lisinopril
+
+
+<?path Structure\Drugs\Lisinopril\ ?>
+
+<?include LisinoprilPool.DES ?>
+<?include LisinoprilKidney.DES ?>
+<?include LisinoprilLiver.DES ?>
+<?include LisinoprilGILumen.DES ?>
+<?include LisinoprilSingleDose.DES ?>
+<?include LisinoprilDailyDose.DES ?>
+
+<structure><name> Lisinopril </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> LisinoprilSingleDose.Parms </call>
+  <call> LisinoprilDailyDose.Parms </call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> LisinoprilGILumen.CalcConc </call>
+  <call> LisinoprilPool.CalcConc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> LisinoprilGILumen.Dervs </call>
+  <call> LisinoprilKidney.Dervs </call>
+  <call> LisinoprilLiver.Dervs </call>
+  <call> LisinoprilPool.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+  <call> LisinoprilDailyDose.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+
+End

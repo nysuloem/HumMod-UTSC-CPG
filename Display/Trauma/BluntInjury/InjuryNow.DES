@@ -1,0 +1,92 @@
+HumMod / SingleDoseOral
+
+Created : 2025-01-03
+Revised : 2025-05-08
+Author : Tom Coleman
+Copyright : 2013-2025
+By : Tiffany Bishun
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 30 </high>
+   <wide> 25 </wide>
+   <title> Blunt Injury Trauma </title>
+
+<structurename> InjuryNow </structurename>
+
+<actionbutton>
+  <row> 1.4 </row><col> 1.0 </col>
+  <blockname> InjureRightArmNow </blockname>
+  <label> Punch Right Arm Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 3.4 </row><col> 1.0 </col>
+   <name> TotalRightArmInjury</name>
+   <label> Total # Punches </label>
+</showvalue>
+
+<actionbutton>
+  <row> 6.4 </row><col> 1.0 </col>
+  <blockname> InjureLeftArmNow </blockname>
+  <label> Punch Left Arm Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 8.4 </row><col> 1.0 </col>
+   <name> TotalLeftArmInjury</name>
+   <label> Total # Punches </label>
+</showvalue>
+
+<actionbutton>
+  <row> 11.4 </row><col> 1.0 </col>
+  <blockname> InjureRightLegNow </blockname>
+  <label> Punch Right Leg Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 13.4 </row><col> 1.0 </col>
+   <name> TotalRightLegInjury </name>
+   <label> Total # Punches </label>
+</showvalue>
+
+<actionbutton>
+  <row> 16.4 </row><col> 1.0 </col>
+  <blockname> InjureLeftLegNow </blockname>
+  <label> Punch Left Leg Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 18.4 </row><col> 1.0 </col>
+   <name> TotalLeftLegInjury </name>
+   <label> Total # Punches </label>
+</showvalue>
+
+<actionbutton>
+  <row> 21.4 </row><col> 1.0 </col>
+  <blockname> InjureRightChestNow </blockname>
+  <label> Punch Right Torso Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 23.4 </row><col> 1.0 </col>
+   <name> TotalRightChestInjury </name>
+   <label> Total # Punches </label>
+</showvalue>
+
+<actionbutton>
+  <row> 26.4 </row><col> 1.0 </col>
+  <blockname> InjureLeftChestNow </blockname>
+  <label> Punch Left Torso Now </label>
+</actionbutton>
+
+<showvalue>
+   <row> 28.4 </row><col> 1.0 </col>
+   <name> TotalLeftChestInjury </name>
+   <label> Total # Punches </label>
+</showvalue>
+
+</groupbox>
+
+End

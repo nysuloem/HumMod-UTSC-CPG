@@ -1,0 +1,43 @@
+HumMod / NitratePool
+
+<structure><name> NitratePool </name>
+
+<variables>
+
+<var><name> [Nitrate] </name></var> <!-- amount turned into nitrate, 70% of total NO -->
+<var><name> Gain </name></var> <!-- nitrate -->
+<var><name> Loss </name></var> <!-- amount peed out, NO clearance, so this attaches to NO Clearance -->
+<var><name> Change </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Init </name>
+
+    <def><name> [Nitrate] </name><val> 0 </val></def>
+    <def><name> Gain </name><val> 0 </val></def>
+    <def><name> Loss </name><val> 0 </val></def>
+    <def><name> Change </name><val> 0 </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+    <call> NitratePool.Init </call>
+    <call> iNODrugPool.Dervs </call>
+    <call> NOKidney.Dervs </call>
+
+    <def><name> [Nitrate] </name><val> NODrugPool.NOtoNitrate + iNODrugPool.LosstoNitrate </val></def> <!-- conversion already done in pool -->
+
+    <def><name> Gain </name><val> [Nitrate] </val></def>
+    <def><name> Loss </name><val> NOKidney.UrineLoss </val></def> 
+    <def><name> Change </name><val> Gain - Loss </val></def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
