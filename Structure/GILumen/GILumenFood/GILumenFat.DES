@@ -16,7 +16,7 @@ Schema : DES V1.0
 
 <var><name> [Fat] </name></var>
 
-<parm><name> Perm </name><val> 0.03 </val></parm>
+<parm><name> Perm </name><val> 0.7 </val></parm>
 
 </variables>
 
@@ -43,13 +43,14 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def><name> Intake </name><val> DietIntakeNutrition.Fat_mG/Min </val></def>
-<def><name> Absorption </name><val> Perm * Mass </val></def>
+<def><name> Intake </name><val> Stomach.FatOutflowRate </val></def>
+<def><name> Absorption </name><val> Mass * Perm </val></def>
 <def><name> Change </name><val> Intake - Absorption </val></def>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

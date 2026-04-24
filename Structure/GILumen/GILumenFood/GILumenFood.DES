@@ -11,6 +11,7 @@ By : University of Mississippi Medical Center
 <?include GILumenCarbohydrates.DES ?>
 <?include GILumenFat.DES ?>
 <?include GILumenProtein.DES ?>
+<?include GILumenFiber.DES ?>
 
 <structure><name> GILumenFood </name>
 
@@ -30,12 +31,14 @@ By : University of Mississippi Medical Center
   <call> GILumenCarbohydrates.Conc </call>
   <call> GILumenFat.Conc </call>
   <call> GILumenProtein.Conc </call>
+  <call> GILumenFiber.Conc </call>
 </block>
 
 <block><name> Dervs </name>
   <call> GILumenCarbohydrates.Dervs </call>
   <call> GILumenFat.Dervs </call>
   <call> GILumenProtein.Dervs </call>
+  <call> GILumenFiber.Dervs </call>
 
 <def>
   <name> Intake(mG/Min) </name>
@@ -43,20 +46,7 @@ By : University of Mississippi Medical Center
       GILumenCarbohydrates.Intake
     + GILumenFat.Intake
     + GILumenProtein.Intake
-  </val>
-</def>
-
-<def>
-  <name> Intake(G/Min) </name>
-  <val> 0.001 * Intake(mG/Min) </val>
-</def>
-
-<def>
-  <name> Intake(mG/Min) </name>
-  <val>
-      GILumenCarbohydrates.Intake
-    + GILumenFat.Intake
-    + GILumenProtein.Intake
+    + GILumenFiber.Intake
   </val>
 </def>
 
@@ -71,6 +61,7 @@ By : University of Mississippi Medical Center
       GILumenCarbohydrates.Absorption
     + GILumenFat.Absorption
     + GILumenProtein.Absorption
+    + GILumenFiber.Absorption
   </val>
 </def>
 
@@ -82,6 +73,7 @@ By : University of Mississippi Medical Center
 </block>
 
 </definitions>
+
 </structure>
 
 End

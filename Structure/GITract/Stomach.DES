@@ -1,29 +1,78 @@
 
 <!-- Boaz's BIOC32 project-->
+<!-- Jason took it over after Boaz moved on to another project -->
 
 <structure><name> Stomach </name>
 
 <variables>
 
     <var><name> DietInflowRate </name><val> 0 </val></var>
+    <var><name> CarboInflowRate </name><val> 0 </val></var>
+    <var><name> FatInflowRate </name><val> 0 </val></var>
+    <var><name> FiberInflowRate </name><val> 0 </val></var>
+    <var><name> ProteinInflowRate </name><val> 0 </val></var>
     <var><name> WaterInflowRate </name><val> 0 </val></var>
     <var><name> DietOutflowRate </name><val> 0 </val></var>
+    <var><name> CarboOutflowRate </name><val> 0 </val></var>
+    <var><name> FatOutflowRate </name><val> 0 </val></var>
+    <var><name> FiberOutflowRate </name><val> 0 </val></var>
+    <var><name> ProteinOutflowRate </name><val> 0 </val></var>
     <var><name> WaterOutflowRate </name><val> 0 </val></var>
     <var><name> StomachVolume </name><val> 0 </val></var>
-    <var><name> KFood </name><val> 0.02 </val></var>
-    <var><name> KWater </name><val> 0.05 </val></var>
-
-    <parm><name>AutoEmptyingVolume</name><val> 200 </val></parm>
+    <var><name> KCarbo </name><val> 0.02 </val></var>
+    <var><name> KFat </name><val> 0.01 </val></var>
+    <var><name> KFiber </name><val> 0.015 </val></var>
+    <var><name> KProtein </name><val> 0.018 </val></var>
+    <var><name> KWater </name><val> 0.03 </val></var>
+    <var><name> MaxVolume </name></var>
+    <var><name> StomachAgeEffect </name></var>
+    <var><name> DietStomachVolume </name></var>
 
 </variables>
+
+<functions>
+
+  <curve><name> StomachAge </name>
+  <point><x> 0 </x><y> 0.01 </y><slope> 0 </slope></point>
+  <point><x> 2 </x><y> 0.25 </y><slope> 0 </slope></point>
+  <point><x> 18 </x><y> 0.85 </y><slope> 0 </slope></point>
+  <point><x> 35 </x><y> 1.0 </y><slope> 0 </slope></point>
+  <point><x> 55 </x><y> 0.93 </y><slope> 0 </slope></point>
+  </curve>
+
+</functions>
 
 <equations>
 
     <diffeq>
-      <name> DietStomachVolume </name>
-      <integralname> DietStomachVolume </integralname>
+      <name> CarboStomachVolume </name>
+      <integralname> CarboStomachVolume </integralname>
       <initialval> 0.0 </initialval>
-      <dervname> dDietStomachVolume/dt </dervname>
+      <dervname> dCarboStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+    <diffeq>
+      <name> FatStomachVolume </name>
+      <integralname> FatStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFatStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+    <diffeq>
+      <name> FiberStomachVolume </name>
+      <integralname> FiberStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFiberStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+    <diffeq>
+      <name> ProteinStomachVolume </name>
+      <integralname> ProteinStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dProteinStomachVolume/dt </dervname>
       <errorlim> 10 </errorlim>
     </diffeq>
 
@@ -39,21 +88,72 @@
 
 <definitions>
 
+  <block><name> Init </name>
+
+    <def><name> StomachAgeEffect </name>
+      <val> StomachAge [ Context-Age.Age(Years) ] </val>
+    </def>
+
+    <if><test> Context-Sex.Index EQ 0 </test>
+      <true>
+        <def><name> MaxVolume </name>
+          <val> 1400 * StomachAgeEffect </val>
+        </def>
+      </true>
+      <false> 
+        <def><name> MaxVolume </name>
+          <val> 1200 * StomachAgeEffect </val>
+        </def>
+      </false>
+    </if>
+
+  </block>
+
   <block><name> Dervs </name>
 
     <def>
-      <name> DietInflowRate </name>
-      <val> DietIntakeNutrition.Total_G/Min </val>
+      <name> CarboInflowRate </name>
+      <val> DietIntakeNutrition.Carbo_mG/Min + OralH2OGlucoseLoad.GlucoseRate + OGTT.Loss </val>
     </def>
 
     <def>
-        <name> WaterInflowRate </name>
-        <val> DietIntakeH2O.Rate(mL/Min) </val>
+      <name> FatInflowRate </name>
+      <val> DietIntakeNutrition.Fat_mG/Min </val>
     </def>
-      
+
     <def>
-      <name> DietOutflowRate </name>
-      <val> KFood * DietStomachVolume </val>
+      <name> FiberInflowRate </name>
+      <val> DietIntakeNutrition.Fiber_mG/Min </val>
+    </def>
+
+    <def>
+      <name> ProteinInflowRate </name>
+      <val> DietIntakeNutrition.Protein_mG/Min </val>
+    </def>
+
+    <def>
+      <name> WaterInflowRate </name>
+      <val> DietIntakeH2O.Rate(mL/Min) </val>
+    </def>
+
+     <def>
+      <name> CarboOutflowRate </name>
+      <val> KCarbo * CarboStomachVolume </val>
+    </def>
+
+     <def>
+      <name> FatOutflowRate </name>
+      <val> KFat * FatStomachVolume </val>
+    </def>
+
+     <def>
+      <name> FiberOutflowRate </name>
+      <val> KFiber * FiberStomachVolume </val>
+    </def>
+
+     <def>
+      <name> ProteinOutflowRate </name>
+      <val> KProtein * ProteinStomachVolume </val>
     </def>
 
     <def>
@@ -62,8 +162,23 @@
     </def>
 
     <def>
-      <name> dDietStomachVolume/dt </name>
-      <val> DietInflowRate - DietOutflowRate </val>
+      <name> dCarboStomachVolume/dt </name>
+      <val> CarboInflowRate - CarboOutflowRate </val>
+    </def>
+
+    <def>
+      <name> dFatStomachVolume/dt </name>
+      <val> FatInflowRate - FatOutflowRate </val>
+    </def>
+
+    <def>
+      <name> dFiberStomachVolume/dt </name>
+      <val> FiberInflowRate - FiberOutflowRate </val>
+    </def>
+
+    <def>
+      <name> dProteinStomachVolume/dt </name>
+      <val> ProteinInflowRate - ProteinOutflowRate </val>
     </def>
 
     <def>
@@ -71,14 +186,14 @@
       <val> WaterInflowRate - WaterOutflowRate </val>
     </def>
 
-    <def>
-        <name> StomachVolume </name>
-        <val> DietStomachVolume + WaterStomachVolume </val>
-    </def>
-
   </block>
 
    <block><name> Wrapup </name>
+
+    <def>
+      <name> DietStomachVolume </name>
+      <val> ( CarboStomachVolume + FatStomachVolume + FiberStomachVolume + ProteinStomachVolume ) * 0.001 </val>
+    </def>
 
      <if>
         <test> DietStomachVolume LT 0 </test>
