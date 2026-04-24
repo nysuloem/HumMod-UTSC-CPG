@@ -11,28 +11,17 @@ Schema : DES V1.0
 
 <variables>
 
-<constant><name> K </name><val> 0.027 </val></constant>
+<var><name> LungsLoss </name></var>
+<constant><name> K </name><val> 0.00028 </val></constant>
 
 </variables>
-
-<equations>
-
-<diffeq>
-<name> AUC </name>
-<integralname> AUC </integralname>
-<initialval> 0 </initialval>
-<dervname> LungsLoss  </dervname>
-<errorlim> 0.0001 </errorlim>
-</diffeq>
-
-</equations>
 
 <definitions>
 
 <block><name> Dervs </name>
 
   <def><name> LungsLoss </name>
-    <val> K * EthanolPool.[Ethanol] </val>
+    <val> K * EthanolPool.Mass </val>
   </def> 
 
 </block>

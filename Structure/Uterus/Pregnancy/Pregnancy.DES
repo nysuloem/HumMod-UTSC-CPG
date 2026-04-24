@@ -7,11 +7,11 @@ Copyright : 2011-2013
 By : University of Mississippi Medical Center
 
 <?path Structure\Uterus\Pregnancy\ ?>
-
 <?include Pregnancy-Occurence.DES ?>
+<?include Fetus\Fetus.DES ?>
 
-<!--<?path Structure\Uterus\Pregnancy\Fetus ?>
-<?include Fetus.DES ?>
-
-<?path Structure\Uterus\Pregnancy\Placenta ?>
-<?include Placenta.DES ?>-->
+<!-- Optional placenta module: only include if it does NOT duplicate Placenta-Exchange -->
+<!--
+<?path Structure\Uterus\Pregnancy\Placenta\ ?>
+<?include Placenta.DES ?>
+-->

@@ -6,10 +6,16 @@ Author : Tom Coleman
 Copyright : 2008-2011
 By : University of Mississippi Medical Center
 
-<leaf>
+<branch>
   <name> LifestyleExercise </name>
   <label> Exercise </label>
   <parent> LIFESTYLE </parent>
+</branch>
+
+<leaf>
+  <name> ExerciseControl </name>
+  <label> Control </label>
+  <parent> LifestyleExercise </parent>
 </leaf>
 
 End

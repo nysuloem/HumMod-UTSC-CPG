@@ -7,158 +7,146 @@ Copyright : 2012-2012
 By : University of Mississippi Medical Center
 
 <groupbox>
-   <row> 15.0 </row>
+   <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 24.0 </high>
-   <wide> 35.0 </wide>
-   <title> Lab Report </title>
+   <high> 20.8 </high>
+   <wide> 30.0 </wide>
 
 <structurename> UrineAnalysis </structurename>
 
-<label>
-  <row> 2.0 </row>
-  <col> 1.0 </col>
-  <text> LO </text>
-</label>
-
-<label>
-  <row> 2.0 </row>
-  <col> 4.0 </col>
-  <text> HI </text>
-</label>
+<actionbutton>
+   <row> 1.4 </row><col> 1.0 </col>
+   <blockname> GetSpecimen </blockname>
+   <label> Get Specimen Now </label>
+</actionbutton>
 
 <showvalue>
-  <row> 3.4 </row><col> 7.0 </col>
-  <name> Sodium </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [Na+] (mEq/L) </label>
+   <row> 3.0 </row><col> 1.0 </col>
+   <name> Timestamp </name>
+   <format>
+     <timestamp/>
+     <fieldwidth> 16 </fieldwidth>
+   </format>
+   <label> Timestamp </label>
 </showvalue>
 
 <showvalue>
-  <row> 4.4 </row><col> 7.0 </col>
-  <name> Potassium </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [K+] (mEq/L) </label>
-</showvalue>
-
-<showvalue>
-  <row> 5.4 </row><col> 7.0 </col>
+  <row> 4.6 </row><col> 1.0 </col>
   <name> Chloride </name>
   <format><decimal> 1 </decimal></format>
-  <label> [Cl-] (mEq/L) </label>
+  <label> [Cl-] </label>
 </showvalue>
 
 <showvalue>
-  <row> 6.4 </row><col> 7.0 </col>
-  <name> Bicarbonate </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [HCO3-] (mEq/L) </label>
-</showvalue>
-
-<showvalue>
-  <row> 7.4 </row><col> 7.0 </col>
-  <name> Phosphate </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [PO4--] (mEq/L) </label>
-</showvalue>
-
-<showvalue>
-  <row> 8.4 </row><col> 7.0 </col>
-  <name> Sulphate </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [SO4--] (mEq/L) </label>
-</showvalue>
-
-<showvalue>
-  <row> 10.4 </row><col> 7.0 </col>
+  <row> 5.7 </row><col> 1.0 </col>
   <name> Creatinine </name>
   <format><decimal> 1 </decimal></format>
-  <label> [Creatinine] (mG/dL) </label>
+  <label> [Creatinine] </label>
 </showvalue>
 
 <showvalue>
-  <row> 11.4 </row><col> 7.0 </col>
-  <name> Urea </name>
-  <format><integer/></format>
-  <label> [Urea] (mG/dL) </label>
-</showvalue>
-
-<showvalue>
-  <row> 12.4 </row><col> 7.0 </col>
-  <name> Ammonia </name>
-  <format><decimal> 1 </decimal></format>
-  <label> [NH4+] (mEq/L) </label>
-</showvalue>
-
-<showvalue>
-  <row> 14.4 </row><col> 7.0 </col>
+  <row> 6.8 </row><col> 1.0 </col>
   <name> Glucose </name>
   <format><decimal> 1 </decimal></format>
-  <label> [Glucose] (mMol/L) </label>
+  <label> [Glucose] </label>
 </showvalue>
 
 <showvalue>
-  <row> 15.4 </row><col> 7.0 </col>
+  <row> 7.9 </row><col> 1.0 </col>
+  <name> Bicarbonate </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [HCO3-] </label>
+</showvalue>
+
+<showvalue>
+  <row> 9.0 </row><col> 1.0 </col>
+  <name> Potassium </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [K+] </label>
+</showvalue>
+
+<showvalue>
+  <row> 10.1 </row><col> 1.0 </col>
   <name> Ketoacid </name>
   <format><decimal> 1 </decimal></format>
-  <label> [KA-] (mMol/L) </label>
+  <label> [KA-] </label>
 </showvalue>
 
 <showvalue>
-  <row> 16.4 </row><col> 7.0 </col>
-  <name> Nitrate </name>
-  <format><decimal> 2 </decimal></format>
-  <label> [Nitrate] (mMol/L) </label>
+  <row> 11.2 </row><col> 1.0 </col>
+  <name> Sodium </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [Na+] </label>
 </showvalue>
 
 <showvalue>
-  <row> 18.4 </row><col> 7.0 </col>
+  <row> 12.3 </row><col> 1.0 </col>
+  <name> Ammonia </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [NH4+] </label>
+</showvalue>
+
+<showvalue>
+  <row> 13.4 </row><col> 1.0 </col>
+  <name> Phosphate </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [PO4--] </label>
+</showvalue>
+
+<showvalue>
+  <row> 14.5 </row><col> 1.0 </col>
   <name> Protein </name>
   <format><decimal> 1 </decimal></format>
-  <label> [Protein] (G/mL) </label>
+  <label> [Protein] </label>
 </showvalue>
 
 <showvalue>
-  <row> 20.4 </row><col> 7.0 </col>
-  <name> pH </name>
-  <format><decimal> 2 </decimal></format>
-  <label> pH </label>
+  <row> 15.6 </row><col> 1.0 </col>
+  <name> Sulphate </name>
+  <format><decimal> 1 </decimal></format>
+  <label> [SO4--] </label>
 </showvalue>
 
 <showvalue>
-  <row> 22.4 </row><col> 7.0 </col>
-  <name> SpecimenVolume </name>
+  <row> 16.7 </row><col> 1.0 </col>
+  <name> Urea </name>
   <format><integer/></format>
-  <label> Specimen Volume (mL) </label>
+  <label> [Urea] </label>
+</showvalue>
+
+<showvalue>
+    <row> 17.8 </row><col> 1.0 </col>
+  <name> Nitrate </name>
+  <format><integer/></format>
+  <label> [Nitrate] </label>
+</showvalue>
+
+<showvalue>
+  <row> 19.1 </row><col> 1.0 </col>
+  <name> BladderVolume.VolumeVoid </name>
+  <format><integer/></format>
+  <label> Specimen Volume </label>
 </showvalue>
 
 <infobutton>
   <row> 1.2 </row>
-  <col> 30 </col>
+  <col> 26 </col>
 
-  <line> Lab Report - Typical Values</line>
+  <line> Typical Values And Units </line>
   <line>  </line>
-  <line> [Na+] = 35.1 mEq/L </line>
-  <line> [K+] = 13.5 mEq/L </line>
   <line> [Cl-] = 35.5 mEq/L </line>
-  <line> [HCO3-] = 3.0 mEq/L </line>
-  <line> [PO4--] = 6.2 mEq/L </line>
-  <line> [SO4--] = 10.3 mEq/L </line>
-  <line>  </line>
   <line> [Creatinine] = 34.7 mG/dL </line>
-  <line> [Urea] = 646 mG/dL </line>
-  <line> [NH4+] = 6.5 mEq/L </line>
-  <line>  </line>
   <line> [Glucose] = 0.0 mMol/L </line>
+  <line> [HCO3-] = 3.0 mEq/L </line>
+  <line> [K+] = 13.5 mEq/L </line>
   <line> [KA-] = 0.0 mMol/L </line>
-  <line> [Nitrate] = 0.77 mMol/L </line>
-  <line>  </line>
+  <line> [Na+] = 35.1 mEq/L </line>
+  <line> [NH4+] = 6.5 mEq/L </line>
+  <line> [PO4--] = 6.2 mEq/L </line>
   <line> [Protein] = 0.0 G/mL </line>
-  <line>  </line>
-  <line> pH = 6.0 </line>
-  <line>  </line>
-  <line> Specimen Volume ( Min = 12 mL ) </line>
-
+  <line> [SO4--] = 10.3 mEq/L </line>
+  <line> [Urea] = 646 mG/dL </line>
+ <line> [Nitrate] = 0.7677 mMol/L </line> <!-- source: https://www.sciencedirect.com/science/article/abs/pii/0041008X78900285 -->
 </infobutton>
 
 </groupbox>

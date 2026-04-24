@@ -43,8 +43,8 @@ By : University of Mississippi Medical Center
 
 <whitenoise>
   <name> Flat </name>
-  <lowerlim> -5 </lowerlim>
-  <upperlim> 5 </upperlim>
+  <lowerlim> -10 </lowerlim>
+  <upperlim> 10 </upperlim>
 </whitenoise>
 
 </variables>
@@ -65,116 +65,137 @@ By : University of Mississippi Medical Center
 
 <block><name> Parms </name>
 
-  <onjustchanged><name> Index </name>
-  <call> Context.Calc </call>
-  </onjustchanged>
+<onjustchanged><name> Index </name>
+<call> Context.Calc </call>
+</onjustchanged>
 
-  <onjustchanged><name> PlusMinus </name>
-  <call> Context.Calc </call>
-  </onjustchanged>
+<onjustchanged><name> PlusMinus </name>
+<call> Context.Calc </call>
+</onjustchanged>
 
 </block>
 
 <block><name> Calc </name>
 
-  <def><name> IsSmall     </name><val> FALSE </val></def>
-  <def><name> IsNormal    </name><val> FALSE </val></def>
-  <def><name> IsLarge     </name><val> FALSE </val></def>
-  <def><name> IsVeryLarge </name><val> FALSE </val></def>
+<def><name> IsSmall     </name><val> FALSE </val></def>
+<def><name> IsNormal    </name><val> FALSE </val></def>
+<def><name> IsLarge     </name><val> FALSE </val></def>
+<def><name> IsVeryLarge </name><val> FALSE </val></def>
 
-  <if><test> Context-Sex.IsFemale </test>
-    <true><call> CalcFemale </call></true>
-    <false><call> CalcMale </call></false>
-  </if>
+<if><test> Context-Sex.IsFemale </test>
+  <true><call> CalcFemale </call></true>
+  <false><call> CalcMale </call></false>
+</if>
 
-  <call> CalcStochasm </call>
+<call> CalcStochasm </call>
 
-  <def><name>OtherAdjust</name>
-  <val> OtherAdjustAge [ Context-Age.Age(Years) ] </val></def>
+<def><name>OtherAdjust</name>
+<val> OtherAdjustAge [ Context-Age.Age(Years) ] </val></def>
 
-  <def>
-    <name> Mass(kG) </name>
-    <val>
-        NominalMass
-      * ( 1.0 + ( Stochasm / 100 ) )
-      * OtherAdjust
-    </val>
-  </def>
+<def>
+  <name> Mass(kG) </name>
+  <val>
+       NominalMass
+     * ( 1.0 + ( PlusMinus / 100 ) )
+     * ( 1.0 + ( Stochasm / 100 ) )
+     * OtherAdjust
+  </val>
+</def>
 
-  <def>
-    <name> Mass </name>
-    <val> 1000 * Mass(kG) </val>
-  </def>
+<def>
+  <name> Mass </name>
+  <val> 1000 * Mass(kG) </val>
+</def>
 
 </block>
 
 <block><name> CalcMale </name>
 
-  <testcase>
+<testcase>
 
-  <case><test> Index EQ 0 </test>
-  <def><name> NominalMass </name><val> MALE_SMALL </val></def>
-  <def><name> IsSmall </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 0 </test>
+<def><name> NominalMass </name><val> MALE_SMALL </val></def>
+<def><name> IsSmall </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 1 </test>
-  <def><name> NominalMass </name><val> MALE_NORMAL </val></def>
-  <def><name> IsNormal </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 1 </test>
+<def><name> NominalMass </name><val> MALE_NORMAL </val></def>
+<def><name> IsNormal </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 2 </test>
-  <def><name> NominalMass </name><val> MALE_LARGE </val></def>
-  <def><name> IsLarge </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 2 </test>
+<def><name> NominalMass </name><val> MALE_LARGE </val></def>
+<def><name> IsLarge </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 3 </test>
-  <def><name> NominalMass </name><val> MALE_VERYLARGE </val></def>
-  <def><name> IsVeryLarge </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 3 </test>
+<def><name> NominalMass </name><val> MALE_VERYLARGE </val></def>
+<def><name> IsVeryLarge </name><val> TRUE </val></def>
+</case>
 
-  </testcase>
+</testcase>
 
 </block>
 
 <block><name> CalcFemale </name>
 
-  <testcase>
+<testcase>
 
-  <case><test> Index EQ 0 </test>
-  <def><name> NominalMass </name><val> FEMALE_SMALL </val></def>
-  <def><name> IsSmall </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 0 </test>
+<def><name> NominalMass </name><val> FEMALE_SMALL </val></def>
+<def><name> IsSmall </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 1 </test>
-  <def><name> NominalMass </name><val> FEMALE_NORMAL </val></def>
-  <def><name> IsNormal </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 1 </test>
+<def><name> NominalMass </name><val> FEMALE_NORMAL </val></def>
+<def><name> IsNormal </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 2 </test>
-  <def><name> NominalMass </name><val> FEMALE_LARGE </val></def>
-  <def><name> IsLarge </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 2 </test>
+<def><name> NominalMass </name><val> FEMALE_LARGE </val></def>
+<def><name> IsLarge </name><val> TRUE </val></def>
+</case>
 
-  <case><test> Index EQ 3 </test>
-  <def><name> NominalMass </name><val> FEMALE_VERYLARGE </val></def>
-  <def><name> IsVeryLarge </name><val> TRUE </val></def>
-  </case>
+<case><test> Index EQ 3 </test>
+<def><name> NominalMass </name><val> FEMALE_VERYLARGE </val></def>
+<def><name> IsVeryLarge </name><val> TRUE </val></def>
+</case>
 
-  </testcase>
+</testcase>
 
 </block>
 
 <block><name> CalcStochasm </name>
 
-  <def>
-    <name> Stochasm </name>
-    <val> Flat </val>
-  </def>
+<def>
+  <name> Stochasm </name>
+  <val> 0 </val>
+</def>
+
+<if>
+  <test> NOT Random.Adiposity </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
+
+<if>
+  <test> Random.State EQ Random.IS_DETERMINISTIC </test>
+  <true>
+    <exitblock/>
+  </true>
+</if>
+
+<conditional>
+  <name> Stochasm </name>
+  <test> Random.Distribution EQ Random.IS_NORMAL </test>
+  <true> Normal </true>
+  <false> Flat </false>
+</conditional>
 
 </block>
 
 </definitions>
-
 </structure>
 
 End

@@ -7,14 +7,14 @@ Copyright : 2014-2014
 By : Tom Coleman
 
 <showvalue>
-   <row> 31 </row><col> 3 </col>
+   <row> 30 </row><col> 3 </col>
    <name> Breathing.RespRate </name>
    <format><decimal> 0 </decimal></format>
    <label> Respiratory Rate (breaths/min) </label>
 </showvalue>
 
 <showgraph>
-  <row> 33 </row><col> 3 </col><high> 6.8 </high><wide> 26 </wide>
+  <row> 32 </row><col> 3 </col><high> 6.8 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>

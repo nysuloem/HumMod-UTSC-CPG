@@ -11,7 +11,7 @@ By: Jason Brown UTSC
 
 
 <groupbox>
-   <row> 19 </row>
+   <row> 18 </row>
    <col> 1.0 </col>
    <high> 23 </high>
    <wide> 105 </wide>
@@ -19,28 +19,28 @@ By: Jason Brown UTSC
 </groupbox>
 
 <showvalue>
-   <row> 21 </row><col> 3 </col>
+   <row> 20 </row><col> 3 </col>
    <name> SystemicArtys.SBP </name>
    <format><integer/></format>
    <label> Blood Pressure (mmHg) </label>
 </showvalue>
 
 <label>
-  <row> 21 </row>
+  <row> 20 </row>
   <col> 27 </col>
   <text> / </text>
 </label>
 
 
 <showvalue>
-   <row> 21 </row><col> 29 </col>
+   <row> 20 </row><col> 29 </col>
    <name> SystemicArtys.DBP </name>
    <format><integer/></format>
    <nolabel/>
 </showvalue>
 
 <showgraph>
-  <row> 23 </row><col> 3 </col><high> 7 </high><wide> 26 </wide>
+  <row> 22 </row><col> 3 </col><high> 7 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>

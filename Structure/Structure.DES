@@ -183,6 +183,14 @@ By : University of Mississippi Medical Center
 
 <block><name> Context </name>
   <call> Context.Calc </call>
+   <!-- Pregnancy + fetus module updates (run every step) -->
+  <!-- <call> Pregnancy-Occurence.ProbabilityCalc </call>
+  <call> Pregnancy-Occurence.GestationWeeks </call>
+
+  <call> Placenta-Exchange.Hemodynamics </call>
+  <call> Placenta-Exchange.O2Diffusion </call> -->
+
+  <call> FetalGrowth-Model.GrowthTarget </call>
   <call> SexDrive.Init </call>
   <call> Hydrostatics.Context </call>
 </block>
@@ -233,7 +241,7 @@ By : University of Mississippi Medical Center
   <call> RightHeart-Infarction.Parms </call>
 
   <call> Transfusion.Parms </call>
-  <call> BloodVolume.Parms </call>
+  <call> BloodVolume.Parms </call>18
   <call> ChemoreceptorAcclimation.Parms </call>
 
   <call> Anesthesia.Parms </call>
@@ -836,6 +844,10 @@ By : University of Mississippi Medical Center
   <call> Uterus-Menstruation.Dervs </call>
   <call> Stomach.Dervs </call>
   <call> Rectum.Dervs </call>
+ 
+
+   <!-- Fetal growth diffeq derivative (must run every step) -->
+  <call> FetalGrowth-Model.GrowthDerv </call>
   
 </block>
 

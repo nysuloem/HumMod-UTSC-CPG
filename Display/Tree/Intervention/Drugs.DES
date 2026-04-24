@@ -13,42 +13,6 @@ By : University of Mississippi Medical Center
 </branch>
 
 <branch>
-  <name> Drugs-Acetazolamide </name>
-  <label> Acetazolamide </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Acetazolamide-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Acetazolamide </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Acetazolamide-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Acetazolamide </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Acetylcholine </name>
-  <label> Acetylcholine</label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Acetylcholine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Acetylcholine</parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Acetylcholine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Acetylcholine</parent>
-</leaf>
-
-<branch>
   <name> Drugs-Amlodipine </name>
   <label> Amlodipine </label>
   <parent> Drugs </parent>
@@ -64,24 +28,6 @@ By : University of Mississippi Medical Center
   <name> Drugs-Amlodipine-Kinetics </name>
   <label> Kinetics </label>
   <parent> Drugs-Amlodipine </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Atropine </name>
-  <label> Atropine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Atropine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Atropine </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Atropine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Atropine </parent>
 </leaf>
 
 <branch>
@@ -103,34 +49,10 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
-  <name> Drugs-Contraceptives </name>
-  <label> Contraceptives </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Contraceptives-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Contraceptives </parent>
-</leaf>
-
-<branch>
   <name> Drugs-Digoxin </name>
   <label> Digoxin </label>
   <parent> Drugs </parent>
 </branch>
-
-<leaf>
-  <name> Drugs-Digoxin-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Digoxin </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Digoxin-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Digoxin </parent>
-</leaf>
 
 <branch>
   <name> Drugs-Ethanol </name>
@@ -148,6 +70,108 @@ By : University of Mississippi Medical Center
   <name> Drugs-Ethanol-Kinetics </name>
   <label> Kinetics </label>
   <parent> Drugs-Ethanol </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-Lisinopril </name>
+  <label> Lisinopril </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Lisinopril-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Lisinopril </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Lisinopril-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Lisinopril </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Digoxin-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Digoxin </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Digoxin-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Digoxin </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-Furosemide </name>
+  <label> Furosemide </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Furosemide-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Furosemide </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Furosemide-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Furosemide </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-Midodrine </name>
+  <label> Midodrine </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Midodrine-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Midodrine </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Midodrine-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Midodrine </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-Acetazolamide </name>
+  <label> Acetazolamide </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Acetazolamide-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Acetazolamide </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Acetazolamide-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Acetazolamide </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-Spironolactone </name>
+  <label> Spironolactone </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Spironolactone-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Spironolactone </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Spironolactone-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Spironolactone </parent>
 </leaf>
 
 <branch>
@@ -187,93 +211,39 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
-  <name> Drugs-Furosemide </name>
-  <label> Furosemide </label>
+  <name> Drugs-Atropine </name>
+  <label> Atropine </label>
   <parent> Drugs </parent>
 </branch>
 
 <leaf>
-  <name> Drugs-Furosemide-Dosing </name>
+  <name> Drugs-Atropine-Dosing </name>
   <label> Dosing </label>
-  <parent> Drugs-Furosemide </parent>
+  <parent> Drugs-Atropine </parent>
 </leaf>
 
 <leaf>
-  <name> Drugs-Furosemide-Kinetics </name>
+  <name> Drugs-Atropine-Kinetics </name>
   <label> Kinetics </label>
-  <parent> Drugs-Furosemide </parent>
+  <parent> Drugs-Atropine </parent>
 </leaf>
 
 <branch>
-  <name> Drugs-Isoproterenol </name>
-  <label> Isoproterenol </label>
+  <name> Drugs-Acetylcholine </name>
+  <label> Acetylcholine</label>
   <parent> Drugs </parent>
 </branch>
 
 <leaf>
-  <name> Drugs-Isoproterenol-Dosing </name>
+  <name> Drugs-Acetylcholine-Dosing </name>
   <label> Dosing </label>
-  <parent> Drugs-Isoproterenol </parent>
+  <parent> Drugs-Acetylcholine</parent>
 </leaf>
 
 <leaf>
-  <name> Drugs-Isoproterenol-Kinetics </name>
+  <name> Drugs-Acetylcholine-Kinetics </name>
   <label> Kinetics </label>
-  <parent> Drugs-Isoproterenol </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Lisinopril </name>
-  <label> Lisinopril </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Lisinopril-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Lisinopril-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Lisinopril </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-Midodrine </name>
-  <label> Midodrine </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Midodrine-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Midodrine </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Midodrine-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Midodrine </parent>
-</leaf>
-
-<branch>
-  <name> Drugs-NODrug </name>
-  <label> NO/Nitroglycerin </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-NODrug-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-NODrug </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-NODrug-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-NODrug </parent>
+  <parent> Drugs-Acetylcholine</parent>
 </leaf>
 
 <branch>
@@ -295,6 +265,24 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
+  <name> Drugs-Isoproterenol </name>
+  <label> Isoproterenol </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Isoproterenol-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Isoproterenol </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Isoproterenol-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Isoproterenol </parent>
+</leaf>
+
+<branch>
   <name> Drugs-Propranolol </name>
   <label> Propranolol </label>
   <parent> Drugs </parent>
@@ -313,24 +301,6 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
-  <name> Drugs-Spironolactone </name>
-  <label> Spironolactone </label>
-  <parent> Drugs </parent>
-</branch>
-
-<leaf>
-  <name> Drugs-Spironolactone-Dosing </name>
-  <label> Dosing </label>
-  <parent> Drugs-Spironolactone </parent>
-</leaf>
-
-<leaf>
-  <name> Drugs-Spironolactone-Kinetics </name>
-  <label> Kinetics </label>
-  <parent> Drugs-Spironolactone </parent>
-</leaf>
-
-<branch>
   <name> Drugs-Warfarin </name>
   <label> Warfarin </label>
   <parent> Drugs </parent>
@@ -346,6 +316,24 @@ By : University of Mississippi Medical Center
   <name> Drugs-Warfarin-Kinetics </name>
   <label> Kinetics </label>
   <parent> Drugs-Warfarin </parent>
+</leaf>
+
+<branch>
+  <name> Drugs-NODrug </name>
+  <label> NO/Nitroglycerin </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-NODrug-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-NODrug </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-NODrug-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-NODrug </parent>
 </leaf>
 
 End

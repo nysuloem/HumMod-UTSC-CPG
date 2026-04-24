@@ -7,19 +7,19 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
+<!-- Models absorption from the GI lumen into systemic circulation,
+ with concentration tracking based on lumen water content -->
+<!-- But ethanonl doesn't go directly into the systemic circulation -->
+
 <structure><name> EthanolGILumen </name>
 
 <variables>
 
-<var><name> BIOAVAIL </name><val> 1 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
-<var><name> PERM </name><val> 0.013 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
+<var><name> BIOAVAIL </name><val> 0.05 </val></var> <!-- Fraction of the ethanol dose that reaches systemic circulation-->
+<var><name> PERM </name><val> 0.05 </val></var> <!-- Permeability factor for ethanol across the GI wall -->
 <var><name> [Ethanol] </name></var>
 <var><name> Gain </name></var>
 <var><name> Loss </name></var> <!-- Amount of ethanol leaving the lumen per unit time -->
-<var><name> PortalVein[Ethanol] </name></var>
-
-<!-- Drink selector: 1=Beer, 2=Wine, 3=Vodka --> 
-<parm><name> DrinkType </name><val> 1 </val></parm>
 
 </variables>
 
@@ -41,47 +41,31 @@ Schema : DES V1.0
 
   <def>
     <name> [Ethanol] </name> <!-- This is the ethanol concentration in the GI Lumen-->
-    <val> Mass / GILumenH2O.Mass(L) </val> <!-- Converts ethanol mass into a concentration using the lumen’s water mass (volume).-->
+      <val> Mass / GILumenH2O.Mass(L) </val> <!-- Converts ethanol mass into a concentration using the lumen’s water mass (volume).-->
   
-    <!-- What is ethanol mass? Volume or mass? Concentration?? (1L of water) 1% = 10ml --> 
-    <!-- Density Ethanol = 0.789 __ Mass = D X V--> 
+  <!-- What is ethanol mass? Volume or mass? Concentration?? (1L of water) 1% = 10ml --> 
+<!-- Density Ethanol = 0.789 __ Mass = D X V--> 
 
-  </def>
+</def>
 
 </block>
 
 <block><name> Dervs </name>
 
-  <testcase>
-    <case>
-      <test> DrinkType EQ 2 </test> <!-- WINE -->
-      <def><name> PERM </name><val> 0.021 </val></def> 
-    </case>
-
-    <case>
-      <test> DrinkType EQ 3 </test> <!-- VODKA -->
-      <def><name> PERM </name><val> 0.045 </val></def> 
-    </case>
-  </testcase>
-
   <def><name> Gain </name>
     <val> EthanolSingleDose.Mass + EthanolDailyDose.Mass </val>
   </def>
 
-  <def>
-    <name> Loss </name>
-    <val> BIOAVAIL * PERM * [Ethanol] </val>
-  </def>
+<def>
+  <name> Loss </name>
+  <val> BIOAVAIL * PERM * [Ethanol] <!-- Proportional loss from lumen depends on both bioavailability and permeability, and is scaled to the total ethanol mass present -->
+  </val>
+</def>
 
-  <def>
-    <name> Change </name>
-    <val> Gain - Loss </val> 
-  </def>
-
-  <def>
-    <name> PortalVein[Ethanol] </name>
-    <val> Loss / ( PortalVein.BloodFlow + 1 ) </val>
-  </def>
+<def>
+  <name> Change </name>
+  <val> Gain - Loss </val> 
+</def>
 
 </block>
 

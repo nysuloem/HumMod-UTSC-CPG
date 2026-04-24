@@ -5,7 +5,7 @@
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 108 </col>
+   <col> 71 </col>
    <high> 12 </high>
    <wide> 36 </wide>
    <title> Blood Alcohol Concentration </title>
@@ -35,6 +35,34 @@
    <name> EthanolPool.[Ethanol] </name>
    <format><decimal> 2 </decimal></format>
    <label> Blood Alcohol Concentration (g/dL) </label>
+</showvalue>
+
+<showvalue>
+   <row> 8.2 </row><col> 1.0 </col>
+   <name> Acetaldehyde.[BloodAcetaldehyde] </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Blood Acetaldehyde </label>
+</showvalue>
+
+<showvalue>
+   <row> 10.2 </row><col> 1.0 </col>
+   <name> EthanolGILumen.Mass </name>
+   <format><decimal> 2 </decimal></format>
+   <label> GI Lumen Mass </label>
+</showvalue>
+
+<showvalue>
+   <row> 12.2 </row><col> 1.0 </col>
+   <name> EthanolSingleDose.Mass </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Single Consumed Mass </label>
+</showvalue>
+
+<showvalue>
+   <row> 14.2 </row><col> 1.0 </col>
+   <name> EthanolDailyDose.Mass </name>
+   <format><decimal> 2 </decimal></format>
+   <label> Daily Consumed Mass </label>
 </showvalue>
 
 <infobutton>

@@ -29,8 +29,9 @@ By : University Of Mississippi Medical Center
 <?path Display\Diagnosis\BloodChemistry\Sample\ ?>
 
 <?include GetSample.DES ?>
+
 <?include LeftBox.DES ?>
-<!--<?include RightBox.DES ?>-->
+<?include RightBox.DES ?>
 
 </panel>
 

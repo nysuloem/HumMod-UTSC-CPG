@@ -46,20 +46,12 @@
 <var><name> Gain </name></var>
 <var><name> Loss </name></var>
 
-<var><name> K </name></var>
-<var><name> BaseRate </name><val> 1 </val></var>
+<var><name> K </name><val> 0.1 </val></var>
 
 </variables>
 
 <functions>
 
-<curve>
-  <name> KCalculator </name>
-  <point><x>  0 </x><y>  0.1 </y><slope> 0 </slope></point>
-  <point><x>  0.05 </x><y>  0.005 </y><slope> -0.1 </slope></point>
-  <point><x>  0.2 </x><y>  0.01 </y><slope> 0.1 </slope></point>
-  <point><x> 0.5 </x><y> 0.001 </y><slope> 0 </slope></point>
-</curve>
 
 </functions>
 
@@ -88,26 +80,13 @@
   <block><name> Dervs </name>
 
     <def><name> Gain </name>
-      <val> InjuryNow.RightArmDegree + InjuryNow.LeftArmDegree + InjuryNow.RightLegDegree + InjuryNow.LeftLegDegree + InjuryNow.RightChestDegree + InjuryNow.LeftChestDegree </val>
+      <val> InjuryNow.RightArmDegree + InjuryNow.LeftArmDegree + InjuryNow.RightLegDegree </val>
     </def>
 
-    <def><name> K </name>
-      <val> KCalculator [ SkeletalDamage ] </val>
+    <def><name> Loss </name>
+      <val> K * SkeletalDamage </val>
     </def>
 
-    <if><test> SkeletalDamage GT 0 </test>
-      <true>
-        <def><name> Loss </name>
-          <val> K * SkeletalDamage </val>
-        </def>
-      </true>
-      <false>
-        <def><name> Loss </name>
-          <val> 0 </val>
-        </def>
-      </false>
-    </if>
-    
     <def><name> Change </name>
       <val> Gain - Loss </val>
     </def>

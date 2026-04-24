@@ -7,46 +7,60 @@ Copyright : 2006-2010
 By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
-<!-- I don't this this structure is even used -->
-
 <structure><name> NOPump </name>
 
 <variables>
 
-<var><name> Rate </name></var>
+<var>
+  <name> Rate </name>
+</var>
 
-<parm><name> Switch </name><val> FALSE </val></parm>
-<parm><name> Setting </name><val> 0.0 </val></parm>
+<parm>
+  <name> Switch </name>
+  <val> FALSE </val>
+</parm>
 
-<var><name> T2D </name></var>
+<parm>
+  <name> Setting </name>
+  <val> 0.0 </val>
+</parm>
 
-<parm><name> Switch2 </name><val> FALSE </val></parm>
-<parm><name> Setting2 </name><val> 0.0 </val></parm>
+<var>
+  <name> T2D </name>
+</var>
+
+<parm>
+  <name> Switch2 </name>
+  <val> FALSE </val>
+</parm>
+
+<parm>
+  <name> Setting2 </name>
+  <val> 0.0 </val>
+</parm>
 
 </variables>
 
 <definitions>
-
 <block><name> Parms </name>
 
-  <conditional>
-    <name> Rate </name>
-    <test> Switch </test>
-    <true> Setting </true>
-    <false> 0.0 </false>
-  </conditional>
+<conditional>
+  <name> Rate </name>
+  <test> Switch </test>
+  <true> Setting </true>
+  <false> 0.0 </false>
+</conditional>
 
-  <conditional>
-    <name> T2D </name>
-    <test> Switch2 </test>
-    <true> Setting2 </true>
-    <false> 0.0 </false>
-  </conditional>
+<conditional>
+  <name> T2D </name>
+  <test> Switch2 </test>
+  <true> Setting2 </true>
+  <false> 0.0 </false>
+</conditional>
+
 
 </block>
-
 </definitions>
-
 </structure>
 
 End

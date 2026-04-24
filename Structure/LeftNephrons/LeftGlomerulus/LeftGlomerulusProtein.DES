@@ -31,24 +31,12 @@ Schema : DES V1.0
 <var><name> IgGRate </name></var>
 <var><name> HetaLWRate </name></var>
 
-<var><name> NOEffect </name></var>
-<parm><name> kAlb </name><val> 0.008 </val></parm> <!-- size of leak -->
-<parm><name> kNO </name><val> 5 </val></parm> <!-- sensitivity to NO -->
 
 </variables>
 
 <definitions>
 
 <block><name> Calc </name>
-
-<def>
-    <name> NOEffect </name>
-    <val> 1.0 + ( kNO * ( ( ( 0.005 - NOPool.[NO--] ) MAX 0 ) / 0.0005 ) ) </val>
-</def>
-
-<!-- NOEffect = 1 + (% drop in NO) , assuming 0.05 as threshold -->
-
-<def><name> AlbPerm </name><val> kAlb * ( ( 0.005 - NOPool.[NO--] ) MAX 0 ) </val></def> <!-- NO drops below threshold, NOEffect > 1, AlbRate increases = proteinuria -->
 
 <def><name> [Protein] </name><val> PlasmaProtein.[Total] </val></def>
 <def><name> ModPerm </name><val> GlomerulusProtein.LeftPerm </val></def>

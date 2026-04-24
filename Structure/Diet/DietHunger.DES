@@ -11,41 +11,20 @@ By : University of Mississippi Medical Center
 <variables>
 
 <var><name> Effect </name></var>
-<var><name> HungerRating </name></var>
 
 </variables>
 
-<functions>
-
-<curve>
-  <name> HungerRating </name>
-  <point><x> 0 </x><y>  0.0 </y><slope> 0 </slope></point>
-  <point><x> 0.8 </x><y>  10.0 </y><slope> 0.225 </slope></point>
-  <point><x> 2.5 </x><y> 30.0 </y><slope> 0.225 </slope></point>
-  <point><x> 3 </x><y> 60.0 </y><slope> 0.225 </slope></point>
-  <point><x> 30 </x><y> 100.0 </y><slope> 0 </slope></point>
-</curve>
-
-</functions>
-
 <definitions>
-
 <block><name> Dervs </name>
 
-  <def>
-    <name> Effect </name>
-    <val> DietHunger-Insulin.Effect * DietHunger-Leptin.Effect * DietHunger-Ghrelin.Effect </val>
-  </def>
-
-  <def>
-    <name> HungerRating </name>
-    <val> HungerRating [ Effect ] </val>
-  </def>
+<def>
+  <name> Effect </name>
+  <val> DietHunger-Glucose.Effect * DietHunger-Leptin.Effect </val>
+</def>
 
 </block>
 
 </definitions>
-
 </structure>
 
 End

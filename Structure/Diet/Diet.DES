@@ -19,9 +19,8 @@ By : University Of Mississippi Medical Center
 <?include DietThirst.DES ?>
 <?include DietFeeding.DES ?>
 <?include DietHunger.DES ?>
-<?include DietHunger-Insulin.DES ?>
+<?include DietHunger-Glucose.DES ?>
 <?include DietHunger-Leptin.DES ?>
-<?include DietHunger-Ghrelin.DES ?>
 
 <structure><name> Diet </name>
 
@@ -43,9 +42,8 @@ By : University Of Mississippi Medical Center
 
   <call> DietThirst.Dervs </call>
   <call> DietFeeding.Dervs </call>
-  <call> DietHunger-Insulin.Dervs </call>
+  <call> DietHunger-Glucose.Dervs </call>
   <call> DietHunger-Leptin.Dervs </call>
-  <call> DietHunger-Ghrelin.Dervs </call>
   <call> DietHunger.Dervs </call>
 
   <call> DietIntakeNutrition.Dervs </call>

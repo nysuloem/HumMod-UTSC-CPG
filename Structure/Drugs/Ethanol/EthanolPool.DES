@@ -45,7 +45,7 @@ It integrates gains from absorption and subtracts losses from elimination routes
 
   <def>
     <name> [Ethanol] </name>
-    <val> ( Mass / ( ( ECFV.Vol + ICFV.Vol ) / 1000 ) / 10 ) </val>  
+    <val> ( Mass /  PlasmaVol.Vol ) * 100 </val>  
     <!-- Total mass (grams) and multiply by plasma volume to get dL. Division by 10 converts ethanol into g/dL, which is the standard BAC unit -->
   </def>
 

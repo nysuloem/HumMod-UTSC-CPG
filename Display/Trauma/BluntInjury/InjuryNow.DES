@@ -9,8 +9,8 @@ By : Tiffany Bishun
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 30 </high>
-   <wide> 25 </wide>
+   <high> 15 </high>
+   <wide> 150 </wide>
    <title> Blunt Injury Trauma </title>
 
 <structurename> InjuryNow </structurename>
@@ -48,42 +48,6 @@ By : Tiffany Bishun
 <showvalue>
    <row> 13.4 </row><col> 1.0 </col>
    <name> TotalRightLegInjury </name>
-   <label> Total # Punches </label>
-</showvalue>
-
-<actionbutton>
-  <row> 16.4 </row><col> 1.0 </col>
-  <blockname> InjureLeftLegNow </blockname>
-  <label> Punch Left Leg Now </label>
-</actionbutton>
-
-<showvalue>
-   <row> 18.4 </row><col> 1.0 </col>
-   <name> TotalLeftLegInjury </name>
-   <label> Total # Punches </label>
-</showvalue>
-
-<actionbutton>
-  <row> 21.4 </row><col> 1.0 </col>
-  <blockname> InjureRightChestNow </blockname>
-  <label> Punch Right Torso Now </label>
-</actionbutton>
-
-<showvalue>
-   <row> 23.4 </row><col> 1.0 </col>
-   <name> TotalRightChestInjury </name>
-   <label> Total # Punches </label>
-</showvalue>
-
-<actionbutton>
-  <row> 26.4 </row><col> 1.0 </col>
-  <blockname> InjureLeftChestNow </blockname>
-  <label> Punch Left Torso Now </label>
-</actionbutton>
-
-<showvalue>
-   <row> 28.4 </row><col> 1.0 </col>
-   <name> TotalLeftChestInjury </name>
    <label> Total # Punches </label>
 </showvalue>
 

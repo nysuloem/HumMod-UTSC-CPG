@@ -69,7 +69,7 @@
 	NominalConductance 
 	* Viscosity.ConductanceEffect 
   </val> 
-</def> 
+</def> * SystemicArtys.NOEffect
 
 <def>
   <name> BasicConductance-SmallVessel </name>
@@ -147,7 +147,6 @@
 </block>
 
 </definitions>
-
 </structure>
 
 End

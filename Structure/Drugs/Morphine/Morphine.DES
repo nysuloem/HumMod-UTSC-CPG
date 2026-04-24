@@ -39,11 +39,6 @@ By : University Of Mississippi Medical Center
   <call> MorphinePool.Dervs </call>
 </block>
 
-<block><name> Wrapup </name>
-  <call> MorphineSingleDose.Wrapup </call>
-</block>
-
 </definitions>
-
 </structure>
 

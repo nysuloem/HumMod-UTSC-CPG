@@ -14,23 +14,11 @@ By: Jason Brown
 <parm><name> Asian_Percentage </name><val> 0.0 </val></parm>
 <parm><name> Hispanic_Percentage </name><val> 0.0 </val></parm>
 
-<var><name> SkinMelanin </name><val> 10.0 </val></var>
 <var><name> TrueWhite_Percentage </name></var>
 <var><name> TrueBlack_Percentage </name></var>
 <var><name> TrueAsian_Percentage </name></var>
 <var><name> TrueHispanic_Percentage </name></var>
 <var><name> TotalPercentage </name></var>
-<var><name> Stochasm </name></var>
-<var><name> Melanin_White </name></var>
-<var><name> Melanin_Black </name></var>
-<var><name> Melanin_Asian </name></var>
-<var><name> Melanin_Hispanic </name></var>
-
-<whitenoise>
-  <name> Flat </name>
-  <lowerlim> -50 </lowerlim>
-  <upperlim> 50 </upperlim>
-</whitenoise>
 
 </variables>
 
@@ -54,23 +42,10 @@ By: Jason Brown
 <call> Context.Calc </call>
 </onjustchanged>
 
-<def>
-  <name> Stochasm </name>
-  <val> Flat </val>
-</def>
-
-<def>
-  <name> SkinMelanin </name>
-  <val>
-     SkinMelanin
-     * ( 1.0 + ( Stochasm / 100 ) )
-  </val>
-</def>
-
 </block>
 
 <block> <name> CalcPercent </name>
-
+      
 <def>
   <name> TotalPercentage </name>
   <val> White_Percentage + Black_Percentage + Asian_Percentage + Hispanic_Percentage </val>
@@ -93,25 +68,6 @@ By: Jason Brown
           <def><name> TrueHispanic_Percentage </name><val> Hispanic_Percentage </val></def>
          </false>
       </if>
-
-<def><name>Melanin_White</name><val>10</val></def>
-<def><name>Melanin_Black</name><val>90</val></def>
-<def><name>Melanin_Asian</name><val>20</val></def>
-<def><name>Melanin_Hispanic</name><val>40</val></def>
-
-<def>
-   <name>SkinMelanin</name>
-  <val> ( ( ( Context-Ethnicity.TrueWhite_Percentage ) / 100 ) * Melanin_White )
-        + ( ( ( Context-Ethnicity.TrueBlack_Percentage ) / 100 ) * Melanin_Black )
-        + ( ( ( Context-Ethnicity.TrueAsian_Percentage ) / 100 ) * Melanin_Asian )
-        + ( ( ( Context-Ethnicity.TrueHispanic_Percentage ) / 100 ) * Melanin_Hispanic )
-  </val>
-</def>
-
-<if> 
-  <test> SkinMelanin EQ 0 </test>
-    <true> <call> ZeroFixer </call> </true>
-</if>
 
       <testcase>
 
@@ -244,12 +200,6 @@ By: Jason Brown
       <def><name> TotalPercentage </name><val> 1 </val></def>
     </true>
   </if>
-<if><test> SkinMelanin EQ 0 </test>
-    <true>
-      <def><name> SkinMelanin </name><val> 1 </val></def>
-    </true>
-  </if>
-
 </block>
         
 
@@ -380,7 +330,6 @@ By: Jason Brown
 </block>
 
 </definitions>
-
 </structure>
 
 End

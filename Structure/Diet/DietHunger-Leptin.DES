@@ -29,20 +29,18 @@ By : University of Mississippi Medical Center
 </functions>
 
 <definitions>
+<block><name> Dervs </name>
 
-  <block><name> Dervs </name>
-
-    <conditional>
-      <name> Effect </name>
-      <test> Clamp </test>
-      <true> Level </true>
-      <false> Effect [ LeptinPool.[Leptin(nG/mL)] ] </false>
-    </conditional>
+<conditional>
+  <name> Effect </name>
+  <test> Clamp </test>
+  <true> Level </true>
+  <false> Effect [ LeptinPool.[Leptin(nG/mL)] ] </false>
+</conditional>
 
 </block>
 
 </definitions>
-
 </structure>
 
 End

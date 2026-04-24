@@ -8,8 +8,8 @@ HumMod / NO
 <?include NOPump.DES ?>
 <?include NitratePool.DES ?>
 <?include NOKidney.DES ?>
-<?include GlomerularEndothelium.DES ?>
-<?include VascularEndothelium.DES ?>
+
+
 
 <structure><name> NO </name>
 
@@ -28,16 +28,16 @@ HumMod / NO
 </block>
 
 <block><name> Dervs </name>
-  <call> VascularEndothelium.Dervs </call>
-  <call> GlomerularEndothelium.Dervs </call>
+
   <call> NOPool.Dervs </call>
   <call> NitratePool.Dervs </call>
   <call> NOKidney.Dervs </call>
 
+
+
 </block>
 
 </definitions>
-
 </structure>
 
 End
