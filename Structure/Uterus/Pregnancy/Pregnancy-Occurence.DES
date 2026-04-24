@@ -6,8 +6,8 @@
 
     <timervar><name> AnnouncePregnancy </name><val> 0 </val></timervar>
     <timervar><name> PregnancyTimer </name><val> 0 </val></timervar>
-
-    <var><name> Fertilization </name><val> UNDEFINED </val></var>
+<!-- Change from UNDEFINED TO FALSE-->
+    <var><name> Fertilization </name><val> FALSE </val></var>
     <var><name> FertilizationTime </name><val> UNDEFINED </val></var>
 
     <var><name> PregnancyWeek </name><val> 0 </val></var>
@@ -23,22 +23,23 @@
     <call> GestationWeeks </call>
 
     <def><name> Probability </name><val> SexualIntercourse.SpermTimer * Ovaries-Ovulation.EggTimer </val></def>
-  
+   
     <if><test> Probability NE 0 </test>
       <true>
         <def><name> Fertilization </name><val> TRUE </val></def> 
         <timer>
-          <name> AnnouncePregnancy </name> <!-- tied to hcg -->
+          <name> AnnouncePregnancy </name> 
           <val> 0 </val>
           <state> UP </state>
         </timer> 
         <call> SetFertilizationTime </call>
       </true>
-      <false>
+     <!-- <false>
         <def><name> Fertilization </name><val> FALSE </val></def>
       </false>
-    </if>
-
+      -->
+    </if> 
+   
   </block>
 
   <block><name> SetFertilizationTime </name>
@@ -52,11 +53,11 @@
   </block>
 
   <block><name> GestationWeeks </name>
-  
+ 
     <if><test> FertilizationTime EQ UNDEFINED </test>
       <false>
         <def><name> PregnancyWeek </name>
-          <val> ROUNDDOWN ( System.X - FertilizationTime ) / 10080 </val>
+          <val> ROUNDDOWN ( ( System.X - FertilizationTime ) / 10080 ) </val>
         </def>
       </false>
     </if>
@@ -80,6 +81,24 @@
     </testcase>
 
 </block>
+
+</definitions>
+
+</structure>
+
+
+
+<structure><name> Pregnancy </name>
+
+<definitions>
+
+  <block><name> Dervs </name>
+
+    <!--<call> Pregnancy-Occurence.ProbabilityCalc </call> -->
+    <!-- <call> Pregnancy-Occurence.Sample </call> -->
+    <if><test> Pregnancy-Occurence.Fertilization EQ TRUE </test> <true><call> Fetus.Dervs</call> <call>Placenta-Exchange.Hemodynamics</call></true></if> 
+    
+  </block>
 
 </definitions>
 

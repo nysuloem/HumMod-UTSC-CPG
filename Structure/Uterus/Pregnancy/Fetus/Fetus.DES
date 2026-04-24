@@ -96,17 +96,17 @@
     <block>
       <name> GrowthTarget </name>
 
-      <if><test> Pregnancy-Occurence.Fertilization EQ UNDEFINED </test>
+      <if><test> Pregnancy-Occurence.Fertilization </test>
         <true>
           <def>
             <name> FetalWeight_Ideal </name>
             <val>
-              0
+              3500 / ( 1 + EXP ( -0.3 * ( Pregnancy-Occurence.PregnancyWeek - 20 ) ) )
             </val>
           </def>
         </true>
         <false>
-          <def><name> FetalWeight_Ideal </name><val> 3500 / ( 1 + EXP ( -0.3 * ( Pregnancy-Occurence.PregnancyWeek - 20 ) ) ) </val></def>
+          <def><name> FetalWeight_Ideal </name><val> 0 </val></def>
         </false>
       </if>
 
@@ -392,7 +392,7 @@
 
       <call> Placenta-Exchange.Hemodynamics </call>
       <call> Placenta-Exchange.O2Diffusion </call>
-      <call> FetalGrowth-Model.SeedAtPregnancyStart </call>
+      <!--<call> FetalGrowth-Model.SeedAtPregnancyStart </call>-->
       <call> FetalGrowth-Model.GrowthTarget </call>
       <call> FetalGrowth-Model.GrowthDerv </call>
 
