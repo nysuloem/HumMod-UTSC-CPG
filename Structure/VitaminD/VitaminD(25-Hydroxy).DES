@@ -37,6 +37,15 @@ By : University of Mississippi Medical Center
 
 <var><name> [PTH]Effect </name></var>
 
+<var><name> AsianT </name></var>
+<var><name> BlackT </name></var>
+<var><name> WhiteT </name></var>
+<var><name> HispanicT </name></var>
+
+<var><name> EthnicityChange </name></var>
+
+<var><name> RealTargetConc </name></var>
+
 </variables>
 
 <equations>
@@ -64,9 +73,24 @@ By : University of Mississippi Medical Center
 
 <block><name> Init </name>
 
+<def><name> AsianT </name><val> 1.00 </val></def> 
+<def><name> BlackT </name><val> 0.50 </val></def> 
+<def><name> WhiteT </name><val> 1.00 </val></def>
+<def><name> HispanicT </name><val> 0.50 </val></def>
+<def><name> EthnicityChange </name>
+  <val> 
+     ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianT ) 
+    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackT )
+    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteT )
+    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicT )
+  </val>
+</def>
+
+<def><name> RealTargetConc </name><val> TargetConc * EthnicityChange </val></def>
+
 <def>
   <name> InitialMass </name>
-  <val> TargetConc * ECFV.InitialVol / 1000 </val>
+  <val> RealTargetConc * ECFV.InitialVol / 1000 </val>
 </def>
 
 <def>
@@ -112,7 +136,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Hydroxylation(25-H) </name>
-  <val> K(25-H) * Mass </val>
+  <val> K(25-H) * Mass * ( Kidney-Metabolism.TotalCalsUsed / 80 ) </val>
 </def>
 
 <def>

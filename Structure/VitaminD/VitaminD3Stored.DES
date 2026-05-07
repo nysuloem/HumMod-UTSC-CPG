@@ -53,12 +53,12 @@ By : University of Mississippi Medical Center
 <block><name> Dervs </name>
 <def>
   <name> Sequestration </name>
-  <val> VitaminD3.Mass * KIn </val>
+  <val> VitaminD3.Mass * KIn * Weight.FatMass </val>
 </def>
 
 <def>
   <name> Mobilization </name>
-  <val> Mass * KOut </val>
+  <val> Mass * KOut / Weight.FatMass </val>
 </def>
 
 <def>
