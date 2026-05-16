@@ -144,6 +144,7 @@ By : University of Mississippi Medical Center
 <?include Pressures\Pressures.DES ?>
 <?include PressureTools\PressureTools.DES ?>
 <?include Progesterone\Progesterone.DES ?>
+<?include Puffers\Puffers.DES ?>
 <?include Renin\Renin.DES ?>
 <?include RespiratoryCenter\RespiratoryCenter.DES ?>
 <?include RespiratoryMuscle\RespiratoryMuscle.DES ?>
@@ -612,6 +613,7 @@ By : University of Mississippi Medical Center
 
   <call> NO.Dervs </call>
   <call> NOPool.Dervs </call>
+  <call> Puffers.Dervs </call>
 
   <call> LeftHeart-Work.Calc </call>
   

@@ -40,8 +40,11 @@ We need both BTPS and STPD volumes.
 <var><name> AlveolarVolume(STPD) </name></var>
 <var><name> Drive </name></var>
 <var><name> LungVolAgeAdjust</name></var>
+<var><name> TempAsthma</name></var>
+<var><name> MoreBlockage</name><val> 0 </val></var>
+<var><name> LessBlockage</name></var>
+<var><name> VentolinAsthma</name></var>
 
-<parm><name> Blockage </name><val> 0 </val></parm>
 
 </variables>
 
@@ -62,7 +65,29 @@ We need both BTPS and STPD volumes.
   <point><x> 90 </x><y> 0.75 </y><slope>0.025</slope></point>
 </curve>
 
+<curve>
+  <name> TempAsthma </name>
+  <point><x> -20 </x><y> 0.5 </y><slope> 0 </slope></point>
+  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> 20 </x><y> 0 </y><slope> 0 </slope></point>
+</curve>
+
+<curve>
+  <name> VentolinAsthma </name>
+  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> 30 </x><y> 1 </y><slope> 0 </slope></point>
+</curve>
+
 </functions>
+
+<equations>
+ <diffeq> 
+ <name> Blockage </name>
+ <integralname> Blockage </integralname>
+ <initialval> 0 </initialval>
+ <dervname> Change </dervname>
+</diffeq>
+ </equations>
 
 <definitions>
 
@@ -71,6 +96,32 @@ We need both BTPS and STPD volumes.
   <def>
     <name>LungVolAgeAdjust</name>
     <val> LungVolAdjustAge [ Context-Age.Age(Years) ] </val>
+  </def> 
+
+<def>
+    <name>TempAsthma</name>
+    <val> TempAsthma [ AmbientTemperature.Temp(C) ] </val>
+  </def> 
+
+<def>
+    <name>VentolinAsthma</name>
+    <val> VentolinAsthma [ VentolinInhaler.[Ventolin] ] </val>
+  </def> 
+
+  <def>
+    <name>MoreBlockage</name>
+    <val> TempAsthma </val>
+  </def> 
+
+  <def>
+    <name>LessBlockage</name>
+    <val> VentolinAsthma </val>
+  </def> 
+
+
+  <def>
+    <name>Change</name>
+    <val> MoreBlockage - LessBlockage </val>
   </def> 
 
   <def>

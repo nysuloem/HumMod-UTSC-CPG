@@ -1,0 +1,28 @@
+HumMod / Blockers DES
+
+Created : 10-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<branch>
+  <name> Inhalers </name>
+  <label> Inhalers </label>
+  <parent> INTERVENTION </parent>
+</branch>
+ 
+<leaf>
+  <name> Inhalers-Dosing </name>
+  <label> Dosing </label>
+  <parent> Inhalers </parent>
+</leaf>
+ 
+<leaf>
+  <name> Inhalers-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Inhalers </parent>
+</leaf>
+
+End

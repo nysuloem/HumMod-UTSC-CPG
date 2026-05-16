@@ -1,0 +1,117 @@
+HumMod / NODrug
+
+Created : 15-Jul-13
+Revised : 
+Author : W Pruett
+Copyright : 2013-2013
+By : University Of Mississippi Medical Center
+
+<structure><name> VentolinInhaler </name> <!-- Defines the inhaler-based NO administration -->
+
+<variables>
+
+<parm><name> Dose </name><val> 200 </val></parm> <!-- Defines dose in mg -->
+<var><name> TimeLastDose </name><val> UNDEFINED </val></var> <!-- Tracks last dose timestamp, initially undefined -->
+<var><name> TotalDoses </name><val> 0.0 </val></var> <!-- Counts total doses administered, initially 0 -->
+<var><name> CumulativeDose </name><val> 0.0 </val></var> <!-- Accumulates total dose intake, initially 0 -->
+<var><name> TimeSpan </name></var> <!-- Inhalation duration per breath -->
+<var><name> K </name><val> 0 </val></var> <!-- Drug clearance rate -->
+<var><name> [Ventolin] </name><val> 0 </val></var> 
+<var><name> Gain </name><val> 0 </val></var> 
+<var><name> Loss </name><val> 0 </val></var> 
+<parm><name> LungFraction </name><val> 0.4 </val></parm> <!-- Fraction of dose retained in the lungs -->
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name> <!-- Tracks current drug amount in the system -->
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval> <!-- Starts with no inhaled NO present -->
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim> <!-- Error tolerance for integration. It is probably that the faster the system, the "lower" the error tolerance should be. -->
+</diffeq>
+
+</equations>
+
+<definitions>
+  
+<block><name> Inhale </name> <!-- Defines inhalation dynamics -->
+
+<def>
+  <name> TimeSpan </name> <!-- Calculates inhalation duration per breath -->
+  <val> 60 / RespiratoryCenter-Output.Rate </val>
+</def>
+
+<def>
+  <name> K </name> <!-- Computes drug clearance rate -->
+  <val> 2 / TimeSpan </val> <!-- higher breathing rates lead to shorter TimeSpan values, and therefore higher clearance rates (K) ... in NO, suggests clearance twice per breathing cycle. -->
+</def>
+
+
+<def>
+  <name> TimeLastDose </name>
+  <val> System.X </val> <!-- system time = time last dose -->
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> TotalDoses + 1.0 </val> <!-- total number of inhalations -->
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> CumulativeDose + Dose </val> <!-- total number of NO inhaled -->
+</def>
+
+</block>
+
+<block>
+<name> Dervs </name> <!-- Defines drug elimination and lung distribution -->
+
+<def>
+  <name> Gain </name>
+  <val> Dose </val> <!-- drug clearance with negative K (clearance rate) value -->
+</def>
+
+<def>
+  <name> Loss </name>
+  <val> K * Mass </val> <!-- drug clearance with negative K (clearance rate) value -->
+</def>
+
+<def>
+  <name> Change </name>
+  <val> Gain - Loss </val> <!-- drug clearance with negative K (clearance rate) value -->
+</def>
+
+<def>
+  <name> [Ventolin] </name>
+  <val> Mass / LungVolumes.TotalCapacity </val> <!-- drug clearance with negative K (clearance rate) value -->
+</def>
+
+</block>
+
+<block><name> Reset </name> <!-- Allows resetting dose tracking -->
+
+<def>
+  <name> TimeLastDose </name>
+  <val> UNDEFINED </val>
+</def>
+
+<def>
+  <name> TotalDoses </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> CumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

@@ -21,6 +21,13 @@ Schema : DES V1.0
   <format><decimal> 1 </decimal></format>
 </showvalue>
 
+<showvalue>
+  <row> 1.9 </row><col> 1.0 </col>
+  <name> Breathing.Blockage </name>
+  <label> Blockage </label>
+  <format><decimal> 1 </decimal></format>
+</showvalue>
+
 <showgraph>
   <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
   <leftmargin> 5 </leftmargin>

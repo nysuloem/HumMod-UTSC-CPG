@@ -24,6 +24,7 @@ By : University of Mississippi Medical Center
 <?include Fluids.DES ?>
 <?include Hemodialysis.DES ?>
 <?include InfusionPumps.DES ?>
+<?include Inhalers.DES ?>
 <?include InsulinInjection.DES ?>
 <?include PericardialDrain.DES ?>
 <?include Ventilator.DES ?>

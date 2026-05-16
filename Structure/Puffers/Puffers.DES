@@ -1,0 +1,22 @@
+HumMod / NO
+
+
+
+<?path Structure\Puffers\ ?>
+
+<?include VentolinInhaler.DES ?>
+
+<structure><name> Puffers </name>
+
+<definitions>
+
+<block><name> Dervs </name>
+  <call> VentolinInhaler.Dervs </call>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
