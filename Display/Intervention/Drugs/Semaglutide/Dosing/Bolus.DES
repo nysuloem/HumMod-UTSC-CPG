@@ -1,0 +1,69 @@
+HumMod / SingleDoseOral
+
+Created : 05-Jun-06
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 10.2 </high>
+   <wide> 40.0 </wide>
+   <title> Semaglutide Injection Dose </title>
+
+<structurename> Semaglutide </structurename>
+
+<actionbutton> 
+  <row> 1.4 </row><col> 1.0 </col>
+  <blockname> TakeAdultDoseNow </blockname>
+  <label> Inject Now </label>
+</actionbutton>
+
+<repeatlist>
+  <name> Dose </name>
+  <repeat><reps> 8 </reps><stepsize> 0.25 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 3.2 </row><col> 1.0 </col>
+  <name> Dose </name>
+  <listname> Dose </listname>
+  <label> Dose </label>
+</slidebar>
+
+<showvalue>
+   <row> 4.6 </row><col> 1.0 </col>
+   <name> TimeLastDose </name>
+   <format>
+      <timestamp/>
+      <fieldwidth> 14 </fieldwidth>
+   </format>
+   <label> Last Dose </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.6 </row><col> 1.0 </col>
+   <name> TotalDoses </name>
+   <format> <integer/> </format>
+   <label> Total Doses </label>
+</showvalue>
+
+<showvalue>
+   <row> 6.6 </row><col> 1.0 </col>
+   <name> CumulativeDose </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Cumulative Dose </label>
+</showvalue>
+
+<actionbutton>
+  <row> 8.2 </row><col> 1.0 </col>
+  <blockname> Reset </blockname>
+  <label> Reset </label>
+</actionbutton>
+
+</groupbox>
+
+End

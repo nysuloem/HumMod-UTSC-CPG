@@ -27,6 +27,7 @@ By : University Of Mississippi Medical Center
 <?include Warfarin\Warfarin.DES ?>
 <?include DrugTests\Breathalyzer.DES ?>
 <?include NODrug\NODrug.DES ?>
+<?include Semaglutide\Semaglutide.DES ?>
 
 <structure><name> Drugs </name>
 
@@ -96,6 +97,7 @@ By : University Of Mississippi Medical Center
   <call> Narcan.Dervs </call>
   <call> Warfarin.Dervs </call>
   <call> NODrug.Dervs </call>
+  <call> Semaglutide.Dervs </call>
 
 </block>
 
@@ -113,7 +115,7 @@ By : University Of Mississippi Medical Center
   <call> Phenylephrine.Wrapup </call>
   <call> Reserpine.Wrapup </call>
   <call> Warfarin.Wrapup </call>
-
+  <call> Semaglutide.Wrapup </call>
 </block>
 
 </definitions>

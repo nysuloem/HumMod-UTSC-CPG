@@ -193,6 +193,24 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <branch>
+  <name> Drugs-Semaglutide </name>
+  <label> Semaglutide Injector </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Semaglutide-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Semaglutide</parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Semaglutide-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Semaglutide</parent>
+</leaf>
+
+<branch>
   <name> Drugs-NE </name>
   <label> NE Bolus </label>
   <parent> Drugs </parent>
