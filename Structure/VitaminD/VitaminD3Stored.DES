@@ -7,29 +7,56 @@ Copyright : 2011-2011
 By : University of Mississippi Medical Center
 
 <structure><name> VitaminD3Stored </name>
+<!--VDBP = Vitamin D3 Binding Protein-->
 
 <variables>
 
-<var><name> Gain(nG/Min) </name></var>
-<var><name> Loss(nG/Min) </name></var>
+<var><name> GainFat(nG/Min) </name></var>
+<var><name> LossFat(nG/Min) </name></var>
+<var><name> GainVDBP(nG/Min) </name></var>
+<var><name> LossVDBP(nG/Min) </name></var>
 
-<var><name> Sequestration </name></var>
-<var><name> Mobilization </name></var>
+<var><name> SequestrationFat </name></var>
+<var><name> MobilizationFat </name></var>
+<var><name> SequestrationVDBP </name></var>
+<var><name> MobilizationVDBP </name></var>
 
-<var><name> InitialMass </name></var>
+<var><name> InitialMassFat </name></var>
+<var><name> InitialMassVDBP </name></var>
 
-<parm><name> KIn </name><val> 0.33 </val></parm>
-<parm><name> KOut </name><val> 0.028 </val></parm>
+<var><name> GainBMax(nG) </name></var>
+<var><name> LossBMax(nG) </name></var>
+
+<parm><name> KInFat </name><val> 0.33 </val></parm>
+<parm><name> KOutFat </name><val> 0.028 </val></parm>
+<parm><name> KInVDBP </name><val> 0.33 </val></parm>
+<parm><name> KOutVDBP </name><val> 0.028 </val></parm>
 
 </variables>
 
 <equations>
 
 <diffeq>
-  <name> Mass </name>
-  <integralname> Mass </integralname>
-  <dervname> Change </dervname>
+  <name> MassFat </name>
+  <integralname> MassFat </integralname>
+  <dervname> ChangeFat </dervname>
   <errorlim> 18 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> MassVDBP </name>
+  <integralname> MassVDBP </integralname>
+  <initialval> 2.0 </initialval>
+  <dervname> ChangeVDBP </dervname>
+  <errorlim> 0.02 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> BMax </name>
+  <integralname> BMax </integralname>
+  <initialval> 2.4 </initialval>
+  <dervname> ChangeBMax </dervname>
+  <errorlim> 2.0 </errorlim>
 </diffeq>
 
 </equations>
@@ -38,12 +65,12 @@ By : University of Mississippi Medical Center
 
 <block><name> Init </name>
 <def>
-  <name> InitialMass </name>
+  <name> InitialMassFat </name>
   <val> 24 * Weight.InitialWeight(kG) </val>
 </def>
 <def>
-  <name> Mass </name>
-  <val> InitialMass </val>
+  <name> MassFat </name>
+  <val> InitialMassFat </val>
 </def>
 </block>
 
@@ -52,29 +79,74 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 <def>
-  <name> Sequestration </name>
-  <val> VitaminD3.Mass * KIn * Weight.FatMass </val>
+  <name> SequestrationFat </name>
+  <val> VitaminD3.Mass * KInFat * Weight.FatMass </val>
 </def>
 
 <def>
-  <name> Mobilization </name>
-  <val> Mass * KOut / Weight.FatMass </val>
+  <name> MobilizationFat </name>
+  <val> MassFat * KOutFat / Weight.FatMass </val>
 </def>
 
 <def>
-  <name> Gain(nG/Min) </name>
-  <val> Sequestration </val>
+  <name> SequestrationVDBP </name>
+  <val> ( BMax * VitaminD3.Mass ) / ( VitaminD3.Mass + KInVDBP ) </val>
 </def>
 
 <def>
-  <name> Loss(nG/Min) </name>
-  <val> Mobilization </val>
+  <name> MobilizationVDBP </name>
+  <val> MassVDBP * KOutVDBP </val>
+</def>
+
+
+<def>
+  <name> GainFat(nG/Min) </name>
+  <val> SequestrationFat </val>
 </def>
 
 <def>
-  <name> Change </name>
-  <val> 0.001 * ( Gain(nG/Min) - Loss(nG/Min) ) </val>
+  <name> LossFat(nG/Min) </name>
+  <val> MobilizationFat </val>
 </def>
+
+<def>
+  <name> ChangeFat </name>
+  <val> 0.001 * ( GainFat(nG/Min) - LossFat(nG/Min) ) </val>
+</def>
+
+
+<def>
+  <name> GainVDBP(nG/Min) </name>
+  <val> SequestrationVDBP </val>
+</def>
+
+<def>
+  <name> LossVDBP(nG/Min) </name>
+  <val> MobilizationVDBP </val>
+</def>
+
+<def>
+  <name> ChangeVDBP </name>
+  <val> 0.001 * ( GainVDBP(nG/Min) - LossVDBP(nG/Min) ) </val>
+</def>
+
+
+<def>
+  <name> GainBMax(nG) </name>
+  <val> 1 </val>
+</def>
+
+<def>
+  <name> LossBMax(nG) </name>
+  <val> 1 </val>
+</def>
+
+<def>
+  <name> ChangeBMax </name>
+  <val> 0.001 * ( GainBMax(nG) - LossBMax(nG) ) </val>
+</def>
+
+
 </block>
 
 </definitions>
