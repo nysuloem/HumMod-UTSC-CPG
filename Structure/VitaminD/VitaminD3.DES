@@ -116,12 +116,12 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Mobilization </name>
-  <val> VitaminD3Stored.Mobilization </val>
+  <val> VitaminD3Stored.MobilizationFat + VitaminD3Stored.MobilizationVDBP </val>
 </def>
 
 <def>
   <name> Sequestration </name>
-  <val> VitaminD3Stored.Sequestration </val>
+  <val> VitaminD3Stored.SequestrationFat + VitaminD3Stored.SequestrationVDBP </val>
 </def>
 
 <def>

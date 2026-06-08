@@ -348,7 +348,7 @@ By : University of Mississippi Medical Center
   <call> VitaminD.Conc </call>
   <call> Cortisol.Conc </call>
   <call> SexDrive.Parms </call>
-  <call> SexDrive.Libido </call>
+  
   
   
   
@@ -394,6 +394,7 @@ By : University of Mississippi Medical Center
 
   <call> DesglymidodrinePool.CalcConc </call>
   <call> Catechols.CalcConc </call>
+  <call> SexDrive.Libido </call>
 
   <call> AlbuminPool.CalcConc </call>
   <call> IgGPool.CalcConc </call>

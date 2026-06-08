@@ -3,8 +3,6 @@ HumMod / Context-SexualActivity
 Created : 2024-04-24
 By: Jason Brown
 
-
-
 <structure><name> UseProtection </name> 
 <variables> 
 <constant><name> None </name><val> 0 </val></constant>

@@ -14,7 +14,7 @@ By: Terry Yavorskyy UTSC
 
   <variables>
   
-  <parm><name> Index </name><val> 0 </val></parm>
+  <parm><name> Index </name><val> 1 </val></parm>
   
   <constant><name> IS_MALE </name><val> 0 </val></constant>
   <constant><name> IS_FEMALE </name><val> 1 </val></constant>

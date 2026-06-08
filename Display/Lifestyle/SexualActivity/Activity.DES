@@ -40,8 +40,8 @@ By: Jason Brown UTSC
 
 <showvalue>
    <row> 12.4 </row><col> 1 </col>
-   <name> SexDrive.Libido </name>
-   <label> Libido </label>
+   <name> SexDrive.LibidoEffect </name>
+   <label> Horniness (0-100) </label>
 </showvalue>
 
 <showvalue>
@@ -66,6 +66,12 @@ By: Jason Brown UTSC
   <row> 16.4 </row><col> 1 </col>
   <name> SexualIntercourse.SpermTimer </name>
   <label> Sperm Timer </label>
+</showvalue>
+
+<showvalue>
+  <row> 17.4 </row><col> 1 </col>
+  <name> SexDrive.Libido </name>
+  <label> Libido </label>
 </showvalue>
 
 <maplist>

@@ -30,7 +30,8 @@ By : University of Mississippi Medical Center
 
 <?path Display\Hormones\VitaminD\VitaminD3Stored\ ?>
 
-<?include Mass.DES ?>
+<?include MassFat.DES ?>
+<?include MassVDBP.DES ?>
 
 </panel>
 

@@ -28,8 +28,8 @@ By: Jason Brown
 
 <if><test> SexualIntercourse.Refractory EQ 0 </test>
     <true>
-        <def><name> HaveSex</name>
-        <val> SexDrive.Libido * PartnerProbability </val>
+        <def><name> HaveSex </name>
+        <val> SexDrive.LibidoEffect * PartnerProbability </val>
         </def>
     </true>
     <false>

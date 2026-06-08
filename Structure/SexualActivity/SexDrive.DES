@@ -3,8 +3,6 @@ HumMod / Context-SexualActivity
 Created : 2024-04-24
 By: Jason Brown
 
-
-
 <structure><name> SexDrive </name>
 
 <variables>
@@ -19,9 +17,20 @@ By: Jason Brown
 <var><name> IsSexuallyActive </name></var>
 
 <var><name> Libido </name></var>
+<var><name> LibidoEffect </name></var>
 <var><name> Mood </name></var>
 
 </variables>
+
+<functions>
+
+<curve>
+  <name> LibidoEffect </name>
+  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> 5 </x><y> 100 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
 
 <definitions>
 
@@ -103,14 +112,19 @@ By: Jason Brown
     <if><test> Context-Sex.Index EQ 0 </test>
     <true>
     <def><name> Libido </name>
-    <val> Testosterone.[Conc(nMol/L)] - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val>
+    <val> ( Testosterone.[Conc(nMol/L)] ) + ( Estradiol.[Conc(nMol/L)] ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val>
     </def>
     </true>
     <false>
     <def><name> Libido </name>
-    <val> ( Estradiol.[Conc(nMol/L)] * 50 ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) </val></def>
+    <val> ( Estradiol.[Conc(nMol/L)] ) + ( Testosterone.[Conc(nMol/L)] ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] / 1000 ) - ( Progesterone.[Conc(nMol/L)] / 10 ) - ( MorphinePool.[Morphine(nMol)] ) </val></def>
     </false>
     </if>
+
+    <def><name> LibidoEffect </name>
+        <val> LibidoEffect [ Libido ] </val>
+    </def>
+
 </block>
 
 <block><name> Refractory</name>

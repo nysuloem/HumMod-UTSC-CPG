@@ -41,7 +41,7 @@ By: Jason Brown
 </if>
 
 <conditional><name> HaveSex.SexOutcome </name>
-<test> HaveSex.HaveSex LT 2000 </test>
+<test> HaveSex.HaveSex LT 3000 </test>
 <true> 0 </true> <!-- Patient is not having sexual intercourse -->
 <false> 5 </false> <!-- Patient is attempting sexual intercourse -->
 </conditional>

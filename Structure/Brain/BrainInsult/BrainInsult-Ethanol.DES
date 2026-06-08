@@ -30,7 +30,7 @@ By : Tiffany Bishun
 
 <def>
   <name> Effect </name>
-  <val> Low[Osm] [ OsmBody.CellWall(mOsm/L) ] </val>
+  <val> Intoxication [ EthanolPool.[Ethanol] ] </val>
 </def>
 
 </block>
