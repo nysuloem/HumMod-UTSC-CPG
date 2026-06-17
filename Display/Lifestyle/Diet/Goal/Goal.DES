@@ -1,0 +1,191 @@
+HumMod / Goal
+
+Created : 24-Jun-06
+Revised : 2013-03-15
+Author : Tom Coleman
+Copyright : 2008-2013
+By : University of Mississippi Medical Center
+
+
+<panel><name> Diet_Goal </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Diet </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Diet | Goal </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<structurename> DietGoalNutrition </structurename>
+
+<groupbox>
+   <row> 3.0 </row>
+   <col> 1.0 </col>
+   <high> 20.0 </high>
+   <wide> 30.0 </wide>
+   <title> Macronutrients </title>
+</groupbox>
+
+<label>
+  <row> 5.0 </row><col> 3.0 </col>
+  <text> (kcal/day) </text>
+</label>
+
+<repeatlist>
+  <name> NutritionRate </name>
+  <repeat><reps> 200 </reps><stepsize>   10.0 </stepsize></repeat>
+  <repeat><reps>  40 </reps><stepsize>  100.0 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 7.0 </row><col> 3.0 </col>
+  <name> Carbo_kCal/Day </name>
+  <listname> NutritionRate </listname>
+  <label> Carbs </label>
+</slidebar>
+
+<slidebar>
+  <row> 9.0 </row><col> 3.0 </col>
+  <name> Fat_kCal/Day </name>
+  <listname> NutritionRate </listname>
+  <label> Fats </label>
+</slidebar>
+
+<slidebar>
+  <row> 11.0 </row><col> 3.0 </col>
+  <name> Protein_kCal/Day </name>
+  <listname> NutritionRate </listname>
+  <label> Proteins </label>
+</slidebar>
+
+<showvalue>
+   <row> 13.0 </row><col> 3.0 </col>
+   <name> Total_kCal/Day </name>
+   <format><integer/></format>
+   <label> Total </label>
+</showvalue>
+
+<label>
+  <row> 16.0</row><col> 3.0 </col>
+  <text> (g/day) </text>
+</label>
+
+<showvalue>
+   <row> 18.0 </row><col> 3.0 </col>
+   <name> Carbo_G/Day </name>
+   <format><integer/></format>
+   <label> Carbs </label>
+</showvalue>
+
+<showvalue>
+   <row> 19.0 </row><col> 3.0 </col>
+   <name> Fat_G/Day </name>
+   <format><integer/></format>
+   <label> Fat </label>
+</showvalue>
+
+<showvalue>
+   <row> 20.0 </row><col> 3.0 </col>
+   <name> Protein_G/Day </name>
+   <format><integer/></format>
+   <label> Protein </label>
+</showvalue>
+
+<structurename> DietGoalElectrolytes </structurename>
+
+<groupbox>
+   <row> 3.0 </row>
+   <col> 32 </col>
+   <high> 20.0 </high>
+   <wide> 30.0 </wide>
+   <title> Micronutrients </title>
+</groupbox>
+
+<label>
+  <row> 5.0 </row><col> 34.0 </col>
+  <text> (mMol/day) </text>
+</label>
+
+<repeatlist>
+  <name> Rate </name>
+  <repeat><reps> 10 </reps><stepsize>  1.0 </stepsize></repeat>
+  <repeat><reps> 29 </reps><stepsize> 10.0 </stepsize></repeat>
+  <repeat><reps>  4 </reps><stepsize> 50.0 </stepsize></repeat>
+  <repeat><reps>  4 </reps><stepsize> 250.0 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 7.0 </row><col> 34.0 </col>
+  <name> Salt_mMol/Day </name>
+  <listname> Rate </listname>
+  <label> Salt </label>
+</slidebar>
+
+<slidebar>
+  <row> 9.0 </row><col> 34.0 </col>
+  <name> KCl_mMol/Day </name>
+  <listname> Rate </listname>
+  <label> KCl </label>
+</slidebar>
+
+<slidebar>
+  <row> 11.0 </row><col> 34.0 </col>
+  <name> DietaryK+_mMol/Day </name>
+  <listname> Rate </listname>
+  <label> Dietary K+ </label>
+</slidebar>
+
+<repeatlist>
+  <name> Calcium </name>
+  <repeat><reps> 100 </reps><stepsize>  1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 13.0 </row><col> 34.0 </col>
+  <name> Ca++_mMol/Day </name>
+  <listname> Calcium </listname>
+  <label> Ca++ </label>
+</slidebar>
+
+<slidebar>
+  <row> 15.0 </row><col> 34.0 </col>
+  <name> PO4---_mMol/Day </name>
+  <listname> Rate </listname>
+  <label> PO4--- </label>
+</slidebar>
+
+<slidebar>
+  <row> 17.0 </row><col> 34.0 </col>
+  <name> SO4--_mMol/Day </name>
+  <listname> Rate </listname>
+  <label> SO4-- </label>
+</slidebar>
+
+<showvalue>
+   <row> 19.0 </row><col> 45 </col>
+   <name> NH4+_mMol/Day </name>
+   <format><integer/></format>
+   <label> NH4+ </label>
+</showvalue> <showvalue>
+   <row> 21.0 </row><col> 45 </col>
+   <name> HCO3-_mMol/Day </name>
+   <format><integer/></format>
+   <label> HCO3- </label>
+</showvalue>
+
+</panel>
+
+End

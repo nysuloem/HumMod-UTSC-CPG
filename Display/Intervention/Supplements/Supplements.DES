@@ -1,0 +1,13 @@
+HumMod / Drugs
+
+Created : 24-Apr-05
+Revised : 2013-03-19
+Author : Tom Coleman
+Copyright : 2006-2013
+By : University Of Mississippi Medical Center
+
+<?path Display\Intervention\Supplements\ ?>
+
+<?include Creatine\Creatine.DES ?>
+
+End

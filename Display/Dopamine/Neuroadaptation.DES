@@ -1,0 +1,103 @@
+<!--
+================================================================================
+  Neuroadaptation.DES  -  PANEL 4
+  Cumulative neuroadaptation across repeated ethanol exposures.
+
+  Tracks the number of drinks taken and the two adaptive gains that encode
+  the long-term changes:
+     A-gain  : euphoria gain, DECREASES with use  (tolerance)
+     B-gain  : withdrawal gain, INCREASES with use (sensitization)
+  A "Reset Adaptation" button clears the tolerance/sensitization history so
+  a fresh subject can be simulated without restarting the whole model.
+================================================================================
+-->
+
+<panel>
+  <name> Neuroadaptation </name>
+  <tablabel> Neuroadaptation </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 12.0 </col>
+    <text> Neuroadaptation: Tolerance &amp; Sensitization </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ===================== EXPOSURE TRACKING ===================== -->
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 9.0 </high><wide> 36.0 </wide>
+    <title> Exposure Tracking </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.TotalExposures </name>
+      <label> Exposure Count (drinks) </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.AGain </name>
+      <label> A-gain (euphoria) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.BGain </name>
+      <label> B-gain (craving) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <actionbutton>
+      <row> 6.5 </row><col> 1.0 </col>
+      <blockname> DopamineSystem.Reset </blockname>
+      <label> Reset Adaptation </label>
+      <layout> LABELRIGHT </layout>
+    </actionbutton>
+
+  </groupbox>
+
+  <!-- ===================== GAINS OVER TIME ===================== -->
+  <showgraph>
+    <row> 2.0 </row><col> 40.0 </col>
+    <high> 9.0 </high><wide> 58.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 10080.0 </max><inc> 1440.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.AGain </name>
+        <label> A-gain (down = tolerance) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.BGain </name>
+        <label> B-gain (up = sensitization) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLUE </linecolor>
+      </yvar>
+      <scale><min> 0.0 </min><max> 4.0 </max><inc> 0.5 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <label>
+    <row> 11.5 </row><col> 1.0 </col>
+    <text> Each new drink lowers A-gain (tolerance to euphoria) and raises B-gain (growing craving) - the core of addiction. </text>
+    <color> GREY </color>
+  </label>
+
+</panel>
+
+End

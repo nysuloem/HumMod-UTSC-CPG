@@ -1,0 +1,100 @@
+
+<!-- Boaz's BIOC32 project-->
+
+<structure><name> Stomach </name>
+
+<variables>
+
+    <var><name> DietInflowRate </name><val> 0 </val></var>
+    <var><name> WaterInflowRate </name><val> 0 </val></var>
+    <var><name> DietOutflowRate </name><val> 0 </val></var>
+    <var><name> WaterOutflowRate </name><val> 0 </val></var>
+    <var><name> StomachVolume </name><val> 0 </val></var>
+    <var><name> KFood </name><val> 0.02 </val></var>
+    <var><name> KWater </name><val> 0.05 </val></var>
+
+    <parm><name>AutoEmptyingVolume</name><val> 200 </val></parm>
+
+</variables>
+
+<equations>
+
+    <diffeq>
+      <name> DietStomachVolume </name>
+      <integralname> DietStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dDietStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+      <diffeq>
+      <name> WaterStomachVolume </name>
+      <integralname> WaterStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dWaterStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+</equations>
+
+<definitions>
+
+  <block><name> Dervs </name>
+
+    <def>
+      <name> DietInflowRate </name>
+      <val> DietIntakeNutrition.Total_G/Min </val>
+    </def>
+
+    <def>
+        <name> WaterInflowRate </name>
+        <val> DietIntakeH2O.Rate(mL/Min) </val>
+    </def>
+      
+    <def>
+      <name> DietOutflowRate </name>
+      <val> KFood * DietStomachVolume </val>
+    </def>
+
+    <def>
+      <name> WaterOutflowRate </name>
+      <val> KWater * WaterStomachVolume </val>
+    </def>
+
+    <def>
+      <name> dDietStomachVolume/dt </name>
+      <val> DietInflowRate - DietOutflowRate </val>
+    </def>
+
+    <def>
+      <name> dWaterStomachVolume/dt </name>
+      <val> WaterInflowRate - WaterOutflowRate </val>
+    </def>
+
+    <def>
+        <name> StomachVolume </name>
+        <val> DietStomachVolume + WaterStomachVolume </val>
+    </def>
+
+  </block>
+
+   <block><name> Wrapup </name>
+
+     <if>
+        <test> DietStomachVolume LT 0 </test>
+        <true>
+          <def><name> DietStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+
+      <if>
+        <test> WaterStomachVolume LT 0 </test>
+        <true>
+          <def><name> WaterStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+  </block>
+
+</definitions>
+
+</structure>

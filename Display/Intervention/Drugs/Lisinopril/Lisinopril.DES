@@ -1,0 +1,8 @@
+HumMod / Lisinopril
+
+<?path Display\Intervention\Drugs\Lisinopril\ ?>
+
+<?include Dosing\Dosing.DES ?>
+<?include Kinetics\Kinetics.DES ?>
+
+End

@@ -1,0 +1,154 @@
+HumMod / Uterus-Size
+
+Created : 31-Mar-05
+Revised : 2013-03-01
+Author : Tom Coleman
+Copyright : 2006-2013
+By : University Of Mississippi Medical Center
+
+<structure><name> Uterus-Size </name>
+
+<variables>
+
+<var><name> Vol </name></var>
+<var><name> Mass </name></var>
+<var><name> Mass(kG) </name></var>
+<var><name> InitialMass </name></var>
+<var><name> Density </name></var>
+<var><name> LiquidMass </name></var>
+<constant>
+  <name> LiquidDensity </name>
+  <val> 1.00 </val>
+</constant>
+
+
+<var><name> LiquidVol </name></var>
+<var><name> InitialLiquidVol </name></var>
+
+<var><name> SolidMass </name></var>
+<var><name> InitialSolidMass </name></var>
+
+<constant>
+  <name> SolidDensity </name>
+  <val> 1.17 </val>
+</constant>
+
+
+<var><name> SolidVol </name></var>
+
+<var><name> FractTotal </name></var>
+
+<var><name> IFV </name></var>
+<var><name> InitialIFV </name></var>
+
+<var><name> CellH2O </name></var>
+<var><name> InitialCellH2O </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Init </name>
+</block>
+
+<block><name> ScaleH2O </name>
+
+<def>
+  <name> FractTotal </name>
+  <val> InitialLiquidVol / TissueH2O.InitialVol </val>
+</def>
+
+<def>
+  <name> InitialIFV </name>
+  <val> FractTotal * InterstitialWater.InitialVol </val>
+</def>
+
+<def>
+  <name> InitialCellH2O </name>
+  <val> FractTotal * ICFV.Vol </val>
+</def>
+
+<def>
+  <name> SolidMass </name>
+  <val> InitialSolidMass </val>
+</def>
+
+</block>
+
+<block><name> Calc </name>
+<!-- 
+<conditional> 
+<name> IFV </name>
+<test> Context-Sex.Index EQ 1 </test>
+<true> FractTotal * InterstitialWater.Vol
+</true>
+<false> 0.01
+</false>
+</conditional>  
+
+<conditional> 
+  <name> CellH2O </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> FractTotal * ICFV.Vol </true>
+<false> 0.01 </false>
+</conditional> 
+-->
+<def>
+  <name> IFV </name>
+  <val> FractTotal * InterstitialWater.Vol </val>
+</def>
+
+<def>
+  <name> CellH2O </name>
+  <val> FractTotal * ICFV.Vol </val>
+</def>
+
+<conditional> 
+  <name> LiquidVol </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> IFV + CellH2O </true>
+<false> 0.01 </false>
+</conditional> 
+
+<conditional> 
+  <name> LiquidMass </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> LiquidVol * LiquidDensity </true>
+<false> 0.0 </false>
+</conditional> 
+
+
+<conditional> 
+  <name> SolidMass </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> InitialSolidMass </true>
+<false> 0.01 </false>
+</conditional> 
+
+<conditional> 
+  <name> SolidVol </name>
+  <test> Context-Sex.Index EQ 1 </test>
+  <true> SolidMass / SolidDensity </true>
+<false> 0.01 </false>
+</conditional> 
+
+<def>
+  <name> Mass </name>
+  <val> LiquidMass + SolidMass </val>
+</def>
+
+<def>
+  <name> Vol </name>
+  <val> LiquidVol + SolidVol </val>
+</def>
+
+<def>
+  <name> Density </name>
+  <val> Mass / Vol </val>
+</def>
+</block>
+
+</definitions>
+</structure>
+
+End

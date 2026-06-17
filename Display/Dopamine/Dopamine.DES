@@ -1,0 +1,99 @@
+<?path Display\Dopamine\ ?>
+
+<?include DopamineDynamics.DES ?>
+<?include RewardLearning.DES ?>
+<?include HedonicState.DES ?>
+<?include Neuroadaptation.DES ?>
+<?include DopamineControls.DES ?>
+
+
+<!--
+================================================================================
+  Dopamine.DES  -  MASTER DISPLAY FILE
+  Dopamine Reward-Learning & Addiction display package for HumMod
+
+  Drives the user interface for DopamineSystem.DES (structure/calculation).
+  It declares the shared display objects (menu tree + parameter lists) and
+  then includes the individual panel files.
+
+  PANELS (functional grouping):
+    1. Dopamine Dynamics   - DA level, tonic/phasic components + DA time-graph
+    2. Reward Learning     - ActualReward, RewardPrediction, RPE + RPE graph
+    3. Hedonic State       - A / B / Experienced state + opponent-process graph
+                             and the long-run hedonic set-point shift
+    4. Neuroadaptation     - exposure count + tolerance/sensitization gains
+    5. Controls            - user-adjustable model parameters
+
+-->
+
+<!-- ===================================================================
+     COMMON display objects: menu tree + parameter slider lists.
+     'common' elements are placed before panels so the panels can refer
+     to them (see Display schema, <display>).
+     =================================================================== -->
+<common>
+
+  <!-- ===== Pop-down menu tree: a parent menu with one leaf per panel ===== -->
+  
+
+  <!-- ====================================================================
+       PARAMETER LISTS used by the slidebars on the Controls panel.
+       A slidebar maps slider position -> parameter value through a list.
+       ==================================================================== -->
+
+  <!-- Learning rate alpha: 0.00 .. 1.00 step 0.05 -->
+  <repeatlist>
+    <name> List_LearnRate </name>
+    <firstval> 0.0 </firstval>
+    <repeat><reps> 20 </reps><stepsize> 0.05 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- Dopamine clearance time constant (min): 0.5 .. 10 step 0.5 -->
+  <repeatlist>
+    <name> List_TauDA </name>
+    <firstval> 0.5 </firstval>
+    <repeat><reps> 19 </reps><stepsize> 0.5 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- Withdrawal->DA suppression constant: 0.00 .. 1.00 step 0.02 -->
+  <repeatlist>
+    <name> List_Krate </name>
+    <firstval> 0.0 </firstval>
+    <repeat><reps> 50 </reps><stepsize> 0.02 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- Per-drink tolerance / sensitization step: 0.00 .. 0.50 step 0.01 -->
+  <repeatlist>
+    <name> List_Step </name>
+    <firstval> 0.0 </firstval>
+    <repeat><reps> 50 </reps><stepsize> 0.01 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- A-process time constants (min): 1 .. 120 step 1 -->
+  <repeatlist>
+    <name> List_TauFast </name>
+    <firstval> 1.0 </firstval>
+    <repeat><reps> 119 </reps><stepsize> 1.0 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- B-process time constants (min): 5 .. 600 step 5 -->
+  <repeatlist>
+    <name> List_TauSlow </name>
+    <firstval> 5.0 </firstval>
+    <repeat><reps> 119 </reps><stepsize> 5.0 </stepsize></repeat>
+  </repeatlist>
+
+  <!-- Dopamine gain / baseline: 0.0 .. 5.0 step 0.1 -->
+  <repeatlist>
+    <name> List_Gain </name>
+    <firstval> 0.0 </firstval>
+    <repeat><reps> 50 </reps><stepsize> 0.1 </stepsize></repeat>
+  </repeatlist>
+
+</common>
+
+<!-- ===================================================================
+     PANEL FILES
+     =================================================================== -->
+
+End

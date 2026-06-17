@@ -1,0 +1,32 @@
+
+
+
+<panel><name> Rectum </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Rectum </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Defecation </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<?path Display\Miscellaneous\GIPeristalsis\Rectum\ ?>
+
+<?include Defecation.DES ?>
+
+</panel>
+
+End

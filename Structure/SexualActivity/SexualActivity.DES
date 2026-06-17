@@ -1,0 +1,32 @@
+HumMod / Context-SexualActivity
+
+Created : 2024-04-24
+By: Jason Brown
+
+
+
+<?path Structure\SexualActivity\ ?>
+
+<?include HaveSex.DES ?>
+<?include SexDrive.DES ?>
+<!-- <?include UseProtection.DES ?> -->
+<?include SexualIntercourse.DES ?>
+
+<structure><name> SexualActivity </name>
+
+<definitions>
+
+<block><name> Init </name>
+  <call> SexDrive.Init </call>
+  <!--<call> SexDrive.MoodChange </call>-->
+</block>
+
+<!--<block><name> Wrapup </name>
+  <call> HaveSex.Wrapup </call>
+</block>-->
+
+</definitions>
+
+</structure>
+
+End

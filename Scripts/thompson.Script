@@ -1,0 +1,162 @@
+<script>
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<?include varroster.Script ?>
+
+<restart/>
+<?include init.Script ?>
+
+<setvalue>
+  <var> DietIntakeNutrition.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietIntakeNutrition.FixedIntake(xGoal) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<gofor>
+  <solutionint> 720 </solutionint>
+  <displayint> 720 </displayint>
+</gofor>
+
+<setvalue>
+  <var> DietIntakeH2O.Fixed? </var>
+  <val> 1 </val>
+</setvalue>
+
+<setvalue>
+  <var> DietGoalH2O.Rate(L/Day) </var>
+  <val> 0 </val>
+</setvalue> 
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<saveics><filename> dummy.ics </filename></saveics>
+<restart/>
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -15 </val> </setvalue>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<setvalue>
+  <var> IVDrip.ClinicalSaline </var>
+  <val> 860 </val>
+</setvalue>  
+
+<setvalue>
+  <var> IVDrip.H2OSetting </var>
+  <val> 4.2  </val>
+</setvalue>
+
+<setvalue>
+  <var> IVDrip.Switch </var>
+  <val> 1  </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 120 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<setvalue>
+  <var> IVDrip.H2OSetting </var>
+  <val> 0  </val>
+</setvalue>  
+
+<setvalue>
+  <var> IVDrip.Switch </var>
+  <val> 0  </val>
+</setvalue>
+ 
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<setvalue>
+  <var> DietIntakeH2O.Fixed? </var>
+  <val> 0 </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<dumpsolution>
+  <filename> data\thompson-drink.txt </filename>
+</dumpsolution>
+
+
+<restart/>
+<loadics><filename> dummy.ics </filename></loadics>
+
+<setvalue><var> System.X </var><val> -15 </val> </setvalue>
+
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<setvalue>
+  <var> IVDrip.ClinicalSaline </var>
+  <val> 860 </val>
+</setvalue>  
+
+<setvalue>
+  <var> IVDrip.H2OSetting </var>
+  <val> 4.2  </val>
+</setvalue>
+
+<setvalue>
+  <var> IVDrip.Switch </var>
+  <val> 1  </val>
+</setvalue>
+
+<gofor>
+  <solutionint> 120 </solutionint>
+  <displayint> 30 </displayint>
+</gofor>
+
+<setvalue>
+  <var> IVDrip.H2OSetting </var>
+  <val> 0  </val>
+</setvalue> 
+
+<setvalue>
+  <var> IVDrip.Switch </var>
+  <val> 0  </val>
+</setvalue>
+ 
+<gofor>
+  <solutionint> 15 </solutionint>
+  <displayint> 15 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 30 </solutionint>
+  <displayint> 5 </displayint>
+</gofor>
+
+<dumpsolution>
+  <filename> data\thompson-nodrink.txt </filename>
+</dumpsolution>
+<exit/>
+
+</script>
+
+
+
+

@@ -1,0 +1,123 @@
+<!--
+================================================================================
+  DopamineDynamics.DES  -  PANEL 1
+  Dopamine output of the VTA/NAc system.
+
+  Shows the current dopamine level together with its tonic (baseline) and
+  phasic (RPE-driven burst/dip) components, plus a real-time graph of how
+  dopamine evolves during an ethanol-consumption scenario.
+================================================================================
+-->
+
+<panel>
+  <name> DopamineDynamics </name>
+  <tablabel> Dopamine </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 12.0 </col>
+    <text> Dopamine Dynamics (VTA / Nucleus Accumbens) </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ===================== CURRENT VALUES ===================== -->
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 13.0 </high><wide> 36.0 </wide>
+    <title> Current Values </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.DopamineLevel </name>
+      <label> Dopamine Level </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.TonicDA </name>
+      <label> Tonic DA (baseline) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.PhasicDA </name>
+      <label> Phasic DA (RPE burst/dip) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.PredictionError </name>
+      <label> Prediction Error (RPE) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 8.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.ActualReward </name>
+      <label> Actual Reward (from BAC) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.BAC </name>
+      <label> Blood Alcohol (g/dL) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ===================== TIME-SERIES GRAPH ===================== -->
+  <showgraph>
+    <row> 2.0 </row><col> 40.0 </col>
+    <high> 13.0 </high><wide> 58.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.DopamineLevel </name>
+        <label> Dopamine </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLUE </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.TonicDA </name>
+        <label> Tonic </label>
+        <linetype> DASH </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.PhasicDA </name>
+        <label> Phasic </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <scale><min> -1.0 </min><max> 2.5 </max><inc> 0.5 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <label>
+    <row> 15.5 </row><col> 1.0 </col>
+    <text> Tonic = baseline DA (falls as withdrawal/B-process grows).  Phasic = burst on unpredicted reward, dip on omission. </text>
+    <color> GREY </color>
+  </label>
+
+</panel>
+
+End

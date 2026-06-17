@@ -1,0 +1,60 @@
+HumMod / Size
+
+<panel><name> Uterus-Size </name>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Uterus </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Uterus - Size </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+<structurename> Uterus-Size </structurename>
+
+<?path Display\Organs\Uterus\Size\ ?>
+
+<?include Volume.DES ?>
+
+<?include Mass.DES ?>
+
+<checkmark>
+   <row> 3 </row><col> 1.0 </col>
+   <name> Context-Sex.IsMale </name>
+   <label> Male - No Uterus </label>
+</checkmark>
+
+<checkmark>
+   <row> 4 </row><col> 1.0 </col>
+   <name> Context-Sex.HasUterus </name>
+   <label> Female - Uterus Present </label>
+</checkmark>
+
+<checkmark>
+   <row> 5 </row><col> 1.0 </col>
+   <name> Context-Sex.UIndex </name>
+   <label> Female - Hysterectomy </label>
+</checkmark>
+
+<radiobuttons>
+  <row> 6.5 </row><col> 1.0 </col>
+  <name> Context-Sex.UIndex </name>
+  <listname> Common.NoYes </listname>
+  <label> Hysterectomy? </label>
+</radiobuttons>
+
+</panel>
+
+End

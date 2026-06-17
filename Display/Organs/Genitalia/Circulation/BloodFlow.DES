@@ -1,0 +1,86 @@
+HumMod / BloodFlow
+
+Created : 23-May-05
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 11.4 </high>
+   <wide> 30.0 </wide>
+   <title> Blood Flow </title>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Genitalia-Flow.BloodFlow </name>
+   <format> <integer/> </format>
+   <label> Flow (mL/min) </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 4 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Genitalia-Flow.BloodFlow </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 100 </min><max> 200 </max><inc> 100 </inc>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 9.8 </row><col> 1.0 </col>
+   <name> Genitalia-Pressure.PressureGradient </name>
+   <format> <integer/> </format>
+   <label> Pressure Gradient </label>
+</showvalue>
+
+<infobutton>
+  <row> 1.2 </row>
+  <col> 26.0 </col>
+
+  <line> The blood flow for a flaccid </line>
+  <line> penis is 2-5 mL/min. </line>
+  <line></line>
+  <line> The blood flow for an erect </line>
+  <line> penis is 100-200 mL/min. </line>
+</infobutton>
+
+</groupbox>
+
+<groupbox>
+
+<row> 13.5 </row>
+<col> 1.0 </col>
+<high> 4.4 </high>
+<wide> 30.0 </wide>
+<title> Status </title>
+
+<checkmark>
+   <row> 2.0 </row><col> 1.0 </col>
+   <name> Genitalia-Flow.Status-Flaccid </name>
+   <label> Flaccid </label>
+</checkmark>
+
+<checkmark>
+   <row> 3.0 </row><col> 1.0 </col>
+   <name> Genitalia-Flow.Status-Erect </name>
+   <label> Erect </label>
+</checkmark>
+
+</groupbox>
+
+End

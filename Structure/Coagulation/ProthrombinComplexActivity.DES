@@ -1,0 +1,93 @@
+
+
+<structure><name> ProthrombinComplexActivity </name>
+
+<variables>
+
+<parm><name> InitialActivity </name><val> 1 </val></parm>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+
+<parm><name> R_0  </name><val> 0.06167 </val></parm>
+<var><name> WarfarinEffect </name></var>
+<var><name> AgeEffect </name></var>
+
+<parm><name> IC50_S </name><val> 1 </val></parm>
+<parm><name> IC50_R </name><val> 5 </val></parm>
+<parm><name> n </name><val> 0.8905 </val></parm>
+
+<var><name> VD </name></var>
+
+<var><name> INR </name></var>
+<parm><name> INR_Sensitivity </name><val> 11 </val></parm>
+<var><name> PTT </name></var>
+<parm><name> PTT_Intercept </name><val> 24.2 </val></parm>
+<parm><name> PTT_Slope </name><val> -13.2 </val></parm>
+<var><name> ViscosityEffect </name><val> 1 </val></var>
+<parm><name> Viscosity_Intercept </name><val> 1.07 </val></parm>
+<parm><name> Viscosity_Slope </name><val> -0.07 </val></parm>
+
+<parm><name> TimeConstant </name><val> 0.00141 </val></parm>
+
+<parm><name> ClampSwitch </name><val> FALSE </val></parm>
+<parm><name> ClampSetting </name><val> 0.0 </val></parm>
+
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> PCA </name>
+  <integralname> PCA </integralname>
+  <dervname> Change </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> PCA </name>
+  <val> InitialActivity </val>
+</def>
+
+</block>
+
+
+<block><name> Dervs </name>
+
+<def>
+  <name> WarfarinEffect </name>
+  <val> ( 100 - ( 1 / ( 1 + ( ( WarfarinPool.[Warfarin-R] / IC50_R ) ^ n ) + ( ( WarfarinPool.[Warfarin-S] / IC50_S ) ^ n ) ) ) ) / 100 </val>
+</def>
+
+<def>
+  <name> VD </name>
+  <val> 40 </val>
+</def>
+
+<def>
+  <name> AgeEffect </name>
+  <val> 1 </val>
+</def>
+
+
+<def><name> Gain </name><val> R_0  * WarfarinEffect * AgeEffect * Liver-Function.Effect   </val></def>
+<def><name> Loss </name><val> TimeConstant  * PCA  * VD  </val></def>
+
+<def><name> Change </name><val> Gain - Loss </val></def>
+
+<def><name> PTT </name><val> PTT_Intercept + ( PTT_Slope * PCA )</val></def>
+<def><name> INR </name><val> PTT / INR_Sensitivity </val></def>
+<def><name> ViscosityEffect </name><val> Viscosity_Intercept + ( Viscosity_Slope * INR )  </val></def>
+</block>
+
+</definitions>
+</structure>
+
+End

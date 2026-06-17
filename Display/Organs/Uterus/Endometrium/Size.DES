@@ -1,0 +1,191 @@
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 10.4 </high>
+   <wide> 30.0 </wide>
+   <title> Size </title>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> Endometrium.Thickness </name>
+   <format> <integer/> </format>
+   <label> Thickness (mm) </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium.Thickness </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 15 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<!--
+<showgraph>
+  <row> 2.4 </row><col> 30.0 </col><high> 9 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-StromalCells.Population </name>
+      <label> Stroma </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> Endometrium-Glands.Population </name>
+      <label> Glands </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> Endometrium-Vasculature.Population </name>
+      <label> Vasculature </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+    <yvar>
+      <name> Endometrium-LuminalEpithelium.Population </name>
+      <label> Lumin </label>
+      <linecolor> BLACK </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 15.4 </row><col> 30.0 </col><high> 9 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium-StromalCells.DCPopulation </name>
+      <label> Decidua </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 1.4 </row><col> 60.0 </col><high> 9 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Endometrium.activeMMP9 </name>
+      <label> MMPs </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> Endometrium.IL8Signal </name>
+      <label> IL8Signal </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> Endometrium.Neutrophils </name>
+      <label> Neutrophils </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1.5 </max>
+    </scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 1.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.EGFR </name>
+   <format> <integer/> </format>
+   <label> EGFR </label>
+</showvalue>
+
+<showvalue>
+   <row> 2.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.EGF </name>
+   <format> <integer/> </format>
+   <label> EGF </label>
+</showvalue>
+
+<showvalue>
+   <row> 3.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.TGFAlpha </name>
+   <format> <integer/> </format>
+   <label> TGFAlpha </label>
+</showvalue>
+
+<showvalue>
+   <row> 4.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.pERAlpha </name>
+   <format> <integer/> </format>
+   <label> pERAlpha </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.MMP9 </name>
+   <format> <integer/> </format>
+   <label> MMP9 </label>
+</showvalue>
+
+<showvalue>
+   <row> 6.4 </row><col> 60.0 </col>
+   <name> Endometrium-LuminalEpithelium.mfactor </name>
+   <format> <integer/> </format>
+   <label> mfactor </label>
+</showvalue>
+
+<showvalue>
+   <row> 1.4 </row><col> 75.0 </col>
+   <name> Endometrium-StromalCells.FGF </name>
+   <format> <integer/> </format>
+   <label> FGF </label>
+</showvalue>
+
+<showvalue>
+   <row> 2.4 </row><col> 75.0 </col>
+   <name> Endometrium-StromalCells.Hand2 </name>
+   <format> <integer/> </format>
+   <label> Hand2 </label>
+</showvalue>
+
+<showvalue>
+   <row> 3.4 </row><col> 75.0 </col>
+   <name> Endometrium-StromalCells.MMP9 </name>
+   <format> <integer/> </format>
+   <label> MMP9 </label>
+</showvalue>
+
+<showvalue>
+   <row> 4.4 </row><col> 75.0 </col>
+   <name> Endometrium-StromalCells.mfactor </name>
+   <format> <integer/> </format>
+   <label> mfactor </label>
+</showvalue>
+-->
+</groupbox>

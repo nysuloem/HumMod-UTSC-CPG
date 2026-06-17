@@ -1,0 +1,48 @@
+    <branch>
+      <name> DOPAMINEMENU </name>
+      <label> Dopamine & Reward </label>
+      <parent> MAINMENU </parent>
+    </branch>
+
+    <leaf>
+      <name> DopamineDynamics </name>
+      <label> 1. Dopamine Dynamics </label>
+      <parent> DOPAMINEMENU </parent>
+    </leaf>
+
+    <leaf>
+      <name> RewardLearning </name>
+      <label> 2. Reward Learning (RPE) </label>
+      <parent> DOPAMINEMENU </parent>
+    </leaf>
+
+    <leaf>
+      <name> HedonicState </name>
+      <label> 3. Hedonic / Opponent Process </label>
+      <parent> DOPAMINEMENU </parent>
+    </leaf>
+
+    <leaf>
+      <name> Neuroadaptation </name>
+      <label> 4. Neuroadaptation </label>
+      <parent> DOPAMINEMENU </parent>
+    </leaf>
+
+    <separatorbar><parent> DOPAMINEMENU </parent></separatorbar>
+
+    <leaf>
+      <name> DopamineControls </name>
+      <label> 5. Parameter Controls </label>
+      <parent> DOPAMINEMENU </parent>
+    </leaf>
+
+<?path Display\Tree\Dopamine\ ?>
+
+<?include Dopamine.DES ?>
+<?include DopamineControls.DES ?>
+<?include DopamineDynamics.DES ?>
+<?include HedonicState.DES ?>
+<?include Neuroadaptation.DES ?>
+<?include RewardLearning.DES ?>
+
+End
