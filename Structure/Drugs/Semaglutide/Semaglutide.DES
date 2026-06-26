@@ -36,6 +36,33 @@ Schema : DES V1.0
   <val> 0.0 </val>
 </var>
 
+<var>
+  <name> Sequestration </name>
+</var>
+
+<var>
+  <name> Mobilization </name>
+</var>
+
+<var>
+  <name> Degradation </name>
+</var>
+
+<var>
+  <name> KOff </name>
+  <val> 2.0 </val>
+</var>
+
+<var>
+  <name> KOn </name>
+  <val> 200 </val>
+</var>
+
+<var>
+  <name> KDeg </name>
+  <val> 20 </val>
+</var>
+
 <timervar><name> ResetDose </name><val> 0 </val><state> OFF </state></timervar>
 
 </variables>
@@ -85,9 +112,23 @@ Schema : DES V1.0
 <def><name> Dose </name><val> 0 </val></def></true></if></block>
 
 <block><name> Dervs </name>
+<def>
+  <name> Sequestration </name>
+  <val> Mass * KOn * AlbuminPool.[Alb(mmol/mL)] </val>
+</def>
 
-<def><name> Change </name><val>  -0.00002 * Mass </val></def>
-<def><name> [Semaglutide] </name><val> Mass / ECFV.Vol * 10000 </val></def>
+<def>
+  <name> Mobilization </name>
+  <val>  KOff </val>
+</def>
+
+<def>
+  <name> Degradation </name>
+  <val>  Mass * KDeg </val>
+</def>
+
+<def><name> Change </name><val>  Mobilization - Sequestration - Degradation </val></def>
+<def><name> [Semaglutide] </name><val> Mass / ECFV.Vol * 243 </val></def>
 </block>
 
 
