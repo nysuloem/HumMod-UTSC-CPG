@@ -19,6 +19,7 @@ By : University Of Mississippi Medical Center
 <?include Midodrine\Midodrine.DES ?>
 <?include Lisinopril\Lisinopril.DES ?>
 <?include Spironolactone\Spironolactone.DES ?>
+<?include Semaglutide\Semaglutide.DES?>
 <?include Propranolol\Propranolol.DES ?>
 <?include Isoproterenol\Isoproterenol.DES ?>
 <?include Phenylephrine\Phenylephrine.DES ?>
@@ -100,6 +101,7 @@ By : University Of Mississippi Medical Center
   <call> Narcan.Dervs </call>
   <call> Warfarin.Dervs </call>
   <call> NODrug.Dervs </call>
+  <call> Semaglutide.Dervs </call>
 
 </block>
 
@@ -118,6 +120,7 @@ By : University Of Mississippi Medical Center
   <call> Reserpine.Wrapup </call>
   <call> Warfarin.Wrapup </call>
   <call> Morphine.Wrapup </call>
+  <call> Semaglutide.Wrapup </call>
 
 </block>
 

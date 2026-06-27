@@ -19,10 +19,10 @@ By : University of Mississippi Medical Center
 <constant><name> MALE_OBESE         </name><val>  44.0 </val></constant>
 <constant><name> MALE_MORBIDLYOBESE </name><val> 110.0 </val></constant>
 
-<constant><name> FEMALE_UNDERWEIGHT   </name><val>  14.0 </val></constant>
-<constant><name> FEMALE_NORMAL        </name><val>  17.6 </val></constant>19.8
-<constant><name> FEMALE_OVERWEIGHT    </name><val>  32.0 </val></constant>
-<constant><name> FEMALE_OBESE         </name><val>  46.0 </val></constant>
+<constant><name> FEMALE_UNDERWEIGHT   </name><val>  10.0 </val></constant>
+<constant><name> FEMALE_NORMAL        </name><val>  16.1 </val></constant>19.8
+<constant><name> FEMALE_OVERWEIGHT    </name><val>  26.0 </val></constant>
+<constant><name> FEMALE_OBESE         </name><val>  44.0 </val></constant>
 <constant><name> FEMALE_MORBIDLYOBESE </name><val> 110.0 </val></constant>
 
 <var><name> NominalMass </name></var>

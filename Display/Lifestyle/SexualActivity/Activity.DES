@@ -13,7 +13,7 @@ By: Jason Brown UTSC
    <row> 2.0 </row>
    <col> 1.0 </col>
    <high> 18 </high>
-   <wide> 40 </wide>
+   <wide> 70 </wide>
    <title> Sexual Activity </title>
 
 <structurename> SexDrive </structurename>
@@ -68,17 +68,11 @@ By: Jason Brown UTSC
   <label> Sperm Timer </label>
 </showvalue>
 
-<showvalue>
-  <row> 17.4 </row><col> 1 </col>
-  <name> SexDrive.Libido </name>
-  <label> Libido </label>
-</showvalue>
-
 <maplist>
   <name> SexDrive.Mood </name>
   <map><val>  0 </val><img> "I'm not in the mood right now." </img></map>
   <map><val>  1 </val><img>  "I'm horny!" </img></map>
-  <map><val> 2 </val><img> Patient is not sexually active </img></map>
+  <map><val> 2 </val><img> Participant is not sexually active </img></map>
 </maplist>
 
 <showvalue>
@@ -93,15 +87,15 @@ By: Jason Brown UTSC
 <label>
   <row> 6.4 </row>
   <col> 1.0 </col>
-  <text> Patient's sex drive =  </text>
+  <text> Participant's sex drive =  </text>
 </label>
 
 <maplist>
   <name> HaveSex.SexOutcome </name>
-  <map><val>  0 </val><img> Patient is not currently having sexual intercourse </img></map>
-  <map><val> 1 </val><img> Patient is having sexual intercourse </img></map>
-  <map><val>  5 </val><img> Patient is currently attempting sexual intercourse </img></map>
-  <map><val> 6 </val><img> Patient could not get an erection and aborted the sexual attempt </img></map>
+  <map><val>  0 </val><img> Participant is not currently having sexual intercourse </img></map>
+  <map><val> 1 </val><img> Participant is having sexual intercourse </img></map>
+  <map><val>  5 </val><img> Participant is currently attempting sexual intercourse </img></map>
+  <map><val> 6 </val><img> Participant could not get an erection and aborted the sexual attempt </img></map>
 </maplist>
 
 <showvalue>
@@ -116,7 +110,7 @@ By: Jason Brown UTSC
 <label>
   <row> 9.4 </row>
   <col> 1.0 </col>
-  <text> Patient's sexual activity =  </text>
+  <text> Participant's sexual activity =  </text>
 </label>
 
 </groupbox>
@@ -124,7 +118,7 @@ By: Jason Brown UTSC
 <structurename> HaveSex </structurename>
 
 <groupbox>
-   <row> 20 </row>
+   <row> 21 </row>
    <col> 1.0 </col>
    <high> 8 </high>
    <wide> 40 </wide>

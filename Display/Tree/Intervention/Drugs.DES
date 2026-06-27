@@ -318,6 +318,24 @@ By : University of Mississippi Medical Center
   <parent> Drugs </parent>
 </branch>
 
+<branch>
+  <name> Drugs-Semaglutide </name>
+  <label> Semaglutide </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Semaglutide-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Semaglutide</parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Semaglutide-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Semaglutide</parent>
+</leaf>
+
 <leaf>
   <name> Drugs-Spironolactone-Dosing </name>
   <label> Dosing </label>

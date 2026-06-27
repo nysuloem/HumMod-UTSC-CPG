@@ -9,7 +9,6 @@ By: Jason Brown
 <variables>
 
 <parm><name> PartnerProbability </name><val> 100 </val></parm>
-
 <var><name> HaveSex </name><val> 0 </val></var>
 <var><name> SexOutcome </name><val> 0 </val></var>
 
@@ -29,7 +28,7 @@ By: Jason Brown
 <if><test> SexualIntercourse.Refractory EQ 0 </test>
     <true>
         <def><name> HaveSex </name>
-        <val> SexDrive.LibidoEffect * PartnerProbability </val>
+        <val> SexDrive.Libido * PartnerProbability </val>
         </def>
     </true>
     <false>

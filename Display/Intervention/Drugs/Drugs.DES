@@ -26,8 +26,8 @@ By : University Of Mississippi Medical Center
 <?include Isoproterenol\Isoproterenol.DES ?>
 <?include Propranolol\Propranolol.DES ?>
 <?include Warfarin\Warfarin.DES ?>
-<!--<?include Nicotine\Nicotine.DES ?>-->
 <?include NODrug\NODrug.DES ?>
+<?include Semaglutide\Semaglutide.DES ?>
 
 
 
