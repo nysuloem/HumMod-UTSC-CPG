@@ -127,6 +127,7 @@ By : University of Mississippi Medical Center
 <?include Size-ThyroidHormone.DES ?>
 <?include Size-Triglyceride.DES ?>
 <?include Size-VitaminD.DES ?>
+<?include Size-VitaminB12.DES ?>
 <?include Size-Weight.DES ?>
 
 <structure><name> Sizing </name>
@@ -198,7 +199,7 @@ By : University of Mississippi Medical Center
 
     <call> Size-Weight.Calc </call>
 
-  <!--  <call> Size-OrganSize.Calc </call> -->
+    <call> Size-OrganSize.Calc </call>
     <call> Size-General.Calc </call>
     <call> Size-BodySize.Calc </call>
 
@@ -221,9 +222,6 @@ By : University of Mississippi Medical Center
     <call> Sizing-O2.Calc </call>
     <call> Sizing-Pericardium.Calc </call>
     <call> Sizing-LowPressureReceptors.Calc </call>
-
-
-
 
     <call> Size-ACTH.Calc </call>
     <call> Size-ADH.Calc </call>
@@ -263,6 +261,7 @@ By : University of Mississippi Medical Center
     <call> Size-ThyroidHormone.Calc </call>
     <call> Size-Triglyceride.Calc </call>
     <call> Size-VitaminD.Calc </call>
+    <call> Size-VitaminB12.Calc </call>
 
 </block>
 

@@ -1,0 +1,86 @@
+HumMod | VitaminD3Stored
+
+Created : 2011-08-04
+Last Modified : 2011-08-04
+Author : Tom Coleman
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+
+<structure><name> VitaminB12Stored </name>
+
+<variables>
+
+  <var><name> GainLiver(nG/Min) </name></var>
+  <var><name> LossLiver(nG/Min) </name></var>
+
+  <var><name> SequestrationLiver </name></var>
+  <var><name> MobilizationLiver </name></var>
+
+  <var><name> InitialMassLiver </name></var>
+
+  <parm><name> KInLiver </name><val> 0.33 </val></parm>
+  <parm><name> KOutLiver </name><val> 0.028 </val></parm>
+
+</variables>
+
+<equations>
+
+  <diffeq>
+    <name> MassLiver </name>
+    <integralname> MassLiver </integralname>
+    <initialval> 20 </initialval>
+    <dervname> ChangeLiver </dervname>
+    <errorlim> 18 </errorlim>
+  </diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+  <def>
+    <name> InitialMassLiver </name>
+    <val> 24 * Sizing-OrganMass.Liver_Mass</val>
+  </def>
+  <def>
+    <name> MassLiver </name>
+    <val> InitialMassLiver </val>
+  </def>
+
+</block>
+
+<block><name> Dervs </name>
+
+  <def>
+    <name> SequestrationLiver </name>
+    <val> VitaminB12Intake.Mass * KInLiver * Sizing-OrganMass.Liver_Mass </val>
+  </def>
+
+  <def>
+    <name> MobilizationLiver </name>
+    <val> MassLiver * KOutLiver </val>
+  </def>
+
+  <def>
+    <name> GainLiver(nG/Min) </name>
+    <val> SequestrationLiver </val>
+  </def>
+
+  <def>
+    <name> LossLiver(nG/Min) </name>
+    <val> MobilizationLiver </val>
+  </def>
+
+  <def>
+    <name> ChangeLiver </name>
+    <val> 0.001 * ( GainLiver(nG/Min) - LossLiver(nG/Min) ) </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End
