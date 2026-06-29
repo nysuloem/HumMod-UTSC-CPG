@@ -127,6 +127,7 @@ By : University of Mississippi Medical Center
 <?include Size-ThyroidHormone.DES ?>
 <?include Size-Triglyceride.DES ?>
 <?include Size-VitaminD.DES ?>
+<?include Size-VitaminB12.DES ?>
 <?include Size-Weight.DES ?>
 
 <structure><name> Sizing </name>
@@ -263,6 +264,7 @@ By : University of Mississippi Medical Center
     <call> Size-ThyroidHormone.Calc </call>
     <call> Size-Triglyceride.Calc </call>
     <call> Size-VitaminD.Calc </call>
+    <call> Size-VitaminB12.Calc </call>
 
 </block>
 

@@ -1,0 +1,146 @@
+HumMod | VitaminD3
+
+Created : 2011-08-04
+Last Modified : 2011-08-05
+Author : Tom Coleman
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+
+<structure><name> VitaminB12Intake </name>
+
+<variables>
+
+<var><name> Gain(nG/Min) </name></var>
+<var><name> Loss(nG/Min) </name></var>
+
+<var><name> Diet </name></var>
+<var><name> IF </name></var>
+<var><name> Mobilization </name></var>
+<var><name> Sequestration </name></var>
+<var><name> Cubam </name></var>
+
+<parm><name> TargetConc </name><val> 10.0 </val></parm>
+<var><name> InitialMass </name></var>
+
+<var><name> [Conc(nG/mL)] </name></var>
+<var><name> [Conc(nMol/L)] </name></var>
+
+<constant><name> NG/ML_TO_NMOL/L </name><val> 2.6 </val></constant>
+
+<parm><name> PumpSwitch </name><val> FALSE </val></parm>
+<parm><name> PumpSetting </name><val> 0.0 </val></parm>
+<var><name> PumpRate </name></var>
+
+<parm><name> ClampSwitch </name><val> FALSE </val></parm>
+<parm><name> ClampSetting </name><val> 0.0 </val></parm>
+
+<parm><name> Diet(mg/Day) </name><val> 2.4 </val></parm>
+
+<parm><name> K </name><val> 0.08 </val></parm>
+
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <dervname> Change </dervname>
+  <errorlim> 1.5 </errorlim>
+</diffeq>
+
+</equations>
+
+<functions>
+
+<curve><name> [25-H]Effect </name>
+<point><x>  0 </x><y> 2 </y><slope> 0 </slope></point>
+<point><x> 20 </x><y> 1 </y><slope> -0.15 </slope></point>
+<point><x> 40 </x><y> 0 </y><slope> 0 </slope></point>
+</curve>
+
+</functions>
+
+<definitions>
+
+<block><name> Init </name>
+
+<def>
+  <name> InitialMass </name>
+  <val> TargetConc * ECFV.InitialVol / 1000 </val>
+</def>
+
+<def>
+  <name> Mass </name>
+  <val> InitialMass </val>
+</def>
+
+</block>
+
+<block><name> Conc </name>
+<if><test> ClampSwitch </test>
+<true>
+  <def><name> [Conc(nG/mL)] </name><val> ClampSetting </val></def>
+</true>
+<false>
+  <def><name> [Conc(nG/mL)] </name><val> 1000 * Mass / ECFV.Vol </val></def>
+</false>
+</if>
+
+<def>
+  <name> [Conc(nMol/L)] </name>
+  <val> [Conc(nG/mL)] * NG/ML_TO_NMOL/L </val>
+</def>
+</block>
+
+<block><name> Dervs </name>
+
+<conditional><name> PumpRate </name>
+<test> PumpSwitch </test>
+<true> PumpSetting </true>
+<false> 0 </false>
+</conditional>
+
+<def>
+  <name> Diet </name>
+  <val> Diet(mg/Day) </val>
+</def>
+
+<def>
+  <name> Mobilization </name>
+  <val> VitaminB12Stored.MobilizationLiver </val>
+</def>
+
+<def>
+  <name> Sequestration </name>
+  <val> VitaminB12Stored.SequestrationLiver </val>
+</def>
+
+<def>
+  <name> Degradation </name>
+  <val> K * Mass </val>
+</def>
+
+<def>
+  <name> Gain(nG/Min) </name>
+  <val> Diet * IF * Cubam + Mobilization + PumpRate </val>
+</def>
+
+<def>
+  <name> Loss(nG/Min) </name>
+  <val> Sequestration + Degradation </val>
+</def>
+
+<def>
+  <name> Change </name>
+  <val> 0.001 * ( Gain(nG/Min) - Loss(nG/Min) ) </val>
+</def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

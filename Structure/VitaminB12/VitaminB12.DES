@@ -1,0 +1,36 @@
+HumMod | VitaminD
+
+Created : 2011-08-04
+Last Modified : 2011-08-04
+Author : Tom Coleman
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+
+<?path Structure\VitaminB12\ ?>
+
+<?include VitaminB12Intake.DES ?>
+<?include VitaminB12Stored.DES ?>
+
+<structure><name> VitaminB12 </name>
+
+<definitions>
+
+<block><name> Init </name>
+  <call> VitaminB12Intake.Init </call>
+  <call> VitaminB12Stored.Init </call>
+</block>
+
+<block><name> Conc </name>
+  <call> VitaminB12Intake.Conc </call>
+  <call> VitaminB12Stored.Conc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> VitaminB12Intake.Dervs </call>
+  <call> VitaminB12Stored.Dervs </call>
+</block>
+
+</definitions>
+</structure>
+
+End

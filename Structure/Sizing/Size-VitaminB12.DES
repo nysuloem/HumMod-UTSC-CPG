@@ -1,0 +1,20 @@
+HumMod / Size-VitaminB12 DES
+
+Created : 2011-08-04
+Last Modified : 2011-08-04
+Author : Tom Coleman
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+
+<structure><name> Size-VitaminB12 </name>
+
+<definitions>
+
+<block><name> Calc </name>
+  <call> VitaminB12.Init </call>
+</block>
+
+</definitions>
+</structure>
+
+End

@@ -171,6 +171,7 @@ By : University of Mississippi Medical Center
 <?include VenaeCava\VenaeCava.DES ?>
 <?include VenousValves\VenousValves.DES ?>
 <?include VitaminD\VitaminD.DES ?>
+<?include VitaminB12\VitaminB12.DES ?>
 <?include Weight\Weight.DES ?>
 <?include Weight-Fluids\Weight-Fluids.DES ?>
 <?include Ovaries\Ovaries.DES ?>
@@ -346,6 +347,7 @@ By : University of Mississippi Medical Center
   <call> Progesterone.Conc </call>
   <call> Testosterone.Conc </call>
   <call> VitaminD.Conc </call>
+  <call> VitaminB12.Conc </call>
   <call> Cortisol.Conc </call>
   <call> SexDrive.Parms </call>
   
@@ -812,6 +814,7 @@ By : University of Mississippi Medical Center
   <call> Ca.Dervs </call>
   <call> Calcitonin.Dervs </call>
   <call> VitaminD.Dervs </call>
+  <call> VitaminB12.Dervs </call>
 
   <call> ChemoreceptorsCNS.Dervs </call>
   <call> Mechanoreceptors.Dervs </call>
