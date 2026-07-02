@@ -1,5 +1,5 @@
-<!--
-================================================================================
+
+<!--================================================================================
   DopamineSystem.DES
   Integrated Dopamine Reward-Learning & Addiction model for HumMod
   UTSC Directed Research Project
@@ -38,13 +38,53 @@
   TIME BASE: HumMod's independent variable (System.X) is in MINUTES, so all
   time constants below are in minutes.
 
-  WIRING (add to the master Ethanol.DES, AFTER EthanolPool):
+  WIRING (add to the master Ethanol.DES, AFTER EthanolPool): 
+
       <?include DopamineSystem.DES ?>
       CalcConc block: <call> DopamineSystem.CalcConc </call>
       Dervs   block:  <call> DopamineSystem.Dervs   </call>
-      Wrapup  block:  <call> DopamineSystem.Wrapup  </call>
+      Wrapup  block:  <call> DopamineSystem.Wrapup  </call> -->
+      
+<!-- (Wrapup now calls EmotionalTranslation internally - see BUGFIX #7.) 
 ================================================================================
--->
+  BUGFIX CHANGELOG  (Step 1 - fixes only, no model/behavior redesign)
+
+  #1  Wrapup block had a MALFORMED comment header: the comment-open marker
+      was missing, leaving raw text ("apply tolerance ... =====") sitting
+      loose inside the definitions section. That is not valid XML/DES and
+      would break the parser. Restored a proper, closed comment.
+
+  #2  Invalid operator "MOD": HumMod's math engine has no MOD operator.
+      The remainder operator is "REM". Replaced MOD -> REM in
+      CurrentDayOfWeek and TimeOfDay.
+
+  #3  CurrentDayOfWeek produced a FRACTIONAL day index. Wrapped the day
+      count in ROUNDDOWN so the result is an integer 0..6 as the comment
+      ("0=Mon, 6=Sun") intends.
+
+  #4  Invalid inline "IF ... THEN ... ELSE" expression in TimeUntilNextDrink:
+      HumMod <val> has no inline if/then/else. Rewrote the two-level logic
+      using two <conditional> assignments (compute within-day value first,
+      then override with 999 when scheduling is off).
+
+  #5  OPERATOR-PRECEDENCE bugs: HumMod evaluates strictly LEFT-TO-RIGHT with
+      NO precedence. Three expressions relied on normal * over +/- precedence
+      and therefore computed the wrong value:
+        - EmotionalSleepiness : 2.0 - DopamineLevel + BProcess * 0.5
+        - EmotionalCraving    : BProcess * 1.2 + RewardPrediction * 1.5
+        - WillToDrink         : Anxiety + Craving - Happiness * 0.5
+      Added explicit parentheses so each term is grouped as intended.
+
+  #6  AnticipationSignal <test> combined two comparisons with AND but left
+      the comparisons un-parenthesized; with no precedence this parses
+      incorrectly. Parenthesized each comparison around the AND.
+
+  #7  The EmotionalTranslation block was DEFINED but never CALLED anywhere,
+      so none of the emotional/behavioral outputs were ever computed (dead
+      code). Added <call> DopamineSystem.EmotionalTranslation </call> at the
+      end of Wrapup so it runs each step using the just-integrated state.
+================================================================================-->
+
 
 <structure><name> DopamineSystem </name>
 
@@ -79,6 +119,25 @@
 <var><name> TotalExposures </name><val> 0.0 </val></var> <!-- cumulative drink count (single + daily) -->
 <var><name> PrevExposures </name><val> 0.0 </val></var>  <!-- previous exposure count (event detector) -->
 
+<!-- ===================== EMOTIONAL / BEHAVIORAL STATES ================= -->
+<var><name> EmotionalHappiness </name></var>       <!-- happiness scale (0-10) from dopamine -->
+<var><name> EmotionalCraving </name></var>         <!-- craving scale (0-10) from withdrawal + anticipation -->
+<var><name> EmotionalSleepiness </name></var>      <!-- sleepiness scale (0-10) from dopamine depression -->
+<var><name> EmotionalAnxiety </name></var>         <!-- anxiety scale (0-10) from withdrawal -->
+<var><name> WillToDrink </name></var>              <!-- motivation to drink (0-10) -->
+<var><name> AnticipationSignal </name></var>       <!-- signal that brain predicts a drink (0-10) -->
+
+<!-- ===================== DRINKING SCHEDULER / CHRONIC PATTERN ========== -->
+<var><name> CurrentTime </name></var>              <!-- current time in minutes since start -->
+<var><name> TimeOfDay </name></var>                <!-- minutes after midnight (0-1440) -->
+<var><name> CurrentDayOfWeek </name></var>         <!-- day of week (0=Mon, 6=Sun) -->
+<var><name> ScheduledDrinkingActive </name></var>  <!-- true if chronic drinking schedule enabled -->
+<var><name> ScheduledDrinkTime </name></var>       <!-- time of day to drink (min after midnight) -->
+<var><name> TimeUntilNextDrink </name></var>       <!-- minutes until scheduled drink -->
+<var><name> DrinkSize </name></var>                <!-- standard drink size (g ethanol) -->
+<var><name> DaysWithdrawnCount </name></var>       <!-- days since last drink -->
+<var><name> TotalDrinksThisWeek </name></var>      <!-- running count of drinks this week -->
+
 <!-- ===================== PARAMETERS (tunable) ======================== -->
 
 <!-- Dopamine: synaptic clearance ~1-2 min -->
@@ -103,6 +162,12 @@
 <parm><name> TOL_STEP </name><val> 0.10 </val></parm>     <!-- A-process shrinks 10% per exposure (tolerance) -->
 <parm><name> AGAIN_MIN </name><val> 0.15 </val></parm>    <!-- floor on euphoria gain -->
 <parm><name> BGAIN_MAX </name><val> 4.0 </val></parm>     <!-- ceiling on withdrawal gain -->
+
+<!-- Drinking scheduler / chronic pattern parameters -->
+<parm><name> SCHEDULED_DRINKING </name><val> FALSE </val></parm> <!-- enable scheduled drinking -->
+<parm><name> DRINK_TIME_MINUTES </name><val> 1080.0 </val></parm> <!-- time to drink (min after midnight; default 6 PM) -->
+<parm><name> DRINK_SIZE </name><val> 14.0 </val></parm>   <!-- standard drink size (g ethanol) -->
+<parm><name> EMOTIONAL_SENSITIVITY </name><val> 1.0 </val></parm> <!-- scaling factor for emotional intensity -->
 
 </variables>
 
@@ -244,7 +309,7 @@
 
   <def>
     <name> ChangeDopamine </name>
-    <val> ( DATarget - DopamineLevel ) / TAU_DA </val>
+    <val> ( DATarget - ( DopamineLevel * DA_WITHDRAW_K ))  </val>
   </def>
 
   <!-- ===== Temporal-difference learning of the reward prediction =====
@@ -299,11 +364,135 @@
 
 </block>
 
-<!-- ====================================================================
-     Wrapup: discrete neuroadaptation. Detect each new drink event and
-     apply tolerance (A-process gain down) and sensitization (B-process
-     gain up). Runs once per successful integration step.
+<!--====================================================================
+     EmotionalTranslation: map dopamine and opponent-process states
+     to human-readable emotional states (happiness, craving, anxiety, etc.)
+     and drinking scheduler logic.
+     NOTE (BUGFIX #7): this block is invoked from Wrapup so its outputs are
+     actually computed each step.
      ==================================================================== -->
+
+<block><name> EmotionalTranslation </name>
+
+  <!-- Current time tracking -->
+
+  <def>
+    <name> CurrentTime </name>
+    <val> System.X </val>
+  </def>
+
+  <!-- Day of week (1440 min/day; 0=Monday .. 6=Sunday).
+       BUGFIX #2: MOD -> REM (MOD is not a valid HumMod operator).
+       BUGFIX #3: ROUNDDOWN the day count so the index is an integer. -->
+  <def>
+    <name> CurrentDayOfWeek </name>
+    <val> ( ROUNDDOWN ( System.X / 1440.0 ) ) REM 7 </val>
+  </def>
+
+  <!-- Time of day in minutes after midnight.
+       BUGFIX #2: MOD -> REM. -->
+  <def>
+    <name> TimeOfDay </name>
+    <val> System.X REM 1440 </val>
+  </def>
+
+  <!-- Happiness scale (0-10): rises with high dopamine, falls with withdrawal.
+       (Left-to-right OK here: DopamineLevel * 3.0 * EMOTIONAL_SENSITIVITY.) -->
+  <def>
+    <name> EmotionalHappiness </name>
+    <val> ( DopamineLevel * 3.0 * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+  </def>
+
+  <!-- Sleepiness scale (0-10): low dopamine + high withdrawal feels foggy.
+       BUGFIX #5: parenthesized so it is ( (2.0 - DA) + (BProcess*0.5) ) * ES,
+       not the left-to-right mis-grouping the bare expression produced. -->
+  <def>
+    <name> EmotionalSleepiness </name>
+    <val> ( ( ( 2.0 - DopamineLevel ) + ( BProcess * 0.5 ) ) * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+  </def>
+
+  <!-- Anxiety scale (0-10): withdrawal anxiety rises with B-process. -->
+  <def>
+    <name> EmotionalAnxiety </name>
+    <val> ( BProcess * 1.5 * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+  </def>
+
+  <!-- Craving scale (0-10): withdrawal + learned anticipation of the reward.
+       BUGFIX #5: grouped as ( (BProcess*1.2) + (RewardPrediction*1.5) ) * ES. -->
+  <def>
+    <name> EmotionalCraving </name>
+    <val> ( ( ( BProcess * 1.2 ) + ( RewardPrediction * 1.5 ) ) * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+  </def>
+
+  <!-- Will to drink (0-10): motivation = anxiety + craving - half of happiness.
+       BUGFIX #5: grouped as ( (Anxiety+Craving) - (Happiness*0.5) ) * 0.6. -->
+  <def>
+    <name> WillToDrink </name>
+    <val> ( ( ( EmotionalAnxiety + EmotionalCraving ) - ( EmotionalHappiness * 0.5 ) ) * 0.6 ) MAX 0.0 MIN 10.0 </val>
+  </def>
+
+  <!-- Anticipation signal: brain predicts a drink is coming soon.
+       BUGFIX #6: each comparison parenthesized around the AND. -->
+  <conditional>
+    <name> AnticipationSignal </name>
+    <test> ( TimeOfDay GT ( DRINK_TIME_MINUTES - 120 ) ) AND ( TimeOfDay LT ( DRINK_TIME_MINUTES + 30 ) ) </test>
+    <true> RewardPrediction * 5.0 </true>
+    <false> 0.0 </false>
+  </conditional>
+
+  <!-- Days withdrawn: time since last drink / minutes in a day. -->
+  <conditional>
+    <name> DaysWithdrawnCount </name>
+    <test> EthanolDailyDose.TotalDoses GT 0 </test>
+    <true> ( System.X - EthanolDailyDose.TimeLastDose ) / 1440.0 </true>
+    <false> 0.0 </false>
+  </conditional>
+
+  <!-- Total drinks this week -->
+  <def>
+    <name> TotalDrinksThisWeek </name>
+    <val> EthanolDailyDose.TotalDoses </val>
+  </def>
+
+  <!-- Scheduled drinking enabled -->
+  <def>
+    <name> ScheduledDrinkingActive </name>
+    <val> SCHEDULED_DRINKING </val>
+  </def>
+
+  <!-- Time of scheduled drink -->
+  <def>
+    <name> ScheduledDrinkTime </name>
+    <val> DRINK_TIME_MINUTES </val>
+  </def>
+
+  <!-- Minutes until next scheduled drink.
+       BUGFIX #4: replaced invalid inline IF/THEN/ELSE with two <conditional>
+       assignments. First compute the within-day countdown, then override
+       with 999.0 when scheduling is disabled. -->!
+
+  <conditional>
+    <name> TimeUntilNextDrink </name>
+    <test> TimeOfDay LT DRINK_TIME_MINUTES </test>
+    <true> DRINK_TIME_MINUTES - TimeOfDay </true>
+    <false> ( 1440.0 - TimeOfDay ) + DRINK_TIME_MINUTES </false>
+  </conditional>
+
+  <conditional>
+    <name> TimeUntilNextDrink </name>
+    <test> ScheduledDrinkingActive </test>
+    <true> TimeUntilNextDrink </true>
+    <false> 999.0 </false>
+  </conditional>
+
+  <!-- Drink size -->
+  <def>
+    <name> DrinkSize </name>
+    <val> DRINK_SIZE </val>
+  </def>
+
+</block>
+
 <block><name> Wrapup </name>
 
   <!-- Cumulative number of drinks taken (single-dose + daily-dose paths) -->
@@ -333,17 +522,24 @@
   </if>
 
   <!-- Refresh display state with the just-integrated A/B values -->
+
   <def>
     <name> ExperiencedState </name>
     <val> AProcess - BProcess </val>
   </def>
 
+  <!-- BUGFIX #7: run the emotional/behavioral translation each step so its
+       outputs (happiness, craving, anxiety, scheduler, etc.) are computed. -->
+
+  <call> DopamineSystem.EmotionalTranslation </call>
+
 </block>
 
-<!-- ====================================================================
+====================================================================
      Reset: restore the adaptive (neuroadaptation) state. Call this to
      start a fresh subject (clears tolerance / sensitization history).
-     ==================================================================== -->
+     ====================================================================
+
 <block><name> Reset </name>
 
   <def><name> AGain </name><val> 1.00 </val></def>

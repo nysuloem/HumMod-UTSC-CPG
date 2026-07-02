@@ -60,7 +60,7 @@
       <name> DopamineSystem.HedonicSetpoint </name>
       <label> Hedonic Set-Point </label>
       <format><decimal> 3 </decimal></format>
-      <color> GREY </color>
+      <color> GRAY </color>
     </showvalue>
 
     <showvalue>
@@ -142,7 +142,7 @@
   <label>
     <row> 20.5 </row><col> 38.0 </col>
     <text> Lower graph (multi-day): the experienced state drifts from positive "high" toward negative "craving" as B grows and A shrinks. </text>
-    <color> GREY </color>
+    <color> GRAY </color>
   </label>
 
 </panel>

@@ -108,7 +108,7 @@
   <label>
     <row> 15.5 </row><col> 1.0 </col>
     <text> RPE = Reward - Prediction. As prediction learns the reward, RPE -&gt; 0 and the dopamine response to a predictable drink fades. </text>
-    <color> GREY </color>
+    <color> GRAY </color>
   </label>
 
 </panel>

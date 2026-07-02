@@ -370,7 +370,7 @@ By : University of Mississippi Medical Center
 <call> NO.CalcConc </call>
   <call> NOPool.CalcConc </call>
   <call> Drugs.CalcConc </call>
-  <call>Dopamine.CalcConc</call>
+  <call> DopamineSystem.CalcConc </call>
 
   <call> NaPool.CalcConc </call>
   <call> K.Conc </call>
@@ -755,7 +755,7 @@ By : University of Mississippi Medical Center
   <call> ChemoreceptorAcclimation.Calc </call>
 
   <call> Drugs.Dervs </call>
-  <call> Dopamine.Dervs</call>
+  <call> DopamineSystem.Dervs</call>
 
   <call> LeftTGF-Vascular.Dervs </call>
   <call> LeftTGF-Renin.Dervs </call>
@@ -861,7 +861,7 @@ By : University of Mississippi Medical Center
   <call> SystemicArtys.Wrapup </call>
 
   <call> Drugs.Wrapup </call>
-  <call> Dopamine.Wrapup </call>
+  <call> DopamineSystem.CalcConc </call>
   <call> NODrug.Wrapup </call>
   <call> Creatine.Wrapup </call>
   <call> Catechols.Wrapup </call>

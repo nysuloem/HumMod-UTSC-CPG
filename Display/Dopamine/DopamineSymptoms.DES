@@ -1,0 +1,125 @@
+<!--
+================================================================================
+  DopamineSymptoms.DES  -  EMOTIONAL STATE PANEL
+  Translates dopamine dynamics into intuitive emotional & behavioral states
+
+  Shows how the person feels and what they want based on dopamine levels
+  and withdrawal state. Maps model outputs to human-understandable emotions.
+================================================================================
+-->
+
+<panel>
+  <name> DopamineSymptoms </name>
+  <tablabel> Emotional State </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 12.0 </col>
+    <text> How You Feel Right Now (Dopamine Translation) </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ==================== EMOTIONAL STATE DISPLAY ==================== -->
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 14.0 </high><wide> 36.0 </wide>
+    <title> Emotional & Behavioral State </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalHappiness </name>
+      <label> I Feel Happy (Reward) </label>
+      <format><decimal> 1 </decimal></format>
+      <color> GREEN </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalCraving </name>
+      <label> I'm Craving a Drink </label>
+      <format><decimal> 1 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalSleepiness </name>
+      <label> I Feel Sleepy </label>
+      <format><decimal> 1 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalAnxiety </name>
+      <label> I Feel Anxious (Withdrawal) </label>
+      <format><decimal> 1 </decimal></format>
+      <color> MAGENTA </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 7.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.WillToDrink </name>
+      <label> Motivation to Drink </label>
+      <format><decimal> 1 </decimal></format>
+      <color> DARKRED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.TimeUntilNextDrink </name>
+      <label> Minutes Until Anticipated Drink </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ===================== DOPAMINE-BEHAVIOR GRAPH ===================== -->
+  <showgraph>
+    <row> 2.0 </row><col> 40.0 </col>
+    <high> 14.0 </high><wide> 58.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.EmotionalHappiness </name>
+        <label> Happiness </label>
+        <linetype> SOLID </linetype>
+        <linecolor> GREEN </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.EmotionalCraving </name>
+        <label> Craving </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.EmotionalAnxiety </name>
+        <label> Anxiety </label>
+        <linetype> DASH </linetype>
+        <linecolor> MAGENTA </linecolor>
+      </yvar>
+      <scale><min> 0.0 </min><max> 10.0 </max><inc> 2.0 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+<infobutton>
+<row> 16.5 </row>
+<col> 1.0  </col>
+ 
+  <line> Happiness peaks when dopamine rises (reward). Craving and anxiety build during withdrawal (low dopamine + B-process). </line>
+  <line> Motivation to drink reflects the brain's learned prediction that alcohol will relieve this state. </line>
+
+</infobutton>
+
+</panel>
+
+End

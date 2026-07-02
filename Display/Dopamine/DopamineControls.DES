@@ -1,123 +1,142 @@
 <!--
 ================================================================================
-  DopamineControls.DES  -  PANEL 5
-  User-adjustable model parameters.
-
-  Slidebars (mapped through the lists declared in Dopamine.DES) let a
-  student/researcher explore how each parameter reshapes the dopamine and
-  hedonic dynamics. Parameters are grouped by functional area. All of these
-  are <parm> variables in DopamineSystem.DES, so changes take effect live.
+  DopamineControls.DES  -  PANEL: CONTROLS & SETTINGS
+  User-adjustable model parameters and chronic drinking scenario setup.
 ================================================================================
 -->
 
 <panel>
   <name> DopamineControls </name>
-  <tablabel> Controls </tablabel>
+  <tablabel> Controls & Settings </tablabel>
 
   <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
 
   <label>
     <row> 0.5 </row><col> 12.0 </col>
-    <text> Parameter Controls </text>
+    <text> Model Parameters & Chronic Drinking Setup </text>
     <color> BLACK </color>
   </label>
 
-  <!-- ===================== REWARD LEARNING ===================== -->
+  <!-- ===================== CHRONIC DRINKING SCENARIO ===================== -->
   <groupbox>
     <row> 2.0 </row><col> 1.0 </col>
-    <high> 4.0 </high><wide> 46.0 </wide>
-    <title> Reward Learning </title>
+    <high> 6.0 </high><wide> 46.0 </wide>
+    <title> Set Up Chronic Drinking Pattern </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.SCHEDULED_DRINKING </name>
+      <label> Enable Scheduled Drinking </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <repeatlist>
+      <name> List_DayMinutes </name>
+      <repeat><reps> 24 </reps><stepsize> 60 </stepsize></repeat>
+    </repeatlist>
+
+    <slidebar>
+      <row> 3.0 </row><col> 1.0 </col>
+      <high> 1.0 </high><wide> 22.0 </wide>
+      <name> DopamineSystem.DRINK_TIME_MINUTES </name>
+      <listname> List_DayMinutes </listname>
+      <label> Time of Daily Drink (hh:mm) </label>
+      <fieldwidth> 8 </fieldwidth>
+    </slidebar>
+
+    <repeatlist>
+      <name> List_DrinkSize </name>
+      <repeat><reps> 10 </reps><stepsize> 5 </stepsize></repeat>
+    </repeatlist>
+
+    <slidebar>
+      <row> 4.5 </row><col> 1.0 </col>
+      <high> 1.0 </high><wide> 22.0 </wide>
+      <name> DopamineSystem.DRINK_SIZE </name>
+      <listname> List_DrinkSize </listname>
+      <label> Standard Drink Size (g ethanol) </label>
+      <fieldwidth> 6 </fieldwidth>
+    </slidebar>
+
+  </groupbox>
+
+  <!-- ===================== KEY DOPAMINE PARAMETERS ===================== -->
+  <groupbox>
+    <row> 8.5 </row><col> 1.0 </col>
+    <high> 8.0 </high><wide> 46.0 </wide>
+    <title> Dopamine System (Key Parameters) </title>
+
+    <repeatlist>
+      <name> List_LearnRate </name>
+      <repeat><reps> 10 </reps><stepsize> 0.1 </stepsize></repeat>
+    </repeatlist>
 
     <slidebar>
       <row> 1.5 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
       <name> DopamineSystem.LEARN_RATE </name>
       <listname> List_LearnRate </listname>
-      <label> Learning Rate (alpha) </label>
+      <label> Learning Rate (Fast/Slow) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
-  </groupbox>
 
-  <!-- ===================== DOPAMINE ===================== -->
-  <groupbox>
-    <row> 6.5 </row><col> 1.0 </col>
-    <high> 8.0 </high><wide> 46.0 </wide>
-    <title> Dopamine </title>
-
-    <slidebar>
-      <row> 1.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TAU_DA </name>
-      <listname> List_TauDA </listname>
-      <label> DA Clearance Tau (min) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
+    <repeatlist>
+      <name> List_Krate </name>
+      <repeat><reps> 10 </reps><stepsize> 0.05 </stepsize></repeat>
+    </repeatlist>
 
     <slidebar>
       <row> 3.0 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DA_BASELINE </name>
-      <listname> List_Gain </listname>
-      <label> Tonic DA Baseline </label>
+      <name> DopamineSystem.DA_WITHDRAW_K </name>
+      <listname> List_Krate </listname>
+      <label> Withdrawal Dopamine Loss (Severe/Mild) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
+
+    <repeatlist>
+      <name> List_Step </name>
+      <repeat><reps> 10 </reps><stepsize> 0.01 </stepsize></repeat>
+    </repeatlist>
 
     <slidebar>
       <row> 4.5 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DA_GAIN </name>
-      <listname> List_Gain </listname>
-      <label> Phasic DA Gain (per RPE) </label>
+      <name> DopamineSystem.TOL_STEP </name>
+      <listname> List_Step </listname>
+      <label> Tolerance Per Drink (Fast/Slow) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
     <slidebar>
       <row> 6.0 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DA_WITHDRAW_K </name>
-      <listname> List_Krate </listname>
-      <label> Withdrawal DA Suppression </label>
+      <name> DopamineSystem.SENS_STEP </name>
+      <listname> List_Step </listname>
+      <label> Sensitization Per Drink (Slow/Fast) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
+
   </groupbox>
 
-  <!-- ===================== A-PROCESS (euphoria) ===================== -->
+  <!-- ===================== TIMECOURSES ===================== -->
   <groupbox>
     <row> 2.0 </row><col> 49.0 </col>
     <high> 6.0 </high><wide> 46.0 </wide>
-    <title> A-Process (euphoria) </title>
+    <title> Response Timecourses </title>
 
-    <slidebar>
-      <row> 1.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TAU_A_RISE </name>
-      <listname> List_TauFast </listname>
-      <label> A Rise Tau (min) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
-
-    <slidebar>
-      <row> 3.0 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TAU_A_DECAY </name>
-      <listname> List_TauFast </listname>
-      <label> A Decay Tau (min) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
-  </groupbox>
-
-  <!-- ===================== B-PROCESS (craving) ===================== -->
-  <groupbox>
-    <row> 8.5 </row><col> 49.0 </col>
-    <high> 6.0 </high><wide> 46.0 </wide>
-    <title> B-Process (withdrawal / craving) </title>
+    <repeatlist>
+      <name> List_TauSlow </name>
+      <repeat><reps> 12 </reps><stepsize> 30 </stepsize></repeat>
+    </repeatlist>
 
     <slidebar>
       <row> 1.5 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
       <name> DopamineSystem.TAU_B_RISE </name>
       <listname> List_TauSlow </listname>
-      <label> B Rise Tau (min) </label>
+      <label> Withdrawal Onset (min) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
@@ -126,52 +145,43 @@
       <high> 1.0 </high><wide> 22.0 </wide>
       <name> DopamineSystem.TAU_B_DECAY </name>
       <listname> List_TauSlow </listname>
-      <label> B Decay Tau (min) </label>
+      <label> Withdrawal Duration (min) </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
-  </groupbox>
 
-  <!-- ===================== NEUROADAPTATION ===================== -->
-  <groupbox>
-    <row> 15.0 </row><col> 1.0 </col>
-    <high> 6.0 </high><wide> 46.0 </wide>
-    <title> Neuroadaptation (per drink) </title>
+    <repeatlist>
+      <name> List_Sensitivity </name>
+      <repeat><reps> 10 </reps><stepsize> 0.5 </stepsize></repeat>
+    </repeatlist>
 
     <slidebar>
-      <row> 1.5 </row><col> 1.0 </col>
+      <row> 4.5 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TOL_STEP </name>
-      <listname> List_Step </listname>
-      <label> Tolerance Step (A down) </label>
+      <name> DopamineSystem.EMOTIONAL_SENSITIVITY </name>
+      <listname> List_Sensitivity </listname>
+      <label> Emotional Intensity </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
-    <slidebar>
-      <row> 3.0 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.SENS_STEP </name>
-      <listname> List_Step </listname>
-      <label> Sensitization Step (B up) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
   </groupbox>
 
-  <!-- ===================== HELP ===================== -->
+  <!-- ===================== HELP PANEL ===================== -->
   <infobutton>
-    <row> 15.0 </row><col> 49.0 </col>
-    <label> About these controls </label>
+    <row> 8.5 </row><col> 49.0 </col>
+    <label> Help: What do these controls do? </label>
     <layout> LABELRIGHT </layout>
-    <line> Learning Rate: how fast the reward prediction is updated (RPE fades faster at high alpha). </line>
-    <line> DA Clearance Tau: synaptic dopamine clearance time constant. </line>
-    <line> Withdrawal DA Suppression: how strongly the B-process lowers tonic dopamine. </line>
-    <line> A/B Rise and Decay Tau: speed of euphoria vs. craving onset and offset. </line>
-    <line> Tolerance / Sensitization Step: per-drink change in euphoria and craving gains. </line>
+    <line> CHRONIC DRINKING: Enable scheduled drinking to simulate daily habit. Set time (0=midnight, 1440=next midnight). </line>
+    <line> LEARNING RATE: How fast the brain learns to predict the reward. Higher = addiction develops faster. </line>
+    <line> WITHDRAWAL LOSS: How much dopamine drops during withdrawal. Higher = worse anxiety and craving. </line>
+    <line> TOLERANCE & SENSITIZATION: Per-drink changes. Higher = faster dependence, less reward over time. </line>
+    <line> TIMECOURSES: Control speed of withdrawal onset and recovery. Longer = persistent craving. </line>
+    <line> EMOTIONAL INTENSITY: Scaling factor for happiness/craving/anxiety displays. </line>
   </infobutton>
 
   <label>
-    <row> 21.5 </row><col> 1.0 </col>
-    <text> Adjust a slider, then run the ethanol scenario and watch the Dopamine, Reward Learning and Hedonic State panels respond. </text>
-    <color> GREY </color>
+    <row> 17.5 </row><col> 1.0 </col>
+    <text> Enable scheduled drinking at 6 PM (1080 min), run 7+ days, and watch craving build before the drink and anxiety afterward. </text>
+    <color> GRAY </color>
   </label>
 
 </panel>

@@ -115,7 +115,7 @@
   <label>
     <row> 15.5 </row><col> 1.0 </col>
     <text> Tonic = baseline DA (falls as withdrawal/B-process grows).  Phasic = burst on unpredicted reward, dip on omission. </text>
-    <color> GREY </color>
+    <color> GRAY </color>
   </label>
 
 </panel>

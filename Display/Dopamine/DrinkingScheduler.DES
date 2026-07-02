@@ -1,0 +1,129 @@
+<!--
+================================================================================
+  DrinkingScheduler.DES  -  DRINKING PATTERN PANEL
+  Sets up chronic alcoholism scenarios with scheduled or random drinking
+
+  Allows the user to establish a daily drinking habit with specific times
+  or random intervals. The model can anticipate upcoming drinks and show
+  how craving builds in anticipation.
+================================================================================
+-->
+
+<panel>
+  <name> DrinkingScheduler </name>
+  <tablabel> Drinking Pattern </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 12.0 </col>
+    <text> Set Up Chronic Drinking Patterns </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ==================== DRINKING SCHEDULE SETUP ==================== -->
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 14.0 </high><wide> 36.0 </wide>
+    <title> Drinking Schedule </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.CurrentTime </name>
+      <label> Current Time (minutes since start) </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.CurrentDayOfWeek </name>
+      <label> Day of Week (0=Mon, 6=Sun) </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.ScheduledDrinkingActive </name>
+      <label> Scheduled Drinking Enabled </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.ScheduledDrinkTime </name>
+      <label> Time of Daily Drink (minutes after midnight) </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 7.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.DrinkSize </name>
+      <label> Standard Drink Size (g ethanol) </label>
+      <format><decimal> 1 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.DaysWithdrawnCount </name>
+      <label> Days Since Last Drink </label>
+      <format><decimal> 1 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 10.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.TotalDrinksThisWeek </name>
+      <label> Total Drinks This Week </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ===================== ANTICIPATION GRAPH ===================== -->
+  <showgraph>
+    <row> 2.0 </row><col> 40.0 </col>
+    <high> 14.0 </high><wide> 58.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 1440.0 </max><inc> 240.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.EmotionalCraving </name>
+        <label> Craving Building </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.AnticipationSignal </name>
+        <label> Anticipation Signal </label>
+        <linetype> DASH </linetype>
+        <linecolor> DARKRED </linecolor>
+      </yvar>
+      <scale><min> 0.0 </min><max> 10.0 </max><inc> 2.0 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+<infobutton>
+<row> 16.5 </row>
+<col> 1.0</col>
+ 
+  <line> Set a scheduled daily drink time to model chronic alcoholism. </line>
+  <line> The brain learns to anticipate the drink, and craving builds beforehand. Withdrawal between drinks drives the motivation to drink again. </line>
+
+
+</infobutton>
+
+</panel>
+
+End

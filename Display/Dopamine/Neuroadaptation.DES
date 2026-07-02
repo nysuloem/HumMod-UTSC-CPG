@@ -95,7 +95,7 @@
   <label>
     <row> 11.5 </row><col> 1.0 </col>
     <text> Each new drink lowers A-gain (tolerance to euphoria) and raises B-gain (growing craving) - the core of addiction. </text>
-    <color> GREY </color>
+    <color> GRAY </color>
   </label>
 
 </panel>

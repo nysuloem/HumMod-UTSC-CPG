@@ -1,0 +1,144 @@
+<!--
+================================================================================
+  DopamineGlossary.DES  -  HELP & GLOSSARY PANEL
+  Explains what each variable means and how to interpret the displays
+
+  Provides educational context for students/researchers to understand
+  the dopamine system model and how it connects to behavior and addiction.
+================================================================================
+-->
+
+<panel>
+  <name> DopamineGlossary </name>
+  <tablabel> Help & Glossary </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 1.0 </col>
+    <text> Help & Glossary </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ==================== KEY CONCEPTS ==================== -->
+  <textbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 35.0 </high><wide> 115.0 </wide>
+
+    <text> 
+      
+=== DOPAMINE: THE MOTIVATION MOLECULE ===
+
+Dopamine is a neurotransmitter (brain chemical) that drives motivation, 
+reward, and craving. It's central to addiction because:
+
+  • REWARD: Dopamine spikes when we experience something good (eating, 
+    winning, or in chronic alcoholism, the relief of drinking).
+    
+  • PREDICTION: The brain learns to anticipate rewards. Dopamine rises 
+    NOT when the reward happens, but BEFORE it, when we predict it's coming.
+    This is why you crave a drink at your usual time.
+    
+  • WITHDRAWAL: When dopamine drops (during alcohol withdrawal), we feel
+    anxious, unhappy, and strongly motivated to restore it. Alcohol brings
+    dopamine back up, reinforcing the addiction cycle.
+
+
+=== EMOTIONAL STATES ===
+
+These translate dopamine levels into how you actually FEEL:
+
+  • Happiness (0-10): Reflects current dopamine & reward. High when 
+    drinking or anticipating reward.
+    
+  • Craving (0-10): The urge to drink. Driven by withdrawal (low dopamine)
+    and learned anticipation (brain predicting a drink is coming).
+    
+  • Sleepiness (0-10): Low dopamine + high B-process (withdrawal) makes
+    you feel foggy and unmotivated. You might drink to stay awake, or
+    the alcohol sedates you deeper.
+    
+  • Anxiety (0-10): The stress of withdrawal. Grows during time without
+    alcohol, peaks just before your usual drink time, then drops when
+    you drink.
+
+
+=== DOPAMINE CONTROLS ===
+
+These adjustable parameters control how the model behaves:
+
+  • Learning Rate (alpha): How quickly the brain learns to predict the
+    reward. Higher = faster learning = quicker dependence formation.
+    
+  • DA Clearance Tau: How fast dopamine is removed from the synapse.
+    Longer = dopamine effects last longer = stronger reward feeling.
+    
+  • Withdrawal DA Suppression (K): How much withdrawal shrinks dopamine.
+    Higher = worse withdrawal anxiety and craving.
+    
+  • Tolerance Step (per drink): How much the brain adapts to each drink.
+    Higher = faster tolerance = need more to feel the same.
+    
+  • A-Process Tau (Fast time constant): Speed of dopamine response to
+    alcohol. Reflects how quickly the reward hits.
+    
+  • B-Process Tau (Slow time constant): Speed of withdrawal buildup.
+    Reflects how long it takes to feel the hangover/cravings.
+    
+  • Dopamine Gains: Overall dopamine responsiveness to alcohol. Higher
+    = more dopamine per drink = stronger addiction.
+
+
+=== GRAPHS ===
+
+  • Dopamine Dynamics: Shows actual dopamine levels (blue), tonic baseline
+    (dashed black), and phasic bursts/dips (red).
+    
+  • Emotional State: Shows how happiness, craving, and anxiety change
+    over time. Craving typically spikes right before a scheduled drink.
+    
+  • Reward Learning: Shows actual reward (alcohol effect), predicted
+    reward (brain's expectation), and the prediction error (surprise).
+    
+  • Drinking Pattern: Shows how craving builds in anticipation of a
+    scheduled drink, peaking at drink time.
+
+
+=== CHRONIC ALCOHOLISM SCENARIO ===
+
+To model someone who drinks at the same time every day:
+
+  1. Go to "Drinking Pattern" panel.
+  2. Set "Scheduled Drinking Enabled" to TRUE.
+  3. Set "Time of Daily Drink" (in minutes after midnight, e.g., 1080 = 6 PM).
+  4. Adjust "Tolerance Step" and "Withdrawal DA Suppression" to increase
+     dependence severity.
+  5. Run the simulation for several days. Watch:
+     - Craving builds in the hours before the scheduled drink.
+     - Dopamine spikes when the drink is consumed.
+     - Withdrawal anxiety grows after drinking (B-process activation).
+     - Brain learns to anticipate the drink; craving appears earlier each day.
+
+
+=== INTERPRETATION TIPS ===
+
+  • HIGH CRAVING + ANXIETY = The brain is in withdrawal. Dopamine is low.
+    The person feels motivated to drink to escape the bad feeling.
+    
+  • HIGH HAPPINESS AFTER DRINKING = Dopamine reward system reinforcing
+    the behavior. This is why drinking feels SO good in the short term.
+    
+  • ANTICIPATION SPIKE BEFORE DRINK TIME = Learned behavior. The brain
+    has learned the time of day and predicts the drink is coming.
+    
+  • SLOW RECOVERY OF HAPPINESS BETWEEN DRINKS = The B-process (withdrawal)
+    is persistent. This is why chronic drinkers feel perpetually anxious
+    or depressed without alcohol.
+
+    </text>
+    <color> BLACK </color>
+  </textbox>
+
+</panel>
+
+End
