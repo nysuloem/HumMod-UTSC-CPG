@@ -6,9 +6,6 @@ Author : Tom Coleman
 Copyright : 2008-2013
 By : University of Mississippi Medical Center
 
-
-
-
 <?path Structure\ ?>
 
 <?include Context\Context.DES ?>
@@ -65,6 +62,7 @@ By : University of Mississippi Medical Center
 <?include DailyPlanner\DailyPlanner.DES ?>
 <?include Density\Density.DES ?>
 <?include Diet\Diet.DES ?>
+<?include Dopamine\DopamineSystem.DES ?>
 <?include Drugs\Drugs.DES ?>
 <?include Energy\Energy.DES ?>
 <?include Environment\Environment.DES ?>
@@ -368,9 +366,10 @@ By : University of Mississippi Medical Center
   <call> VeinsVol.Calc </call>
   <call> AlbuminPool.CalcConc </call>
 
-<call> NO.CalcConc </call>
+  <call> NO.CalcConc </call>
   <call> NOPool.CalcConc </call>
   <call> Drugs.CalcConc </call>
+  <call> DopamineSystem.CalcConc </call>
 
   <call> NaPool.CalcConc </call>
   <call> K.Conc </call>
@@ -739,7 +738,7 @@ By : University of Mississippi Medical Center
   <call> LeftCollectingDuct_H2OChannels.CalcDervs </call>
 
   <call> O2.Dervs </call>
-<call> NODrug.Dervs </call>
+  <call> NODrug.Dervs </call>
   <call> NODrug.Parms </call>
 
   <call> BVSeqArtys.Dervs </call>
@@ -756,6 +755,7 @@ By : University of Mississippi Medical Center
   <call> ChemoreceptorAcclimation.Calc </call>
 
   <call> Drugs.Dervs </call>
+  <call> DopamineSystem.Dervs </call>
 
   <call> LeftTGF-Vascular.Dervs </call>
   <call> LeftTGF-Renin.Dervs </call>

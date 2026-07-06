@@ -1,0 +1,31 @@
+<?path Display\NervousSystem\Dopamine\ ?>
+
+<?include DopamineDynamics.DES ?>
+<?include DopamineSymptoms.DES ?>
+<?include RewardLearning.DES ?>
+<?include DopamineControls.DES ?>
+<?include HedonicState.DES ?>
+<?include Neuroadaptation.DES ?>
+
+
+<!--
+================================================================================
+  Dopamine.DES  -  MASTER DISPLAY FILE
+  Dopamine Reward-Learning & Addiction display package for HumMod
+
+  Drives the user interface for DopamineSystem.DES (structure/calculation).
+  It declares the shared display objects (menu tree + parameter lists) and
+  then includes the individual panel files.
+
+  PANELS (functional grouping):
+    1. Dopamine Dynamics   - DA level, tonic/phasic components + DA time-graph
+    2. Reward Learning     - ActualReward, RewardPrediction, RPE + RPE graph
+    3. Hedonic State       - A / B / Experienced state + opponent-process graph
+                             and the long-run hedonic set-point shift
+    4. Neuroadaptation     - exposure count + tolerance/sensitization gains
+    5. Controls            - user-adjustable model parameters
+
+-->
+
+
+End

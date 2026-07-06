@@ -1,0 +1,150 @@
+<!--
+================================================================================
+  HedonicState.DES  -  PANEL 3
+  Opponent-process / hedonic homeostatic dysregulation
+  (Solomon & Corbit 1974; Koob & Le Moal 1997).
+
+  Shows the fast euphoria (A-process), the slow withdrawal/craving
+  (B-process) and the net experienced hedonic state (A - B) relative to the
+  hedonic set-point. Two graphs make the theory's two key predictions
+  visible: (top) the within-episode A/B opponent dynamics, and (bottom) the
+  long-run drift of the experienced state from positive ("high") toward
+  negative ("agony, intense craving").
+================================================================================
+-->
+
+<panel>
+  <name> HedonicState </name>
+  <tablabel> Hedonic State </tablabel>
+
+  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+
+  <label>
+    <row> 0.5 </row><col> 12.0 </col>
+    <text> Opponent-Process / Hedonic Set-Point </text>
+    <color> BLACK </color>
+  </label>
+
+  <!-- ===================== CURRENT VALUES ===================== -->
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 11.0 </high><wide> 34.0 </wide>
+    <title> Current Values </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.AProcess </name>
+      <label> A-process (euphoria) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.BProcess </name>
+      <label> B-process (craving) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.ExperiencedState </name>
+      <label> Experienced State (A-B) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.HedonicSetpoint </name>
+      <label> Hedonic Set-Point </label>
+      <format><decimal> 3 </decimal></format>
+      <color> GRAY </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 8.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.AGain </name>
+      <label> A-gain (tolerance) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.BGain </name>
+      <label> B-gain (sensitization) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ============= GRAPH A: within-episode opponent dynamics ============= -->
+  <showgraph>
+    <row> 2.0 </row><col> 38.0 </col>
+    <high> 9.0 </high><wide> 60.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.AProcess </name>
+        <label> A (euphoria) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.BProcess </name>
+        <label> B (craving) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLUE </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.ExperiencedState </name>
+        <label> Experienced (A-B) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <scale><min> -2.0 </min><max> 2.0 </max><inc> 0.5 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <!-- ======== GRAPH B: long-run hedonic set-point shift ======== -->
+  <showgraph>
+    <row> 12.0 </row><col> 38.0 </col>
+    <high> 8.0 </high><wide> 60.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 10080.0 </max><inc> 1440.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.ExperiencedState </name>
+        <label> Experienced State </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <scale><min> -2.0 </min><max> 1.5 </max><inc> 0.5 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <label>
+    <row> 20.5 </row><col> 38.0 </col>
+    <text> Lower graph (multi-day): the experienced state drifts from positive "high" toward negative "craving" as B grows and A shrinks. </text>
+    <color> GRAY </color>
+  </label>
+
+</panel>
+
+End
