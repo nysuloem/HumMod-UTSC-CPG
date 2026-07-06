@@ -11,21 +11,21 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> React </name></var>
-<var><name> Degrade </name></var>
-<var><name> K </name><val> 0.00001 </val></var>
+  <var><name> React </name></var>
+  <var><name> Degrade </name></var>
+  <var><name> K </name><val> 0.00001 </val></var>
 
 </variables>
 
 <equations>
 
-<diffeq>
-  <name> A1C </name>
-  <integralname> A1C </integralname>
-  <initialval> 5 </initialval>
-  <dervname> Change </dervname>
-  <errorlim> 10.0  </errorlim>
-</diffeq>
+  <diffeq>
+    <name> A1C </name>
+    <integralname> A1C </integralname>
+    <initialval> 5 </initialval>
+    <dervname> Change </dervname>
+    <errorlim> 10.0  </errorlim>
+  </diffeq>
 
 </equations>
 
@@ -33,21 +33,22 @@ Schema : DES V1.0
 
 <block><name> GluReact </name>
 
-<def><name> React </name>
-<val> GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] * K </val>
-</def>
+  <def><name> React </name>
+  <val> GlucosePool.[Glucose(mMol/L)] * HgbConc.[Total] * K </val>
+  </def>
 
-<def><name> Degrade </name>
-<val> React * RBCClearance.K * 10 </val>
-</def>
+  <def><name> Degrade </name>
+  <val> React * RBCClearance.K * 10 </val>
+  </def>
 
-<def><name> Change </name>
-<val> React - Degrade </val>
-</def>
+  <def><name> Change </name>
+  <val> React - Degrade </val>
+  </def>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End
