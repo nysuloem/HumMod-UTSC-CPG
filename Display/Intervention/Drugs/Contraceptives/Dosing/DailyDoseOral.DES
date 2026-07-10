@@ -36,14 +36,14 @@ By : University Of Mississippi Medical Center
 
 <repeatlist>
   <name> ContraceptivesDailyDose.Dose </name>
-  <repeat><reps> 4 </reps><stepsize> 2.5 </stepsize></repeat>
+  <repeat><reps> 4 </reps><stepsize> 25 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
   <row> 7.0 </row><col> 1.0 </col>
-  <name> Dose </name>
+  <name> EstradiolDose </name>
   <listname> ContraceptivesDailyDose.Dose </listname>
-  <label> Dose </label>
+  <label> EstradiolDose </label>
 </slidebar>
 
 

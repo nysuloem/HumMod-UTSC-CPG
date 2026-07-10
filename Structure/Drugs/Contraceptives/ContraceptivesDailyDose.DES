@@ -11,7 +11,8 @@ By : University Of Mississippi Medical Center
 <variables>
 
 <parm><name> Dose </name><val> 0.0 </val></parm>
-<parm><name> TakeDaily </name><val> FALSE </val></parm>
+<parm><name> EstradiolDose </name><val> 0.0 </val></parm>
+<parm><name> TakeDaily </name><val> 0 </val></parm>
 <parm><name> TimesADay </name><val> 1.0 </val></parm>
 <var><name> TimeLastDose </name><val> UNDEFINED </val></var>
 <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
@@ -128,6 +129,10 @@ By : University Of Mississippi Medical Center
   <val> ContraceptivesGILumen.Mass + Dose </val>
 </def>
 
+<def>
+  <name> ContraceptivesGILumen.EstradiolMass </name>
+  <val> ContraceptivesGILumen.EstradiolMass + EstradiolDose </val>
+</def>
 
 <def>
   <name> RealDose </name>

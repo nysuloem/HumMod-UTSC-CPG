@@ -29,8 +29,8 @@ By : University of Mississippi Medical Center
 
 <parm><name> KInFat </name><val> 0.33 </val></parm>
 <parm><name> KOutFat </name><val> 0.028 </val></parm>
-<parm><name> KInVDBP </name><val> 0.33 </val></parm>
-<parm><name> KOutVDBP </name><val> 0.028 </val></parm>
+<parm><name> KInVDBP </name><val> 0.0033 </val></parm>
+<parm><name> KOutVDBP </name><val> 0.00028 </val></parm>
 
 </variables>
 
@@ -46,7 +46,7 @@ By : University of Mississippi Medical Center
 <diffeq>
   <name> MassVDBP </name>
   <integralname> MassVDBP </integralname>
-  <initialval> 2.0 </initialval>
+  <initialval> 2000000 </initialval>
   <dervname> ChangeVDBP </dervname>
   <errorlim> 0.02 </errorlim>
 </diffeq>
@@ -133,7 +133,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> GainBMax(nG) </name>
-  <val> 1 </val>
+  <val> 1 * Estradiol.[Conc(nMol/L)] </val>
 </def>
 
 <def>

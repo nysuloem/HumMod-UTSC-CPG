@@ -15,12 +15,12 @@ Schema : DES V1.0
 
 <constant>
   <name> BIOAVAIL </name>
-  <val> 0.9 </val>
+  <val> 1 </val>
 </constant>
 
 <constant>
   <name> PERM </name>
-  <val> 0.010 </val>
+  <val> 1 </val>
 </constant>
 
 <var>
@@ -29,6 +29,10 @@ Schema : DES V1.0
 
 <var>
   <name> Loss </name>
+</var>
+
+<var>
+  <name> EstradiolLoss </name>
 </var>
 
 </variables>
@@ -40,6 +44,14 @@ Schema : DES V1.0
   <integralname> Mass </integralname>
   <initialval> 0.0 </initialval>
   <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> EstradiolMass </name>
+  <integralname> EstradiolMass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> EstradiolChange </dervname>
   <errorlim> 0.01 </errorlim>
 </diffeq>
 
@@ -64,8 +76,18 @@ Schema : DES V1.0
 </def>
 
 <def>
+  <name> EstradiolLoss </name>
+  <val> BIOAVAIL * PERM * EstradiolMass </val>
+</def>
+
+<def>
   <name> Change </name>
-  <val> - Loss / BIOAVAIL </val>
+  <val> - Loss </val>
+</def>
+
+<def>
+  <name> EstradiolChange </name>
+  <val> - EstradiolLoss </val>
 </def>
 
 </block>
