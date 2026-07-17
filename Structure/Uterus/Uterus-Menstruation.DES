@@ -38,7 +38,7 @@ Schema : DES V1.0
 
     <def>
         <name> Rate </name> 
-        <val> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow </val>
+        <val> ( Estradiol.Total[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) * 0.001 * Uterus-Flow.BloodFlow </val>
     </def>
 
     <def>
@@ -54,7 +54,7 @@ Schema : DES V1.0
     <testcase>
 
     <case>
-        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 0 </test>
+        <test> ( Estradiol.Total[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 0 </test>
         <timer>
             <name> Duration </name>
             <state> OFF </state>
@@ -62,7 +62,7 @@ Schema : DES V1.0
     </case>
 
     <case>
-        <test> ( Estradiol.[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 1 </test>
+        <test> ( Estradiol.Total[Conc(nMol/L)] LT 0.1 ) AND ( Progesterone.[Conc(nMol/L)] LT 1 ) EQ 1 </test>
         <timer>
             <name> Duration </name>
             <state> UP </state>

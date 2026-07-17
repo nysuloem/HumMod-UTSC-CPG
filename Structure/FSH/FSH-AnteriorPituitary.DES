@@ -88,7 +88,7 @@ Schema : DES V1.0
 
   <def>
     <name> EstradiolEffect </name>
-    <val> EstradiolEffect [ Estradiol.[Conc(nMol/L)] ] </val>
+    <val> EstradiolEffect [ Estradiol.Total[Conc(nMol/L)] ] </val>
   </def>
 
   <def>
@@ -115,6 +115,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

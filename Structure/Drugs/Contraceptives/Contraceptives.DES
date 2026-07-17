@@ -22,11 +22,15 @@ By : University Of Mississippi Medical Center
     </block>
 
     <block><name> CalcConc </name>
-    <call> ContraceptivesGILumen.CalcConc </call>
+   <!-- empty block for now -->
     </block>
 
     <block><name> Dervs </name>
     <call> ContraceptivesGILumen.Dervs </call>
+    </block>
+
+    <block><name> Wrapup </name>
+    <call> ContraceptivesDailyDose.Wrapup </call>
     </block>
 
 </definitions>

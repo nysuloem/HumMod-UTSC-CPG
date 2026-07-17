@@ -11,44 +11,66 @@ Schema : DES V1.0
 
 <variables>
 
-<var><name> Gain </name></var>
-<var><name> Loss </name></var>
+  <var><name> Mass </name></var>
 
-<var><name> Secretion </name></var>
-<var><name> Degradation </name></var>
+  <var><name> GainNatural </name></var>
+  <var><name> LossNatural </name></var>
 
-<parm><name> TargetConcFemale </name><val> 0.15 </val></parm>
-<parm><name> TargetConcMale </name><val> 0.01 </val></parm>
+  <var><name> SecretionNatural </name></var>
+  <var><name> DegradationNatural </name></var>
 
-<var><name> TargetConc </name></var>
-<var><name> InitialMass </name></var>
+  <var><name> GainSynthetic </name></var>
+  <var><name> LossSynthetic </name></var>
 
-<var><name> [Conc(nMol/L)] </name></var>
-<var><name> [Conc(nMol/L)-Initial] </name></var>
-<var><name> [Conc(nG/mL)] </name></var>
+  <var><name> SecretionSynthetic </name></var>
+  <var><name> DegradationSynthetic </name></var>
 
-<constant><name> NMOL/L_TO_NG/ML </name><val> 0.2724 </val></constant>
+  <parm><name> TargetConcFemale </name><val> 0.15 </val></parm>
+  <parm><name> TargetConcMale </name><val> 0.01 </val></parm>
 
-<parm><name> PumpSwitch </name><val> TRUE </val></parm>
-<parm><name> PumpSetting </name><val> 0.0 </val></parm>
+  <var><name> TargetConc </name></var>
+  <var><name> InitialMass </name></var>
 
-<parm><name> K </name><val> 0.11 </val></parm>
+  <var><name> Natural[Conc(nMol/L)] </name></var>
+  <var><name> Synthetic[Conc(nMol/L)] </name></var>
+  <var><name> Total[Conc(nMol/L)] </name></var>
+  <var><name> Natural[Conc(nMol/L)-Initial] </name></var>
+  <var><name> Natural[Conc(pG/mL)] </name></var>
+  <var><name> Synthetic[Conc(pG/mL)] </name></var>
+  <var><name> Total[Conc(pG/mL)] </name></var>
 
-<var><name> WhiteE2 </name></var>
-<var><name> BlackE2 </name></var>
-<var><name> AsianE2 </name></var>
-<var><name> HispanicE2 </name></var>
+  <constant><name> NMOL/L_TO_NG/ML </name><val> 0.2724 </val></constant>
+
+  <parm><name> PumpSwitch </name><val> TRUE </val></parm>
+  <parm><name> PumpSetting </name><val> 0.0 </val></parm>
+
+  <parm><name> KNatural </name><val> 0.11 </val></parm>
+  <parm><name> KSynthetic </name><val> 0.0011 </val></parm>
+
+  <var><name> WhiteE2 </name></var>
+  <var><name> BlackE2 </name></var>
+  <var><name> AsianE2 </name></var>
+  <var><name> HispanicE2 </name></var>
 
 </variables>
 
 <equations>
 
-<diffeq>
-  <name> Mass </name>
-  <integralname> Mass </integralname>
-  <dervname> Change </dervname>
-  <errorlim> 0.01 </errorlim>
-</diffeq>
+  <diffeq>
+    <name> NaturalMass </name>
+    <integralname> NaturalMass </integralname>
+    <initialval> 0 </initialval>
+    <dervname> ChangeNatural </dervname>
+    <errorlim> 0.01 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> SyntheticMass </name>
+    <integralname> SyntheticMass </integralname>
+    <initialval> 0 </initialval>
+    <dervname> ChangeSynthetic </dervname>
+    <errorlim> 0.01 </errorlim>
+  </diffeq>
 
 </equations>
 
@@ -56,61 +78,70 @@ Schema : DES V1.0
 
 <block><name> Init </name>
 
-<conditional><name> TargetConc </name>
-  <test> Sex.IsFemale </test>
-  <true> TargetConcFemale </true>
-  <false> TargetConcMale </false>
-</conditional>
+  <conditional><name> TargetConc </name>
+    <test> Sex.IsFemale </test>
+    <true> TargetConcFemale </true>
+    <false> TargetConcMale </false>
+  </conditional>
 
-<if><test> Context-Sex.Index EQ 1 </test>
-  <true>
-  <call> EthnicityChange </call>
-  </true>
-</if>
+  <if><test> Context-Sex.Index EQ 1 </test>
+    <true>
+    <call> EthnicityChange </call>
+    </true>
+  </if>
 
-<def><name> InitialMass </name><val> TargetConc * ECFV.InitialVol(L) </val></def>
-<def><name> Mass </name><val> InitialMass </val></def>
-<def><name> [Conc(nMol/L)-Initial] </name><val> TargetConc </val></def>
+  <def><name> InitialMass </name><val> TargetConc * ECFV.InitialVol(L) </val></def>
+  <def><name> NaturalMass </name><val> InitialMass </val></def>
+  <def><name> Natural[Conc(nMol/L)-Initial] </name><val> TargetConc </val></def>
 
 </block>
 
 <block><name>EthnicityChange</name>
 
-<def><name> AsianE2 </name><val> 1.52 </val></def> <!-- Comes from Huddleston et al. (2011) -->
-<def><name> BlackE2 </name><val> 1.13 </val></def> <!-- Comes from Marsh et al. (2011) -->
-<def><name> WhiteE2 </name><val> 1.00 </val></def>
-<def><name> HispanicE2 </name><val> 1.00 </val></def>
-<def><name> TargetConc </name>
-  <val> TargetConc
-    + ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianE2 ) 
-    + ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackE2 )
-    + ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteE2 )
-    + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicE2 )
-    - 1 <!-- This substraction accounts for how the default value leads to a +1 addition here -->
-  </val>
-</def>
+  <def><name> AsianE2 </name><val> 1.52 </val></def> <!-- Comes from Huddleston et al. (2011) -->
+  <def><name> BlackE2 </name><val> 1.13 </val></def> <!-- Comes from Marsh et al. (2011) -->
+  <def><name> WhiteE2 </name><val> 1.00 </val></def>
+  <def><name> HispanicE2 </name><val> 1.00 </val></def>
+  <def><name> TargetConc </name>
+    <val> TargetConc
+      + ( Context-Ethnicity.TrueAsian_Percentage / 100 * AsianE2 ) 
+      + ( Context-Ethnicity.TrueBlack_Percentage / 100 * BlackE2 )
+      + ( Context-Ethnicity.TrueWhite_Percentage / 100 * WhiteE2 )
+      + ( Context-Ethnicity.TrueHispanic_Percentage / 100 * HispanicE2 )
+      - 1 <!-- This substraction accounts for how the default value leads to a +1 addition here -->
+    </val>
+  </def>
 
 </block>
 
 <block><name> Conc </name>
-  <def><name> [Conc(nMol/L)] </name><val> Mass / ECFV.Vol(L) </val></def>
-  <def><name> [Conc(nG/mL)] </name><val> [Conc(nMol/L)] * NMOL/L_TO_NG/ML </val></def>
+  <def><name> Natural[Conc(nMol/L)] </name><val> NaturalMass / ECFV.Vol(L) </val></def>
+  <def><name> Natural[Conc(pG/mL)] </name><val> Natural[Conc(nMol/L)] * NMOL/L_TO_NG/ML * 1000 </val></def>
+  <def><name> Synthetic[Conc(nMol/L)] </name><val> SyntheticMass / ECFV.Vol(L) </val></def>
+  <def><name> Synthetic[Conc(pG/mL)] </name><val> Synthetic[Conc(nMol/L)] * NMOL/L_TO_NG/ML * 1000 </val></def>
+  <def><name> Total[Conc(nMol/L)] </name><val> Natural[Conc(nMol/L)] + Synthetic[Conc(nMol/L)] </val></def>
 </block>
 
 <block><name> Dervs </name>
 
-  <conditional><name> Secretion </name>
+  <conditional><name> SecretionNatural </name>
   <test> Sex.IsFemale </test>
   <true> Ovaries-Estradiol.Secretion </true>
   <false> Testes-Estradiol.Secretion </false>
   </conditional>
 
-  <def><name> Degradation </name><val> K * Mass </val></def>
+  <def><name> DegradationNatural </name><val> KNatural * NaturalMass </val></def>
+  <def><name> DegradationSynthetic </name><val> KSynthetic * SyntheticMass </val></def>
 
-  <def><name> Gain </name><val> Secretion + ( PumpSetting * PumpSwitch ) </val></def>
-  <def><name> Loss </name><val> Degradation </val></def>
+  <def><name> GainNatural </name><val> SecretionNatural + ( PumpSetting * PumpSwitch ) </val></def>
+  <def><name> LossNatural </name><val> DegradationNatural </val></def>
 
-  <def><name> Change </name><val> Gain - Loss </val></def>
+  <def><name> ChangeNatural </name><val> GainNatural - LossNatural </val></def>
+
+  <def><name> GainSynthetic </name><val> ContraceptivesGILumen.EstrogenLoss </val></def>
+  <def><name> LossSynthetic </name><val> DegradationSynthetic </val></def>
+
+  <def><name> ChangeSynthetic </name><val> GainSynthetic - LossSynthetic </val></def>
 
 </block>
 

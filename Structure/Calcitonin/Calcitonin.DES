@@ -128,7 +128,7 @@ By : University of Mississippi Medical Center
 
 <def>
 <name> EstrogenEffect </name>
-<val> EstrogenEffect [ Estradiol.[Conc(nMol/L)] ] </val>
+<val> EstrogenEffect [ Estradiol.Total[Conc(nMol/L)] ] </val>
 </def>
 
 <def>

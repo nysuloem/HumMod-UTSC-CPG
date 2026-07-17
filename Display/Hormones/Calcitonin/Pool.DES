@@ -193,7 +193,7 @@ By : University Of Mississippi Medical Center
 <leftmargin> 6 </leftmargin>
 
 <xaxis>
-<name> Estradiol.[Conc(nMol/L)]  </name>
+<name> Estradiol.Total[Conc(nMol/L)]  </name>
 <label> [Estradiol] </label>
 <scale><min> 0 </min><max> 100 </max></scale>
 </xaxis>
@@ -208,7 +208,7 @@ By : University Of Mississippi Medical Center
 
 <showvalue>
    <row> 45 </row><col> 1 </col>
-   <name> Estradiol.[Conc(nMol/L)]  </name>
+   <name> Estradiol.Total[Conc(nMol/L)]  </name>
    <format><decimal> 0 </decimal></format>
    <label> Estrogen </label>
 </showvalue>

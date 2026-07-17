@@ -10,17 +10,17 @@ Schema : DES V1.0
 <groupbox>
    <row> 2.0 </row>
    <col> 1.0 </col>
-   <high> 16.2 </high>
-   <wide> 30.0 </wide>
+   <high> 25 </high>
+   <wide> 35.0 </wide>
    <title> Pool </title>
 
 <structurename> Estradiol </structurename>
 
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
-   <name> [Conc(nMol/L)] </name>
+   <name> Natural[Conc(nMol/L)] </name>
    <format><decimal> 2 </decimal></format>
-   <label> [Estradiol (nMol/L)] </label>
+   <label> Natural [Estradiol (nMol/L)] </label>
 </showvalue>
 
 <showgraph>
@@ -33,7 +33,7 @@ Schema : DES V1.0
   </xaxis>
   <yaxis>
     <yvar>
-      <name> [Conc(nMol/L)] </name>
+      <name> Natural[Conc(nMol/L)] </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>
@@ -45,42 +45,48 @@ Schema : DES V1.0
 
 <showvalue>
    <row> 9.8 </row><col> 1.0 </col>
-   <name> [Conc(nG/mL)] </name>
+   <name> Natural[Conc(pG/mL)] </name>
    <format><decimal> 3 </decimal></format>
-   <label> [Estradiol (nG/mL)] </label>
+   <label> Natural [Estradiol (pG/mL)] </label>
 </showvalue>
 
 <showvalue>
-   <row> 11.2 </row><col> 1.0 </col>
-   <name> Mass </name>
+   <row> 11.4 </row><col> 1.0 </col>
+   <name> Synthetic[Conc(nMol/L)] </name>
    <format><decimal> 2 </decimal></format>
-   <label> Mass </label>
+   <label> Synthetic [Estradiol (nMol/L)] </label>
 </showvalue>
 
-<showvalue>
-   <row> 12.2 </row><col> 3 </col>
-   <name> Change </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Change </label>
-</showvalue>
+<showgraph>
+  <row> 12.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> Synthetic[Conc(nMol/L)] </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale>
+      <min> 0 </min><max> 1 </max><inc> 1 </inc>
+    </scale>
+  </yaxis>
+</showgraph>
 
 <showvalue>
-   <row> 13.6 </row><col> 1.0 </col>
-   <name> Gain </name>
+   <row> 20.8 </row><col> 1.0 </col>
+   <name> Synthetic[Conc(pG/mL)] </name>
    <format><decimal> 3 </decimal></format>
-   <label> Gain </label>
-</showvalue>
-
-<showvalue>
-   <row> 14.6 </row><col> 1.0 </col>
-   <name> Loss </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Loss </label>
+   <label> Synthetic [Estradiol (pG/mL)] </label>
 </showvalue>
 
 <infobutton>
   <row> 1.2 </row>
-  <col> 26.0 </col>
+  <col> 28.5 </col>
 
   <line> Typical estradiol concentration in the </line>
   <line> female is 0.15 nMol/L or 0.05 nG/mL early </line>
@@ -96,7 +102,7 @@ Schema : DES V1.0
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 32 </col>
+   <col> 36.5 </col>
    <high> 5.8 </high>
    <wide> 30.0 </wide>
    <title> Pump </title>

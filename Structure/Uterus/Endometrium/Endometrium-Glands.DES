@@ -51,13 +51,13 @@
 
 <block><name> WrapUp </name>
 
-<def><name> TNFAlpha </name><val> ( ( Estradiol.[Conc(nMol/L)] LT 0.10 ) OR ( IL11 EQ 0 ) ) </val></def>
+<def><name> TNFAlpha </name><val> ( ( Estradiol.Total[Conc(nMol/L)] LT 0.10 ) OR ( IL11 EQ 0 ) ) </val></def>
 
 <def><name> Ihh </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
 
 <def><name> Hoxa10 </name><val> ( Progesterone.[Conc(nMol/L)] GT 10 ) </val></def>
 
-<def><name> TGFAlpha </name><val> ( Estradiol.[Conc(nMol/L)] GT 0.10 ) AND ( Progesterone.[Conc(nMol/L)] LT 10 ) </val></def>
+<def><name> TGFAlpha </name><val> ( Estradiol.Total[Conc(nMol/L)] GT 0.10 ) AND ( Progesterone.[Conc(nMol/L)] LT 10 ) </val></def>
 
 <def><name> pERAlpha </name><val> ( Endometrium-StromalCells.FGF EQ 1 ) AND ( Endometrium-StromalCells.COUPTFII EQ 0 ) </val></def>
 <def><name> EGF </name><val> ( pERAlpha EQ 1 ) </val></def>

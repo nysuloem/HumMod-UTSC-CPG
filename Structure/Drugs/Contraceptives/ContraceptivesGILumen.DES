@@ -13,64 +13,61 @@ Schema : DES V1.0
 
 <variables>
 
-<constant>
-  <name> BIOAVAIL </name>
-  <val> 0.9 </val>
-</constant>
-
-<constant>
-  <name> PERM </name>
-  <val> 0.010 </val>
-</constant>
-
-<var>
-  <name> [Contraceptives] </name>
-</var>
-
-<var>
-  <name> Loss </name>
-</var>
+  <constant><name> BIOAVAIL </name><val> 1 </val></constant>
+  <constant><name> PERM </name><val> 1 </val></constant>
+  <var><name> EstrogenLoss </name></var>
+  <var><name> ProgesteroneLoss </name></var>
 
 </variables>
 
 <equations>
 
-<diffeq>
-  <name> Mass </name>
-  <integralname> Mass </integralname>
-  <initialval> 0.0 </initialval>
-  <dervname> Change </dervname>
-  <errorlim> 0.01 </errorlim>
-</diffeq>
+  <diffeq>
+    <name> EstrogenMass </name>
+    <integralname> EstrogenMass </integralname>
+    <initialval> 0.0 </initialval>
+    <dervname> EstrogenChange </dervname>
+    <errorlim> 0.01 </errorlim>
+  </diffeq>
+
+   <diffeq>
+    <name> ProgesteroneMassMass </name>
+    <integralname> ProgesteroneMass </integralname>
+    <initialval> 0.0 </initialval>
+    <dervname> ProgesteroneChange </dervname>
+    <errorlim> 0.01 </errorlim>
+  </diffeq>
 
 </equations>
 
 <definitions>
 
-<block><name> CalcConc </name>
-
-<def>
-  <name> [Contraceptives] </name>
-  <val> Mass / GILumenH2O.Mass(L) </val>
-</def>
-
-</block>
-
 <block><name> Dervs </name>
 
-<def>
-  <name> Loss </name>
-  <val> BIOAVAIL * PERM * Mass  </val>
-</def>
+  <def>
+    <name> EstrogenLoss </name>
+    <val> BIOAVAIL * PERM * EstrogenMass  </val>
+  </def>
 
-<def>
-  <name> Change </name>
-  <val> - Loss / BIOAVAIL </val>
-</def>
+  <def>
+    <name> EstrogenChange </name>
+    <val> - EstrogenLoss </val>
+  </def>
+
+   <def>
+    <name> ProgesteroneLoss </name>
+    <val> BIOAVAIL * PERM * ProgesteroneMass  </val>
+  </def>
+
+  <def>
+    <name> ProgesteroneChange </name>
+    <val> - ProgesteroneLoss </val>
+  </def>
 
 </block>
 
 </definitions>
+
 </structure>
 
 End

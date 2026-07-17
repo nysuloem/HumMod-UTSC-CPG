@@ -10,25 +10,27 @@ By : University Of Mississippi Medical Center
 
 <variables>
 
-<parm><name> Dose </name><val> 0.0 </val></parm>
-<parm><name> TakeDaily </name><val> FALSE </val></parm>
-<parm><name> TimesADay </name><val> 1.0 </val></parm>
-<var><name> TimeLastDose </name><val> UNDEFINED </val></var>
-<var><name> TimeNextDose </name><val> UNDEFINED </val></var>
-<var><name> TotalDoses </name><val> 0.0 </val></var>
-<var><name> RealDose </name><val> 0.0 </val></var>
-<var><name> FakeDose </name><val> 0.0 </val></var>
-<timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
-<var><name> Interval </name></var>
-<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+  <parm><name> EstrogenDose </name><val> 0.0 </val></parm>
+  <parm><name> ProgesteroneDose </name><val> 0.0 </val></parm>
+  <parm><name> TakeDaily </name><val> FALSE </val></parm>
+  <parm><name> TimesADay </name><val> 1.0 </val></parm>
+  <var><name> TimeLastDose </name><val> UNDEFINED </val></var>
+  <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
+  <var><name> TotalDoses </name><val> 0.0 </val></var>
+  <var><name> RealDose </name><val> 0.0 </val></var>
+  <var><name> FakeDose </name><val> 0.0 </val></var>
+  <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
+  <var><name> Interval </name></var>
+  <constant><name> PREPTIME </name><val> 10.0 </val></constant>
+  <parm><name> Brand </name><val> 0 </val></parm>
 
-<!--  Flag determining irregular dosing -->
-<parm><name> IrregularQ </name><val> 0 </val></parm>
+  <!--  Flag determining irregular dosing -->
+  <parm><name> IrregularQ </name><val> 0 </val></parm>
 
-<parm><name> NumberLeft </name><val> 0 </val></parm>
-<parm><name> NumberGiven </name><val> 28 </val></parm>
-<whitenoise><name> Likelihood </name></whitenoise>
-<parm><name> PercentChance </name><val> 1 </val></parm>
+  <parm><name> NumberLeft </name><val> 0 </val></parm>
+  <parm><name> NumberGiven </name><val> 28 </val></parm>
+  <whitenoise><name> Likelihood </name></whitenoise>
+  <parm><name> PercentChance </name><val> 1 </val></parm>
 
 </variables>
 
@@ -36,158 +38,210 @@ By : University Of Mississippi Medical Center
 
 <block><name> Parms </name>
 
-<onjustchanged><name> TakeDaily </name>
+  <onjustchanged><name> TakeDaily </name>
+    <call> Dose </call>
+  </onjustchanged>
 
-<if><test> TakeDaily GT 0 </test>
+  <onjustchanged><name> Brand </name>
+    <call> Dose </call>
+  </onjustchanged>
 
-<true>
+</block>
 
-<timer>
-  <name> Timer </name>
-  <val> PREPTIME </val>
-  <state> DOWN </state>
-</timer>
+<block><name> Dose </name>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> System.X + PREPTIME </val>
-</def>
+  <if><test> TakeDaily GT 0 </test>
 
-<def>
-  <name> NumberLeft </name>
-  <val> NumberLeft + NumberGiven </val>
-</def>
+    <true>
 
-</true>
-<false>
+      <call> Brand </call>
 
-<timer>
-  <name> Timer </name>
-  <state> OFF </state>
-</timer>
+    <timer>
+      <name> Timer </name>
+      <val> PREPTIME </val>
+      <state> DOWN </state>
+    </timer>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> UNDEFINED </val>
-</def>
+    <def>
+      <name> TimeNextDose </name>
+      <val> System.X + PREPTIME </val>
+    </def>
 
+    </true>
 
-</false>
-</if>
+    <false>
 
-</onjustchanged>
+    <timer>
+      <name> Timer </name>
+      <state> OFF </state>
+    </timer>
+
+    <def>
+      <name> TimeNextDose </name>
+      <val> UNDEFINED </val>
+    </def>
+
+    </false>
+
+  </if>
+
+</block>
+
+<block><name> Brand </name>
+
+  <testcase>
+
+      <case>
+      <test> Brand EQ 0 </test>
+      <def><name> EstrogenDose </name><val> 20 </val></def>
+      <def><name> ProgesteroneDose </name><val> 1 </val></def>
+      </case>
+
+      <case>
+      <test> Brand EQ 1 </test>
+      <def><name> EstrogenDose </name><val> 20 </val></def>
+      <def><name> ProgesteroneDose </name><val> 0.1 </val></def>
+      </case>
+
+      <case>
+      <test> Brand EQ 2 </test>
+      <def><name> EstrogenDose </name><val> 30 </val></def>
+      <def><name> ProgesteroneDose </name><val> 3 </val></def>
+      </case>
+
+      <case>
+      <test> Brand EQ 3 </test>
+      <def><name> EstrogenDose </name><val> 0 </val></def>
+      <def><name> ProgesteroneDose </name><val> 3 </val></def>
+      </case>
+
+    </testcase>
 
 </block>
 
 <block><name> Wrapup </name>
 
-<ontimedout><name> Timer </name>
+  <ontimedout><name> Timer </name>
 
-<def>
-  <name> Interval </name>
-  <val> 1440.0 / TimesADay </val>
-</def>
+  <def>
+    <name> Interval </name>
+    <val> 1440.0 / TimesADay </val>
+  </def>
 
-<if>
-  <test> ( Likelihood LE PercentChance ) OR ( TakeDaily EQ 1 ) OR ( TakeDaily EQ 2 ) </test>
-  <true>
-     <call> TakeFullDose </call>
-  </true>
-  <false>
-   <timer>
-    <name> Timer </name>
-    <val> Interval </val>
-  </timer>
-</false>
-</if>
-</ontimedout>
+  <if>
+    <test> ( Likelihood LE PercentChance ) OR ( TakeDaily EQ 1 ) OR ( TakeDaily EQ 2 ) </test>
+    <true>
+      <call> TakeFullDose </call>
+    </true>
+    <false>
+    <timer>
+      <name> Timer </name>
+      <val> Interval </val>
+    </timer>
+  </false>
+  </if>
+  </ontimedout>
+
 </block>
 
 <block><name> TakeFullDose </name>
 
-<timer>
-  <name> Timer </name>
-  <val> Interval </val>
-</timer>
+  <timer>
+    <name> Timer </name>
+    <val> Interval </val>
+  </timer>
 
-<def>
-  <name> TimeLastDose </name>
-  <val> System.X </val>
-</def>
+  <def>
+    <name> TimeLastDose </name>
+    <val> System.X </val>
+  </def>
 
-<def>
-  <name> TimeNextDose </name>
-  <val> System.X + Interval </val>
-</def>
+  <def>
+    <name> TimeNextDose </name>
+    <val> System.X + Interval </val>
+  </def>
 
-<if> <test> RealDose LT 21 </test>
-<true>
+  <if> <test> RealDose LT 21 </test>
 
-<def>
-  <name> ContraceptivesGILumen.Mass </name>
-  <val> ContraceptivesGILumen.Mass + Dose </val>
-</def>
+    <true>
 
+    <def>
+      <name> ContraceptivesGILumen.EstrogenMass </name>
+      <val> ContraceptivesGILumen.EstrogenMass + EstrogenDose </val>
+    </def>
 
-<def>
-  <name> RealDose </name>
-  <val> RealDose + 1 </val>
-</def>
+     <def>
+      <name> ContraceptivesGILumen.ProgesteroneMass </name>
+      <val> ContraceptivesGILumen.ProgesteroneMass + ProgesteroneDose </val>
+    </def>
 
-<def>
-  <name> NumberLeft </name>
-  <val> NumberLeft - 1 </val>
-</def>
-</true>
-<false> 
-<def>
-  <name> FakeDose </name>
-  <val> FakeDose + 1 </val>
-</def>
+    <def>
+      <name> RealDose </name>
+      <val> RealDose + 1 </val>
+    </def>
 
-<def>
-  <name> NumberLeft </name>
-  <val> NumberLeft - 1 </val>
-</def>
-</false>
-</if>
-<if> <test> FakeDose GE 7 </test>
-<true>
-<call> Reset </call>
-</true>
-</if>
+    <def>
+      <name> NumberLeft </name>
+      <val> NumberLeft - 1 </val>
+    </def>
+
+    <def><name> TotalDoses </name>
+      <val> TotalDoses + 1 </val>
+    </def>
+
+    </true>
+
+    <false> 
+
+    <def>
+      <name> FakeDose </name>
+      <val> FakeDose + 1 </val>
+    </def>
+
+    <def>
+      <name> NumberLeft </name>
+      <val> NumberLeft - 1 </val>
+    </def>
+
+    </false>
+
+    </if>
+
+    <if> <test> FakeDose GE 7 </test>
+    <true>
+    <call> Reset </call>
+    </true>
+    </if>
 
 </block>
 
 <block><name> Reset </name>
 
-<def>
-  <name> TimeLastDose </name>
-  <val> UNDEFINED </val>
-</def>
+  <def>
+    <name> TimeLastDose </name>
+    <val> UNDEFINED </val>
+  </def>
 
-<def>
-  <name> FakeDose </name>
-  <val> 0.0 </val>
-</def>
+  <def>
+    <name> FakeDose </name>
+    <val> 0.0 </val>
+  </def>
 
-<def>
-  <name> RealDose </name>
-  <val> 0.0 </val>
-</def>
+  <def>
+    <name> RealDose </name>
+    <val> 0.0 </val>
+  </def>
 
 </block>
 
 <block><name> RenewScript </name>
 
-<def><name> NumberLeft </name><val> NumberLeft + NumberGiven </val></def>
+  <def><name> NumberLeft </name><val> NumberLeft + 28 </val></def>
 
 </block>
 
-
 </definitions>
+
 </structure>
 
 End
- 74 changes: 74 additions & 0 deletions74  
-S

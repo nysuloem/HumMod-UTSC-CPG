@@ -48,7 +48,7 @@ Created by Aaesha Ahmed as part of her BIOD98 project in 2025-2026
   <block><name> Dervs </name>
   
     <def><name> EstrogenEffect </name>
-      <val> EstrogenEffect [ Estradiol.[Conc(nMol/L)] ] </val>
+      <val> EstrogenEffect [ Estradiol.Total[Conc(nMol/L)] ] </val>
     </def>
 
     <def><name> ArginineEffect </name>

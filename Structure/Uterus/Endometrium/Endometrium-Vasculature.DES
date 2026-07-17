@@ -41,7 +41,7 @@
 
 <def><name> HypoxicQ </name><val> ( ( Endometrium-StromalCells.Population GT ( 4 * Population ) ) OR ( Endometrium-Glands.Population GT ( 4 * Population ) ) )</val></def>
 <def><name> HIF1Alpha </name><val> ( HypoxicQ EQ 1 ) </val></def>
-<def><name> VEGF </name><val> ( ( HIF1Alpha EQ 1 ) AND ( Estradiol.[Conc(nMol/L)] GT 0.10 ) ) </val></def>
+<def><name> VEGF </name><val> ( ( HIF1Alpha EQ 1 ) AND ( Estradiol.Total[Conc(nMol/L)] GT 0.10 ) ) </val></def>
 <def><name> KDR </name><val> ( VEGF EQ 1 ) </val></def>
 
 </block>

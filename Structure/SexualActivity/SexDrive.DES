@@ -110,12 +110,12 @@ By: Jason Brown
     <if><test> Context-Sex.Index EQ 0 </test>
     <true>
         <def><name> Libido </name>
-            <val> ( Testosterone.[Conc(nMol/L)] ) + ( Estradiol.[Conc(nMol/L)] * 0.1 ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) - ( ABS ( 8.05 -  ThyroidPool.[Total_T4-T3] ) )  - ( MorphinePool.[Morphine(nMol)] ) </val>
+            <val> ( Testosterone.[Conc(nMol/L)] ) + ( Estradiol.Total[Conc(nMol/L)] * 0.1 ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) - ( ABS ( 8.05 -  ThyroidPool.[Total_T4-T3] ) )  - ( MorphinePool.[Morphine(nMol)] ) </val>
         </def>
     </true>
     <false>
         <def><name> Libido </name>
-            <val> ( Estradiol.[Conc(nMol/L)] ) + ( Testosterone.[Conc(nMol/L)] ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) - ( Progesterone.[Conc(nMol/L)] * 0.1 ) - ( MorphinePool.[Morphine(nMol)] ) </val></def>
+            <val> ( Estradiol.Total[Conc(nMol/L)] ) + ( Testosterone.[Conc(nMol/L)] ) + ( NEPool.[NE(nMol/L)] ) - ( Cortisol.[Conc(nMol/L)] * 0.005 ) - ( Progesterone.[Conc(nMol/L)] * 0.1 ) - ( MorphinePool.[Morphine(nMol)] ) </val></def>
     </false>
     </if>
 

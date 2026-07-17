@@ -57,7 +57,7 @@ By : University of Mississippi Medical Center
 <textcell> ------------ </textcell>
 
 <valuecell>
-  <name> Estradiol.[Conc(nMol/L)] </name>
+  <name> Estradiol.Total[Conc(nMol/L)] </name>
   <format><decimal> 3 </decimal></format>
 </valuecell>
 

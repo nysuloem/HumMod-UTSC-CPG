@@ -10,9 +10,47 @@ By : University Of Mississippi Medical Center
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 32.0 </col>
-   <high> 32.0 </high>
-   <wide> 35.0 </wide>
+   <col> 1.0 </col>
+   <high> 8.0 </high>
+   <wide> 25.0 </wide>
+   <title> Prescription </title>
+
+<structurename> ContraceptivesDailyDose </structurename>
+
+<maplist>
+  <name> Contraceptives-Control.Brand </name>
+  <map><val> 0 </val><img> Brand A (20/1) </img></map>
+  <map><val> 1 </val><img> Brand B (20/0.1) </img></map>
+  <map><val> 2 </val><img> Brand C (30/3) </img></map>
+  <map><val> 3 </val><img> Brand D (0/3) </img></map>
+</maplist>
+
+<radiobuttons>
+  <row> 1.4 </row><col> 1.0 </col>
+  <name> Brand </name>
+  <listname> Contraceptives-Control.Brand </listname>
+  <layout> VERT </layout>
+</radiobuttons>
+
+<actionbutton>
+  <row> 6.0 </row><col> 1.0 </col>
+  <blockname> RenewScript </blockname>
+  <label> Give/Renew Prescription </label>
+</actionbutton>
+
+<infobutton>
+  <row> 1.2 </row>
+  <col> 20.5 </col>
+  <line> (20/1) = 20ug synthetic estrogen + 1 mg synthetic progresterone </line>
+</infobutton>
+
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 26.5 </col>
+   <high> 21.0 </high>
+   <wide> 40.0 </wide>
    <title> Daily Dose Oral </title>
 
 <structurename> ContraceptivesDailyDose </structurename>
@@ -35,71 +73,20 @@ By : University Of Mississippi Medical Center
 </radiobuttons>
 
 <repeatlist>
-  <name> ContraceptivesDailyDose.Dose </name>
-  <repeat><reps> 4 </reps><stepsize> 2.5 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-  <row> 7.0 </row><col> 1.0 </col>
-  <name> Dose </name>
-  <listname> ContraceptivesDailyDose.Dose </listname>
-  <label> Dose </label>
-</slidebar>
-
-
-<repeatlist>
-  <name> ContraceptivesDailyDose.TimesADay </name>
-  <firstval> 1.0 </firstval>
-  <repeat><reps> 3 </reps><stepsize> 1.0 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-  <row> 8.2 </row><col> 1.0 </col>
-  <name> TimesADay </name>
-  <listname> ContraceptivesDailyDose.TimesADay </listname>
-  <label> Times A Day </label>
-</slidebar>
-
-<maplist>
-  <name> ContraceptivesDailyDose.PillsAlloted </name>
-  <map><val>     0 </val><img> None </img></map>
-  <map><val> 5 </val><img> 5 </img></map>
-  <map><val> 10 </val><img> 10 </img></map>
-  <map><val> 30 </val><img> 30 </img></map>
-  <map><val> 120 </val><img> 120 </img></map>
-  <map><val> 1E308 </val><img> Unlimited </img></map>
-</maplist>
-
-<slidebar>
-  <row> 9.4 </row><col> 1.0 </col>
-  <name> NumberGiven </name>
-  <listname> ContraceptivesDailyDose.PillsAlloted </listname>
-  <label> Pills Alloted </label>
-</slidebar>
-
-<repeatlist>
   <name> ContraceptivesDailyDose.PercentChance </name>
   <firstval> 0.0 </firstval>
   <repeat><reps> 20 </reps><stepsize> 0.05 </stepsize></repeat>
 </repeatlist>
 
 <slidebar>
-  <row> 10.6 </row><col> 1.0 </col>
+  <row> 7.0 </row><col> 10.0 </col>
   <name> PercentChance  </name>
   <listname> ContraceptivesDailyDose.PercentChance </listname>
-  <label> Likelihood of taking </label>
+  <label> Memory </label>
 </slidebar>
 
-
-<actionbutton>
-  <row> 12.0 </row><col> 1.0 </col>
-  <blockname> RenewScript </blockname>
-  <label> Renew Prescription </label>
-</actionbutton>
-
-
 <showvalue>
-   <row> 14.0 </row><col> 1.0 </col>
+   <row> 9.6 </row><col> 1.0 </col>
    <name> TimeLastDose </name>
    <format>
       <timestamp/>
@@ -109,7 +96,7 @@ By : University Of Mississippi Medical Center
 </showvalue>
 
 <showvalue>
-   <row> 15.2 </row><col> 1.0 </col>
+   <row> 11.1 </row><col> 1.0 </col>
    <name> TimeNextDose </name>
    <format>
       <timestamp/>
@@ -119,74 +106,41 @@ By : University Of Mississippi Medical Center
 </showvalue>
 
 <showvalue>
-   <row> 16.4 </row><col> 1.0 </col>
+   <row> 12.6 </row><col> 1.0 </col>
    <name> TotalDoses </name>
    <format> <integer/> </format>
    <label> Total Doses </label>
 </showvalue>
 
 <showvalue>
-   <row> 17.6 </row><col> 1.0 </col>
+   <row> 14.1 </row><col> 1.0 </col>
    <name> RealDose </name>
    <format><decimal> 3 </decimal></format>
    <label> Real Dose </label>
 </showvalue>
 
 <showvalue>
-   <row> 18.6 </row><col> 1.0 </col>
+   <row> 15.6 </row><col> 1.0 </col>
    <name> FakeDose </name>
    <format><decimal> 3 </decimal></format>
    <label> Fake Dose </label>
 </showvalue>
 
 <showvalue>
-   <row> 19.6 </row><col> 1.0 </col>
+   <row> 17.1 </row><col> 1.0 </col>
    <name> Timer </name>
    <format> <integer/> </format>
    <label> Time Until Next Dose </label>
 </showvalue>
 
 <showvalue>
-   <row> 20.6 </row><col> 1.0 </col>
+   <row> 18.6 </row><col> 1.0 </col>
    <name> NumberLeft </name>
    <format>
       <integer/>
    </format>
-   <label> Number Remaining </label>
+   <label> Pills Remaining </label>
 </showvalue>
-
-<showgraph>
-  <row> 21.6 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
-  <leftmargin> 6 </leftmargin>
-  <xaxis>
-    <name> System.X </name>
-    <label> Time </label>
-    <scale><min> 0 </min><max> 2 </max></scale>
-  </xaxis>
-  <yaxis>
-    <yvar>
-      <name> RealDose </name>
-      <nolabel/>
-      <linecolor> BLUE </linecolor>
-    </yvar>
-    <scale>
-      <min> 0 </min><max> 2 </max>
-    </scale>
-  </yaxis>
-</showgraph>
-
-<actionbutton>
-  <row> 29.2 </row><col> 1.0 </col>
-  <blockname> Reset </blockname>
-  <label> Reset </label>
-</actionbutton>
-
-
-<infobutton>
-  <row> 1.2 </row>
-  <col> 29.6 </col>
-  <line> Typical daily dose is 5-10 mG/Day. </line>
-</infobutton>
 
 </groupbox>
 

@@ -47,7 +47,7 @@ Schema : DES V1.0
   <leftmargin> 5 </leftmargin>
 
   <xaxis>
-    <name> Estradiol.[Conc(nMol/L)] </name>
+    <name> Estradiol.Total[Conc(nMol/L)] </name>
     <label> [Estradiol (nMol/L)] </label>
     <scale><min> 0 </min><max> 2 </max><inc> 1 </inc></scale>
   </xaxis>
@@ -62,7 +62,7 @@ Schema : DES V1.0
 
 <showvalue>
    <row> 12.2 </row><col> 1.0 </col>
-   <name> Estradiol.[Conc(nMol/L)] </name>
+   <name> Estradiol.Total[Conc(nMol/L)] </name>
    <format><decimal> 1 </decimal></format>
    <label> [Estradiol (nMol/L)] </label>
 </showvalue>
