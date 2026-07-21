@@ -7,5 +7,5 @@ HumMod / Template
 <?include AdrenalInsufficiency\AdrenalInsufficiency.DES ?>
 <?include PagetsDisease\PagetsDisease.DES ?>
 <?include PreEclampsia\PreEclampsia.DES ?>
-
+<?include EssentialHypertension\EssentialHypertension.DES ?>
 

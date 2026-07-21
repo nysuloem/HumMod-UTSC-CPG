@@ -1,0 +1,12 @@
+<branch>
+    <name> Hypertension </name>
+    <label> Essential Hypertension </label>
+    <parent> PATHOLOGY </parent>
+  </branch>
+  
+  <leaf>
+    <name> EssentialHypertension </name>
+    <label> Control </label>
+    <parent> Hypertension </parent>
+  </leaf>
+  

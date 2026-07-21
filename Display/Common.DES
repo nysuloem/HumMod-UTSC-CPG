@@ -13,6 +13,12 @@ By : University of Mississippi Medical Center
 </maplist>
 
 <maplist>
+  <name> Common.EssentialHypertension </name>
+  <map><val> 0 </val><img> No </img></map>
+  <map><val> 20 </val><img> Yes </img></map>
+</maplist>
+
+<maplist>
   <name> Common.Penis </name>
   <map><val> 0 </val><img> Flaccid </img></map>
   <map><val> 1 </val><img> Erect</img></map>

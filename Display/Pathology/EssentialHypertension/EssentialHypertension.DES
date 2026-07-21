@@ -1,0 +1,30 @@
+ 
+ <panel><name> EssentialHypertension </name>
+
+    <showclock>
+      <row> 0.3 </row><col> 36.0 </col>
+      <name> System.X </name>
+      <ampm/>
+      <secs/>
+      <days/>
+    </showclock>
+    
+    <groupbox>
+       <row> 2.0 </row>
+       <col> 1.0 </col>
+       <high> 5 </high>
+       <wide> 40 </wide>
+       <title> Essential Hypertension </title>
+    
+    <structurename> Uterus-PE </structurename>
+ 
+    <radiobuttons>
+      <row> 1.4 </row><col> 1.0 </col>
+      <name> Apnea.EventRate </name>
+      <listname> Common.EssentialHypertension </listname>
+      <label> Has Essential Hypertension? </label>
+    </radiobuttons>
+
+    </groupbox>
+
+</panel>

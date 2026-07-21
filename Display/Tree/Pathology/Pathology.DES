@@ -1,7 +1,5 @@
 HumMod / Pathology.DES
 
-
-
 <branch>
   <name> PATHOLOGY </name>
   <label> Pathology </label>
@@ -10,11 +8,11 @@ HumMod / Pathology.DES
 
 <?path Display\Tree\Pathology\ ?>
 
-<?include Diabetes.DES ?>
 <?include AdrenalInsufficiency.DES ?>
+<?include Diabetes.DES ?>
+<?include EssentialHypertension.DES ?>
 <?include PagetsDisease.DES ?>
 <?include PreEclampsia.DES ?>
-
 
 End
 
