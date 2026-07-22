@@ -11,15 +11,26 @@
 
 <panel>
   <name> DrinkingScheduler </name>
-  <tablabel> Drinking Pattern </tablabel>
+  
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Autopsy </name>
+</showbitmap>
 
-  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> VTA / N.Acc </text>
+</label>
 
-  <label>
-    <row> 0.5 </row><col> 12.0 </col>
-    <text> Set Up Chronic Drinking Patterns </text>
-    <color> BLACK </color>
-  </label>
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
 
   <!-- ==================== DRINKING SCHEDULE SETUP ==================== -->
   <groupbox>

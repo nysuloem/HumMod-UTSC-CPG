@@ -5,45 +5,13 @@
 </branch>
 
 <leaf>
-   <name> DopamineDynamics </name>
-   <label> 1. Dopamine Dynamics </label>
-   <parent> DOPAMINEMENU </parent>
-</leaf>
-
-<leaf>
-   <name> RewardLearning </name>
-   <label> 2. Reward Learning (RPE) </label>
-   <parent> DOPAMINEMENU </parent>
-</leaf>
-
-<leaf>
-   <name> DopamineSymptoms </name>
-   <label> 3. Emotional State </label>
-   <parent> DOPAMINEMENU </parent>
-</leaf>
-
-<leaf>
-   <name> HedonicState </name>
-   <label> 4. Hedonic / Opponent Process </label>
+   <name> DopamineControls </name>
+   <label> Parameter Controls </label>
    <parent> DOPAMINEMENU </parent>
 </leaf>
 
 <leaf>
    <name> Neuroadaptation </name>
-   <label> 5. Neuroadaptation </label>
+   <label> Neuroadaptation </label>
    <parent> DOPAMINEMENU </parent>
-</leaf>
-
-<separatorbar><parent> DOPAMINEMENU </parent></separatorbar>
-
-<leaf>
-   <name> DopamineControls </name>
-   <label> 6. Parameter Controls </label>
-   <parent> DOPAMINEMENU </parent>
-</leaf>
-
-<leaf>
-   <name> DrinkingScheduler </name>
-   <label> 7. Drinking Scheduler </label>
-   <parent> DOPAMINEMENU </parent>
-</leaf>
+</leaf> 

@@ -1,72 +1,65 @@
-<!--
+!--
 ================================================================================
   DopamineControls.DES  -  PANEL: CONTROLS & SETTINGS
-  User-adjustable model parameters and chronic drinking scenario setup.
+  Trimmed for validation: only the two free DA parameters are exposed.
+
+  REMOVED (archived, not deleted from model parms):
+    - Set Up Chronic Drinking Pattern groupbox
+        SCHEDULED_DRINKING, DRINK_TIME_MINUTES, DRINK_SIZE — no effect on
+        any ODE or DA calculation; EthanolDailyDose drives the actual BAC.
+    - TOL_STEP, SENS_STEP sliders — tolerance/sensitization per drink now
+        static at their calibrated defaults (0.10 each) in DopamineSystem.DES.
+    - EMOTIONAL_SENSITIVITY slider — pure display scalar; zero influence on
+        any diffeq or graph being validated.
+    - Response Timecourses groupbox (TAU_B_RISE, TAU_B_DECAY) — fixed at
+        calibrated defaults (45 min rise, 720 min decay) to remove free
+        parameters that would make validation results ambiguous.
+
+  KEPT:
+    - LEARN_RATE — directly observable in RPE/Prediction graph.
+    - DA_SCALE_B — directly observable in tonic DA withdrawal trough.
+    - EthanolDailyDose block — the only actual input driving the simulation.
 ================================================================================
 -->
 
 <panel>
   <name> DopamineControls </name>
-  <tablabel> Controls & Settings </tablabel>
 
-  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+  <showbitmap>
+    <row> 0.3 </row>
+    <col> 1.0 </col>
+    <name> Autopsy </name>
+  </showbitmap>
 
   <label>
-    <row> 0.5 </row><col> 12.0 </col>
-    <text> Model Parameters & Chronic Drinking Setup </text>
-    <color> BLACK </color>
+    <row> 0.3 </row>
+    <col> 4.5 </col>
+    <text> Dopamine Controls </text>
   </label>
 
-  <!-- ===================== CHRONIC DRINKING SCENARIO ===================== -->
+  <showclock>
+    <row> 0.3 </row><col> 32.0 </col>
+    <name> System.X </name>
+    <ampm/>
+    <secs/>
+    <days/>
+  </showclock>
+
+  <!-- ===================== KEY DOPAMINE PARAMETERS =====================
+       Only two free parameters exposed for validation.
+       All other parms (TOL_STEP, SENS_STEP, TAU_B_RISE, TAU_B_DECAY,
+       EMOTIONAL_SENSITIVITY, SCHEDULED_DRINKING) remain in DopamineSystem.DES
+       at their calibrated defaults and are adjustable via the HumMod
+       parameter editor if needed.
+  ===================================================================== -->
   <groupbox>
-    <row> 2.0 </row><col> 1.0 </col>
-    <high> 6.0 </high><wide> 46.0 </wide>
-    <title> Set Up Chronic Drinking Pattern </title>
-
-    <showvalue>
-      <row> 1.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.SCHEDULED_DRINKING </name>
-      <label> Enable Scheduled Drinking </label>
-      <format><decimal> 0 </decimal></format>
-      <color> BLACK </color>
-    </showvalue>
-
-    <repeatlist>
-      <name> List_DayMinutes </name>
-      <repeat><reps> 24 </reps><stepsize> 60 </stepsize></repeat>
-    </repeatlist>
-
-    <slidebar>
-      <row> 3.0 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DRINK_TIME_MINUTES </name>
-      <listname> List_DayMinutes </listname>
-      <label> Time of Daily Drink (hh:mm) </label>
-      <fieldwidth> 8 </fieldwidth>
-    </slidebar>
-
-    <repeatlist>
-      <name> List_DrinkSize </name>
-      <repeat><reps> 10 </reps><stepsize> 5 </stepsize></repeat>
-    </repeatlist>
-
-    <slidebar>
-      <row> 4.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DRINK_SIZE </name>
-      <listname> List_DrinkSize </listname>
-      <label> Standard Drink Size (g ethanol) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
-
-  </groupbox>
-
-  <!-- ===================== KEY DOPAMINE PARAMETERS ===================== -->
-  <groupbox>
-    <row> 8.5 </row><col> 1.0 </col>
-    <high> 8.0 </high><wide> 46.0 </wide>
+    <row> 30 </row><col> 130 </col>
+    <high> 5.5 </high><wide> 46.0 </wide>
     <title> Dopamine System (Key Parameters) </title>
 
+    <!-- LEARN_RATE: controls how fast RewardPrediction converges on ActualReward.
+         Higher = RPE and phasic DA response fades faster across repeated drinks.
+         Range: 0.1 – 1.0 (RL alpha; physiological range ~0.1–0.3). -->
     <repeatlist>
       <name> List_LearnRate </name>
       <repeat><reps> 10 </reps><stepsize> 0.1 </stepsize></repeat>
@@ -77,10 +70,13 @@
       <high> 1.0 </high><wide> 22.0 </wide>
       <name> DopamineSystem.LEARN_RATE </name>
       <listname> List_LearnRate </listname>
-      <label> Learning Rate (Fast/Slow) </label>
+      <label> Learning Rate — RPE </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
+    <!-- DA_SCALE_B: controls depth of tonic DA suppression during withdrawal.
+         Higher = deeper dopamine trough between drinking sessions.
+         Range: 0.05 – 0.50 (calibrated default 0.55; step 0.05). -->
     <repeatlist>
       <name> List_Krate </name>
       <repeat><reps> 10 </reps><stepsize> 0.05 </stepsize></repeat>
@@ -89,100 +85,594 @@
     <slidebar>
       <row> 3.0 </row><col> 1.0 </col>
       <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.DA_WITHDRAW_K </name>
+      <name> DopamineSystem.DA_SCALE_B </name>
       <listname> List_Krate </listname>
-      <label> Withdrawal Dopamine Loss (Severe/Mild) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
-
-    <repeatlist>
-      <name> List_Step </name>
-      <repeat><reps> 10 </reps><stepsize> 0.01 </stepsize></repeat>
-    </repeatlist>
-
-    <slidebar>
-      <row> 4.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TOL_STEP </name>
-      <listname> List_Step </listname>
-      <label> Tolerance Per Drink (Fast/Slow) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
-
-    <slidebar>
-      <row> 6.0 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.SENS_STEP </name>
-      <listname> List_Step </listname>
-      <label> Sensitization Per Drink (Slow/Fast) </label>
+      <label> Withdrawal / DA Loss </label>
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
   </groupbox>
 
-  <!-- ===================== TIMECOURSES ===================== -->
+  <!-- ===================== Ethanol control ===================== -->
   <groupbox>
-    <row> 2.0 </row><col> 49.0 </col>
-    <high> 6.0 </high><wide> 46.0 </wide>
-    <title> Response Timecourses </title>
+    <row> 2.0 </row>
+    <col> 138.0 </col>
+    <high> 27 </high>
+    <wide> 36 </wide>
+    <title> Chronic Alcohol Consumption </title>
+
+    <structurename> EthanolDailyDose </structurename>
+
+    <maplist>
+      <name> Ethanol-Control.Request1 </name>
+      <map><val> 0 </val><img> No </img></map>
+      <map><val> 1 </val><img> Yes </img></map>
+      <map><val> 2 </val><img> When I have it </img></map>
+      <map><val> 3 </val><img> When I want to </img></map>
+      <map><val> 4 </val><img> When I have it and want to </img></map>
+    </maplist>
+
+    <radiobuttons>
+      <row> 1.4 </row><col> 1.0 </col>
+      <name> TakeDaily </name>
+      <listname> Ethanol-Control.Request1 </listname>
+      <label> Drink?... </label>
+      <layout> VERT </layout>
+    </radiobuttons>
 
     <repeatlist>
-      <name> List_TauSlow </name>
-      <repeat><reps> 12 </reps><stepsize> 30 </stepsize></repeat>
+      <name> EthanolDailyDose.Dose1 </name>
+      <repeat><reps> 20 </reps><stepsize> 25 </stepsize></repeat>
     </repeatlist>
 
     <slidebar>
-      <row> 1.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TAU_B_RISE </name>
-      <listname> List_TauSlow </listname>
-      <label> Withdrawal Onset (min) </label>
-      <fieldwidth> 6 </fieldwidth>
+      <row> 7.0 </row><col> 1.0 </col>
+      <name> Dose </name>
+      <listname> EthanolDailyDose.Dose1 </listname>
+      <label> Volume (mL) </label>
     </slidebar>
 
-    <slidebar>
-      <row> 3.0 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.TAU_B_DECAY </name>
-      <listname> List_TauSlow </listname>
-      <label> Withdrawal Duration (min) </label>
-      <fieldwidth> 6 </fieldwidth>
-    </slidebar>
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> PercentageofAlcohol </name>
+      <label> % Alcohol </label>
+    </showvalue>
 
     <repeatlist>
-      <name> List_Sensitivity </name>
-      <repeat><reps> 10 </reps><stepsize> 0.5 </stepsize></repeat>
+      <name> EthanolDailyDose.TimesADay1 </name>
+      <firstval> 1.0 </firstval>
+      <repeat><reps> 24 </reps><stepsize> 1.0 </stepsize></repeat>
     </repeatlist>
 
     <slidebar>
-      <row> 4.5 </row><col> 1.0 </col>
-      <high> 1.0 </high><wide> 22.0 </wide>
-      <name> DopamineSystem.EMOTIONAL_SENSITIVITY </name>
-      <listname> List_Sensitivity </listname>
-      <label> Emotional Intensity </label>
-      <fieldwidth> 6 </fieldwidth>
+      <row> 11 </row><col> 1.0 </col>
+      <name> TimesADay </name>
+      <listname> EthanolDailyDose.TimesADay1 </listname>
+      <label> Drinks per Day </label>
     </slidebar>
+
+    <maplist>
+      <name> EthanolDailyDose.DrinksAlloted1 </name>
+      <map><val>     0 </val><img> None </img></map>
+      <map><val> 6 </val><img> 6 </img></map>
+      <map><val> 12 </val><img> 12 </img></map>
+      <map><val> 24 </val><img> 24 </img></map>
+      <map><val> 1000 </val><img> 1000 </img></map>
+      <map><val> 1E308 </val><img> Unlimited </img></map>
+    </maplist>
+
+    <slidebar>
+      <row> 13 </row><col> 1.0 </col>
+      <name> NumberGiven </name>
+      <listname> EthanolDailyDose.DrinksAlloted1 </listname>
+      <label> Drinks Alloted </label>
+    </slidebar>
+
+    <repeatlist>
+      <name> EthanolDailyDose.PercentChance1 </name>
+      <firstval> 0.0 </firstval>
+      <repeat><reps> 20 </reps><stepsize> 0.05 </stepsize></repeat>
+    </repeatlist>
+
+    <slidebar>
+      <row> 15 </row><col> 1.0 </col>
+      <name> PercentChance </name>
+      <listname> EthanolDailyDose.PercentChance1 </listname>
+      <label> Likelihood of taking </label>
+    </slidebar>
+
+    <actionbutton>
+      <row> 17 </row><col> 1.0 </col>
+      <blockname> RenewScript </blockname>
+      <label> Get more alcohol </label>
+    </actionbutton>
+
+    <showvalue>
+      <row> 19 </row><col> 1.0 </col>
+      <name> TimeLastDose </name>
+      <format>
+        <timestamp/>
+        <fieldwidth> 14 </fieldwidth>
+      </format>
+      <label> Last Dose </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 20 </row><col> 1.0 </col>
+      <name> TimeNextDose </name>
+      <format>
+        <timestamp/>
+        <fieldwidth> 14 </fieldwidth>
+      </format>
+      <label> Next Dose </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 21 </row><col> 1.0 </col>
+      <name> TotalDoses </name>
+      <format> <integer/> </format>
+      <label> Total Doses </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 22 </row><col> 1.0 </col>
+      <name> CumulativeDose </name>
+      <format><decimal> 3 </decimal></format>
+      <label> Cumulative Dose </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 23 </row><col> 1.0 </col>
+      <name> Timer </name>
+      <format> <integer/> </format>
+      <label> Time Until Next Drink </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 24 </row><col> 1.0 </col>
+      <name> NumberLeft </name>
+      <format> <integer/> </format>
+      <label> Number Remaining </label>
+    </showvalue>
 
   </groupbox>
-
-  <!-- ===================== HELP PANEL ===================== -->
-  <infobutton>
-    <row> 8.5 </row><col> 49.0 </col>
-    <label> Help: What do these controls do? </label>
-    <layout> LABELRIGHT </layout>
-    <line> CHRONIC DRINKING: Enable scheduled drinking to simulate daily habit. Set time (0=midnight, 1440=next midnight). </line>
-    <line> LEARNING RATE: How fast the brain learns to predict the reward. Higher = addiction develops faster. </line>
-    <line> WITHDRAWAL LOSS: How much dopamine drops during withdrawal. Higher = worse anxiety and craving. </line>
-    <line> TOLERANCE & SENSITIZATION: Per-drink changes. Higher = faster dependence, less reward over time. </line>
-    <line> TIMECOURSES: Control speed of withdrawal onset and recovery. Longer = persistent craving. </line>
-    <line> EMOTIONAL INTENSITY: Scaling factor for happiness/craving/anxiety displays. </line>
-  </infobutton>
 
   <label>
-    <row> 17.5 </row><col> 1.0 </col>
-    <text> Enable scheduled drinking at 6 PM (1080 min), run 7+ days, and watch craving build before the drink and anxiety afterward. </text>
+    <row> 36 </row><col> 110 </col>
+    <text> Set Drink=Yes, run for 7+ days. Zoom graphs to 0-720 min to see within-session dynamics </text>
     <color> GRAY </color>
   </label>
+
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Autopsy </name>
+</showbitmap>
+
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> VTA / N.Acc </text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
+
+  <!-- ===================== 1. DA CURRENT VALUES ===================== -->
+<groupbox>
+  <row> 2.0 </row><col> 1.0 </col>
+  <high> 13.0 </high><wide> 36.0 </wide>
+  <title> DA Current Values </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> DopamineSystem.DopamineLevel </name>
+    <label> Dopamine Level </label>
+    <format><decimal> 3 </decimal></format>
+    <color> BLUE </color>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.0 </row><col> 1.0 </col>
+    <name> DopamineSystem.TonicDA </name>
+    <label> Tonic DA (baseline) </label>
+    <format><decimal> 3 </decimal></format>
+    <color> BLACK </color>
+  </showvalue>
+
+  <showvalue>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> DopamineSystem.PhasicDA </name>
+    <label> Phasic DA (RPE burst/dip) </label>
+    <format><decimal> 3 </decimal></format>
+    <color> RED </color>
+  </showvalue>
+
+  <showvalue>
+    <row> 6.0 </row><col> 1.0 </col>
+    <name> DopamineSystem.ExperiencedState </name>
+    <label> Hedonic State (A - B) </label>
+    <format><decimal> 3 </decimal></format>
+    <color> MAGENTA </color>
+  </showvalue>
+
+<showvalue>
+  <row> 7.5 </row><col> 1.0 </col>
+  <name> EthanolPool.[Ethanol] </name>
+  <label> Raw Ethanol (no conversion) </label>
+  <format><decimal> 6 </decimal></format>
+  <color> GRAY </color>
+</showvalue>
+
+<showvalue>
+  <row> 9.0 </row><col> 1.0 </col>
+  <name> DopamineSystem.ActualReward </name>
+  <label> Actual Reward </label>
+  <format><decimal> 6 </decimal></format>
+  <color> GRAY </color>
+</showvalue>
+
+  <showvalue>
+    <row> 10.5 </row><col> 1.0 </col>
+    <name> DopamineSystem.BAC </name>
+    <label> Blood Alcohol (g/dL) </label>
+    <format><decimal> 3 </decimal></format>
+    <color> BLACK </color>
+  </showvalue>
+
+</groupbox>
+
+<!-- ===================== 1. DA CURRENT VALUES GRAPH ===================== -->
+<showgraph>
+  <row> 2.0 </row><col> 40.0 </col>
+  <high> 15.0 </high><wide> 65.0 </wide>
+  <leftmargin> 11.0 </leftmargin>
+
+  <xaxis>
+    <name> DopamineSystem.TimeInDays </name>
+    <label> Time (days) </label>
+    <scale><min> 0.0 </min><max> 7.0 </max><inc> 1.0 </inc></scale>
+  </xaxis>
+
+  <yaxis>
+    <yvar>
+      <name> DopamineSystem.DopamineLevel </name>
+      <label> Dopamine </label>
+      <linetype> SOLID </linetype>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> DopamineSystem.TonicDA </name>
+      <label> Tonic </label>
+      <linetype> DASH </linetype>
+      <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+      <name> DopamineSystem.ExperiencedState </name>
+      <label> Hedonic (A-B) </label>
+      <linetype> SOLID </linetype>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> -0.5 </min><max> 1.5 </max><inc> 0.5 </inc></scale>
+  </yaxis>
+</showgraph>
+
+
+
+ <!--Blue = total DA level.  Black dashed = tonic baseline (falls during withdrawal).  
+ Red = hedonic state (A-B): rises during euphoria, drops below 0 during withdrawal. -->
+ 
+
+ <!-- ===================== 2. REWARD LEARNING ===================== -->
+  <groupbox>
+    <row> 17.0 </row><col> 1.0 </col>
+    <high> 9.0 </high><wide> 36.0 </wide>
+    <title> Reward Learning </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.ActualReward </name>
+      <label> Actual Reward </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.RewardPrediction </name>
+      <label> Reward Prediction </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.PredictionError </name>
+      <label> Prediction Error (RPE) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.BAC </name>
+      <label> Blood Alcohol (g/dL) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <!-- REMOVED: DopamineSystem.LEARN_RATE showvalue.
+         LEARN_RATE is an internal parm, not a display variable.
+         Adjust it via the HumMod parameter editor if needed. -->
+
+  </groupbox>
+
+  <!-- ===================== 2. RPE GRAPH ===================== -->
+  <showgraph>
+    <row> 17.0 </row><col> 40.0 </col>
+    <high> 13.0 </high><wide> 58.0 </wide>
+    <leftmargin> 9.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.ActualReward </name>
+        <label> Reward </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.RewardPrediction </name>
+        <label> Prediction </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLUE </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.PredictionError </name>
+        <label> RPE </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <scale><min> -1.0 </min><max> 1.2 </max><inc> 0.2 </inc></scale>
+    </yaxis>
+  </showgraph> 
+
+  <label>
+    <row> 30.5 </row><col> 1.0 </col>
+    <text> RPE = Reward - Prediction. As prediction learns the reward, RPE -&gt; 0 and the dopamine response to a predictable drink fades. </text>
+    <color> GRAY </color>
+  </label>
+  
+  <!-- ===================== 3. CURRENT VALUES ===================== -->
+  <groupbox>
+    <row> 34.0 </row><col> 1.0 </col>
+    <high> 11.0 </high><wide> 34.0 </wide>
+    <title> Opponent Processes (B = Withdrawal) </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.AProcess </name>
+      <label> A-process (euphoria) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.BProcess </name>
+      <label> B-process (craving) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.ExperiencedState </name>
+      <label> Experienced State (A-B) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.HedonicSetpoint </name>
+      <label> Hedonic Set-Point </label>
+      <format><decimal> 3 </decimal></format>
+      <color> GRAY </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 8.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.AGain </name>
+      <label> A-gain (tolerance) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.BGain </name>
+      <label> B-gain (sensitization) </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ============= GRAPH A: within-episode opponent dynamics ============= -->
+  <showgraph>
+    <row> 34.0 </row><col> 38.0 </col>
+    <high> 9.0 </high><wide> 60.0 </wide>
+    <leftmargin> 15.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.AProcess </name>
+        <label> A (euphoria) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.BProcess </name>
+        <label> B (craving) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLUE </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.ExperiencedState </name>
+        <label> Experienced (A-B) </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <scale><min> -2.0 </min><max> 2.0 </max><inc> 0.5 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <!-- ======== GRAPH B: long-run hedonic set-point shift ======== -->
+  <showgraph>
+    <row> 46.0 </row><col> 38.0 </col>
+    <high> 8.0 </high><wide> 60.0 </wide>
+    <leftmargin> 15.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 10080.0 </max><inc> 1440.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.ExperiencedState </name>
+        <label> Experienced State </label>
+        <linetype> SOLID </linetype>
+        <linecolor> BLACK </linecolor>
+      </yvar>
+      <scale><min> -2.0 </min><max> 1.5 </max><inc> 2 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+  <label>
+    <row> 54.5 </row><col> 38.0 </col>
+    <text> Lower graph (multi-day): the experienced state drifts from positive "high" toward negative "craving" as B grows and A shrinks. </text>
+    <color> GRAY </color>
+  </label>
+
+ <!-- ======== Emotional State ======== -->
+
+  <groupbox>
+    <row> 60 </row><col> 1.0 </col>
+    <high> 14.0 </high><wide> 36.0 </wide>
+    <title> Emotional & Behavioral State </title>
+
+    <showvalue>
+      <row> 1.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalHappiness </name>
+      <label> I Feel Happy (Reward) </label>
+      <format><decimal> 1 </decimal></format>
+      <color> GREEN </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalCraving </name>
+      <label> I'm Craving a Drink </label>
+      <format><decimal> 1 </decimal></format>
+      <color> RED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalSleepiness </name>
+      <label> I Feel Sleepy </label>
+      <format><decimal> 1 </decimal></format>
+      <color> BLUE </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EmotionalAnxiety </name>
+      <label> I Feel Anxious (Withdrawal) </label>
+      <format><decimal> 1 </decimal></format>
+      <color> MAGENTA </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 7.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.WillToDrink </name>
+      <label> Motivation to Drink </label>
+      <format><decimal> 1 </decimal></format>
+      <color> DARKRED </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.TimeUntilNextDrink </name>
+      <label> Minutes Until Anticipated Drink </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+  </groupbox>
+
+  <!-- ===================== DOPAMINE-BEHAVIOR GRAPH ===================== -->
+  <showgraph>
+    <row> 60 </row><col> 40.0 </col>
+    <high> 14.0 </high><wide> 58.0 </wide>
+    <leftmargin> 7.0 </leftmargin>
+
+    <xaxis>
+      <name> System.X </name>
+      <label> Time (min) </label>
+      <scale><min> 0.0 </min><max> 720.0 </max><inc> 120.0 </inc></scale>
+    </xaxis>
+
+    <yaxis>
+      <yvar>
+        <name> DopamineSystem.EmotionalHappiness </name>
+        <label> Happiness </label>
+        <linetype> SOLID </linetype>
+        <linecolor> GREEN </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.EmotionalCraving </name>
+        <label> Craving </label>
+        <linetype> SOLID </linetype>
+        <linecolor> RED </linecolor>
+      </yvar>
+      <yvar>
+        <name> DopamineSystem.EmotionalAnxiety </name>
+        <label> Anxiety </label>
+        <linetype> DASH </linetype>
+        <linecolor> MAGENTA </linecolor>
+      </yvar>
+      <scale><min> 0.0 </min><max> 10.0 </max><inc> 2.0 </inc></scale>
+    </yaxis>
+  </showgraph>
+
+<infobutton>
+<row> 87.5 </row>
+<col> 1.0  </col>
+ 
+  <line> Happiness peaks when dopamine rises (reward). Craving and anxiety build during withdrawal (low dopamine + B-process). </line>
+  <line> Motivation to drink reflects the brain's learned prediction that alcohol will relieve this state. </line>
+
+</infobutton>
 
 </panel>
 

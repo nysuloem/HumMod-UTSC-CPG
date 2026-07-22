@@ -1,12 +1,14 @@
 <?path Display\Dopamine\ ?>
 
-<?include DopamineDynamics.DES ?>
-<?include DopamineSymptoms.DES ?>
-<?include RewardLearning.DES ?>
-<?include DrinkingScheduler.DES ?>
+
+<!--?include DrinkingScheduler.DES -->
+
 <?include DopamineControls.DES ?>
-<?include HedonicState.DES ?>
 <?include Neuroadaptation.DES ?>
+
+
+
+
 
 
 <!--

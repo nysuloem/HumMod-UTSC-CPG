@@ -1,0 +1,20 @@
+<structure><name> CoreDopamine </name>
+
+<variables>
+
+<var><name> Na+_mMol/Min </name></var> 
+<var><name> Cl-_mMol/Min </name></var>
+<var><name> K+_mMol/Min </name></var>
+<var><name> Ca++_mMol/Min </name></var>
+<var><name> PO4---_mMol/Min </name></var>
+<var><name> SO4--_mMol/Min </name></var>
+
+<var><name> Intake(xGoal) </name></var>
+
+</variables>
+
+<definitions>
+<block><name> Dervs </name>
+
+
+<!-- copied from  -->

@@ -7,6 +7,13 @@
   and the resulting prediction error, plus a graph of how the prediction
   "catches up" to the reward so that the RPE (and the dopamine response)
   fades with repeated, predictable consumption.
+
+  CHANGE: Removed showvalue for DopamineSystem.LEARN_RATE.
+  LEARN_RATE is an internal tuning parameter (parm), not a physiological
+  output variable — displaying it in the panel added no scientific value
+  and caused a parser error (Error 6010) when the parm was renamed or
+  moved during refactoring.  The value remains accessible via the
+  HumMod parameter editor if adjustment is needed.
 ================================================================================
 -->
 
@@ -14,18 +21,31 @@
   <name> RewardLearning </name>
   <tablabel> Reward Learning </tablabel>
 
-  <showpanelname><row> 0.5 </row><col> 1.0 </col></showpanelname>
+  
+<showbitmap>
+  <row> 0.3 </row>
+  <col> 1.0 </col>
+  <name> Autopsy </name>
+</showbitmap>
 
-  <label>
-    <row> 0.5 </row><col> 12.0 </col>
-    <text> Reward Prediction Error (TD Learning) </text>
-    <color> BLACK </color>
-  </label>
+<label>
+  <row> 0.3 </row>
+  <col> 4.5 </col>
+  <text> Reward Prediction Error</text>
+</label>
+
+<showclock>
+  <row> 0.3 </row><col> 32.0 </col>
+  <name> System.X </name>
+  <ampm/>
+  <secs/>
+  <days/>
+</showclock>
 
   <!-- ===================== CURRENT VALUES ===================== -->
   <groupbox>
     <row> 2.0 </row><col> 1.0 </col>
-    <high> 11.0 </high><wide> 36.0 </wide>
+    <high> 9.0 </high><wide> 36.0 </wide>
     <title> Current Values </title>
 
     <showvalue>
@@ -60,13 +80,9 @@
       <color> BLACK </color>
     </showvalue>
 
-    <showvalue>
-      <row> 8.0 </row><col> 1.0 </col>
-      <name> DopamineSystem.LEARN_RATE </name>
-      <label> Learning Rate (alpha) </label>
-      <format><decimal> 2 </decimal></format>
-      <color> BLACK </color>
-    </showvalue>
+    <!-- REMOVED: DopamineSystem.LEARN_RATE showvalue.
+         LEARN_RATE is an internal parm, not a display variable.
+         Adjust it via the HumMod parameter editor if needed. -->
 
   </groupbox>
 
@@ -74,7 +90,7 @@
   <showgraph>
     <row> 2.0 </row><col> 40.0 </col>
     <high> 13.0 </high><wide> 58.0 </wide>
-    <leftmargin> 7.0 </leftmargin>
+    <leftmargin> 9.0 </leftmargin>
 
     <xaxis>
       <name> System.X </name>
