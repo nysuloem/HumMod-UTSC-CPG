@@ -1,91 +1,4 @@
 
-<!--================================================================================
-  DopamineSystem.DES
-  Integrated Dopamine Reward-Learning & Addiction model for HumMod
-  UTSC Directed Research Project
-
-  This module couples TWO classic theories of drug reward and addiction and
-  drives them from blood-alcohol concentration (EthanolPool.[Ethanol]):
-
-  (1) REWARD PREDICTION ERROR (RPE / temporal-difference learning)
-      Schultz, Dayan & Montague (1997); Schultz (1998).
-      delta (RPE) = ActualReward - RewardPrediction
-        * unpredicted reward  -> positive RPE -> phasic dopamine BURST
-        * fully predicted reward -> RPE ~ 0   -> NO dopamine response
-        * predicted reward omitted -> negative RPE -> dopamine DIP
-      The prediction is learned (updated toward the reward it experiences),
-      so a repeatedly-experienced reward stops evoking a dopamine signal.
-
-  (2) OPPONENT-PROCESS / HEDONIC HOMEOSTATIC DYSREGULATION
-      Solomon & Corbit (1974); Koob & Le Moal (1997, 2001).
-      ExperiencedState = AProcess - BProcess
-        * A-process: fast-rising drug euphoria ("the high").
-                     SHRINKS with repeated use  -> tolerance.
-        * B-process: slow-rising, long-lasting withdrawal/craving.
-                     GROWS with repeated use     -> dependence/sensitization.
-      Net result after addiction: little/no high, large negative aftereffect
-      ("agony, intense craving") = a downward-shifted hedonic set-point.
-
-  COUPLING: Blood-alcohol concentration (BAC, g/dL) sets the moment-to-moment
-  unconditioned reward magnitude through a biphasic dose-response curve
-  (low/moderate BAC = euphoric/stimulant, high BAC = sedative; the classic
-  biphasic alcohol response, e.g. Addicott et al. 2007). That reward drives
-  both the RPE/dopamine system and the opponent A/B processes. The growing
-  B-process also suppresses tonic dopamine, reproducing the dopamine
-  hypofunction of the addicted/withdrawn state (Koob "within-system"
-  neuroadaptation).
-
-  TIME BASE: HumMod's independent variable (System.X) is in MINUTES, so all
-  time constants below are in minutes.
-
-  WIRING (add to the master Ethanol.DES, AFTER EthanolPool): 
-
-      <?include DopamineSystem.DES ?>
-      CalcConc block: <call> DopamineSystem.CalcConc </call>
-      Dervs   block:  <call> DopamineSystem.Dervs   </call>
-      Wrapup  block:  <call> DopamineSystem.Wrapup  </call> -->
-      
-<!-- (Wrapup now calls EmotionalTranslation internally - see BUGFIX #7.) 
-================================================================================
-  BUGFIX CHANGELOG  (Step 1 - fixes only, no model/behavior redesign)
-
-  #1  Wrapup block had a MALFORMED comment header: the comment-open marker
-      was missing, leaving raw text ("apply tolerance ... =====") sitting
-      loose inside the definitions section. That is not valid XML/DES and
-      would break the parser. Restored a proper, closed comment.
-
-  #2  Invalid operator "MOD": HumMod's math engine has no MOD operator.
-      The remainder operator is "REM". Replaced MOD -> REM in
-      CurrentDayOfWeek and TimeOfDay.
-
-  #3  CurrentDayOfWeek produced a FRACTIONAL day index. Wrapped the day
-      count in ROUNDDOWN so the result is an integer 0..6 as the comment
-      ("0=Mon, 6=Sun") intends.
-
-  #4  Invalid inline "IF ... THEN ... ELSE" expression in TimeUntilNextDrink:
-      HumMod <val> has no inline if/then/else. Rewrote the two-level logic
-      using two <conditional> assignments (compute within-day value first,
-      then override with 999 when scheduling is off).
-
-  #5  OPERATOR-PRECEDENCE bugs: HumMod evaluates strictly LEFT-TO-RIGHT with
-      NO precedence. Three expressions relied on normal * over +/- precedence
-      and therefore computed the wrong value:
-        - EmotionalSleepiness : 2.0 - DopamineLevel + BProcess * 0.5
-        - EmotionalCraving    : BProcess * 1.2 + RewardPrediction * 1.5
-        - WillToDrink         : Anxiety + Craving - Happiness * 0.5
-      Added explicit parentheses so each term is grouped as intended.
-
-  #6  AnticipationSignal <test> combined two comparisons with AND but left
-      the comparisons un-parenthesized; with no precedence this parses
-      incorrectly. Parenthesized each comparison around the AND.
-
-  #7  The EmotionalTranslation block was DEFINED but never CALLED anywhere,
-      so none of the emotional/behavioral outputs were ever computed (dead
-      code). Added <call> DopamineSystem.EmotionalTranslation </call> at the
-      end of Wrapup so it runs each step using the just-integrated state.
-================================================================================-->
-
-
 <structure><name> DopamineSystem </name>
 
 <variables>
@@ -97,37 +10,50 @@
 
 <!-- ===================== RPE / DOPAMINE =============================== -->
 <var><name> PredictionError </name></var>     <!-- RPE = ActualReward - RewardPrediction -->
-<var><name> TonicDA </name></var>             <!-- baseline (tonic) dopamine, suppressed by withdrawal (B) -->
+<var><name> TonicDA </name></var>             <!-- tonic dopamine, suppressed by withdrawal (B) and allostasis -->
 <var><name> PhasicDA </name></var>            <!-- phasic (burst/dip) dopamine, proportional to RPE -->
 <var><name> DATarget </name></var>            <!-- instantaneous dopamine target = (TonicDA + PhasicDA) clamped -->
-<!-- DopamineLevel  : integral, declared by diffeq (VTA/NAc dopamine, arb. units) -->
-<!-- RewardPrediction: integral, declared by diffeq (learned reward expectation) -->
+<var><name> D_drug </name></var>              <!-- BUG 3 FIX: non-compensable pharmacological DA signal (Redish 2004) -->
+<!-- DopamineLevel    : integral, declared by diffeq (VTA/NAc dopamine, arb. units) -->
+<!-- RewardPrediction : integral, declared by diffeq (learned reward expectation) -->
 
-<!-- ===================== OPPONENT PROCESS ============================= -->
+<!-- ===================== OPPONENT PROCESS =========================== -->
 <var><name> HedonicSetpoint </name></var>     <!-- hedonic baseline (reference 0) -->
 <var><name> ExperiencedState </name></var>    <!-- net experienced hedonic state = A - B -->
 <var><name> ATarget </name></var>             <!-- driven target of the A-process -->
 <var><name> BTarget </name></var>             <!-- driven target of the B-process -->
 <var><name> TauA </name></var>                <!-- active A-process time constant (rise vs decay) -->
 <var><name> TauB </name></var>                <!-- active B-process time constant (rise vs decay) -->
-<!-- AProcess : integral, declared by diffeq (drug euphoria) -->
-<!-- BProcess : integral, declared by diffeq (withdrawal / craving) -->
+<!-- AProcess         : integral, declared by diffeq (drug euphoria) -->
+<!-- BProcess         : integral, declared by diffeq (withdrawal / craving) -->
 
-<!-- ===================== ADAPTIVE GAINS (state, exposure-driven) ====== -->
+<!-- ===================== ALLOSTATIC / STRESS VARIABLES ============== -->
+<!-- AllostaticOffset : integral, declared by diffeq.
+     Slow-accumulating residual of BProcess across episodes (τ = 14 days).
+     Models the progressive hedonic setpoint shift in Koob & Le Moal's
+     allostatic model (2001, 2008).  Feeds into TonicDA as extra suppression
+     that persists long after individual withdrawal episodes resolve. -->
+<!-- StressLevel      : integral, declared by diffeq.
+     CRF-proxy; rises with sustained BProcess activation (τ = 7 days).
+     Models the stress-neuroadaptation axis (Koob 2008; Heilig & Koob 2007):
+     CRF drives anxiety and negative-reinforcement craving independent of
+     the acute B-process. Feeds into EmotionalCraving. -->
+
+<!-- ===================== ADAPTIVE GAINS (state, exposure-driven) ==== -->
 <var><name> AGain </name><val> 1.00 </val></var>   <!-- euphoria gain; DECREASES with use (tolerance) -->
 <var><name> BGain </name><val> 0.50 </val></var>   <!-- withdrawal gain; INCREASES with use (sensitization) -->
 <var><name> TotalExposures </name><val> 0.0 </val></var> <!-- cumulative drink count (single + daily) -->
 <var><name> PrevExposures </name><val> 0.0 </val></var>  <!-- previous exposure count (event detector) -->
 
-<!-- ===================== EMOTIONAL / BEHAVIORAL STATES ================= -->
+<!-- ===================== EMOTIONAL / BEHAVIORAL STATES =============== -->
 <var><name> EmotionalHappiness </name></var>       <!-- happiness scale (0-10) from dopamine -->
-<var><name> EmotionalCraving </name></var>         <!-- craving scale (0-10) from withdrawal + anticipation -->
+<var><name> EmotionalCraving </name></var>         <!-- craving scale (0-10): BProcess + anticipation + CRF stress -->
 <var><name> EmotionalSleepiness </name></var>      <!-- sleepiness scale (0-10) from dopamine depression -->
 <var><name> EmotionalAnxiety </name></var>         <!-- anxiety scale (0-10) from withdrawal -->
 <var><name> WillToDrink </name></var>              <!-- motivation to drink (0-10) -->
 <var><name> AnticipationSignal </name></var>       <!-- signal that brain predicts a drink (0-10) -->
 
-<!-- ===================== DRINKING SCHEDULER / CHRONIC PATTERN ========== -->
+<!-- ===================== DRINKING SCHEDULER / CHRONIC PATTERN ======= -->
 <var><name> CurrentTime </name></var>              <!-- current time in minutes since start -->
 <var><name> TimeOfDay </name></var>                <!-- minutes after midnight (0-1440) -->
 <var><name> CurrentDayOfWeek </name></var>         <!-- day of week (0=Mon, 6=Sun) -->
@@ -137,31 +63,45 @@
 <var><name> DrinkSize </name></var>                <!-- standard drink size (g ethanol) -->
 <var><name> DaysWithdrawnCount </name></var>       <!-- days since last drink -->
 <var><name> TotalDrinksThisWeek </name></var>      <!-- running count of drinks this week -->
+<var><name> TimeInDays </name></var>
 
-<!-- ===================== PARAMETERS (tunable) ======================== -->
+<!-- ===================== PARAMETERS (tunable) ======================= -->
 
 <!-- Dopamine: synaptic clearance ~1-2 min -->
 <parm><name> TAU_DA </name><val> 1.5 </val></parm>        <!-- dopamine clearance time constant (min) -->
 <parm><name> DA_BASELINE </name><val> 1.0 </val></parm>   <!-- tonic dopamine set-point (arb. units) -->
 <parm><name> DA_GAIN </name><val> 1.0 </val></parm>       <!-- phasic dopamine per unit RPE -->
-<parm><name> DA_WITHDRAW_K </name><val> 0.30 </val></parm><!-- tonic DA suppression per unit B-process -->
+
+<parm><name> DA_SCALE_A </name><val> 0.50 </val></parm>   <!-- AProcess -> tonic DA lift (Bug 2 fix) -->
+<parm><name> DA_SCALE_B </name><val> 0.55 </val></parm>   <!-- BProcess -> tonic DA suppression (Bug 2 fix) -->
+
+<parm><name> DA_SCALE_ALLO </name><val> 0.30 </val></parm> <!-- allostatic DA suppression gain (Feature Gap 1) -->
 
 <!-- Temporal-difference learning rate (per min). RL alpha ~0.1-0.3 -->
 <parm><name> LEARN_RATE </name><val> 0.15 </val></parm>
+
+<parm><name> D_DRUG_GAIN </name><val> 0.20 </val></parm> <!-- non-compensable DA gain (Bug 3 fix) -->
 
 <!-- A-process (euphoria): fast rise, moderate decay -->
 <parm><name> TAU_A_RISE </name><val> 7.0 </val></parm>    <!-- min -->
 <parm><name> TAU_A_DECAY </name><val> 45.0 </val></parm>  <!-- min -->
 
-<!-- B-process (withdrawal/craving): slow rise, long decay -->
 <parm><name> TAU_B_RISE </name><val> 45.0 </val></parm>   <!-- min -->
-<parm><name> TAU_B_DECAY </name><val> 240.0 </val></parm> <!-- min -->
+<parm><name> TAU_B_DECAY </name><val> 720.0 </val></parm> <!-- min; recalibrated from 240 for daily drinking -->
+
+<parm><name> TAU_ALLOSTATIC </name><val> 20160.0 </val></parm> <!-- allostatic time constant: 14 days in min -->
+
+<parm><name> TAU_STRESS </name><val> 10080.0 </val></parm>     <!-- CRF stress tau: 7 days in min -->
+<parm><name> STRESS_CRAVING_K </name><val> 0.80 </val></parm>  <!-- CRF stress -> craving gain -->
 
 <!-- Neuroadaptation per drink event -->
 <parm><name> SENS_STEP </name><val> 0.15 </val></parm>    <!-- B-process grows 15% per exposure (sensitization) -->
 <parm><name> TOL_STEP </name><val> 0.10 </val></parm>     <!-- A-process shrinks 10% per exposure (tolerance) -->
 <parm><name> AGAIN_MIN </name><val> 0.15 </val></parm>    <!-- floor on euphoria gain -->
 <parm><name> BGAIN_MAX </name><val> 4.0 </val></parm>     <!-- ceiling on withdrawal gain -->
+
+<parm><name> TAU_AGAIN_RECOVERY </name><val> 30240.0 </val></parm> <!-- D2 recovery tau: 21 days in min -->
+<parm><name> DRUGDRIVE_THRESHOLD </name><val> 0.01 </val></parm>   <!-- sober guard for AGain recovery -->
 
 <!-- Drinking scheduler / chronic pattern parameters -->
 <parm><name> SCHEDULED_DRINKING </name><val> FALSE </val></parm> <!-- enable scheduled drinking -->
@@ -171,10 +111,9 @@
 
 </variables>
 
-
 <!-- ====================================================================
      DIFFERENTIAL EQUATIONS
-     Four state variables are integrated over time.
+     Six state variables are integrated over time.
      ==================================================================== -->
 <equations>
 
@@ -210,14 +149,28 @@
   <errorlim> 0.001 </errorlim>
 </diffeq>
 
+<!-- FEATURE GAP 1 FIX: AllostaticOffset integrates BProcess on a 14-day timescale. -->
+
+<diffeq>
+  <name> AllostaticOffset </name>
+  <integralname> AllostaticOffset </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeAllostaticOffset </dervname>
+  <errorlim> 0.001 </errorlim>
+</diffeq>
+
+<!-- FEATURE GAP 3 FIX: StressLevel (CRF proxy) integrates BProcess on a 7-day timescale. -->
+<diffeq>
+  <name> StressLevel </name>
+  <integralname> StressLevel </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangeStressLevel </dervname>
+  <errorlim> 0.001 </errorlim>
+</diffeq>
+
 </equations>
 
-<!-- ====================================================================
-     FUNCTIONS
-     RewardOnBAC: biphasic dose-response of unconditioned reward to BAC.
-     Reward rises with low/moderate BAC (euphoria/stimulation), peaks near
-     0.06-0.08 g/dL, then falls at high BAC as sedation dominates.
-     ==================================================================== -->
+<!-- ==================================================================== -->
 <functions>
 
 <curve><name> RewardOnBAC </name>
@@ -248,12 +201,17 @@
     <name> BAC </name>
     <val> EthanolPool.[Ethanol] </val>
   </def>
-
+  
   <!-- Map BAC -> unconditioned reward magnitude via biphasic curve -->
   <def>
     <name> ActualReward </name>
     <val> RewardOnBAC [ BAC ] </val>
   </def>
+
+<def>
+  <name> TimeInDays </name>
+  <val> System.X / 1440.0 </val>
+</def>
 
   <!-- Drug presence drives the opponent (A/B) processes -->
   <def>
@@ -261,10 +219,14 @@
     <val> ActualReward </val>
   </def>
 
-  <!-- Reward Prediction Error: delta = received - predicted -->
+  <def>
+    <name> D_drug </name>
+    <val> D_DRUG_GAIN * RewardOnBAC [ BAC ] </val>
+  </def>
+
   <def>
     <name> PredictionError </name>
-    <val> ActualReward - RewardPrediction </val>
+    <val> ( ActualReward - RewardPrediction ) + D_drug </val>
   </def>
 
   <!-- Hedonic reference set-point (homeostatic baseline) -->
@@ -282,19 +244,16 @@
 </block>
 
 <!-- ====================================================================
-     Dervs: compute the four derivatives.
+     Dervs: compute the six derivatives.
      ==================================================================== -->
 <block><name> Dervs </name>
 
-  <!-- ===== Dopamine (RPE-driven phasic signal on a tonic baseline) =====
-       Target dopamine = tonic baseline
-                       + phasic component proportional to RPE
-                       - suppression that grows with the B-process
-                         (withdrawal-related dopamine hypofunction).
-       Clamped at >= 0 (cannot have negative concentration). -->
   <def>
     <name> TonicDA </name>
-    <val> ( DA_BASELINE - ( DA_WITHDRAW_K * BProcess ) ) MAX 0.0 </val>
+    <val> ( DA_BASELINE
+            + ( DA_SCALE_A * AProcess )
+            - ( DA_SCALE_B * BProcess )
+            - ( DA_SCALE_ALLO * AllostaticOffset ) ) MAX 0.0 </val>
   </def>
 
   <def>
@@ -309,16 +268,18 @@
 
   <def>
     <name> ChangeDopamine </name>
-    <val> ( DATarget - ( DopamineLevel * DA_WITHDRAW_K ))  </val>
+    <val> ( DATarget - DopamineLevel ) / TAU_DA </val>
   </def>
 
   <!-- ===== Temporal-difference learning of the reward prediction =====
        dPrediction/dt = alpha * (ActualReward - RewardPrediction)
        Prediction converges on the experienced reward, so a repeatedly
-       experienced reward eventually drives RPE -> 0 (no DA response). -->
+       experienced reward eventually drives the LEARNABLE part of RPE -> 0.
+
+        -->
   <def>
     <name> ChangePrediction </name>
-    <val> LEARN_RATE * PredictionError </val>
+    <val> LEARN_RATE * ( ActualReward - RewardPrediction ) </val>
   </def>
 
   <!-- ===== A-process (fast euphoria) =====
@@ -342,12 +303,10 @@
     <val> ( ATarget - AProcess ) / TauA </val>
   </def>
 
-  <!-- ===== B-process (slow withdrawal / craving) =====
-       Target = BGain * drug drive (BGain grows with use = sensitization).
-       Slow rise, very long decay -> long-lasting craving aftereffect. -->
+  <!-- ===== B-process (slow withdrawal / craving) ===== -->
   <def>
     <name> BTarget </name>
-    <val> BGain * DrugDrive </val>
+    <val> BGain * AProcess </val>
   </def>
 
   <conditional>
@@ -362,20 +321,37 @@
     <val> ( BTarget - BProcess ) / TauB </val>
   </def>
 
+  <!-- ===== AllostaticOffset (very slow B-process shadow) ===== -->
+  <def>
+    <name> ChangeAllostaticOffset </name>
+    <val> ( BProcess - AllostaticOffset ) / TAU_ALLOSTATIC </val>
+  </def>
+
+  <!-- ===== StressLevel (CRF proxy, slow B-process shadow) =====
+       FEATURE GAP 3 FIX: first-order relaxation toward BProcess.
+       dStressLevel/dt = ( BProcess - StressLevel ) / TAU_STRESS
+       StressLevel rises more quickly than AllostaticOffset (τ = 7 days vs 14 days)
+       and also decays on a 7-day timescale during abstinence.
+       Represents the inter-episode escalation of the brain stress axis (CRF/dynorphin)
+       that drives "dark side" negative-reinforcement drinking.
+       Feeds into EmotionalCraving via STRESS_CRAVING_K. -->
+  <def>
+    <name> ChangeStressLevel </name>
+    <val> ( BProcess - StressLevel ) / TAU_STRESS </val>
+  </def>
+
 </block>
 
-<!--====================================================================
+<!-- ====================================================================
      EmotionalTranslation: map dopamine and opponent-process states
      to human-readable emotional states (happiness, craving, anxiety, etc.)
      and drinking scheduler logic.
      NOTE (BUGFIX #7): this block is invoked from Wrapup so its outputs are
      actually computed each step.
      ==================================================================== -->
-
 <block><name> EmotionalTranslation </name>
 
   <!-- Current time tracking -->
-
   <def>
     <name> CurrentTime </name>
     <val> System.X </val>
@@ -396,16 +372,14 @@
     <val> System.X REM 1440 </val>
   </def>
 
-  <!-- Happiness scale (0-10): rises with high dopamine, falls with withdrawal.
-       (Left-to-right OK here: DopamineLevel * 3.0 * EMOTIONAL_SENSITIVITY.) -->
+  <!-- Happiness scale (0-10): rises with high dopamine, falls with withdrawal. -->
   <def>
     <name> EmotionalHappiness </name>
     <val> ( DopamineLevel * 3.0 * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
   </def>
 
   <!-- Sleepiness scale (0-10): low dopamine + high withdrawal feels foggy.
-       BUGFIX #5: parenthesized so it is ( (2.0 - DA) + (BProcess*0.5) ) * ES,
-       not the left-to-right mis-grouping the bare expression produced. -->
+       BUGFIX #5: parenthesized so it is ( (2.0 - DA) + (BProcess*0.5) ) * ES. -->
   <def>
     <name> EmotionalSleepiness </name>
     <val> ( ( ( 2.0 - DopamineLevel ) + ( BProcess * 0.5 ) ) * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
@@ -417,11 +391,17 @@
     <val> ( BProcess * 1.5 * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
   </def>
 
-  <!-- Craving scale (0-10): withdrawal + learned anticipation of the reward.
-       BUGFIX #5: grouped as ( (BProcess*1.2) + (RewardPrediction*1.5) ) * ES. -->
+  <!-- Craving scale (0-10): three drivers —
+       (1) acute BProcess (withdrawal-driven negative affect),
+       (2) learned RewardPrediction (cue-driven / incentive salience),
+       (3) StressLevel (CRF-proxy; negative-reinforcement "dark side" craving). -->
+
   <def>
     <name> EmotionalCraving </name>
-    <val> ( ( ( BProcess * 1.2 ) + ( RewardPrediction * 1.5 ) ) * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+    <val> ( ( ( BProcess * 1.2 )
+              + ( RewardPrediction * 1.5 )
+              + ( StressLevel * STRESS_CRAVING_K ) )
+            * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
   </def>
 
   <!-- Will to drink (0-10): motivation = anxiety + craving - half of happiness.
@@ -469,7 +449,7 @@
   <!-- Minutes until next scheduled drink.
        BUGFIX #4: replaced invalid inline IF/THEN/ELSE with two <conditional>
        assignments. First compute the within-day countdown, then override
-       with 999.0 when scheduling is disabled. -->!
+       with 999.0 when scheduling is disabled. -->
 
   <conditional>
     <name> TimeUntilNextDrink </name>
@@ -521,8 +501,26 @@
     </true>
   </if>
 
-  <!-- Refresh display state with the just-integrated A/B values -->
+  <!-- FEATURE GAP 2 FIX: slow passive recovery of AGain during sobriety.
+       Models D2 receptor upregulation during abstinence (Wise & Robble 2020).
+       First-order relaxation back toward full sensitivity (1.0):
+         AGain += (1 / TAU_AGAIN_RECOVERY) * (1.0 - AGain)
+       Time constant TAU_AGAIN_RECOVERY = 30240 min (21 days) — midpoint of the
+       14-30 day clinical range for meaningful D2 receptor recovery.
+       Guard condition: recovery only active when DrugDrive < DRUGDRIVE_THRESHOLD
+       (i.e., the subject is sober). Prevents simultaneous per-drink tolerance
+       decrease and recovery increase within the same session. -->
+  <if>
+    <test> DrugDrive LT DRUGDRIVE_THRESHOLD </test>
+    <true>
+      <def>
+        <name> AGain </name>
+        <val> AGain + ( ( 1.0 / TAU_AGAIN_RECOVERY ) * ( 1.0 - AGain ) ) </val>
+      </def>
+    </true>
+  </if>
 
+  <!-- Refresh display state with the just-integrated A/B values -->
   <def>
     <name> ExperiencedState </name>
     <val> AProcess - BProcess </val>
@@ -530,22 +528,22 @@
 
   <!-- BUGFIX #7: run the emotional/behavioral translation each step so its
        outputs (happiness, craving, anxiety, scheduler, etc.) are computed. -->
-
   <call> DopamineSystem.EmotionalTranslation </call>
 
 </block>
 
-====================================================================
+<!-- ====================================================================
      Reset: restore the adaptive (neuroadaptation) state. Call this to
-     start a fresh subject (clears tolerance / sensitization history).
-     ====================================================================
-
+     start a fresh subject (clears tolerance / sensitization / stress history).
+     ==================================================================== -->
 <block><name> Reset </name>
 
   <def><name> AGain </name><val> 1.00 </val></def>
   <def><name> BGain </name><val> 0.50 </val></def>
   <def><name> PrevExposures </name><val> 0.0 </val></def>
   <def><name> TotalExposures </name><val> 0.0 </val></def>
+  <def><name> AllostaticOffset </name><val> 0.0 </val></def>  <!-- Feature Gap 1: clear allostatic scar -->
+  <def><name> StressLevel </name><val> 0.0 </val></def>       <!-- Feature Gap 3: clear CRF stress state -->
 
 </block>
 
