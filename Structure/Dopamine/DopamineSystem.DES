@@ -71,101 +71,25 @@
 <parm><name> DA_BASELINE </name><val> 1.0 </val></parm>   <!-- tonic dopamine set-point (arb. units) -->
 <parm><name> DA_GAIN </name><val> 1.0 </val></parm>       <!-- phasic dopamine per unit RPE -->
 
-<!-- BUG 4 FIX: DA_WITHDRAW_K removed entirely.
-     The original formula applied DA_WITHDRAW_K as a multiplicative factor
-     inside ChangeDopamine (the derivative), which incorrectly scaled the
-     rate of change by withdrawal state rather than setting a correct target:
-       old: ChangeDopamine = (DATarget - DopamineLevel * DA_WITHDRAW_K) / TAU_DA  ← WRONG
-       new: ChangeDopamine = (DATarget - DopamineLevel) / TAU_DA                  ← correct
-     All withdrawal modulation of the dopamine TARGET is now handled by
-     DA_SCALE_B in the TonicDA formula (see BUG 2 FIX below), which correctly
-     subtracts BProcess suppression from the tonic DA set-point.
-     DA_WITHDRAW_K served no valid physiological role once that separation
-     was made; retaining it would double-count withdrawal suppression. -->
-
-<!-- BUG 2 FIX: DA_SCALE_A / DA_SCALE_B couple opponent-process states to TonicDA.
-     DA_SCALE_A: AProcess contribution to tonic DA target.
-       Calibrated so AProcess peak (~1.0) lifts DA ~50% above baseline
-       (Wise & Robble 2020: tonic NAc DA elevated ~50% at preferred alcohol doses).
-       DA_SCALE_A = 0.50 -> DATarget_peak = 1.0 + 0.50*1.0 = 1.50 (= +50%).
-     DA_SCALE_B: BProcess suppression of tonic DA target.
-       Calibrated so at peak withdrawal (AProcess=0, BProcess~0.5 given BGain=0.50
-       and AProcess_peak=1.0), DA falls ~27.5% below baseline — within the
-       20-35% suppression reported in rat microdialysis (Wise & Robble; Koob & Le Moal).
-       DA_SCALE_B = 0.55 -> DATarget_withdrawal = 1.0 - 0.55*0.5 = 0.725 (= -27.5%). -->
 <parm><name> DA_SCALE_A </name><val> 0.50 </val></parm>   <!-- AProcess -> tonic DA lift (Bug 2 fix) -->
 <parm><name> DA_SCALE_B </name><val> 0.55 </val></parm>   <!-- BProcess -> tonic DA suppression (Bug 2 fix) -->
 
-<!-- FEATURE GAP 1 FIX: AllostaticOffset -> tonic DA suppression.
-     DA_SCALE_ALLO: AllostaticOffset contribution to tonic DA suppression.
-       AllostaticOffset slow-tracks BProcess (τ = 14 days); after many episodes
-       of heavy use it accumulates to ~0.3 (given typical BProcess peaks of 0.5).
-       DA_SCALE_ALLO = 0.30 ->
-         at heavy chronic use: additional suppression = 0.30 * 0.30 = 0.09.
-         Combined with DA_SCALE_B contribution (0.55*0.5 = 0.275):
-         total suppression = 0.365 -> TonicDA = 0.635 (~36% below baseline).
-       This matches Volkow et al. (2002): D2 receptor deficits in alcoholics
-       yield ~30-40% below-normal tonic DA tone in striatum. -->
 <parm><name> DA_SCALE_ALLO </name><val> 0.30 </val></parm> <!-- allostatic DA suppression gain (Feature Gap 1) -->
 
 <!-- Temporal-difference learning rate (per min). RL alpha ~0.1-0.3 -->
 <parm><name> LEARN_RATE </name><val> 0.15 </val></parm>
 
-<!-- BUG 3 FIX: non-compensable pharmacological DA signal for alcohol (Redish 2004).
-     D_drug = D_DRUG_GAIN * RewardOnBAC[BAC] is added directly to PredictionError.
-     Unlike the learned (ActualReward - RewardPrediction) term, D_drug does NOT shrink
-     as RewardPrediction converges — it persists at the same magnitude on every drink
-     regardless of how many times the subject has drunk before.
-     Mechanistic basis: alcohol acts directly on VTA DA neurons (pharmacological effect),
-     bypassing the prediction-learning loop entirely. No amount of learned expectation
-     can "predict away" this direct neurochemical surge (Redish 2004).
-     D_DRUG_GAIN = 0.20: at peak BAC (RewardOnBAC = 1.0), adds a fixed +0.20 RPE floor. -->
 <parm><name> D_DRUG_GAIN </name><val> 0.20 </val></parm> <!-- non-compensable DA gain (Bug 3 fix) -->
 
 <!-- A-process (euphoria): fast rise, moderate decay -->
 <parm><name> TAU_A_RISE </name><val> 7.0 </val></parm>    <!-- min -->
 <parm><name> TAU_A_DECAY </name><val> 45.0 </val></parm>  <!-- min -->
 
-<!-- B-process (withdrawal/craving): slow rise, long decay.
-     TAU_B_DECAY recalibrated from 240 min (4 h) to 720 min (12 h).
-     Rationale: at 240 min, BProcess decays by factor exp(-1440/240) = exp(-6) ≈ 0.0025
-     between once-daily drinks — essentially zero inter-episode carry-over.  For a
-     daily-drinking schedule the B-process should bridge sessions:
-       720 min -> exp(-1440/720) = exp(-2) ≈ 0.135  (13.5% carry-over per day)
-       720 min -> exp(-200/720)  = exp(-0.28) ≈ 0.76 (76% carry-over at 3h interval)
-     This lets BProcess accumulate across daily episodes and produce a visible
-     inter-session withdrawal state while the AllostaticOffset diffeq (τ=14 days)
-     handles the much slower multi-week setpoint shift.
-     Single-episode fast dynamics are unchanged: BProcess still peaks within 1-2 hours
-     and the 45-min rise constant is unaffected. -->
 <parm><name> TAU_B_RISE </name><val> 45.0 </val></parm>   <!-- min -->
 <parm><name> TAU_B_DECAY </name><val> 720.0 </val></parm> <!-- min; recalibrated from 240 for daily drinking -->
 
-<!-- FEATURE GAP 1 FIX: AllostaticOffset slow-integrates BProcess.
-     TAU_ALLOSTATIC = 20160 min (14 days).
-       The allostatic offset models the progressive hedonic-setpoint shift described
-       by Koob & Le Moal (2001, 2008): with each withdrawal episode the brain's
-       "normal" DA baseline shifts downward, requiring more drug to reach homeostasis.
-       14 days is at the lower bound of clinically observed allostatic shifts
-       (Solomon & Corbit 1974: allostatic changes accumulate over weeks-to-months;
-        Koob 2003: opponent-process allostasis visible in 2-4 week abstinence periods).
-       AllostaticOffset approaches BProcess with τ = 14 days; it decays equally
-       slowly during abstinence, producing a lingering DA-suppression "scar". -->
 <parm><name> TAU_ALLOSTATIC </name><val> 20160.0 </val></parm> <!-- allostatic time constant: 14 days in min -->
 
-<!-- FEATURE GAP 3 FIX: StressLevel (CRF proxy) slow-integrates BProcess.
-     TAU_STRESS = 10080 min (7 days).
-       Models the recruitment of the brain stress system (CRF, dynorphin, norepinephrine)
-       during repeated withdrawal (Koob 2008; Heilig & Koob 2007).
-       CRF drives negative-affect craving ("dark side" motivation to drink for relief
-       rather than reward). 7-day time constant sits between acute withdrawal (hours-days)
-       and allostatic change (weeks), capturing the "inter-episode" stress escalation
-       documented in escalation models (Gilpin & Koob 2008; Roberts et al. 2000).
-     STRESS_CRAVING_K: gain from StressLevel into EmotionalCraving.
-       STRESS_CRAVING_K = 0.80: at StressLevel = 0.3, adds 0.24 arb. units to the
-       craving sum, comparable in scale to the BProcess * 1.2 term at moderate
-       withdrawal. Ensures stress-driven craving is meaningful but does not dominate
-       the acute BProcess signal. -->
 <parm><name> TAU_STRESS </name><val> 10080.0 </val></parm>     <!-- CRF stress tau: 7 days in min -->
 <parm><name> STRESS_CRAVING_K </name><val> 0.80 </val></parm>  <!-- CRF stress -> craving gain -->
 
@@ -175,13 +99,6 @@
 <parm><name> AGAIN_MIN </name><val> 0.15 </val></parm>    <!-- floor on euphoria gain -->
 <parm><name> BGAIN_MAX </name><val> 4.0 </val></parm>     <!-- ceiling on withdrawal gain -->
 
-<!-- FEATURE GAP 2 FIX: slow D2 receptor recovery during abstinence.
-     TAU_AGAIN_RECOVERY: first-order time constant for AGain to recover toward 1.0.
-       21 days = 30240 min; sits in the middle of the 14-30 day clinical range for
-       D2 receptor upregulation during abstinence (Wise & Robble 2020).
-     DRUGDRIVE_THRESHOLD: guard condition — AGain only recovers when the subject
-       is sober (DrugDrive below this value). Prevents simultaneous tolerance
-       decrease and recovery increase within the same drinking session. -->
 <parm><name> TAU_AGAIN_RECOVERY </name><val> 30240.0 </val></parm> <!-- D2 recovery tau: 21 days in min -->
 <parm><name> DRUGDRIVE_THRESHOLD </name><val> 0.01 </val></parm>   <!-- sober guard for AGain recovery -->
 
@@ -192,7 +109,6 @@
 <parm><name> EMOTIONAL_SENSITIVITY </name><val> 1.0 </val></parm> <!-- scaling factor for emotional intensity -->
 
 </variables>
-
 
 <!-- ====================================================================
      DIFFERENTIAL EQUATIONS
@@ -232,10 +148,8 @@
   <errorlim> 0.001 </errorlim>
 </diffeq>
 
-<!-- FEATURE GAP 1 FIX: AllostaticOffset integrates BProcess on a 14-day timescale.
-     Represents the slow hedonic-setpoint shift from repeated withdrawal episodes
-     (Koob & Le Moal 2001, 2008).  Feeds into TonicDA as additional suppression
-     via DA_SCALE_ALLO — a "DA scar" that outlasts each individual BProcess episode. -->
+<!-- FEATURE GAP 1 FIX: AllostaticOffset integrates BProcess on a 14-day timescale. -->
+
 <diffeq>
   <name> AllostaticOffset </name>
   <integralname> AllostaticOffset </integralname>
@@ -244,10 +158,7 @@
   <errorlim> 0.001 </errorlim>
 </diffeq>
 
-<!-- FEATURE GAP 3 FIX: StressLevel (CRF proxy) integrates BProcess on a 7-day timescale.
-     Models the brain stress system (CRF/dynorphin/norepinephrine) recruited across
-     repeated withdrawal episodes (Koob 2008; Heilig & Koob 2007).
-     Feeds into EmotionalCraving as a negative-reinforcement "dark side" craving term. -->
+<!-- FEATURE GAP 3 FIX: StressLevel (CRF proxy) integrates BProcess on a 7-day timescale. -->
 <diffeq>
   <name> StressLevel </name>
   <integralname> StressLevel </integralname>
@@ -289,8 +200,6 @@
     <name> BAC </name>
     <val> EthanolPool.[Ethanol] </val>
   </def>
-
-
   
   <!-- Map BAC -> unconditioned reward magnitude via biphasic curve -->
   <def>
@@ -309,19 +218,11 @@
     <val> ActualReward </val>
   </def>
 
-  <!-- BUG 3 FIX: non-compensable pharmacological DA signal (Redish 2004).
-       D_drug is proportional to current BAC reward and is INDEPENDENT of learning history.
-       It does not shrink as RewardPrediction converges — alcohol always produces this
-       direct VTA activation regardless of how well-predicted the drug is. -->
   <def>
     <name> D_drug </name>
     <val> D_DRUG_GAIN * RewardOnBAC [ BAC ] </val>
   </def>
 
-  <!-- Reward Prediction Error: delta = (received - predicted) + non-compensable drug signal.
-       The first term converges to 0 with repeated natural rewards (correct TDRL).
-       The second term (D_drug) never converges — alcohol never stops generating a
-       phasic DA burst above what the prediction pathway can cancel (Redish 2004). -->
   <def>
     <name> PredictionError </name>
     <val> ( ActualReward - RewardPrediction ) + D_drug </val>
@@ -346,27 +247,6 @@
      ==================================================================== -->
 <block><name> Dervs </name>
 
-  <!-- ===== Dopamine (RPE-driven phasic signal on a tonic baseline) =====
-       BUG 2 FIX: TonicDA is a signed sum of baseline, A-process lift,
-       B-process suppression, and (Feature Gap 1) allostatic suppression:
-         TonicDA = DA_BASELINE
-                   + DA_SCALE_A * AProcess        (euphoria lift)
-                   - DA_SCALE_B * BProcess        (acute withdrawal suppression)
-                   - DA_SCALE_ALLO * AllostaticOffset  (chronic allostatic shift)
-
-       Calibration:
-         naive subject (AProcess=0, BProcess=0, AllostaticOffset=0):
-           TonicDA = 1.0 (= DA_BASELINE).
-         peak intoxication (AProcess=1.0):
-           TonicDA = 1.0 + 0.50*1.0 = 1.50 (= +50%; Wise & Robble 2020).
-         acute withdrawal (AProcess=0, BProcess=0.5):
-           TonicDA = 1.0 - 0.55*0.5 = 0.725 (= -27.5%; Koob & Le Moal 2001).
-         chronic heavy use (BProcess=0.5, AllostaticOffset=0.3):
-           TonicDA = 1.0 - 0.275 - 0.09 = 0.635 (= -36.5%; Volkow et al. 2002).
-
-       BUG 4 FIX: DA_WITHDRAW_K removed from this formula (and from the model).
-       BUG 2 FIX: ChangeDopamine is a pure first-order relaxation — no residual
-       withdrawal term in the ODE itself.  All biology is encoded in DATarget. -->
   <def>
     <name> TonicDA </name>
     <val> ( DA_BASELINE
@@ -395,17 +275,7 @@
        Prediction converges on the experienced reward, so a repeatedly
        experienced reward eventually drives the LEARNABLE part of RPE -> 0.
 
-       BUG FIX: D_drug is EXCLUDED from the learning update (Redish 2004).
-       D_drug is the non-compensable pharmacological VTA signal — by definition
-       it cannot be predicted away.  Including it here (as LEARN_RATE * PredictionError)
-       causes two problems:
-         (1) RewardPrediction overshoots ActualReward during drinking because
-             D_drug keeps PredictionError positive even when V ≈ R.
-         (2) During abstinence, the over-shot RewardPrediction creates a spurious
-             NEGATIVE RPE (0 - V > ActualReward) and corresponding DA dip that is
-             an artifact of the wrong learning rule, not real withdrawal physiology.
-       D_drug enters ONLY the DA output path via PredictionError — it does NOT
-       feed back into the synaptic weight update path (ChangePrediction). -->
+        -->
   <def>
     <name> ChangePrediction </name>
     <val> LEARN_RATE * ( ActualReward - RewardPrediction ) </val>
@@ -432,16 +302,7 @@
     <val> ( ATarget - AProcess ) / TauA </val>
   </def>
 
-  <!-- ===== B-process (slow withdrawal / craving) =====
-       BUG 1 FIX: BTarget is driven by AProcess, NOT DrugDrive.
-       B is the brain's counter-regulatory RESPONSE to A-process activation,
-       not a direct response to the drug itself
-       (Koob & Le Moal 2001; Chou & D'Orsogna 2022).
-       This ensures: (a) B only builds while A is active; (b) B outlasts
-       the drug because A outlasts BAC (TAU_A_DECAY >> drug clearance);
-       (c) B never fires without a prior A-process peak.
-       BGain grows with use (sensitization): same A peak -> larger B each episode.
-       Slow rise, very long decay -> long-lasting craving aftereffect. -->
+  <!-- ===== B-process (slow withdrawal / craving) ===== -->
   <def>
     <name> BTarget </name>
     <val> BGain * AProcess </val>
@@ -459,14 +320,7 @@
     <val> ( BTarget - BProcess ) / TauB </val>
   </def>
 
-  <!-- ===== AllostaticOffset (very slow B-process shadow) =====
-       FEATURE GAP 1 FIX: first-order relaxation toward BProcess.
-       dAllostaticOffset/dt = ( BProcess - AllostaticOffset ) / TAU_ALLOSTATIC
-       When BProcess is sustained, AllostaticOffset slowly rises toward it.
-       When BProcess drops to 0 (sobriety), AllostaticOffset decays toward 0
-       with the same long time constant — the allostatic "scar" lingers for weeks.
-       This variable feeds into TonicDA via DA_SCALE_ALLO, producing the chronic
-       below-baseline DA tone documented in long-term alcoholics (Volkow et al. 2002). -->
+  <!-- ===== AllostaticOffset (very slow B-process shadow) ===== -->
   <def>
     <name> ChangeAllostaticOffset </name>
     <val> ( BProcess - AllostaticOffset ) / TAU_ALLOSTATIC </val>
@@ -539,13 +393,8 @@
   <!-- Craving scale (0-10): three drivers —
        (1) acute BProcess (withdrawal-driven negative affect),
        (2) learned RewardPrediction (cue-driven / incentive salience),
-       (3) StressLevel (CRF-proxy; negative-reinforcement "dark side" craving).
-       FEATURE GAP 3 FIX: StressLevel * STRESS_CRAVING_K added as third term.
-       At chronic heavy use (StressLevel ~0.3, STRESS_CRAVING_K = 0.80):
-         additional craving = 0.24 arb. units — comparable to the BProcess * 1.2 term
-         at moderate withdrawal, so stress craving becomes significant but does not
-         swamp the acute signal during the early-use phase.
-       BUGFIX #5: full expression grouped before clamping. -->
+       (3) StressLevel (CRF-proxy; negative-reinforcement "dark side" craving). -->
+
   <def>
     <name> EmotionalCraving </name>
     <val> ( ( ( BProcess * 1.2 )
