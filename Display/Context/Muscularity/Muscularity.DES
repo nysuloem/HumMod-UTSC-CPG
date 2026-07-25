@@ -31,26 +31,49 @@ By: Jason Brown UTSC
   <days/>
 </showclock>
 
+<label>
+  <row> 3.5 </row><col> 4.5 </col>
+  <text> Muscle Mass </text>
+</label>
+
 <radiobuttons>
-  <row> 5 </row><col> 1.0 </col>
+  <row> 5 </row><col> 4.5 </col>
   <name> Context-Muscularity.Index </name>
   <listname> Common.Muscularity </listname>
 </radiobuttons>
 
 <showvalue>
-  <row> 8 </row><col> 3.0 </col>
+  <row> 6.5 </row><col> 4.5 </col>
   <name> Context-Muscularity.Mass(kG) </name>
   <format><decimal> 1 </decimal></format>
   <label> Muscle Mass (kg) </label>
 </showvalue>
 
 <infobutton>
-  <row> 7 </row>
-  <col> 47 </col>
+  <row> 6.5 </row>
+  <col> 50 </col>
   <line> "Trained Athlete" only indicates a high level</line>
   <line> of muscularity but does not imply that the </line>
   <line> participant has any other athletic characteristics </line>
 </infobutton>
+
+<label>
+  <row> 9.5 </row><col> 4.5 </col>
+  <text> Muscle Composition </text>
+</label>
+
+<radiobuttons>
+  <row> 11 </row><col> 4.5 </col>
+  <name> Context-Muscularity.MuscleComposition </name>
+  <listname> Common.MuscleComposition </listname>
+</radiobuttons>
+
+<showvalue>
+  <row> 12.5 </row><col> 4.5 </col>
+  <name> Context-Muscularity.Efficiency(%) </name>
+  <format><decimal> 1 </decimal></format>
+  <label> Muscle Efficiency (%) </label>
+</showvalue>
 
 </panel>
 

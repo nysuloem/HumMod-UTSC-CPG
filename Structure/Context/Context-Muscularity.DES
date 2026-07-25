@@ -11,6 +11,7 @@ By : University of Mississippi Medical Center
 <variables>
 
   <parm><name> Index </name><val> 1 </val></parm>
+  <parm><name> MuscleComposition </name><val> 3 </val></parm>
   <parm><name> PlusMinus </name><val> 0 </val></parm>
 
   <constant><name> MALE_BELOWNORMAL    </name><val> 18.0 </val></constant>
@@ -26,11 +27,16 @@ By : University of Mississippi Medical Center
   <var><name> NominalMass </name></var>
   <var><name> Mass </name></var>
   <var><name> Mass(kG) </name></var>
+  <var><name> Efficiency(%) </name></var>
 
   <var><name> IsBelowNormal    </name></var>
   <var><name> IsNormal         </name></var>
   <var><name> IsAboveNormal    </name></var>
   <var><name> IsTrainedAthlete </name></var>
+
+  <var><name> IsPower </name></var>
+  <var><name> IsEndurance </name></var>
+  <var><name> IsNeutral </name></var>
 
   <var><name> Stochasm </name></var>
   <var><name> MuscleAdjust </name></var>
@@ -70,6 +76,10 @@ By : University of Mississippi Medical Center
 <call> Context.Calc </call>
 </onjustchanged>
 
+<onjustchanged><name> MuscleComposition </name>
+<call> Context.Calc </call>
+</onjustchanged>
+
 <onjustchanged><name> PlusMinus </name>
 <call> Context.Calc </call>
 </onjustchanged>
@@ -82,6 +92,10 @@ By : University of Mississippi Medical Center
 <def><name> IsNormal         </name><val> FALSE </val></def>
 <def><name> IsAboveNormal    </name><val> FALSE </val></def>
 <def><name> IsTrainedAthlete </name><val> FALSE </val></def>
+
+<def><name> IsPower </name><val> FALSE </val></def>
+<def><name> IsEndurance </name><val> FALSE </val></def>
+<def><name> IsNeutral </name><val> FALSE </val></def>
 
 <if><test> Context-Sex.IsFemale </test>
   <true><call> CalcFemale </call></true> <!-- If  you do the female muscularity, then women die when they have to work-->
@@ -101,6 +115,25 @@ By : University of Mississippi Medical Center
      * MuscleAdjust
   </val>
 </def>
+
+<testcase>
+
+<case><test> MuscleComposition EQ 1 </test>
+  <def><name> Efficiency(%) </name><val> 30  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> IsPower </name><val> TRUE </val></def>
+</case>
+
+<case><test> MuscleComposition EQ 2 </test>
+  <def><name> Efficiency(%) </name><val> 80  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> IsEndurance </name><val> TRUE </val></def>
+</case>
+
+<case><test> MuscleComposition EQ 3 </test>
+  <def><name> Efficiency(%) </name><val> 50  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> IsNeutral </name><val> TRUE </val></def>
+</case>
+
+</testcase>
 
 <def>
   <name> Mass </name>

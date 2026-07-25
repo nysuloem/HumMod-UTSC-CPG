@@ -12,7 +12,6 @@ By : University of Mississippi Medical Center
 
 <parm><name> Power(W) </name><val> 0.0 </val></parm>
 <parm><name> RPM </name><val> 50.0 </val></parm>
-<parm><name> Efficiency(%) </name><val> 30.0 </val></parm>
 
 <var><name> Power(kPM/Min) </name></var>
 <var><name> Efficiency </name></var>
@@ -38,7 +37,7 @@ By : University of Mississippi Medical Center
 
   <def>
     <name> Efficiency </name>
-    <val> 0.01 * Efficiency(%) </val>
+    <val> 0.01 * Context-Muscularity.Efficiency(%) </val>
   </def>
 
   <def>

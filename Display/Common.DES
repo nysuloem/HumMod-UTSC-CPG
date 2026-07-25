@@ -158,6 +158,13 @@ from 0 to 200 mmHg.
 </maplist>
 
 <maplist>
+  <name> Common.MuscleComposition </name>
+  <map><val> 1 </val><img> Power </img></map>
+  <map><val> 2 </val><img> Endurance </img></map>
+  <map><val> 3 </val><img> Balanced </img></map>
+</maplist>
+
+<maplist>
   <name> Common.OtherMass </name>
   <map><val> 0 </val><img> Small </img></map>
   <map><val> 1 </val><img> Normal </img></map>
