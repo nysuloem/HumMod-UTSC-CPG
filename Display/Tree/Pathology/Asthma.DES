@@ -1,0 +1,17 @@
+HumMod / PagetsDisease DES
+
+
+
+<branch>
+  <name> Asthma </name>
+  <label> Asthma </label>
+  <parent> PATHOLOGY </parent>
+</branch>
+
+<leaf>
+  <name> AsthmaTypes </name>
+  <label> Types </label>
+  <parent> Asthma </parent>
+</leaf>
+
+End

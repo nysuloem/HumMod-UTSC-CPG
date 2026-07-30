@@ -6,13 +6,10 @@ Author : Tom Coleman
 Copyright : 2013-2013
 By : Tom Coleman
 
-<panel><name> Inhalers </name>
-
 <?path Display\Intervention\Inhalers\ ?>
 
 <?include Dosing\Dosing.DES ?>
 <?include Kinetics\Kinetics.DES ?>
 
-<panel>
 
 End

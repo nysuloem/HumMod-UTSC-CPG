@@ -17,6 +17,7 @@ By : University of Mississippi Medical Center
 <?include Drugs\Drugs.DES ?>
 <?include Fluids\Fluids.DES ?>
 <?include Hemodialysis\Hemodialysis.DES ?>
+<?include Inhalers\Inhalers.DES ?>
 <?include InfusionPumps\InfusionPumps.DES ?>
 <?include InsulinInjection\InsulinInjection.DES ?>
 <?include PericardialDrain\PericardialDrain.DES ?>

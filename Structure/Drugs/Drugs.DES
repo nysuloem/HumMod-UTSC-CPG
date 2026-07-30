@@ -118,6 +118,7 @@ By : University Of Mississippi Medical Center
   <call> Reserpine.Wrapup </call>
   <call> Warfarin.Wrapup </call>
   <call> Morphine.Wrapup </call>
+  <call> SalbutamolInhaler.Wrapup </call>
 
 </block>
 

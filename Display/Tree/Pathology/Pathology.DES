@@ -11,6 +11,7 @@ HumMod / Pathology.DES
 <?path Display\Tree\Pathology\ ?>
 
 <?include Diabetes.DES ?>
+<?include Asthma.DES ?>
 <?include AdrenalInsufficiency.DES ?>
 <?include PagetsDisease.DES ?>
 <?include PreEclampsia.DES ?>

@@ -12,11 +12,11 @@ We need both BTPS and STPD volumes.
 
 <variables>
 
-<constant><name> SPONTANEOUS   </name><val> 0 </val></constant>
-<constant><name> CPR           </name><val> 1 </val></constant>
-<constant><name> VENTILATOR    </name><val> 2 </val></constant>
-<constant><name> BREATHHOLDING </name><val> 3 </val></constant>
-<constant><name> NONE          </name><val> 4 </val></constant>
+<constant><name> SPONTANEOUS     </name><val> 0 </val></constant>
+<constant><name> CPR             </name><val> 1 </val></constant>
+<constant><name> VENTILATOR      </name><val> 2 </val></constant>
+<constant><name> BREATHHOLDING  </name><val> 3 </val></constant>
+<constant><name> NONE            </name><val> 4 </val></constant>
 
 <var><name> Type </name><val> 0 </val></var>
 <var><name> TotalVentilation </name></var>
@@ -30,6 +30,7 @@ We need both BTPS and STPD volumes.
 <var><name> DeadSpaceFract </name></var>
 <parm><name> DeadSpaceSlope </name><val> 0.20 </val></parm>
 <parm><name> DeadSpaceMin </name><val> 60.0 </val></parm>
+<parm><name> Index </name><val> 0 </val></parm>
 <var><name> AlveolarVolume </name></var>
 <var><name> TotalVentilation(L-STPD) </name></var>
 <var><name> AlveolarVentilation(L-STPD) </name></var>
@@ -40,11 +41,13 @@ We need both BTPS and STPD volumes.
 <var><name> AlveolarVolume(STPD) </name></var>
 <var><name> Drive </name></var>
 <var><name> LungVolAgeAdjust</name></var>
-<var><name> TempAsthma</name></var>
+<var><name> HomeostaticRecovery </name><val> 0.0 </val></var>
+<var><name> TempAsthmaEffect </name></var>
+
 <var><name> MoreBlockage</name><val> 0 </val></var>
 <var><name> LessBlockage</name></var>
-<var><name> VentolinAsthma</name></var>
-
+<var><name> SalbutamolAsthma</name></var>
+<var><name> BaseAsthma </name></var>
 
 </variables>
 
@@ -52,8 +55,8 @@ We need both BTPS and STPD volumes.
 
 <curve>
   <name> DriveOnTidalVolume </name>
-  <point><x>  0 </x><y>    0 </y><slope>   0 </slope></point>
-  <point><x>  1 </x><y>  550 </y><slope> 400 </slope></point>
+  <point><x>   0 </x><y>    0 </y><slope>   0 </slope></point>
+  <point><x>   1 </x><y>  550 </y><slope> 400 </slope></point>
   <point><x> 10 </x><y> 2630 </y><slope>   0 </slope></point>
 </curve>
 
@@ -65,17 +68,19 @@ We need both BTPS and STPD volumes.
   <point><x> 90 </x><y> 0.75 </y><slope>0.025</slope></point>
 </curve>
 
+<!-- Cold asthma response curve -->
 <curve>
   <name> TempAsthma </name>
-  <point><x> -20 </x><y> 0.5 </y><slope> 0 </slope></point>
-  <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
+  <point><x> -30 </x><y> 0.03 </y><slope> 0 </slope></point>
+  <point><x> -10 </x><y> 0.01 </y><slope> 0 </slope></point>
   <point><x> 20 </x><y> 0 </y><slope> 0 </slope></point>
 </curve>
 
+<!-- Max bronchodilation response from Ventolin deposition mass -->
 <curve>
-  <name> VentolinAsthma </name>
+  <name> SalbutamolAsthma </name>
   <point><x> 0 </x><y> 0 </y><slope> 0 </slope></point>
-  <point><x> 30 </x><y> 1 </y><slope> 0 </slope></point>
+  <point><x> 8 </x><y> 0.08 </y><slope> 0 </slope></point>
 </curve>
 
 </functions>
@@ -98,32 +103,57 @@ We need both BTPS and STPD volumes.
     <val> LungVolAdjustAge [ Context-Age.Age(Years) ] </val>
   </def> 
 
-<def>
-    <name>TempAsthma</name>
+  <!-- Evaluate ambient cold effect unconditionally so cold exposure always causes asthma -->
+  <def>
+    <name>TempAsthmaEffect</name>
     <val> TempAsthma [ AmbientTemperature.Temp(C) ] </val>
   </def> 
 
-<def>
-    <name>VentolinAsthma</name>
-    <val> VentolinAsthma [ VentolinInhaler.[Ventolin] ] </val>
+<if><test> Index EQ 0 </test>
+<true> 
+  <def>
+    <name>BaseAsthma</name>
+    <val> 0 </val>
+  </def> 
+</true>
+<false>
+  <def>
+    <name>BaseAsthma</name>
+    <val> 0.002 </val>
+  </def> 
+</false></if>
+
+  <!-- Evaluate drug deposition from inhaler -->
+  <def>
+    <name>SalbutamolAsthma</name>
+    <val> SalbutamolAsthma [ SalbutamolInhaler.DepositionMass ] </val>
   </def> 
 
   <def>
     <name>MoreBlockage</name>
-    <val> TempAsthma </val>
+    <val> TempAsthmaEffect + BaseAsthma </val>
   </def> 
 
   <def>
     <name>LessBlockage</name>
-    <val> VentolinAsthma </val>
+    <val> SalbutamolAsthma + Blockage * 0.01 </val>
   </def> 
 
+  <!-- Homeostatic recovery ONLY engages when Blockage < 0 meaning it dilated past baseline. -->
+  <!-- It no longer forces Blockage back down to 0 when cold asthma (Blockage > 0) is active. -->
+  <conditional>
+    <name> HomeostaticRecovery </name>
+    <test> Blockage LT 0 </test>
+    <true> -0.05 * Blockage </true>
+    <false> 0.0 </false>
+  </conditional>
 
   <def>
     <name>Change</name>
-    <val> MoreBlockage - LessBlockage </val>
+    <val> ( 0.1 * ( MoreBlockage - LessBlockage ) ) + HomeostaticRecovery </val>
   </def> 
 
+  <!-- Allow Drive to increase (>1.0) when Blockage < 0 and decrease (<1.0) when Blockage > 0 -->
   <def>
     <name> Drive </name>
     <val> DriveOnTidalVolume [ RespiratoryCenter-Output.MotorNerveActivity ]

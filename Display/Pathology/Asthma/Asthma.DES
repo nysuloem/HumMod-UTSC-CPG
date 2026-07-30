@@ -1,0 +1,31 @@
+
+
+
+<panel><name> AsthmaTypes </name>
+
+    <showclock>
+      <row> 0.3 </row><col> 36.0 </col>
+      <name> System.X </name>
+      <ampm/>
+      <secs/>
+      <days/>
+    </showclock>
+    
+    <groupbox>
+       <row> 2.0 </row>
+       <col> 1.0 </col>
+       <high> 15.8 </high>
+       <wide> 50.0 </wide>
+       <title> Type of Asthma </title>
+    
+    <structurename> Breathing </structurename>
+
+    <radiobuttons>
+      <row> 1.4 </row><col> 1.0 </col>
+      <name> Index </name>
+      <listname> Common.Asthma </listname>
+    </radiobuttons>
+
+  </groupbox>
+
+</panel>

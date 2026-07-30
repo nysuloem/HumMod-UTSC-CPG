@@ -370,6 +370,7 @@ By : University of Mississippi Medical Center
 <call> NO.CalcConc </call>
   <call> NOPool.CalcConc </call>
   <call> Drugs.CalcConc </call>
+  <call> Puffers.CalcConc </call>
 
   <call> NaPool.CalcConc </call>
   <call> K.Conc </call>
@@ -485,6 +486,7 @@ By : University of Mississippi Medical Center
   <call> BloodVessels.CalcPressure(2) </call>
 
   <call> Peritoneum.Dervs </call>
+  <call> Puffers.Dervs </call>
   <call> Hemodialysis.Dervs </call>
 
   <call> CO.Calc </call>
@@ -613,7 +615,6 @@ By : University of Mississippi Medical Center
 
   <call> NO.Dervs </call>
   <call> NOPool.Dervs </call>
-  <call> Puffers.Dervs </call>
 
   <call> LeftHeart-Work.Calc </call>
   

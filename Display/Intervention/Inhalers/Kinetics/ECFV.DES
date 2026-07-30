@@ -9,18 +9,18 @@ Schema : DES V1.0
 
 <groupbox>
    <row> 2.0 </row>
-   <col> 32.0 </col>
+   <col> 1.0 </col>
    <high> 18.4 </high>
    <wide> 30.0 </wide>
-   <title> Lung Ventolin </title>
+   <title> Lung Salbutamol </title>
 
-<structurename> VentolinPool </structurename>
+<structurename> SalbutamolInhaler </structurename>
 
 <showvalue>
    <row> 1.4 </row><col> 1.0 </col>
-   <name> [Ventolin]</name>
+   <name> [Salbutamol]</name>
    <format><decimal> 2 </decimal></format>
-   <label> [Ventolin] </label>
+   <label> [Salbutamol] </label>
 </showvalue>
 
 <showgraph>
@@ -33,11 +33,11 @@ Schema : DES V1.0
   </xaxis>
   <yaxis>
     <yvar>
-      <name> [Ventolin] </name>
+      <name> [Salbutamol] </name>
       <nolabel/>
       <linecolor> BLUE </linecolor>
     </yvar>
-    <scale><min> 0 </min><max> 1.0 </max></scale>
+    <scale><min> 0 </min><max> 0.001 </max></scale>
   </yaxis>
 </showgraph>
 
@@ -75,6 +75,47 @@ Schema : DES V1.0
    <name> LungVolumes.TotalCapacity </name>
    <format><decimal> 1 </decimal></format>
    <label> Total Lung Capacity </label>
+</showvalue>
+
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 32.0 </col>
+   <high> 18.4 </high>
+   <wide> 30.0 </wide>
+   <title> Plasma Salbutamol </title>
+
+<showvalue>
+   <row> 1.4 </row><col> 1.0 </col>
+   <name> SalbutamolPool.[Salbutamol]</name>
+   <format><decimal> 2 </decimal></format>
+   <label> [Plasma Salbutamol] </label>
+</showvalue>
+
+<showgraph>
+  <row> 2.4 </row><col> 1.0 </col><high> 7 </high><wide> 28 </wide>
+  <leftmargin> 6 </leftmargin>
+  <xaxis>
+    <name> System.X </name>
+    <label> Time </label>
+    <scale><min> 0 </min><max> 2 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> SalbutamolPool.[Salbutamol] </name>
+      <nolabel/>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 0.001 </max></scale>
+  </yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 15 </row><col> 1.0 </col>
+   <name> SalbutamolInhaler.DepositionMass</name>
+   <format><decimal> 2 </decimal></format>
+   <label> DepositionMass </label>
 </showvalue>
 
 </groupbox>

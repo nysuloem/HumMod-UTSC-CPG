@@ -12,9 +12,9 @@ Schema : DES V1.0
    <col> 1.0 </col>
    <high> 10.2 </high>
    <wide> 40.0 </wide>
-   <title> Ventolin Inhaler Dose </title>
+   <title> Salbutamol Inhaler Dose </title>
 
-<structurename> VentolinInhaler </structurename>
+<structurename> SalbutamolInhaler </structurename>
 
 <actionbutton> 
   <row> 1.4 </row><col> 1.0 </col>
