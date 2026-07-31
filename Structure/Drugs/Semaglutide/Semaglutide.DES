@@ -32,7 +32,12 @@ Schema : DES V1.0
 </var>
 
 <var>
-  <name> [Semaglutide] </name>
+  <name> [FreeSemaglutide] </name>
+  <val> 0.0 </val>
+</var>
+
+<var>
+  <name> [BoundSemaglutide] </name>
   <val> 0.0 </val>
 </var>
 
@@ -50,30 +55,61 @@ Schema : DES V1.0
 
 <var>
   <name> KOff </name>
-  <val> 2.0 </val>
+  <val> 0.000845 </val>
 </var>
 
 <var>
   <name> KOn </name>
-  <val> 200 </val>
+  <val> 300 </val>
 </var>
 
 <var>
   <name> KDeg </name>
-  <val> 20 </val>
+  <val> 0.015 </val>
+</var>
+
+<var>
+  <name> KSkin </name>
+  <val> 0.000015 </val>
+</var>
+
+<var>
+  <name> KSkinDegrade </name>
+  <val> 0.00002 </val>
+</var>
+
+<var>
+  <name> SkinToBlood </name>
 </var>
 
 <timervar><name> ResetDose </name><val> 0 </val><state> OFF </state></timervar>
+<timervar><name> WeeklyAuto </name><val> 1 </val><state> OFF </state></timervar>
 
 </variables>
 
 <equations>
 
 <diffeq>
-  <name> Mass </name>
-  <integralname> Mass </integralname><!-- ng -->
+  <name> FreeMass </name>
+  <integralname> FreeMass </integralname><!-- ng -->
   <initialval> 0.0 </initialval>
-  <dervname> Change </dervname>
+  <dervname> FreeChange </dervname>
+  <errorlim> 0.025 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> BoundMass </name>
+  <integralname> BoundMass </integralname><!-- ng -->
+  <initialval> 0.0 </initialval>
+  <dervname> BoundChange </dervname>
+  <errorlim> 0.025 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> SkinMass </name>
+  <integralname> SkinMass </integralname><!-- ng -->
+  <initialval> 0.0 </initialval>
+  <dervname> SkinChange </dervname>
   <errorlim> 0.025 </errorlim>
 </diffeq>
 
@@ -83,10 +119,11 @@ Schema : DES V1.0
 
 <block><name> TakeAdultDoseNow </name>
 <timer><name> ResetDose </name> <state> UP </state> </timer>
+<timer><name> WeeklyAuto </name> <val> 10080 </val> <state> DOWN </state> </timer>
 
 <def>
-  <name> Mass </name>
-  <val> Mass + ( Dose ) </val>
+  <name> SkinMass </name>
+  <val> SkinMass + ( Dose ) </val>
 </def>
 
 <def>
@@ -109,26 +146,35 @@ Schema : DES V1.0
 <block><name> Wrapup </name> 
 <if><test> ResetDose GE 1 </test>
 <true><timer><name> ResetDose </name><val> 0 </val><state> OFF </state></timer>
-<def><name> Dose </name><val> 0 </val></def></true></if></block>
+<def><name> Dose </name><val> 0 </val></def></true></if>
+
+<if><test> WeeklyAuto EQ 0 </test>
+<true><def><name> Dose </name><val> 2 </val></def><call> TakeAdultDoseNow </call>
+</true></if></block>
 
 <block><name> Dervs </name>
 <def>
   <name> Sequestration </name>
-  <val> Mass * KOn * AlbuminPool.[Alb(mmol/mL)] </val>
+  <val> FreeMass * KOn * AlbuminPool.[Alb(mmol/mL)] </val>
 </def>
 
 <def>
   <name> Mobilization </name>
-  <val>  KOff </val>
+  <val>  KOff * BoundMass </val>
 </def>
 
 <def>
   <name> Degradation </name>
-  <val>  Mass * KDeg </val>
+  <val>  FreeMass * KDeg </val>
 </def>
 
-<def><name> Change </name><val>  Mobilization - Sequestration - Degradation </val></def>
-<def><name> [Semaglutide] </name><val> Mass / ECFV.Vol * 243 </val></def>
+<def><name> SkinToBlood </name><val>  Skin-Flow.BloodFlow * SkinMass * KSkin </val></def>
+<def><name> SkinChange </name><val> - ( SkinToBlood + KSkinDegrade ) </val></def>
+<def><name> FreeChange </name><val>  Mobilization + SkinToBlood - Sequestration - Degradation </val></def>
+<def><name> [FreeSemaglutide] </name><val> FreeMass / ECFV.Vol * 243000000.1 </val></def>
+<def><name> BoundChange </name><val> Sequestration - Mobilization </val></def>
+<def><name> [BoundSemaglutide] </name><val> BoundMass / ECFV.Vol * 243000000.1 </val></def>
+
 </block>
 
 
