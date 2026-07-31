@@ -791,6 +791,8 @@ By : University of Mississippi Medical Center
 
   <call> HaveSex.Parms</call>
   <call> Ovaries.Dervs </call>
+  <call> Uterus-PE.RiskCalc </call>
+  <call> Uterus-PE.RiskOutcomeCalc </call>
   <call> Uterus-Conditional.Dervs </call>
   <call> Testes.Dervs </call>
   <call> Genitalia.Dervs </call>
