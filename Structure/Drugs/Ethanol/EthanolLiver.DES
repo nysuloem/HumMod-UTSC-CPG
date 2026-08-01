@@ -27,6 +27,11 @@ Schema : DES V1.0
 <var><name> ALCDH_K </name><val> 0.01 </val></var> <!-- This is alcohol dehydrogenase -->
 <var> <name> ALDH_K </name><val> 1.67 </val></var> <!-- This is acetaldehyde dehydrogenase-->
 
+<var><name> Asian </name></var>
+<var><name> Black </name></var>
+<var><name> White </name></var>
+<var><name> Hispanic </name></var>
+
 </variables>
 
 <equations>
@@ -54,9 +59,7 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 
    <!-- ALDH_Vmax should vary with ethnicity -->
-   <!-- Need to work on this later -->
-<!--
-<def><name> Asian </name><val> 0.5 </val></def> 
+<def><name> Asian </name><val> 0.5 </val></def> <!-- Edit number to see if works -->
 <def><name> Black </name><val> 1 </val></def> 
 <def><name> White </name><val> 1 </val></def>
 <def><name> Hispanic </name><val> 1 </val></def>
@@ -69,8 +72,6 @@ Schema : DES V1.0
     - 1 
   </val>
 </def> 
-
--->
 
 <def>
   <name> PoolLoss </name>

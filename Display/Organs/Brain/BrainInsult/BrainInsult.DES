@@ -40,6 +40,7 @@ Schema : DES V1.0
 <?include Fuel.DES ?>
 <?include High[Osm].DES ?>
 <?include Anesthetic.DES ?>
+<?include Ethanol.DES ?>
 
 </panel>
 

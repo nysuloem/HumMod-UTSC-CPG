@@ -22,6 +22,7 @@ Schema : DES V1.0
 <var><name> IsReallyDead </name><val> FALSE </val></var>
 <var><name> NotResponding </name><val> FALSE </val></var>
 <var><name> LastState </name><val> 0 </val></var>
+<var><name> BAC_Confused </name><val> 0 </val></var>
 
 </variables>
 
@@ -96,67 +97,68 @@ Schema : DES V1.0
 
 </block>
 
-<block><name> Page </name>
+<block><name> Page </name> <!-- Uncommented pagesss! -->
 
 <testcase>
 
 <case>
 <test> ( Effect EQ 0.0 ) AND ( LastState LT 6 ) </test>
-<!--<page> Your patient is dead ... </page>-->
+<page> Your patient is dead ... </page>
 <def><name> LastState </name><val> 6 </val></def>
 </case>
 
 <case>
 <test> ( Effect LE 0.1 ) AND ( LastState LT 5 ) </test>
-<!--<page> Your patient may be dead! </page>-->
+<page> Your patient may be dead! </page>
 <def><name> LastState </name><val> 5 </val></def>
 </case>
 
 <case>
 <test> ( Effect LE 0.2 ) AND ( LastState LT 4 ) </test>
-<!--<page> Your patient is not breathing! </page>-->
+<page> Your patient is not breathing! </page>
 <def><name> LastState </name><val> 4 </val></def>
 </case>
 
 <case>
 <test> ( Effect LE 0.4 ) AND ( LastState LT 3 ) </test>
-<!--<page> Your patient is not conscious! </page>-->
+<page> Your patient is unconscious! </page>
 <def><name> LastState </name><val> 3 </val></def>
 </case>
 
 <case>
 <test> ( Effect LE 0.6 ) AND ( LastState LT 2 ) </test>
-<!--<page> I can't talk wery bell ... </page>-->
+<page> I can't talk wery bell ... </page>
 <def><name> LastState </name><val> 2 </val></def>
 </case>
 
 <case>
 <test> ( Effect LE 0.8 ) AND ( LastState LT 1 ) </test>
-<!--<page> I'm like confused. </page>-->
+<page> I'm like confused. </page> 
+<def><name> BAC_Confused </name><val> EthanolPool.[Ethanol] </val></def>
 <def><name> LastState </name><val> 1 </val></def>
 </case>
 
 <case>
 <test> ( Effect GE 0.95 ) AND ( LastState GT 0 ) </test>
-<!--<page> Now I'm feeling better. </page>-->
+<page> Now I'm feeling better. </page>
 <def><name> LastState </name><val> 0 </val></def>
 </case>
 
 <case>
 <test> ( Effect GE 0.60 ) AND ( LastState GT 3 ) </test>
-<!--<page> Your patient seems to be conscious again. </page>-->
+<page> Your patient seems to be conscious again. </page>
 <def><name> LastState </name><val> 3 </val></def>
 </case>
 
 <case>
 <test> ( Effect GE 0.40 ) AND ( LastState GT 4 ) </test>
-<!--<page> Your patient is breathing again. </page>-->
+<page> Your patient is breathing again. </page>
 <def><name> LastState </name><val> 4 </val></def>
 </case>
 
 <case>
 <test> ( Effect GE 0.20 ) AND ( LastState GE 5 ) </test>
-<!--<page> Wait. Your patient is NOT dead! </page>-->
+<page> Wait. Your patient is NOT dead! </page>
 <def><name> LastState </name><val> 5 </val></def>
 </case>
 
