@@ -15,7 +15,7 @@ By : University Of Mississippi Medical Center
 
 <structurename> NicotineInhaler </structurename>
 
-<actionbutton>
+<actionbutton> <!-- fix -->
   <row> 1.4 </row><col> 1.0 </col>
   <blockname> Inhale </blockname>
   <label> Use Inhaler Now </label>
@@ -67,4 +67,3 @@ By : University Of Mississippi Medical Center
 </groupbox>
 
 End
-

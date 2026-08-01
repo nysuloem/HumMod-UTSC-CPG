@@ -1,0 +1,86 @@
+HumMod / EthanolBrain
+
+Created : 02-Feb-2025
+Last Modified : May 2026
+Author : Tiffany Bishun
+Copyright : 2006-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> EthanolBrain </name>
+
+<variables>
+
+<var><name> Reward </name></var>
+<var><name> Craving </name></var>
+<var><name> LongTermExposure </name></var>
+<var><name> BaseReward </name></var>
+<var><name> DaysSober </name></var>
+
+</variables>
+
+<!-- Culmative exposure to ethanol: TotalExposure = cumulative BAC exposure over the entire simulation -->
+<equations>
+<diffeq>
+  <name> TotalExposure </name>
+  <integralname> TotalExposure </integralname>
+  <initialval> 0 </initialval>
+  <dervname> ExposureRate </dervname>
+  <errorlim> 0.0001 </errorlim>
+</diffeq>
+
+</equations>
+
+<functions>
+<!-- Dose-Response Curve (Inverted-U) -->
+<curve>
+  <name> DoseResponse </name>
+  <point><x> 0.00 </x><y> 0.0 </y><slope> 1 </slope></point> <!-- no alcohol, no reward -->
+  <point><x> 0.03 </x><y> 0.5 </y><slope> 12.5 </slope></point>   <!-- mild stimulation -->
+  <point><x> 0.07 </x><y> 1.0 </y><slope> 0.1 </slope></point> <!-- peak reward -->
+  <point><x> 0.10 </x><y> 0.7 </y><slope> -10 </slope></point>   <!-- decline (starting sedation) -->
+  <point><x> 0.20 </x><y> 0.2 </y><slope> 0 </slope></point>   <!-- high BAC (sedation) -->
+  <!-- (x) BAC ; (y) Reward -->
+</curve>
+</functions>
+
+
+<definitions>
+<block>
+
+  <name> Calc </name>
+
+<def>
+  <name> ExposureRate </name>
+  <val> EthanolPool.[Ethanol] </val>
+</def>
+<!-- Exposure Rate is current BAC
+ BAC feeds into ExposureRate ExposureRate feeds into TotalExposure -->
+
+<def>
+  <name> LongTermExposure </name>
+  <val> ( ( TotalExposure / 800 ) - ( EthanolDailyDose.DaysSober * 0.03 ) ) MAX 0 </val> <!-- minus days sober -->
+</def>
+<!-- Dividing by 800 slows accumulation of LTE, more realistic - tolerance develops over weeks not days -->
+
+<def>
+  <name> Reward </name>
+  <val> DoseResponse [ EthanolPool.[Ethanol] ] </val>
+</def>
+<!-- Current BAC determines reward level - function of BAC (Dose-Response) -->
+
+<def>
+  <name> Craving </name>
+  <val> ( Reward * 0.3 ) + ( LongTermExposure * 0.7 ) + 0.05 </val>
+</def> 
+<!--reward should contribute less than chronic exposure for alcohol dependance
+ Due to LongTermExposure, Craving will gradually increase
+ + 0.05 was added as a baseline motivational drive. Prevents craving from being 0 when reward and LTE are 0.
+Craving is a function of reward and long-term exposure -->
+
+</block>
+</definitions>
+    
+</structure>
+
+End 

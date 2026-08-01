@@ -20,8 +20,10 @@ Schema : DES V1.0
 <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
 <var><name> TotalDoses </name><val> 0.0 </val></var>
 <var><name> CumulativeDose </name><val> 0.0 </val></var>
+<var><name> LastCumulativeDose </name><val> 0.0 </val></var> <!-- Added -->
 <constant><name> Density_ETOH </name><val> 0.789 </val></constant> <!-- 0.789 g/mL (ethanol density, used to convert volume to grams).-->
 <var><name> Mass </name><val> 0 </val></var>
+<var><name> DaysSober </name><val> 0 </val></var> <!-- Added -->
 
 <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
 <var><name> Interval </name></var>
@@ -35,6 +37,7 @@ Schema : DES V1.0
 <whitenoise><name> Likelihood </name></whitenoise>
 <parm><name> PercentChance </name><val> 1 </val></parm>
 <timervar><name> ResetDailyDose </name><val> 0 </val><state> OFF </state></timervar>
+<timervar><name> SoberDayTimer </name><val> 0 </val><state> OFF </state></timervar> <!-- Added -->
 
 </variables>
 
@@ -80,6 +83,12 @@ Schema : DES V1.0
 
 </if>
 
+<timer>
+   <name> SoberDayTimer </name>
+   <val> 1440 </val>
+   <state> DOWN </state>
+</timer>
+
 </onjustchanged>
 
 </block>
@@ -94,7 +103,7 @@ Schema : DES V1.0
 </def>
 
 <if>
-  <test> ( Likelihood LE PercentChance ) OR ( TakeDaily EQ 1 ) OR ( TakeDaily EQ 2 ) </test>
+  <test> ( Likelihood LE PercentChance ) OR ( TakeDaily EQ 1 ) OR ( TakeDaily EQ 2 ) OR ( EthanolBrain.Craving GT 0.5 ) </test>
   <true>
      <call> TakeFullDose </call>
   </true>
@@ -105,7 +114,35 @@ Schema : DES V1.0
   </timer>
 </false>
 </if>
+<!--If craving GT the threshold (0.5), then craving will determine drink, allows patient to be internally driven -->
+</ontimedout>
 
+<ontimedout>
+<name> SoberDayTimer </name>
+<if>
+<test> CumulativeDose LE LastCumulativeDose </test>
+<true>
+   <def>
+      <name> DaysSober </name>
+      <val> DaysSober + 1 </val>
+   </def>
+</true>
+<false>
+   <def>
+      <name> DaysSober </name>
+      <val> 0 </val>
+   </def>
+</false>
+</if>
+<def>
+   <name> LastCumulativeDose </name>
+   <val> CumulativeDose </val>
+</def>
+<timer>
+   <name> SoberDayTimer </name>
+   <val> 1440 </val>
+   <state> DOWN </state>
+</timer>
 </ontimedout>
 
 <if><test> ResetDailyDose GE 1 </test>
@@ -156,6 +193,7 @@ Schema : DES V1.0
 </def>
 
 <timer><name> ResetDailyDose </name>
+
   <state> UP </state>
 </timer>
 
@@ -192,6 +230,19 @@ Schema : DES V1.0
   <name> CumulativeDose </name>
   <val> 0.0 </val>
 </def>
+
+<!-- Added below in block Reset -->
+<def>
+  <name> LastCumulativeDose </name>
+  <val> 0.0 </val>
+</def>
+
+<def>
+  <name> DaysSober </name>
+  <val> 0 </val>
+</def>
+
+<!-- Added above -->
 
 </block>
 

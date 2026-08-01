@@ -24,14 +24,23 @@ By : Tiffany Bishun
 
 </functions>
 
+<!-- Effect from intoxication related to long term consumption
+ Wont get as intoxicated after drinking long term consumption, plot effect over time -->
+
 <definitions>
 
 <block><name> Calc </name>
 
 <def>
   <name> Effect </name>
-  <val> Intoxication [ EthanolPool.[Ethanol] ] </val>
+  <val> 1 - ( ( 1 - Intoxication [ EthanolPool.[Ethanol] ] ) / ( 1 + EthanolBrain.LongTermExposure ) ) </val>
 </def>
+<!--(1 - Intoxication) calculates the reduction from normal brain function caused by the current BAC
+Divide impairment by (1 + LongTermExposure) to represent tolerance
+Subtract adjusted impairment from 1 so that BAC = 0 returns the brain effect to a value of 1
+
+Tried: 1 - ( ( 1 - Intoxication [ EthanolPool.[Ethanol] ] ) / ( 1 + EthanolBrain.LongTermExposure ) )  THEN   Intoxication [ EthanolPool.[Ethanol] ] / ( 1 + EthanolBrain.LongTermExposure )-->
+ <!-- Try multiplying by LTE, when no alcohol in system, brain effect should be 1 (functioning fine) -->
 
 </block>
 

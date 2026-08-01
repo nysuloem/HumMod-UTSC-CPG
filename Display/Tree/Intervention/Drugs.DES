@@ -258,6 +258,25 @@ By : University of Mississippi Medical Center
   <parent> Drugs-Midodrine </parent>
 </leaf>
 
+<!-- 
+<branch>
+  <name> Drugs-Nicotine </name>
+  <label> Nicotine </label>
+  <parent> Drugs </parent>
+</branch>
+
+<leaf>
+  <name> Drugs-Nicotine-Dosing </name>
+  <label> Dosing </label>
+  <parent> Drugs-Nicotine </parent>
+</leaf>
+
+<leaf>
+  <name> Drugs-Nicotine-Kinetics </name>
+  <label> Kinetics </label>
+  <parent> Drugs-Nicotine </parent>
+</leaf>
+-->
 <branch>
   <name> Drugs-NODrug </name>
   <label> NO/Nitroglycerin </label>
