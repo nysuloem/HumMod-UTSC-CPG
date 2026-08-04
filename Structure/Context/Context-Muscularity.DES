@@ -39,7 +39,11 @@ By : University of Mississippi Medical Center
   <var><name> IsNeutral </name></var>
 
   <var><name> Stochasm </name></var>
-  <var><name> MuscleAdjust </name></var>
+  <var><name> MuscleMassAdjust </name></var>
+  <var><name> AgeAdjustPower </name></var>
+  <var><name> AgeAdjustEfficiency </name></var>
+  <var><name> Power(W) </name></var>
+  <var><name> TotalPower </name></var>
 
 <normaldist>
   <name> Normal </name>
@@ -57,13 +61,31 @@ By : University of Mississippi Medical Center
 
 <functions>
 
-<curve><name> MuscularityAdjustAge </name>
+<curve><name> MuscleMassAdjustAge </name>
 <point><x> 0 </x><y> 0.08 </y><slope> 0.025 </slope></point>
 <point><x> 16 </x><y> 0.85 </y><slope>0.025</slope></point>
 <point><x> 20 </x><y> 1.0 </y><slope> 0.025 </slope></point>
 <point><x> 60 </x><y> 0.85 </y><slope>0.025</slope></point>
-<point><x> 70 </x><y> 1 </y><slope> 0.025 </slope></point>
+<point><x> 70 </x><y> 0.65 </y><slope> 0.025 </slope></point>
 <point><x> 90 </x><y> 0.40 </y><slope>0.025</slope></point>
+</curve>
+
+<curve><name> AgeAdjustPower </name>
+<point><x> 0 </x><y> 0.08 </y><slope> 0.040 </slope></point>
+<point><x> 16 </x><y> 0.85 </y><slope> 0.025 </slope></point>
+<point><x> 20 </x><y> 0.98 </y><slope> 0.005 </slope></point>
+<point><x> 60 </x><y> 0.85 </y><slope> -0.010 </slope></point>
+<point><x> 70 </x><y> 0.72 </y><slope> -0.014 </slope></point>
+<point><x> 90 </x><y> 0.40 </y><slope> -0.014 </slope></point>
+</curve>
+
+<curve><name> AgeAdjustEfficiency </name>
+<point><x> 0 </x><y> 0.65 </y><slope> 0.020 </slope></point>
+<point><x> 16 </x><y> 0.95 </y><slope> 0.008 </slope></point>
+<point><x> 20 </x><y> 1.00 </y><slope> 0.000 </slope></point>
+<point><x> 60 </x><y> 0.95 </y><slope> -0.003 </slope></point>
+<point><x> 70 </x><y> 0.90 </y><slope> -0.005 </slope></point>
+<point><x> 90 </x><y> 0.80 </y><slope> -0.005 </slope></point>
 </curve>
 
 </functions>
@@ -104,8 +126,14 @@ By : University of Mississippi Medical Center
 
 <call> CalcStochasm </call>
 
-<def><name>MuscleAdjust</name>
+<def><name>MuscleMassAdjust</name>
 <val> MuscularityAdjustAge [ Context-Age.Age(Years) ] </val></def>
+
+<def><name>MuscleEfficiencyAdjust</name>
+<val> AgeAdjustEfficiency [ Context-Age.Age(Years) ] </val></def>
+
+<def><name>MusclePowerAdjust</name>
+<val> AgeAdjustPower [ Context-Age.Age(Years) ] </val></def>
 
 <def>
   <name> Mass(kG) </name>
@@ -119,17 +147,20 @@ By : University of Mississippi Medical Center
 <testcase>
 
 <case><test> MuscleComposition EQ 1 </test>
-  <def><name> Efficiency(%) </name><val> 30  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> Efficiency(%) </name><val> 30  * ( 1.0 + ( Stochasm / 100 ) ) * MuscleEfficiencyAdjust </val></def>
+  <def><name> Power(W) </name><val> 300  * ( 1.0 + ( Stochasm / 100 ) ) * MusclePowerAdjust </val></def>
   <def><name> IsPower </name><val> TRUE </val></def>
 </case>
 
 <case><test> MuscleComposition EQ 2 </test>
-  <def><name> Efficiency(%) </name><val> 80  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> Efficiency(%) </name><val> 70  * ( 1.0 + ( Stochasm / 100 ) ) * MuscleEfficiencyAdjust </val></def>
+  <def><name> Power(W) </name><val> 25  * ( 1.0 + ( Stochasm / 100 ) ) * MusclePowerAdjust </val></def>
   <def><name> IsEndurance </name><val> TRUE </val></def>
 </case>
 
 <case><test> MuscleComposition EQ 3 </test>
-  <def><name> Efficiency(%) </name><val> 50  * ( 1.0 + ( Stochasm / 100 ) )  </val></def>
+  <def><name> Efficiency(%) </name><val> 50  * ( 1.0 + ( Stochasm / 100 ) ) * MuscleEfficiencyAdjust </val></def>
+  <def><name> Power(W) </name><val> 125  * ( 1.0 + ( Stochasm / 100 ) ) * MusclePowerAdjust </val></def>
   <def><name> IsNeutral </name><val> TRUE </val></def>
 </case>
 
@@ -138,6 +169,11 @@ By : University of Mississippi Medical Center
 <def>
   <name> Mass </name>
   <val> 1000 * Mass(kG) </val>
+</def>
+
+<def>
+<name> TotalPower </name>
+<val> Power(W) * Mass(kG) </val>
 </def>
 
 </block>

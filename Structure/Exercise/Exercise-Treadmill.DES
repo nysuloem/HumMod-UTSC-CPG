@@ -77,7 +77,11 @@ By : University of Mississippi Medical Center
 <def><name> Speed(FPM) </name><val> 88.0 * Speed(MPH) </val></def>
 <def><name> Speed(KPH) </name><val> 1.609 * Speed(MPH) </val></def>
 <def><name> StepsPerMinute </name><val> 39.0 * Speed(MPH) </val></def>
-<def><name> Efficiency </name><val> 0.01 * Efficiency(%) </val></def>
+
+<def>
+    <name> Efficiency </name>
+    <val> 0.01 * Context-Muscularity.Efficiency(%) </val>
+  </def>
 
 <def>
   <name> Degrees </name>
