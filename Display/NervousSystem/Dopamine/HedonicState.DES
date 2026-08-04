@@ -73,8 +73,8 @@
 
     <showvalue>
       <row> 9.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.BGain </name>
-      <label> B-gain (sensitization) </label>
+      <name> DopamineSystem.OpponentGain </name>
+      <label> Opponent gain (withdrawal) </label>
       <format><decimal> 3 </decimal></format>
       <color> BLUE </color>
     </showvalue>

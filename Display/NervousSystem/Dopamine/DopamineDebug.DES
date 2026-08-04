@@ -1,0 +1,96 @@
+<panel><name> DopamineDebug </name>
+
+  <showclock>
+    <row> 0.3 </row><col> 2.0 </col>
+    <name> System.X </name><ampm/><secs/><days/>
+  </showclock>
+
+  <label>
+    <row> 0.3 </row><col> 34.0 </col>
+    <text> Ethanol / Dopamine Diagnostic Checkpoints </text>
+  </label>
+
+  <groupbox>
+    <row> 2.0 </row><col> 1.0 </col>
+    <high> 32.0 </high><wide> 48.0 </wide>
+    <title> 1. Dose and GI absorption </title>
+
+    <showvalue><row> 1.5 </row><col> 1.0 </col><name> EthanolDailyDose.TakeDaily </name><label> TakeDaily </label><format><decimal> 3 </decimal></format></showvalue>
+    <showvalue><row> 3.0 </row><col> 1.0 </col><name> EthanolDailyDose.Timer </name><label> Dose timer (min) </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 4.5 </row><col> 1.0 </col><name> EthanolDailyDose.Interval </name><label> Dose interval (min) </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 6.0 </row><col> 1.0 </col><name> EthanolDailyDose.TotalDoses </name><label> Total doses </label><format><decimal> 3 </decimal></format></showvalue>
+    <showvalue><row> 7.5 </row><col> 1.0 </col><name> EthanolDailyDose.Mass </name><label> Dose mass pulse </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 9.0 </row><col> 1.0 </col><name> EthanolDailyDose.ResetDailyDose </name><label> Dose reset timer </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 10.5 </row><col> 1.0 </col><name> EthanolGILumen.Gain </name><label> GI gain </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 12.0 </row><col> 1.0 </col><name> EthanolGILumen.Mass </name><label> GI mass (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 13.5 </row><col> 1.0 </col><name> EthanolGILumen.[Ethanol] </name><label> GI concentration </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 15.0 </row><col> 1.0 </col><name> EthanolGILumen.Loss </name><label> GI absorption/loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 16.5 </row><col> 1.0 </col><name> EthanolGILumen.Change </name><label> GI derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 18.0 </row><col> 1.0 </col><name> EthanolGILumen.PortalVein[Ethanol] </name><label> Portal ethanol </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 19.5 </row><col> 1.0 </col><name> GILumenH2O.Mass(L) </name><label> GI water mass (L) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 21.0 </row><col> 1.0 </col><name> PortalVein.BloodFlow </name><label> Portal blood flow </label><format><decimal> 8 </decimal></format></showvalue>
+  </groupbox>
+
+  <groupbox>
+    <row> 2.0 </row><col> 51.0 </col>
+    <high> 40.0 </high><wide> 55.0 </wide>
+    <title> 2. Blood ethanol integral </title>
+
+    <showvalue><row> 1.5 </row><col> 1.0 </col><name> EthanolPool.Gain </name><label> Pool gain </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 3.0 </row><col> 1.0 </col><name> EthanolPool.Loss </name><label> Pool total loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 4.5 </row><col> 1.0 </col><name> EthanolPool.Change </name><label> Pool derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 6.0 </row><col> 1.0 </col><name> EthanolPool.Mass </name><label> Pool mass (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 7.5 </row><col> 1.0 </col><name> EthanolPool.[Ethanol] </name><label> Pool BAC (g/dL) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 9.0 </row><col> 1.0 </col><name> EthanolLiver.FirstPassLoss </name><label> First-pass loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 10.5 </row><col> 1.0 </col><name> EthanolLiver.PoolLoss </name><label> Liver pool loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 12.0 </row><col> 1.0 </col><name> EthanolKidney.UrineLoss </name><label> Kidney loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 13.5 </row><col> 1.0 </col><name> EthanolLungs.LungsLoss </name><label> Lung loss </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 15.0 </row><col> 1.0 </col><name> ECFV.Vol </name><label> ECF volume </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 16.5 </row><col> 1.0 </col><name> ICFV.Vol </name><label> ICF volume </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 18.0 </row><col> 1.0 </col><name> DopamineSystem.BAC </name><label> Dopamine BAC copy </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 19.5 </row><col> 1.0 </col><name> DopamineSystem.BACRate </name><label> BAC rate (g/dL/min) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 21.0 </row><col> 1.0 </col><name> DopamineSystem.BACRewardEnvelope </name><label> BAC reward envelope </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 22.5 </row><col> 1.0 </col><name> DopamineSystem.RewardLimbGain </name><label> Rising/falling limb gain </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 24.0 </row><col> 1.0 </col><name> DopamineSystem.ActualReward </name><label> Actual reward </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 25.5 </row><col> 1.0 </col><name> DopamineSystem.DrugDrive </name><label> Drug drive </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 27.0 </row><col> 1.0 </col><name> DopamineSystem.EpisodeActive </name><label> BAC episode active </label><format><decimal> 0 </decimal></format></showvalue>
+    <showvalue><row> 28.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeAUC </name><label> Current BAC AUC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 30.0 </row><col> 1.0 </col><name> DopamineSystem.EpisodePeakBAC </name><label> Current peak BAC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 31.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeDuration </name><label> Current duration (min) </label><format><decimal> 1 </decimal></format></showvalue>
+    <showvalue><row> 33.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeAUC </name><label> Last completed BAC AUC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 34.5 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodePeakBAC </name><label> Last completed peak BAC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 36.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeUnits </name><label> Last adaptation units </label><format><decimal> 4 </decimal></format></showvalue>
+    <showvalue><row> 37.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeCount </name><label> Completed BAC episodes </label><format><decimal> 0 </decimal></format></showvalue>
+  </groupbox>
+
+  <groupbox>
+    <row> 2.0 </row><col> 108.0 </col>
+    <high> 34.0 </high><wide> 62.0 </wide>
+    <title> 3. Reward, opponent and dopamine integrals </title>
+
+    <showvalue><row> 1.5 </row><col> 1.0 </col><name> DopamineSystem.RewardPrediction </name><label> Reward prediction (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 3.0 </row><col> 1.0 </col><name> DopamineSystem.ChangePrediction </name><label> Prediction derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 4.5 </row><col> 1.0 </col><name> DopamineSystem.PredictionError </name><label> Prediction error </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 6.0 </row><col> 1.0 </col><name> DopamineSystem.AProcess </name><label> A-process (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 7.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeA </name><label> A derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 9.0 </row><col> 1.0 </col><name> DopamineSystem.BProcess </name><label> B-process (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 10.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeB </name><label> B derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 12.0 </row><col> 1.0 </col><name> DopamineSystem.AllostaticOffset </name><label> Allostatic offset (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 13.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeAllostaticOffset </name><label> Allostatic derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 15.0 </row><col> 1.0 </col><name> DopamineSystem.StressLevel </name><label> Stress level (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 16.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeStressLevel </name><label> Stress derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 18.0 </row><col> 1.0 </col><name> DopamineSystem.TonicDA </name><label> Tonic DA </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 19.5 </row><col> 1.0 </col><name> DopamineSystem.PhasicDA </name><label> Phasic DA </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 21.0 </row><col> 1.0 </col><name> DopamineSystem.DATarget </name><label> DA target </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 22.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeDopamine </name><label> DA derivative </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 24.0 </row><col> 1.0 </col><name> DopamineSystem.DopamineLevel </name><label> Dopamine (integral) </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 25.5 </row><col> 1.0 </col><name> DopamineSystem.AGain </name><label> A gain </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 27.0 </row><col> 1.0 </col><name> DopamineSystem.OpponentGain </name><label> Opponent gain </label><format><decimal> 8 </decimal></format></showvalue>
+    <showvalue><row> 28.5 </row><col> 1.0 </col><name> DopamineSystem.TotalExposures </name><label> Total exposures </label><format><decimal> 3 </decimal></format></showvalue>
+    <showvalue><row> 30.0 </row><col> 1.0 </col><name> DopamineSystem.PrevExposures </name><label> Previous exposures </label><format><decimal> 3 </decimal></format></showvalue>
+    <showvalue><row> 31.5 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeDuration </name><label> Last episode duration (min) </label><format><decimal> 1 </decimal></format></showvalue>
+  </groupbox>
+
+</panel>
+
+End

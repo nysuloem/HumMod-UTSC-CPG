@@ -1,0 +1,64 @@
+<script>
+
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<roster>
+  <var><name> System.X </name></var>
+  <var><name> EthanolDailyDose.TakeDaily </name></var>
+  <var><name> EthanolDailyDose.Timer </name></var>
+  <var><name> EthanolDailyDose.TimeLastDose </name></var>
+  <var><name> EthanolDailyDose.TimeNextDose </name></var>
+  <var><name> EthanolDailyDose.TotalDoses </name></var>
+  <var><name> EthanolDailyDose.Mass </name></var>
+  <var><name> EthanolGILumen.Mass </name></var>
+  <var><name> EthanolGILumen.Gain </name></var>
+  <var><name> EthanolGILumen.Loss </name></var>
+  <var><name> EthanolGILumen.Change </name></var>
+  <var><name> EthanolPool.Mass </name></var>
+  <var><name> EthanolPool.Gain </name></var>
+  <var><name> EthanolPool.Loss </name></var>
+  <var><name> EthanolPool.Change </name></var>
+  <var><name> EthanolPool.[Ethanol] </name></var>
+  <var><name> DopamineSystem.BAC </name></var>
+  <var><name> DopamineSystem.ActualReward </name></var>
+  <var><name> DopamineSystem.DATarget </name></var>
+  <var><name> DopamineSystem.ChangeDopamine </name></var>
+  <var><name> DopamineSystem.DopamineLevel </name></var>
+</roster>
+
+<!-- Case 1: seven days, one retained point per hour. -->
+<restart/>
+<setvalue><var> EthanolDailyDose.Dose </var><val> 300 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentageofAlcohol </var><val> 5 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TimesADay </var><val> 2 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentChance </var><val> 1 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TakeDaily </var><val> 1 </val></setvalue>
+<gofor><solutionint> 10080 </solutionint><displayint> 60 </displayint></gofor>
+<dumpsolution><filename> Scripts\data\debug-week-hourly.txt </filename></dumpsolution>
+
+<!-- Case 2: thirty days, one retained point per day. -->
+<restart/>
+<setvalue><var> EthanolDailyDose.Dose </var><val> 300 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentageofAlcohol </var><val> 5 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TimesADay </var><val> 2 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentChance </var><val> 1 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TakeDaily </var><val> 1 </val></setvalue>
+<gofor><solutionint> 43200 </solutionint><displayint> 1440 </displayint></gofor>
+<dumpsolution><filename> Scripts\data\debug-month-daily.txt </filename></dumpsolution>
+
+<!-- Case 3: thirty days, one retained point per hour. -->
+<restart/>
+<setvalue><var> EthanolDailyDose.Dose </var><val> 300 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentageofAlcohol </var><val> 5 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TimesADay </var><val> 2 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentChance </var><val> 1 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TakeDaily </var><val> 1 </val></setvalue>
+<gofor><solutionint> 43200 </solutionint><displayint> 60 </displayint></gofor>
+<dumpsolution><filename> Scripts\data\debug-month-hourly.txt </filename></dumpsolution>
+
+<exit/>
+
+</script>

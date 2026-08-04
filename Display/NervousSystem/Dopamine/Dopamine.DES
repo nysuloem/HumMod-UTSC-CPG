@@ -1,11 +1,8 @@
 <?path Display\NervousSystem\Dopamine\ ?>
 
 <?include DopamineDynamics.DES ?>
-<?include DopamineSymptoms.DES ?>
-<?include RewardLearning.DES ?>
 <?include DopamineControls.DES ?>
-<?include HedonicState.DES ?>
-<?include Neuroadaptation.DES ?>
+<?include DopamineDebug.DES ?>
 
 
 <!--
@@ -22,7 +19,7 @@
     2. Reward Learning     - ActualReward, RewardPrediction, RPE + RPE graph
     3. Hedonic State       - A / B / Experienced state + opponent-process graph
                              and the long-run hedonic set-point shift
-    4. Neuroadaptation     - exposure count + tolerance/sensitization gains
+    4. Neuroadaptation     - BAC episodes/AUC + tolerance/opponent gains
     5. Controls            - user-adjustable model parameters
 
 -->

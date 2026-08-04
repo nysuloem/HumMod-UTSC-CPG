@@ -15,8 +15,8 @@ It integrates gains from absorption and subtracts losses from elimination routes
 <variables>
 
 <var><name> [Ethanol] </name></var>
-<var><name> Gain </name></var>
-<var><name> Loss </name></var>
+<var><name> Gain </name><val> 0.0 </val></var>
+<var><name> Loss </name><val> 0.0 </val></var>
 <var><name> R </name></var>
 <var><name> BAC </name></var>
 <var><name> EthanolMass </name></var>

@@ -7,8 +7,9 @@
     - Set Up Chronic Drinking Pattern groupbox
         SCHEDULED_DRINKING, DRINK_TIME_MINUTES, DRINK_SIZE — no effect on
         any ODE or DA calculation; EthanolDailyDose drives the actual BAC.
-    - TOL_STEP, SENS_STEP sliders — tolerance/sensitization per drink now
-        static at their calibrated defaults (0.10 each) in DopamineSystem.DES.
+    - TOL_STEP, OPPONENT_STEP sliders — tolerance/opponent strengthening per
+        normalized BAC-AUC unit is static at the test defaults (0.01 tolerance,
+        0.02 opponent) in DopamineSystem.DES.
     - EMOTIONAL_SENSITIVITY slider — pure display scalar; zero influence on
         any diffeq or graph being validated.
     - Response Timecourses groupbox (TAU_B_RISE, TAU_B_DECAY) — fixed at
@@ -18,7 +19,8 @@
   KEPT:
     - LEARN_RATE — directly observable in RPE/Prediction graph.
     - DA_SCALE_B — directly observable in tonic DA withdrawal trough.
-    - EthanolDailyDose block — the only actual input driving the simulation.
+    - EthanolDailyDose and EthanolSingleDose blocks — scheduled and immediate
+      alcohol inputs driving the simulation.
 ================================================================================
 -->
 
@@ -46,20 +48,20 @@
 
   <!-- ===================== KEY DOPAMINE PARAMETERS =====================
        Only two free parameters exposed for validation.
-       All other parms (TOL_STEP, SENS_STEP, TAU_B_RISE, TAU_B_DECAY,
+       All other parms (TOL_STEP, OPPONENT_STEP, TAU_B_RISE, TAU_B_DECAY,
        EMOTIONAL_SENSITIVITY, SCHEDULED_DRINKING) remain in DopamineSystem.DES
        at their calibrated defaults and are adjustable via the HumMod
        parameter editor if needed.
-  ===================================================================== -->
+  ===================================================================== 
 
-  <groupbox>
+ <groupbox>
     <row> 30 </row><col> 130 </col>
     <high> 5.5 </high><wide> 50.0 </wide>
     <title> Dopamine System (Key Parameters) </title>
 
-    <!-- LEARN_RATE: controls how fast RewardPrediction converges on ActualReward.
+     LEARN_RATE: controls how fast RewardPrediction converges on ActualReward.
          Higher = RPE and phasic DA response fades faster across repeated drinks.
-         Range: 0.1 – 1.0 (RL alpha; physiological range ~0.1–0.3). -->
+         Range: 0.1 – 1.0 (RL alpha; physiological range ~0.1–0.3). 
 
     <repeatlist>
       <name> List_LearnRate </name>
@@ -75,9 +77,9 @@
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
-    <!-- DA_SCALE_B: controls depth of tonic DA suppression during withdrawal.
+     DA_SCALE_B: controls depth of tonic DA suppression during withdrawal.
          Higher = deeper dopamine trough between drinking sessions.
-         Range: 0.05 – 0.50 (calibrated default 0.55; step 0.05). -->
+         Range: 0.05 – 0.50 (calibrated default 0.55; step 0.05). 
 
     <repeatlist>
       <name> List_Krate </name>
@@ -93,9 +95,116 @@
       <fieldwidth> 6 </fieldwidth>
     </slidebar>
 
+  </groupbox> -->
+
+  <!-- ===================== DRINK TYPE =====================
+       This uses the existing EthanolDrinkSelector structure. Selecting a
+       drink updates the alcohol percentage for both the daily-dose and
+       single-dose ethanol inputs:
+         Beer = 5%, Wine = 14%, Vodka / Spirits = 40%.
+  ================================================================= -->
+  <groupbox>
+    <row> 2.0 </row>
+    <col> 108.0 </col>
+    <high> 6.0 </high>
+    <wide> 29.0 </wide>
+    <title> Alcohol Type </title>
+
+    <structurename> EthanolDrinkSelector </structurename>
+
+    <maplist>
+      <name> EthanolGILumen.DrinkTypeDopamine </name>
+      <map><val> 1 </val><img> Beer </img></map>
+      <map><val> 2 </val><img> Wine </img></map>
+      <map><val> 3 </val><img> Vodka / Spirits </img></map>
+    </maplist>
+
+    <radiobuttons>
+      <row> 1.4 </row><col> 1.0 </col>
+      <name> EthanolGILumen.DrinkType </name>
+      <listname> EthanolGILumen.DrinkTypeDopamine </listname>
+      <label> Drink Type </label>
+      <layout> VERT </layout>
+    </radiobuttons>
   </groupbox>
 
-  <!-- ===================== Ethanol control ===================== -->
+  <!-- ===================== SINGLE DOSE / SHOT =====================
+       Reuses EthanolSingleDose.TakeDoseNow; no ethanol or dopamine model
+       equations are duplicated here.
+  ================================================================== -->
+  <groupbox>
+    <row> 9.0 </row>
+    <col> 108.0 </col>
+    <high> 18.0 </high>
+    <wide> 29.0 </wide>
+    <title> Single Alcohol Dose / Shot </title>
+
+    <structurename> EthanolSingleDose </structurename>
+
+    <actionbutton>
+      <row> 1.4 </row><col> 1.0 </col>
+      <blockname> TakeDoseNow </blockname>
+      <label> Drink Alcohol Now </label>
+    </actionbutton>
+
+    <repeatlist>
+      <name> EthanolSingleDose.VolumeDopamine </name>
+      <repeat><reps> 20 </reps><stepsize> 25 </stepsize></repeat>
+    </repeatlist>
+
+    <slidebar>
+      <row> 3.4 </row><col> 1.0 </col>
+      <name> Volume </name>
+      <listname> EthanolSingleDose.VolumeDopamine </listname>
+      <label> Volume (mL) </label>
+    </slidebar>
+
+    <showvalue>
+      <row> 5.4 </row><col> 1.0 </col>
+      <name> %Alc </name>
+      <label> % Alcohol </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 7.4 </row><col> 1.0 </col>
+      <name> TimeLastDose </name>
+      <format>
+        <timestamp/>
+        <fieldwidth> 14 </fieldwidth>
+      </format>
+      <label> Last Dose </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> TotalDrinks </name>
+      <format> <integer/> </format>
+      <label> Total Drinks Consumed </label>
+    </showvalue>
+
+    <showvalue>
+      <row> 10.5 </row><col> 1.0 </col>
+      <name> CumulativeDose </name>
+      <format><decimal> 3 </decimal></format>
+      <label> Alcohol Consumed (g) </label>
+    </showvalue>
+
+    <actionbutton>
+      <row> 12.5 </row><col> 1.0 </col>
+      <blockname> Reset </blockname>
+      <label> Reset Single Dose </label>
+    </actionbutton>
+
+    <infobutton>
+      <row> 14.5 </row><col> 1.0 </col>
+      <line> Beer sets alcohol to 5 percent. </line>
+      <line> Wine sets alcohol to 14 percent. </line>
+      <line> Vodka / Spirits sets alcohol to 40 percent. </line>
+      <line> Set the volume, then select Drink Alcohol Now. </line>
+    </infobutton>
+  </groupbox>
+
+  <!-- ===================== SCHEDULED ETHANOL CONTROL ===================== -->
   <groupbox>
     <row> 2.0 </row>
     <col> 138.0 </col>
@@ -271,36 +380,11 @@
 
   <showvalue>
     <row> 6.0 </row><col> 1.0 </col>
-    <name> DopamineSystem.ExperiencedState </name>
-    <label> Hedonic State (A - B) </label>
-    <format><decimal> 3 </decimal></format>
-    <color> MAGENTA </color>
+  <name> DopamineSystem.BAC </name>
+  <label> Blood Alcohol (g/dL) </label>
+  <format><decimal> 3 </decimal></format>
+  <color> BLACK </color>
   </showvalue>
-
-<showvalue>
-  <row> 7.5 </row><col> 1.0 </col>
-  <name> EthanolPool.[Ethanol] </name>
-  <label> Raw Ethanol (no conversion) </label>
-  <format><decimal> 6 </decimal></format>
-  <color> GRAY </color>
-</showvalue>
-
-<showvalue>
-  <row> 9.0 </row><col> 1.0 </col>
-  <name> DopamineSystem.ActualReward </name>
-  <label> Actual Reward </label>
-  <format><decimal> 6 </decimal></format>
-  <color> GRAY </color>
-</showvalue>
-
-  <showvalue>
-    <row> 10.5 </row><col> 1.0 </col>
-    <name> DopamineSystem.BAC </name>
-    <label> Blood Alcohol (g/dL) </label>
-    <format><decimal> 3 </decimal></format>
-    <color> BLACK </color>
-  </showvalue>
-
 </groupbox>
 
   <!-- ===================== 1. DA CURRENT VALUES GRAPH ===================== -->
@@ -338,7 +422,7 @@
   </yaxis>
 </showgraph>
 
-<!-- ===================== 2. REWARD LEARNING ===================== -->
+<!-- ===================== 2. REWARD LEARNING DISABLED =====================
   <groupbox>
     <row> 17.0 </row><col> 1.0 </col>
     <high> 9.0 </high><wide> 36.0 </wide>
@@ -376,7 +460,7 @@
       <color> BLACK </color>
     </showvalue>
 
-    <!-- ===================== 2. RPE GRAPH ===================== -->
+    ===================== 2. RPE GRAPH =====================
   <showgraph>
     <row> 2.0 </row><col> 40.0 </col>
     <high> 13.0 </high><wide> 58.0 </wide>
@@ -412,10 +496,11 @@
   </showgraph> 
 
   </groupbox>
+-->
 
-   <!-- ===================== 3. CURRENT VALUES ===================== -->
+   <!-- ===================== 2. OPPONENT PROCESS VALUES ===================== -->
   <groupbox>
-    <row> 34.0 </row><col> 1.0 </col>
+    <row> 17.0 </row><col> 1.0 </col>
     <high> 11.0 </high><wide> 34.0 </wide>
     <title> Opponent Processes (B = Withdrawal) </title>
 
@@ -461,8 +546,8 @@
 
     <showvalue>
       <row> 9.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.BGain </name>
-      <label> B-gain (sensitization) </label>
+      <name> DopamineSystem.OpponentGain </name>
+      <label> Opponent gain (withdrawal) </label>
       <format><decimal> 3 </decimal></format>
       <color> BLUE </color>
     </showvalue>
@@ -471,7 +556,7 @@
 
   <!-- ============= GRAPH A: within-episode opponent dynamics ============= -->
   <showgraph>
-    <row> 34.0 </row><col> 38.0 </col>
+    <row> 17.0 </row><col> 38.0 </col>
     <high> 9.0 </high><wide> 60.0 </wide>
     <leftmargin> 15.0 </leftmargin>
 
@@ -506,7 +591,7 @@
 
   <!-- ======== GRAPH B: long-run hedonic set-point shift ======== -->
   <showgraph>
-    <row> 46.0 </row><col> 38.0 </col>
+    <row> 29.0 </row><col> 38.0 </col>
     <high> 8.0 </high><wide> 60.0 </wide>
     <leftmargin> 15.0 </leftmargin>
 

@@ -1,0 +1,16 @@
+<script>
+
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<roster>
+  <var><name> System.X </name></var>
+</roster>
+
+<restart/>
+<dumppoint><filename> Scripts\data\debug-point.txt </filename></dumppoint>
+<exit/>
+
+</script>

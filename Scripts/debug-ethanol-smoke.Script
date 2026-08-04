@@ -1,0 +1,32 @@
+<script>
+
+<launch>
+  <solver> Model Solver.EXE </solver>
+  <model> HumMod.DES </model>
+</launch>
+
+<roster>
+  <var><name> System.X </name></var>
+  <var><name> EthanolDailyDose.TotalDoses </name></var>
+  <var><name> EthanolDailyDose.Mass </name></var>
+  <var><name> EthanolGILumen.Mass </name></var>
+  <var><name> EthanolGILumen.Change </name></var>
+  <var><name> EthanolPool.Mass </name></var>
+  <var><name> EthanolPool.Change </name></var>
+  <var><name> EthanolPool.[Ethanol] </name></var>
+  <var><name> DopamineSystem.BAC </name></var>
+  <var><name> DopamineSystem.DopamineLevel </name></var>
+</roster>
+
+<restart/>
+<setvalue><var> EthanolDailyDose.Dose </var><val> 300 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentageofAlcohol </var><val> 5 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TimesADay </var><val> 2 </val></setvalue>
+<setvalue><var> EthanolDailyDose.PercentChance </var><val> 1 </val></setvalue>
+<setvalue><var> EthanolDailyDose.TakeDaily </var><val> 1 </val></setvalue>
+<gofor><solutionint> 1440 </solutionint><displayint> 60 </displayint></gofor>
+<dumpsolution><filename> Scripts\data\debug-smoke.txt </filename></dumpsolution>
+
+<exit/>
+
+</script>

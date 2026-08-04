@@ -5,7 +5,10 @@
 
 <!-- ===================== INPUT / REWARD =============================== -->
 <var><name> BAC </name></var>                 <!-- blood-alcohol conc (g/dL), copied from EthanolPool -->
-<var><name> ActualReward </name></var>        <!-- unconditioned reward magnitude from current BAC (0..~1) -->
+<var><name> BACRate </name></var>             <!-- approximate BAC change (g/dL/min); positive=rising, negative=falling -->
+<var><name> BACRewardEnvelope </name></var>   <!-- concentration-dependent reward before limb adjustment -->
+<var><name> RewardLimbGain </name></var>      <!-- ascending/descending-limb multiplier -->
+<var><name> ActualReward </name></var>        <!-- reward envelope adjusted for BAC direction (0..~1) -->
 <var><name> DrugDrive </name></var>           <!-- stimulus drive to the opponent processes -->
 
 <!-- ===================== RPE / DOPAMINE =============================== -->
@@ -39,11 +42,24 @@
      CRF drives anxiety and negative-reinforcement craving independent of
      the acute B-process. Feeds into EmotionalCraving. -->
 
-<!-- ===================== ADAPTIVE GAINS (state, exposure-driven) ==== -->
+<!-- ===================== ADAPTIVE GAINS / BAC EPISODES ============== -->
 <var><name> AGain </name><val> 1.00 </val></var>   <!-- euphoria gain; DECREASES with use (tolerance) -->
-<var><name> BGain </name><val> 0.50 </val></var>   <!-- withdrawal gain; INCREASES with use (sensitization) -->
+<var><name> OpponentGain </name><val> 0.50 </val></var>   <!-- opponent/withdrawal gain; INCREASES with use -->
 <var><name> TotalExposures </name><val> 0.0 </val></var> <!-- cumulative drink count (single + daily) -->
 <var><name> PrevExposures </name><val> 0.0 </val></var>  <!-- previous exposure count (event detector) -->
+<var><name> EpisodeActive </name><val> 0.0 </val></var>  <!-- 1 while BAC remains above the episode threshold -->
+<var><name> EpisodeAUC </name><val> 0.0 </val></var>     <!-- active BAC area, g/dL * min -->
+<var><name> EpisodePeakBAC </name><val> 0.0 </val></var>
+<var><name> EpisodeDuration </name><val> 0.0 </val></var> <!-- min represented by active AUC integration -->
+<var><name> EpisodeLastSampleTime </name><val> 0.0 </val></var> <!-- model clock at the last unique AUC sample -->
+<var><name> PreviousBAC </name><val> 0.0 </val></var>    <!-- previous accepted-step BAC for trapezoidal AUC -->
+<var><name> RecoveryLastSampleTime </name><val> 0.0 </val></var> <!-- prevents duplicate Wrapup recovery updates -->
+<var><name> EpisodeCount </name><val> 0.0 </val></var>
+<var><name> LastEpisodeAUC </name><val> 0.0 </val></var>
+<var><name> LastEpisodePeakBAC </name><val> 0.0 </val></var>
+<var><name> LastEpisodeDuration </name><val> 0.0 </val></var>
+<var><name> LastEpisodeUnits </name><val> 0.0 </val></var> <!-- AUC normalized to a reference standard-drink exposure -->
+<var><name> LastEpisodeEndTime </name><val> -1.0 </val></var>
 
 <!-- ===================== EMOTIONAL / BEHAVIORAL STATES =============== -->
 <var><name> EmotionalHappiness </name></var>       <!-- happiness scale (0-10) from dopamine -->
@@ -94,13 +110,20 @@
 <parm><name> TAU_STRESS </name><val> 10080.0 </val></parm>     <!-- CRF stress tau: 7 days in min -->
 <parm><name> STRESS_CRAVING_K </name><val> 0.80 </val></parm>  <!-- CRF stress -> craving gain -->
 
-<!-- Neuroadaptation per drink event -->
-<parm><name> SENS_STEP </name><val> 0.15 </val></parm>    <!-- B-process grows 15% per exposure (sensitization) -->
-<parm><name> TOL_STEP </name><val> 0.10 </val></parm>     <!-- A-process shrinks 10% per exposure (tolerance) -->
+<!-- Episode-based neuroadaptation. AUC_REFERENCE is a model normalization,
+     not a claimed physiological constant. In the current HumMod ethanol PK,
+     4 g/dL*min is approximately one 14-g standard-drink exposure. -->
+<parm><name> EPISODE_BAC_THRESHOLD </name><val> 0.005 </val></parm> <!-- g/dL; groups overlapping drinks into one episode -->
+<parm><name> AUC_REFERENCE </name><val> 4.0 </val></parm>          <!-- g/dL*min per adaptation unit -->
+<parm><name> MAX_EPISODE_UNITS </name><val> 20.0 </val></parm>     <!-- numerical/safety cap for one episode -->
+<parm><name> OPPONENT_STEP </name><val> 0.02 </val></parm> <!-- exponential opponent strengthening per AUC unit -->
+<parm><name> TOL_STEP </name><val> 0.01 </val></parm>     <!-- exponential tolerance strengthening per AUC unit -->
 <parm><name> AGAIN_MIN </name><val> 0.15 </val></parm>    <!-- floor on euphoria gain -->
 <parm><name> BGAIN_MAX </name><val> 4.0 </val></parm>     <!-- ceiling on withdrawal gain -->
 
 <parm><name> TAU_AGAIN_RECOVERY </name><val> 30240.0 </val></parm> <!-- D2 recovery tau: 21 days in min -->
+<parm><name> OPPONENT_BASELINE </name><val> 0.50 </val></parm>
+<parm><name> TAU_OPPONENT_RECOVERY </name><val> 60480.0 </val></parm> <!-- opponent recovery tau: 42 days in min -->
 <parm><name> DRUGDRIVE_THRESHOLD </name><val> 0.01 </val></parm>   <!-- sober guard for AGain recovery -->
 
 <!-- Drinking scheduler / chronic pattern parameters -->
@@ -173,14 +196,34 @@
 <!-- ==================================================================== -->
 <functions>
 
+<!-- Concentration-dependent reward envelope. Moderate BAC is assigned the
+     strongest positive/stimulant value; the reward component declines as
+     impairment and sedation become more prominent at higher BAC. This is a
+     phenomenological reward mapping, not a clinical impairment scale. -->
 <curve><name> RewardOnBAC </name>
   <point><x> 0.00 </x><y> 0.00 </y><slope> 0.0 </slope></point>
-  <point><x> 0.02 </x><y> 0.40 </y><slope> 0.0 </slope></point>
-  <point><x> 0.05 </x><y> 0.85 </y><slope> 0.0 </slope></point>
-  <point><x> 0.08 </x><y> 1.00 </y><slope> 0.0 </slope></point>
-  <point><x> 0.15 </x><y> 0.60 </y><slope> 0.0 </slope></point>
-  <point><x> 0.30 </x><y> 0.15 </y><slope> 0.0 </slope></point>
+  <point><x> 0.01 </x><y> 0.10 </y><slope> 0.0 </slope></point>
+  <point><x> 0.02 </x><y> 0.30 </y><slope> 0.0 </slope></point>
+  <point><x> 0.04 </x><y> 0.75 </y><slope> 0.0 </slope></point>
+  <point><x> 0.06 </x><y> 1.00 </y><slope> 0.0 </slope></point>
+  <point><x> 0.08 </x><y> 0.80 </y><slope> 0.0 </slope></point>
+  <point><x> 0.10 </x><y> 0.60 </y><slope> 0.0 </slope></point>
+  <point><x> 0.15 </x><y> 0.20 </y><slope> 0.0 </slope></point>
+  <point><x> 0.20 </x><y> 0.05 </y><slope> 0.0 </slope></point>
+  <point><x> 0.30 </x><y> 0.00 </y><slope> 0.0 </slope></point>
   <point><x> 0.50 </x><y> 0.00 </y><slope> 0.0 </slope></point>
+</curve>
+
+<!-- Acute limb calibration. At the same BAC, the early/rising limb retains
+     more positive reward than the late/falling limb. A smooth curve avoids
+     a discontinuity when BAC changes from rising to falling. BACRate is in
+     g/dL/min and is derived from the existing ethanol-pool mass derivative. -->
+<curve><name> RewardLimbOnBACRate </name>
+  <point><x> -0.0010 </x><y> 0.65 </y><slope> 0.0 </slope></point>
+  <point><x> -0.0002 </x><y> 0.70 </y><slope> 0.0 </slope></point>
+  <point><x>  0.0000 </x><y> 0.85 </y><slope> 0.0 </slope></point>
+  <point><x>  0.0002 </x><y> 1.00 </y><slope> 0.0 </slope></point>
+  <point><x>  0.0010 </x><y> 1.00 </y><slope> 0.0 </slope></point>
 </curve>
 
 </functions>
@@ -201,11 +244,29 @@
     <name> BAC </name>
     <val> EthanolPool.[Ethanol] </val>
   </def>
-  
-  <!-- Map BAC -> unconditioned reward magnitude via biphasic curve -->
+
+  <!-- Approximate dBAC/dt without altering the ethanol pharmacokinetics.
+       EthanolPool.Gain minus Loss is g/min; total body-fluid volume is converted
+       to L, and division by 10 matches EthanolPool's g/dL concentration equation. -->
+    <def>
+      <name> BACRate </name>
+      <val> ( EthanolPool.Gain - EthanolPool.Loss ) / ( ( ( ECFV.Vol + ICFV.Vol ) / 1000.0 ) * 10.0 ) </val>
+    </def>
+
+  <def>
+    <name> BACRewardEnvelope </name>
+    <val> RewardOnBAC [ BAC ] </val>
+  </def>
+
+  <def>
+    <name> RewardLimbGain </name>
+    <val> RewardLimbOnBACRate [ BACRate ] </val>
+  </def>
+
+  <!-- Map BAC level and direction to the unconditioned reward magnitude. -->
   <def>
     <name> ActualReward </name>
-    <val> RewardOnBAC [ BAC ] </val>
+    <val> BACRewardEnvelope * RewardLimbGain </val>
   </def>
 
 <def>
@@ -221,7 +282,7 @@
 
   <def>
     <name> D_drug </name>
-    <val> D_DRUG_GAIN * RewardOnBAC [ BAC ] </val>
+    <val> D_DRUG_GAIN * ActualReward </val>
   </def>
 
   <def>
@@ -306,7 +367,7 @@
   <!-- ===== B-process (slow withdrawal / craving) ===== -->
   <def>
     <name> BTarget </name>
-    <val> BGain * AProcess </val>
+    <val> OpponentGain * AProcess </val>
   </def>
 
   <conditional>
@@ -481,19 +542,12 @@
     <val> EthanolSingleDose.TotalDrinks + EthanolDailyDose.TotalDoses </val>
   </def>
 
-  <!-- On a new exposure: euphoria gain falls (tolerance),
-       withdrawal gain rises (sensitization), then arm the detector. -->
+  <!-- Retain the drink count as a diagnostic only. Neuroadaptation is no
+       longer applied here because a drink-button event contains no information
+       about achieved BAC, exposure duration, or overlapping drinks. -->
   <if>
     <test> TotalExposures GT PrevExposures </test>
     <true>
-      <def>
-        <name> AGain </name>
-        <val> ( AGain * ( 1.0 - TOL_STEP ) ) MAX AGAIN_MIN </val>
-      </def>
-      <def>
-        <name> BGain </name>
-        <val> ( BGain * ( 1.0 + SENS_STEP ) ) MIN BGAIN_MAX </val>
-      </def>
       <def>
         <name> PrevExposures </name>
         <val> TotalExposures </val>
@@ -501,24 +555,108 @@
     </true>
   </if>
 
-  <!-- FEATURE GAP 2 FIX: slow passive recovery of AGain during sobriety.
-       Models D2 receptor upregulation during abstinence (Wise & Robble 2020).
-       First-order relaxation back toward full sensitivity (1.0):
-         AGain += (1 / TAU_AGAIN_RECOVERY) * (1.0 - AGain)
-       Time constant TAU_AGAIN_RECOVERY = 30240 min (21 days) — midpoint of the
-       14-30 day clinical range for meaningful D2 receptor recovery.
-       Guard condition: recovery only active when DrugDrive < DRUGDRIVE_THRESHOLD
-       (i.e., the subject is sober). Prevents simultaneous per-drink tolerance
-       decrease and recovery increase within the same session. -->
+  <!-- Start a BAC episode only after measurable systemic exposure. A second
+       drink taken before BAC clears remains part of the same episode. -->
   <if>
-    <test> DrugDrive LT DRUGDRIVE_THRESHOLD </test>
+    <test> ( EpisodeActive EQ 0.0 ) AND ( BAC GE EPISODE_BAC_THRESHOLD ) </test>
+    <true>
+      <def><name> EpisodeActive </name><val> 1.0 </val></def>
+      <def><name> EpisodeAUC </name><val> 0.0 </val></def>
+      <def><name> EpisodePeakBAC </name><val> BAC </val></def>
+      <def><name> EpisodeDuration </name><val> 0.0 </val></def>
+      <def><name> EpisodeLastSampleTime </name><val> System.X </val></def>
+      <def><name> PreviousBAC </name><val> BAC </val></def>
+    </true>
+  </if>
+
+  <!-- Integrate BAC area once per unique model-clock value. HumMod can call
+       Wrapup more than once at the same System.X, so using System.Dx here
+       double-counts exposure. System.X - EpisodeLastSampleTime is zero on
+       duplicate calls. The trapezoidal form reduces step-size dependence. -->
+  <if>
+    <test> ( EpisodeActive GT 0.0 ) AND ( System.X GT EpisodeLastSampleTime ) </test>
+    <true>
+      <def>
+        <name> EpisodeAUC </name>
+        <val> EpisodeAUC + ( ( BAC + PreviousBAC ) * 0.5 * ( System.X - EpisodeLastSampleTime ) ) </val>
+      </def>
+      <def>
+        <name> EpisodeDuration </name>
+        <val> EpisodeDuration + ( System.X - EpisodeLastSampleTime ) </val>
+      </def>
+      <def><name> EpisodeLastSampleTime </name><val> System.X </val></def>
+    </true>
+  </if>
+
+  <if>
+    <test> ( EpisodeActive GT 0.0 ) AND ( BAC GT EpisodePeakBAC ) </test>
+    <true>
+      <def><name> EpisodePeakBAC </name><val> BAC </val></def>
+    </true>
+  </if>
+
+  <!-- End the episode on the descending limb after BAC falls below the
+       threshold. Apply tolerance and opponent strengthening once, scaled by
+       the episode's BAC AUC instead of the number of drink-button events. -->
+  <if>
+    <test> ( EpisodeActive GT 0.0 ) AND ( BAC LT EPISODE_BAC_THRESHOLD ) AND ( BACRate LE 0.0 ) </test>
+    <true>
+      <def><name> LastEpisodeAUC </name><val> EpisodeAUC </val></def>
+      <def><name> LastEpisodePeakBAC </name><val> EpisodePeakBAC </val></def>
+      <def><name> LastEpisodeDuration </name><val> EpisodeDuration </val></def>
+      <def>
+        <name> LastEpisodeUnits </name>
+        <val> ( EpisodeAUC / AUC_REFERENCE ) MIN MAX_EPISODE_UNITS </val>
+      </def>
+      <def>
+        <name> AGain </name>
+        <val> ( AGain * EXP ( - TOL_STEP * LastEpisodeUnits ) ) MAX AGAIN_MIN </val>
+      </def>
+      <def>
+        <name> OpponentGain </name>
+        <val> ( OpponentGain * EXP ( OPPONENT_STEP * LastEpisodeUnits ) ) MIN BGAIN_MAX </val>
+      </def>
+      <def><name> EpisodeCount </name><val> EpisodeCount + 1.0 </val></def>
+      <def><name> LastEpisodeEndTime </name><val> System.X </val></def>
+      <def><name> EpisodeActive </name><val> 0.0 </val></def>
+      <def><name> EpisodeAUC </name><val> 0.0 </val></def>
+      <def><name> EpisodePeakBAC </name><val> 0.0 </val></def>
+      <def><name> EpisodeDuration </name><val> 0.0 </val></def>
+      <def><name> EpisodeLastSampleTime </name><val> System.X </val></def>
+    </true>
+  </if>
+
+  <!-- Slow passive recovery of AGain during sobriety.
+       This begins only after the BAC episode has ended.
+       Use elapsed model-clock minutes in the exact
+       first-order solution so recovery is independent of solver step count:
+         AGain = 1 - (1 - AGain) * exp(-elapsed / TAU_AGAIN_RECOVERY)
+       Duplicate Wrapup calls have zero elapsed time. -->
+  <if>
+    <test> ( EpisodeActive EQ 0.0 ) AND ( BAC LT EPISODE_BAC_THRESHOLD ) AND ( DrugDrive LT DRUGDRIVE_THRESHOLD ) AND ( System.X GT LastEpisodeEndTime ) AND ( System.X GT RecoveryLastSampleTime ) AND ( AGain LT 1.0 ) </test>
     <true>
       <def>
         <name> AGain </name>
-        <val> AGain + ( ( 1.0 / TAU_AGAIN_RECOVERY ) * ( 1.0 - AGain ) ) </val>
+        <val> 1.0 - ( ( 1.0 - AGain ) * EXP ( - ( System.X - RecoveryLastSampleTime ) / TAU_AGAIN_RECOVERY ) ) </val>
       </def>
     </true>
   </if>
+
+  <!-- Opponent strengthening also weakens during prolonged disuse, but more
+       slowly than AGain recovers. -->
+  <if>
+    <test> ( EpisodeActive EQ 0.0 ) AND ( BAC LT EPISODE_BAC_THRESHOLD ) AND ( DrugDrive LT DRUGDRIVE_THRESHOLD ) AND ( System.X GT LastEpisodeEndTime ) AND ( System.X GT RecoveryLastSampleTime ) AND ( OpponentGain GT OPPONENT_BASELINE ) </test>
+    <true>
+      <def>
+        <name> OpponentGain </name>
+        <val> ( OPPONENT_BASELINE + ( ( OpponentGain - OPPONENT_BASELINE ) * EXP ( - ( System.X - RecoveryLastSampleTime ) / TAU_OPPONENT_RECOVERY ) ) ) MAX OPPONENT_BASELINE </val>
+      </def>
+    </true>
+  </if>
+
+  <!-- Store BAC for the next accepted-step trapezoid after all episode logic. -->
+  <def><name> PreviousBAC </name><val> BAC </val></def>
+  <def><name> RecoveryLastSampleTime </name><val> System.X </val></def>
 
   <!-- Refresh display state with the just-integrated A/B values -->
   <def>
@@ -534,14 +672,27 @@
 
 <!-- ====================================================================
      Reset: restore the adaptive (neuroadaptation) state. Call this to
-     start a fresh subject (clears tolerance / sensitization / stress history).
+     start a fresh subject (clears tolerance / opponent / stress history).
      ==================================================================== -->
 <block><name> Reset </name>
 
   <def><name> AGain </name><val> 1.00 </val></def>
-  <def><name> BGain </name><val> 0.50 </val></def>
+  <def><name> OpponentGain </name><val> 0.50 </val></def>
   <def><name> PrevExposures </name><val> 0.0 </val></def>
   <def><name> TotalExposures </name><val> 0.0 </val></def>
+  <def><name> EpisodeActive </name><val> 0.0 </val></def>
+  <def><name> EpisodeAUC </name><val> 0.0 </val></def>
+  <def><name> EpisodePeakBAC </name><val> 0.0 </val></def>
+  <def><name> EpisodeDuration </name><val> 0.0 </val></def>
+  <def><name> EpisodeLastSampleTime </name><val> System.X </val></def>
+  <def><name> PreviousBAC </name><val> 0.0 </val></def>
+  <def><name> RecoveryLastSampleTime </name><val> System.X </val></def>
+  <def><name> EpisodeCount </name><val> 0.0 </val></def>
+  <def><name> LastEpisodeAUC </name><val> 0.0 </val></def>
+  <def><name> LastEpisodePeakBAC </name><val> 0.0 </val></def>
+  <def><name> LastEpisodeDuration </name><val> 0.0 </val></def>
+  <def><name> LastEpisodeUnits </name><val> 0.0 </val></def>
+  <def><name> LastEpisodeEndTime </name><val> -1.0 </val></def>
   <def><name> AllostaticOffset </name><val> 0.0 </val></def>  <!-- Feature Gap 1: clear allostatic scar -->
   <def><name> StressLevel </name><val> 0.0 </val></def>       <!-- Feature Gap 3: clear CRF stress state -->
 

@@ -3,11 +3,11 @@
   Neuroadaptation.DES  -  PANEL 4
   Cumulative neuroadaptation across repeated ethanol exposures.
 
-  Tracks the number of drinks taken and the two adaptive gains that encode
-  the long-term changes:
+  Tracks BAC exposure episodes and the two adaptive gains that encode the
+  long-term changes:
      A-gain  : euphoria gain, DECREASES with use  (tolerance)
-     B-gain  : withdrawal gain, INCREASES with use (sensitization)
-  A "Reset Adaptation" button clears the tolerance/sensitization history so
+     Opponent gain: withdrawal gain, INCREASES with repeated use
+  A "Reset Adaptation" button clears the tolerance/opponent history so
   a fresh subject can be simulated without restarting the whole model.
 ================================================================================
 -->
@@ -20,26 +20,66 @@
 
   <label>
     <row> 0.5 </row><col> 12.0 </col>
-    <text> Neuroadaptation: Tolerance &amp; Sensitization </text>
+    <text> Neuroadaptation: Tolerance &amp; Opponent Strengthening </text>
     <color> BLACK </color>
   </label>
 
   <!-- ===================== EXPOSURE TRACKING ===================== -->
   <groupbox>
     <row> 2.0 </row><col> 1.0 </col>
-    <high> 9.0 </high><wide> 36.0 </wide>
+    <high> 16.5 </high><wide> 38.0 </wide>
     <title> Exposure Tracking </title>
 
     <showvalue>
       <row> 1.5 </row><col> 1.0 </col>
       <name> DopamineSystem.TotalExposures </name>
-      <label> Exposure Count (drinks) </label>
+      <label> Drink events </label>
       <format><decimal> 0 </decimal></format>
       <color> BLACK </color>
     </showvalue>
 
     <showvalue>
       <row> 3.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EpisodeCount </name>
+      <label> Completed BAC episodes </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 4.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.EpisodeActive </name>
+      <label> Episode active (1=yes) </label>
+      <format><decimal> 0 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 6.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.EpisodeAUC </name>
+      <label> Current BAC AUC </label>
+      <format><decimal> 4 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 7.5 </row><col> 1.0 </col>
+      <name> DopamineSystem.LastEpisodeAUC </name>
+      <label> Last completed BAC AUC </label>
+      <format><decimal> 4 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 9.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.LastEpisodeUnits </name>
+      <label> Last adaptation units </label>
+      <format><decimal> 3 </decimal></format>
+      <color> BLACK </color>
+    </showvalue>
+
+    <showvalue>
+      <row> 10.5 </row><col> 1.0 </col>
       <name> DopamineSystem.AGain </name>
       <label> A-gain (euphoria) </label>
       <format><decimal> 3 </decimal></format>
@@ -47,15 +87,15 @@
     </showvalue>
 
     <showvalue>
-      <row> 4.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.BGain </name>
-      <label> B-gain (craving) </label>
+      <row> 12.0 </row><col> 1.0 </col>
+      <name> DopamineSystem.OpponentGain </name>
+      <label> Opponent gain (withdrawal) </label>
       <format><decimal> 3 </decimal></format>
       <color> BLUE </color>
     </showvalue>
 
     <actionbutton>
-      <row> 6.5 </row><col> 1.0 </col>
+      <row> 14.0 </row><col> 1.0 </col>
       <blockname> DopamineSystem.Reset </blockname>
       <label> Reset Adaptation </label>
       <layout> LABELRIGHT </layout>
@@ -83,8 +123,8 @@
         <linecolor> RED </linecolor>
       </yvar>
       <yvar>
-        <name> DopamineSystem.BGain </name>
-        <label> B-gain (up = sensitization) </label>
+        <name> DopamineSystem.OpponentGain </name>
+        <label> Opponent gain (up = stronger withdrawal) </label>
         <linetype> SOLID </linetype>
         <linecolor> BLUE </linecolor>
       </yvar>
@@ -93,8 +133,8 @@
   </showgraph>
 
   <label>
-    <row> 11.5 </row><col> 1.0 </col>
-    <text> Each new drink lowers A-gain (tolerance to euphoria) and raises B-gain (growing craving) - the core of addiction. </text>
+    <row> 18.0 </row><col> 1.0 </col>
+    <text> Gains update after BAC falls below threshold. BAC AUC scales adaptation; overlapping drinks form one episode. </text>
     <color> GRAY </color>
   </label>
 
