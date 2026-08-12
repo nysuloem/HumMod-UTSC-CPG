@@ -31,4 +31,17 @@ By : Tom Coleman
    <label> Temperature (degrees C) </label>
 </showvalue>
 
+<repeatlist>
+  <name> InfectionLevel </name>
+  <firstval> 0 </firstval> 
+  <repeat><reps> 100 </reps><stepsize> 1 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 23 </row><col> 1.0 </col>
+  <name> HypothalamusShivering.InfectionLevel </name>
+  <listname> InfectionLevel </listname>
+  <label> InfectionLevel </label>
+</slidebar>
+
 End
