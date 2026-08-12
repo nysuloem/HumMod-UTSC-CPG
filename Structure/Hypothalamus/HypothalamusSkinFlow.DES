@@ -42,7 +42,9 @@ Schema : DES V1.0
 
 <def>
   <name> TemperatureDifference </name>
-  <val> HeatCore.Temp(C) - SetPoint </val>
+  <val> HeatCore.Temp(C)
+  - ( SetPoint + HypothalamusFever.FeverTempOffset )
+  </val>
 </def>
 
 <def>

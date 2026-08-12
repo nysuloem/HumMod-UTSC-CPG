@@ -1,0 +1,86 @@
+HumMod / HypothalamusFever
+
+Created : 12-Aug-26 
+Schema : DES V1.0 
+
+
+<structure><name> HypothalamusFever </name>
+
+<variables>
+
+<parm>
+  <name> InfectionLevel </name>
+  <val> 0 </val>
+</parm>
+
+<parm>
+  <name> Tau </name>
+  <val> 30.0 </val>
+</parm>
+
+</variables>
+
+
+<equations>
+
+<delay>
+  <name> FeverTempOffset </name>
+  <outputname> FeverTempOffset </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> TargetFeverOffset </inputname>
+  <rateconstname> K </rateconstname>
+  <dervname> Derv </dervname>
+  <errorlim> 0.003 </errorlim>
+</delay>
+
+</equations>
+
+
+<functions>
+
+<curve>
+  <name> TargetFeverOffset </name>
+
+  <point>
+    <x> 0 </x>
+    <y> 0 </y>
+    <slope> 0 </slope>
+  </point>
+
+  <point>
+    <x> 100 </x>
+    <y> 2.0 </y>
+    <slope> 0 </slope>
+  </point>
+
+</curve>
+
+</functions>
+
+
+<definitions>
+
+<block><name> Parms </name>
+
+  <def>
+    <name> K </name>
+    <val> INVERT ( Tau ) </val>
+  </def>
+
+</block>
+
+
+<block><name> Dervs </name>
+
+  <def>
+    <name> TargetFeverOffset </name>
+    <val> TargetFeverOffset [ InfectionLevel ] </val>
+  </def>
+
+</block>
+
+</definitions>
+
+</structure>
+
+End

@@ -23,15 +23,6 @@ Schema : DES V1.0
   <name> SetPoint </name>
 </var>
 
-<parm>
-  <name> InfectionLevel</name>
-  <val> 0 </val>
-</parm>
-
-<var>
-  <name> FeverTempOffset </name>
-</var>
-
 
 
 <var>
@@ -51,14 +42,9 @@ Schema : DES V1.0
 <curve>
   <name> SkinTempOffset </name>
   <point><x> 24 </x><y>  0.0 </y><slope> 0 </slope></point>
-  <point><x> 30 </x><y> -1.0 </y><slope> 0 </slope></point>32
+  <point><x> 30 </x><y> -1.0 </y><slope> 0 </slope></point>
 </curve>
 
-<curve>
-  <name> FeverTempOffset </name>
-  <point><x> 0 </x><y>  0.0 </y><slope> 0 </slope></point>
-  <point><x> 100 </x><y> 4.0 </y><slope> 0 </slope></point>32
-</curve>
 
 <curve>
   <name> NerveActivity </name>
@@ -77,17 +63,12 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> FeverTempOffset </name>
-  <val>  FeverTempOffset [ InfectionLevel ] </val>
-</def>
-
-<def>
   <name> SetPoint </name>
   <val>
       Base
     + SkinTempOffset
     + HypothalamusSweatingAcclimation.Offset
-    + FeverTempOffset
+    + HypothalamusFever.FeverTempOffset
   </val>
 </def>
 

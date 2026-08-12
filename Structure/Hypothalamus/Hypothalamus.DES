@@ -9,10 +9,12 @@ Schema : DES V1.0
 
 <?path Structure\Hypothalamus\ ?>
 
+<?include HypothalamusFever.DES ?>
 <?include HypothalamusSweating.DES ?>
 <?include HypothalamusShivering.DES ?>
 <?include HypothalamusSkinFlow.DES ?>
 <?include HypothalamusTSH.DES ?>
+
 
 <?include HypothalamusShiveringAcclimation.DES ?>
 <?include HypothalamusSweatingAcclimation.DES ?>
@@ -27,6 +29,7 @@ Schema : DES V1.0
 
   <call> HypothalamusShiveringAcclimation.Parms </call>
   <call> HypothalamusSweatingAcclimation.Parms </call>
+  <call> HypothalamusFever.Parms </call>
 
 </block>
 
@@ -43,6 +46,7 @@ Schema : DES V1.0
 
   <call> HypothalamusShiveringAcclimation.Dervs </call>
   <call> HypothalamusSweatingAcclimation.Dervs </call>
+  <call> HypothalamusFever.Dervs </call>
 
 </block>
 

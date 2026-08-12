@@ -31,17 +31,29 @@ By : Tom Coleman
    <label> Temperature (degrees C) </label>
 </showvalue>
 
+<showvalue>
+  <row> 22 </row><col> 37 </col>
+  <name> HypothalamusFever.FeverTempOffset </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Fever Offset (C) </label>
+</showvalue>
+
+
 <repeatlist>
   <name> InfectionLevel </name>
   <firstval> 0 </firstval> 
-  <repeat><reps> 100 </reps><stepsize> 1 </stepsize></repeat>
+  <repeat>
+    <reps> 10 </reps>
+    <stepsize> 10 </stepsize>
+  </repeat>
 </repeatlist>
 
 <slidebar>
-  <row> 23 </row><col> 1.0 </col>
-  <name> HypothalamusShivering.InfectionLevel </name>
+  <row> 22 </row>
+  <col> 71 </col>
+  <name> HypothalamusFever.InfectionLevel </name>
   <listname> InfectionLevel </listname>
-  <label> InfectionLevel </label>
+  <label> Infection Level </label>
 </slidebar>
 
 End
