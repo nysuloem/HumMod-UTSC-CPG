@@ -12,6 +12,6 @@ Schema : DES V1.0
 <?include Shivering\Shivering.DES ?>
 <?include SkinFlow\SkinFlow.DES ?>
 <?include Sweating\Sweating.DES ?>
+<?include Fever\Fever.DES ?>
 <?include TSH\TSH.DES ?>
-
 End

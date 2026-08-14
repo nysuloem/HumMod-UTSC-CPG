@@ -19,7 +19,7 @@ Schema : DES V1.0
 
 <parm>
   <name> AdaptationTau </name>
-  <val> 180.0 </val>
+  <val> 150.0 </val>
 </parm>
 
 <parm>
