@@ -7,7 +7,7 @@ Copyright : 2014-2014
 By : Tom Coleman
 
 <showgraph>
-  <row> 23 </row><col> 37 </col><high> 7 </high><wide> 26 </wide>
+  <row> 29 </row><col> 37 </col><high> 7 </high><wide> 26 </wide>
   <leftmargin> 4 </leftmargin>
   <xaxis>
     <name> System.X </name>
@@ -36,6 +36,40 @@ By : Tom Coleman
   <name> HypothalamusFever.FeverTempOffset </name>
   <format><decimal> 2 </decimal></format>
   <label> Fever Offset (C) </label>
+</showvalue>
+<showvalue>
+  <row> 23 </row><col> 37 </col>
+  <name> HypothalamusFever.TargetPyrogenDrive </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Target Pyrogen Drive </label>
+</showvalue>
+
+<showvalue>
+  <row> 25 </row><col> 37 </col>
+  <name> HypothalamusFever.PyrogenAdaptation </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Pyrogen Adaptation </label>
+</showvalue>
+
+<showvalue>
+  <row> 26 </row><col> 37 </col>
+  <name> HypothalamusFever.PyrogenStimulus </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Pyrogen Stimulus </label>
+</showvalue>
+
+<showvalue>
+  <row> 24 </row><col> 37 </col>
+  <name> HypothalamusFever.PyrogenDrive </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Pyrogen Drive </label>
+</showvalue>
+
+<showvalue>
+  <row> 27 </row><col> 37 </col>
+  <name> HypothalamusFever.TargetFeverOffset </name>
+  <format><decimal> 2 </decimal></format>
+  <label> Target Fever Offset (C) </label>
 </showvalue>
 
 

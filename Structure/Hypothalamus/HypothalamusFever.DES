@@ -13,10 +13,26 @@ Schema : DES V1.0
   <val> 0 </val>
 </parm>
 
+<var>
+  <name> PyrogenStimulus </name>
+</var>
+
 <parm>
-  <name> Tau </name>
-  <val> 30.0 </val>
+  <name> AdaptationTau </name>
+  <val> 180.0 </val>
 </parm>
+
+<parm>
+  <name> PyrogenTau </name>
+  <val> 60.0 </val>
+</parm>
+
+<parm>
+  <name> FeverTau </name>
+  <val> 60.0 </val>
+</parm>
+
+
 
 </variables>
 
@@ -24,14 +40,35 @@ Schema : DES V1.0
 <equations>
 
 <delay>
+  <name> PyrogenDrive </name>
+  <outputname> PyrogenDrive </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> TargetPyrogenDrive </inputname>
+  <rateconstname> PyrogenK </rateconstname>
+  <dervname> PyrogenDerv </dervname>
+  <errorlim> 0.003 </errorlim>
+</delay>
+
+<delay>
+  <name> PyrogenAdaptation </name>
+  <outputname> PyrogenAdaptation </outputname>
+  <initialval> 0.0 </initialval>
+  <inputname> TargetPyrogenAdaptation </inputname>
+  <rateconstname> AdaptationK </rateconstname>
+  <dervname> AdaptationDerv </dervname>
+  <errorlim> 0.003 </errorlim>
+</delay>
+
+<delay>
   <name> FeverTempOffset </name>
   <outputname> FeverTempOffset </outputname>
   <initialval> 0.0 </initialval>
   <inputname> TargetFeverOffset </inputname>
-  <rateconstname> K </rateconstname>
-  <dervname> Derv </dervname>
+  <rateconstname> FeverK </rateconstname>
+  <dervname> FeverDerv </dervname>
   <errorlim> 0.003 </errorlim>
 </delay>
+
 
 </equations>
 
@@ -39,17 +76,34 @@ Schema : DES V1.0
 <functions>
 
 <curve>
-  <name> TargetFeverOffset </name>
+  <name> TargetPyrogenDriveCurve </name>
 
   <point>
     <x> 0 </x>
-    <y> 0 </y>
+    <y> 0.0 </y>
     <slope> 0 </slope>
   </point>
 
   <point>
     <x> 100 </x>
-    <y> 2.0 </y>
+    <y> 1.0 </y>
+    <slope> 0 </slope>
+  </point>
+
+</curve>
+
+<curve>
+  <name> TargetFeverOffsetCurve </name>
+
+  <point>
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <slope> 0 </slope>
+  </point>
+
+  <point>
+    <x> 0.4 </x>
+    <y> 8.0 </y>
     <slope> 0 </slope>
   </point>
 
@@ -63,8 +117,18 @@ Schema : DES V1.0
 <block><name> Parms </name>
 
   <def>
-    <name> K </name>
-    <val> INVERT ( Tau ) </val>
+    <name> PyrogenK </name>
+    <val> INVERT ( PyrogenTau ) </val>
+  </def>
+
+  <def>
+  <name> AdaptationK </name>
+  <val> INVERT ( AdaptationTau ) </val>
+  </def>
+
+  <def>
+    <name> FeverK </name>
+    <val> INVERT ( FeverTau ) </val>
   </def>
 
 </block>
@@ -73,11 +137,27 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 
   <def>
+    <name> TargetPyrogenDrive </name>
+    <val> TargetPyrogenDriveCurve [ InfectionLevel ] </val>
+  </def>
+
+<def>
+  <name> TargetPyrogenAdaptation </name>
+  <val> TargetPyrogenDriveCurve [ InfectionLevel ] </val>
+</def>
+
+<def>
+  <name> PyrogenStimulus </name>
+  <val> PyrogenDrive - PyrogenAdaptation </val>
+</def>
+
+  <def>
     <name> TargetFeverOffset </name>
-    <val> TargetFeverOffset [ InfectionLevel ] </val>
+    <val> TargetFeverOffsetCurve [ PyrogenStimulus ] </val>
   </def>
 
 </block>
+
 
 </definitions>
 
