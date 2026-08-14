@@ -33,7 +33,7 @@
 
   <groupbox>
     <row> 2.0 </row><col> 51.0 </col>
-    <high> 40.0 </high><wide> 55.0 </wide>
+    <high> 46.0 </high><wide> 55.0 </wide>
     <title> 2. Blood ethanol integral </title>
 
     <showvalue><row> 1.5 </row><col> 1.0 </col><name> EthanolPool.Gain </name><label> Pool gain </label><format><decimal> 8 </decimal></format></showvalue>
@@ -56,11 +56,15 @@
     <showvalue><row> 27.0 </row><col> 1.0 </col><name> DopamineSystem.EpisodeActive </name><label> BAC episode active </label><format><decimal> 0 </decimal></format></showvalue>
     <showvalue><row> 28.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeAUC </name><label> Current BAC AUC </label><format><decimal> 6 </decimal></format></showvalue>
     <showvalue><row> 30.0 </row><col> 1.0 </col><name> DopamineSystem.EpisodePeakBAC </name><label> Current peak BAC </label><format><decimal> 6 </decimal></format></showvalue>
-    <showvalue><row> 31.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeDuration </name><label> Current duration (min) </label><format><decimal> 1 </decimal></format></showvalue>
-    <showvalue><row> 33.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeAUC </name><label> Last completed BAC AUC </label><format><decimal> 6 </decimal></format></showvalue>
-    <showvalue><row> 34.5 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodePeakBAC </name><label> Last completed peak BAC </label><format><decimal> 6 </decimal></format></showvalue>
-    <showvalue><row> 36.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeUnits </name><label> Last adaptation units </label><format><decimal> 4 </decimal></format></showvalue>
-    <showvalue><row> 37.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeCount </name><label> Completed BAC episodes </label><format><decimal> 0 </decimal></format></showvalue>
+    <showvalue><row> 31.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodePeakTime </name><label> Current peak model time (min) </label><format><decimal> 2 </decimal></format></showvalue>
+    <showvalue><row> 33.0 </row><col> 1.0 </col><name> DopamineSystem.EpisodePeakElapsed </name><label> Current peak elapsed time (min) </label><format><decimal> 2 </decimal></format></showvalue>
+    <showvalue><row> 34.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeDuration </name><label> Current duration (min) </label><format><decimal> 1 </decimal></format></showvalue>
+    <showvalue><row> 36.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeAUC </name><label> Last completed BAC AUC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 37.5 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodePeakBAC </name><label> Last completed peak BAC </label><format><decimal> 6 </decimal></format></showvalue>
+    <showvalue><row> 39.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodePeakTime </name><label> Last peak model time (min) </label><format><decimal> 2 </decimal></format></showvalue>
+    <showvalue><row> 40.5 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodePeakElapsed </name><label> Last peak elapsed time (min) </label><format><decimal> 2 </decimal></format></showvalue>
+    <showvalue><row> 42.0 </row><col> 1.0 </col><name> DopamineSystem.LastEpisodeUnits </name><label> Last adaptation units </label><format><decimal> 4 </decimal></format></showvalue>
+    <showvalue><row> 43.5 </row><col> 1.0 </col><name> DopamineSystem.EpisodeCount </name><label> Completed BAC episodes </label><format><decimal> 0 </decimal></format></showvalue>
   </groupbox>
 
   <groupbox>
@@ -68,9 +72,7 @@
     <high> 34.0 </high><wide> 62.0 </wide>
     <title> 3. Reward, opponent and dopamine integrals </title>
 
-    <showvalue><row> 1.5 </row><col> 1.0 </col><name> DopamineSystem.RewardPrediction </name><label> Reward prediction (integral) </label><format><decimal> 8 </decimal></format></showvalue>
-    <showvalue><row> 3.0 </row><col> 1.0 </col><name> DopamineSystem.ChangePrediction </name><label> Prediction derivative </label><format><decimal> 8 </decimal></format></showvalue>
-    <showvalue><row> 4.5 </row><col> 1.0 </col><name> DopamineSystem.PredictionError </name><label> Prediction error </label><format><decimal> 8 </decimal></format></showvalue>
+    <!-- RewardPrediction, ChangePrediction, and PredictionError displays removed with reward learning. -->
     <showvalue><row> 6.0 </row><col> 1.0 </col><name> DopamineSystem.AProcess </name><label> A-process (integral) </label><format><decimal> 8 </decimal></format></showvalue>
     <showvalue><row> 7.5 </row><col> 1.0 </col><name> DopamineSystem.ChangeA </name><label> A derivative </label><format><decimal> 8 </decimal></format></showvalue>
     <showvalue><row> 9.0 </row><col> 1.0 </col><name> DopamineSystem.BProcess </name><label> B-process (integral) </label><format><decimal> 8 </decimal></format></showvalue>

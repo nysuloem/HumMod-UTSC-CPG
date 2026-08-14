@@ -38,16 +38,16 @@
 
     <showvalue>
       <row> 3.0 </row><col> 1.0 </col>
-      <name> DopamineSystem.RewardPrediction </name>
-      <label> Reward Prediction </label>
+      <name> DopamineSystem.PhasicDA </name>
+      <label> Acute DA (BAC-driven) </label>
       <format><decimal> 3 </decimal></format>
       <color> BLUE </color>
     </showvalue>
 
     <showvalue>
       <row> 4.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.PredictionError </name>
-      <label> Prediction Error (RPE) </label>
+      <name> DopamineSystem.DrugDrive </name>
+      <label> Opponent-process Drug Drive </label>
       <format><decimal> 3 </decimal></format>
       <color> RED </color>
     </showvalue>
@@ -62,8 +62,8 @@
 
     <showvalue>
       <row> 8.0 </row><col> 1.0 </col>
-      <name> DopamineSystem.LEARN_RATE </name>
-      <label> Learning Rate (alpha) </label>
+      <name> DopamineSystem.DA_GAIN </name>
+      <label> Acute DA Gain </label>
       <format><decimal> 2 </decimal></format>
       <color> BLACK </color>
     </showvalue>
@@ -90,14 +90,14 @@
         <linecolor> BLACK </linecolor>
       </yvar>
       <yvar>
-        <name> DopamineSystem.RewardPrediction </name>
-        <label> Prediction </label>
+        <name> DopamineSystem.PhasicDA </name>
+        <label> Acute DA </label>
         <linetype> SOLID </linetype>
         <linecolor> BLUE </linecolor>
       </yvar>
       <yvar>
-        <name> DopamineSystem.PredictionError </name>
-        <label> RPE </label>
+        <name> DopamineSystem.DrugDrive </name>
+        <label> Drug Drive </label>
         <linetype> SOLID </linetype>
         <linecolor> RED </linecolor>
       </yvar>
@@ -107,7 +107,7 @@
 
   <label>
     <row> 15.5 </row><col> 1.0 </col>
-    <text> RPE = Reward - Prediction. As prediction learns the reward, RPE -&gt; 0 and the dopamine response to a predictable drink fades. </text>
+    <text> Acute dopamine is driven directly by BAC-derived reward; drug drive independently feeds the A/B opponent process. </text>
     <color> GRAY </color>
   </label>
 

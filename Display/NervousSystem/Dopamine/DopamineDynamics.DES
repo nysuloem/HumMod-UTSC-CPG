@@ -46,18 +46,12 @@
     <showvalue>
       <row> 4.5 </row><col> 1.0 </col>
       <name> DopamineSystem.PhasicDA </name>
-      <label> Phasic DA (RPE burst/dip) </label>
+      <label> Acute DA (BAC-driven) </label>
       <format><decimal> 3 </decimal></format>
       <color> RED </color>
     </showvalue>
 
-    <showvalue>
-      <row> 6.5 </row><col> 1.0 </col>
-      <name> DopamineSystem.PredictionError </name>
-      <label> Prediction Error (RPE) </label>
-      <format><decimal> 3 </decimal></format>
-      <color> RED </color>
-    </showvalue>
+    <!-- Prediction-error value removed from the physiology-focused panel. -->
 
     <showvalue>
       <row> 8.0 </row><col> 1.0 </col>

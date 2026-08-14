@@ -11,12 +11,16 @@
 <var><name> ActualReward </name></var>        <!-- reward envelope adjusted for BAC direction (0..~1) -->
 <var><name> DrugDrive </name></var>           <!-- stimulus drive to the opponent processes -->
 
-<!-- ===================== RPE / DOPAMINE =============================== -->
-<var><name> PredictionError </name></var>     <!-- RPE = ActualReward - RewardPrediction -->
+<!-- ===================== ACUTE / DOPAMINE ============================= -->
+<!-- Reward-learning variable removed from the active physiology model:
+<var><name> PredictionError </name></var>
+-->
 <var><name> TonicDA </name></var>             <!-- tonic dopamine, suppressed by withdrawal (B) and allostasis -->
-<var><name> PhasicDA </name></var>            <!-- phasic (burst/dip) dopamine, proportional to RPE -->
+<var><name> PhasicDA </name></var>            <!-- acute dopamine driven directly by BAC-derived ActualReward -->
 <var><name> DATarget </name></var>            <!-- instantaneous dopamine target = (TonicDA + PhasicDA) clamped -->
-<var><name> D_drug </name></var>              <!-- BUG 3 FIX: non-compensable pharmacological DA signal (Redish 2004) -->
+<!-- Former reward-prediction pharmacological term, retained only as documentation:
+<var><name> D_drug </name></var>
+-->
 <!-- DopamineLevel    : integral, declared by diffeq (VTA/NAc dopamine, arb. units) -->
 <!-- RewardPrediction : integral, declared by diffeq (learned reward expectation) -->
 
@@ -60,6 +64,12 @@
 <var><name> LastEpisodeDuration </name><val> 0.0 </val></var>
 <var><name> LastEpisodeUnits </name><val> 0.0 </val></var> <!-- AUC normalized to a reference standard-drink exposure -->
 <var><name> LastEpisodeEndTime </name><val> -1.0 </val></var>
+<var><name> EpisodeStartTime </name><val> 0.0 </val></var>
+<var><name> EpisodePeakTime </name><val> 0.0 </val></var>
+<var><name> EpisodePeakElapsed </name><val> 0.0 </val></var>
+
+<var><name> LastEpisodePeakTime </name><val> 0.0 </val></var>
+<var><name> LastEpisodePeakElapsed </name><val> 0.0 </val></var>
 
 <!-- ===================== EMOTIONAL / BEHAVIORAL STATES =============== -->
 <var><name> EmotionalHappiness </name></var>       <!-- happiness scale (0-10) from dopamine -->
@@ -67,7 +77,7 @@
 <var><name> EmotionalSleepiness </name></var>      <!-- sleepiness scale (0-10) from dopamine depression -->
 <var><name> EmotionalAnxiety </name></var>         <!-- anxiety scale (0-10) from withdrawal -->
 <var><name> WillToDrink </name></var>              <!-- motivation to drink (0-10) -->
-<var><name> AnticipationSignal </name></var>       <!-- signal that brain predicts a drink (0-10) -->
+<var><name> AnticipationSignal </name></var>       <!-- disabled; retained as zero for interface compatibility -->
 
 <!-- ===================== DRINKING SCHEDULER / CHRONIC PATTERN ======= -->
 <var><name> CurrentTime </name></var>              <!-- current time in minutes since start -->
@@ -86,17 +96,17 @@
 <!-- Dopamine: synaptic clearance ~1-2 min -->
 <parm><name> TAU_DA </name><val> 1.5 </val></parm>        <!-- dopamine clearance time constant (min) -->
 <parm><name> DA_BASELINE </name><val> 1.0 </val></parm>   <!-- tonic dopamine set-point (arb. units) -->
-<parm><name> DA_GAIN </name><val> 1.0 </val></parm>       <!-- phasic dopamine per unit RPE -->
+<parm><name> DA_GAIN </name><val> 1.0 </val></parm>       <!-- acute dopamine per unit BAC-derived ActualReward -->
 
 <parm><name> DA_SCALE_A </name><val> 0.50 </val></parm>   <!-- AProcess -> tonic DA lift (Bug 2 fix) -->
 <parm><name> DA_SCALE_B </name><val> 0.55 </val></parm>   <!-- BProcess -> tonic DA suppression (Bug 2 fix) -->
 
 <parm><name> DA_SCALE_ALLO </name><val> 0.30 </val></parm> <!-- allostatic DA suppression gain (Feature Gap 1) -->
 
-<!-- Temporal-difference learning rate (per min). RL alpha ~0.1-0.3 -->
+<!-- Reward-learning parameters removed from the active physiology model:
 <parm><name> LEARN_RATE </name><val> 0.15 </val></parm>
-
-<parm><name> D_DRUG_GAIN </name><val> 0.20 </val></parm> <!-- non-compensable DA gain (Bug 3 fix) -->
+<parm><name> D_DRUG_GAIN </name><val> 0.20 </val></parm>
+-->
 
 <!-- A-process (euphoria): fast rise, moderate decay -->
 <parm><name> TAU_A_RISE </name><val> 7.0 </val></parm>    <!-- min -->
@@ -148,6 +158,7 @@
   <errorlim> 0.01 </errorlim>
 </diffeq>
 
+<!-- RewardPrediction differential equation removed from active integration:
 <diffeq>
   <name> RewardPrediction </name>
   <integralname> RewardPrediction </integralname>
@@ -155,6 +166,7 @@
   <dervname> ChangePrediction </dervname>
   <errorlim> 0.001 </errorlim>
 </diffeq>
+-->
 
 <diffeq>
   <name> AProcess </name>
@@ -280,6 +292,7 @@
     <val> ActualReward </val>
   </def>
 
+  <!-- Former reward-prediction equations, retained as inactive documentation:
   <def>
     <name> D_drug </name>
     <val> D_DRUG_GAIN * ActualReward </val>
@@ -289,6 +302,7 @@
     <name> PredictionError </name>
     <val> ( ActualReward - RewardPrediction ) + D_drug </val>
   </def>
+  -->
 
   <!-- Hedonic reference set-point (homeostatic baseline) -->
   <def>
@@ -319,7 +333,7 @@
 
   <def>
     <name> PhasicDA </name>
-    <val> DA_GAIN * PredictionError </val>
+    <val> DA_GAIN * ActualReward </val>
   </def>
 
   <def>
@@ -332,16 +346,16 @@
     <val> ( DATarget - DopamineLevel ) / TAU_DA </val>
   </def>
 
-  <!-- ===== Temporal-difference learning of the reward prediction =====
+  <!-- Former temporal-difference learning equation, inactive:
        dPrediction/dt = alpha * (ActualReward - RewardPrediction)
        Prediction converges on the experienced reward, so a repeatedly
        experienced reward eventually drives the LEARNABLE part of RPE -> 0.
 
-        -->
   <def>
     <name> ChangePrediction </name>
     <val> LEARN_RATE * ( ActualReward - RewardPrediction ) </val>
   </def>
+  -->
 
   <!-- ===== A-process (fast euphoria) =====
        Target = AGain * drug drive (AGain shrinks with use = tolerance).
@@ -452,15 +466,23 @@
     <val> ( BProcess * 1.5 * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
   </def>
 
-  <!-- Craving scale (0-10): three drivers —
-       (1) acute BProcess (withdrawal-driven negative affect),
-       (2) learned RewardPrediction (cue-driven / incentive salience),
-       (3) StressLevel (CRF-proxy; negative-reinforcement "dark side" craving). -->
-
+  <!-- Former craving equation with learned prediction, inactive:
   <def>
     <name> EmotionalCraving </name>
     <val> ( ( ( BProcess * 1.2 )
               + ( RewardPrediction * 1.5 )
+              + ( StressLevel * STRESS_CRAVING_K ) )
+            * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+  </def>
+  -->
+
+  <!-- Craving scale (0-10): physiological negative-affect drivers only —
+       (1) acute BProcess (withdrawal-driven negative affect),
+       (2) StressLevel (CRF-proxy; negative-reinforcement "dark side" craving). -->
+
+  <def>
+    <name> EmotionalCraving </name>
+    <val> ( ( ( BProcess * 1.2 )
               + ( StressLevel * STRESS_CRAVING_K ) )
             * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
   </def>
@@ -472,14 +494,20 @@
     <val> ( ( ( EmotionalAnxiety + EmotionalCraving ) - ( EmotionalHappiness * 0.5 ) ) * 0.6 ) MAX 0.0 MIN 10.0 </val>
   </def>
 
-  <!-- Anticipation signal: brain predicts a drink is coming soon.
-       BUGFIX #6: each comparison parenthesized around the AND. -->
+  <!-- Former cue-based anticipation calculation, inactive:
   <conditional>
     <name> AnticipationSignal </name>
     <test> ( TimeOfDay GT ( DRINK_TIME_MINUTES - 120 ) ) AND ( TimeOfDay LT ( DRINK_TIME_MINUTES + 30 ) ) </test>
     <true> RewardPrediction * 5.0 </true>
     <false> 0.0 </false>
   </conditional>
+  -->
+
+  <!-- Anticipation is disabled in this physiology-focused model. -->
+  <def>
+    <name> AnticipationSignal </name>
+    <val> 0.0 </val>
+  </def>
 
   <!-- Days withdrawn: time since last drink / minutes in a day. -->
   <conditional>
@@ -651,6 +679,9 @@
         <name> OpponentGain </name>
         <val> ( OPPONENT_BASELINE + ( ( OpponentGain - OPPONENT_BASELINE ) * EXP ( - ( System.X - RecoveryLastSampleTime ) / TAU_OPPONENT_RECOVERY ) ) ) MAX OPPONENT_BASELINE </val>
       </def>
+      <def><name> EpisodeStartTime </name><val> System.X </val></def>
+      <def><name> EpisodePeakTime </name><val> System.X </val></def>
+      <def><name> EpisodePeakElapsed </name><val> 0.0 </val></def>
     </true>
   </if>
 

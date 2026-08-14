@@ -1,0 +1,82 @@
+HumMod dopamine reward-prediction code archive
+================================================
+
+Purpose
+-------
+This file preserves the original reward-prediction, prediction-error, and
+anticipation equations that were disabled in DopamineSystem.DES. It can be
+used to restore or redesign cue/reward learning later. The active model now
+drives phasic dopamine directly from BAC-derived ActualReward, while retaining
+the A-process, B-process, and completed-episode BAC AUC adaptation.
+
+Original declarations
+---------------------
+<var><name> PredictionError </name></var>
+<var><name> D_drug </name></var>
+<var><name> AnticipationSignal </name></var>
+<!-- RewardPrediction was declared implicitly by its diffeq. -->
+
+Original parameters
+-------------------
+<parm><name> LEARN_RATE </name><val> 0.15 </val></parm>
+<parm><name> D_DRUG_GAIN </name><val> 0.20 </val></parm>
+
+Original RewardPrediction differential equation
+-----------------------------------------------
+<diffeq>
+  <name> RewardPrediction </name>
+  <integralname> RewardPrediction </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> ChangePrediction </dervname>
+  <errorlim> 0.001 </errorlim>
+</diffeq>
+
+Original prediction and prediction-error calculations
+-----------------------------------------------------
+<def>
+  <name> D_drug </name>
+  <val> D_DRUG_GAIN * ActualReward </val>
+</def>
+
+<def>
+  <name> PredictionError </name>
+  <val> ( ActualReward - RewardPrediction ) + D_drug </val>
+</def>
+
+<def>
+  <name> ChangePrediction </name>
+  <val> LEARN_RATE * ( ActualReward - RewardPrediction ) </val>
+</def>
+
+Original phasic dopamine calculation
+------------------------------------
+<def>
+  <name> PhasicDA </name>
+  <val> DA_GAIN * PredictionError </val>
+</def>
+
+Original EmotionalCraving calculation
+-------------------------------------
+<def>
+  <name> EmotionalCraving </name>
+  <val> ( ( ( BProcess * 1.2 )
+            + ( RewardPrediction * 1.5 )
+            + ( StressLevel * STRESS_CRAVING_K ) )
+          * EMOTIONAL_SENSITIVITY ) MAX 0.0 MIN 10.0 </val>
+</def>
+
+Original anticipation calculation
+---------------------------------
+<conditional>
+  <name> AnticipationSignal </name>
+  <test> ( TimeOfDay GT ( DRINK_TIME_MINUTES - 120 ) ) AND ( TimeOfDay LT ( DRINK_TIME_MINUTES + 30 ) ) </test>
+  <true> RewardPrediction * 5.0 </true>
+  <false> 0.0 </false>
+</conditional>
+
+Restoration note
+----------------
+The corresponding original blocks are also preserved as XML comments beside
+their replacements in Structure/Dopamine/DopamineSystem.DES. Restore all of
+the linked declarations, parameters, diffeq, definitions, and display controls
+together; restoring only one block will create undefined-variable errors.
