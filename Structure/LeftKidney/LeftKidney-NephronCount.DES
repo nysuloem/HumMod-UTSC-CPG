@@ -131,10 +131,24 @@ Schema : DES V1.0
   </def> </false>
 </if>-->
 
-<def>
-  <name> Total </name>
-  <val> Total + SexNephronAdjustment <!-- + EthnicityNephronAdjustment --> </val>
-</def>
+<if><test> LeftKidney-Function.Nephrectomy EQ 0 </test>
+<true>
+
+  <def>
+    <name> Total </name>
+    <val> Total + SexNephronAdjustment <!-- + EthnicityNephronAdjustment --> </val>
+  </def>
+
+</true>
+<false>
+
+  <def>
+    <name> Total </name>
+    <val> 0.01 </val>
+  </def>
+
+</false>
+</if>
 
 
 <def><name> NumFiltering </name><val> Total * Filtering(xNormal) </val></def> 

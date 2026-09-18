@@ -69,18 +69,32 @@ By : University Of Mississippi Medical Center
 </false>
 </if> 
 
-<def>
-  <name> BloodFlow </name>
-  <val> ( LeftKidney-Pressure.PressureGradient * Conductance ) MAX 0.0 </val>
-</def>
+<if><test> LeftKidney-Function.Nephrectomy EQ 0 </test>
+<true>
 
-<def>
-  <name> PlasmaFlow </name>
-  <val> BloodVol.PVCrit * BloodFlow </val>
-</def>
+    <def>
+      <name> BloodFlow </name>
+      <val> ( LeftKidney-Pressure.PressureGradient * Conductance ) MAX 0.0 </val>
+    </def>
+
+    <def>
+      <name> PlasmaFlow </name>
+      <val> BloodVol.PVCrit * BloodFlow </val>
+    </def>
+
+</true>
+<false>
+
+    <def><name> BloodFlow </name><val> 0.01 </val></def>
+    <def><name> PlasmaFlow </name><val> 0.01 </val></def>
+
+</false>
+</if>
 
 </block>
+
 </definitions>
+
 </structure>
 
 End

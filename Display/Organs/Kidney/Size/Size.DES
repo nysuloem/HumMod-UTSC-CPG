@@ -29,6 +29,15 @@ Schema : DES V1.0
   <days/>
 </showclock>
 
+<structurename> LeftKidney-Function </structurename>
+
+<radiobuttons>
+  <row> 5.0 </row><col> 70.0 </col>
+  <name> Nephrectomy </name>
+  <listname> Common.NoYes </listname>
+  <label> Left Kidney Nephrectomy </label>
+</radiobuttons>
+
 <?path Display\Organs\Kidney\Size\ ?>
 
 <?include Volume.DES ?>

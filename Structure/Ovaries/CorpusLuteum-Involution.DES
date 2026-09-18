@@ -12,9 +12,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Rate </name></var>
-
 <var><name> [hCG]Effect </name></var>
-
 <var><name> K </name></var>
 <parm><name> BasicK </name><val> 0.0001 </val></parm>
 

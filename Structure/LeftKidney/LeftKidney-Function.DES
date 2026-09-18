@@ -11,30 +11,13 @@ Schema : DES V1.0
 
 <variables>
 
-<var>
-  <name> Failed </name>
-  <val> FALSE </val>
-</var>
-
-<var>
-  <name> Effect </name>
-</var>
-
-<var>
-  <name> PhEffect </name>
-</var>
-
-<var>
-  <name> ProteinEffect </name>
-</var>
-
-<var>
-  <name> FuelEffect </name>
-</var>
-
-<var>
-  <name> TemperatureEffect </name>
-</var>
+<var><name> Failed </name><val> FALSE </val></var>
+<parm><name> Nephrectomy </name><val> 0 </val></parm>
+<var><name> Effect </name></var>
+<var><name> PhEffect </name></var>
+<var><name> ProteinEffect </name></var>
+<var><name> FuelEffect </name></var>
+<var><name> TemperatureEffect </name></var>
 
 </variables>
 

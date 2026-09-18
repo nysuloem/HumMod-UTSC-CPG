@@ -12,9 +12,7 @@ Schema : DES V1.0
 <variables>
 
 <var><name> Secretion </name></var>
-
 <parm><name> BasicSecretion </name><val> 0.3 </val></parm>
-
 <var><name> MassEffect </name></var>
 
 </variables>
@@ -59,6 +57,7 @@ Schema : DES V1.0
 </block>
 
 </definitions>
+
 </structure>
 
 End

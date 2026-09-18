@@ -15,8 +15,8 @@ By : University of Mississippi Medical Center
 <conditional>
 <name> Bladder.Sizer </name>
 <test> Sex.Index EQ 1 </test>
-<true> Context-OtherMass.Mass(kG) / Context-OtherMass.MALE_NORMAL </true>
-<false> Context-OtherMass.Mass(kG) / Context-OtherMass.FEMALE_NORMAL </false>
+<true> Context-OtherMass.Mass(kG) / Context-OtherMass.MALE_NORMAL * 0.5 </true>
+<false> Context-OtherMass.Mass(kG) / Context-OtherMass.FEMALE_NORMAL * 0.5 </false>
 </conditional>
 
 <call> Bladder.Init </call>
