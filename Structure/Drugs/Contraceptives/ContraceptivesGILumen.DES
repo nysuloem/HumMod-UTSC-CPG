@@ -28,6 +28,10 @@ Schema : DES V1.0
 </var>
 
 <var>
+  <name> Gain </name>
+</var>
+
+<var>
   <name> Loss </name>
 </var>
 
@@ -58,6 +62,10 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
+<def><name> Gain </name>
+    <val> ContraceptivesDailyDose.Mass </val>
+  </def>
+
 <def>
   <name> Loss </name>
   <val> BIOAVAIL * PERM * Mass  </val>
@@ -65,7 +73,7 @@ Schema : DES V1.0
 
 <def>
   <name> Change </name>
-  <val> - Loss / BIOAVAIL </val>
+  <val> Gain - Loss </val>
 </def>
 
 </block>

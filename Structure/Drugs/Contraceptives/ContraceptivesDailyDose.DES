@@ -11,7 +11,7 @@ By : University Of Mississippi Medical Center
 <variables>
 
 <parm><name> Dose </name><val> 0.0 </val></parm>
-<parm><name> TakeDaily </name><val> FALSE </val></parm>
+<parm><name> TakeDaily </name><val> 0.0 </val></parm>
 <parm><name> TimesADay </name><val> 1.0 </val></parm>
 <var><name> TimeLastDose </name><val> UNDEFINED </val></var>
 <var><name> TimeNextDose </name><val> UNDEFINED </val></var>
@@ -19,8 +19,10 @@ By : University Of Mississippi Medical Center
 <var><name> RealDose </name><val> 0.0 </val></var>
 <var><name> FakeDose </name><val> 0.0 </val></var>
 <timervar><name> Timer </name><val> 0.0 </val><state> OFF </state></timervar>
+<timervar><name> ResetDailyDose </name><val> 0.0 </val><state> OFF </state></timervar>
 <var><name> Interval </name></var>
-<constant><name> PREPTIME </name><val> 10.0 </val></constant>
+<constant><name> PREPTIME </name><val> 1.0 </val></constant>
+<var><name> Mass </name><val> 0 </val></var>
 
 <!--  Flag determining irregular dosing -->
 <parm><name> IrregularQ </name><val> 0 </val></parm>
@@ -97,10 +99,24 @@ By : University Of Mississippi Medical Center
    <timer>
     <name> Timer </name>
     <val> Interval </val>
+    <state> DOWN </state>
   </timer>
 </false>
 </if>
 </ontimedout>
+
+<if><test> ResetDailyDose GE 1 </test>
+  <true> 
+    <timer><name> ResetDailyDose </name>
+      <val> 0 </val>
+      <state> OFF </state>
+    </timer>
+    <def><name> Mass </name>
+      <val> 0 </val>
+    </def>
+    </true>
+  </if>
+
 </block>
 
 <block><name> TakeFullDose </name>
@@ -108,6 +124,11 @@ By : University Of Mississippi Medical Center
 <timer>
   <name> Timer </name>
   <val> Interval </val>
+  <state> DOWN </state>
+</timer>
+
+<timer><name> ResetDailyDose </name>
+  <state> UP </state>
 </timer>
 
 <def>
@@ -151,6 +172,7 @@ By : University Of Mississippi Medical Center
 </def>
 </false>
 </if>
+
 <if> <test> FakeDose GE 7 </test>
 <true>
 <call> Reset </call>

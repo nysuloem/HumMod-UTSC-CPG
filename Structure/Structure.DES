@@ -144,6 +144,7 @@ By : University of Mississippi Medical Center
 <?include Pressures\Pressures.DES ?>
 <?include PressureTools\PressureTools.DES ?>
 <?include Progesterone\Progesterone.DES ?>
+<?include Progesterone\S-Progesterone.DES ?>
 <?include Renin\Renin.DES ?>
 <?include RespiratoryCenter\RespiratoryCenter.DES ?>
 <?include RespiratoryMuscle\RespiratoryMuscle.DES ?>
@@ -344,6 +345,7 @@ By : University of Mississippi Medical Center
   <call> LH.Conc </call>
   <call> hCG.Conc </call>
   <call> Progesterone.Conc </call>
+  <call> S-Progesterone.Conc </call>
   <call> Testosterone.Conc </call>
   <call> VitaminD.Conc </call>
   <call> Cortisol.Conc </call>
@@ -800,6 +802,7 @@ By : University of Mississippi Medical Center
   <call> LH.Dervs </call>
   <call> hCG.Dervs </call>
   <call> Progesterone.Dervs </call>
+  <call> S-Progesterone.Dervs </call>
   <call> Testosterone.Dervs </call>
   <call> CO.Dervs </call>
 

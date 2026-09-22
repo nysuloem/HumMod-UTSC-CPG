@@ -29,6 +29,10 @@ By : University Of Mississippi Medical Center
     <call> ContraceptivesGILumen.Dervs </call>
     </block>
 
+    <block><name> Wrapup </name>
+    <call> ContraceptivesDailyDose.Wrapup</call>
+    </block>
+
 </definitions>
 
 </structure>
