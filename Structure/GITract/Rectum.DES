@@ -47,7 +47,7 @@
       
     <def>
       <name> dRectalVolume/dt </name>
-      <val> Stomach.DietOutflowRate + Stomach.WaterOutflowRate </val>
+      <val> GILumenCarbohydrates.Leftover </val>
     </def> 
 
     <def>

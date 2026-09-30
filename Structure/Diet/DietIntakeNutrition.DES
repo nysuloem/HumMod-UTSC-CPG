@@ -10,7 +10,7 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-<var><name> Carbo_mG/Min </name></var>
+
 <var><name> Fat_mG/Min </name></var>
 <var><name> Protein_mG/Min </name></var>
 <var><name> Fiber_mG/Min </name></var>
