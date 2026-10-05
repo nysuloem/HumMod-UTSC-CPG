@@ -125,5 +125,10 @@ By : University of Mississippi Medical Center
   <label> Glycerol </label>
   <parent> METABOLISM </parent>
 </leaf>
+<leaf>
+  <name> Metabolism_VitaminB12 </name>
+  <label> VitaminB12 </label>
+  <parent> METABOLISM </parent>
+</leaf>
 
 End

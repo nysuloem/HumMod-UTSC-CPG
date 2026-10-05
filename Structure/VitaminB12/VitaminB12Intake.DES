@@ -12,12 +12,12 @@ By : University of Mississippi Medical Center
 
 <var><name> Gain(nG/Min) </name></var>
 <var><name> Loss(nG/Min) </name></var>
-
+<var><name> Degradation </name></var>
 <var><name> Diet </name></var>
-<var><name> IF </name></var>
+<var><name> IF </name> <val> 2 </val> </var>
 <var><name> Mobilization </name></var>
 <var><name> Sequestration </name></var>
-<var><name> Cubam </name></var>
+<var><name> Cubam </name> <val> 2 </val> </var>
 
 <parm><name> TargetConc </name><val> 10.0 </val></parm>
 <var><name> InitialMass </name></var>

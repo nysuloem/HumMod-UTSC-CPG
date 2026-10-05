@@ -13,8 +13,8 @@ By : University of Mississippi Medical Center
 <var><name> GainLiver(nG/Min) </name></var>
 <var><name> LossLiver(nG/Min) </name></var>
 
-<var><name> SequestrationLiver </name></var>
-<var><name> MobilizationLiver </name></var>
+<var><name> SequestrationLiver </name><val> 0 </val></var>
+<var><name> MobilizationLiver </name><val> 0 </val></var>
 
 <var><name> InitialMassLiver </name></var>
 
@@ -40,7 +40,7 @@ By : University of Mississippi Medical Center
 <block><name> Init </name>
 <def>
   <name> InitialMassLiver </name>
-  <val> 24 </val>
+  <val> 1 * Sizing-OrganMass.Liver_Mass </val>
 </def>
 <def>
   <name> MassLiver </name>

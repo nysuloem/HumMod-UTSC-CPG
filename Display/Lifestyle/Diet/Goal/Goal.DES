@@ -207,6 +207,16 @@ By : University of Mississippi Medical Center
   <label> Vit D3 (IU/Day) </label>
 </slidebar>
 
+<repeatlist>
+  <name> Diet(mg/Day) </name>
+  <repeat><reps> 100 </reps><stepsize> 0.1 </stepsize></repeat>
+</repeatlist>
+<slidebar>
+  <row> 25.0 </row><col> 39.0 </col><wide> 8.0 </wide>
+  <name> VitaminB12Intake.Diet(mg/Day) </name>
+  <listname> Diet(mg/Day) </listname>
+  <label> Vit B12 (ug/Day) </label>
+</slidebar>
 </panel>
 
 End
