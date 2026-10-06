@@ -8,15 +8,69 @@ By: Jason Brown
 
 <variables>
 
-<parm><name> PartnerProbability </name><val> 100 </val></parm>
+<var><name> AttractivenessLabel </name></var>
+<var><name> Attractiveness </name></var>
+<var><name> AttractivenessBase </name><val> 1 </val></var>
+<var><name> PartnerProbabilityBase </name><val> 50 </val></var>
+<var><name> PartnerProbability </name></var>
 <var><name> HaveSex </name><val> 0 </val></var>
 <var><name> SexOutcome </name><val> 0 </val></var>
+<var><name> MuscularityEffect </name></var>
 
 </variables>
+
+<functions>
+
+    <curve>
+        <name> BMIEffect </name>
+        <point><x> 10.0 </x><y> 0 </y><slope> 1 </slope></point>
+        <point><x> 20.0 </x><y> 1.75 </y><slope> 0 </slope></point>
+        <point><x> 33.0 </x><y> 0.5 </y><slope> -0.5 </slope></point>
+        <point><x> 35.0 </x><y> 0.4 </y><slope> 0 </slope></point>
+    </curve>
+
+    <curve>
+        <name> MuscularityEffect </name>
+        <point><x> 18</x><y> 0.5 </y><slope> 0 </slope></point>
+        <point><x> 38</x><y> 1.25</y><slope> 0 </slope></point>
+        <point><x> 58</x><y> 0.25 </y><slope> 0 </slope></point>
+    </curve>
+
+</functions>
 
 <definitions>
 
 <block><name> Parms </name>
+
+<if><test> Context-Sex.Index EQ 1 </test>
+    <true>
+        <def><name> MuscularityEffect </name><val>1</val></def>
+    </true>
+    <false>
+        <def><name> MuscularityEffect </name><val> MuscularityEffect [ Context-Muscularity.Mass(kG) ] </val></def>
+    </false>
+</if>
+
+<def><name>PartnerProbability</name>
+    <val> BMIEffect [ BMI.BMI ] * MuscularityEffect * PartnerProbabilityBase </val>
+</def>
+
+<def><name>Attractiveness</name>
+    <val> BMIEffect [ BMI.BMI ] * MuscularityEffect * AttractivenessBase </val>
+</def>
+
+<testcase>
+
+<case><test> Attractiveness LE 0.5 </test>
+    <def><name> AttractivenessLabel </name><val> 1 </val></def></case>
+<case><test> Attractiveness LE 1.5 </test>
+    <def><name> AttractivenessLabel </name><val> 2 </val></def></case>
+<case><test> Attractiveness LE 2 </test>
+    <def><name> AttractivenessLabel </name><val> 3 </val></def></case>
+<case><test> Attractiveness GT 2 </test>
+    <def><name> AttractivenessLabel </name><val> 4 </val></def></case>
+    
+</testcase>
 
 <if><test> SexDrive.Index EQ 0 </test>
     <true>

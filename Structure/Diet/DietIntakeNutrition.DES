@@ -1,5 +1,7 @@
 HumMod / DietIntakeNutrition
 
+HumMod / DietIntakeNutrition
+
 Created : 24-Jun-06
 Revised : 2012-02-12
 Author : Tom Coleman
@@ -10,23 +12,18 @@ By : University of Mississippi Medical Center
 
 <variables>
 
-<var><name> Carbo_mG/Min </name></var>
 <var><name> Fat_mG/Min </name></var>
 <var><name> Protein_mG/Min </name></var>
 <var><name> Fiber_mG/Min </name></var>
-
 <var><name> Total_mG/Min </name></var>
 <var><name> Total_G/Min </name></var>
-
 <parm><name> Fixed? </name><val> 0 </val></parm>
 <parm><name> FixedIntake(xGoal) </name><val> 1.0 </val></parm>
 <var><name> Intake(xGoal) </name></var>
-
 <var><name> Carbo_Cal/Min </name></var>
 <var><name> Fat_Cal/Min </name></var>
 <var><name> Protein_Cal/Min </name></var>
 <var><name> Fiber_Cal/Min </name></var>
-
 <var><name> Total_Cal/Min </name></var>
 <var><name> Total_kCal/Day </name></var>
 
@@ -36,75 +33,75 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 
-<if>
-<test> Brain-Function.IsReallyDead </test>
-<true>
-  <def><name> Carbo_mG/Min </name><val> 0.0 </val></def>
-  <def><name> Fat_mG/Min </name><val> 0.0 </val></def>
-  <def><name> Protein_mG/Min </name><val> 0.0 </val></def>
-  <def><name> Fiber_mG/Min </name><val> 0.0 </val></def>
+  <if>
+  <test> Brain-Function.IsReallyDead </test>
+  <true>
+    <def><name> Carbo_mG/Min </name><val> 0.0 </val></def>
+    <def><name> Fat_mG/Min </name><val> 0.0 </val></def>
+    <def><name> Protein_mG/Min </name><val> 0.0 </val></def>
+    <def><name> Fiber_mG/Min </name><val> 0.0 </val></def>
+
+    <call> DailyCalories </call>
+
+    <exitblock/>  
+
+  </true>
+  </if>
+
+  <conditional>
+    <name> Intake(xGoal) </name>
+    <test> Fixed? EQ 1 </test>
+    <true> FixedIntake(xGoal) </true>
+    <false> DietHunger.Effect </false>
+  </conditional>
+
+  <conditional>
+    <name> Intake(xGoal) </name>
+    <test> Fixed? EQ 2 </test>
+    <true> 0 </true>
+  </conditional>
+
+  <def>
+    <name> Carbo_mG/Min </name>
+    <val>
+        1000.0
+      * DietFeeding.Fraction
+      * DietGoalNutrition.Carbo_G/Day
+      * Intake(xGoal)
+    </val>
+  </def>
+
+  <def>
+    <name> Fat_mG/Min </name>
+    <val>
+        1000.0
+      * DietFeeding.Fraction
+      * DietGoalNutrition.Fat_G/Day
+      * Intake(xGoal)
+    </val>
+  </def>
+
+  <def>
+    <name> Protein_mG/Min </name>
+    <val>
+        1000.0
+      * DietFeeding.Fraction
+      * DietGoalNutrition.Protein_G/Day
+      * Intake(xGoal)
+    </val>
+  </def>
+
+  <def>
+    <name> Fiber_mG/Min </name>
+    <val>
+        1000.0
+      * DietFeeding.Fraction
+      * GILumenH2O.Fiber
+      * Intake(xGoal)
+    </val>
+  </def>
 
   <call> DailyCalories </call>
-
-  <exitblock/>  
-
-</true>
-</if>
-
-<conditional>
-  <name> Intake(xGoal) </name>
-  <test> Fixed? EQ 1 </test>
-  <true> FixedIntake(xGoal) </true>
-  <false> DietHunger.Effect </false>
-</conditional>
-
-<conditional>
-   <name> Intake(xGoal) </name>
-   <test> Fixed? EQ 2 </test>
-   <true> 0 </true>
-</conditional>
-
-<def>
-  <name> Carbo_mG/Min </name>
-  <val>
-      1000.0
-    * DietFeeding.Fraction
-    * DietGoalNutrition.Carbo_G/Day
-    * Intake(xGoal)
-  </val>
-</def>
-
-<def>
-  <name> Fat_mG/Min </name>
-  <val>
-      1000.0
-    * DietFeeding.Fraction
-    * DietGoalNutrition.Fat_G/Day
-    * Intake(xGoal)
-  </val>
-</def>
-
-<def>
-  <name> Protein_mG/Min </name>
-  <val>
-      1000.0
-    * DietFeeding.Fraction
-    * DietGoalNutrition.Protein_G/Day
-    * Intake(xGoal)
-  </val>
-</def>
-
-<def>
-  <name> Fiber_mG/Min </name>
-  <val>
-      1000.0
-    * DietFeeding.Fraction
-    * GILumenH2O.Fiber
-    * Intake(xGoal)
-  </val>
-</def>
-
-<call> DailyCalories </call>
 
 </block>
 

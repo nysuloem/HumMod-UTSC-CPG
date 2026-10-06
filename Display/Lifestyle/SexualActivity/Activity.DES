@@ -25,19 +25,6 @@ By: Jason Brown UTSC
   <label> Sexually Active </label>
 </radiobuttons>
 
-<repeatlist>
-  <name> PartnerProbability </name>
-  <repeat><reps> 100 </reps><stepsize> 1.0 </stepsize></repeat>
-</repeatlist>
-
-<slidebar>
-    <row> 3.4 </row>
-    <col> 1.0 </col>
-    <name> HaveSex.PartnerProbability </name>
-    <listname> PartnerProbability </listname>
-    <label> Partner Probability (%) </label>
-</slidebar>
-
 <showvalue>
    <row> 12.4 </row><col> 1 </col>
    <name> SexDrive.LibidoEffect </name>
@@ -76,7 +63,7 @@ By: Jason Brown UTSC
 </maplist>
 
 <showvalue>
-  <row> 7.4 </row><col>1</col>
+  <row> 4.4 </row><col>1</col>
   <name> SexDrive.Mood </name>
   <nolabel/>
   <format>
@@ -85,7 +72,7 @@ By: Jason Brown UTSC
 </showvalue>
 
 <label>
-  <row> 6.4 </row>
+  <row> 3.4 </row>
   <col> 1.0 </col>
   <text> Participant's sex drive =  </text>
 </label>
@@ -97,6 +84,29 @@ By: Jason Brown UTSC
   <map><val>  5 </val><img> Participant is currently attempting sexual intercourse </img></map>
   <map><val> 6 </val><img> Participant could not get an erection and aborted the sexual attempt </img></map>
 </maplist>
+
+<maplist>
+  <name> HaveSex.AttractivenessLabel </name>
+  <map><val>  1 </val><img> Unattractive </img></map>
+  <map><val> 2 </val><img> Average  </img></map>
+  <map><val>  3 </val><img> Attractive </img></map>
+  <map><val> 4 </val><img> Very Attractive </img></map>
+</maplist>
+
+<label>
+  <row> 6.4 </row>
+  <col> 1.0 </col>
+  <text> Participant's Perceived Attractiveness =  </text>
+</label>
+
+<showvalue>
+  <row> 7.4 </row><col>1</col>
+  <name> HaveSex.AttractivenessLabel </name>
+  <nolabel/>
+  <format>
+    <list> HaveSex.AttractivenessLabel </list>
+  </format>
+</showvalue>
 
 <showvalue>
   <row> 10.4 </row><col>1</col>
