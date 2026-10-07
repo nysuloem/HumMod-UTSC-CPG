@@ -97,7 +97,7 @@ By : University of Mississippi Medical Center
 
 <block><name> Dervs </name>
 
-<def><name> K </name><val> 0.1 </val></def>
+<def><name> K </name><val> 1000000 </val></def>
 <def><name> DxMax </name><val> .2 </val></def>
 
 <def><name> [OsmNa] </name><val> 2 * GILumenSodium.[Na+] </val></def>
