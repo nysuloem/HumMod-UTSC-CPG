@@ -15,10 +15,11 @@ By : University of Mississippi Medical Center
 <var><name> IntakeLoading </name></var>
 
 <var><name> Leftover </name></var>
-
-<var><name> BasicAbsorption </name></var>
 <var><name> IntakeMassG </name></var>
 <var><name> AbsorptionMassG </name></var>
+
+<var><name> BasicAbsorption </name></var>
+
 <parm><name> Transporter </name><val> 1.0 </val></parm>
 
 <var>

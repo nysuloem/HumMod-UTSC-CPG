@@ -33,7 +33,7 @@
 
     <def>
       <name> RectalVolume </name>
-      <val> GILumenCarbohydrates.Leftover </val>
+      <val> GILumenCarbohydrates.Leftover + GILumenFat.Leftover + GILumenProtein.Leftover </val>
     </def> 
 
     <if>

@@ -13,6 +13,9 @@ Schema : DES V1.0
 
 <var><name> Intake </name></var>
 <var><name> Absorption </name></var>
+<var><name> Leftover </name></var>
+<var><name> IntakeMassG </name></var>
+<var><name> AbsorptionMassG </name></var>
 
 <var><name> [Fat] </name></var>
 
@@ -46,6 +49,18 @@ Schema : DES V1.0
 <def><name> Intake </name><val> DietIntakeNutrition.Fat_mG/Min </val></def>
 <def><name> Absorption </name><val> Perm * Mass </val></def>
 <def><name> Change </name><val> Intake - Absorption </val></def>
+<def> 
+  <name> IntakeMassG </name>
+  <val> Intake / 1000 </val>
+ </def>
+<def> 
+  <name> AbsorptionMassG </name>
+  <val> Absorption / 1000 </val>
+ </def>
+<def>
+  <name> Leftover </name>
+  <val> IntakeMassG - AbsorptionMassG </val>
+</def>
 
 </block>
 
