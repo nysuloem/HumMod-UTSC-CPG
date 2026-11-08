@@ -37,13 +37,32 @@
 
   <showvalue>
     <row> 3.0 </row><col> 1.0 </col>
-    <name> DietStomachVolume </name>
+    <name> CarboStomachVolume </name>
     <format><decimal> 1 </decimal></format>
-    <label> Food Volume (mL) </label>
-  </showvalue>
-
+    <label> Carbohydrate Volume (mL) </label>
+  </showvalue> 
   <showvalue>
     <row> 4.5 </row><col> 1.0 </col>
+    <name> ProteinStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Protein Volume (mL) </label>
+  </showvalue>
+  <showvalue>
+    <row> 6.0 </row><col> 1.0 </col>
+    <name> FatStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Fat Volume (mL) </label>
+  </showvalue>
+  <showvalue>
+    <row> 7.5 </row><col> 1.0 </col>
+    <name> FibreStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Fibre Volume (mL) </label>
+  </showvalue>
+
+
+  <showvalue>
+    <row> 9.0 </row><col> 1.0 </col>
     <name> WaterStomachVolume </name>
     <format><decimal> 1 </decimal></format>
     <label> Water Volume (mL) </label>
@@ -60,8 +79,20 @@
   </xaxis>
 <yaxis>
     <yvar>
-      <name> DietStomachVolume </name>
-      <label> Food </label><linecolor> RED </linecolor>
+      <name> CarboStomachVolume </name>
+      <label> Carbohydrates </label><linecolor> CYAN </linecolor>
+    </yvar>
+    <yvar>
+      <name> ProteinStomachVolume </name>
+      <label> Protein </label><linecolor> RED </linecolor>
+    </yvar> 
+    <yvar>
+      <name> FatStomachVolume </name>
+      <label> Fat </label><linecolor> YELLOW </linecolor>
+    </yvar> 
+    <yvar>
+      <name> FibreStomachVolume </name>
+      <label> Fibre </label><linecolor> GREEN </linecolor>
     </yvar>
      <yvar>
       <name> WaterStomachVolume </name>
@@ -76,7 +107,94 @@
 </showgraph>
 
 
+<structurename> Small-Intestine </structurename>
+
+<groupbox>
+  <row> 25 </row><col> 1.0 </col>
+  <high> 6.0 </high><wide> 30.0 </wide>
+  <title> Stomach Volume </title>
+
+  <showvalue>
+    <row> 1.5 </row><col> 1.0 </col>
+    <name> StomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Total Volume (mL) </label>
+  </showvalue>
+
+  <showvalue>
+    <row> 3.0 </row><col> 1.0 </col>
+    <name> CarboStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Carbohydrate Volume (mL) </label>
+  </showvalue> 
+  <showvalue>
+    <row> 4.5 </row><col> 1.0 </col>
+    <name> ProteinStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Protein Volume (mL) </label>
+  </showvalue>
+  <showvalue>
+    <row> 6.0 </row><col> 1.0 </col>
+    <name> FatStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Fat Volume (mL) </label>
+  </showvalue>
+  <showvalue>
+    <row> 7.5 </row><col> 1.0 </col>
+    <name> FibreStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Fibre Volume (mL) </label>
+  </showvalue>
+
+
+  <showvalue>
+    <row> 9.0 </row><col> 1.0 </col>
+    <name> WaterStomachVolume </name>
+    <format><decimal> 1 </decimal></format>
+    <label> Water Volume (mL) </label>
+  </showvalue>
+
+</groupbox>
+  
+<showgraph>
+  <row> 25 </row><col> 35.0 </col>
+  <high> 8 </high><wide> 40.0 </wide>
+  <xaxis>
+    <name> System.X </name><label> Time (Min) </label>
+    <scale><min> 0 </min><max> 480 </max></scale>
+  </xaxis>
+<yaxis>
+    <yvar>
+      <name> CarboStomachVolume </name>
+      <label> Carbohydrates </label><linecolor> CYAN </linecolor>
+    </yvar>
+    <yvar>
+      <name> ProteinStomachVolume </name>
+      <label> Protein </label><linecolor> RED </linecolor>
+    </yvar> 
+    <yvar>
+      <name> FatStomachVolume </name>
+      <label> Fat </label><linecolor> YELLOW </linecolor>
+    </yvar> 
+    <yvar>
+      <name> FibreStomachVolume </name>
+      <label> Fibre </label><linecolor> GREEN </linecolor>
+    </yvar>
+     <yvar>
+      <name> WaterStomachVolume </name>
+      <label> Water </label><linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> StomachVolume </name>
+      <label> Total </label><linecolor> BLACK </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1000 </max></scale>
+  </yaxis>
+</showgraph>
+
 
 </panel>
+
+
 
 End

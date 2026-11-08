@@ -5,9 +5,15 @@
 
 <variables>
 
-    <var><name> DietInflowRate </name><val> 0 </val></var>
+    <var><name> CarboInflowRate </name><val> 0 </val></var>
+    <var><name> ProteinInflowRate </name><val> 0 </val></var>
+    <var><name> FatInflowRate </name><val> 0 </val></var>
+    <var><name> FibreInflowRate </name><val> 0 </val></var>
     <var><name> WaterInflowRate </name><val> 0 </val></var>
-    <var><name> DietOutflowRate </name><val> 0 </val></var>
+    <var><name> CarboOutflowRate </name><val> 0 </val></var>
+    <var><name> ProteinOutflowRate </name><val> 0 </val></var>
+    <var><name> FatOutflowRate </name><val> 0 </val></var>
+    <var><name> FibreOutflowRate </name><val> 0 </val></var>
     <var><name> WaterOutflowRate </name><val> 0 </val></var>
     <var><name> StomachVolume </name><val> 0 </val></var>
     <var><name> KFood </name><val> 0.02 </val></var>
@@ -20,10 +26,31 @@
 <equations>
 
     <diffeq>
-      <name> DietStomachVolume </name>
-      <integralname> DietStomachVolume </integralname>
+      <name> CarboStomachVolume </name>
+      <integralname> CarboStomachVolume </integralname>
       <initialval> 0.0 </initialval>
-      <dervname> dDietStomachVolume/dt </dervname>
+      <dervname> dCarboStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> ProteinStomachVolume </name>
+      <integralname> ProteinStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dProteinStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> FatStomachVolume </name>
+      <integralname> FatStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFatStomachVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> FibreStomachVolume </name>
+      <integralname> FibreStomachVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFibreStomachVolume/dt </dervname>
       <errorlim> 10 </errorlim>
     </diffeq>
 
@@ -42,18 +69,47 @@
   <block><name> Dervs </name>
 
     <def>
-      <name> DietInflowRate </name>
-      <val> DietIntakeNutrition.Total_G/Min </val>
+      <name> CarboInflowRate </name>
+      <val> DietIntakeNutrition.Carbo_mG/Min </val>
+    </def>
+    <def>
+      <name> CarboOutflowRate </name>
+      <val> KFood * CarboStomachVolume </val>
     </def>
 
     <def>
-        <name> WaterInflowRate </name>
-        <val> DietIntakeH2O.Rate(mL/Min) </val>
+      <name> ProteinInflowRate </name>
+      <val> DietIntakeNutrition.Protein_mG/Min </val>
+    </def>
+    <def>
+      <name> ProteinOutflowRate </name>
+      <val> KFood * ProteinStomachVolume </val>
+    </def>
+
+    <def>
+      <name> FatInflowRate </name>
+      <val> DietIntakeNutrition.Fat_mG/Min </val>
     </def>
       
     <def>
-      <name> DietOutflowRate </name>
-      <val> KFood * DietStomachVolume </val>
+      <name> FatOutflowRate </name>
+      <val> KFood * FatStomachVolume </val>
+    </def> 
+
+    <def>
+      <name> FibreInflowRate </name>
+      <val> DietIntakeNutrition.Fibre_mG/Min </val>
+    </def>
+      
+    <def>
+      <name> FibreOutflowRate </name>
+      <val> KFood * FibreStomachVolume </val>
+    </def>
+
+
+     <def>
+        <name> WaterInflowRate </name>
+        <val> DietIntakeH2O.Rate(mL/Min) </val>
     </def>
 
     <def>
@@ -62,8 +118,20 @@
     </def>
 
     <def>
-      <name> dDietStomachVolume/dt </name>
-      <val> DietInflowRate - DietOutflowRate </val>
+      <name> dCarboStomachVolume/dt </name>
+      <val> CarboInflowRate - CarboOutflowRate </val>
+    </def>
+    <def>
+      <name> dProteinStomachVolume/dt </name>
+      <val> ProteinInflowRate - ProteinOutflowRate </val>
+    </def>
+    <def>
+      <name> dFatStomachVolume/dt </name>
+      <val> FatInflowRate - FatOutflowRate </val>
+    </def>
+    <def>
+      <name> dFibreStomachVolume/dt </name>
+      <val> FibreInflowRate - FibreOutflowRate </val>
     </def>
 
     <def>
@@ -73,7 +141,7 @@
 
     <def>
         <name> StomachVolume </name>
-        <val> DietStomachVolume + WaterStomachVolume </val>
+        <val> CarboStomachVolume + ProteinStomachVolume + FatStomachVolume + FibreStomachVolume + WaterStomachVolume </val>
     </def>
 
   </block>
@@ -81,9 +149,28 @@
    <block><name> Wrapup </name>
 
      <if>
-        <test> DietStomachVolume LT 0 </test>
+        <test> CarboStomachVolume LT 0 </test>
         <true>
-          <def><name> DietStomachVolume </name><val> 0 </val></def>
+          <def><name> CarboStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+
+      <if>
+        <test> ProteinStomachVolume LT 0 </test>
+        <true>
+          <def><name> ProteinStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if> 
+      <if>
+        <test> FatStomachVolume LT 0 </test>
+        <true>
+          <def><name> FatStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if> 
+      <if>
+        <test> FibreStomachVolume LT 0 </test>
+        <true>
+          <def><name> FibreStomachVolume </name><val> 0 </val></def>
         </true>
       </if>
 

@@ -24,10 +24,10 @@ By : University of Mississippi Medical Center
 
 <var><name> [OsmNa] </name></var>
 <var><name> [OsmK] </name></var>
-<var><name> [Fiber] </name></var>
+<var><name> [Fibre] </name></var>
 <var><name> [Osm] </name></var>
 
-<parm><name> Fiber </name><val> 60 </val></parm>
+<parm><name> Fibre </name><val> 60 </val></parm>
 
 <parm><name> Perm </name><val> 250 </val></parm> <!-- 150 -->500
 <parm><name> ResidualVolume </name><val> 50 </val></parm>
@@ -102,8 +102,8 @@ By : University of Mississippi Medical Center
 
 <def><name> [OsmNa] </name><val> 2 * GILumenSodium.[Na+] </val></def>
 <def><name> [OsmK] </name><val> 2 * GILumenPotassium.[K+] </val></def>
-<def><name> [Fiber] </name><val> Fiber / Mass </val></def>
-<def><name> [Osm] </name><val> [OsmNa] + [OsmK] + [Fiber] </val></def>
+<def><name> [Fibre] </name><val> Fibre / Mass </val></def>
+<def><name> [Osm] </name><val> [OsmNa] + [OsmK] + [Fibre] </val></def>
 
 <def><name> IntakeDiet </name><val> DietIntakeH2O.Rate(mL/Min) </val></def>
 <def><name> IntakeLoading </name><val> OralH2OGlucoseLoad.H2ORate * OralH2OGlucoseLoad.Switch </val></def>

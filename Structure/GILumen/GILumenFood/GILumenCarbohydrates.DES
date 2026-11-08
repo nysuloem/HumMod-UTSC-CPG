@@ -59,8 +59,8 @@ By : University of Mississippi Medical Center
 
 <curve><name> BasicAbsorption </name>
   <point><x>    0 </x><y>   0 </y><slope> 0.0 </slope></point>
-  <point><x> 1900 </x><y> 150 </y><slope> 0.08 </slope></point>
-  <point><x> 6000 </x><y> 600 </y><slope> 0.0 </slope></point>
+  <point><x> 1900 </x><y> 15 </y><slope> 0.08 </slope></point>
+  <point><x> 6000 </x><y> 60 </y><slope> 0.0 </slope></point>
 </curve>
 
 <curve>

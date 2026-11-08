@@ -839,7 +839,7 @@ By : University of Mississippi Medical Center
   <call> Menstruation.Dervs </call>
   <call> Uterus-Menstruation.Dervs </call>
   <call> Stomach.Dervs </call>
-  <call> Rectum.Dervs </call>
+  <!-- <call> Rectum.Dervs </call> -->
   <call> Fetus.Dervs </call>
   
 </block>
@@ -899,7 +899,7 @@ By : University of Mississippi Medical Center
   <call> Osmoles.Wrapup </call>
   <call> Trauma.Wrapup </call>
   <call> Stomach.Wrapup </call>
-  <call> Rectum.Wrapup </call>
+  <!-- <call> Rectum.Wrapup </call> -->
   <if>
     <test> Sex.IsFemale </test>
     <true><call> Endometrium.Wrapup </call></true>

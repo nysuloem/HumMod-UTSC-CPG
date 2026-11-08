@@ -13,7 +13,7 @@ By : University of Mississippi Medical Center
 
 <var><name> Fat_mG/Min </name></var>
 <var><name> Protein_mG/Min </name></var>
-<var><name> Fiber_mG/Min </name></var>
+<var><name> Fibre_mG/Min </name></var>
 
 <var><name> Total_mG/Min </name></var>
 <var><name> Total_G/Min </name></var>
@@ -25,7 +25,7 @@ By : University of Mississippi Medical Center
 <var><name> Carbo_Cal/Min </name></var>
 <var><name> Fat_Cal/Min </name></var>
 <var><name> Protein_Cal/Min </name></var>
-<var><name> Fiber_Cal/Min </name></var>
+<var><name> Fibre_Cal/Min </name></var>
 
 <var><name> Total_Cal/Min </name></var>
 <var><name> Total_kCal/Day </name></var>
@@ -42,7 +42,7 @@ By : University of Mississippi Medical Center
   <def><name> Carbo_mG/Min </name><val> 0.0 </val></def>
   <def><name> Fat_mG/Min </name><val> 0.0 </val></def>
   <def><name> Protein_mG/Min </name><val> 0.0 </val></def>
-  <def><name> Fiber_mG/Min </name><val> 0.0 </val></def>
+  <def><name> Fibre_mG/Min </name><val> 0.0 </val></def>
 
   <call> DailyCalories </call>
 
@@ -95,11 +95,11 @@ By : University of Mississippi Medical Center
 </def>
 
 <def>
-  <name> Fiber_mG/Min </name>
+  <name> Fibre_mG/Min </name>
   <val>
       1000.0
     * DietFeeding.Fraction
-    * GILumenH2O.Fiber
+    * GILumenH2O.Fibre
     * Intake(xGoal)
   </val>
 </def>
@@ -112,7 +112,7 @@ By : University of Mississippi Medical Center
 
 <def>
   <name> Total_mG/Min </name>
-  <val> Carbo_mG/Min + Fat_mG/Min + Protein_mG/Min + Fiber_mG/Min </val>
+  <val> Carbo_mG/Min + Fat_mG/Min + Protein_mG/Min + Fibre_mG/Min </val>
 </def>
 
 <def>

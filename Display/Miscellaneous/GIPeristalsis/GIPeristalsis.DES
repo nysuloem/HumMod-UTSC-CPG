@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 
 <?path Display\Miscellaneous\GIPeristalsis\Rectum\ ?>
 
-<?include Rectum.DES ?>
+<!-- <?include Rectum.DES ?> -->
 
 <?path Display\Miscellaneous\GIPeristalsis\ ?>
 

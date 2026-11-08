@@ -126,9 +126,9 @@ By : University of Mississippi Medical Center
 
 <showvalue>
   <row> 22.0 </row><col> 3.0 </col>
-  <name> [Fiber] </name>
+  <name> [Fibre] </name>
   <format><decimal> 3 </decimal></format>
-  <label> [Fiber] </label>
+  <label> [Fibre] </label>
 </showvalue>
 
 <showvalue>

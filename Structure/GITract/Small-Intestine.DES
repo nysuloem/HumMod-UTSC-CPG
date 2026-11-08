@@ -1,0 +1,188 @@
+
+<!-- Boaz's BIOC32 project-->
+
+<structure><name> Stomach </name>
+
+<variables>
+
+    <var><name> CarboInflowRate </name><val> 0 </val></var>
+    <var><name> ProteinInflowRate </name><val> 0 </val></var>
+    <var><name> FatInflowRate </name><val> 0 </val></var>
+    <var><name> FibreInflowRate </name><val> 0 </val></var>
+    <var><name> WaterInflowRate </name><val> 0 </val></var>
+    <var><name> CarboOutflowRate </name><val> 0 </val></var>
+    <var><name> ProteinOutflowRate </name><val> 0 </val></var>
+    <var><name> FatOutflowRate </name><val> 0 </val></var>
+    <var><name> FibreOutflowRate </name><val> 0 </val></var>
+    <var><name> WaterOutflowRate </name><val> 0 </val></var>
+    <var><name> IntestineVolume </name><val> 0 </val></var>
+    <var><name> KFood </name><val> 0.02 </val></var>
+    <var><name> KWater </name><val> 0.05 </val></var>
+
+    <parm><name>AutoEmptyingVolume</name><val> 200 </val></parm>
+
+</variables>
+
+<equations>
+
+    <diffeq>
+      <name> CarboIntestineVolume </name>
+      <integralname> CarboIntestineVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dCarboIntestineVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> ProteinIntestineVolume </name>
+      <integralname> ProteinIntestineVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dProteinIntestineVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> FatIntestineVolume </name>
+      <integralname> FatIntestineVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFatIntestineVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+    <diffeq>
+      <name> FibreIntestineVolume </name>
+      <integralname> FibreIntestineVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dFibreIntestineVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+      <diffeq>
+      <name> WaterIntestineVolume </name>
+      <integralname> WaterIntestineVolume </integralname>
+      <initialval> 0.0 </initialval>
+      <dervname> dWaterIntestineVolume/dt </dervname>
+      <errorlim> 10 </errorlim>
+    </diffeq>
+
+</equations>
+
+<definitions>
+
+  <block><name> Dervs </name>
+
+  <def>
+      <name> CarboInflowRate </name>
+      <val> STOMACHOUTLFOW**IntakeNutrition.Carbo_mG/Min </val>
+    </def>
+    <def>
+      <name> CarboOutflowRate </name>
+      <val> GILumenCarbohydrates.Absorption </val> !!!!!!!!!***
+    </def>
+
+    <def>
+      <name> ProteinInflowRate </name>
+      <val> DietIntakeNutrition.Protein_mG/Min </val>
+    </def>
+    <def>
+      <name> ProteinOutflowRate </name>
+      <val> KFood * ProteinStomachVolume </val>
+    </def>
+
+    <def>
+      <name> FatInflowRate </name>
+      <val> DietIntakeNutrition.Fat_mG/Min </val>
+    </def>
+      
+    <def>
+      <name> FatOutflowRate </name>
+      <val> KFood * FatStomachVolume </val>
+    </def> 
+
+    <def>
+      <name> FibreInflowRate </name>
+      <val> DietIntakeNutrition.Fibre_mG/Min </val>
+    </def>
+      
+    <def>
+      <name> FibreOutflowRate </name>
+      <val> KFood * FibreStomachVolume </val>
+    </def>
+
+
+     <def>
+        <name> WaterInflowRate </name>
+        <val> DietIntakeH2O.Rate(mL/Min) </val>
+    </def>
+
+    <def>
+      <name> WaterOutflowRate </name>
+      <val> KWater * WaterStomachVolume </val>
+    </def>
+
+    <def>
+      <name> dCarboStomachVolume/dt </name>
+      <val> CarboInflowRate - CarboOutflowRate </val>
+    </def>
+    <def>
+      <name> dProteinStomachVolume/dt </name>
+      <val> ProteinInflowRate - ProteinOutflowRate </val>
+    </def>
+    <def>
+      <name> dFatStomachVolume/dt </name>
+      <val> FatInflowRate - FatOutflowRate </val>
+    </def>
+    <def>
+      <name> dFibreStomachVolume/dt </name>
+      <val> FibreInflowRate - FibreOutflowRate </val>
+    </def>
+
+    <def>
+      <name> dWaterStomachVolume/dt </name>
+      <val> WaterInflowRate - WaterOutflowRate </val>
+    </def>
+
+    <def>
+        <name> StomachVolume </name>
+        <val> CarboStomachVolume + ProteinStomachVolume + FatStomachVolume + FibreStomachVolume + WaterStomachVolume </val>
+    </def>
+    
+
+  </block>
+
+   <block><name> Wrapup </name>
+
+     <if>
+        <test> CarboStomachVolume LT 0 </test>
+        <true>
+          <def><name> CarboStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+
+      <if>
+        <test> ProteinStomachVolume LT 0 </test>
+        <true>
+          <def><name> ProteinStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if> 
+      <if>
+        <test> FatStomachVolume LT 0 </test>
+        <true>
+          <def><name> FatStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if> 
+      <if>
+        <test> FibreStomachVolume LT 0 </test>
+        <true>
+          <def><name> FibreStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+
+      <if>
+        <test> WaterStomachVolume LT 0 </test>
+        <true>
+          <def><name> WaterStomachVolume </name><val> 0 </val></def>
+        </true>
+      </if>
+  </block>
+
+</definitions>
+
+</structure>
